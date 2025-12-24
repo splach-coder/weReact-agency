@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Welcome to Your App",
+    "description": "This is a clean boilerplate ready for your content."
+  },
+  "Header": {
+    "home": "Home"
+  },
+  "Footer": {
+    "copyright": "All rights reserved."
+  }
+}

@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3A5A40;
+  --color-primary-dark: #2e4833;
+  --color-background-main: #F6F6F2;
+  --color-background-contrast: #FFFFFF;
+  --color-text-main: #1A1A1A;
+  --color-text-secondary: #5F5F5F;
+  --color-text-muted: #8A8A8A;
+
+  --font-family-sans: 'Nohemi', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-Thin-BF6438cc5896c67.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-ExtraLight-BF6438cc58a2634.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-Regular-BF6438cc4d0e493.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-Medium-BF6438cc5883899.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-Bold-BF6438cc587b5b5.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-ExtraBold-BF6438cc5881baf.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nohemi';
+    src: url('/fonts/Nohemi-Black-BF6438cc58744d4.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background-main);
+    color: var(--color-text-main);
+    font-family: 'Nohemi', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
