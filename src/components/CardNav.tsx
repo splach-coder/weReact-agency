@@ -184,7 +184,7 @@ const CardNav: React.FC<CardNavProps> = ({
                     <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
                         {/* Using text logo if image fails or for simplicity, but prompt asked for this structure. I'll stick to img but might need a valid src. 
                 Replacing img with a simple text fallback if logo is empty, but User provided props.logo. */}
-                        <span className="text-3xl font-black tracking-tighter" style={{ color: menuColor }}>-WeReact-</span>
+                        <span className="text-xl md:text-3xl font-black tracking-tighter text-[#3A5A40]">-WeReact-</span>
                     </div>
 
                     <button

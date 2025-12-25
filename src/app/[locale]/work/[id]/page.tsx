@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, ArrowLeft, Check, Calendar, Tag, Users, Monitor, Smartphone, Globe } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
 export default function CaseStudyPage() {
@@ -31,7 +32,7 @@ export default function CaseStudyPage() {
         "flying-tandem": {
             title: "Flying Tandem",
             client: "Adventure Tourism",
-            year: "2024",
+            year: "2025",
             category: "Tourism Website",
             tagline: "Bringing the thrill of paragliding to life online",
             description: "A professional paragliding and tandem flight website showcasing aerial experiences, safety information, and booking details for adventure tourism enthusiasts. Built with modern web technologies for optimal performance.",
@@ -47,6 +48,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "React", "Booking System", "Responsive", "Payment Integration", "i18n"],
             link: "https://www.flyingtandem.com/",
+            image: "/images/projects/flying-tandem.jpg",
+            imageFull: "/images/projects/flying-tandem-full.png",
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -75,7 +78,7 @@ export default function CaseStudyPage() {
         "kasbah-angour": {
             title: "Kasbah Angour",
             client: "Hospitality",
-            year: "2024",
+            year: "2025",
             category: "Hotel Website",
             tagline: "Showcasing authentic Moroccan hospitality",
             description: "A hotel and guesthouse website presenting Kasbah Angour, including accommodation details, services, location information, and direct contact options. Features stunning imagery and intuitive navigation.",
@@ -91,6 +94,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "CMS", "Hospitality", "SEO", "Booking", "Photography"],
             link: "https://www.kasbahangour.com/en",
+            image: "/images/projects/kasbah-angour.jpg",
+            imageFull: "/images/projects/kasbah-angour-full.png",
             gradient: "from-[#2e4833] to-[#1f3322]",
             color: "#2e4833",
             features: [
@@ -119,7 +124,7 @@ export default function CaseStudyPage() {
         "your-morocco": {
             title: "Your Morocco",
             client: "Travel & Experiences",
-            year: "2024",
+            year: "2025",
             category: "Travel Platform",
             tagline: "Curating authentic Moroccan experiences",
             description: "A travel platform dedicated to Moroccan experiences, tours, and cultural discovery, designed to help visitors explore Morocco in a curated way. Features comprehensive tour listings and booking capabilities.",
@@ -135,6 +140,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "Travel", "Booking", "Multilingual", "CMS", "Reviews"],
             link: "https://your-morocco.com/en",
+            image: "/images/projects/your-morocco.jpg",
+            imageFull: "/images/projects/your-morocco-full.png",
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -163,7 +170,7 @@ export default function CaseStudyPage() {
         "by-marrakech": {
             title: "By Marrakech",
             client: "City Guide",
-            year: "2024",
+            year: "2025",
             category: "Digital Guide",
             tagline: "Your digital companion to Marrakech",
             description: "A modern city guide for Marrakech highlighting places, culture, and experiences, built with a clean interface and multilingual support. Helps visitors discover the best of Marrakech.",
@@ -179,6 +186,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "City Guide", "PWA", "i18n", "Content Management", "Maps"],
             link: "https://by-marrakech.vercel.app/en",
+            image: "/images/projects/by-marrakech.jpg",
+            imageFull: "/images/projects/by-marrakech-full.png",
             gradient: "from-[#2e4833] to-[#1f3322]",
             color: "#2e4833",
             features: [
@@ -213,10 +222,10 @@ export default function CaseStudyPage() {
             {/* Creative Hero Section with Split Layout */}
             <motion.section
                 ref={heroRef}
-                className="relative min-h-screen flex items-center px-6 overflow-hidden bg-[var(--color-background-main)]"
+                className="relative min-h-screen flex items-center pt-24 md:pt-0 px-4 md:px-12 overflow-hidden bg-[var(--color-background-main)]"
             >
-                <div className="max-w-[1400px] mx-auto w-full relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="max-w-[1500px] mx-auto w-full relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
                         {/* Left Side - Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
@@ -226,10 +235,10 @@ export default function CaseStudyPage() {
                             {/* Back Button */}
                             <Link
                                 href="/work"
-                                className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors mb-8 group"
+                                className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors mb-4 md:mb-8 group"
                             >
-                                <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-                                <span className="font-medium">Back to Projects</span>
+                                <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:-translate-x-1" />
+                                <span className="text-sm md:text-base font-medium">Back to Projects</span>
                             </Link>
 
                             {/* Category Badge */}
@@ -237,7 +246,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
                                 transition={{ duration: 0.5, delay: 0.2 }}
-                                className="block px-4 py-2 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-full text-sm font-bold uppercase tracking-wider mb-6 w-fit"
+                                className="block px-3 py-1.5 md:px-4 md:py-2 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-full text-xs md:text-sm font-bold uppercase tracking-wider mb-4 md:mb-6 w-fit"
                             >
                                 {project.category}
                             </motion.div>
@@ -247,7 +256,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.3 }}
-                                className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--color-primary)] mb-4"
+                                className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-[var(--color-primary)] mb-3 md:mb-4"
                             >
                                 {project.title}
                             </motion.h1>
@@ -257,7 +266,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.4 }}
-                                className="text-xl md:text-2xl text-[var(--color-text-secondary)] mb-8"
+                                className="text-base md:text-xl lg:text-2xl text-[var(--color-text-secondary)] mb-6 md:mb-8"
                             >
                                 {project.tagline}
                             </motion.p>
@@ -267,33 +276,33 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.5 }}
-                                className="flex flex-wrap gap-6 mb-10"
+                                className="flex flex-wrap gap-3 md:gap-6 mb-6 md:mb-10"
                             >
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-                                        <Users className="w-5 h-5 text-[var(--color-primary)]" />
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                        <Users className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-medium text-[var(--color-text-secondary)]">Client</div>
-                                        <div className="text-sm font-bold text-[var(--color-text-main)]">{project.client}</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Client</div>
+                                        <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.client}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-                                        <Calendar className="w-5 h-5 text-[var(--color-primary)]" />
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                        <Calendar className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-medium text-[var(--color-text-secondary)]">Year</div>
-                                        <div className="text-sm font-bold text-[var(--color-text-main)]">{project.year}</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Year</div>
+                                        <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.year}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-                                        <Tag className="w-5 h-5 text-[var(--color-primary)]" />
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                        <Tag className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-medium text-[var(--color-text-secondary)]">Type</div>
-                                        <div className="text-sm font-bold text-[var(--color-text-main)]">{project.category}</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Type</div>
+                                        <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.category}</div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -308,10 +317,10 @@ export default function CaseStudyPage() {
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white rounded-full font-bold hover:bg-[#2e4833] transition-all duration-300 hover:scale-105 group"
+                                    className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-full text-sm md:text-base font-bold hover:bg-[#2e4833] transition-all duration-300 hover:scale-105 group"
                                 >
                                     Visit Live Site
-                                    <ExternalLink className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </a>
                             </motion.div>
                         </motion.div>
@@ -365,20 +374,15 @@ export default function CaseStudyPage() {
                                 </div>
 
                                 {/* Screenshot Area */}
-                                <div className="relative aspect-[4/3] bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-primary)]/10">
-                                    {/* Placeholder */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10`} />
-                                        <div className="relative z-10 text-center p-8">
-                                            <Monitor size={60} className="mx-auto mb-4 text-[var(--color-primary)]/30" />
-                                            <p className="text-sm font-bold text-[var(--color-primary)]/50">
-                                                Add Screenshot Here
-                                            </p>
-                                            <p className="text-xs text-[var(--color-primary)]/30 mt-2">
-                                                /public/projects/{projectId}-hero.jpg
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div className="relative aspect-[5/3] bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-primary)]/10">
+                                    {/* Project Screenshot */}
+                                    <Image
+                                        src={project.image}
+                                        alt={`${project.title} screenshot`}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
 
                                     {/* Animated Glow Effect */}
                                     <motion.div
@@ -395,12 +399,12 @@ export default function CaseStudyPage() {
                                 </div>
                             </div>
 
-                            {/* Floating Stats Cards */}
+                            {/* Floating Stats Cards - Desktop Only */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.8 }}
-                                className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
+                                className="hidden lg:block absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
                             >
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
@@ -421,7 +425,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 1 }}
-                                className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
+                                className="hidden lg:block absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
                             >
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
@@ -448,26 +452,38 @@ export default function CaseStudyPage() {
 
             {/* Project Image/Screenshot Section */}
             <section ref={visualsRef} className="py-16 md:py-24 px-6 bg-white">
-                <div className="max-w-[1400px] mx-auto">
+                <div className="mx-auto w-full">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isVisualsInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="relative aspect-video bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-3xl overflow-hidden border-2 border-[var(--color-primary)]/10"
+                        className="relative w-full bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-3xl overflow-hidden border-2 border-[var(--color-primary)]/10 flex items-center justify-center group"
                     >
-                        {/* Placeholder for project screenshot */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10`} />
-                            <div className="relative z-10 text-center">
-                                <Monitor size={80} className="mx-auto mb-4 text-[var(--color-primary)]/30" />
-                                <p className="text-lg font-bold text-[var(--color-primary)]/50">
-                                    Project Screenshot
-                                </p>
-                                <p className="text-sm text-[var(--color-primary)]/30 mt-2">
-                                    Add screenshot: /public/projects/{projectId}-hero.jpg
-                                </p>
-                            </div>
+                        {/* Full Project Screenshot */}
+                        <div className="relative w-full h-full min-h-[450px] md:min-h-[1400px]">
+                            <Image
+                                src={project.imageFull}
+                                alt={`${project.title} full screenshot`}
+                                fill
+                                className="object-contain"
+                                sizes="100vw"
+                            />
                         </div>
+
+                        {/* Floating Live Website Link */}
+                        <motion.a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isVisualsInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-full font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
+                        >
+                            <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                            <span>View Live Site</span>
+                            <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </motion.a>
                     </motion.div>
                 </div>
             </section>
@@ -642,28 +658,28 @@ export default function CaseStudyPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 md:py-24 px-6 bg-white">
+            <section className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-white">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className={`bg-gradient-to-br ${project.gradient} text-white p-12 md:p-16 rounded-3xl text-center`}>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                    <div className={`bg-gradient-to-br ${project.gradient} text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl text-center`}>
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
                             Interested in a Similar Project?
                         </h2>
-                        <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-white/80 mb-6 md:mb-10 max-w-2xl mx-auto">
                             Let's discuss how we can create something amazing for your business.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                             >
                                 Start Your Project
-                                <ExternalLink className="w-6 h-6" />
+                                <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
                             </Link>
                             <Link
                                 href="/work"
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-sm md:text-lg hover:bg-white/10 transition-all duration-300"
                             >
-                                <ArrowLeft className="w-6 h-6" />
+                                <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
                                 View More Projects
                             </Link>
                         </div>

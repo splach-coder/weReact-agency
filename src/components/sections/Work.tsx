@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import Button from '../Button'; // Assuming we have this or can use standard button
@@ -12,22 +13,32 @@ export default function Work() {
 
     const projects = [
         {
-            src: "/images/coffee_shop.png",
-            alt: "Coffee Shop",
-            category: "Hospitality",
-            desc: "\"This rebrand completely transformed our customer engagement and daily foot traffic.\""
+            id: "flying-tandem",
+            src: "/images/projects/flying-tandem.jpg",
+            alt: "Flying Tandem",
+            category: "Tourism Website",
+            desc: "A professional paragliding platform with real-time booking and multilingual support for adventure seekers."
         },
         {
-            src: "/images/construction.png",
-            alt: "Construction Co",
-            category: "Industrial",
-            desc: "\"A high-performance platform that has doubled our lead generation in three months.\""
+            id: "kasbah-angour",
+            src: "/images/projects/kasbah-angour.jpg",
+            alt: "Kasbah Angour",
+            category: "Hotel Website",
+            desc: "Showcasing authentic Moroccan hospitality with stunning imagery and direct booking integration."
         },
         {
-            src: "/images/consulting.png",
-            alt: "Consulting Firm",
-            category: "Corporate",
-            desc: "\"Professional, sleek, and exactly what we needed to establish industry authority.\""
+            id: "your-morocco",
+            src: "/images/projects/your-morocco.jpg",
+            alt: "Your Morocco",
+            category: "Travel Platform",
+            desc: "Curating authentic Moroccan experiences with comprehensive tour listings and booking capabilities."
+        },
+        {
+            id: "by-marrakech",
+            src: "/images/projects/by-marrakech.jpg",
+            alt: "By Marrakech",
+            category: "Digital Guide",
+            desc: "Your digital companion to Marrakech with offline functionality and interactive maps."
         },
     ];
 
@@ -75,21 +86,25 @@ export default function Work() {
             </div>
 
             {/* Marquee Container */}
-            <div className="relative w-full">
+            <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
                 <motion.div
                     className="flex gap-6 md:gap-8 w-max px-6"
+                    drag="x"
+                    dragConstraints={{ left: -2000, right: 0 }}
+                    dragElastic={0.1}
                     animate={{ x: "-50%" }}
                     transition={{
                         ease: "linear",
-                        duration: 30, // Adjust speed here (higher = slower)
+                        duration: 60, // Slower: 60 seconds (was 30)
                         repeat: Infinity
                     }}
                 >
                     {/* Render duplications for seamless loop */}
                     {[...marqueeProjects, ...marqueeProjects].map((project, idx) => (
-                        <div
+                        <Link
                             key={idx}
-                            className="relative w-[300px] md:w-[400px] aspect-[3/4] rounded-[2rem] overflow-hidden flex-shrink-0 group select-none"
+                            href={`/work/${project.id}`}
+                            className="relative w-[300px] md:w-[400px] aspect-[3/4] rounded-[2rem] overflow-hidden flex-shrink-0 group select-none block transition-transform duration-300 hover:scale-[1.02]"
                         >
                             <Image
                                 src={project.src}
@@ -103,14 +118,11 @@ export default function Work() {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                             {/* Text Content Overlay */}
-                            <div className="absolute bottom-0 left-0 w-full p-8 text-white z-10 flex flex-col justify-end h-full">
+                            <div className="absolute bottom-0 left-0 w-full p-8 text-white z-10">
                                 <div className="mb-4">
                                     <span className="inline-block p-2 bg-white/20 backdrop-blur-md rounded-full mb-4">
                                         <ArrowRight size={16} className="text-white" />
                                     </span>
-                                    <p className="text-lg md:text-xl font-medium leading-relaxed italic opacity-90 mb-6">
-                                        {project.desc}
-                                    </p>
                                 </div>
 
                                 <div className="border-t border-white/20 pt-4 flex justify-between items-end">
@@ -126,7 +138,7 @@ export default function Work() {
                                     {/* <div className="h-6 w-6 bg-white/20 rounded-full" /> */}
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </motion.div>
             </div>

@@ -1,4 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 
 export interface StaggeredMenuItem {
@@ -49,6 +51,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     onMenuOpen,
     onMenuClose
 }: StaggeredMenuProps) => {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const openRef = useRef(false);
 
@@ -298,6 +301,24 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         }
     }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
 
+    // Lock body scroll when menu is open
+    React.useEffect(() => {
+        if (open) {
+            document.body.style.overflow = 'hidden';
+            document.body.style.height = '100vh';
+            document.body.style.touchAction = 'none'; // Prevent touch scrolling on mobile
+        } else {
+            document.body.style.overflow = '';
+            document.body.style.height = '';
+            document.body.style.touchAction = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.height = '';
+            document.body.style.touchAction = '';
+        };
+    }, [open]);
+
     const animateText = useCallback((opening: boolean) => {
         const inner = textInnerRef.current;
         if (!inner) return;
@@ -463,52 +484,62 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}
-                    className="staggered-menu-panel fixed top-0 right-0 h-screen bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px]"
+                    className="staggered-menu-panel pointer-events-auto fixed top-0 right-0 max-h-screen bg-white flex flex-col p-[4em_2em_2em_2em] overflow-hidden z-10 backdrop-blur-[12px]"
                     style={{ WebkitBackdropFilter: 'blur(12px)' }}
                     aria-hidden={!open}
                 >
-                    <div className="sm-panel-inner flex-1 flex flex-col gap-5 text-left">
+                    <div className="sm-panel-inner flex-1 flex flex-col justify-between text-left min-h-0 py-[4em]">
                         <ul
-                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
+                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-1 sm:gap-2 flex-shrink-0"
                             role="list"
                             data-numbering={displayItemNumbering || undefined}
                         >
                             {items && items.length ? (
                                 items.map((it, idx) => (
                                     <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
-                                        <a
-                                            className="sm-panel-item relative text-black font-semibold text-[3rem] cursor-pointer leading-none tracking-[-1px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
-                                            href={it.link}
+                                        <div
+                                            className="sm-panel-item relative text-[#3A5A40] font-semibold text-[2rem] sm:text-[2.5rem] md:text-[3rem] cursor-pointer leading-none tracking-[-1px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] hover:text-[#2e4833]"
+                                            role="button"
+                                            tabIndex={open ? 0 : -1}
                                             aria-label={it.ariaLabel}
                                             data-index={idx + 1}
-                                            onClick={closeMenu}
+                                            onClick={() => {
+                                                closeMenu();
+                                                router.push(it.link);
+                                            }}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    closeMenu();
+                                                    router.push(it.link);
+                                                }
+                                            }}
                                         >
                                             <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                                                 {it.label}
                                             </span>
-                                        </a>
+                                        </div>
                                     </li>
                                 ))
                             ) : null}
                         </ul>
 
                         {displaySocials && socialItems && socialItems.length > 0 && (
-                            <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
-                                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)]">Socials</h3>
+                            <div className="sm-socials pt-4 sm:pt-6 md:pt-8 flex flex-col gap-2 sm:gap-3 flex-shrink-0" aria-label="Social links">
+                                <h3 className="sm-socials-title m-0 text-sm sm:text-base font-medium [color:var(--sm-accent,#ff0000)]">Socials</h3>
                                 <ul
-                                    className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
+                                    className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-3 sm:gap-4 flex-wrap"
                                     role="list"
                                 >
                                     {socialItems.map((s, i) => (
                                         <li key={s.label + i} className="sm-socials-item">
-                                            <a
+                                            <Link
                                                 href={s.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
+                                                className="sm-socials-link text-base sm:text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
                                             >
                                                 {s.label}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

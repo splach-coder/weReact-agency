@@ -26,7 +26,7 @@ export default function WorkPage() {
             category: "Tourism Website",
             description: "Professional paragliding website with booking system and safety information",
             tags: ["Next.js", "Booking", "Responsive"],
-            image: "/projects/flying-tandem.jpg", // You'll add these images
+            image: "/images/projects/flying-tandem.jpg", // You'll add these images
             gradient: "from-[#3A5A40] to-[#2e4833]"
         },
         {
@@ -37,7 +37,7 @@ export default function WorkPage() {
             category: "Hotel Website",
             description: "Elegant hotel website showcasing accommodations and amenities",
             tags: ["Next.js", "CMS", "SEO"],
-            image: "/projects/kasbah-angour.jpg",
+            image: "/images/projects/kasbah-angour.jpg",
             gradient: "from-[#2e4833] to-[#1f3322]"
         },
         {
@@ -48,7 +48,7 @@ export default function WorkPage() {
             category: "Travel Platform",
             description: "Comprehensive travel platform for Moroccan tours and experiences",
             tags: ["Next.js", "Travel", "Multilingual"],
-            image: "/projects/your-morocco.jpg",
+            image: "/images/projects/your-morocco.jpg",
             gradient: "from-[#3A5A40] to-[#2e4833]"
         },
         {
@@ -59,7 +59,7 @@ export default function WorkPage() {
             category: "Digital Guide",
             description: "Modern city guide for discovering the best of Marrakech",
             tags: ["Next.js", "PWA", "i18n"],
-            image: "/projects/by-marrakech.jpg",
+            image: "/images/projects/by-marrakech.jpg",
             gradient: "from-[#2e4833] to-[#1f3322]"
         }
     ];
@@ -167,16 +167,14 @@ export default function WorkPage() {
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-500 hover:shadow-2xl">
                                         {/* Image Side */}
                                         <div className="relative h-[300px] lg:h-[400px] overflow-hidden bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5">
-                                            {/* Placeholder for project image */}
-                                            <div className="absolute inset-0 flex items-center justify-center">
-                                                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
-                                                <div className="relative z-10 text-center">
-                                                    <ExternalLink size={60} className="mx-auto mb-4 text-[var(--color-primary)]/30" />
-                                                    <p className="text-sm font-bold text-[var(--color-primary)]/50">
-                                                        Project Screenshot
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            {/* Project Image */}
+                                            <Image
+                                                src={project.image}
+                                                alt={`${project.title} - ${project.description}`}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                            />
 
                                             {/* Overlay on hover */}
                                             <div className={`absolute inset-0 bg-[var(--color-primary)]/90 flex items-center justify-center transition-opacity duration-500 ${hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
@@ -237,27 +235,27 @@ export default function WorkPage() {
             </section>
 
             {/* CTA Section */}
-            <section ref={ctaRef} className="py-16 md:py-24 px-6">
+            <section ref={ctaRef} className="py-12 md:py-16 lg:py-24 px-4 md:px-6">
                 <div className="max-w-[1200px] mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="text-center bg-[var(--color-primary)] text-white p-12 md:p-16 rounded-3xl"
+                        className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl"
                     >
-                        <Code className="w-16 h-16 mx-auto mb-6" />
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                        <Code className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6" />
+                        <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
                             Ready to Start Your Project?
                         </h2>
-                        <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-white/70 mb-6 md:mb-10 max-w-2xl mx-auto">
                             Let's create something amazing together. Your project could be our next success story.
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Get Started
-                            <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
                     </motion.div>
                 </div>

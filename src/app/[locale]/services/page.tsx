@@ -222,17 +222,19 @@ export default function ServicesPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-16"
+                        className="text-center mb-12 md:mb-16"
                     >
-                        <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-[var(--color-primary)] mb-6">
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--color-primary)] mb-4 md:mb-6">
                             Our Expertise
                         </h2>
-                        <p className="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-                            Click on each service to explore what we can do for you
+                        <p className="text-base md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+                            <span className="hidden lg:inline">Click on each service to explore what we can do for you</span>
+                            <span className="lg:hidden">Tap to expand and explore our services</span>
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    {/* Desktop: Two-column layout with sticky details */}
+                    <div className="hidden lg:grid grid-cols-2 gap-12">
                         {/* Service Cards */}
                         <div className="space-y-4">
                             {services.map((service, index) => (
@@ -259,7 +261,7 @@ export default function ServicesPage() {
                                             />
                                         </div>
                                         <div className="flex-1">
-                                            <h3 className={`text-2xl font-bold mb-2 ${activeService === index ? 'text-white' : 'text-[var(--color-primary)]'
+                                            <h3 className={`text-2xl font-bold mb-2 ${activeService === index ? 'text-white' : 'text-[var(--color-primary)}'
                                                 }`}>
                                                 {service.title}
                                             </h3>
@@ -279,7 +281,7 @@ export default function ServicesPage() {
                             ))}
                         </div>
 
-                        {/* Service Details */}
+                        {/* Service Details - Sticky */}
                         <motion.div
                             key={activeService}
                             initial={{ opacity: 0, y: 20 }}
@@ -336,6 +338,99 @@ export default function ServicesPage() {
                             </div>
                         </motion.div>
                     </div>
+
+                    {/* Mobile/Tablet: Accordion-style expandable cards */}
+                    <div className="lg:hidden space-y-4">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="bg-white rounded-2xl border-2 border-[var(--color-primary)]/10 overflow-hidden"
+                            >
+                                {/* Service Header - Always Visible */}
+                                <div
+                                    onClick={() => setActiveService(activeService === index ? -1 : index)}
+                                    className={`p-4 md:p-6 cursor-pointer transition-all duration-300 ${activeService === index
+                                        ? 'bg-[var(--color-primary)] text-white'
+                                        : 'bg-white hover:bg-[var(--color-primary)]/5'
+                                        }`}
+                                >
+                                    <div className="flex items-center gap-3 md:gap-4">
+                                        <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${activeService === index
+                                            ? 'bg-white/20'
+                                            : 'bg-[var(--color-primary)]/10'
+                                            }`}>
+                                            <service.icon
+                                                size={24}
+                                                strokeWidth={2}
+                                                className={activeService === index ? 'text-white' : 'text-[var(--color-primary)]'}
+                                            />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className={`text-lg md:text-xl font-bold mb-1 ${activeService === index ? 'text-white' : 'text-[var(--color-primary)]'
+                                                }`}>
+                                                {service.title}
+                                            </h3>
+                                            <p className={`text-xs md:text-sm line-clamp-1 ${activeService === index ? 'text-white/80' : 'text-[var(--color-text-secondary)]'
+                                                }`}>
+                                                {service.description}
+                                            </p>
+                                        </div>
+                                        <motion.div
+                                            animate={{ rotate: activeService === index ? 90 : 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <ArrowRight
+                                                className={`w-5 h-5 md:w-6 md:h-6 flex-shrink-0 ${activeService === index ? 'text-white' : 'text-[var(--color-primary)]'
+                                                    }`}
+                                            />
+                                        </motion.div>
+                                    </div>
+                                </div>
+
+                                {/* Expandable Details */}
+                                <motion.div
+                                    initial={false}
+                                    animate={{
+                                        height: activeService === index ? 'auto' : 0,
+                                        opacity: activeService === index ? 1 : 0
+                                    }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="p-4 md:p-6 pt-0 md:pt-2 border-t border-[var(--color-primary)]/10">
+                                        <p className="text-sm md:text-base text-[var(--color-text-secondary)] pt-2 mb-4 md:mb-6">
+                                            {service.description}
+                                        </p>
+
+                                        <h4 className="text-sm md:text-base font-bold text-[var(--color-primary)] mb-3 md:mb-4">
+                                            What's Included:
+                                        </h4>
+                                        <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                                            {service.features.map((feature, idx) => (
+                                                <div key={idx} className="flex items-start gap-2 md:gap-3">
+                                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <Check size={12} strokeWidth={3} className="text-[var(--color-primary)]" />
+                                                    </div>
+                                                    <span className="text-xs md:text-sm text-[var(--color-text-main)]">{feature}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <Link
+                                            href="/contact"
+                                            className="group w-full flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-xl font-bold uppercase text-xs md:text-sm tracking-wider hover:bg-[#2e4833] transition-all duration-300"
+                                        >
+                                            Get Started
+                                            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -385,22 +480,22 @@ export default function ServicesPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 md:py-24 px-6 bg-[var(--color-background-main)]">
+            <section className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-[var(--color-background-main)]">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className="text-center bg-[var(--color-primary)] text-white p-12 md:p-16 rounded-3xl">
-                        <Zap className="w-16 h-16 mx-auto mb-6" />
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                    <div className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl">
+                        <Zap className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6" />
+                        <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
                             Ready to Get Started?
                         </h2>
-                        <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-white/70 mb-6 md:mb-10 max-w-2xl mx-auto">
                             Let's discuss your project and create something amazing together.
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Start Your Project
-                            <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
                     </div>
                 </div>

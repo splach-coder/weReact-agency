@@ -131,17 +131,19 @@ export default function Header() {
                             <div className="relative h-10 w-10 flex items-center justify-center mr-2">
                                 <StaggeredMenu
                                     items={[
+                                        { label: 'Home', ariaLabel: 'Home', link: `/${locale}/` },
                                         { label: 'About', ariaLabel: 'About Us', link: `/${locale}/about` },
                                         { label: 'Services', ariaLabel: 'Our Services', link: `/${locale}/services` },
                                         { label: 'Work', ariaLabel: 'Our Work', link: `/${locale}/work` },
                                         { label: 'Contact', ariaLabel: 'Contact Us', link: `/${locale}/contact` }
                                     ]}
                                     socialItems={[
-                                        { label: 'Instagram', link: '#' },
-                                        { label: 'Twitter', link: '#' }
+                                        { label: 'Instagram', link: 'https://www.instagram.com/wereact.agency' },
+                                        { label: 'Twitter', link: 'https://twitter.com/wereact' }
                                     ]}
                                     className="mobile-menu-override"
                                     staticPosition={true}
+                                    menuButtonColor={isGreenHeroPage ? '#ffffff' : '#3A5A40'}
                                 />
                             </div>
                         </div>

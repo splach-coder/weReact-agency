@@ -75,10 +75,6 @@
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-background-main);
     color: var(--color-text-main);

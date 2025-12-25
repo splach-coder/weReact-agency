@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { Target, Users, Zap, Award, Heart, Lightbulb, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -152,15 +153,15 @@ export default function AboutPage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="relative"
                         >
-                            <div className="aspect-square rounded-3xl bg-[var(--color-primary)]/10 p-8 flex items-center justify-center">
-                                <div className="text-center">
-                                    <div className="text-8xl md:text-9xl font-bold text-[var(--color-primary)] mb-4">
-                                        5+
-                                    </div>
-                                    <div className="text-2xl font-bold text-[var(--color-primary)] uppercase tracking-wider">
-                                        Years of Excellence
-                                    </div>
-                                </div>
+                            <div className="aspect-square rounded-3xl overflow-hidden bg-[var(--color-primary)]/5 border-2 border-[var(--color-primary)]/10">
+                                <Image
+                                    src="/images/about-experience.png"
+                                    alt="5+ Years of Excellence in Web Development"
+                                    width={800}
+                                    height={800}
+                                    className="w-full h-full object-cover"
+                                    priority
+                                />
                             </div>
                         </motion.div>
                     </div>
@@ -248,26 +249,26 @@ export default function AboutPage() {
             </section>
 
             {/* CTA Section */}
-            <section ref={teamRef} className="py-16 md:py-24 px-6 bg-[var(--color-background-main)]">
+            <section ref={teamRef} className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-[var(--color-background-main)]">
                 <div className="max-w-[1200px] mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="text-center bg-[var(--color-primary)] text-[var(--color-background-main)] p-12 md:p-16 rounded-3xl"
+                        className="text-center bg-[var(--color-primary)] text-[var(--color-background-main)] p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl"
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                        <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
                             Ready to Work Together?
                         </h2>
-                        <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+                        <p className="text-base md:text-xl text-white/70 mb-6 md:mb-10 max-w-2xl mx-auto">
                             Let's create something extraordinary. Get in touch and let's discuss how we can help your business thrive online.
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Start Your Project
-                            <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
                     </motion.div>
                 </div>
