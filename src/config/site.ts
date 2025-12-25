@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: 'WeReact',
     description: 'We Design & Build Impactful Digital Experiences - Your partner for stunning websites and powerful web applications.',
-    url: "https://www.wereact.agency/",
+    url: "https://www.wereact.agency",
     defaultLocale: 'en',
     locales: ['en', 'fr'],
     // SEO specifics

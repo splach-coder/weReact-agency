@@ -37,11 +37,7 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.twitterHandle,
   },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
-  },
+
   metadataBase: new URL(siteConfig.url),
 };
 
