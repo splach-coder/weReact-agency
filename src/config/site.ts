@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: 'WeReact',
     description: 'We Design & Build Impactful Digital Experiences - Your partner for stunning websites and powerful web applications.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    url: "https://www.wereact.agency/",
     defaultLocale: 'en',
     locales: ['en', 'fr'],
     // SEO specifics
