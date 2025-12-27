@@ -15,6 +15,28 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
     };
 
+    const [isVisible, setIsVisible] = React.useState(true);
+    const observerRef = React.useRef<IntersectionObserver | null>(null);
+
+    React.useEffect(() => {
+        if (variant !== 'floating') return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(!entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        const footer = document.querySelector('footer');
+        if (footer) {
+            observer.observe(footer);
+        }
+
+        observerRef.current = observer;
+        return () => observer.disconnect();
+    }, [variant]);
+
     const copyToClipboard = () => {
         navigator.clipboard.writeText(url);
         alert('Link copied to clipboard!');
@@ -52,8 +74,10 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
         );
     }
 
+    if (!isVisible && variant === 'floating') return null;
+
     return (
-        <div className="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-40">
+        <div className="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-40 animate-in fade-in duration-300">
             <div className="p-3 bg-white rounded-sm shadow-xl border border-gray-100 flex flex-col gap-5 items-center">
                 <span className="text-[9px] font-black uppercase tracking-widest vertical-text opacity-30 mb-2">Share</span>
                 <a

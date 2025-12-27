@@ -5,7 +5,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
 import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react';
+import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
+import { siteConfig } from '@/config/site';
 
 interface Props {
     params: Promise<{ slug: string; locale: string }>;
@@ -15,7 +17,7 @@ export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const { slug } = await params;
+    const { slug, locale } = await params;
     const post = blogPosts.find((p) => p.slug === slug);
 
     if (!post) return { title: 'Post Not Found' };
@@ -26,9 +28,9 @@ export async function generateMetadata(
         openGraph: {
             title: post.title,
             description: post.metaDescription || post.excerpt,
-            url: `https://wereact.agency/blog/${post.slug}`,
+            url: `${siteConfig.url}/${locale}/blog/${post.slug}`,
             siteName: 'WeReact Journal',
-            images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+            images: [{ url: `${siteConfig.url}${post.image}`, width: 1200, height: 630, alt: post.title }],
             type: 'article',
             publishedTime: post.date,
             authors: [post.author],
@@ -37,15 +39,18 @@ export async function generateMetadata(
             card: 'summary_large_image',
             title: post.title,
             description: post.metaDescription || post.excerpt,
-            images: [post.image],
+            images: [`${siteConfig.url}${post.image}`],
         },
     };
 }
 
 export async function generateStaticParams() {
-    return blogPosts.map((post) => ({
-        slug: post.slug,
-    }));
+    return routing.locales.flatMap(locale =>
+        blogPosts.map(post => ({
+            locale,
+            slug: post.slug
+        }))
+    );
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -57,7 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
     }
 
     const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
-    const postUrl = `https://wereact.agency/${locale}/blog/${post.slug}`;
+    const postUrl = `${siteConfig.url}/${locale}/blog/${post.slug}`;
 
     const jsonLd = {
         '@context': 'https://schema.org',
