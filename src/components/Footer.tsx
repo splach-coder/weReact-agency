@@ -59,6 +59,7 @@ export default function Footer() {
                             { name: 'ABOUT', href: `/${locale}/about` },
                             { name: 'SERVICES', href: `/${locale}/services` },
                             { name: 'WORK', href: `/${locale}/work` },
+                            { name: 'BLOG', href: `/${locale}/blog` },
                             { name: 'CONTACT US', href: `/${locale}/contact` }
                         ].map((link, idx) => (
                             <Link

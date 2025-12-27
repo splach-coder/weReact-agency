@@ -89,7 +89,7 @@ export default function Problem() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: item.delay }}
-                                className={`p-8 rounded-3xl border ${item.highlight ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-background-main)]' : 'bg-[var(--color-primary)]/5 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 text-[var(--color-primary)]'} backdrop-blur-sm transition-colors duration-300 group`}
+                                className={`p-8 rounded-sm border ${item.highlight ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-background-main)]' : 'bg-[var(--color-primary)]/5 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 text-[var(--color-primary)]'} backdrop-blur-sm transition-colors duration-300 group`}
                             >
                                 <h3 className={`text-2xl ${item.weight} tracking-tight mb-3 uppercase flex items-center gap-3`}>
                                     {item.title}

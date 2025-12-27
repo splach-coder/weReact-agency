@@ -132,7 +132,7 @@ const CardNav: React.FC<CardNavProps> = ({
         >
             <nav
                 ref={navRef}
-                className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] relative overflow-hidden will-change-[height] bg-white/60 backdrop-blur-2xl border border-white/40 backdrop-saturate-150`}
+                className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-sm shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] relative overflow-hidden will-change-[height] bg-white/60 backdrop-blur-2xl border border-white/40 backdrop-saturate-150`}
             >
                 <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
                     <div
@@ -161,7 +161,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
                     <button
                         type="button"
-                        className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300"
+                        className="card-nav-cta-button hidden md:inline-flex border-0 rounded-sm px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300"
                         style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
                     >
                         Get Started
@@ -176,7 +176,7 @@ const CardNav: React.FC<CardNavProps> = ({
                     {(items || []).slice(0, 3).map((item, idx) => (
                         <div
                             key={`${item.label}-${idx}`}
-                            className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
+                            className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-sm min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
                             ref={setCardRef(idx)}
                             style={{ backgroundColor: item.bgColor, color: item.textColor }}
                         >

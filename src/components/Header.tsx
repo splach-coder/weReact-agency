@@ -22,6 +22,7 @@ export default function Header() {
     const isGreenHeroPage = pathname?.includes('/contact') ||
         pathname?.includes('/about') ||
         pathname?.includes('/services') ||
+        pathname?.includes('/blog') ||
         (pathname?.includes('/work') && !pathname?.match(/\/work\/[^/]+$/));
 
     useEffect(() => {
@@ -36,6 +37,7 @@ export default function Header() {
         { label: 'About', href: `/${locale}/about` },
         { label: 'Services', href: `/${locale}/services` },
         { label: 'Work', href: `/${locale}/work` },
+        { label: 'Blog', href: `/${locale}/blog` },
     ];
 
     const cardNavItems: CardNavItem[] = [
@@ -138,6 +140,7 @@ export default function Header() {
                                         { label: 'About', ariaLabel: 'About Us', link: `/${locale}/about` },
                                         { label: 'Services', ariaLabel: 'Our Services', link: `/${locale}/services` },
                                         { label: 'Work', ariaLabel: 'Our Work', link: `/${locale}/work` },
+                                        { label: 'Blog', ariaLabel: 'Our Blog', link: `/${locale}/blog` },
                                         { label: 'Contact', ariaLabel: 'Contact Us', link: `/${locale}/contact` }
                                     ]}
                                     socialItems={[

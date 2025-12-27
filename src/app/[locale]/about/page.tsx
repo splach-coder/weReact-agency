@@ -72,7 +72,7 @@ export default function AboutPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-8">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 bg-white/10 mb-8">
                             <span className="text-sm font-bold uppercase tracking-widest">About WeReact</span>
                         </div>
 
@@ -153,7 +153,7 @@ export default function AboutPage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="relative"
                         >
-                            <div className="aspect-square rounded-3xl overflow-hidden bg-[var(--color-primary)]/5 border-2 border-[var(--color-primary)]/10">
+                            <div className="aspect-square rounded-sm overflow-hidden bg-[var(--color-primary)]/5 border-2 border-[var(--color-primary)]/10">
                                 <Image
                                     src="/images/about-experience.webp"
                                     alt="5+ Years of Excellence in Web Development"
@@ -192,9 +192,9 @@ export default function AboutPage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={isValuesInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                                className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                                className="bg-white/10 backdrop-blur-sm p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-all duration-300 group"
                             >
-                                <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <div className="w-16 h-16 rounded-sm bg-white/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <value.icon size={32} strokeWidth={2} />
                                 </div>
                                 <h3 className="text-2xl font-bold mb-3">
@@ -217,7 +217,7 @@ export default function AboutPage() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6 }}
-                            className="bg-[var(--color-primary)] text-[var(--color-background-main)] p-12 rounded-3xl"
+                            className="bg-[var(--color-primary)] text-[var(--color-background-main)] p-12 rounded-sm"
                         >
                             <h3 className="text-4xl font-bold mb-6">Our Mission</h3>
                             <p className="text-xl text-white/80 leading-relaxed mb-8">
@@ -233,7 +233,7 @@ export default function AboutPage() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="bg-[var(--color-background-main)] border-2 border-[var(--color-primary)]/20 p-12 rounded-3xl"
+                            className="bg-[var(--color-background-main)] border-2 border-[var(--color-primary)]/20 p-12 rounded-sm"
                         >
                             <h3 className="text-4xl font-bold text-[var(--color-primary)] mb-6">Our Vision</h3>
                             <p className="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
@@ -255,7 +255,7 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="text-center bg-[var(--color-primary)] text-[var(--color-background-main)] p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl"
+                        className="text-center bg-[var(--color-primary)] text-[var(--color-background-main)] p-6 md:p-12 lg:p-16 rounded-sm"
                     >
                         <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
                             Ready to Work Together?
@@ -265,7 +265,7 @@ export default function AboutPage() {
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Start Your Project
                             <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />

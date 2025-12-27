@@ -64,8 +64,8 @@ export default function ContactPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-8">
-                            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 bg-white/10 mb-8">
+                            <span className="w-2 h-2 rounded-sm bg-white animate-pulse" />
                             <span className="text-sm font-bold uppercase tracking-widest">Let's Talk</span>
                         </div>
 
@@ -117,7 +117,7 @@ export default function ContactPage() {
                                         required
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
+                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-sm focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
                                         placeholder="John Doe"
                                     />
                                 </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                                         required
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
+                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-sm focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
                                         placeholder="john@example.com"
                                     />
                                 </div>
@@ -148,7 +148,7 @@ export default function ContactPage() {
                                         name="company"
                                         value={formData.company}
                                         onChange={handleChange}
-                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
+                                        className="w-full px-6 py-4 bg-white border-2 border-[var(--color-primary)]/10 rounded-sm focus:border-[var(--color-primary)] focus:outline-none transition-colors text-[var(--color-text-main)]"
                                         placeholder="Your Company"
                                     />
                                 </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
 
                                 <button
                                     type="submit"
-                                    className="group relative w-full overflow-hidden rounded-lg bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-5 flex items-center justify-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
+                                    className="group relative w-full overflow-hidden rounded-sm bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-5 flex items-center justify-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
                                 >
                                     <span className="text-lg font-bold uppercase tracking-wider z-10">Send Message</span>
                                     <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 z-10" />
@@ -206,9 +206,9 @@ export default function ContactPage() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                                         transition={{ duration: 0.5, delay: 0.5 + (index * 0.1) }}
-                                        className="group flex items-start gap-6 p-6 bg-white rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-300"
+                                        className="group flex items-start gap-6 p-6 bg-white rounded-sm border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-300"
                                     >
-                                        <div className="w-14 h-14 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors duration-300">
+                                        <div className="w-14 h-14 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors duration-300">
                                             <item.icon size={24} strokeWidth={2} />
                                         </div>
                                         <div className="flex-1">
@@ -229,7 +229,7 @@ export default function ContactPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.8 }}
-                                className="mt-12 p-8 bg-[var(--color-primary)] text-[var(--color-background-main)] rounded-2xl"
+                                className="mt-12 p-8 bg-[var(--color-primary)] text-[var(--color-background-main)] rounded-sm"
                             >
                                 <h3 className="text-2xl font-bold mb-3">
                                     Not sure where to start?
@@ -239,7 +239,7 @@ export default function ContactPage() {
                                 </p>
                                 <Link
                                     href="mailto:hello@wereact.agency"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--color-primary)] rounded-lg font-bold uppercase text-sm tracking-wider hover:bg-[var(--color-background-main)] transition-colors"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--color-primary)] rounded-sm font-bold uppercase text-sm tracking-wider hover:bg-[var(--color-background-main)] transition-colors"
                                 >
                                     Schedule a Call
                                     <ArrowRight size={16} />

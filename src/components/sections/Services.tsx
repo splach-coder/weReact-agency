@@ -562,7 +562,7 @@ export default function Services() {
 
                     <Link
                         href="/services"
-                        className="group relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--color-primary)]/10 backdrop-blur-md border-2 border-[var(--color-primary)]/20 flex items-center justify-center hover:bg-[var(--color-primary)]/20 hover:border-[var(--color-primary)]/40 transition-all duration-300 hover:scale-110 self-start md:self-auto"
+                        className="group relative w-16 h-16 md:w-20 md:h-20 rounded-sm bg-[var(--color-primary)]/10 backdrop-blur-md border border-[var(--color-primary)]/20 flex items-center justify-center hover:bg-[var(--color-primary)]/20 hover:border-[var(--color-primary)]/40 transition-all duration-300 hover:scale-110 self-start md:self-auto"
                         aria-label="Explore all services"
                     >
                         <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-[var(--color-primary)] -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -702,7 +702,7 @@ export default function Services() {
             <BentoCardGrid gridRef={gridRef}>
                 <div className="card-responsive grid gap-4">
                     {cardData.map((card, index) => {
-                        const baseClassName = `card flex flex-col justify-between relative min-h-[250px] w-full max-w-full p-8 rounded-[2rem] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-lg ${enableBorderGlow ? 'card--border-glow' : ''
+                        const baseClassName = `card flex flex-col justify-between relative min-h-[250px] w-full max-w-full p-8 rounded-sm border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-lg ${enableBorderGlow ? 'card--border-glow' : ''
                             }`;
 
                         const cardStyle = {

@@ -53,10 +53,10 @@ export default function Packages() {
                     {packages.map((pkg, index) => (
                         <div
                             key={index}
-                            className={`relative p-8 rounded-2xl border ${pkg.highlight ? 'border-[var(--color-primary)] bg-[#F8FAF8]' : 'border-gray-200 bg-white'} flex flex-col h-full`}
+                            className={`relative p-8 rounded-sm border ${pkg.highlight ? 'border-[var(--color-primary)] bg-[#F8FAF8]' : 'border-gray-200 bg-white'} flex flex-col h-full`}
                         >
                             {pkg.highlight && (
-                                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-primary)] text-white px-4 py-1 rounded-full text-sm font-medium">
+                                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-primary)] text-white px-4 py-1 rounded-sm text-sm font-medium">
                                     {pkg.highlight}
                                 </span>
                             )}

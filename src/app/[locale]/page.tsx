@@ -10,6 +10,7 @@ const Packages = dynamic(() => import('@/components/sections/Packages'));
 const HowItWorks = dynamic(() => import('@/components/sections/HowItWorks'));
 const Work = dynamic(() => import('@/components/sections/Work'));
 const About = dynamic(() => import('@/components/sections/About'));
+const BlogLatest = dynamic(() => import('@/components/sections/BlogLatest'));
 const Contact = dynamic(() => import('@/components/sections/Contact'));
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <HowItWorks />
         <Work />
         <About />
+        <BlogLatest />
         <Contact />
       </Suspense>
     </main>

@@ -85,7 +85,7 @@ export default function WorkPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-8">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 bg-white/10 mb-8">
                             <Sparkles className="w-4 h-4" />
                             <span className="text-sm font-bold uppercase tracking-widest">Our Work</span>
                         </div>
@@ -164,7 +164,7 @@ export default function WorkPage() {
                                     onMouseLeave={() => setHoveredProject(null)}
                                     className="group block"
                                 >
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-500 hover:shadow-2xl">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-sm overflow-hidden border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-500 hover:shadow-2xl">
                                         {/* Image Side */}
                                         <div className="relative h-[300px] lg:h-[400px] overflow-hidden bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5">
                                             {/* Project Image */}
@@ -189,7 +189,7 @@ export default function WorkPage() {
                                         {/* Content Side */}
                                         <div className="p-8 lg:p-10 flex flex-col justify-center">
                                             {/* Category Badge */}
-                                            <div className="inline-block w-fit px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+                                            <div className="inline-block w-fit px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold uppercase tracking-wider rounded-sm mb-4">
                                                 {project.category}
                                             </div>
 
@@ -213,7 +213,7 @@ export default function WorkPage() {
                                                 {project.tags.map((tag, idx) => (
                                                     <span
                                                         key={idx}
-                                                        className="px-3 py-1 bg-[var(--color-primary)]/5 text-[var(--color-primary)] text-sm font-medium rounded-full"
+                                                        className="px-3 py-1 bg-[var(--color-primary)]/5 text-[var(--color-primary)] text-sm font-medium rounded-sm"
                                                     >
                                                         {tag}
                                                     </span>
@@ -241,7 +241,7 @@ export default function WorkPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl"
+                        className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-sm"
                     >
                         <Code className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6" />
                         <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
@@ -252,7 +252,7 @@ export default function WorkPage() {
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Get Started
                             <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />

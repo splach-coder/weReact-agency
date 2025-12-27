@@ -246,7 +246,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
                                 transition={{ duration: 0.5, delay: 0.2 }}
-                                className="block px-3 py-1.5 md:px-4 md:py-2 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-full text-xs md:text-sm font-bold uppercase tracking-wider mb-4 md:mb-6 w-fit"
+                                className="block px-3 py-1.5 md:px-4 md:py-2 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-sm text-xs md:text-sm font-bold uppercase tracking-wider mb-4 md:mb-6 w-fit"
                             >
                                 {project.category}
                             </motion.div>
@@ -279,7 +279,7 @@ export default function CaseStudyPage() {
                                 className="flex flex-wrap gap-3 md:gap-6 mb-6 md:mb-10"
                             >
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         <Users className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
@@ -288,7 +288,7 @@ export default function CaseStudyPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         <Calendar className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
@@ -297,7 +297,7 @@ export default function CaseStudyPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
-                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         <Tag className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
@@ -317,7 +317,7 @@ export default function CaseStudyPage() {
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-full text-sm md:text-base font-bold hover:bg-[#2e4833] transition-all duration-300 hover:scale-105 group"
+                                    className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-sm text-sm md:text-base font-bold hover:bg-[#2e4833] transition-all duration-300 hover:scale-105 group"
                                 >
                                     Visit Live Site
                                     <ExternalLink className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -343,7 +343,7 @@ export default function CaseStudyPage() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute -top-10 -left-10 w-32 h-32 bg-[var(--color-primary)]/10 rounded-3xl blur-2xl"
+                                className="absolute -top-10 -left-10 w-32 h-32 bg-[var(--color-primary)]/10 rounded-sm blur-2xl"
                             />
                             <motion.div
                                 animate={{
@@ -355,11 +355,11 @@ export default function CaseStudyPage() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-primary)]/10 rounded-3xl blur-2xl"
+                                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-primary)]/10 rounded-sm blur-2xl"
                             />
 
                             {/* Browser Mockup */}
-                            <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+                            <div className="relative bg-white rounded-sm shadow-2xl border border-gray-200 overflow-hidden">
                                 {/* Browser Chrome */}
                                 <div className="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
                                     <div className="flex gap-2">
@@ -404,10 +404,10 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.8 }}
-                                className="hidden lg:block absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
+                                className="hidden lg:block absolute -bottom-6 -left-6 bg-white rounded-sm shadow-xl p-4 border border-gray-100"
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-12 h-12 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         <Check className="w-6 h-6 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
@@ -425,10 +425,10 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                                 animate={isHeroInView ? { opacity: 1, scale: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 1 }}
-                                className="hidden lg:block absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
+                                className="hidden lg:block absolute -top-6 -right-6 bg-white rounded-sm shadow-xl p-4 border border-gray-100"
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-12 h-12 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         <Smartphone className="w-6 h-6 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
@@ -446,8 +446,8 @@ export default function CaseStudyPage() {
                 </div>
 
                 {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-primary)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/5 rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-primary)]/5 rounded-sm blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             </motion.section>
 
             {/* Project Image/Screenshot Section */}
@@ -457,7 +457,7 @@ export default function CaseStudyPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isVisualsInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="relative w-full bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-3xl overflow-hidden border-2 border-[var(--color-primary)]/10 flex items-center justify-center group"
+                        className="relative w-full bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-sm overflow-hidden border-2 border-[var(--color-primary)]/10 flex items-center justify-center group"
                     >
                         {/* Full Project Screenshot */}
                         <div className="relative w-full h-full min-h-[450px] md:min-h-[1400px]">
@@ -478,7 +478,7 @@ export default function CaseStudyPage() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={isVisualsInView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-full font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
+                            className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-sm font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
                         >
                             <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
                             <span>View Live Site</span>
@@ -538,7 +538,7 @@ export default function CaseStudyPage() {
                                     Key Metrics
                                 </h3>
                                 {project.metrics.map((metric: any, idx: number) => (
-                                    <div key={idx} className="p-6 bg-white rounded-2xl border-2 border-[var(--color-primary)]/10">
+                                    <div key={idx} className="p-6 bg-white rounded-sm border-2 border-[var(--color-primary)]/10">
                                         <div className="text-4xl font-bold text-[var(--color-primary)] mb-2">
                                             {metric.value}
                                         </div>
@@ -580,9 +580,9 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isFeaturesInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="text-center p-8 bg-[var(--color-background-main)] rounded-2xl border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300"
+                                className="text-center p-8 bg-[var(--color-background-main)] rounded-sm border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300"
                             >
-                                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                <div className="w-16 h-16 mx-auto mb-6 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                     <feature.icon size={32} className="text-[var(--color-primary)]" />
                                 </div>
                                 <h3 className="text-xl font-bold text-[var(--color-primary)] mb-3">
@@ -621,9 +621,9 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isResultsInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="flex items-start gap-4 p-6 bg-white rounded-2xl border-2 border-[var(--color-primary)]/10"
+                                className="flex items-start gap-4 p-6 bg-white rounded-sm border-2 border-[var(--color-primary)]/10"
                             >
-                                <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                                <div className="w-10 h-10 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
                                     <Check size={20} strokeWidth={3} className="text-[var(--color-primary)]" />
                                 </div>
                                 <p className="text-lg text-[var(--color-text-main)] leading-relaxed">
@@ -647,7 +647,7 @@ export default function CaseStudyPage() {
                             {project.tags.map((tag: string, idx: number) => (
                                 <span
                                     key={idx}
-                                    className="px-5 py-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold rounded-full text-sm"
+                                    className="px-5 py-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold rounded-sm text-sm"
                                 >
                                     {tag}
                                 </span>
@@ -660,7 +660,7 @@ export default function CaseStudyPage() {
             {/* CTA Section */}
             <section className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-white">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className={`bg-gradient-to-br ${project.gradient} text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl text-center`}>
+                    <div className={`bg-gradient-to-br ${project.gradient} text-white p-6 md:p-12 lg:p-16 rounded-sm text-center`}>
                         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
                             Interested in a Similar Project?
                         </h2>
@@ -670,14 +670,14 @@ export default function CaseStudyPage() {
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                             >
                                 Start Your Project
                                 <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
                             </Link>
                             <Link
                                 href="/work"
-                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-sm md:text-lg hover:bg-white/10 transition-all duration-300"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-sm font-bold text-sm md:text-lg hover:bg-white/10 transition-all duration-300"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
                                 View More Projects

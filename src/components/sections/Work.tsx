@@ -56,7 +56,7 @@ export default function Work() {
                         transition={{ duration: 0.6 }}
                         className="max-w-2xl"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 mb-6">
                             <ArrowUpRight size={14} />
                             <span className="text-xs font-bold uppercase tracking-widest">Our Work</span>
                         </div>
@@ -78,7 +78,7 @@ export default function Work() {
                         <p className="text-lg opacity-70 max-w-sm text-right mb-6 hidden md:block">
                             WeReact has helped businesses across industries enhance their sales performance and achieve their goals.
                         </p>
-                        <button className="bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300">
+                        <button className="bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-3 rounded-sm font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300">
                             Get Started Now
                         </button>
                     </motion.div>
@@ -104,7 +104,7 @@ export default function Work() {
                         <Link
                             key={idx}
                             href={`/work/${project.id}`}
-                            className="relative w-[300px] md:w-[400px] aspect-[3/4] rounded-[2rem] overflow-hidden flex-shrink-0 group select-none block transition-transform duration-300 hover:scale-[1.02]"
+                            className="relative w-[300px] md:w-[400px] aspect-[3/4] rounded-sm overflow-hidden flex-shrink-0 group select-none block transition-transform duration-300 hover:scale-[1.02]"
                         >
                             <Image
                                 src={project.src}
@@ -120,7 +120,7 @@ export default function Work() {
                             {/* Text Content Overlay */}
                             <div className="absolute bottom-0 left-0 w-full p-8 text-white z-10">
                                 <div className="mb-4">
-                                    <span className="inline-block p-2 bg-white/20 backdrop-blur-md rounded-full mb-4">
+                                    <span className="inline-block p-2 bg-white/20 backdrop-blur-md rounded-sm mb-4">
                                         <ArrowRight size={16} className="text-white" />
                                     </span>
                                 </div>

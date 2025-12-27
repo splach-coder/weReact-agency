@@ -72,7 +72,7 @@ export default function Solution() {
                                 transition={{ duration: 0.6, delay: 0.2 + (idx * 0.15), ease: "easeOut" }}
                                 className="group relative"
                             >
-                                <div className="absolute left-0 top-0 bottom-0 w-full bg-[var(--color-background-main)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-0 rounded-2xl" />
+                                <div className="absolute left-0 top-0 bottom-0 w-full bg-[var(--color-background-main)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-0 rounded-sm" />
 
                                 <div className="relative z-10 p-8 border-b border-white/20 group-hover:border-transparent transition-colors duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                     <h4 className="text-3xl font-bold tracking-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">

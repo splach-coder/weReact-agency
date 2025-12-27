@@ -181,8 +181,8 @@ export default function ServicesPage() {
             {/* Hero Section */}
             <section ref={heroRef} className="relative py-20 md:py-32 px-6 bg-[var(--color-primary)] text-[var(--color-background-main)] overflow-hidden">
                 {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-sm blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
                 <div className="max-w-[1200px] mx-auto relative z-10">
                     <motion.div
@@ -191,7 +191,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-8">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 bg-white/10 mb-8">
                             <Palette className="w-4 h-4" />
                             <span className="text-sm font-bold uppercase tracking-widest">Our Services</span>
                         </div>
@@ -244,13 +244,13 @@ export default function ServicesPage() {
                                     animate={isServicesInView ? { opacity: 1, x: 0 } : {}}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     onClick={() => setActiveService(index)}
-                                    className={`group cursor-pointer p-6 rounded-2xl border-2 transition-all duration-300 ${activeService === index
+                                    className={`group cursor-pointer p-6 rounded-sm border-2 transition-all duration-300 ${activeService === index
                                         ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] shadow-xl scale-[1.02]'
                                         : 'bg-white border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 hover:shadow-lg'
                                         }`}
                                 >
                                     <div className="flex items-start gap-4">
-                                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors duration-300 ${activeService === index
+                                        <div className={`w-14 h-14 rounded-sm flex items-center justify-center transition-colors duration-300 ${activeService === index
                                             ? 'bg-white/20'
                                             : 'bg-[var(--color-primary)]/10 group-hover:bg-[var(--color-primary)]/20'
                                             }`}>
@@ -289,9 +289,9 @@ export default function ServicesPage() {
                             transition={{ duration: 0.4 }}
                             className="sticky top-24 h-fit"
                         >
-                            <div className="bg-white p-8 md:p-10 rounded-3xl border-2 border-[var(--color-primary)]/20 shadow-xl">
+                            <div className="bg-white p-8 md:p-10 rounded-sm border-2 border-[var(--color-primary)]/20 shadow-xl">
                                 <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                    <div className="w-16 h-16 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                         {React.createElement(services[activeService].icon, {
                                             size: 32,
                                             strokeWidth: 2,
@@ -320,7 +320,7 @@ export default function ServicesPage() {
                                             transition={{ duration: 0.3, delay: idx * 0.05 }}
                                             className="flex items-center gap-3"
                                         >
-                                            <div className="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                                            <div className="w-6 h-6 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
                                                 <Check size={14} strokeWidth={3} className="text-[var(--color-primary)]" />
                                             </div>
                                             <span className="text-[var(--color-text-main)]">{feature}</span>
@@ -330,7 +330,7 @@ export default function ServicesPage() {
 
                                 <Link
                                     href="/contact"
-                                    className="group w-full flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white rounded-xl font-bold uppercase text-sm tracking-wider hover:bg-[#2e4833] transition-all duration-300 hover:scale-[1.02]"
+                                    className="group w-full flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white rounded-sm font-bold uppercase text-sm tracking-wider hover:bg-[#2e4833] transition-all duration-300 hover:scale-[1.02]"
                                 >
                                     Get Started
                                     <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -347,7 +347,7 @@ export default function ServicesPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-white rounded-2xl border-2 border-[var(--color-primary)]/10 overflow-hidden"
+                                className="bg-white rounded-sm border-2 border-[var(--color-primary)]/10 overflow-hidden"
                             >
                                 {/* Service Header - Always Visible */}
                                 <div
@@ -358,7 +358,7 @@ export default function ServicesPage() {
                                         }`}
                                 >
                                     <div className="flex items-center gap-3 md:gap-4">
-                                        <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${activeService === index
+                                        <div className={`w-12 h-12 md:w-14 md:h-14 rounded-sm flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${activeService === index
                                             ? 'bg-white/20'
                                             : 'bg-[var(--color-primary)]/10'
                                             }`}>
@@ -411,7 +411,7 @@ export default function ServicesPage() {
                                         <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
                                             {service.features.map((feature, idx) => (
                                                 <div key={idx} className="flex items-start gap-2 md:gap-3">
-                                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                                                         <Check size={12} strokeWidth={3} className="text-[var(--color-primary)]" />
                                                     </div>
                                                     <span className="text-xs md:text-sm text-[var(--color-text-main)]">{feature}</span>
@@ -421,7 +421,7 @@ export default function ServicesPage() {
 
                                         <Link
                                             href="/contact"
-                                            className="group w-full flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-xl font-bold uppercase text-xs md:text-sm tracking-wider hover:bg-[#2e4833] transition-all duration-300"
+                                            className="group w-full flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-sm font-bold uppercase text-xs md:text-sm tracking-wider hover:bg-[#2e4833] transition-all duration-300"
                                         >
                                             Get Started
                                             <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -458,7 +458,7 @@ export default function ServicesPage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={isProcessInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="relative bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10"
+                                className="relative bg-white/5 backdrop-blur-sm p-6 rounded-sm border border-white/10"
                             >
                                 <div className="text-7xl font-bold text-white/5 absolute top-2 right-4 select-none pointer-events-none">
                                     {step.number}
@@ -482,7 +482,7 @@ export default function ServicesPage() {
             {/* CTA Section */}
             <section className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-[var(--color-background-main)]">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl">
+                    <div className="text-center bg-[var(--color-primary)] text-white p-6 md:p-12 lg:p-16 rounded-sm">
                         <Zap className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6" />
                         <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">
                             Ready to Get Started?
@@ -492,7 +492,7 @@ export default function ServicesPage() {
                         </p>
                         <Link
                             href="/contact"
-                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-full font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                            className="group inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg uppercase tracking-wider hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                         >
                             Start Your Project
                             <ArrowRight className="w-4 h-4 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1" />

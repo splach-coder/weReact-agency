@@ -41,7 +41,7 @@ export default function HowItWorks() {
                         transition={{ duration: 0.5 }}
                         className="inline-block"
                     >
-                        <span className="px-4 py-2 rounded-full border border-white/20 text-sm font-semibold text-white/80 bg-white/10 mb-6 inline-block shadow-sm">
+                        <span className="px-4 py-2 rounded-sm border border-white/20 text-sm font-semibold text-white/80 bg-white/10 mb-6 inline-block shadow-sm">
                             How It Works
                         </span>
                     </motion.div>
@@ -73,9 +73,9 @@ export default function HowItWorks() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
-                            className="bg-white/10 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:bg-white/15 transition-all duration-300"
+                            className="bg-white/10 backdrop-blur-sm p-8 md:p-10 rounded-sm border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:bg-white/15 transition-all duration-300"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-8">
+                            <div className="w-16 h-16 rounded-sm bg-white/20 flex items-center justify-center text-white mb-8">
                                 <item.icon size={32} strokeWidth={2} />
                             </div>
 
