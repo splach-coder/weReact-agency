@@ -111,7 +111,7 @@ export default function Header() {
                             </div>
 
                             {/* Right: CTA (Desktop) */}
-                            <div className="flex justify-end hidden md:flex">
+                            <div className="justify-end hidden md:flex">
                                 <Link href={`/${locale}/contact`}>
                                     <Button
                                         variant="primary"
