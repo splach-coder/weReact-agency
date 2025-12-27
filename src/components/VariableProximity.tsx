@@ -205,7 +205,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
             onClick={onClick}
             style={{
                 display: 'inline',
-                fontFamily: 'Nohemi, system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+                fontFamily: 'var(--font-nohemi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
                 ...style
             }}
             className={className}

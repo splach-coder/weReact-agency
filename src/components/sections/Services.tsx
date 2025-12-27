@@ -563,6 +563,7 @@ export default function Services() {
                     <Link
                         href="/services"
                         className="group relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--color-primary)]/10 backdrop-blur-md border-2 border-[var(--color-primary)]/20 flex items-center justify-center hover:bg-[var(--color-primary)]/20 hover:border-[var(--color-primary)]/40 transition-all duration-300 hover:scale-110 self-start md:self-auto"
+                        aria-label="Explore all services"
                     >
                         <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-[var(--color-primary)] -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </Link>

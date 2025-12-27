@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { siteConfig } from '@/config/site';
 import { Metadata } from 'next';
+import { nohemi } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: {
@@ -59,7 +60,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900" suppressHydrationWarning>
+      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-slate-50 text-slate-900`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-grow">

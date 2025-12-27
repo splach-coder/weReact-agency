@@ -12,7 +12,7 @@ export default function Footer() {
         <footer className="relative bg-[var(--color-primary)] text-[#E3E3DC] py-8 md:py-16 overflow-hidden">
 
             {/* Background Watermark */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]" aria-hidden="true">
                 <span className="text-[25vw] font-black tracking-tighter text-white">WeReact</span>
             </div>
 
@@ -29,12 +29,12 @@ export default function Footer() {
                             <input
                                 type="email"
                                 placeholder="YOUR EMAIL"
-                                className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
+                                className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/70 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
                             />
                             <input
                                 type="text"
                                 placeholder="YOUR NAME"
-                                className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
+                                className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/70 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
                             />
                             <button className="w-fit mt-4 bg-[#E3E3DC] text-[var(--color-primary)] px-8 py-3 font-bold uppercase text-sm tracking-widest hover:bg-white transition-colors">
                                 Subscribe
@@ -42,12 +42,12 @@ export default function Footer() {
                         </form>
 
                         <div className="flex gap-6 mb-8 text-[#E3E3DC]">
-                            <Link href="#" className="hover:text-white transition-colors"><Twitter size={24} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><Instagram size={24} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><Linkedin size={24} /></Link>
+                            <Link href="#" className="hover:text-white transition-colors" aria-label="Twitter"><Twitter size={24} /></Link>
+                            <Link href="#" className="hover:text-white transition-colors" aria-label="Instagram"><Instagram size={24} /></Link>
+                            <Link href="#" className="hover:text-white transition-colors" aria-label="Linkedin"><Linkedin size={24} /></Link>
                         </div>
 
-                        <p className="text-xs text-white/40 uppercase tracking-widest">
+                        <p className="text-xs text-white/70 uppercase tracking-widest">
                             © WeReact LLC 2025 All rights reserved
                         </p>
                     </div>

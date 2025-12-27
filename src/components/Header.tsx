@@ -5,9 +5,12 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Button from './Button';
 import { motion, AnimatePresence } from 'framer-motion';
-import StaggeredMenu from './StaggeredMenu';
-import CardNav, { CardNavItem } from './CardNav';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+const StaggeredMenu = dynamic(() => import('./StaggeredMenu'), { ssr: false });
+const CardNav = dynamic(() => import('./CardNav'), { ssr: false });
+import type { CardNavItem } from './CardNav';
 
 export default function Header() {
     const locale = useLocale();

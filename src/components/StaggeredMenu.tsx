@@ -484,8 +484,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 <aside
                     id="staggered-menu-panel"
                     ref={panelRef}
-                    className="staggered-menu-panel pointer-events-auto fixed top-0 right-0 max-h-screen bg-white flex flex-col p-[4em_2em_2em_2em] overflow-hidden z-10 backdrop-blur-[12px]"
-                    style={{ WebkitBackdropFilter: 'blur(12px)' }}
+                    className="staggered-menu-panel pointer-events-auto fixed top-0 right-0 max-h-screen bg-white flex flex-col p-[4em_2em_2em_2em] overflow-hidden z-10"
+                    style={{
+                        WebkitBackdropFilter: 'blur(12px)',
+                        backdropFilter: 'blur(12px)',
+                        visibility: open ? 'visible' : 'hidden'
+                    }}
                     aria-hidden={!open}
                 >
                     <div className="sm-panel-inner flex-1 flex flex-col justify-between text-left min-h-0 py-[4em]">
