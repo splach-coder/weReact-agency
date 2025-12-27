@@ -155,7 +155,7 @@ export default function AboutPage() {
                         >
                             <div className="aspect-square rounded-3xl overflow-hidden bg-[var(--color-primary)]/5 border-2 border-[var(--color-primary)]/10">
                                 <Image
-                                    src="/images/about-experience.png"
+                                    src="/images/about-experience.webp"
                                     alt="5+ Years of Excellence in Web Development"
                                     width={800}
                                     height={800}

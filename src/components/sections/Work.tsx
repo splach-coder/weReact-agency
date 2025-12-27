@@ -14,36 +14,36 @@ export default function Work() {
     const projects = [
         {
             id: "flying-tandem",
-            src: "/images/projects/flying-tandem.jpg",
+            src: "/images/projects/flying-tandem.webp",
             alt: "Flying Tandem",
             category: "Tourism Website",
             desc: "A professional paragliding platform with real-time booking and multilingual support for adventure seekers."
         },
         {
             id: "kasbah-angour",
-            src: "/images/projects/kasbah-angour.jpg",
+            src: "/images/projects/kasbah-angour.webp",
             alt: "Kasbah Angour",
             category: "Hotel Website",
             desc: "Showcasing authentic Moroccan hospitality with stunning imagery and direct booking integration."
         },
         {
             id: "your-morocco",
-            src: "/images/projects/your-morocco.jpg",
+            src: "/images/projects/your-morocco.webp",
             alt: "Your Morocco",
             category: "Travel Platform",
             desc: "Curating authentic Moroccan experiences with comprehensive tour listings and booking capabilities."
         },
         {
             id: "by-marrakech",
-            src: "/images/projects/by-marrakech.jpg",
+            src: "/images/projects/by-marrakech.webp",
             alt: "By Marrakech",
             category: "Digital Guide",
             desc: "Your digital companion to Marrakech with offline functionality and interactive maps."
         },
     ];
 
-    // Quadruple the array for smooth infinite scrolling on large screens
-    const marqueeProjects = [...projects, ...projects, ...projects, ...projects];
+    // Triple the array for smooth infinite scrolling (12 items total)
+    const marqueeProjects = [...projects, ...projects, ...projects];
 
     return (
         <section id="work" ref={containerRef} className="py-20 md:py-32 bg-[var(--color-background-main)] text-[var(--color-primary)] overflow-hidden">
@@ -92,15 +92,15 @@ export default function Work() {
                     drag="x"
                     dragConstraints={{ left: -2000, right: 0 }}
                     dragElastic={0.1}
-                    animate={{ x: "-50%" }}
+                    animate={{ x: "-33.33%" }}
                     transition={{
                         ease: "linear",
-                        duration: 60, // Slower: 60 seconds (was 30)
+                        duration: 30,
                         repeat: Infinity
                     }}
                 >
                     {/* Render duplications for seamless loop */}
-                    {[...marqueeProjects, ...marqueeProjects].map((project, idx) => (
+                    {marqueeProjects.map((project, idx) => (
                         <Link
                             key={idx}
                             href={`/work/${project.id}`}

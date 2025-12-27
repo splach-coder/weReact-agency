@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: true,
+    // Images are now optimized using Sharp
   },
 };
 

@@ -48,8 +48,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "React", "Booking System", "Responsive", "Payment Integration", "i18n"],
             link: "https://www.flyingtandem.com/",
-            image: "/images/projects/flying-tandem.jpg",
-            imageFull: "/images/projects/flying-tandem-full.png",
+            image: "/images/projects/flying-tandem.webp",
+            imageFull: "/images/projects/flying-tandem-full.webp",
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -94,8 +94,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "CMS", "Hospitality", "SEO", "Booking", "Photography"],
             link: "https://www.kasbahangour.com/en",
-            image: "/images/projects/kasbah-angour.jpg",
-            imageFull: "/images/projects/kasbah-angour-full.png",
+            image: "/images/projects/kasbah-angour.webp",
+            imageFull: "/images/projects/kasbah-angour-full.webp",
             gradient: "from-[#2e4833] to-[#1f3322]",
             color: "#2e4833",
             features: [
@@ -140,8 +140,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "Travel", "Booking", "Multilingual", "CMS", "Reviews"],
             link: "https://your-morocco.com/en",
-            image: "/images/projects/your-morocco.jpg",
-            imageFull: "/images/projects/your-morocco-full.png",
+            image: "/images/projects/your-morocco.webp",
+            imageFull: "/images/projects/your-morocco-full.webp",
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -186,8 +186,8 @@ export default function CaseStudyPage() {
             ],
             tags: ["Next.js", "City Guide", "PWA", "i18n", "Content Management", "Maps"],
             link: "https://by-marrakech.vercel.app/en",
-            image: "/images/projects/by-marrakech.jpg",
-            imageFull: "/images/projects/by-marrakech-full.png",
+            image: "/images/projects/by-marrakech.webp",
+            imageFull: "/images/projects/by-marrakech-full.webp",
             gradient: "from-[#2e4833] to-[#1f3322]",
             color: "#2e4833",
             features: [

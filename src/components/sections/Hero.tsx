@@ -2,25 +2,30 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import VariableProximity from '../VariableProximity';
 
 export default function Hero() {
     const containerRef = useRef(null);
 
     // Column Animation Configuration
-    const colVariants = {
+    const colVariants: Variants = {
         hidden: { height: 0 },
         visible: (h: string) => ({
             height: h
         })
     };
 
-    const textContainerVariants = {
+    const textContainerVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
         visible: (delay: number) => ({
             opacity: 1,
-            y: 0
+            y: 0,
+            transition: {
+                delay,
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1]
+            }
         })
     };
 
@@ -33,13 +38,13 @@ export default function Hero() {
                     initial={{ scale: 1.15 }}
                     animate={{ scale: 1 }}
                     transition={{
-                        duration: 2.5,
+                        duration: 1.2,
                         ease: "easeOut"
                     }}
                     className="relative w-full h-full"
                 >
                     <Image
-                        src="/images/nature_hero.jpg"
+                        src="/images/nature_hero.webp"
                         alt="Nature Landscape"
                         fill
                         className="object-cover"
@@ -101,11 +106,11 @@ export default function Hero() {
                     {/* Small Text - Desktop Only */}
                     <div className="absolute bottom-6 left-6 max-w-[280px]">
                         <motion.div
-                            custom={0.5}
+                            custom={0.2}
                             variants={textContainerVariants}
                             initial="hidden"
                             animate="visible"
-                            transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
                         >
                             <p className="text-xs font-medium uppercase leading-relaxed tracking-wider text-[#1A1A1A]">
                                 Our team combines strategic thinking with cutting-edge design to create experiences that resonate.
@@ -129,11 +134,11 @@ export default function Hero() {
                         <motion.div
                             initial={{ scale: 1.2 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 2.5, ease: "easeOut" }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
                             className="relative w-full h-full"
                         >
                             <Image
-                                src="/images/nature_hero_phone.jpg"
+                                src="/images/nature_hero_phone.webp"
                                 alt="Nature Landscape"
                                 fill
                                 className="object-cover blur-[5px] scale-110"
@@ -174,11 +179,11 @@ export default function Hero() {
                 <div className="flex flex-col leading-[0.9] font-light mix-blend-multiply text-[#1A1A1A] pointer-events-auto mt-12 md:mt-0">
 
                     <motion.div
-                        custom={0.4}
+                        custom={0.1}
                         variants={textContainerVariants}
                         initial="hidden"
                         animate="visible"
-                        transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                        transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
                         className="mb-2"
                         style={{ opacity: 0 }}
                     >
@@ -194,11 +199,11 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.div
-                        custom={0.5}
+                        custom={0.2}
                         variants={textContainerVariants}
                         initial="hidden"
                         animate="visible"
-                        transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                        transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
                         className="mb-2"
                         style={{ opacity: 0 }}
                     >
@@ -214,11 +219,11 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.div
-                        custom={0.6}
+                        custom={0.3}
                         variants={textContainerVariants}
                         initial="hidden"
                         animate="visible"
-                        transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+                        transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
                         style={{ opacity: 0 }}
                     >
                         <VariableProximity

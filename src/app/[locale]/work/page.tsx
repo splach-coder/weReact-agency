@@ -26,7 +26,7 @@ export default function WorkPage() {
             category: "Tourism Website",
             description: "Professional paragliding website with booking system and safety information",
             tags: ["Next.js", "Booking", "Responsive"],
-            image: "/images/projects/flying-tandem.jpg", // You'll add these images
+            image: "/images/projects/flying-tandem.webp", // You'll add these images
             gradient: "from-[#3A5A40] to-[#2e4833]"
         },
         {
@@ -37,7 +37,7 @@ export default function WorkPage() {
             category: "Hotel Website",
             description: "Elegant hotel website showcasing accommodations and amenities",
             tags: ["Next.js", "CMS", "SEO"],
-            image: "/images/projects/kasbah-angour.jpg",
+            image: "/images/projects/kasbah-angour.webp",
             gradient: "from-[#2e4833] to-[#1f3322]"
         },
         {
@@ -48,7 +48,7 @@ export default function WorkPage() {
             category: "Travel Platform",
             description: "Comprehensive travel platform for Moroccan tours and experiences",
             tags: ["Next.js", "Travel", "Multilingual"],
-            image: "/images/projects/your-morocco.jpg",
+            image: "/images/projects/your-morocco.webp",
             gradient: "from-[#3A5A40] to-[#2e4833]"
         },
         {
@@ -59,7 +59,7 @@ export default function WorkPage() {
             category: "Digital Guide",
             description: "Modern city guide for discovering the best of Marrakech",
             tags: ["Next.js", "PWA", "i18n"],
-            image: "/images/projects/by-marrakech.jpg",
+            image: "/images/projects/by-marrakech.webp",
             gradient: "from-[#2e4833] to-[#1f3322]"
         }
     ];

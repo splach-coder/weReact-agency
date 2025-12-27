@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useEffect, MutableRefObject, CSSProperties, HTMLAttributes } from 'react';
+import { forwardRef, useMemo, useRef, useEffect, useState, MutableRefObject, CSSProperties, HTMLAttributes } from 'react';
 import { motion } from 'framer-motion';
 
 function useAnimationFrame(callback: () => void) {
@@ -112,31 +112,72 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
         }
     };
 
-    useAnimationFrame(() => {
+    const letterPositions = useRef<{ x: number; y: number }[]>([]);
+
+    useEffect(() => {
+        const updatePositions = () => {
+            if (!containerRef?.current) return;
+            const containerRect = containerRef.current.getBoundingClientRect();
+            letterPositions.current = letterRefs.current.map(letterRef => {
+                if (!letterRef) return { x: 0, y: 0 };
+                const rect = letterRef.getBoundingClientRect();
+                return {
+                    x: rect.left + rect.width / 2 - containerRect.left,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                };
+            });
+        };
+
+        updatePositions();
+
+        const observer = new ResizeObserver(updatePositions);
+        if (containerRef?.current) {
+            observer.observe(containerRef.current);
+        }
+        window.addEventListener('resize', updatePositions);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('resize', updatePositions);
+        };
+    }, [containerRef, label]);
+
+    const [isInView, setIsInView] = useState(true);
+
+    useEffect(() => {
         if (!containerRef?.current) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsInView(entry.isIntersecting),
+            { threshold: 0 }
+        );
+        observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, [containerRef]);
+
+    useAnimationFrame(() => {
+        if (!containerRef?.current || !isInView || letterPositions.current.length === 0) return;
         const { x, y } = mousePositionRef.current;
         if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
             return;
         }
         lastPositionRef.current = { x, y };
-        const containerRect = containerRef.current.getBoundingClientRect();
 
         letterRefs.current.forEach((letterRef, index) => {
-            if (!letterRef) return;
+            if (!letterRef || !letterPositions.current[index]) return;
 
-            const rect = letterRef.getBoundingClientRect();
-            const letterCenterX = rect.left + rect.width / 2 - containerRect.left;
-            const letterCenterY = rect.top + rect.height / 2 - containerRect.top;
+            const { x: letterCenterX, y: letterCenterY } = letterPositions.current[index];
 
             const distance = calculateDistance(
-                mousePositionRef.current.x,
-                mousePositionRef.current.y,
+                x,
+                y,
                 letterCenterX,
                 letterCenterY
             );
 
             if (distance >= radius) {
-                letterRef.style.fontVariationSettings = fromFontVariationSettings;
+                if (letterRef.style.fontVariationSettings !== fromFontVariationSettings) {
+                    letterRef.style.fontVariationSettings = fromFontVariationSettings;
+                }
                 return;
             }
 
@@ -148,8 +189,10 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
                 })
                 .join(', ');
 
-            interpolatedSettingsRef.current[index] = newSettings;
-            letterRef.style.fontVariationSettings = newSettings;
+            if (interpolatedSettingsRef.current[index] !== newSettings) {
+                interpolatedSettingsRef.current[index] = newSettings;
+                letterRef.style.fontVariationSettings = newSettings;
+            }
         });
     });
 

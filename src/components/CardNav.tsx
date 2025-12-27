@@ -45,38 +45,10 @@ const CardNav: React.FC<CardNavProps> = ({
     const tlRef = useRef<gsap.core.Timeline | null>(null);
 
     const calculateHeight = () => {
-        const navEl = navRef.current;
-        if (!navEl) return 260;
-
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (isMobile) {
-            const contentEl = navEl.querySelector('.card-nav-content') as HTMLElement;
-            if (contentEl) {
-                const wasVisible = contentEl.style.visibility;
-                const wasPointerEvents = contentEl.style.pointerEvents;
-                const wasPosition = contentEl.style.position;
-                const wasHeight = contentEl.style.height;
-
-                contentEl.style.visibility = 'visible';
-                contentEl.style.pointerEvents = 'auto';
-                contentEl.style.position = 'static';
-                contentEl.style.height = 'auto';
-
-                contentEl.offsetHeight;
-
-                const topBar = 60;
-                const padding = 16;
-                const contentHeight = contentEl.scrollHeight;
-
-                contentEl.style.visibility = wasVisible;
-                contentEl.style.pointerEvents = wasPointerEvents;
-                contentEl.style.position = wasPosition;
-                contentEl.style.height = wasHeight;
-
-                return topBar + contentHeight + padding;
-            }
-        }
-        return 260;
+        const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+        // Optimization: Use a fixed height or a more predictable calculation to avoid forced reflows
+        // In most cases, 400 is plenty for mobile expansion without needing to measure the DOM
+        return isMobile ? 420 : 260;
     };
 
     const createTimeline = () => {

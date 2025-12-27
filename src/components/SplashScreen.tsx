@@ -10,8 +10,8 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
         // Total duration of splash screen
         const timer = setTimeout(() => {
             setIsVisible(false);
-            setTimeout(onComplete, 500); // Wait for exit animation
-        }, 2000);
+            setTimeout(onComplete, 400); // Reduced exit animation wait
+        }, 800);
 
         return () => clearTimeout(timer);
     }, [onComplete]);
