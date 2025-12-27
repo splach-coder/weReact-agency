@@ -51,9 +51,9 @@ export default function AboutPage() {
     ];
 
     const stats = [
-        { number: "150+", label: "Projects Delivered" },
+        { number: "15+", label: "Projects Delivered" },
         { number: "98%", label: "Client Satisfaction" },
-        { number: "5+", label: "Years Experience" },
+        { number: "2+", label: "Years Experience" },
         { number: "24/7", label: "Support Available" }
     ];
 

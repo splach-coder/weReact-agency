@@ -62,7 +62,7 @@ export default function Work() {
                         </div>
 
                         <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-6">
-                            Trusted by Over 15k+ <br />
+                            Trusted by Over 15+ <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/60">
                                 Satisfied Clients
                             </span>
