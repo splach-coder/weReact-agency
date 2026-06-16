@@ -141,6 +141,18 @@ The redesign should cover the whole website, not only the homepage.
 - Generate or create new bitmap assets only when they support the design better than existing assets.
 - Use generated/abstract visuals for operational panels, system maps, or project placeholders when no real screenshot exists.
 - Do not replace real project imagery with vague atmospheric stock-like imagery.
+- Add appropriate generated bitmap assets that make the site feel impressive and premium, especially for the GreenOps hero, operational panels, and any showcase item that lacks a real local screenshot.
+- Save all project-bound generated assets inside `public/images/` and reference them from the app; do not leave referenced images outside the workspace.
+
+## SEO And GEO Requirements
+
+- Make the website professionally SEO-friendly and local/GEO-friendly for WeReact agency in Marrakech, Morocco.
+- Improve metadata for the home page and main inner pages: title, description, Open Graph, Twitter, canonical/alternate behavior where practical, and location/service intent.
+- Keep or improve structured data for `LocalBusiness`, `ProfessionalService`, offered services, address, geo coordinates, sameAs links, and area served.
+- Ensure the sitemap includes static pages and all blog posts.
+- Add one or two high-quality blog posts targeting useful Google search intent and local Moroccan service intent. Topics should support searches around website design in Marrakech/Morocco, business websites, SEO foundations, tourism/hospitality websites, and local digital presence.
+- Blog content should read like professional guidance, not keyword stuffing. Use natural mentions of Marrakech, Morocco, web design, business websites, SEO, local visibility, and conversion.
+- New blog posts need clear slugs, excerpts, meta descriptions, categories, tags, read times, images, and full article HTML.
 
 ## Testing And Verification
 
