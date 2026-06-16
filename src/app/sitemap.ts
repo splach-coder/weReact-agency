@@ -1,6 +1,7 @@
 import { siteConfig } from '@/config/site';
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blog';
+import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url;
@@ -25,5 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }))
     );
 
-    return [...staticRoutes, ...postRoutes];
+    const workRoutes = projects.flatMap((project) =>
+        siteConfig.locales.map((locale) => ({
+            url: `${baseUrl}/${locale}/work/${project.id}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.7,
+        }))
+    );
+
+    return [...staticRoutes, ...postRoutes, ...workRoutes];
 }
