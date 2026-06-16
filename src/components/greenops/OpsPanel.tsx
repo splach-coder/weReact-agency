@@ -12,7 +12,7 @@ export default function OpsPanel({ children, className = '', dark = false }: Ops
     : 'border-[var(--color-primary)]/14 bg-white/75 text-[var(--color-text-main)] shadow-[0_18px_60px_rgba(58,90,64,0.08)]';
 
   return (
-    <div className={`relative overflow-hidden rounded-[8px] border ${palette} ${className}`.trim()}>
+    <div className={`relative min-w-0 overflow-hidden rounded-[8px] border ${palette} ${className}`.trim()}>
       <div className="pointer-events-none absolute inset-0 greenops-scanline opacity-35" aria-hidden="true" />
       <div className="relative z-10">{children}</div>
     </div>

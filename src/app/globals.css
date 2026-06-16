@@ -18,6 +18,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-width: 0;
   }
 
   body {
@@ -34,6 +35,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   ::selection {
     background: var(--color-primary);
     color: var(--color-background-main);
@@ -42,6 +48,13 @@
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 4px;
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    max-width: 100%;
   }
 }
 
@@ -68,5 +81,52 @@
       linear-gradient(rgba(246, 246, 242, 0.075) 1px, transparent 1px),
       linear-gradient(90deg, rgba(246, 246, 242, 0.075) 1px, transparent 1px);
     background-size: 34px 34px;
+  }
+
+  .greenops-article {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .greenops-article p + p {
+    margin-top: 1.1rem;
+  }
+
+  .greenops-article h2,
+  .greenops-article h3 {
+    color: var(--color-primary);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  .greenops-article h2 {
+    margin-top: 2.6rem;
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 4vw, 3.6rem);
+  }
+
+  .greenops-article h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-size: clamp(1.45rem, 2.6vw, 2.25rem);
+  }
+
+  .greenops-article blockquote {
+    margin: 2rem 0;
+    border-left: 4px solid var(--color-primary);
+    border-radius: 6px;
+    background: var(--color-background-main);
+    padding: 1.35rem 1.5rem;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .greenops-article strong,
+  .greenops-article code {
+    color: var(--color-primary);
+    font-weight: 900;
   }
 }

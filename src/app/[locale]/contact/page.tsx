@@ -16,7 +16,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[var(--color-background-main)] px-4 pb-16 pt-28 text-[var(--color-primary)] md:px-6 md:pt-32">
       <section className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-[1fr_0.9fr]">
-        <OpsPanel dark className="bg-[var(--color-primary)] p-6 text-white md:p-10">
+        <OpsPanel dark className="!bg-[var(--color-primary)] p-6 text-white md:p-10">
           <OpsBadge tone="dark">Deploy request</OpsBadge>
           <h1 className="mt-7 text-5xl font-black uppercase leading-[0.86] tracking-normal md:text-7xl lg:text-8xl">
             Tell us what your website needs to do.

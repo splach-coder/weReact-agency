@@ -74,8 +74,6 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <article className="min-h-screen bg-[var(--color-background-main)] px-4 pb-16 pt-28 text-[var(--color-primary)] md:px-6 md:pt-32">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BlogShare url={postUrl} title={post.title} variant="floating" />
-
       <header className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-[1fr_0.82fr]">
         <OpsPanel className="p-6 md:p-10">
           <Link
@@ -87,7 +85,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
           <div className="mt-7">
             <OpsBadge tone="success">{post.category}</OpsBadge>
-            <h1 className="mt-7 text-4xl font-black uppercase leading-[0.9] tracking-normal md:text-6xl lg:text-7xl">
+            <h1 className="mt-7 text-4xl font-black uppercase leading-[0.9] tracking-normal md:text-5xl lg:text-6xl">
               {post.title}
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)]">{post.excerpt}</p>
@@ -125,16 +123,19 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="mx-auto mt-10 grid max-w-[1400px] gap-6 lg:grid-cols-[minmax(0,1fr)_360px] md:mt-16">
         <OpsPanel className="p-6 md:p-10">
           <div
-            className="prose prose-lg max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-normal prose-headings:text-[var(--color-primary)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-strong:text-[var(--color-primary)] prose-blockquote:rounded-[6px] prose-blockquote:border-l-4 prose-blockquote:border-[var(--color-primary)] prose-blockquote:bg-[var(--color-background-main)] prose-blockquote:p-6 prose-li:text-[var(--color-text-secondary)]"
+            className="greenops-article"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
           <div className="mt-12 border-t border-[var(--color-primary)]/12 pt-6">
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span key={tag} className="rounded-[6px] border border-[var(--color-primary)]/12 bg-[var(--color-background-main)] px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em]">
-                  #{tag}
-                </span>
-              ))}
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="rounded-[6px] border border-[var(--color-primary)]/12 bg-[var(--color-background-main)] px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em]">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              <BlogShare url={postUrl} title={post.title} variant="inline" />
             </div>
           </div>
         </OpsPanel>

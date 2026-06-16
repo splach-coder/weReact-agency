@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <header className="fixed left-0 top-0 z-[100] w-full px-4 pt-4 md:px-6">
       <div
-        className={`mx-auto grid max-w-[1400px] grid-cols-[1fr_auto] items-center gap-3 rounded-[8px] border px-3 py-3 transition duration-300 md:grid-cols-[1fr_auto_1fr] md:px-4 ${
+        className={`mx-auto grid w-full max-w-full grid-cols-[1fr_auto] items-center gap-3 rounded-[8px] border px-3 py-3 transition duration-300 md:max-w-[1400px] md:grid-cols-[1fr_auto_1fr] md:px-4 ${
           scrolled
             ? 'border-[var(--color-primary)]/18 bg-white/86 shadow-[0_18px_70px_rgba(58,90,64,0.16)] backdrop-blur-xl'
             : 'border-[var(--color-primary)]/12 bg-[var(--color-background-main)]/72 backdrop-blur-lg'

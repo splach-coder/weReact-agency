@@ -14,7 +14,7 @@ type ProjectVisualProps = {
 export default function ProjectVisual({ project, href, priority = false, className = '' }: ProjectVisualProps) {
   const card = (
     <article
-      className={`group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[8px] border border-[var(--color-primary)]/15 bg-white text-[var(--color-primary)] shadow-[0_20px_70px_rgba(58,90,64,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)]/35 ${className}`.trim()}
+      className={`group relative flex h-full min-h-[420px] min-w-0 flex-col overflow-hidden rounded-[8px] border border-[var(--color-primary)]/15 bg-white text-[var(--color-primary)] shadow-[0_20px_70px_rgba(58,90,64,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)]/35 ${className}`.trim()}
     >
       <div className="relative min-h-[240px] flex-1 overflow-hidden bg-[var(--color-background-main)]">
         <Image
@@ -38,7 +38,7 @@ export default function ProjectVisual({ project, href, priority = false, classNa
             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
               {project.domain}
             </p>
-            <h3 className="mt-2 text-2xl font-black uppercase leading-none tracking-normal">
+            <h3 className="mt-2 break-words text-2xl font-black uppercase leading-none tracking-normal">
               {project.title}
             </h3>
           </div>

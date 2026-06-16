@@ -24,7 +24,7 @@ export default function SectionHeader({
     <div className={`${centered ? 'mx-auto text-center' : ''} max-w-4xl ${className}`.trim()}>
       <OpsBadge tone={dark ? 'dark' : 'success'}>{eyebrow}</OpsBadge>
       <h2
-        className={`mt-5 text-4xl font-black uppercase leading-[0.92] tracking-normal md:text-6xl lg:text-7xl ${
+        className={`mt-5 break-words text-4xl font-black uppercase leading-[0.92] tracking-normal md:text-6xl lg:text-7xl ${
           dark ? 'text-[var(--color-background-main)]' : 'text-[var(--color-primary)]'
         }`}
       >

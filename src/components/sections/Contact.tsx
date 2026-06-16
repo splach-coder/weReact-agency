@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <section id="contact" className="px-4 py-16 md:px-6 md:py-24">
       <div className="mx-auto max-w-[1400px]">
-        <OpsPanel className="overflow-hidden bg-[var(--color-primary)] p-6 text-white md:p-10 lg:p-12" dark>
+        <OpsPanel className="overflow-hidden !bg-[var(--color-primary)] p-6 text-white md:p-10 lg:p-12" dark>
           <div className="absolute inset-0 greenops-dark-grid opacity-35" aria-hidden="true" />
           <div className="relative z-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
