@@ -51,6 +51,106 @@ function panel({ title, label, domain, metricA, metricB, variant = 'grid' }) {
   </svg>`;
 }
 
+function patternLines(opacity = 0.14) {
+  return `<g opacity="${opacity}">
+    ${Array.from({ length: 30 }, (_, i) => `<path d="M${-180 + i * 58} 0L${-420 + i * 58} 720" stroke="${colors.primary}" stroke-width="1"/>`).join('')}
+  </g>`;
+}
+
+function mapRoute(points, stroke = colors.primary, width = 5) {
+  return `<path d="${points}" fill="none" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 18" opacity=".72"/>`;
+}
+
+function pin(x, y, label) {
+  return `<g transform="translate(${x} ${y})">
+    <path d="M0 -44C-28 -44 -50 -23 -50 5C-50 43 0 86 0 86S50 43 50 5C50 -23 28 -44 0 -44Z" fill="${colors.primary}"/>
+    <circle cx="0" cy="4" r="18" fill="${colors.bg}"/>
+    ${label ? `<text x="0" y="130" text-anchor="middle" fill="${colors.primary}" font-family="Arial, sans-serif" font-size="17" font-weight="900" letter-spacing="3">${label}</text>` : ''}
+  </g>`;
+}
+
+function browserWindow({ x, y, w, h, title, lines = [] }) {
+  return `<g transform="translate(${x} ${y})">
+    <rect width="${w}" height="${h}" rx="18" fill="${colors.white}" stroke="${colors.primary}" stroke-opacity=".18"/>
+    <rect x="0" y="0" width="${w}" height="56" rx="18" fill="${colors.primary}"/>
+    <rect x="0" y="36" width="${w}" height="20" fill="${colors.primary}"/>
+    <circle cx="${w - 86}" cy="28" r="7" fill="${colors.sage}"/>
+    <circle cx="${w - 58}" cy="28" r="7" fill="${colors.light}"/>
+    <circle cx="${w - 30}" cy="28" r="7" fill="${colors.bg}"/>
+    <text x="28" y="36" fill="${colors.bg}" font-family="Arial, sans-serif" font-size="17" font-weight="900" letter-spacing="3">${title}</text>
+    ${lines.map((line, i) => `<rect x="34" y="${92 + i * 46}" width="${line}" height="18" rx="9" fill="${i === 0 ? colors.primary : colors.sage}" opacity="${i === 0 ? '.86' : '.5'}"/>`).join('')}
+  </g>`;
+}
+
+function blogCover({ eyebrow, titleTop, titleBottom, subtitle, scene, steps }) {
+  const scenic =
+    scene === 'marrakech'
+      ? `<g transform="translate(690 114)">
+          <path d="M82 396V190C82 104 151 34 236 34C322 34 392 104 392 190V396Z" fill="${colors.primary}"/>
+          <path d="M137 396V201C137 145 181 100 236 100C291 100 337 145 337 201V396Z" fill="${colors.bg}" opacity=".93"/>
+          <path d="M180 396V229C180 199 204 175 236 175C267 175 292 199 292 229V396Z" fill="${colors.sage}" opacity=".72"/>
+          <rect x="36" y="324" width="438" height="110" rx="12" fill="${colors.dark}"/>
+          <rect x="75" y="354" width="125" height="18" rx="9" fill="${colors.bg}" opacity=".9"/>
+          <rect x="75" y="389" width="205" height="15" rx="8" fill="${colors.sage}" opacity=".7"/>
+          ${pin(408, 134, '')}
+        </g>`
+      : `<g transform="translate(650 96)">
+          <path d="M30 418L218 176L330 318L428 126L574 418Z" fill="${colors.primary}"/>
+          <path d="M218 176L257 225L184 225Z" fill="${colors.bg}" opacity=".9"/>
+          <path d="M428 126L465 175L396 175Z" fill="${colors.bg}" opacity=".9"/>
+          <path d="M64 468C178 405 276 480 396 415C474 372 544 382 624 432" fill="none" stroke="${colors.sage}" stroke-width="18" stroke-linecap="round" opacity=".78"/>
+          ${mapRoute('M70 520C185 448 300 552 418 470C500 413 564 430 638 492', colors.bg, 7)}
+          ${pin(116, 172, '')}
+        </g>`;
+
+  return `<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+        <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="${colors.primary}" flood-opacity=".14"/>
+      </filter>
+      <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${colors.white}"/>
+        <stop offset="100%" stop-color="${colors.light}"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="720" fill="${colors.bg}"/>
+    ${patternLines(.1)}
+    <circle cx="1038" cy="92" r="230" fill="${colors.sage}" opacity=".2"/>
+    <circle cx="120" cy="650" r="260" fill="${colors.primary}" opacity=".06"/>
+
+    <rect x="54" y="52" width="1092" height="616" rx="26" fill="url(#fade)" stroke="${colors.primary}" stroke-opacity=".16" filter="url(#shadow)"/>
+    <rect x="86" y="86" width="1028" height="58" rx="14" fill="${colors.primary}"/>
+    <text x="118" y="124" fill="${colors.bg}" font-family="Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="4">${eyebrow}</text>
+    <circle cx="1042" cy="115" r="7" fill="${colors.sage}"/>
+    <circle cx="1070" cy="115" r="7" fill="${colors.light}"/>
+    <circle cx="1098" cy="115" r="7" fill="${colors.bg}"/>
+
+    <g transform="translate(102 220)">
+      <text x="0" y="0" fill="${colors.primary}" font-family="Arial, sans-serif" font-size="74" font-weight="900" letter-spacing="-2">${titleTop}</text>
+      <text x="0" y="82" fill="${colors.primary}" font-family="Arial, sans-serif" font-size="74" font-weight="900" letter-spacing="-2">${titleBottom}</text>
+      <text x="4" y="136" fill="${colors.muted}" font-family="Arial, sans-serif" font-size="27">${subtitle}</text>
+    </g>
+
+    <g transform="translate(104 440)">
+      ${steps.map((step, i) => `<g transform="translate(${i * 190} 0)">
+        <rect width="152" height="122" rx="14" fill="${colors.white}" stroke="${colors.primary}" stroke-opacity=".14"/>
+        <text x="24" y="42" fill="${colors.muted}" font-family="Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3">STEP ${String(i + 1).padStart(2, '0')}</text>
+        <text x="24" y="88" fill="${colors.primary}" font-family="Arial, sans-serif" font-size="32" font-weight="900">${step}</text>
+      </g>`).join('')}
+    </g>
+
+    ${scenic}
+    ${browserWindow({
+      x: 802,
+      y: 442,
+      w: 286,
+      h: 150,
+      title: scene === 'marrakech' ? 'LOCAL SEARCH' : 'BOOKING PATH',
+      lines: [196, 150],
+    })}
+  </svg>`;
+}
+
 const assets = [
   [
     'hero-command.webp',
@@ -112,13 +212,13 @@ for (const [name, svg] of assets) {
 
 await sharp(
   Buffer.from(
-    panel({
-      title: 'Web Design Marrakech',
-      label: 'SEO BRIEFING',
-      domain: 'Business websites built for local visibility',
-      metricA: 'GEO',
-      metricB: 'LEADS',
-      variant: 'map',
+    blogCover({
+      eyebrow: 'MARRAKECH LOCAL SEO',
+      titleTop: 'Web Design',
+      titleBottom: 'Marrakech',
+      subtitle: 'Local visibility, trust, speed and client inquiries',
+      scene: 'marrakech',
+      steps: ['FIND', 'TRUST', 'LEADS'],
     })
   )
 )
@@ -127,13 +227,13 @@ await sharp(
 
 await sharp(
   Buffer.from(
-    panel({
-      title: 'Tourism SEO Morocco',
-      label: 'GEO SEARCH BRIEFING',
-      domain: 'Hospitality, tours, travel and local discovery',
-      metricA: 'SEO',
-      metricB: 'BOOK',
-      variant: 'map',
+    blogCover({
+      eyebrow: 'MOROCCO TOURISM SEO',
+      titleTop: 'Tourism SEO',
+      titleBottom: 'Morocco',
+      subtitle: 'Destination pages, trust signals and direct bookings',
+      scene: 'tourism',
+      steps: ['SEARCH', 'PLAN', 'BOOK'],
     })
   )
 )
