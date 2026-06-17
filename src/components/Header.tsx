@@ -7,6 +7,7 @@ import Button from './Button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { siteConfig } from '@/config/site';
 
 const StaggeredMenu = dynamic(() => import('./StaggeredMenu'), { ssr: false });
 const CardNav = dynamic(() => import('./CardNav'), { ssr: false });
@@ -144,8 +145,9 @@ export default function Header() {
                                         { label: 'Contact', ariaLabel: 'Contact Us', link: `/${locale}/contact` }
                                     ]}
                                     socialItems={[
-                                        { label: 'Instagram', link: 'https://www.instagram.com/wereact.agency' },
-                                        { label: 'Twitter', link: 'https://twitter.com/wereact' }
+                                        { label: 'Facebook', link: siteConfig.business.facebook },
+                                        { label: 'Instagram', link: siteConfig.business.sameAs[0] },
+                                        { label: 'Twitter', link: siteConfig.business.sameAs[1] }
                                     ]}
                                     className="mobile-menu-override"
                                     staticPosition={true}

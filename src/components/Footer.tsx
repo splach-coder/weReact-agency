@@ -2,12 +2,19 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Mail, Twitter } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import { siteConfig } from '@/config/site';
 
 export default function Footer() {
     const locale = useLocale();
     const currentYear = new Date().getFullYear();
+    const socialLinks = [
+        { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
+        { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: Instagram },
+        { label: 'Twitter', href: siteConfig.business.sameAs[1], icon: Twitter },
+        { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: Mail },
+    ];
 
     return (
         <footer className="relative bg-[var(--color-primary)] text-[#E3E3DC] py-8 md:py-16 overflow-hidden">
@@ -43,9 +50,18 @@ export default function Footer() {
                         </form>
 
                         <div className="flex gap-6 mb-8 text-[#E3E3DC]">
-                            <Link href="#" className="hover:text-white transition-colors" aria-label="Twitter"><Twitter size={24} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors" aria-label="Instagram"><Instagram size={24} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors" aria-label="Linkedin"><Linkedin size={24} /></Link>
+                            {socialLinks.map(({ label, href, icon: Icon }) => (
+                                <Link
+                                    key={label}
+                                    href={href}
+                                    className="hover:text-white transition-colors"
+                                    aria-label={label}
+                                    target={href.startsWith('http') ? '_blank' : undefined}
+                                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                >
+                                    <Icon size={24} />
+                                </Link>
+                            ))}
                         </div>
 
                         <p className="text-xs text-white/70 uppercase tracking-widest">

@@ -72,9 +72,22 @@ if (staleBlogYears.length > 0) {
 }
 
 const footerSource = readFileSync('src/components/Footer.tsx', 'utf8');
+const headerSource = readFileSync('src/components/Header.tsx', 'utf8');
 
 if (/All rights reserved/.test(footerSource) && !/new Date\(\)\.getFullYear\(\)/.test(footerSource)) {
   throw new Error('Footer copyright year must use new Date().getFullYear().');
+}
+
+if (!footerSource.includes('siteConfig.business.facebook')) {
+  throw new Error('Footer must include the configured Facebook link.');
+}
+
+if (!headerSource.includes('siteConfig.business.facebook')) {
+  throw new Error('Header mobile menu must include the configured Facebook link.');
+}
+
+if (/href="#"/.test(footerSource)) {
+  throw new Error('Footer social links must not use placeholder href="#".');
 }
 
 console.log(`Content and old-design checks verified: ${projects.length} projects, ${blogPosts.length} posts.`);
