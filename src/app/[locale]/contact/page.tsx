@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { siteConfig } from '@/config/site';
 
 export default function ContactPage() {
     const containerRef = useRef(null);
@@ -32,20 +33,20 @@ export default function ContactPage() {
         {
             icon: Mail,
             label: 'Email',
-            value: 'hello@wereact.agency',
-            href: 'mailto:hello@wereact.agency'
+            value: siteConfig.business.email,
+            href: `mailto:${siteConfig.business.email}`
         },
         {
             icon: Phone,
             label: 'Phone',
-            value: '+1 (555) 123-4567',
-            href: 'tel:+15551234567'
+            value: siteConfig.business.phoneDisplay,
+            href: `tel:${siteConfig.business.phoneTel.replace(/\s+/g, '')}`
         },
         {
             icon: MapPin,
             label: 'Location',
-            value: 'San Francisco, CA',
-            href: '#'
+            value: siteConfig.business.addressDisplay,
+            href: siteConfig.business.googleMapsUrl
         }
     ];
 
@@ -238,7 +239,7 @@ export default function ContactPage() {
                                     Schedule a free consultation call and we'll help you define your project scope and goals.
                                 </p>
                                 <Link
-                                    href="mailto:hello@wereact.agency"
+                                    href={`mailto:${siteConfig.business.email}`}
                                     className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--color-primary)] rounded-sm font-bold uppercase text-sm tracking-wider hover:bg-[var(--color-background-main)] transition-colors"
                                 >
                                     Schedule a Call

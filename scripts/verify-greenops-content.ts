@@ -73,6 +73,8 @@ if (staleBlogYears.length > 0) {
 
 const footerSource = readFileSync('src/components/Footer.tsx', 'utf8');
 const headerSource = readFileSync('src/components/Header.tsx', 'utf8');
+const contactPageSource = readFileSync('src/app/[locale]/contact/page.tsx', 'utf8');
+const homeContactSource = readFileSync('src/components/sections/Contact.tsx', 'utf8');
 
 if (/All rights reserved/.test(footerSource) && !/new Date\(\)\.getFullYear\(\)/.test(footerSource)) {
   throw new Error('Footer copyright year must use new Date().getFullYear().');
@@ -88,6 +90,22 @@ if (!headerSource.includes('siteConfig.business.facebook')) {
 
 if (/href="#"/.test(footerSource)) {
   throw new Error('Footer social links must not use placeholder href="#".');
+}
+
+if (
+  !contactPageSource.includes('siteConfig.business.email') ||
+  !contactPageSource.includes('siteConfig.business.phoneDisplay') ||
+  !contactPageSource.includes('siteConfig.business.addressDisplay')
+) {
+  throw new Error('Contact page must use configured email, phone, and address.');
+}
+
+if (contactPageSource.includes('San Francisco') || contactPageSource.includes('+1 (555)')) {
+  throw new Error('Contact page still contains placeholder contact information.');
+}
+
+if (!homeContactSource.includes('siteConfig.business.email')) {
+  throw new Error('Homepage contact section must use the configured email.');
 }
 
 console.log(`Content and old-design checks verified: ${projects.length} projects, ${blogPosts.length} posts.`);

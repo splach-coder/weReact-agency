@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Mail } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 export default function Contact() {
     const containerRef = useRef(null);
@@ -32,7 +33,7 @@ export default function Contact() {
                         Your business deserves a platform that performs. <br className="hidden md:block" /> Let's build something extraordinary together.
                     </p>
 
-                    <Link href="mailto:hello@wereact.agency" className="group relative inline-flex flex-col items-center">
+                    <Link href={`mailto:${siteConfig.business.email}`} className="group relative inline-flex flex-col items-center">
                         <div className="relative overflow-hidden rounded-sm bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-4 md:px-12 md:py-6 lg:px-16 lg:py-8 flex items-center gap-3 md:gap-4 transition-transform duration-500 hover:scale-105">
                             <span className="text-lg md:text-2xl lg:text-3xl font-bold tracking-tight z-10">Start a Project</span>
                             <ArrowRight className="w-5 h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 transition-transform duration-300 group-hover:translate-x-2 z-10" />
@@ -42,7 +43,7 @@ export default function Contact() {
                         </div>
 
                         <span className="mt-3 md:mt-4 text-xs md:text-sm font-medium uppercase tracking-widest opacity-40 group-hover:opacity-100 transition-opacity duration-300">
-                            hello@wereact.agency
+                            {siteConfig.business.email}
                         </span>
                     </Link>
                 </motion.div>
