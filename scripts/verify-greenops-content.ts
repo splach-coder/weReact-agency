@@ -1,6 +1,8 @@
 import { blogPosts } from '../src/data/blog';
 import { projects } from '../src/data/projects';
 import { siteConfig } from '../src/config/site';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
 
 const requiredDomains = [
   'www.trustdrivers.tours',
@@ -34,4 +36,32 @@ if (geoPosts.length < 2) {
   throw new Error('At least two blog posts must target Marrakech/local search intent.');
 }
 
-console.log(`GreenOps content verified: ${projects.length} projects, ${blogPosts.length} posts.`);
+const designPaths = ['src/app/[locale]', 'src/components'];
+const allowedGreenOpsFiles = new Set([
+  'src/components/greenops/OpsBadge.tsx',
+  'src/components/greenops/OpsPanel.tsx',
+  'src/components/greenops/ProjectVisual.tsx',
+  'src/components/greenops/SectionHeader.tsx',
+]);
+
+function collectSourceFiles(path: string): string[] {
+  if (!existsSync(path)) return [];
+  const stats = statSync(path);
+  if (stats.isFile()) return path.endsWith('.tsx') || path.endsWith('.css') ? [path] : [];
+
+  return readdirSync(path).flatMap((entry) => collectSourceFiles(join(path, entry).replaceAll('\\', '/')));
+}
+
+const greenOpsDesignFiles = designPaths
+  .flatMap(collectSourceFiles)
+  .filter((path) => !allowedGreenOpsFiles.has(path))
+  .filter((path) => {
+    const source = readFileSync(path, 'utf8');
+    return /components\/greenops|<Ops[A-Z]|greenops-/.test(source);
+  });
+
+if (greenOpsDesignFiles.length > 0) {
+  throw new Error(`GreenOps design still wired into old UI: ${greenOpsDesignFiles.join(', ')}`);
+}
+
+console.log(`Content and old-design checks verified: ${projects.length} projects, ${blogPosts.length} posts.`);

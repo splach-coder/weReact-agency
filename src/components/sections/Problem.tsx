@@ -1,79 +1,109 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { AlertTriangle, MousePointerClick, SearchX, TimerReset } from 'lucide-react';
-import OpsPanel from '@/components/greenops/OpsPanel';
-import SectionHeader from '@/components/greenops/SectionHeader';
-
-const diagnostics = [
-  {
-    icon: SearchX,
-    label: 'Visibility fault',
-    title: 'Invisible in search',
-    detail: 'Your offer exists, but Google and local customers cannot read the signal clearly.',
-    severity: 'High',
-  },
-  {
-    icon: TimerReset,
-    label: 'Speed drag',
-    title: 'Slow first impression',
-    detail: 'Heavy pages cost attention before your visitor understands why you matter.',
-    severity: 'Medium',
-  },
-  {
-    icon: MousePointerClick,
-    label: 'Conversion leak',
-    title: 'No clear next action',
-    detail: 'Visitors scan, hesitate, and leave because the path to contact is buried.',
-    severity: 'High',
-  },
-];
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Problem() {
-  return (
-    <section className="relative overflow-hidden px-4 py-16 md:px-6 md:py-24">
-      <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-        <SectionHeader
-          eyebrow="Diagnostic layer"
-          title={<>Most websites fail before the first conversation.</>}
-          copy="A website is not just a page. It is your public operating system for trust, search, speed, and conversion."
-        />
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
 
-        <div className="grid gap-4">
-          {diagnostics.map((item, index) => (
+    const yBackground = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+    return (
+        <section ref={sectionRef} className="relative w-full py-8 md:py-16 bg-[var(--color-background-main)] text-[var(--color-primary)] overflow-hidden">
+            {/* Background Watermark - Parallax */}
             <motion.div
-              key={item.title}
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
+                style={{ y: yBackground }}
+                className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden"
             >
-              <OpsPanel className="p-5 md:p-6">
-                <div className="grid gap-5 md:grid-cols-[auto_1fr_auto] md:items-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-[6px] bg-[var(--color-primary)] text-white">
-                    <item.icon size={25} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                      {item.label}
-                    </p>
-                    <h3 className="mt-2 text-2xl font-black uppercase leading-none text-[var(--color-primary)]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                      {item.detail}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-[6px] border border-[var(--color-primary)]/14 bg-[var(--color-background-main)] px-3 py-2">
-                    <AlertTriangle size={15} />
-                    <span className="text-[10px] font-black uppercase tracking-[0.14em]">{item.severity}</span>
-                  </div>
-                </div>
-              </OpsPanel>
+                <span className="text-[25vw] font-bold leading-none whitespace-nowrap tracking-tighter text-[var(--color-primary)]">
+                    REALITY
+                </span>
             </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+
+            <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+
+                    {/* Left: The "Hook" - Huge Typography */}
+                    <div className="md:col-span-7 flex flex-col justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8">
+                                INVISIBLE <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)]">ONLINE?</span>
+                            </h2>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2, ease: "circOut" }}
+                            className="h-1 w-32 md:w-48 bg-[var(--color-primary)] mb-12 origin-left"
+                        />
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="text-2xl md:text-3xl font-extralight text-[var(--color-primary)]/80 max-w-2xl leading-normal"
+                        >
+                            Good businesses shouldn't be hidden in the digital noise. <strong className="font-bold text-[var(--color-primary)]">But most are.</strong>
+                        </motion.p>
+                    </div>
+
+                    {/* Right: The Breakdown - Cards */}
+                    <div className="md:col-span-5 flex flex-col gap-6 mt-12 md:mt-0">
+                        {[
+                            {
+                                title: "The Confusion",
+                                weight: "font-bold", // 700
+                                desc: "Building a platform feels overwhelming, expensive, and technically complex.",
+                                delay: 0.2
+                            },
+                            {
+                                title: "The Outdated",
+                                weight: "font-bold", // 700
+                                desc: "Existing sites often load slowly, look generic, and fail to convert visitors.",
+                                delay: 0.3
+                            },
+                            {
+                                title: "The Solution",
+                                weight: "font-bold", // 700
+                                desc: "A website shouldn't be a problem. It's your most powerful asset.",
+                                highlight: true,
+                                delay: 0.4
+                            }
+                        ].map((item, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: item.delay }}
+                                className={`p-8 rounded-sm border ${item.highlight ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-background-main)]' : 'bg-[var(--color-primary)]/5 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 text-[var(--color-primary)]'} backdrop-blur-sm transition-colors duration-300 group`}
+                            >
+                                <h3 className={`text-2xl ${item.weight} tracking-tight mb-3 uppercase flex items-center gap-3`}>
+                                    {item.title}
+                                    {!item.highlight && <span className="h-[2px] w-8 bg-[var(--color-primary)] group-hover:w-12 transition-all duration-300" />}
+                                </h3>
+                                <p className={`text-lg ${item.highlight ? 'font-medium' : 'font-extralight opacity-80'}`}>
+                                    {item.desc}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
 }

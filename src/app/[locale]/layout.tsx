@@ -99,7 +99,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
+      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-slate-50 text-slate-900`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-grow">
