@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Mail, Zap } from 'lucide-react';
+import { ArrowRight, Mail, Zap, MessageCircle } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { heroTitleVariants, fadeInUpVariants, ctaButtonVariants, arrowAnimationVariants } from '@/lib/animations';
 
@@ -63,7 +63,7 @@ export default function Contact() {
                         custom={2}
                         className="flex flex-col sm:flex-row gap-4 items-center justify-center"
                     >
-                        <Link href={`mailto:${siteConfig.business.email}`} className="w-full sm:w-auto">
+                        <Link href={siteConfig.business.whatsapp} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                             <motion.button
                                 variants={ctaButtonVariants}
                                 initial="initial"
@@ -71,11 +71,11 @@ export default function Contact() {
                                 whileTap="tap"
                                 className="btn-base btn-primary group w-full sm:w-auto justify-center"
                             >
-                                Start a Project
+                                Chat on WhatsApp
                                 <motion.div
                                     variants={arrowAnimationVariants}
                                 >
-                                    <ArrowRight size={18} />
+                                    <MessageCircle size={18} />
                                 </motion.div>
                             </motion.button>
                         </Link>

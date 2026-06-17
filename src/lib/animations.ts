@@ -241,3 +241,102 @@ export const arrowAnimationVariants: Variants = {
   initial: { x: 0 },
   hover: { x: 4 },
 };
+
+/* ADVANCED ANIMATIONS FOR PREMIUM FEEL */
+export const textRevealVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: custom * 0.05,
+      duration: 0.4,
+      ease: smoothEasing,
+    },
+  }),
+};
+
+export const floatingVariants: Variants = {
+  animate: {
+    y: [0, -10, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+export const glowPulseVariants: Variants = {
+  animate: {
+    boxShadow: [
+      '0 0 20px rgba(58, 90, 64, 0.2)',
+      '0 0 40px rgba(58, 90, 64, 0.4)',
+      '0 0 20px rgba(58, 90, 64, 0.2)',
+    ],
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+    },
+  },
+};
+
+export const slideUpStaggerVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: custom * 0.08,
+      duration: 0.6,
+      ease: smoothEasing,
+    },
+  }),
+};
+
+export const zoomInVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.7, ease: smoothEasing },
+  },
+};
+
+export const blurInVariants: Variants = {
+  hidden: { opacity: 0, filter: 'blur(10px)' },
+  visible: {
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: { duration: 0.8, ease: smoothEasing },
+  },
+};
+
+export const rotateHoverVariants: Variants = {
+  initial: { rotate: 0 },
+  hover: { rotate: 5 },
+};
+
+export const expandWidthVariants: Variants = {
+  initial: { width: 0 },
+  hover: { width: '100%' },
+};
+
+export const iconPulseVariants: Variants = {
+  animate: {
+    scale: [1, 1.1, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+    },
+  },
+};
+
+export const counterAnimationVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { ...springEasing, duration: 0.6 },
+  },
+};

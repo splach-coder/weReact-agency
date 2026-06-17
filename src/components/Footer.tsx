@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Mail, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Mail, Twitter, MessageCircle } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { siteConfig } from '@/config/site';
 
@@ -13,6 +13,7 @@ export default function Footer() {
         { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
         { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: Instagram },
         { label: 'Twitter', href: siteConfig.business.sameAs[1], icon: Twitter },
+        { label: 'WhatsApp', href: siteConfig.business.whatsapp, icon: MessageCircle },
         { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: Mail },
     ];
 
