@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TrendingDown, Zap, AlertCircle } from 'lucide-react';
-import { cardItemVariants, staggerContainerVariants } from '@/lib/animations';
+import { cardItemVariants, staggerContainerVariants, slideUpStaggerVariants, blurInVariants } from '@/lib/animations';
 
 export default function Problem() {
     const sectionRef = useRef(null);
@@ -55,16 +55,25 @@ export default function Problem() {
 
                 {/* Header Section */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.6 }}
+                    variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
                     className="mb-16 md:mb-24"
                 >
-                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+                    <motion.h2
+                        variants={slideUpStaggerVariants}
+                        custom={0}
+                        className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8"
+                    >
                         INVISIBLE <br />
-                        <span className="text-[var(--color-primary-light)]">ONLINE?</span>
-                    </h2>
+                        <motion.span
+                            variants={blurInVariants}
+                            className="text-[var(--color-primary-light)] inline-block"
+                        >
+                            ONLINE?
+                        </motion.span>
+                    </motion.h2>
 
                     <motion.div
                         initial={{ scaleX: 0 }}

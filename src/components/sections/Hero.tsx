@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { getImageProps } from 'next/image';
-import { heroTitleVariants, smoothEasing, fadeInUpVariants, ctaButtonVariants, arrowAnimationVariants } from '@/lib/animations';
+import { heroTitleVariants, smoothEasing, fadeInUpVariants, ctaButtonVariants, arrowAnimationVariants, glowPulseVariants, floatingVariants } from '@/lib/animations';
 import VariableProximity from '../VariableProximity';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
@@ -84,28 +84,40 @@ export default function Hero() {
                         custom={2}
                         className="flex gap-4 items-center"
                     >
-                        <motion.button
-                            variants={ctaButtonVariants}
-                            initial="initial"
-                            whileHover="hover"
-                            whileTap="tap"
-                            className="btn-base btn-primary group"
+                        <motion.div
+                            variants={floatingVariants}
+                            animate="animate"
                         >
-                            Start Your Project
-                            <motion.div
-                                variants={arrowAnimationVariants}
-                                className="group-hover:translate-x-1 transition-transform"
+                            <motion.button
+                                variants={ctaButtonVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tap"
+                                className="btn-base btn-primary group relative"
                             >
-                                <ArrowRight size={18} />
-                            </motion.div>
-                        </motion.button>
+                                <motion.div
+                                    variants={glowPulseVariants}
+                                    animate="animate"
+                                    className="absolute inset-0 rounded-md pointer-events-none"
+                                />
+                                <span className="relative">
+                                    Start Your Project
+                                </span>
+                                <motion.div
+                                    variants={arrowAnimationVariants}
+                                    className="group-hover:translate-x-1 transition-transform relative"
+                                >
+                                    <ArrowRight size={18} />
+                                </motion.div>
+                            </motion.button>
+                        </motion.div>
 
                         <motion.button
                             variants={ctaButtonVariants}
                             initial="initial"
                             whileHover="hover"
                             whileTap="tap"
-                            className="border border-white text-white hover:bg-white/10 px-6 py-3 rounded-md text-sm font-semibold uppercase tracking-wide transition-all"
+                            className="border border-white text-white hover:bg-white/10 px-6 py-3 rounded-md text-sm font-semibold uppercase tracking-wide transition-all hover:border-white/60"
                         >
                             View Our Work
                         </motion.button>

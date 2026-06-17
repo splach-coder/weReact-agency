@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MessageSquare, PenTool, Rocket } from 'lucide-react';
-import { cardItemVariants, staggerContainerVariants } from '@/lib/animations';
+import { cardItemVariants, staggerContainerVariants, floatingVariants, iconPulseVariants, slideUpStaggerVariants } from '@/lib/animations';
 
 export default function HowItWorks() {
     const sectionRef = useRef(null);
@@ -43,18 +43,26 @@ export default function HowItWorks() {
 
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
                     className="text-center max-w-3xl mx-auto mb-20 md:mb-28"
                 >
-                    <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 mb-4">
+                    <motion.p
+                        variants={slideUpStaggerVariants}
+                        custom={0}
+                        className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 mb-4"
+                    >
                         PROCESS
-                    </p>
-                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+                    </motion.p>
+                    <motion.h2
+                        variants={slideUpStaggerVariants}
+                        custom={1}
+                        className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8"
+                    >
                         Simple, <br />
                         <span className="text-[var(--color-accent-warm)]">Proven Process</span>
-                    </h2>
+                    </motion.h2>
                     <p className="text-lg md:text-xl font-light text-white/70 leading-relaxed">
                         Three straightforward steps from vision to launch. Our transparent process keeps you informed every step of the way.
                     </p>
@@ -90,6 +98,8 @@ export default function HowItWorks() {
 
                                         {/* Icon */}
                                         <motion.div
+                                            animate="animate"
+                                            variants={iconPulseVariants}
                                             whileHover={{ scale: 1.15, rotate: -5 }}
                                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                             className="w-16 h-16 rounded-lg bg-white/15 flex items-center justify-center text-white/80 mb-8 group-hover:bg-white/25 group-hover:text-white transition-all"

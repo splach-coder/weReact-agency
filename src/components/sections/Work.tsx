@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { projects as projectData } from '@/data/projects';
+import { slideUpStaggerVariants, zoomInVariants } from '@/lib/animations';
 
 export default function Work() {
     const containerRef = useRef(null);
@@ -27,22 +28,30 @@ export default function Work() {
             <div className="max-w-[1400px] mx-auto px-6 mb-16 md:mb-24">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6 }}
+                        initial="hidden"
+                        animate={isInView ? "visible" : "hidden"}
+                        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
                         className="max-w-2xl"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 mb-6">
+                        <motion.div
+                            variants={slideUpStaggerVariants}
+                            custom={0}
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 mb-6"
+                        >
                             <ArrowUpRight size={14} />
                             <span className="text-xs font-bold uppercase tracking-widest">Our Work</span>
-                        </div>
+                        </motion.div>
 
-                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-6">
+                        <motion.h2
+                            variants={slideUpStaggerVariants}
+                            custom={1}
+                            className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-6"
+                        >
                             Trusted by Over 15+ <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/60">
                                 Satisfied Clients
                             </span>
-                        </h2>
+                        </motion.h2>
                     </motion.div>
 
                     <motion.div

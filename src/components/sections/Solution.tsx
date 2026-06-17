@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Eye, Zap, Sparkles, Smartphone } from 'lucide-react';
-import { staggerContainerVariants, cardItemVariants } from '@/lib/animations';
+import { staggerContainerVariants, cardItemVariants, zoomInVariants, iconPulseVariants } from '@/lib/animations';
 
 export default function Solution() {
     const containerRef = useRef(null);
@@ -69,6 +69,8 @@ export default function Solution() {
                                     <div className="flex items-start justify-between mb-6">
                                         <motion.div
                                             whileHover={{ scale: 1.12, rotate: 5 }}
+                                            animate="animate"
+                                            variants={iconPulseVariants}
                                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                             className="p-3 rounded-lg bg-white/15 group-hover:bg-white/25 transition-colors"
                                         >
