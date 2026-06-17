@@ -2,91 +2,106 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { Eye, Zap, Sparkles, Smartphone } from 'lucide-react';
+import { staggerContainerVariants, cardItemVariants } from '@/lib/animations';
 
 export default function Solution() {
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: true, margin: "-10%" });
 
     const solutions = [
-        { title: "Crystal Clear", desc: "Information structure that guides, not confuses." },
-        { title: "Lightning Fast", desc: "Performance optimization for instant loading." },
-        { title: "Premium Visuals", desc: "Aesthetics that build immediate trust." },
-        { title: "Mobile First", desc: "Flawless experience on every device." }
+        { icon: Eye, label: "01", title: "Crystal Clear", desc: "Information architecture that guides visitors naturally through your story." },
+        { icon: Zap, label: "02", title: "Lightning Fast", desc: "Performance optimized for instant loading and smooth interactions." },
+        { icon: Sparkles, label: "03", title: "Premium Visuals", desc: "Beautiful design that builds trust and reflects your brand values." },
+        { icon: Smartphone, label: "04", title: "Mobile First", desc: "Flawless experience on every device, every screen, every time." }
     ];
 
     return (
-        <section ref={containerRef} className="relative w-full py-8 md:py-16 bg-[var(--color-primary)] text-[var(--color-background-main)] overflow-hidden">
+        <section ref={containerRef} className="relative w-full py-20 md:py-32 bg-[var(--color-primary)] text-white overflow-hidden">
 
-            {/* Decorative Background Elements */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-2xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+            {/* Decorative Blobs */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4 pointer-events-none" />
 
-            <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
 
-                    {/* Left: The Manifesto */}
-                    <div className="flex flex-col justify-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                        >
-                            <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-white/60 mb-6">
-                                The Antidote
-                            </h2>
-                            <h3 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
-                                THAT’S WHERE <br />
-                                <span className="relative inline-block">
-                                    <span className="relative z-10 text-[var(--color-background-main)]">WE REACT.</span>
-                                    <motion.span
-                                        initial={{ scaleX: 0 }}
-                                        animate={isInView ? { scaleX: 1 } : {}}
-                                        transition={{ duration: 0.8, delay: 0.5, ease: "circOut" }}
-                                        className="absolute bottom-2 left-0 w-full h-[0.2em] bg-white/20 -z-0 origin-left"
-                                    />
-                                </span>
-                            </h3>
-                            <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed max-w-xl">
-                                We strip away the complexity. No bloat. No confusion. Just a high-performance digital presence designed to <span className="font-bold text-white">work for your business.</span>
-                            </p>
-                        </motion.div>
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="mb-20 md:mb-28 max-w-3xl"
+                >
+                    <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/50 mb-4">
+                        SOLUTION
+                    </p>
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+                        THAT'S WHERE <br />
+                        <span className="text-[var(--color-accent-warm)]">WE REACT.</span>
+                    </h2>
+                    <p className="text-lg md:text-xl font-light text-white/70 leading-relaxed">
+                        We strip away complexity and deliver clarity. No bloat. No confusion. Just <strong className="font-semibold text-white">a powerful digital presence</strong> engineered to drive real results.
+                    </p>
+                </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ delay: 1, duration: 1 }}
-                            className="mt-12 hidden lg:block"
-                        >
-                            <ArrowRight size={48} className="text-[var(--color-background-main)] opacity-50" />
-                        </motion.div>
-                    </div>
-
-                    {/* Right: The Solutions Grid */}
-                    <div className="flex flex-col gap-6">
-                        {solutions.map((item, idx) => (
+                {/* Solutions Grid */}
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={staggerContainerVariants(0.1)}
+                >
+                    {solutions.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ duration: 0.6, delay: 0.2 + (idx * 0.15), ease: "easeOut" }}
+                                variants={cardItemVariants}
                                 className="group relative"
                             >
-                                <div className="absolute left-0 top-0 bottom-0 w-full bg-[var(--color-background-main)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-0 rounded-sm" />
+                                {/* Animated Background Fill */}
+                                <div className="absolute inset-0 bg-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
-                                <div className="relative z-10 p-8 border-b border-white/20 group-hover:border-transparent transition-colors duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                    <h4 className="text-3xl font-bold tracking-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                                {/* Content */}
+                                <div className="relative z-10 p-8 md:p-10 border border-white/15 group-hover:border-white/30 rounded-xl transition-all duration-500">
+
+                                    {/* Number & Icon Row */}
+                                    <div className="flex items-start justify-between mb-6">
+                                        <motion.div
+                                            whileHover={{ scale: 1.12, rotate: 5 }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                            className="p-3 rounded-lg bg-white/15 group-hover:bg-white/25 transition-colors"
+                                        >
+                                            <Icon className="w-5 h-5 text-white" />
+                                        </motion.div>
+                                        <span className="text-xs font-black text-white/20 tracking-widest">
+                                            {item.label}
+                                        </span>
+                                    </div>
+
+                                    {/* Title */}
+                                    <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-4 group-hover:translate-x-1 transition-transform duration-300">
                                         {item.title}
-                                    </h4>
-                                    <p className="text-lg font-light text-white/60 group-hover:text-[var(--color-primary)]/80 transition-colors duration-300 max-w-xs text-right">
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-white/70 font-light leading-relaxed mb-6 group-hover:text-white/85 transition-colors duration-300">
                                         {item.desc}
                                     </p>
+
+                                    {/* Accent Bar */}
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: 40 }}
+                                        transition={{ delay: idx * 0.12 + 0.4, duration: 0.7 }}
+                                        className="h-1 bg-gradient-to-r from-[var(--color-accent-warm)] to-white/40 group-hover:w-16 transition-all duration-300"
+                                    />
                                 </div>
                             </motion.div>
-                        ))}
-                    </div>
+                        );
+                    })}
+                </motion.div>
 
-                </div>
             </div>
         </section>
     );

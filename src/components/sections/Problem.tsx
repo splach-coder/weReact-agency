@@ -2,6 +2,8 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { TrendingDown, Zap, AlertCircle } from 'lucide-react';
+import { cardItemVariants, staggerContainerVariants } from '@/lib/animations';
 
 export default function Problem() {
     const sectionRef = useRef(null);
@@ -10,99 +12,125 @@ export default function Problem() {
         offset: ["start end", "end start"]
     });
 
-    const yBackground = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    const yBackground = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+
+    const problemCards = [
+        {
+            icon: TrendingDown,
+            label: "01",
+            title: "The Confusion",
+            desc: "Building a platform feels overwhelming, expensive, and technically complex.",
+            delay: 0.1
+        },
+        {
+            icon: Zap,
+            label: "02",
+            title: "The Outdated",
+            desc: "Existing sites often load slowly, look generic, and fail to convert visitors.",
+            delay: 0.2
+        },
+        {
+            icon: AlertCircle,
+            label: "03",
+            title: "The Gap",
+            desc: "Good businesses remain invisible while competitors dominate digital spaces.",
+            delay: 0.3
+        }
+    ];
 
     return (
-        <section ref={sectionRef} className="relative w-full py-8 md:py-16 bg-[var(--color-background-main)] text-[var(--color-primary)] overflow-hidden">
+        <section ref={sectionRef} className="relative w-full py-20 md:py-32 bg-[var(--color-background-main)] text-[var(--color-primary)] overflow-hidden">
+
             {/* Background Watermark - Parallax */}
             <motion.div
                 style={{ y: yBackground }}
-                className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden"
+                className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden"
             >
-                <span className="text-[25vw] font-bold leading-none whitespace-nowrap tracking-tighter text-[var(--color-primary)]">
-                    REALITY
+                <span className="text-[30vw] font-black leading-none whitespace-nowrap tracking-tighter text-[var(--color-primary)]">
+                    CHALLENGE
                 </span>
             </motion.div>
 
-            <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
 
-                    {/* Left: The "Hook" - Huge Typography */}
-                    <div className="md:col-span-7 flex flex-col justify-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                        >
-                            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8">
-                                INVISIBLE <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)]">ONLINE?</span>
-                            </h2>
-                        </motion.div>
+                {/* Header Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16 md:mb-24"
+                >
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+                        INVISIBLE <br />
+                        <span className="text-[var(--color-primary-light)]">ONLINE?</span>
+                    </h2>
 
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2, ease: "circOut" }}
-                            className="h-1 w-32 md:w-48 bg-[var(--color-primary)] mb-12 origin-left"
-                        />
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                        className="h-1.5 w-40 md:w-56 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] mb-12 origin-left"
+                    />
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-2xl md:text-3xl font-extralight text-[var(--color-primary)]/80 max-w-2xl leading-normal"
-                        >
-                            Good businesses shouldn't be hidden in the digital noise. <strong className="font-bold text-[var(--color-primary)]">But most are.</strong>
-                        </motion.p>
-                    </div>
+                    <p className="text-xl md:text-2xl font-light text-[var(--color-primary)]/75 max-w-3xl leading-relaxed">
+                        Good businesses shouldn't get lost in digital noise. Most face invisible online presence, outdated platforms, and missed conversion opportunities. <strong className="font-bold text-[var(--color-primary)]">We change that.</strong>
+                    </p>
+                </motion.div>
 
-                    {/* Right: The Breakdown - Cards */}
-                    <div className="md:col-span-5 flex flex-col gap-6 mt-12 md:mt-0">
-                        {[
-                            {
-                                title: "The Confusion",
-                                weight: "font-bold", // 700
-                                desc: "Building a platform feels overwhelming, expensive, and technically complex.",
-                                delay: 0.2
-                            },
-                            {
-                                title: "The Outdated",
-                                weight: "font-bold", // 700
-                                desc: "Existing sites often load slowly, look generic, and fail to convert visitors.",
-                                delay: 0.3
-                            },
-                            {
-                                title: "The Solution",
-                                weight: "font-bold", // 700
-                                desc: "A website shouldn't be a problem. It's your most powerful asset.",
-                                highlight: true,
-                                delay: 0.4
-                            }
-                        ].map((item, idx) => (
+                {/* Problem Cards Grid */}
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-10%" }}
+                    variants={staggerContainerVariants(0.12)}
+                >
+                    {problemCards.map((card, idx) => {
+                        const Icon = card.icon;
+                        return (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: item.delay }}
-                                className={`p-8 rounded-sm border ${item.highlight ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-background-main)]' : 'bg-[var(--color-primary)]/5 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 text-[var(--color-primary)]'} backdrop-blur-sm transition-colors duration-300 group`}
+                                variants={cardItemVariants}
+                                className="group card-base card-hover p-8 md:p-10 relative"
                             >
-                                <h3 className={`text-2xl ${item.weight} tracking-tight mb-3 uppercase flex items-center gap-3`}>
-                                    {item.title}
-                                    {!item.highlight && <span className="h-[2px] w-8 bg-[var(--color-primary)] group-hover:w-12 transition-all duration-300" />}
-                                </h3>
-                                <p className={`text-lg ${item.highlight ? 'font-medium' : 'font-extralight opacity-80'}`}>
-                                    {item.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
+                                {/* Number Badge */}
+                                <div className="absolute top-6 right-6 text-xs font-black text-[var(--color-primary)]/20 tracking-widest">
+                                    {card.label}
+                                </div>
 
-                </div>
+                                {/* Icon */}
+                                <motion.div
+                                    whileHover={{ scale: 1.1, rotate: -5 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    className="mb-6 p-3 w-fit rounded-lg bg-[var(--color-primary)]/10 group-hover:bg-[var(--color-primary)]/20"
+                                >
+                                    <Icon className="w-6 h-6 text-[var(--color-primary)]" />
+                                </motion.div>
+
+                                {/* Content */}
+                                <h3 className="text-xl md:text-2xl font-black tracking-tight mb-3 uppercase">
+                                    {card.title}
+                                </h3>
+
+                                <p className="text-[var(--color-primary)]/70 font-light leading-relaxed mb-4">
+                                    {card.desc}
+                                </p>
+
+                                {/* Accent Bar */}
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: 32 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: card.delay + 0.3, duration: 0.6 }}
+                                    className="h-0.5 bg-[var(--color-primary)]/40 group-hover:bg-[var(--color-primary)]"
+                                />
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
+
             </div>
         </section>
     );

@@ -1,63 +1,38 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { getImageProps } from 'next/image';
+import { heroTitleVariants, smoothEasing, fadeInUpVariants, ctaButtonVariants, arrowAnimationVariants } from '@/lib/animations';
 import VariableProximity from '../VariableProximity';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 
 export default function Hero() {
     const containerRef = useRef(null);
 
-    // Art Direction: Define image sources for different breakpoints
-    const common = { alt: "Nature Landscape", fill: true, priority: true };
+    const common = { alt: "WeReact Agency Hero", fill: true, priority: true };
 
-    // Desktop Optimized Source
     const { props: { srcSet: desktopSrcSet } } = getImageProps({
         ...common,
         src: "/images/nature_hero.webp",
         sizes: "(min-width: 768px) 100vw, 1px"
     });
 
-    // Mobile Optimized Source
     const { props: { srcSet: mobileSrcSet, ...rest } } = getImageProps({
         ...common,
         src: "/images/nature_hero_phone.webp",
         sizes: "(max-width: 767px) 100vw, 1px"
     });
 
-    // Column Animation Configuration
-    const colVariants: Variants = {
-        hidden: { height: 0 },
-        visible: (h: string) => ({
-            height: h
-        })
-    };
-
-    const textContainerVariants: Variants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: (delay: number) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                delay,
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1]
-            }
-        })
-    };
-
     return (
-        <section ref={containerRef} className="relative h-[85vh] md:h-screen w-full overflow-hidden bg-white">
+        <section ref={containerRef} className="relative h-[90vh] md:h-screen w-full overflow-hidden bg-white">
 
-            {/* Ar-Directed Image Layer: Discoverable immediately by HTML scanner */}
+            {/* Background Image */}
             <div className="absolute inset-0 z-0 h-full w-full">
                 <motion.div
                     initial={{ scale: 1.15 }}
                     animate={{ scale: 1 }}
-                    transition={{
-                        duration: 1.2,
-                        ease: "easeOut"
-                    }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
                     className="relative w-full h-full"
                 >
                     <picture>
@@ -66,155 +41,122 @@ export default function Hero() {
                         <img
                             {...rest}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                            className="mobile-hero-blur"
+                            className="md:filter-none"
                         />
                     </picture>
                 </motion.div>
 
-                {/* Mobile Glassy Overlay - Only visible on mobile */}
-                <div className="absolute inset-0 bg-black/5 backdrop-blur-[2px] md:hidden z-10" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-transparent md:bg-gradient-to-b md:from-black/15 md:to-transparent z-10" />
             </div>
 
-            <style jsx global>{`
-                @media (max-width: 767px) {
-                    .mobile-hero-blur {
-                        filter: blur(5px);
-                        transform: scale(1.1);
-                    }
-                }
-            `}</style>
-
-            {/* 2. Layout Grid: Desktop */}
-            <div className="relative z-10 w-full h-full hidden md:flex flex-row items-start pointer-events-none">
-                {/* Column 1: Left */}
+            {/* Desktop Content */}
+            <div className="hidden md:flex absolute top-0 left-0 w-full h-full z-20 flex-col justify-center items-start px-12 md:px-16">
                 <motion.div
-                    custom="70vh"
-                    variants={colVariants}
                     initial="hidden"
                     animate="visible"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-1/3 h-full bg-[#E3E3DC] border-r border-[#d4d4cd] relative flex flex-col justify-end pb-8 px-6"
-                    style={{ transformOrigin: 'top', height: 0 }}
-                />
-
-                {/* Column 2: Center */}
-                <motion.div
-                    custom="60vh"
-                    variants={colVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-1/3 h-full bg-[#E3E3DC] border-r border-[#d4d4cd] relative"
-                    style={{ transformOrigin: 'top', height: 0 }}
-                />
-
-                {/* Column 3: Right */}
-                <motion.div
-                    custom="50vh"
-                    variants={colVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-1/3 h-full bg-[#E3E3DC] relative"
-                    style={{ transformOrigin: 'top', height: 0 }}
+                    variants={{ visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } } }}
+                    className="max-w-3xl"
                 >
-                    <div className="absolute bottom-6 left-6 max-w-[280px]">
-                        <motion.div
-                            custom={0.2}
-                            variants={textContainerVariants}
-                            initial="hidden"
-                            animate="visible"
-                            className="opacity-0"
+                    {/* Main Headline */}
+                    <motion.h1
+                        variants={heroTitleVariants}
+                        custom={0}
+                        className="text-7xl md:text-8xl font-black leading-[0.95] tracking-tight text-white mb-6"
+                    >
+                        We Design &
+                        <br />
+                        <span className="text-[var(--color-accent-warm)]">Build Digital</span>
+                    </motion.h1>
+
+                    {/* Subheading */}
+                    <motion.p
+                        variants={heroTitleVariants}
+                        custom={1}
+                        className="text-lg md:text-xl text-white/80 font-light mb-10 leading-relaxed max-w-2xl"
+                    >
+                        Transforming ideas into stunning, high-converting experiences that engage users and drive results
+                    </motion.p>
+
+                    {/* CTA Button */}
+                    <motion.div
+                        variants={heroTitleVariants}
+                        custom={2}
+                        className="flex gap-4 items-center"
+                    >
+                        <motion.button
+                            variants={ctaButtonVariants}
+                            initial="initial"
+                            whileHover="hover"
+                            whileTap="tap"
+                            className="btn-base btn-primary group"
                         >
-                            <p className="text-xs font-medium uppercase leading-relaxed tracking-wider text-[#1A1A1A]">
-                                Our team combines strategic thinking with cutting-edge design to create experiences that resonate.
-                            </p>
-                        </motion.div>
-                    </div>
+                            Start Your Project
+                            <motion.div
+                                variants={arrowAnimationVariants}
+                                className="group-hover:translate-x-1 transition-transform"
+                            >
+                                <ArrowRight size={18} />
+                            </motion.div>
+                        </motion.button>
+
+                        <motion.button
+                            variants={ctaButtonVariants}
+                            initial="initial"
+                            whileHover="hover"
+                            whileTap="tap"
+                            className="border border-white text-white hover:bg-white/10 px-6 py-3 rounded-md text-sm font-semibold uppercase tracking-wide transition-all"
+                        >
+                            View Our Work
+                        </motion.button>
+                    </motion.div>
                 </motion.div>
             </div>
 
-            {/* 2b. Layout Creative: Mobile (Overlay Content) */}
-            <div className="relative z-20 w-full h-full md:hidden px-6 pt-20 pb-4 flex flex-col justify-end pointer-events-none">
-                <div className="flex flex-col gap-6 mb-12 text-[#1A1A1A] pointer-events-auto">
+            {/* Mobile Content */}
+            <div className="flex md:hidden absolute bottom-0 left-0 w-full z-20 flex-col justify-end pb-12 px-6">
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+                >
                     <motion.h1
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
-                        className="text-4xl tracking-tighter leading-[1.1] text-[#E3E3DC] uppercase"
+                        variants={fadeInUpVariants}
+                        className="text-4xl font-black leading-tight tracking-tight text-white mb-4"
                     >
-                        We Design & Build <span className="text-[#E3E3DC] font-bold">Impactful Digital</span> Experiences
+                        We Design &
+                        <br />
+                        Build Digital
                     </motion.h1>
 
+                    <motion.p
+                        variants={fadeInUpVariants}
+                        className="text-sm text-white/80 font-light mb-6 leading-relaxed"
+                    >
+                        Transforming ideas into high-converting experiences
+                    </motion.p>
+
                     <motion.button
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.6 }}
-                        className="w-full py-4 mt-2 bg-[#3A5A40] text-white text-sm font-bold uppercase tracking-widest rounded-sm shadow-lg"
+                        variants={ctaButtonVariants}
+                        initial="initial"
+                        whileHover="hover"
+                        whileTap="tap"
+                        className="w-full btn-base btn-primary group justify-center"
                     >
-                        Get Started
+                        Start Your Project
+                        <ArrowRight size={16} />
                     </motion.button>
-                </div>
+                </motion.div>
             </div>
 
-            {/* 3. Floating Overlay for Big Text - Variable Proximity (Desktop Only) */}
-            <div className="absolute top-0 left-0 w-full h-full z-30 hidden md:flex flex-col pt-32 md:pt-48 px-4 md:px-12 max-w-[1400px] mx-auto pointer-events-none">
-                <div className="flex flex-col leading-[0.9] font-light mix-blend-multiply text-[#1A1A1A] pointer-events-auto mt-12 md:mt-0">
-                    <motion.div
-                        custom={0.1}
-                        variants={textContainerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="mb-2 opacity-0"
-                    >
-                        <VariableProximity
-                            label="We Design & Build"
-                            fromFontVariationSettings="'wght' 500, 'wdth' 100"
-                            toFontVariationSettings="'wght' 900, 'wdth' 100"
-                            containerRef={containerRef}
-                            radius={150}
-                            falloff="gaussian"
-                            className="text-[11vw] md:text-[5.5rem] tracking-tight uppercase cursor-pointer block"
-                        />
-                    </motion.div>
-
-                    <motion.div
-                        custom={0.2}
-                        variants={textContainerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="mb-2 opacity-0"
-                    >
-                        <VariableProximity
-                            label="Impactful Digital"
-                            fromFontVariationSettings="'wght' 500, 'wdth' 100"
-                            toFontVariationSettings="'wght' 900, 'wdth' 100"
-                            containerRef={containerRef}
-                            radius={150}
-                            falloff="gaussian"
-                            className="text-[11vw] md:text-[5.5rem] tracking-tight uppercase text-[#3A5A40] cursor-pointer block"
-                        />
-                    </motion.div>
-
-                    <motion.div
-                        custom={0.3}
-                        variants={textContainerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="opacity-0"
-                    >
-                        <VariableProximity
-                            label="Experiences"
-                            fromFontVariationSettings="'wght' 500, 'wdth' 100"
-                            toFontVariationSettings="'wght' 900, 'wdth' 100"
-                            containerRef={containerRef}
-                            radius={150}
-                            falloff="gaussian"
-                            className="text-[11vw] md:text-[5.5rem] tracking-tight uppercase cursor-pointer block"
-                        />
-                    </motion.div>
-                </div>
-            </div>
+            {/* Scroll Indicator */}
+            <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center"
+            >
+                <ChevronDown className="text-white/60 w-6 h-6" />
+            </motion.div>
 
         </section>
     );

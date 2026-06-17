@@ -543,8 +543,18 @@ export default function Services() {
     const isInView = useInView(containerRef, { once: true, margin: "-10%" });
 
     return (
-        <section id="services" ref={containerRef} className="py-8 md:py-16 px-6 bg-[var(--color-background-main)] text-[var(--color-primary)] relative">
-            <div className="max-w-[1400px] mx-auto mb-12 md:mb-16">
+        <section id="services" ref={containerRef} className="py-20 md:py-32 px-6 md:px-12 bg-[var(--color-background-main)] text-[var(--color-primary)] relative overflow-hidden">
+
+            {/* Background Watermark */}
+            <motion.div
+                className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden"
+            >
+                <span className="text-[30vw] font-black leading-none whitespace-nowrap tracking-tighter text-[var(--color-primary)]">
+                    SERVICES
+                </span>
+            </motion.div>
+
+            <div className="max-w-[1400px] mx-auto mb-20 md:mb-28 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -552,11 +562,14 @@ export default function Services() {
                     className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
                 >
                     <div className="flex-1">
-                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
-                            What We Do
+                        <p className="text-xs font-bold tracking-[0.3em] uppercase text-[var(--color-primary)]/50 mb-4">
+                            OUR SERVICES
+                        </p>
+                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-6">
+                            What We Build
                         </h2>
-                        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl leading-relaxed">
-                            We craft digital experiences that transform businesses. From stunning websites to powerful web applications, we bring your vision to life.
+                        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl leading-relaxed font-light">
+                            Digital experiences that transform businesses. From stunning websites to powerful applications, every project is engineered for impact.
                         </p>
                     </div>
 
