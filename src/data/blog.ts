@@ -15,11 +15,11 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
-        slug: "choisir-agence-web-maroc-2024",
-        title: "Agence Web Maroc : Le Guide 2024 pour Choisir un Partenaire Digital Fiable",
+        slug: "choisir-agence-web-maroc-2026",
+        title: "Agence Web Maroc : Le Guide 2026 pour Choisir un Partenaire Digital Fiable",
         excerpt: "Vous cherchez une agence web au Maroc ? Découvrez les 5 critères essentiels pour choisir un partenaire qui comprend vos objectifs business et livre un site performant.",
         metaDescription: "Vous cherchez une agence web au Maroc ? Découvrez les 5 critères essentiels pour choisir un partenaire qui comprend vos objectifs business et livre un site performant. WeReact, votre agence digitale.",
-        date: "December 28, 2024",
+        date: "June 17, 2026",
         author: "Directeur Agence",
         category: "Business",
         categoryColor: "#10B981",
@@ -54,11 +54,11 @@ export const blogPosts: BlogPost[] = [
         `
     },
     {
-        slug: "optimizing-nextjs-performance-2025",
-        title: "The Ultimate Guide to Next.js Performance in 2025",
+        slug: "optimizing-nextjs-performance-2026",
+        title: "The Ultimate Guide to Next.js Performance in 2026",
         excerpt: "Learn how to achieve perfect Core Web Vitals with advanced loading strategies, art direction, and dynamic imports.",
-        metaDescription: "Master Next.js performance in 2025. Deep dive into LCP optimization, art direction, and reducing TBT for perfect Core Web Vitals.",
-        date: "December 27, 2024",
+        metaDescription: "Master Next.js performance in 2026. Deep dive into LCP optimization, art direction, and reducing TBT for perfect Core Web Vitals.",
+        date: "June 16, 2026",
         author: "WeReact Team",
         category: "Development",
         categoryColor: "#EF4444", // Red like 'Economy' in image
@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "8 min read",
         tags: ["Next.js", "Performance", "Web Vitals"],
         content: `
-            <p>Performance isn't just a metric; it's a feature. In 2025, user expectations are higher than ever, and search engines like Google continue to prioritize speed through Core Web Vitals. For any digital agency or business, a slow website is a lost opportunity.</p>
+            <p>Performance isn't just a metric; it's a feature. In 2026, user expectations are higher than ever, and search engines like Google continue to prioritize speed through Core Web Vitals. For any digital agency or business, a slow website is a lost opportunity.</p>
             
             <h2>Why LCP Matters Most</h2>
             <p>Largest Contentful Paint (LCP) is often the hardest metric to get right. It represents the time it takes for the largest visual element on the screen to become visible. On most landing pages, this is the hero image. Using art direction with the <code>&lt;picture&gt;</code> element and Next.js's <code>getImageProps</code> API can significantly reduce LCP by ensuring the browser preloads only the device-appropriate image source.</p>
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
         title: "Premium Minimalism: Less is More in High-End Web Design",
         excerpt: "Discover how we use white space, variable typography, and subtle micro-animations to create high-conversion digital experiences.",
         metaDescription: "Explore how premium minimalism, variable typography (like Nohemi), and white space transform modern high-end web design.",
-        date: "December 20, 2024",
+        date: "June 15, 2026",
         author: "Creative Director",
         category: "Design",
         categoryColor: "#3B82F6", // Blue like 'Style' in image
@@ -107,10 +107,10 @@ export const blogPosts: BlogPost[] = [
     },
     {
         slug: "seo-strategies-for-agencies",
-        title: "SEO in the Age of AI: How to Rank Your Agency in 2025",
+        title: "SEO in the Age of AI: How to Rank Your Agency in 2026",
         excerpt: "Moving beyond keywords: focusing on E-E-A-T and technical excellence to dominate search results.",
-        metaDescription: "Learn how to rank your agency in 2025 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
-        date: "December 15, 2024",
+        metaDescription: "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
+        date: "June 14, 2026",
         author: "SEO Specialist",
         category: "SEO",
         categoryColor: "#10B981", // Green like 'Art' in image

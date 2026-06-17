@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 
 export default function Footer() {
     const locale = useLocale();
+    const currentYear = new Date().getFullYear();
 
     return (
         <footer className="relative bg-[var(--color-primary)] text-[#E3E3DC] py-8 md:py-16 overflow-hidden">
@@ -48,7 +49,7 @@ export default function Footer() {
                         </div>
 
                         <p className="text-xs text-white/70 uppercase tracking-widest">
-                            © WeReact LLC 2025 All rights reserved
+                            &copy; WeReact LLC {currentYear} All rights reserved
                         </p>
                     </div>
 

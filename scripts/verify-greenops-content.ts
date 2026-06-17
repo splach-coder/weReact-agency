@@ -64,4 +64,17 @@ if (greenOpsDesignFiles.length > 0) {
   throw new Error(`GreenOps design still wired into old UI: ${greenOpsDesignFiles.join(', ')}`);
 }
 
+const blogSource = readFileSync('src/data/blog.ts', 'utf8');
+const staleBlogYears = blogSource.match(/\b20(?:24|25)\b/g) ?? [];
+
+if (staleBlogYears.length > 0) {
+  throw new Error(`Blog content still references stale years: ${[...new Set(staleBlogYears)].join(', ')}`);
+}
+
+const footerSource = readFileSync('src/components/Footer.tsx', 'utf8');
+
+if (/All rights reserved/.test(footerSource) && !/new Date\(\)\.getFullYear\(\)/.test(footerSource)) {
+  throw new Error('Footer copyright year must use new Date().getFullYear().');
+}
+
 console.log(`Content and old-design checks verified: ${projects.length} projects, ${blogPosts.length} posts.`);
