@@ -116,29 +116,34 @@ export default function WebGLHero() {
         }
 
         // Scale based on z-depth
-        const scale = particle.z / 100;
-        const scaledSize = particle.size * scale;
-        const scaledOpacity = particle.opacity * scale;
+        const scale = Math.max(0.2, particle.z / 100);
+        const scaledSize = Math.max(0.5, particle.size * scale);
+        const scaledOpacity = Math.max(0, Math.min(1, particle.opacity * scale));
+        const glowRadius = Math.max(1, scaledSize * 3);
 
         // Draw particle with glow
-        const gradient = ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          scaledSize * 3
-        );
-        gradient.addColorStop(0, `rgba(58, 90, 64, ${scaledOpacity})`);
-        gradient.addColorStop(1, 'rgba(58, 90, 64, 0)');
+        try {
+          const gradient = ctx.createRadialGradient(
+            particle.x,
+            particle.y,
+            0,
+            particle.x,
+            particle.y,
+            glowRadius
+          );
+          gradient.addColorStop(0, `rgba(58, 90, 64, ${scaledOpacity})`);
+          gradient.addColorStop(1, 'rgba(58, 90, 64, 0)');
 
-        ctx.fillStyle = gradient;
-        ctx.fillRect(
-          particle.x - scaledSize * 3,
-          particle.y - scaledSize * 3,
-          scaledSize * 6,
-          scaledSize * 6
-        );
+          ctx.fillStyle = gradient;
+          ctx.fillRect(
+            particle.x - glowRadius,
+            particle.y - glowRadius,
+            glowRadius * 2,
+            glowRadius * 2
+          );
+        } catch (e) {
+          // Gracefully handle gradient errors
+        }
 
         // Draw particle core
         ctx.fillStyle = `rgba(227, 227, 220, ${scaledOpacity * 0.8})`;
