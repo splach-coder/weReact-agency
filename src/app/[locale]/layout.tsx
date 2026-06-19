@@ -77,6 +77,10 @@ export const metadata: Metadata = {
   },
 
   metadataBase: new URL(siteConfig.url),
+  icons: {
+    icon: '/logo_icon.ico',
+    apple: '/logo_icon.ico',
+  },
 };
 
 const serviceJsonLd = createServiceJsonLd();

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 interface Particle {
   x: number;
@@ -193,6 +194,29 @@ export default function WebGLHero() {
 
       {/* Content Overlay */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-6 md:px-16">
+        {/* Logo Icon - Top Right */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-8 right-8 md:top-12 md:right-12"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            className="relative w-12 h-12 md:w-16 md:h-16"
+          >
+            <Image
+              src="/logo_icon.ico"
+              alt="WeReact Logo"
+              width={64}
+              height={64}
+              className="w-full h-full"
+              priority
+            />
+          </motion.div>
+        </motion.div>
+
         <motion.div
           initial="hidden"
           animate="visible"
