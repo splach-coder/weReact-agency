@@ -3,7 +3,6 @@
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import Button from './Button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
@@ -102,20 +101,7 @@ export default function Header() {
                             </nav>
 
                             {/* Center: Logo */}
-                            <div className="flex justify-center items-center gap-3">
-                                <motion.div
-                                  animate={{ rotate: 360 }}
-                                  transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                                  className="w-8 h-8"
-                                >
-                                  <Image
-                                    src="/logo_icon.ico"
-                                    alt="WeReact Logo"
-                                    width={32}
-                                    height={32}
-                                    className="w-full h-full"
-                                  />
-                                </motion.div>
+                            <div className="flex justify-center">
                                 <Link
                                     href={`/${locale}`}
                                     className={`text-3xl font-black tracking-tighter mt-8 ${isGreenHeroPage ? 'text-white' : 'text-[var(--color-primary)]'
@@ -142,21 +128,8 @@ export default function Header() {
                         {/* Mobile Header Layout */}
                         <div className="md:hidden w-full flex justify-between items-center h-full mt-2">
                             {/* Left: Logo */}
-                            <Link href={`/${locale}`} className={`text-2xl font-black tracking-tighter z-50 relative pointer-events-auto leading-none flex items-center gap-2 ${isGreenHeroPage ? 'text-white' : 'text-[var(--color-primary)]'
+                            <Link href={`/${locale}`} className={`text-2xl font-black tracking-tighter z-50 relative pointer-events-auto leading-none flex items-center ${isGreenHeroPage ? 'text-white' : 'text-[var(--color-primary)]'
                                 }`}>
-                                <motion.div
-                                  animate={{ rotate: 360 }}
-                                  transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                                  className="w-6 h-6"
-                                >
-                                  <Image
-                                    src="/logo_icon.ico"
-                                    alt="WeReact Logo"
-                                    width={24}
-                                    height={24}
-                                    className="w-full h-full"
-                                  />
-                                </motion.div>
                                 -WeReact-
                             </Link>
 
