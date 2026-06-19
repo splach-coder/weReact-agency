@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import WebGLHero from '@/components/WebGLHero';
+import MinimalHero from '@/components/MinimalHero';
 
 // Dynamically import sections below the fold
 const Problem = dynamic(() => import('@/components/sections/Problem'));
@@ -16,7 +16,7 @@ const Contact = dynamic(() => import('@/components/sections/Contact'));
 export default function Home() {
   return (
     <main>
-      <WebGLHero />
+      <MinimalHero />
       <Suspense fallback={<div className="h-screen bg-[var(--color-background-main)]" />}>
         <Problem />
         <Solution />
