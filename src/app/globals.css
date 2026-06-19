@@ -153,6 +153,20 @@
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   }
 
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+  }
+
   /* Responsive Display */
   @media (prefers-reduced-motion: reduce) {
     * {
