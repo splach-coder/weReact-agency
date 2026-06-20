@@ -1,12 +1,119 @@
 {
   "HomePage": {
-    "title": "Bienvenue sur votre Application",
-    "description": "Ceci est un boilerplate propre prêt pour votre contenu."
+    "title": "WeReact — l'agence web moderne du Maroc",
+    "description": "Des sites web rapides et élégants qui relient les entreprises marocaines au monde."
   },
-  "Header": {
-    "home": "Accueil"
+  "Nav": {
+    "home": "Accueil",
+    "work": "Réalisations",
+    "services": "Services",
+    "about": "À propos",
+    "blog": "Blog",
+    "contact": "Contact",
+    "startProject": "Démarrer un projet"
   },
   "Footer": {
-    "copyright": "Tous droits réservés."
+    "tagline": "L'agence web moderne du Maroc. De Marrakech au monde entier.",
+    "copyright": "Tous droits réservés.",
+    "explore": "Explorer",
+    "connect": "Nous suivre",
+    "newsletterTitle": "Restez informé",
+    "newsletterText": "Quelques notes sur le web, le SEO et le métier.",
+    "emailPlaceholder": "Votre e-mail",
+    "subscribe": "S'abonner"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Marrakech — l'agence web moderne du Maroc",
+      "titleLine1": "Nous créons des",
+      "titleLine2": "expériences qui",
+      "highlight": "convertissent",
+      "subtitle": "Des sites rapides et élégants qui relient les entreprises marocaines au monde — conçus pour inspirer confiance et générer des réservations, en français et en anglais.",
+      "ctaPrimary": "Démarrer un projet",
+      "ctaSecondary": "Voir nos réalisations"
+    },
+    "trust": {
+      "title": "La confiance d'entreprises ambitieuses au Maroc et au-delà",
+      "stats": {
+        "projects": "Projets livrés",
+        "languages": "Langues, par défaut",
+        "based": "Basés à Marrakech",
+        "since": "Actifs depuis"
+      },
+      "values": {
+        "projects": "7+",
+        "languages": "FR · EN",
+        "based": "Maroc",
+        "since": "2025"
+      }
+    },
+    "manifesto": {
+      "eyebrow": "Ce en quoi nous croyons",
+      "body": "Les belles entreprises marocaines méritent des sites aussi exceptionnels que les expériences qu'elles offrent. Nous allions savoir-faire local et ingénierie moderne — rapide, multilingue, optimisé pour le référencement — pour qu'un riad dans la médina ou une excursion dans l'Atlas puisse attirer l'attention partout dans le monde."
+    },
+    "projects": {
+      "eyebrow": "Réalisations choisies",
+      "title": "Des sites dont nous sommes fiers",
+      "subtitle": "Quelques marques que nous avons aidées à exister — et à se démarquer — en ligne.",
+      "viewCase": "Voir l'étude de cas",
+      "viewAll": "Voir toutes les réalisations"
+    },
+    "services": {
+      "eyebrow": "Ce que nous faisons",
+      "title": "Tout ce dont votre présence web a besoin",
+      "subtitle": "Du premier pixel à la première réservation.",
+      "items": [
+        { "title": "Sites vitrines", "text": "Des sites rapides et crédibles qui transforment les visiteurs en clients." },
+        { "title": "Landing pages", "text": "Des pages ciblées construites autour d'un seul objectif de conversion." },
+        { "title": "Fondations SEO", "text": "Les bases techniques et éditoriales pour être trouvé et bien classé." },
+        { "title": "E-commerce", "text": "Des boutiques épurées conçues pour vendre, sur tous les écrans." },
+        { "title": "Sites multilingues", "text": "Des sites FR/EN qui parlent aux audiences locales et internationales." },
+        { "title": "Suivi & maintenance", "text": "Mises à jour, performance et tranquillité d'esprit en continu." }
+      ]
+    },
+    "process": {
+      "eyebrow": "Notre méthode",
+      "title": "Un chemin clair et serein jusqu'au lancement",
+      "steps": [
+        { "title": "Découverte", "text": "Nous cernons vos objectifs, votre audience et votre vision du succès." },
+        { "title": "Design", "text": "Nous façonnons une expérience claire et fidèle à votre marque, que vous validez." },
+        { "title": "Développement", "text": "Nous la construisons rapide, responsive et prête pour le référencement." },
+        { "title": "Lancement", "text": "Nous mettons en ligne, mesurons et améliorons après le lancement." }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Ils nous font confiance",
+      "title": "Ce que disent nos clients",
+      "items": [
+        { "quote": "Ils ont transformé notre activité en une expérience de réservation à laquelle les voyageurs font vraiment confiance. Propre, rapide et parfaitement dans notre image.", "name": "Nom du client", "role": "Fondateur", "company": "Flying Tandem", "city": "Marrakech" },
+        { "quote": "WeReact a compris notre lieu et nos hôtes. Le site est enfin aussi premium que le séjour lui-même.", "name": "Nom du client", "role": "Propriétaire", "company": "Kasbah Angour", "city": "Atlas" },
+        { "quote": "Bilingue, optimisé et magnifique. Nous avons reçu des demandes directes en quelques semaines.", "name": "Nom du client", "role": "Responsable", "company": "Your Morocco", "city": "Maroc" }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Bon à savoir",
+      "title": "Questions fréquentes",
+      "items": [
+        { "q": "Quels types de sites créez-vous ?", "a": "Sites vitrines, landing pages, e-commerce et projets sur mesure — surtout pour l'hôtellerie, le tourisme et les marques locales, au Maroc et ailleurs." },
+        { "q": "Combien de temps dure un projet type ?", "a": "La plupart des sites sont lancés en 3 à 6 semaines selon l'ampleur. Nous fixons un calendrier clair avant de commencer." },
+        { "q": "Pouvez-vous travailler avec notre identité existante ?", "a": "Tout à fait. Nous partons de votre marque actuelle ou vous aidons à la faire évoluer dans le cadre du projet." },
+        { "q": "Gérez-vous aussi le SEO et la conversion ?", "a": "Oui. Chaque site inclut des fondations SEO techniques et une structure pensée pour la conversion." },
+        { "q": "Travaillez-vous en français et en anglais ?", "a": "Les deux, par défaut. Nous concevons et rédigeons des sites bilingues pour des audiences locales et internationales." },
+        { "q": "Que se passe-t-il après le lancement ?", "a": "Nous proposons des forfaits de suivi pour les mises à jour, la performance et les améliorations — ou nous vous livrons un site qui vous appartient entièrement." }
+      ]
+    },
+    "booking": {
+      "eyebrow": "Discutons",
+      "title": "Réservez un appel découverte gratuit",
+      "subtitle": "30 minutes détendues pour comprendre vos objectifs et voir si nous sommes faits pour travailler ensemble. Sans pression, sans jargon.",
+      "fallback": "Vous préférez écrire ? Contactez-nous sur WhatsApp ou par e-mail.",
+      "cta": "Réserver un appel"
+    },
+    "finalCta": {
+      "title": "Prêt à créer un site qui convertit ?",
+      "subtitle": "Parlez-nous de votre projet — nous répondons sous un jour ouvré.",
+      "ctaPrimary": "Démarrer un projet",
+      "ctaSecondary": "Discuter sur WhatsApp"
+    }
   }
 }

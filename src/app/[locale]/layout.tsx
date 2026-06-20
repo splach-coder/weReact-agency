@@ -46,42 +46,61 @@ const businessJsonLd = {
   })),
 };
 
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} | Website Design in Marrakech`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: `${siteConfig.description} WeReact agency helps businesses in Marrakech, Morocco, and international markets launch fast, SEO-friendly websites with clear conversion paths.`,
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.twitterHandle,
-  },
+const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
 
-  metadataBase: new URL(siteConfig.url),
-  icons: {
-    icon: '/logo_icon.ico',
-    apple: '/logo_icon.ico',
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const description = `${siteConfig.description} WeReact agency helps businesses in Marrakech, Morocco, and international markets launch fast, SEO-friendly websites with clear conversion paths.`;
+
+  return {
+    title: {
+      default: `${siteConfig.name} | Website Design in Marrakech`,
+      template: `%s | ${siteConfig.name}`,
+    },
+    description,
+    metadataBase: new URL(siteConfig.url),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        en: '/en',
+        fr: '/fr',
+        'x-default': '/en',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: OG_LOCALE[locale] ?? 'en_US',
+      alternateLocale: Object.values(OG_LOCALE).filter((l) => l !== (OG_LOCALE[locale] ?? 'en_US')),
+      url: `${siteConfig.url}/${locale}`,
+      title: siteConfig.name,
+      description: siteConfig.description,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.name,
+      description: siteConfig.description,
+      images: [siteConfig.ogImage],
+      creator: siteConfig.twitterHandle,
+    },
+    icons: {
+      icon: '/logo_icon.ico',
+      apple: '/logo_icon.ico',
+    },
+  };
+}
 
 const serviceJsonLd = createServiceJsonLd();
 
@@ -94,8 +113,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
@@ -103,7 +121,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-slate-50 text-slate-900`} suppressHydrationWarning>
+      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-grow">

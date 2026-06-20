@@ -2,13 +2,14 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, ArrowRight, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
 export default function ContactPage() {
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+    const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,8 +19,17 @@ export default function ContactPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
-        console.log('Form submitted:', formData);
+        // No backend yet: hand off to the visitor's mail client with a
+        // pre-filled message, then show a confirmation state.
+        const subject = encodeURIComponent(`New project enquiry — ${formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Company: ${formData.company || '—'}\n\n` +
+            `${formData.message}`
+        );
+        window.location.href = `mailto:${siteConfig.business.email}?subject=${subject}&body=${body}`;
+        setSubmitted(true);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -175,11 +185,21 @@ export default function ContactPage() {
                                     className="group relative w-full overflow-hidden rounded-sm bg-[var(--color-primary)] text-[var(--color-background-main)] px-8 py-5 flex items-center justify-center gap-3 transition-transform duration-300 hover:scale-[1.02]"
                                 >
                                     <span className="text-lg font-bold uppercase tracking-wider z-10">Send Message</span>
-                                    <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 z-10" />
+                                    <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 z-10" aria-hidden="true" />
 
                                     {/* Hover Effect */}
                                     <div className="absolute inset-0 bg-[#2e4833] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]" />
                                 </button>
+
+                                {submitted && (
+                                    <p
+                                        role="status"
+                                        className="flex items-center gap-2 text-[var(--color-primary)] font-medium"
+                                    >
+                                        <CheckCircle size={18} aria-hidden="true" />
+                                        Your message is ready in your email app — just hit send. We&apos;ll reply within one business day.
+                                    </p>
+                                )}
                             </form>
                         </motion.div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Button from './Button';
@@ -15,6 +15,7 @@ import type { CardNavItem } from './CardNav';
 
 export default function Header() {
     const locale = useLocale();
+    const t = useTranslations('Nav');
     const pathname = usePathname();
     const [showCardNav, setShowCardNav] = useState(false);
 
@@ -35,10 +36,10 @@ export default function Header() {
     }, []);
 
     const navItems = [
-        { label: 'About', href: `/${locale}/about` },
-        { label: 'Services', href: `/${locale}/services` },
-        { label: 'Work', href: `/${locale}/work` },
-        { label: 'Blog', href: `/${locale}/blog` },
+        { label: t('about'), href: `/${locale}/about` },
+        { label: t('services'), href: `/${locale}/services` },
+        { label: t('work'), href: `/${locale}/work` },
+        { label: t('blog'), href: `/${locale}/blog` },
     ];
 
     const cardNavItems: CardNavItem[] = [
@@ -119,7 +120,7 @@ export default function Header() {
                                         className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-none shadow-none ${isGreenHeroPage ? '!bg-[var(--color-background-main)] !text-[var(--color-primary)] hover:!bg-[var(--color-background-main)]/90' : ''
                                             }`}
                                     >
-                                        Let’s talk
+                                        {t('startProject')}
                                     </Button>
                                 </Link>
                             </div>
@@ -137,12 +138,12 @@ export default function Header() {
                             <div className="relative h-10 w-10 flex items-center justify-center mr-2">
                                 <StaggeredMenu
                                     items={[
-                                        { label: 'Home', ariaLabel: 'Home', link: `/${locale}/` },
-                                        { label: 'About', ariaLabel: 'About Us', link: `/${locale}/about` },
-                                        { label: 'Services', ariaLabel: 'Our Services', link: `/${locale}/services` },
-                                        { label: 'Work', ariaLabel: 'Our Work', link: `/${locale}/work` },
-                                        { label: 'Blog', ariaLabel: 'Our Blog', link: `/${locale}/blog` },
-                                        { label: 'Contact', ariaLabel: 'Contact Us', link: `/${locale}/contact` }
+                                        { label: t('home'), ariaLabel: t('home'), link: `/${locale}/` },
+                                        { label: t('about'), ariaLabel: t('about'), link: `/${locale}/about` },
+                                        { label: t('services'), ariaLabel: t('services'), link: `/${locale}/services` },
+                                        { label: t('work'), ariaLabel: t('work'), link: `/${locale}/work` },
+                                        { label: t('blog'), ariaLabel: t('blog'), link: `/${locale}/blog` },
+                                        { label: t('contact'), ariaLabel: t('contact'), link: `/${locale}/contact` }
                                     ]}
                                     socialItems={[
                                         { label: 'Facebook', link: siteConfig.business.facebook },

@@ -3,11 +3,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { Facebook, Instagram, Mail, Twitter, MessageCircle } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { siteConfig } from '@/config/site';
 
 export default function Footer() {
     const locale = useLocale();
+    const t = useTranslations('Footer');
+    const tNav = useTranslations('Nav');
     const currentYear = new Date().getFullYear();
     const socialLinks = [
         { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
@@ -30,23 +32,21 @@ export default function Footer() {
 
                     {/* Left Column: Newsletter & Info */}
                     <div className="flex flex-col max-w-lg">
-                        <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight mb-12 tracking-wide text-white">
-                            Sign up for our newsletter and stay up to date with the cool stuff we're cooking up.
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight mb-4 tracking-wide text-white">
+                            {t('newsletterTitle')}
                         </h2>
+                        <p className="text-white/70 mb-10">{t('newsletterText')}</p>
 
                         <form className="flex flex-col gap-6 mb-12 w-full md:max-w-md">
+                            <label htmlFor="footer-email" className="sr-only">{t('emailPlaceholder')}</label>
                             <input
+                                id="footer-email"
                                 type="email"
-                                placeholder="YOUR EMAIL"
-                                className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/70 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
-                            />
-                            <input
-                                type="text"
-                                placeholder="YOUR NAME"
+                                placeholder={t('emailPlaceholder')}
                                 className="bg-transparent border-b border-white/30 py-4 text-white placeholder-white/70 focus:outline-none focus:border-white transition-colors uppercase tracking-widest text-sm"
                             />
                             <button className="w-fit mt-4 bg-[#E3E3DC] text-[var(--color-primary)] px-8 py-3 font-bold uppercase text-sm tracking-widest hover:bg-white transition-colors">
-                                Subscribe
+                                {t('subscribe')}
                             </button>
                         </form>
 
@@ -66,19 +66,19 @@ export default function Footer() {
                         </div>
 
                         <p className="text-xs text-white/70 uppercase tracking-widest">
-                            &copy; WeReact LLC {currentYear} All rights reserved
+                            &copy; WeReact {currentYear} — {t('copyright')}
                         </p>
                     </div>
 
                     {/* Right Column: Navigation */}
                     <div className="flex flex-col items-start md:items-end gap-2 md:gap-4 md:text-right">
                         {[
-                            { name: 'HOME', href: `/${locale}` },
-                            { name: 'ABOUT', href: `/${locale}/about` },
-                            { name: 'SERVICES', href: `/${locale}/services` },
-                            { name: 'WORK', href: `/${locale}/work` },
-                            { name: 'BLOG', href: `/${locale}/blog` },
-                            { name: 'CONTACT US', href: `/${locale}/contact` }
+                            { name: tNav('home'), href: `/${locale}` },
+                            { name: tNav('about'), href: `/${locale}/about` },
+                            { name: tNav('services'), href: `/${locale}/services` },
+                            { name: tNav('work'), href: `/${locale}/work` },
+                            { name: tNav('blog'), href: `/${locale}/blog` },
+                            { name: tNav('contact'), href: `/${locale}/contact` }
                         ].map((link, idx) => (
                             <Link
                                 key={idx}

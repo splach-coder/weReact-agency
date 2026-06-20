@@ -51,23 +51,26 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
                         href={shareLinks.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Share on Twitter"
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition-all duration-300"
                     >
-                        <Twitter size={16} />
+                        <Twitter size={16} aria-hidden="true" />
                     </a>
                     <a
                         href={shareLinks.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Share on LinkedIn"
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#0077B5] hover:text-white transition-all duration-300"
                     >
-                        <Linkedin size={16} />
+                        <Linkedin size={16} aria-hidden="true" />
                     </a>
                     <button
                         onClick={copyToClipboard}
+                        aria-label="Copy link to clipboard"
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300"
                     >
-                        <LinkIcon size={16} />
+                        <LinkIcon size={16} aria-hidden="true" />
                     </button>
                 </div>
             </div>
@@ -84,23 +87,26 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
                     href={shareLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Share on Twitter"
                     className="text-gray-400 hover:text-[#1DA1F2] transition-colors"
                 >
-                    <Twitter size={18} />
+                    <Twitter size={18} aria-hidden="true" />
                 </a>
                 <a
                     href={shareLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Share on LinkedIn"
                     className="text-gray-400 hover:text-[#0077B5] transition-colors"
                 >
-                    <Linkedin size={18} />
+                    <Linkedin size={18} aria-hidden="true" />
                 </a>
                 <button
                     onClick={copyToClipboard}
+                    aria-label="Copy link to clipboard"
                     className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
                 >
-                    <LinkIcon size={18} />
+                    <LinkIcon size={18} aria-hidden="true" />
                 </button>
             </div>
             <style jsx>{`

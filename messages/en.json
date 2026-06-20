@@ -1,12 +1,119 @@
 {
   "HomePage": {
-    "title": "Welcome to Your App",
-    "description": "This is a clean boilerplate ready for your content."
+    "title": "WeReact — Morocco's modern web agency",
+    "description": "Fast, beautiful websites that bridge Moroccan businesses to the world."
   },
-  "Header": {
-    "home": "Home"
+  "Nav": {
+    "home": "Home",
+    "work": "Work",
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "startProject": "Start a project"
   },
   "Footer": {
-    "copyright": "All rights reserved."
+    "tagline": "Morocco's modern web agency. Marrakech to the world.",
+    "copyright": "All rights reserved.",
+    "explore": "Explore",
+    "connect": "Connect",
+    "newsletterTitle": "Stay in the loop",
+    "newsletterText": "Occasional notes on web, SEO, and craft.",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Marrakech — Morocco's modern web agency",
+      "titleLine1": "We build digital",
+      "titleLine2": "experiences that",
+      "highlight": "convert",
+      "subtitle": "Fast, beautiful websites that bridge Moroccan businesses to the world — designed to earn trust and win bookings, in English and French.",
+      "ctaPrimary": "Start a project",
+      "ctaSecondary": "View our work"
+    },
+    "trust": {
+      "title": "Trusted by ambitious businesses across Morocco and beyond",
+      "stats": {
+        "projects": "Projects shipped",
+        "languages": "Languages, by default",
+        "based": "Based in Marrakech",
+        "since": "Building since"
+      },
+      "values": {
+        "projects": "7+",
+        "languages": "EN · FR",
+        "based": "Morocco",
+        "since": "2025"
+      }
+    },
+    "manifesto": {
+      "eyebrow": "What we believe",
+      "body": "Great Moroccan businesses deserve websites that feel as world-class as the experiences they offer. We pair local craft with modern engineering — fast, multilingual, search-ready — so a riad in the medina or a tour in the Atlas can compete for attention anywhere on earth."
+    },
+    "projects": {
+      "eyebrow": "Selected work",
+      "title": "Websites we're proud of",
+      "subtitle": "A few of the brands we've helped show up — and stand out — online.",
+      "viewCase": "View case study",
+      "viewAll": "See all work"
+    },
+    "services": {
+      "eyebrow": "What we do",
+      "title": "Everything your web presence needs",
+      "subtitle": "From first pixel to first booking.",
+      "items": [
+        { "title": "Business websites", "text": "Fast, credible sites that turn visitors into customers." },
+        { "title": "Landing pages", "text": "Focused pages built around a single conversion goal." },
+        { "title": "SEO foundations", "text": "Technical and content groundwork to rank and be found." },
+        { "title": "E-commerce", "text": "Clean storefronts designed to sell, on any device." },
+        { "title": "Multilingual builds", "text": "EN/FR sites that speak to local and global audiences." },
+        { "title": "Care & maintenance", "text": "Ongoing updates, performance, and peace of mind." }
+      ]
+    },
+    "process": {
+      "eyebrow": "How we work",
+      "title": "A calm, clear path to launch",
+      "steps": [
+        { "title": "Discover", "text": "We learn your goals, audience, and what success looks like." },
+        { "title": "Design", "text": "We shape a clear, on-brand experience you sign off on." },
+        { "title": "Build", "text": "We engineer it fast, responsive, and search-ready." },
+        { "title": "Launch", "text": "We ship, measure, and keep improving after go-live." }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Kind words",
+      "title": "What clients say",
+      "items": [
+        { "quote": "They turned our activity into a booking experience travelers actually trust. Clean, fast, and exactly on brand.", "name": "Client Name", "role": "Founder", "company": "Flying Tandem", "city": "Marrakech" },
+        { "quote": "WeReact understood our place and our guests. The site finally feels as premium as the stay itself.", "name": "Client Name", "role": "Owner", "company": "Kasbah Angour", "city": "Atlas" },
+        { "quote": "Bilingual, search-ready, and beautiful. We started getting direct inquiries within weeks.", "name": "Client Name", "role": "Manager", "company": "Your Morocco", "city": "Morocco" }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Good to know",
+      "title": "Frequently asked questions",
+      "items": [
+        { "q": "What type of websites do you build?", "a": "Business sites, landing pages, e-commerce, and custom builds — most for hospitality, tourism, and local brands across Morocco and beyond." },
+        { "q": "How long does a typical project take?", "a": "Most sites launch in 3–6 weeks depending on scope. We agree on a clear timeline before we start." },
+        { "q": "Can you work with our existing brand identity?", "a": "Absolutely. We can build on your current brand or help evolve it as part of the project." },
+        { "q": "Do you handle SEO and conversions too?", "a": "Yes. Every build includes technical SEO foundations and is structured around clear conversion paths." },
+        { "q": "Do you work in English and French?", "a": "Both, by default. We design and write bilingual sites for local and international audiences." },
+        { "q": "What happens after launch?", "a": "We offer care plans for updates, performance, and ongoing improvements — or hand over a site you fully own." }
+      ]
+    },
+    "booking": {
+      "eyebrow": "Let's talk",
+      "title": "Book a free intro call",
+      "subtitle": "A relaxed 30 minutes to understand your goals and see if we're a fit. No pressure, no jargon.",
+      "fallback": "Prefer to write? Reach us on WhatsApp or by email.",
+      "cta": "Book a call"
+    },
+    "finalCta": {
+      "title": "Ready to build something that converts?",
+      "subtitle": "Tell us about your project — we'll reply within one business day.",
+      "ctaPrimary": "Start a project",
+      "ctaSecondary": "Chat on WhatsApp"
+    }
   }
 }

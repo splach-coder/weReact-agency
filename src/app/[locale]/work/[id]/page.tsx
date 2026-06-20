@@ -2,10 +2,42 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { ExternalLink, ArrowLeft, Check, Calendar, Tag, Users, Monitor, Smartphone, Globe } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Check, Calendar, Tag, Users, Monitor, Smartphone, Globe, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+
+interface CaseStudyMetric {
+    value: string;
+    label: string;
+    description: string;
+}
+
+interface CaseStudyFeature {
+    icon: LucideIcon;
+    title: string;
+    description: string;
+}
+
+interface CaseStudy {
+    title: string;
+    client: string;
+    year: string;
+    category: string;
+    tagline: string;
+    description: string;
+    challenge: string;
+    solution: string;
+    results: string[];
+    tags: string[];
+    link: string;
+    image: string;
+    imageFull: string;
+    gradient: string;
+    color: string;
+    features: CaseStudyFeature[];
+    metrics: CaseStudyMetric[];
+}
 
 export default function CaseStudyPage() {
     const params = useParams();
@@ -28,7 +60,7 @@ export default function CaseStudyPage() {
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.98]);
 
     // Project data
-    const projects: Record<string, any> = {
+    const projects: Record<string, CaseStudy> = {
         "flying-tandem": {
             title: "Flying Tandem",
             client: "Adventure Tourism",
@@ -633,7 +665,7 @@ export default function CaseStudyPage() {
                                 <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-4">
                                     Key Metrics
                                 </h3>
-                                {project.metrics.map((metric: any, idx: number) => (
+                                {project.metrics.map((metric, idx) => (
                                     <div key={idx} className="p-6 bg-white rounded-sm border-2 border-[var(--color-primary)]/10">
                                         <div className="text-4xl font-bold text-[var(--color-primary)] mb-2">
                                             {metric.value}
@@ -670,7 +702,7 @@ export default function CaseStudyPage() {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {project.features.map((feature: any, idx: number) => (
+                        {project.features.map((feature, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}

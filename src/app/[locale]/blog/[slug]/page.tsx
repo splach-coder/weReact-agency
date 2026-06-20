@@ -8,6 +8,7 @@ import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react'
 import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface Props {
     params: Promise<{ slug: string; locale: string }>;
@@ -140,7 +141,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 prose-strong:text-[var(--color-primary)] prose-strong:font-black
                                 prose-li:text-[var(--color-text-secondary)] prose-li:mb-1 prose-li:text-sm
                                 prose-img:rounded-sm"
-                                dangerouslySetInnerHTML={{ __html: post.content }}
+                                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                             />
 
                             <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
