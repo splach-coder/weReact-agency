@@ -28,7 +28,7 @@ export default function GoogleTag() {
 
   const primaryTagId = TAG_IDS[0];
   const configLines = TAG_IDS.map(
-    (id) => `gtag('config', '${id}', { send_page_view: false });`
+    (id) => `window.gtag('config', '${id}', { send_page_view: false });`
   ).join('\n');
 
   return (
@@ -43,11 +43,10 @@ export default function GoogleTag() {
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
+            window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+            window.gtag('js', new Date());
             ${configLines}
-            gtag('event', 'page_view', {
+            window.gtag('event', 'page_view', {
               page_location: window.location.href,
               page_path: window.location.pathname,
               page_title: document.title

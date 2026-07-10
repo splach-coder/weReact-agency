@@ -10,6 +10,8 @@ import SmoothScroll from '@/components/SmoothScroll';
 import Preloader from '@/components/transition/Preloader';
 import TransitionProvider from '@/components/transition/TransitionProvider';
 import GoogleTag from '@/components/analytics/GoogleTag';
+import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults';
+import CookieConsent from '@/components/analytics/CookieConsent';
 import { siteConfig } from '@/config/site';
 import { nohemi, instrumentSerif } from '@/app/fonts';
 import { createServiceJsonLd } from '@/lib/seo';
@@ -204,7 +206,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${nohemi.variable} ${instrumentSerif.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
+          <GoogleConsentDefaults />
           <GoogleTag />
+          <CookieConsent locale={locale} />
           <SmoothScroll />
           <Preloader />
           <TransitionProvider>

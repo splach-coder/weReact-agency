@@ -8,6 +8,7 @@ import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { trackLead } from '@/lib/analytics';
+import { OPEN_CONSENT_PREFERENCES_EVENT } from '@/lib/consent';
 
 /**
  * Footer — inherits the exo-ape structure: a big editorial statement over a
@@ -144,7 +145,16 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/45 md:flex-row md:items-center md:justify-between">
-          <span>© WeReact {year} — {t('copyright')}</span>
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span>© WeReact {year} — {t('copyright')}</span>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT))}
+              className="text-left underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+            >
+              Privacy choices
+            </button>
+          </span>
           <span>Marrakech · Morocco</span>
         </div>
       </div>
