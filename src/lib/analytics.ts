@@ -38,7 +38,7 @@ const CAMPAIGN_KEYS: CampaignKey[] = [
   'fbclid',
 ];
 
-const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? 'AW-3408876297';
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? 'AW-18245192967';
 const GOOGLE_ADS_LEAD_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL;
 const LEAD_VALUE = Number(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_VALUE ?? '1');
 const LEAD_CURRENCY = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CURRENCY ?? 'MAD';
