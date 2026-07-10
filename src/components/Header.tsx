@@ -141,7 +141,7 @@ export default function Header() {
           'pointer-events-none fixed inset-x-0 top-0 z-[105] transition-[transform,background-color,backdrop-filter,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
           open || headerVisible ? 'translate-y-0' : '-translate-y-full',
           headerBlurred && !open
-            ? 'bg-[rgba(246,246,242,0.78)] shadow-[0_1px_0_rgba(58,90,64,0.1)] backdrop-blur-[10px]'
+            ? 'border-b border-white/35 bg-[rgba(163,177,138,0.18)] shadow-[0_1px_0_rgba(255,255,255,0.38),0_14px_32px_rgba(46,72,51,0.08)] backdrop-blur-xl backdrop-saturate-150'
             : 'bg-transparent',
         ].join(' ')}
       >
