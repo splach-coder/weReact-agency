@@ -10,9 +10,13 @@
     "about": "About",
     "blog": "Blog",
     "contact": "Contact",
-    "startProject": "Start a project"
+    "startProject": "Start a project",
+    "menu": "Menu",
+    "close": "Close",
+    "menuTagline": "Moroccan craft, modern web."
   },
   "Footer": {
+    "statement": "Let's build something worth visiting.",
     "tagline": "Morocco's modern web agency. Marrakech to the world.",
     "copyright": "All rights reserved.",
     "explore": "Explore",
@@ -22,6 +26,244 @@
     "emailPlaceholder": "Your email",
     "subscribe": "Subscribe"
   },
+  "Contact": {
+    "eyebrow": "Let's talk",
+    "title": "Get in touch",
+    "subtitle": "Tell us about your project, or book a free intro call. We reply within one business day.",
+    "formTitle": "Send us a message",
+    "formSubtitle": "Fill out the form and we'll get back to you within one business day.",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "jane@example.com",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Your company",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project…",
+    "send": "Send message",
+    "sent": "Your message is ready in your email app — just hit send. We'll reply within one business day.",
+    "infoTitle": "Contact information",
+    "infoSubtitle": "Prefer to reach out directly? Here's how.",
+    "labelEmail": "Email",
+    "labelPhone": "Phone",
+    "labelLocation": "Location",
+    "ctaBoxTitle": "Not sure where to start?",
+    "ctaBoxText": "Book a free intro call and we'll help you scope your project and goals.",
+    "ctaBoxButton": "Book a call"
+  },
+  "Work": {
+    "eyebrow": "Selected work",
+    "title": "Websites we're proud of",
+    "subtitle": "Real results for real businesses — a portfolio of tourism, hospitality, and local brands across Morocco and beyond.",
+    "statProjects": "Projects delivered",
+    "statLanguages": "Languages, by default",
+    "statBased": "Based in Marrakech",
+    "viewCase": "View case study",
+    "ctaTitle": "Ready to start your project?",
+    "ctaSubtitle": "Let's create something worth showing off. Your project could be our next case study.",
+    "ctaButton": "Start a project"
+  },
+  "Services": {
+    "eyebrow": "What we do",
+    "title": "Everything your web presence needs",
+    "subtitle": "From strategy and design to development and launch — built fast, bilingual, and search-ready.",
+    "servicesTitle": "Our expertise",
+    "included": "What's included",
+    "getStarted": "Get started",
+    "services": [
+      {
+        "title": "Business websites",
+        "desc": "Professional sites that turn visitors into customers.",
+        "features": [
+          "Custom, on-brand design",
+          "Mobile-responsive layouts",
+          "SEO-optimized structure",
+          "Fast loading speeds",
+          "Easy content management"
+        ]
+      },
+      {
+        "title": "Landing pages",
+        "desc": "High-converting pages built around one goal.",
+        "features": [
+          "Conversion-focused design",
+          "Lead capture forms",
+          "Analytics integration",
+          "A/B-test ready",
+          "Fast deployment"
+        ]
+      },
+      {
+        "title": "E-commerce",
+        "desc": "Clean storefronts designed to sell.",
+        "features": [
+          "Product catalogue",
+          "Secure checkout",
+          "Mobile-first experience",
+          "Payment integration",
+          "Inventory-friendly"
+        ]
+      },
+      {
+        "title": "SEO foundations",
+        "desc": "Technical structure to rank and be found.",
+        "features": [
+          "Technical SEO setup",
+          "Meta & schema markup",
+          "Site-speed optimization",
+          "Mobile-friendly structure",
+          "Multilingual SEO"
+        ]
+      },
+      {
+        "title": "Multilingual builds",
+        "desc": "EN/FR sites for local and global audiences.",
+        "features": [
+          "Bilingual content",
+          "hreflang setup",
+          "Locale routing",
+          "Culturally adapted copy",
+          "Consistent UX"
+        ]
+      },
+      {
+        "title": "Care & maintenance",
+        "desc": "Ongoing updates and peace of mind.",
+        "features": [
+          "Updates & backups",
+          "Performance monitoring",
+          "Content edits",
+          "Security hardening",
+          "Priority support"
+        ]
+      }
+    ],
+    "processTitle": "How we work",
+    "processSubtitle": "A calm, clear path to launch.",
+    "process": [
+      {
+        "number": "01",
+        "title": "Discover",
+        "desc": "We learn your goals, audience, and what success looks like."
+      },
+      {
+        "number": "02",
+        "title": "Design",
+        "desc": "We shape a clear, on-brand experience you sign off on."
+      },
+      {
+        "number": "03",
+        "title": "Build",
+        "desc": "We engineer it fast, responsive, and search-ready."
+      },
+      {
+        "number": "04",
+        "title": "Launch",
+        "desc": "We ship, measure, and keep improving after go-live."
+      }
+    ],
+    "pricingTitle": "Simple, transparent packages",
+    "pricingSubtitle": "Starting points — every project gets a tailored quote.",
+    "popularLabel": "Most popular",
+    "packages": [
+      {
+        "name": "Starter",
+        "price": "$2,999",
+        "desc": "For small businesses and new brands.",
+        "features": [
+          "5-page website",
+          "Mobile responsive",
+          "Basic SEO setup",
+          "Contact & booking",
+          "1 month support"
+        ],
+        "popular": false
+      },
+      {
+        "name": "Professional",
+        "price": "$5,999",
+        "desc": "For growing businesses.",
+        "features": [
+          "10-page website",
+          "Custom design",
+          "Advanced SEO",
+          "Bilingual EN/FR",
+          "3 months support",
+          "Analytics setup"
+        ],
+        "popular": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "desc": "For larger, custom projects.",
+        "features": [
+          "Unlimited pages",
+          "Custom functionality",
+          "Premium SEO",
+          "Integrations",
+          "12 months support",
+          "Dedicated contact"
+        ],
+        "popular": false
+      }
+    ],
+    "ctaTitle": "Ready to get started?",
+    "ctaSubtitle": "Tell us about your project and we'll shape the right plan.",
+    "ctaButton": "Start a project"
+  },
+  "About": {
+    "eyebrow": "About WeReact",
+    "title": "Moroccan craft, modern web",
+    "subtitle": "We're a Marrakech-based web agency making tourism, hospitality, and local brands look world-class online — in English and French.",
+    "statProjects": "Projects delivered",
+    "statLanguages": "Languages, by default",
+    "statBased": "Based in Marrakech",
+    "statSince": "Building since",
+    "valProjects": "7+",
+    "valLanguages": "EN · FR",
+    "valBased": "Morocco",
+    "valSince": "2025",
+    "storyTitle": "Our story",
+    "storyP1": "WeReact started with a simple conviction: great Moroccan businesses deserve websites as world-class as the experiences they offer.",
+    "storyP2": "Too many riads, tour operators, and local brands were stuck with slow, generic sites that didn't earn trust or bookings. We knew there was a better way — local craft paired with modern engineering.",
+    "storyP3": "Today we build fast, multilingual, search-ready websites from Marrakech for clients across Morocco and beyond — and we treat every project as a long-term partnership.",
+    "valuesTitle": "What we stand for",
+    "valuesSubtitle": "The principles behind every project.",
+    "values": [
+      {
+        "title": "Rooted",
+        "desc": "Proud of Marrakech and fluent in the international web — we bridge the two."
+      },
+      {
+        "title": "Crafted",
+        "desc": "Considered detail and a premium finish, never templated or cheap."
+      },
+      {
+        "title": "Results-focused",
+        "desc": "We design around outcomes: bookings, visibility, and trust."
+      },
+      {
+        "title": "Bilingual",
+        "desc": "Every site speaks to local and global audiences, in EN and FR."
+      },
+      {
+        "title": "Fast",
+        "desc": "Performance is a feature — quick to load, quick to convert."
+      },
+      {
+        "title": "Partners",
+        "desc": "We're here for the long haul, not just the launch."
+      }
+    ],
+    "missionTitle": "Our mission",
+    "missionText": "To give Moroccan businesses digital experiences that don't just look good — they perform, and they compete anywhere.",
+    "visionTitle": "Our vision",
+    "visionText": "To be the web partner Moroccan brands reach for when they want to be taken seriously by the world.",
+    "ctaTitle": "Ready to work together?",
+    "ctaSubtitle": "Let's build something worth showing off. Get in touch and tell us about your project.",
+    "ctaButton": "Start a project"
+  },
   "Home": {
     "hero": {
       "eyebrow": "Marrakech — Morocco's modern web agency",
@@ -30,7 +272,27 @@
       "highlight": "convert",
       "subtitle": "Fast, beautiful websites that bridge Moroccan businesses to the world — designed to earn trust and win bookings, in English and French.",
       "ctaPrimary": "Start a project",
-      "ctaSecondary": "View our work"
+      "ctaSecondary": "View our work",
+      "kicker": "Web studio — Marrakech, Morocco"
+    },
+    "marquee": [
+      "Web Design",
+      "SEO",
+      "E-Commerce",
+      "Performance",
+      "Branding",
+      "Bilingual EN · FR",
+      "Made in Marrakech"
+    ],
+    "gallery": {
+      "eyebrow": "Crafted in Marrakech",
+      "title": "Real work, made by humans"
+    },
+    "reel": {
+      "eyebrow": "Our craft, in motion",
+      "titleLeft": "Built to",
+      "titleRight": "be felt",
+      "caption": "Every project is engineered for speed, shaped for trust, and finished with care."
     },
     "trust": {
       "title": "Trusted by ambitious businesses across Morocco and beyond",
@@ -49,57 +311,131 @@
     },
     "manifesto": {
       "eyebrow": "What we believe",
-      "body": "Great Moroccan businesses deserve websites that feel as world-class as the experiences they offer. We pair local craft with modern engineering — fast, multilingual, search-ready — so a riad in the medina or a tour in the Atlas can compete for attention anywhere on earth."
+      "body": "We build fast, trusted websites for Moroccan tourism, hospitality, and local brands. Made for visibility, bookings, and content that keeps growing.",
+      "signals": [
+        "LOCAL CRAFT",
+        "MODERN ENGINEERING",
+        "SEARCH-READY"
+      ]
     },
     "projects": {
       "eyebrow": "Selected work",
-      "title": "Websites we're proud of",
-      "subtitle": "A few of the brands we've helped show up — and stand out — online.",
+      "title": "Check our projects",
+      "subtitle": "See the full project index, from tourism and hospitality sites to local brands built for trust and discovery.",
       "viewCase": "View case study",
-      "viewAll": "See all work"
+      "viewAll": "View projects"
     },
     "services": {
       "eyebrow": "What we do",
       "title": "Everything your web presence needs",
-      "subtitle": "From first pixel to first booking.",
+      "subtitle": "Clear strategy, sharp design, fast builds, and the content structure to turn visitors into leads.",
       "items": [
-        { "title": "Business websites", "text": "Fast, credible sites that turn visitors into customers." },
-        { "title": "Landing pages", "text": "Focused pages built around a single conversion goal." },
-        { "title": "SEO foundations", "text": "Technical and content groundwork to rank and be found." },
-        { "title": "E-commerce", "text": "Clean storefronts designed to sell, on any device." },
-        { "title": "Multilingual builds", "text": "EN/FR sites that speak to local and global audiences." },
-        { "title": "Care & maintenance", "text": "Ongoing updates, performance, and peace of mind." }
+        {
+          "title": "Business websites",
+          "text": "Clear, fast websites that explain your offer, build trust, and move visitors toward contact."
+        },
+        {
+          "title": "Landing pages",
+          "text": "Single-purpose pages for campaigns, launches, paid traffic, and lead capture."
+        },
+        {
+          "title": "SEO foundations",
+          "text": "Metadata, local signals, schema, and content structure so search engines understand the business."
+        },
+        {
+          "title": "E-commerce",
+          "text": "Product pages, checkout paths, and mobile storefronts built to make buying feel simple."
+        },
+        {
+          "title": "Booking flows",
+          "text": "Inquiry and reservation paths for tours, stays, calls, and custom quote requests."
+        },
+        {
+          "title": "Care & maintenance",
+          "text": "Updates, speed checks, content edits, and technical care after launch."
+        }
       ]
     },
     "process": {
       "eyebrow": "How we work",
       "title": "A calm, clear path to launch",
       "steps": [
-        { "title": "Discover", "text": "We learn your goals, audience, and what success looks like." },
-        { "title": "Design", "text": "We shape a clear, on-brand experience you sign off on." },
-        { "title": "Build", "text": "We engineer it fast, responsive, and search-ready." },
-        { "title": "Launch", "text": "We ship, measure, and keep improving after go-live." }
+        {
+          "title": "Discover",
+          "text": "We learn your goals, audience, and what success looks like."
+        },
+        {
+          "title": "Design",
+          "text": "We shape a clear, on-brand experience you sign off on."
+        },
+        {
+          "title": "Build",
+          "text": "We engineer it fast, responsive, and search-ready."
+        },
+        {
+          "title": "Launch",
+          "text": "We ship, measure, and keep improving after go-live."
+        }
       ]
     },
     "testimonials": {
-      "eyebrow": "Kind words",
-      "title": "What clients say",
+      "eyebrow": "Real client proof",
+      "title": "Trusted by real brands",
+      "prev": "Previous testimonial",
+      "next": "Next testimonial",
       "items": [
-        { "quote": "They turned our activity into a booking experience travelers actually trust. Clean, fast, and exactly on brand.", "name": "Client Name", "role": "Founder", "company": "Flying Tandem", "city": "Marrakech" },
-        { "quote": "WeReact understood our place and our guests. The site finally feels as premium as the stay itself.", "name": "Client Name", "role": "Owner", "company": "Kasbah Angour", "city": "Atlas" },
-        { "quote": "Bilingual, search-ready, and beautiful. We started getting direct inquiries within weeks.", "name": "Client Name", "role": "Manager", "company": "Your Morocco", "city": "Morocco" }
-      ]
+        {
+          "quote": "A focused booking experience for travelers comparing tandem flight options in Marrakech and the Atlas Mountains.",
+          "name": "Flying Tandem",
+          "role": "Adventure tourism brand",
+          "company": "Booking flow and mobile UX",
+          "city": "Marrakech"
+        },
+        {
+          "quote": "A calmer hospitality website that presents rooms, location, atmosphere, and direct inquiry paths with premium clarity.",
+          "name": "Kasbah Angour",
+          "role": "Boutique hotel and guesthouse",
+          "company": "Hospitality UX and SEO structure",
+          "city": "Atlas Mountains"
+        },
+        {
+          "quote": "A travel experience site structured for tour discovery, multilingual clarity, and stronger inquiry intent.",
+          "name": "Your Morocco",
+          "role": "Private travel experiences",
+          "company": "Travel UX and content structure",
+          "city": "Morocco"
+        }
+      ],
+      "proofLabel": "Real client"
     },
     "faq": {
       "eyebrow": "Good to know",
       "title": "Frequently asked questions",
       "items": [
-        { "q": "What type of websites do you build?", "a": "Business sites, landing pages, e-commerce, and custom builds — most for hospitality, tourism, and local brands across Morocco and beyond." },
-        { "q": "How long does a typical project take?", "a": "Most sites launch in 3–6 weeks depending on scope. We agree on a clear timeline before we start." },
-        { "q": "Can you work with our existing brand identity?", "a": "Absolutely. We can build on your current brand or help evolve it as part of the project." },
-        { "q": "Do you handle SEO and conversions too?", "a": "Yes. Every build includes technical SEO foundations and is structured around clear conversion paths." },
-        { "q": "Do you work in English and French?", "a": "Both, by default. We design and write bilingual sites for local and international audiences." },
-        { "q": "What happens after launch?", "a": "We offer care plans for updates, performance, and ongoing improvements — or hand over a site you fully own." }
+        {
+          "q": "What type of websites do you build?",
+          "a": "Business sites, landing pages, e-commerce, and custom builds — most for hospitality, tourism, and local brands across Morocco and beyond."
+        },
+        {
+          "q": "How long does a typical project take?",
+          "a": "Most sites launch in 3–6 weeks depending on scope. We agree on a clear timeline before we start."
+        },
+        {
+          "q": "Can you work with our existing brand identity?",
+          "a": "Absolutely. We can build on your current brand or help evolve it as part of the project."
+        },
+        {
+          "q": "Do you handle SEO and conversions too?",
+          "a": "Yes. Every build includes technical SEO foundations and is structured around clear conversion paths."
+        },
+        {
+          "q": "Do you work in English and French?",
+          "a": "Both, by default. We design and write bilingual sites for local and international audiences."
+        },
+        {
+          "q": "What happens after launch?",
+          "a": "We offer care plans for updates, performance, and ongoing improvements — or hand over a site you fully own."
+        }
       ]
     },
     "booking": {

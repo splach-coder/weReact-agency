@@ -122,7 +122,8 @@ export const projects: Project[] = [
     summary: 'A trust-forward tour and driver website concept for visitors comparing transport options in Morocco.',
     year: '2026',
     status: 'indexed',
-    image: '/images/greenops/showcase-trustdrivers.webp',
+    image: '/images/projects/live/trust-drivers-hero-settled.webp',
+    imageFull: '/images/projects/live/trust-drivers-full-settled.webp',
     services: ['Tour SEO', 'Conversion flow', 'Trust signals'],
     metrics: [
       { label: 'Search intent', value: 'Tours', detail: 'Built for private driver and tour discovery.' },
@@ -143,7 +144,8 @@ export const projects: Project[] = [
     summary: 'A local Marrakech brand presence designed for city visibility, service discovery, and polished mobile browsing.',
     year: '2026',
     status: 'indexed',
-    image: '/images/greenops/showcase-yoomarrakech.webp',
+    image: '/images/projects/live/yoo-marrakech-hero-settled.webp',
+    imageFull: '/images/projects/live/yoo-marrakech-full-settled.webp',
     services: ['Local SEO', 'Brand website', 'Mobile UX'],
     metrics: [
       { label: 'Geo target', value: 'Marrakech', detail: 'Location-first content structure.' },
@@ -164,7 +166,8 @@ export const projects: Project[] = [
     summary: 'A destination guide and travel service presence for Atlas mountain trips, tours, and Moroccan itinerary discovery.',
     year: '2026',
     status: 'indexed',
-    image: '/images/greenops/showcase-atlasguide.webp',
+    image: '/images/projects/live/morocco-atlas-guide-hero-settled.webp',
+    imageFull: '/images/projects/live/morocco-atlas-guide-full-settled.webp',
     services: ['Destination SEO', 'Guide content', 'Travel UX'],
     metrics: [
       { label: 'Destination', value: 'Atlas', detail: 'Built around itinerary and guide intent.' },

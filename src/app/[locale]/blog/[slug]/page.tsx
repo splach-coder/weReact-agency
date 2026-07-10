@@ -26,6 +26,7 @@ export async function generateMetadata(
     return {
         title: `${post.title} | WeReact Journal`,
         description: post.metaDescription || post.excerpt,
+        keywords: [post.category, 'WeReact Journal', 'website design Marrakech', 'local SEO Morocco'],
         openGraph: {
             title: post.title,
             description: post.metaDescription || post.excerpt,
@@ -70,15 +71,16 @@ export default async function BlogPostPage({ params }: Props) {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.metaDescription || post.excerpt,
-        image: post.image,
+        image: `${siteConfig.url}${post.image}`,
         datePublished: post.date,
         author: { '@type': 'Person', name: post.author },
         publisher: {
             '@type': 'Organization',
             name: 'WeReact',
-            logo: { '@type': 'ImageObject', url: 'https://wereact.agency/icon.png' },
+            logo: { '@type': 'ImageObject', url: `${siteConfig.url}/logo_icon.ico` },
         },
         mainEntityOfPage: { '@context': 'https://schema.org', '@type': 'WebPage', '@id': postUrl },
+        inLanguage: locale,
     };
 
     return (
@@ -87,43 +89,41 @@ export default async function BlogPostPage({ params }: Props) {
 
             <BlogShare url={postUrl} title={post.title} variant="floating" />
 
-            {/* Post Header - Green Banner */}
-            <header className="relative pt-24 pb-16 md:pt-40 md:pb-24 px-6 bg-[var(--color-primary)] text-white overflow-hidden text-center md:text-left">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
+            {/* Post Header */}
+            <header className="relative pt-36 pb-16 md:pt-48 md:pb-24 px-6 bg-[var(--color-background-main)] text-[var(--color-text-main)] overflow-hidden text-center md:text-left">
                 <div className="max-w-[1000px] mx-auto relative z-10">
                     <Link
                         href={`/${locale}/blog`}
-                        className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-all mb-8 text-[10px] uppercase tracking-[0.3em] font-black group"
+                        className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-all mb-8 text-mono group"
                     >
-                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                        Journal Index
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+                        Journal index
                     </Link>
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-[9px] font-black uppercase tracking-[0.2em] mb-6">
-                        <span className="px-2 py-0.5 bg-white text-[var(--color-primary)] rounded-sm" style={{ backgroundColor: post.categoryColor }}>{post.category}</span>
-                        <span className="flex items-center gap-1.5 opacity-50"><Calendar size={12} /> {post.date}</span>
-                        <span className="flex items-center gap-1.5 opacity-50"><Clock size={12} /> {post.readTime}</span>
+                        <span className="px-2 py-0.5 text-white rounded-sm" style={{ backgroundColor: post.categoryColor || 'var(--color-primary)' }}>{post.category}</span>
+                        <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Calendar size={12} aria-hidden="true" /> {post.date}</span>
+                        <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Clock size={12} aria-hidden="true" /> {post.readTime}</span>
                     </div>
 
-                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-8 uppercase font-nohemi">
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-8 font-nohemi text-[var(--color-text-main)]">
                         {post.title}
                     </h1>
 
-                    <div className="flex items-center justify-center md:justify-start gap-4 pt-8 border-t border-white/10">
-                        <div className="w-10 h-10 rounded-sm overflow-hidden border border-white/20 bg-white/10 flex items-center justify-center">
-                            <User size={20} className="text-white" />
+                    <div className="flex items-center justify-center md:justify-start gap-4 pt-8 border-t border-[rgba(58,90,64,0.15)]">
+                        <div className="w-10 h-10 rounded-full overflow-hidden bg-[rgba(58,90,64,0.1)] flex items-center justify-center">
+                            <User size={20} className="text-[var(--color-primary)]" aria-hidden="true" />
                         </div>
                         <div className="text-left">
-                            <p className="text-xs font-black uppercase tracking-widest">{post.author}</p>
-                            <p className="text-[9px] text-white/40 uppercase tracking-[0.1em] font-bold">Thought Leader</p>
+                            <p className="text-xs font-black uppercase tracking-widest text-[var(--color-text-main)]">{post.author}</p>
+                            <p className="text-[9px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] font-bold">WeReact</p>
                         </div>
                     </div>
                 </div>
             </header>
 
             {/* Content Container */}
-            <div className="max-w-[1200px] mx-auto px-6 -mt-12 relative z-20 pb-20">
+            <div className="max-w-[1200px] mx-auto px-6 relative z-20 pb-20 pt-4">
                 <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
                     {/* Main Content Column */}

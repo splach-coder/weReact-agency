@@ -1,0 +1,55 @@
+{
+  "name": "infer_value_proposition",
+  "description": "Compose a value proposition connecting founder skills to a specific problem for a target segment. Call after inferring problems. Requires skills, problems, and segments from prior steps.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's structured skill items."
+      },
+      "problems": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ProblemStatement"
+        },
+        "description": "Inferred problem statements from prior step."
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Inferred customer segments from prior step."
+      }
+    },
+    "required": ["skills", "problems", "segments"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "proposition": {
+        "type": "string",
+        "description": "The composed value proposition statement."
+      },
+      "for_segment": {
+        "type": "string",
+        "description": "The target customer segment this proposition addresses."
+      },
+      "solves_problem": {
+        "type": "string",
+        "description": "The specific problem this proposition solves."
+      },
+      "unique_advantage": {
+        "type": "string",
+        "description": "What makes the founder uniquely positioned to deliver this."
+      }
+    },
+    "required": ["proposition", "for_segment", "solves_problem"],
+    "additionalProperties": true
+  }
+}

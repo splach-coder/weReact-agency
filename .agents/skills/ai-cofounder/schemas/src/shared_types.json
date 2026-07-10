@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "SkillItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the skill."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["technical", "business", "creative", "interpersonal"],
+          "description": "Broad category the skill falls into."
+        },
+        "proficiency": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "expert"],
+          "description": "Self-assessed or inferred proficiency level."
+        }
+      },
+      "required": ["name", "category", "proficiency"],
+      "additionalProperties": false
+    },
+    "InterestCluster": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "description": "Central theme of the interest cluster."
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Keywords associated with this interest theme."
+        },
+        "intensity": {
+          "type": "string",
+          "enum": ["casual", "moderate", "passionate"],
+          "description": "How strongly the founder feels about this interest."
+        }
+      },
+      "required": ["theme", "keywords", "intensity"],
+      "additionalProperties": false
+    },
+    "ExperienceSegment": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Industry or domain of experience."
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or function held in this domain."
+        },
+        "years": {
+          "type": "number",
+          "description": "Approximate years of experience in this domain."
+        },
+        "insider_knowledge": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Key insights or insider knowledge gained in this domain."
+        }
+      },
+      "required": ["domain", "role", "insider_knowledge"],
+      "additionalProperties": false
+    },
+    "CustomerSegment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the customer segment."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of who this segment is."
+        },
+        "pain_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Key pain points experienced by this segment."
+        },
+        "willingness_to_pay": {
+          "type": "string",
+          "description": "Estimated willingness to pay for a solution."
+        },
+        "accessibility": {
+          "type": "string",
+          "description": "How easily the founder can reach this segment."
+        }
+      },
+      "required": ["name", "description", "pain_points"],
+      "additionalProperties": false
+    },
+    "ProblemStatement": {
+      "type": "object",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "A clear articulation of the problem."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "How severe this problem is for the affected segment."
+        },
+        "frequency": {
+          "type": "string",
+          "description": "How often the problem occurs."
+        },
+        "existing_solutions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Known existing solutions or workarounds."
+        }
+      },
+      "required": ["statement", "severity"],
+      "additionalProperties": false
+    },
+    "BusinessModel": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["saas", "marketplace", "service", "product", "content", "consulting", "freemium", "licensing"],
+          "description": "The business model archetype."
+        },
+        "revenue_mechanism": {
+          "type": "string",
+          "description": "How this model generates revenue."
+        },
+        "fit_score": {
+          "type": "number",
+          "description": "How well this model fits the founder's profile (0-1)."
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why this model is recommended for this founder."
+        }
+      },
+      "required": ["type", "revenue_mechanism", "fit_score", "rationale"],
+      "additionalProperties": false
+    },
+    "Direction": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name for this business direction."
+        },
+        "one_liner": {
+          "type": "string",
+          "description": "One-sentence summary of the direction."
+        },
+        "target_segment": {
+          "type": "string",
+          "description": "The primary customer segment targeted."
+        },
+        "business_model": {
+          "type": "string",
+          "description": "The recommended business model type."
+        },
+        "key_advantage": {
+          "type": "string",
+          "description": "The founder's key advantage in pursuing this direction."
+        },
+        "feasibility_score": {
+          "type": "number",
+          "description": "How feasible this direction is (0-1)."
+        },
+        "market_score": {
+          "type": "number",
+          "description": "Estimated market opportunity score (0-1)."
+        },
+        "founder_fit_score": {
+          "type": "number",
+          "description": "How well this direction fits the founder (0-1)."
+        }
+      },
+      "required": ["name", "one_liner", "target_segment", "business_model", "feasibility_score", "founder_fit_score"],
+      "additionalProperties": false
+    },
+    "RefinedConcept": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the refined concept."
+        },
+        "refined_proposition": {
+          "type": "string",
+          "description": "The refined value proposition after evaluation."
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Identified risks for this direction."
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Recommended next steps to pursue this direction."
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Unresolved questions that need further exploration."
+        }
+      },
+      "required": ["name", "refined_proposition", "risks", "next_actions"],
+      "additionalProperties": false
+    },
+    "Feature": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Feature title."
+        },
+        "description": {
+          "type": "string",
+          "description": "Feature description."
+        }
+      },
+      "required": ["title", "description"],
+      "additionalProperties": false
+    },
+    "Slide": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "content": {
+          "type": "string",
+          "description": "Main slide content."
+        },
+        "talking_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Key talking points for this slide."
+        },
+        "visual_suggestion": {
+          "type": "string",
+          "description": "Suggested visual or graphic for this slide."
+        }
+      },
+      "required": ["title", "content", "talking_points"],
+      "additionalProperties": false
+    },
+    "Competitor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Competitor name."
+        },
+        "positioning": {
+          "type": "string",
+          "description": "How this competitor positions itself in the market."
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Competitor strengths."
+        },
+        "weaknesses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Competitor weaknesses."
+        }
+      },
+      "required": ["name", "positioning"],
+      "additionalProperties": false
+    },
+    "TechnicalCapability": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the required capability (e.g., 'Backend API development', 'Database design')."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["frontend", "backend", "database", "infrastructure", "ai_ml", "mobile", "security", "integration", "devops"],
+          "description": "Technical category."
+        },
+        "importance": {
+          "type": "string",
+          "enum": ["nice_to_have", "important", "critical"],
+          "description": "How important this capability is for the concept's MVP."
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of what this capability entails for this specific concept."
+        }
+      },
+      "required": ["name", "category", "importance"],
+      "additionalProperties": false
+    },
+    "CoverageItem": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "type": "string",
+          "description": "Name of the required capability (matches a TechnicalCapability.name)."
+        },
+        "founder_can_handle": {
+          "type": "boolean",
+          "description": "Whether the founder's stated skills cover this capability."
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Brief explanation referencing specific skills from the founder's profile."
+        }
+      },
+      "required": ["capability", "founder_can_handle", "reasoning"],
+      "additionalProperties": false
+    }
+  }
+}

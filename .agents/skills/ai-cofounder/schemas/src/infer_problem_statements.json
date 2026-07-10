@@ -1,0 +1,50 @@
+{
+  "name": "infer_problem_statements",
+  "description": "Identify specific problems grounded in the founder's experience and interests. Call after inferring customer segments. Requires the structured experience and interest data collected earlier.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "experience": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ExperienceSegment"
+        },
+        "description": "The founder's structured experience segments."
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/InterestCluster"
+        },
+        "description": "The founder's interest clusters."
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Previously inferred customer segments, if available."
+      }
+    },
+    "required": ["experience", "interests"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "problems": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ProblemStatement"
+        },
+        "description": "Inferred problem statements grounded in founder data."
+      },
+      "summary": {
+        "type": "string",
+        "description": "A brief narrative summary of the inferred problems."
+      }
+    },
+    "required": ["problems"],
+    "additionalProperties": true
+  }
+}

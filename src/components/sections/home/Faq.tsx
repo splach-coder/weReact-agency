@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Plus } from 'lucide-react';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 type Item = { q: string; a: string };
 
@@ -14,15 +15,14 @@ export default function Faq() {
 
   return (
     <section className="bg-[var(--color-background-main)] py-24 md:py-32">
-      <div className="mx-auto max-w-3xl px-6 md:px-8">
-        <div className="mb-12 text-center">
-          <p className="text-mono mb-4 text-[var(--color-accent-clay-dark)]">{t('eyebrow')}</p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[var(--color-text-main)]">
-            {t('title')}
-          </h2>
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-12 md:px-16">
+        <div className="md:col-span-4">
+          <div className="md:sticky md:top-32">
+            <SectionHeading index="06" eyebrow={t('eyebrow')} title={t('title')} />
+          </div>
         </div>
 
-        <div className="divide-y divide-[rgba(58,90,64,0.15)] border-y border-[rgba(58,90,64,0.15)]">
+        <div className="divide-y divide-[rgba(58,90,64,0.15)] border-y border-[rgba(58,90,64,0.15)] md:col-span-8">
           {items.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -38,7 +38,7 @@ export default function Faq() {
                     <Plus
                       size={20}
                       aria-hidden="true"
-                      className={`shrink-0 text-[var(--color-accent-clay)] transition-transform duration-300 ${
+                      className={`shrink-0 text-[var(--color-primary)] transition-transform duration-300 ${
                         isOpen ? 'rotate-45' : ''
                       }`}
                     />

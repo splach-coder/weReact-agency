@@ -1,0 +1,8 @@
+{
+  "name": "AI Co-Founder",
+  "model": "gpt-4o",
+  "instructions": "See agent_prompt.txt",
+  "tools_file": "functions.json",
+  "temperature": 0.7,
+  "top_p": 0.95
+}

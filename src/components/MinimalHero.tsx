@@ -3,20 +3,12 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
+import Link from '@/components/transition/TransitionLink';
 import { smoothEasing } from '@/lib/animations';
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: smoothEasing } },
-};
+import { RevealLine } from '@/components/ui/RevealText';
+import { trackContactIntent } from '@/lib/analytics';
 
 export default function MinimalHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,23 +19,26 @@ export default function MinimalHero() {
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  // Gentle parallax on the image; disabled when the user prefers reduced motion.
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.2]);
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '12%']);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 140]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, reduceMotion ? 1 : 0]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[92vh] md:min-h-screen w-full overflow-hidden bg-[var(--color-background-main)]"
-    >
-      {/* Full-bleed warm imagery, bleeding in from the right */}
-      <motion.div aria-hidden="true" style={{ y: imageY }} className="absolute inset-0 z-0">
+    <section ref={sectionRef} className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+      {/* Full-bleed cinematic background with parallax */}
+      <motion.div
+        aria-hidden="true"
+        style={{ scale: imageScale, y: imageY }}
+        className="absolute inset-0 z-0"
+      >
         <Image
           src="/images/nature_hero.webp"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="hidden md:block object-cover object-right"
+          className="hidden object-cover md:block"
         />
         <Image
           src="/images/nature_hero_phone.webp"
@@ -51,85 +46,81 @@ export default function MinimalHero() {
           fill
           priority
           sizes="100vw"
-          className="md:hidden object-cover object-center"
+          className="object-cover md:hidden"
         />
       </motion.div>
 
-      {/* Sand scrim — keeps the left readable, lets the photo breathe on the right */}
+      {/* Brand-tinted cinematic scrim */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-background-main)] via-[var(--color-background-main)]/85 md:via-[var(--color-background-main)]/70 to-transparent"
+        className="absolute inset-0 z-10 bg-gradient-to-b from-[#101a12]/70 via-[#101a12]/35 to-[#0c120b]/90"
       />
-      {/* Mobile bottom-up scrim for legibility */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-10 md:hidden bg-gradient-to-t from-[var(--color-background-main)] via-[var(--color-background-main)]/60 to-transparent"
+        className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.55)_100%)]"
       />
 
-      {/* Content */}
-      <div className="relative z-20 mx-auto flex min-h-[92vh] md:min-h-screen max-w-7xl flex-col justify-center px-6 md:px-16">
-        <motion.div initial="hidden" animate="visible" variants={container} className="max-w-3xl">
-          {/* Eyebrow */}
-          <motion.p
-            variants={item}
-            className="text-mono mb-6 text-[var(--color-accent-clay-dark)]"
-          >
-            {t('eyebrow')}
-          </motion.p>
+      {/* Top kicker */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.25, duration: 0.8 }}
+        className="absolute inset-x-0 top-28 z-20 mx-auto flex max-w-7xl items-center justify-between px-6 md:top-32 md:px-16"
+      >
+        <span className="text-mono flex items-center gap-2.5 text-white/70">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-sage)]" />
+          {t('kicker')}
+        </span>
+        <span className="text-mono hidden text-white/45 md:block">© 2025</span>
+      </motion.div>
 
-          {/* Headline (single h1 on the page) */}
-          <motion.h1
-            variants={item}
-            className="mb-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.98] tracking-tight text-[var(--color-text-main)]"
-          >
-            {t('titleLine1')}
-            <br />
-            {t('titleLine2')}{' '}
-            <span className="relative whitespace-nowrap">
-              {t('highlight')}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-1 md:bottom-2 h-[0.12em] bg-[var(--color-accent-clay)]"
-              />
-            </span>
-            .
-          </motion.h1>
+      {/* Centered, image-led headline — minimal text */}
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center"
+      >
+        <h1 className="font-display text-[clamp(2.75rem,8.5vw,7.5rem)] leading-[0.98] tracking-[-0.01em] text-white drop-shadow-[0_2px_40px_rgba(0,0,0,0.55)]">
+          <RevealLine delay={0.15}>{t('titleLine1')}</RevealLine>
+          <RevealLine delay={0.3}>
+            {t('titleLine2')} <span className="italic text-[var(--color-accent-sage)]">{t('highlight')}</span>.
+          </RevealLine>
+        </h1>
 
-          {/* Subheading */}
-          <motion.p
-            variants={item}
-            className="mb-10 max-w-xl text-base md:text-xl font-light leading-relaxed text-[var(--color-text-secondary)]"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.8, ease: smoothEasing }}
+          className="mt-8 flex flex-col items-center gap-7"
+        >
+          <p className="max-w-md text-base font-light leading-relaxed text-white/80 md:text-lg">
             {t('subtitle')}
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/contact"
-              className="btn-base btn-clay group justify-center transition-transform hover:-translate-y-0.5"
-            >
-              {t('ctaPrimary')}
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/work"
-              className="btn-base btn-ghost justify-center"
-            >
-              {t('ctaSecondary')}
-            </Link>
-          </motion.div>
+          </p>
+          <Link
+            href="/contact"
+            onClick={() => trackContactIntent('hero_primary_cta', { destination: 'contact' })}
+            className="btn-base btn-clay group justify-center transition-transform hover:-translate-y-0.5"
+          >
+            {t('ctaPrimary')}
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Animated scroll cue */}
       <motion.div
         aria-hidden="true"
-        animate={reduceMotion ? undefined : { y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 md:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 0.8 }}
+        className="absolute inset-x-0 bottom-24 z-20 flex justify-center md:bottom-28"
       >
-        <ChevronDown className="h-6 w-6 text-[var(--color-text-muted)]" />
+        <motion.span
+          animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-2 text-white/60"
+        >
+          <ArrowDown size={18} />
+        </motion.span>
       </motion.div>
     </section>
   );

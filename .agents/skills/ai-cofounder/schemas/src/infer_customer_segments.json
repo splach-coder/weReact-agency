@@ -1,0 +1,50 @@
+{
+  "name": "infer_customer_segments",
+  "description": "Derive target customer segments from the founder's skills and experience. Call after all elicitation steps are complete. Requires the structured skills and experience collected earlier.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's structured skill items."
+      },
+      "experience": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ExperienceSegment"
+        },
+        "description": "The founder's structured experience segments."
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/InterestCluster"
+        },
+        "description": "The founder's interest clusters, if available."
+      }
+    },
+    "required": ["skills", "experience"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Inferred customer segments based on founder profile."
+      },
+      "summary": {
+        "type": "string",
+        "description": "A brief narrative summary of the inferred segments."
+      }
+    },
+    "required": ["segments"],
+    "additionalProperties": true
+  }
+}

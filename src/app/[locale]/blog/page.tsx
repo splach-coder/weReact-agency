@@ -3,179 +3,207 @@ import { blogPosts, BlogPost } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { Clock, Calendar, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Calendar, Clock, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Our Journal | WeReact - High-End Digital Insights',
-    description: 'Explore our latest articles on Next.js performance, premium UX design, and advanced SEO strategies.',
-    openGraph: {
-        title: 'WeReact Journal - Premium Digital Insights',
-        description: 'Deep dives into the tech and design strategies that power modern digital experiences.',
-        type: 'website',
-        images: [{ url: '/images/blog/performance.png', width: 1200, height: 630, alt: 'WeReact Blog' }]
-    }
+  title: 'Journal | WeReact - Web, SEO, and Growth Notes',
+  description: 'Practical notes on web design, local SEO, tourism websites, performance, and content strategy from WeReact in Marrakech.',
+  keywords: ['local SEO Morocco', 'website design Marrakech', 'tourism website SEO', 'web design blog Morocco'],
+  openGraph: {
+    title: 'WeReact Journal',
+    description: 'Practical notes for Moroccan brands that need faster, clearer, search-ready websites.',
+    type: 'website',
+    images: [{ url: '/images/blog/marrakech-web-design-real.webp', width: 1200, height: 630, alt: 'WeReact Journal' }],
+  },
 };
 
-const BentoCard = ({ post, locale, size = 'small' }: { post: BlogPost, locale: string, size?: 'large' | 'small' }) => (
-    <Link
-        href={`/${locale}/blog/${post.slug}`}
-        className={`group relative overflow-hidden rounded-sm bg-gray-900 flex flex-col justify-end ${size === 'large' ? 'h-[400px] md:h-full md:col-span-2 md:row-span-2' : 'h-[250px]'
-            }`}
-    >
-        <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover opacity-60 group-hover:opacity-40 transition-all duration-700 group-hover:scale-105"
-            priority={size === 'large'}
-            sizes={size === 'large' ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+function ArticleMeta({ post }: { post: BlogPost }) {
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+      <span className="text-[var(--color-primary)]">{post.category}</span>
+      <span className="h-1 w-1 rounded-full bg-[var(--color-accent-sage)]" aria-hidden="true" />
+      <span className="inline-flex items-center gap-1.5">
+        <Calendar size={12} aria-hidden="true" />
+        {post.date}
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <Clock size={12} aria-hidden="true" />
+        {post.readTime}
+      </span>
+    </div>
+  );
+}
 
-        <div className="relative p-6 md:p-8 z-10">
-            <div
-                className="inline-block px-2 py-0.5 rounded-sm text-[9px] font-black uppercase tracking-widest text-white mb-3"
-                style={{ backgroundColor: post.categoryColor || 'var(--color-primary)' }}
-            >
-                {post.category}
-            </div>
-            <h3 className={`${size === 'large' ? 'text-2xl md:text-4xl' : 'text-lg md:text-xl'} font-bold text-white tracking-tighter leading-tight group-hover:translate-x-1 transition-transform duration-300`}>
-                {post.title}
-            </h3>
-            {size === 'large' && (
-                <p className="mt-3 text-white/60 line-clamp-2 max-w-xl text-sm hidden md:block">
-                    {post.excerpt}
-                </p>
-            )}
+function StoryLink({ post, locale, index }: { post: BlogPost; locale: string; index: number }) {
+  return (
+    <article className="group border-t border-[rgba(58,90,64,0.14)] py-7 transition-colors hover:border-[rgba(58,90,64,0.35)] md:py-8">
+      <Link href={`/${locale}/blog/${post.slug}`} className="grid gap-6 md:grid-cols-[0.18fr_0.82fr] md:gap-10">
+        <div className="flex items-start justify-between md:block">
+          <span className="text-mono text-[var(--color-accent-sage)]">{String(index + 1).padStart(2, '0')}</span>
+          <ArrowUpRight className="text-[var(--color-primary)] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 md:mt-10" size={22} aria-hidden="true" />
         </div>
-    </Link>
-);
+        <div className="grid gap-6 md:grid-cols-[0.66fr_0.34fr] md:items-start">
+          <div>
+            <ArticleMeta post={post} />
+            <h3 className="mt-4 max-w-3xl font-display text-[clamp(1.7rem,2.8vw,3.35rem)] leading-[0.98] text-[var(--color-text-main)] transition-colors duration-500 group-hover:text-[var(--color-primary)]">
+              {post.title}
+            </h3>
+            <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[var(--color-text-secondary)] md:text-base">
+              {post.excerpt}
+            </p>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--color-accent-warm)] md:aspect-[3/4]">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 28vw"
+            />
+            <div className="absolute inset-0 bg-[rgba(58,90,64,0.08)]" aria-hidden="true" />
+          </div>
+        </div>
+      </Link>
+    </article>
+  );
+}
 
 export default async function BlogListingPage({ params }: { params: Promise<{ locale: string }> }) {
-    const { locale } = await params;
-    const featuredPosts = blogPosts.slice(0, 3);
+  const { locale } = await params;
+  const [featuredPost, ...otherPosts] = blogPosts;
+  const heroImages = blogPosts.slice(0, 3);
 
-    return (
-        <div className="min-h-screen bg-[var(--color-background-main)]">
-            {/* Hero Section - Matching About Page */}
-            <section className="relative py-20 md:py-32 px-6 bg-[var(--color-primary)] text-[var(--color-background-main)] overflow-hidden">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-sm blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+  return (
+    <main className="min-h-screen overflow-hidden bg-[var(--color-background-main)] text-[var(--color-text-main)]">
+      <section className="relative isolate px-6 pb-10 pt-28 md:flex md:min-h-[88svh] md:items-center md:px-16 md:pb-10 md:pt-28">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[-0.08em] top-24 select-none text-[16vw] font-black leading-none tracking-tight text-[var(--color-primary)] opacity-[0.035]"
+        >
+          BLOG
+        </span>
 
-                <div className="max-w-[1200px] mx-auto relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 bg-white/10 mb-8">
-                        <span className="text-xs font-bold uppercase tracking-widest">Our Journal</span>
-                    </div>
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.88fr_0.72fr] lg:items-center">
+          <div data-depth="4">
+            <p className="text-mono mb-5 flex items-center gap-3 text-[var(--color-primary)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent-sage)]" aria-hidden="true" />
+              WeReact Journal
+            </p>
+            <h1 className="font-display max-w-3xl text-[clamp(2.6rem,5vw,4.9rem)] leading-[0.94] text-[var(--color-text-main)]">
+              Ideas for brands that need to be found.
+            </h1>
+            <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-[var(--color-text-secondary)]">
+              Practical notes on web design, local SEO, tourism growth, and content structure from our Marrakech studio.
+            </p>
+          </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.9] mb-8 font-nohemi">
-                        Insights <br />
-                        <span className="text-[var(--color-background-main)]">& Ideas</span>
-                    </h1>
-
-                    <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
-                        Deep dives into the tech and design strategies that power modern digital experiences.
-                    </p>
-                </div>
-
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03]">
-                    <span className="text-[20vw] font-bold leading-none whitespace-nowrap tracking-tighter text-white">
-                        THE BLOG
-                    </span>
-                </div>
-            </section>
-
-            {/* Bento Grid Section */}
-            <section className="py-12 md:py-20 px-6">
-                <div className="max-w-[1200px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4">
-                        {featuredPosts[0] && (
-                            <BentoCard post={featuredPosts[0]} locale={locale} size="large" />
-                        )}
-                        {featuredPosts[1] && (
-                            <BentoCard post={featuredPosts[1]} locale={locale} size="small" />
-                        )}
-                        {featuredPosts[2] && (
-                            <BentoCard post={featuredPosts[2]} locale={locale} size="small" />
-                        )}
-                    </div>
-                </div>
-            </section>
-
-            {/* All Stories Section */}
-            <section className="py-16 md:py-24 px-6 border-t border-gray-100">
-                <div className="max-w-[1200px] mx-auto">
-                    <h2 className="text-3xl font-bold mb-12 tracking-tight uppercase font-nohemi">All Stories</h2>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                        {blogPosts.map((post) => (
-                            <article key={post.slug} className="group cursor-pointer">
-                                <Link href={`/${locale}/blog/${post.slug}`}>
-                                    <div className="relative aspect-video rounded-sm overflow-hidden mb-6 bg-gray-100 shadow-sm group-hover:shadow-md transition-all duration-300">
-                                        <Image
-                                            src={post.image}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                            sizes="(max-width: 768px) 100vw, 33vw"
-                                        />
-                                        <div className="absolute top-4 left-4">
-                                            <span
-                                                className="px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-white rounded-sm"
-                                                style={{ backgroundColor: post.categoryColor || 'var(--color-primary)' }}
-                                            >
-                                                {post.category}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-[var(--color-text-secondary)]">
-                                            <span className="flex items-center gap-1"><Calendar size={10} /> {post.date}</span>
-                                            <span className="w-1 h-1 rounded-full bg-gray-300" />
-                                            <span className="flex items-center gap-1"><Clock size={10} /> {post.readTime}</span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-[var(--color-primary)] leading-tight group-hover:translate-x-1 transition-transform duration-300">
-                                            {post.title}
-                                        </h3>
-                                        <p className="text-[var(--color-text-secondary)] line-clamp-2 text-xs leading-relaxed">
-                                            {post.excerpt}
-                                        </p>
-                                        <div className="pt-2 flex items-center gap-1 text-[var(--color-primary)] font-black text-[9px] uppercase tracking-[0.2em]">
-                                            Read Article <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                                        </div>
-                                    </div>
-                                </Link>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Newsletter Section */}
-            <section className="py-20 px-6">
-                <div className="max-w-[1200px] mx-auto bg-[var(--color-primary)] rounded-sm p-10 md:p-20 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-sm blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
-                    <div className="relative z-10 max-w-2xl text-white">
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-[0.9] mb-6">
-                            Join the <br /> <span className="opacity-50 italic">Digital vanguard</span>
-                        </h2>
-                        <p className="text-base text-white/60 mb-8 max-w-lg font-medium">
-                            Receive deep dives into performance and design straight to your inbox. No noise, just engineering excellence.
-                        </p>
-                        <form className="flex flex-col sm:flex-row gap-3">
-                            <input
-                                type="email"
-                                placeholder="your-email@vanguard.com"
-                                className="flex-1 bg-white/10 border border-white/20 rounded-sm px-6 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white transition-all"
-                            />
-                            <button className="px-10 py-3 bg-white text-[var(--color-primary)] rounded-sm font-black uppercase text-[10px] tracking-widest hover:bg-[#E3E3DC] transition-all hover:scale-105 active:scale-95">
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+          <div data-depth="3" className="relative min-h-[280px] sm:min-h-[320px] lg:min-h-[380px]">
+            <div className="absolute left-0 top-8 h-[72%] w-[68%] overflow-hidden rounded-lg border border-[rgba(58,90,64,0.16)] bg-[var(--color-background-contrast)] shadow-[var(--shadow-xl)]">
+              {heroImages[0] && (
+                <Image src={heroImages[0].image} alt={heroImages[0].title} fill priority className="object-cover" sizes="(max-width: 1024px) 70vw, 34vw" />
+              )}
+            </div>
+            <div className="absolute right-0 top-0 h-[46%] w-[48%] overflow-hidden rounded-lg border border-[rgba(58,90,64,0.16)] bg-[var(--color-background-contrast)] shadow-[var(--shadow-lg)] transition-transform duration-700 hover:-translate-y-2">
+              {heroImages[1] && (
+                <Image src={heroImages[1].image} alt={heroImages[1].title} fill className="object-cover" sizes="(max-width: 1024px) 46vw, 23vw" />
+              )}
+            </div>
+            <div className="absolute bottom-0 right-[8%] h-[38%] w-[52%] overflow-hidden rounded-lg border border-[rgba(58,90,64,0.16)] bg-[var(--color-background-contrast)] shadow-[var(--shadow-lg)] transition-transform duration-700 hover:translate-y-2">
+              {heroImages[2] && (
+                <Image src={heroImages[2].image} alt={heroImages[2].title} fill className="object-cover" sizes="(max-width: 1024px) 52vw, 24vw" />
+              )}
+            </div>
+            <div className="absolute bottom-6 left-5 z-10 border border-[rgba(58,90,64,0.18)] bg-[rgba(246,246,242,0.88)] px-4 py-3 shadow-[var(--shadow-md)] backdrop-blur-md">
+              <div className="flex items-center gap-3 text-mono text-[var(--color-primary)]">
+                <Search size={15} aria-hidden="true" />
+                Search-ready notes
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      </section>
+
+      {featuredPost && (
+        <section className="px-6 pb-12 md:px-16 md:pb-16">
+          <div className="mx-auto grid max-w-7xl gap-8 border-y border-[rgba(58,90,64,0.16)] py-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12 lg:py-12">
+            <aside className="lg:sticky lg:top-28 lg:self-start">
+              <p className="text-mono text-[var(--color-primary)]">Featured insight</p>
+              <h2 className="mt-4 font-display text-[clamp(2rem,3.2vw,3.9rem)] leading-[0.94] text-[var(--color-text-main)]">
+                Start with the problem your visitor already has.
+              </h2>
+              <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-[var(--color-text-secondary)] md:text-base">
+                The journal is intentionally small: fewer posts, stronger intent, and topics that help Moroccan brands earn trust faster.
+              </p>
+            </aside>
+
+            <div>
+              <Link href={`/${locale}/blog/${featuredPost.slug}`} className="group block">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-[var(--color-accent-warm)]">
+                  <Image
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    fill
+                    priority
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 62vw"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(246,246,242,0)_35%,rgba(24,42,28,0.42)_100%)]" aria-hidden="true" />
+                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4 text-white">
+                    <span className="text-mono">Latest</span>
+                    <ArrowUpRight size={24} className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <ArticleMeta post={featuredPost} />
+                  <h3 className="mt-4 max-w-4xl font-display text-[clamp(1.9rem,3vw,3.55rem)] leading-[0.98] text-[var(--color-text-main)] transition-colors duration-500 group-hover:text-[var(--color-primary)]">
+                    {featuredPost.title}
+                  </h3>
+                  <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-[var(--color-text-secondary)]">
+                    {featuredPost.excerpt}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="px-6 pb-14 md:px-16 md:pb-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-4 flex items-end justify-between gap-8">
+            <p className="text-mono text-[var(--color-primary)]">All notes</p>
+            <p className="hidden max-w-sm text-right text-sm leading-relaxed text-[var(--color-text-muted)] md:block">
+              Built for scanning first, reading second, and taking action when the idea fits your business.
+            </p>
+          </div>
+          {otherPosts.map((post, index) => (
+            <StoryLink key={post.slug} post={post} locale={locale} index={index + 1} />
+          ))}
+        </div>
+      </section>
+
+      <section className="px-6 pb-16 md:px-16 md:pb-24">
+        <div className="mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-lg border border-[rgba(58,90,64,0.16)] bg-[var(--color-primary)] p-7 text-white md:grid-cols-[0.68fr_0.32fr] md:p-10 lg:p-12">
+          <div>
+            <p className="text-mono mb-5 text-[var(--color-accent-sage)]">Need content that sells?</p>
+            <h2 className="font-display max-w-4xl text-[clamp(2rem,3.4vw,3.9rem)] leading-[0.98]">
+              Turn your expertise into pages people can find.
+            </h2>
+          </div>
+          <div className="flex flex-col justify-end gap-5 md:items-start">
+            <p className="text-base font-light leading-relaxed text-white/72">
+              We can shape your service pages, local SEO structure, and article ideas around real search intent.
+            </p>
+            <Link
+              href={`/${locale}/contact`}
+              className="inline-flex items-center gap-3 bg-white px-5 py-4 text-mono text-[var(--color-primary)] transition-transform duration-300 hover:-translate-y-1"
+            >
+              Start a project
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

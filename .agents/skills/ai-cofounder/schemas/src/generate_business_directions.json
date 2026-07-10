@@ -1,0 +1,121 @@
+{
+  "name": "generate_business_directions",
+  "description": "Produce 3-5 distinct business directions synthesized from all prior founder data. Call after all inference steps are complete. Requires all collected and inferred data as explicit inputs.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's structured skill items."
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/InterestCluster"
+        },
+        "description": "The founder's interest clusters."
+      },
+      "experience": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ExperienceSegment"
+        },
+        "description": "The founder's structured experience segments."
+      },
+      "constraints": {
+        "type": "object",
+        "properties": {
+          "budget": {
+            "type": "string",
+            "enum": ["bootstrap", "small", "medium", "funded"],
+            "description": "The founder's available budget tier."
+          },
+          "time_commitment": {
+            "type": "string",
+            "enum": ["side_project", "part_time", "full_time"],
+            "description": "How much time the founder can dedicate."
+          },
+          "risk_tolerance": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "How much risk the founder is willing to accept."
+          }
+        },
+        "required": ["budget", "time_commitment", "risk_tolerance"],
+        "additionalProperties": true,
+        "description": "The founder's business constraints."
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Inferred customer segments."
+      },
+      "problems": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ProblemStatement"
+        },
+        "description": "Inferred problem statements."
+      },
+      "value_proposition": {
+        "type": "object",
+        "properties": {
+          "proposition": {
+            "type": "string",
+            "description": "The composed value proposition statement."
+          },
+          "for_segment": {
+            "type": "string",
+            "description": "The target customer segment."
+          },
+          "solves_problem": {
+            "type": "string",
+            "description": "The specific problem addressed."
+          }
+        },
+        "required": ["proposition", "for_segment", "solves_problem"],
+        "additionalProperties": true,
+        "description": "The inferred value proposition."
+      },
+      "business_models": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/BusinessModel"
+        },
+        "description": "Inferred business models."
+      }
+    },
+    "required": [
+      "skills",
+      "interests",
+      "experience",
+      "constraints",
+      "segments",
+      "problems",
+      "value_proposition",
+      "business_models"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "directions": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/Direction"
+        },
+        "minItems": 3,
+        "maxItems": 5,
+        "description": "Distinct business directions synthesized from all founder data."
+      }
+    },
+    "required": ["directions"],
+    "additionalProperties": true
+  }
+}

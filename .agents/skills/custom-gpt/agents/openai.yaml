@@ -1,0 +1,4 @@
+interface:
+  display_name: "Custom GPT Advisors"
+  short_description: "GPT advisor modes for founders"
+  default_prompt: "Use $custom-gpt to choose the right advisor mode for my startup task."

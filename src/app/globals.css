@@ -12,11 +12,8 @@
   --color-accent-warm: #E3E3DC;
   --color-accent-sage: #A3B18A;
 
-  /* Marrakech Clay — single warm accent (see BRAND.md). Use sparingly (~5%). */
-  --color-accent-clay: #C26B43;
-  --color-accent-clay-dark: #A6562F;
-
   --font-family-sans: var(--font-nohemi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-serif: var(--font-serif), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --font-family-mono: "JetBrains Mono", "Monaco", monospace;
 
   /* Shadow Scale */
@@ -54,11 +51,44 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis owns smooth scrolling; native CSS smooth fights lenis.scrollTo
+       during page transitions, so keep this auto. */
+    scroll-behavior: auto;
   }
 }
 
 @layer components {
+  /* Elegant serif for editorial display headlines */
+  .font-display {
+    font-family: var(--font-family-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Dark editorial theme — flips the neutral tokens so token-based sections
+     render dark automatically. The brand green (--color-primary) stays as the
+     accent. Applied via a wrapper, e.g. on the homepage. */
+  .theme-dark {
+    --color-background-main: #0d0f0c;
+    --color-background-contrast: #15180f;
+    --color-text-main: #F4F5EF;
+    --color-text-secondary: #AEB2A6;
+    --color-text-muted: #7E8378;
+    --color-primary: #A3B18A;
+    --color-primary-dark: #8c9a74;
+    --color-primary-light: #B7C3A2;
+    color: var(--color-text-main);
+    background-color: var(--color-background-main);
+  }
+
+  /* On dark, solid sage buttons need dark text for contrast. */
+  .theme-dark .btn-primary,
+  .theme-dark .btn-clay,
+  .theme-dark .btn-primary:hover,
+  .theme-dark .btn-clay:hover {
+    color: #0d0f0c;
+  }
+
   /* Card Base */
   .card-base {
     border: var(--border-thin);
@@ -104,12 +134,12 @@
 
   /* Clay button — reserved for the single most important CTA on a view */
   .btn-clay {
-    background-color: var(--color-accent-clay);
+    background-color: var(--color-primary);
     color: white;
   }
 
   .btn-clay:hover {
-    background-color: var(--color-accent-clay-dark);
+    background-color: var(--color-primary-dark);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
   }
@@ -149,7 +179,7 @@
   textarea:focus-visible,
   select:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--color-accent-clay);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -186,6 +216,20 @@
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   }
 
+  /* Infinite marquee — track holds two identical halves; shift by -50% to loop */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
   @keyframes gradient-shift {
     0%, 100% {
       background-position: 0% 50%;
@@ -198,6 +242,26 @@
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient-shift 6s ease infinite;
+  }
+
+  /* Reel montage — slow Ken-Burns drift while a frame is the active one. */
+  @keyframes reel-kenburns {
+    from { transform: scale(1.02); }
+    to { transform: scale(1.12); }
+  }
+  .reel-kenburns {
+    animation: reel-kenburns 6s ease-out forwards;
+  }
+
+  /* Nav overlay initial states — plain `transform` (not Tailwind's translate/
+     scale properties) so GSAP's inline transform cleanly overrides them and
+     React never re-applies a conflicting value on re-render. */
+  .nav-panel-init {
+    transform: scaleY(0);
+  }
+  .nav-word-init,
+  .nav-fade-init {
+    opacity: 0;
   }
 
   /* Responsive Display */

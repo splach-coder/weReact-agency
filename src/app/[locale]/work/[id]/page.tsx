@@ -6,6 +6,7 @@ import { ExternalLink, ArrowLeft, Check, Calendar, Tag, Users, Monitor, Smartpho
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import { trackContactIntent } from '@/lib/analytics';
 
 interface CaseStudyMetric {
     value: string;
@@ -33,6 +34,7 @@ interface CaseStudy {
     link: string;
     image: string;
     imageFull: string;
+    imageFullHeight?: number;
     gradient: string;
     color: string;
     features: CaseStudyFeature[];
@@ -262,8 +264,9 @@ export default function CaseStudyPage() {
             ],
             tags: ["Tour SEO", "Conversion Flow", "Trust Signals", "Mobile UX"],
             link: "https://www.trustdrivers.tours/",
-            image: "/images/greenops/showcase-trustdrivers.webp",
-            imageFull: "/images/greenops/showcase-trustdrivers.webp",
+            image: "/images/projects/live/trust-drivers-hero-settled.webp",
+            imageFull: "/images/projects/live/trust-drivers-full-settled.webp",
+            imageFullHeight: 6671,
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -294,8 +297,9 @@ export default function CaseStudyPage() {
             ],
             tags: ["Local SEO", "Brand Website", "Mobile UX", "Marrakech"],
             link: "https://www.yoomarrakech.com/",
-            image: "/images/greenops/showcase-yoomarrakech.webp",
-            imageFull: "/images/greenops/showcase-yoomarrakech.webp",
+            image: "/images/projects/live/yoo-marrakech-hero-settled.webp",
+            imageFull: "/images/projects/live/yoo-marrakech-full-settled.webp",
+            imageFullHeight: 8195,
             gradient: "from-[#2e4833] to-[#1f3322]",
             color: "#2e4833",
             features: [
@@ -326,8 +330,9 @@ export default function CaseStudyPage() {
             ],
             tags: ["Destination SEO", "Guide Content", "Travel UX", "Atlas"],
             link: "https://www.moroccoatlasguide.com/",
-            image: "/images/greenops/showcase-atlasguide.webp",
-            imageFull: "/images/greenops/showcase-atlasguide.webp",
+            image: "/images/projects/live/morocco-atlas-guide-hero-settled.webp",
+            imageFull: "/images/projects/live/morocco-atlas-guide-full-settled.webp",
+            imageFullHeight: 14145,
             gradient: "from-[#3A5A40] to-[#2e4833]",
             color: "#3A5A40",
             features: [
@@ -508,7 +513,7 @@ export default function CaseStudyPage() {
                                         src={project.image}
                                         alt={`${project.title} screenshot`}
                                         fill
-                                        className="object-cover"
+                                        className="object-cover object-top"
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                     />
 
@@ -588,16 +593,16 @@ export default function CaseStudyPage() {
                         className="relative w-full bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 rounded-sm overflow-hidden border-2 border-[var(--color-primary)]/10 flex items-center justify-center group"
                     >
                         {/* Full Project Screenshot */}
-                        <div className="relative w-full h-full min-h-[450px] md:min-h-[1400px]">
+                        <div className="w-full">
                             <Image
                                 src={project.imageFull}
                                 alt={`${project.title} full screenshot`}
-                                fill
-                                className="object-contain"
+                                width={1920}
+                                height={project.imageFullHeight ?? 1000}
+                                className="h-auto w-full"
                                 sizes="100vw"
                             />
                         </div>
-
                         {/* Floating Live Website Link */}
                         <motion.a
                             href={project.link}
@@ -798,6 +803,7 @@ export default function CaseStudyPage() {
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                             <Link
                                 href="/contact"
+                                onClick={() => trackContactIntent('case_study_cta', { destination: 'contact' })}
                                 className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                             >
                                 Start Your Project

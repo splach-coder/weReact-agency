@@ -1,0 +1,1458 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "collect_skills",
+      "description": "Extract and structure the founder's professional skills from free-text input. Call this first in the Founder Discovery Flow to understand what the founder is good at. Expects the founder's natural-language response about their skills and talents.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string",
+            "description": "The founder's natural-language response about their skills and talents."
+          },
+          "prior_skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "Previously collected skills to merge with or refine."
+          }
+        },
+        "required": ["response"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "collect_interests",
+      "description": "Identify and cluster the founder's personal and professional interests from free-text input. Call after collecting skills to understand what excites the founder. Expects the founder's response about their passions and interests.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string",
+            "description": "The founder's natural-language response about their passions and interests."
+          },
+          "prior_interests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Central theme of the interest cluster."
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Keywords associated with this interest theme."
+                },
+                "intensity": {
+                  "type": "string",
+                  "enum": ["casual", "moderate", "passionate"],
+                  "description": "How strongly the founder feels about this interest."
+                }
+              },
+              "required": ["theme", "keywords", "intensity"],
+              "additionalProperties": false
+            },
+            "description": "Previously collected interest clusters to merge with or refine."
+          }
+        },
+        "required": ["response"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "collect_experience",
+      "description": "Parse the founder's professional experience into structured domain segments. Call after collecting interests to map the founder's background. Expects the founder's response about their work history and expertise areas.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string",
+            "description": "The founder's natural-language response about their work history and expertise areas."
+          },
+          "prior_experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "Industry or domain of experience."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "Role or function held in this domain."
+                },
+                "years": {
+                  "type": "number",
+                  "description": "Approximate years of experience in this domain."
+                },
+                "insider_knowledge": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key insights or insider knowledge gained in this domain."
+                }
+              },
+              "required": ["domain", "role", "insider_knowledge"],
+              "additionalProperties": false
+            },
+            "description": "Previously collected experience segments to merge with or refine."
+          }
+        },
+        "required": ["response"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "collect_constraints",
+      "description": "Extract the founder's business constraints including budget, time, risk tolerance, and hard limits. Call after collecting experience to understand the founder's boundaries. Expects the founder's response about their resources and limitations.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string",
+            "description": "The founder's natural-language response about their resources and limitations."
+          },
+          "prior_constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "medium", "funded"],
+                "description": "The founder's available budget tier."
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"],
+                "description": "How much time the founder can dedicate."
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "How much risk the founder is willing to accept."
+              },
+              "timeline_months": {
+                "type": "number",
+                "description": "Target timeline in months to reach a milestone."
+              },
+              "hard_constraints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Non-negotiable constraints or deal-breakers."
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": false,
+            "description": "Previously collected constraints to merge with or refine."
+          }
+        },
+        "required": ["response"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "infer_customer_segments",
+      "description": "Derive target customer segments from the founder's skills and experience. Call after all elicitation steps are complete. Requires the structured skills and experience collected earlier.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured skill items."
+          },
+          "experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "Industry or domain of experience."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "Role or function held in this domain."
+                },
+                "years": {
+                  "type": "number",
+                  "description": "Approximate years of experience in this domain."
+                },
+                "insider_knowledge": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key insights or insider knowledge gained in this domain."
+                }
+              },
+              "required": ["domain", "role", "insider_knowledge"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured experience segments."
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Central theme of the interest cluster."
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Keywords associated with this interest theme."
+                },
+                "intensity": {
+                  "type": "string",
+                  "enum": ["casual", "moderate", "passionate"],
+                  "description": "How strongly the founder feels about this interest."
+                }
+              },
+              "required": ["theme", "keywords", "intensity"],
+              "additionalProperties": false
+            },
+            "description": "The founder's interest clusters, if available."
+          }
+        },
+        "required": ["skills", "experience"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "infer_problem_statements",
+      "description": "Identify specific problems grounded in the founder's experience and interests. Call after inferring customer segments. Requires the structured experience and interest data collected earlier.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "Industry or domain of experience."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "Role or function held in this domain."
+                },
+                "years": {
+                  "type": "number",
+                  "description": "Approximate years of experience in this domain."
+                },
+                "insider_knowledge": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key insights or insider knowledge gained in this domain."
+                }
+              },
+              "required": ["domain", "role", "insider_knowledge"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured experience segments."
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Central theme of the interest cluster."
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Keywords associated with this interest theme."
+                },
+                "intensity": {
+                  "type": "string",
+                  "enum": ["casual", "moderate", "passionate"],
+                  "description": "How strongly the founder feels about this interest."
+                }
+              },
+              "required": ["theme", "keywords", "intensity"],
+              "additionalProperties": false
+            },
+            "description": "The founder's interest clusters."
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the customer segment."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of who this segment is."
+                },
+                "pain_points": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key pain points experienced by this segment."
+                },
+                "willingness_to_pay": {
+                  "type": "string",
+                  "description": "Estimated willingness to pay for a solution."
+                },
+                "accessibility": {
+                  "type": "string",
+                  "description": "How easily the founder can reach this segment."
+                }
+              },
+              "required": ["name", "description", "pain_points"],
+              "additionalProperties": false
+            },
+            "description": "Previously inferred customer segments, if available."
+          }
+        },
+        "required": ["experience", "interests"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "infer_value_proposition",
+      "description": "Compose a value proposition connecting founder skills to a specific problem for a target segment. Call after inferring problems. Requires skills, problems, and segments from prior steps.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured skill items."
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "statement": {
+                  "type": "string",
+                  "description": "A clear articulation of the problem."
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"],
+                  "description": "How severe this problem is for the affected segment."
+                },
+                "frequency": {
+                  "type": "string",
+                  "description": "How often the problem occurs."
+                },
+                "existing_solutions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Known existing solutions or workarounds."
+                }
+              },
+              "required": ["statement", "severity"],
+              "additionalProperties": false
+            },
+            "description": "Inferred problem statements from prior step."
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the customer segment."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of who this segment is."
+                },
+                "pain_points": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key pain points experienced by this segment."
+                },
+                "willingness_to_pay": {
+                  "type": "string",
+                  "description": "Estimated willingness to pay for a solution."
+                },
+                "accessibility": {
+                  "type": "string",
+                  "description": "How easily the founder can reach this segment."
+                }
+              },
+              "required": ["name", "description", "pain_points"],
+              "additionalProperties": false
+            },
+            "description": "Inferred customer segments from prior step."
+          }
+        },
+        "required": ["skills", "problems", "segments"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "infer_business_models",
+      "description": "Determine feasible revenue models based on constraints, skills, and target segments. Call after inferring the value proposition. Requires constraints, skills, and segments from prior steps.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "medium", "funded"],
+                "description": "The founder's available budget tier."
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"],
+                "description": "How much time the founder can dedicate."
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "How much risk the founder is willing to accept."
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": false,
+            "description": "The founder's business constraints."
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured skill items."
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the customer segment."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of who this segment is."
+                },
+                "pain_points": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key pain points experienced by this segment."
+                },
+                "willingness_to_pay": {
+                  "type": "string",
+                  "description": "Estimated willingness to pay for a solution."
+                },
+                "accessibility": {
+                  "type": "string",
+                  "description": "How easily the founder can reach this segment."
+                }
+              },
+              "required": ["name", "description", "pain_points"],
+              "additionalProperties": false
+            },
+            "description": "Inferred customer segments from prior step."
+          }
+        },
+        "required": ["constraints", "skills", "segments"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "generate_business_directions",
+      "description": "Produce 3-5 distinct business directions synthesized from all prior founder data. Call after all inference steps are complete. Requires all collected and inferred data as explicit inputs.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured skill items."
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "theme": {
+                  "type": "string",
+                  "description": "Central theme of the interest cluster."
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Keywords associated with this interest theme."
+                },
+                "intensity": {
+                  "type": "string",
+                  "enum": ["casual", "moderate", "passionate"],
+                  "description": "How strongly the founder feels about this interest."
+                }
+              },
+              "required": ["theme", "keywords", "intensity"],
+              "additionalProperties": false
+            },
+            "description": "The founder's interest clusters."
+          },
+          "experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "Industry or domain of experience."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "Role or function held in this domain."
+                },
+                "years": {
+                  "type": "number",
+                  "description": "Approximate years of experience in this domain."
+                },
+                "insider_knowledge": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key insights or insider knowledge gained in this domain."
+                }
+              },
+              "required": ["domain", "role", "insider_knowledge"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured experience segments."
+          },
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "medium", "funded"],
+                "description": "The founder's available budget tier."
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"],
+                "description": "How much time the founder can dedicate."
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "How much risk the founder is willing to accept."
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": false,
+            "description": "The founder's business constraints."
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the customer segment."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of who this segment is."
+                },
+                "pain_points": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Key pain points experienced by this segment."
+                },
+                "willingness_to_pay": {
+                  "type": "string",
+                  "description": "Estimated willingness to pay for a solution."
+                },
+                "accessibility": {
+                  "type": "string",
+                  "description": "How easily the founder can reach this segment."
+                }
+              },
+              "required": ["name", "description", "pain_points"],
+              "additionalProperties": false
+            },
+            "description": "Inferred customer segments."
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "statement": {
+                  "type": "string",
+                  "description": "A clear articulation of the problem."
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"],
+                  "description": "How severe this problem is for the affected segment."
+                },
+                "frequency": {
+                  "type": "string",
+                  "description": "How often the problem occurs."
+                },
+                "existing_solutions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Known existing solutions or workarounds."
+                }
+              },
+              "required": ["statement", "severity"],
+              "additionalProperties": false
+            },
+            "description": "Inferred problem statements."
+          },
+          "value_proposition": {
+            "type": "object",
+            "properties": {
+              "proposition": {
+                "type": "string",
+                "description": "The composed value proposition statement."
+              },
+              "for_segment": {
+                "type": "string",
+                "description": "The target customer segment."
+              },
+              "solves_problem": {
+                "type": "string",
+                "description": "The specific problem addressed."
+              }
+            },
+            "required": ["proposition", "for_segment", "solves_problem"],
+            "additionalProperties": false,
+            "description": "The inferred value proposition."
+          },
+          "business_models": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["saas", "marketplace", "service", "product", "content", "consulting", "freemium", "licensing"],
+                  "description": "The business model archetype."
+                },
+                "revenue_mechanism": {
+                  "type": "string",
+                  "description": "How this model generates revenue."
+                },
+                "fit_score": {
+                  "type": "number",
+                  "description": "How well this model fits the founder's profile (0-1)."
+                },
+                "rationale": {
+                  "type": "string",
+                  "description": "Why this model is recommended for this founder."
+                }
+              },
+              "required": ["type", "revenue_mechanism", "fit_score", "rationale"],
+              "additionalProperties": false
+            },
+            "description": "Inferred business models."
+          }
+        },
+        "required": [
+          "skills",
+          "interests",
+          "experience",
+          "constraints",
+          "segments",
+          "problems",
+          "value_proposition",
+          "business_models"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "evaluate_direction",
+      "description": "Refine a selected business direction, identify risks, and define next actions. Call after the founder selects one direction. Requires the chosen direction object.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Short name for this business direction."
+              },
+              "one_liner": {
+                "type": "string",
+                "description": "One-sentence summary of the direction."
+              },
+              "target_segment": {
+                "type": "string",
+                "description": "The primary customer segment targeted."
+              },
+              "business_model": {
+                "type": "string",
+                "description": "The recommended business model type."
+              },
+              "key_advantage": {
+                "type": "string",
+                "description": "The founder's key advantage in pursuing this direction."
+              },
+              "feasibility_score": {
+                "type": "number",
+                "description": "How feasible this direction is (0-1)."
+              },
+              "market_score": {
+                "type": "number",
+                "description": "Estimated market opportunity score (0-1)."
+              },
+              "founder_fit_score": {
+                "type": "number",
+                "description": "How well this direction fits the founder (0-1)."
+              }
+            },
+            "required": ["name", "one_liner", "target_segment", "business_model", "feasibility_score", "founder_fit_score"],
+            "additionalProperties": false,
+            "description": "The business direction the founder selected."
+          },
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "medium", "funded"],
+                "description": "The founder's available budget tier."
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"],
+                "description": "How much time the founder can dedicate."
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "How much risk the founder is willing to accept."
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": false,
+            "description": "The founder's business constraints, if available."
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's structured skill items, if available."
+          }
+        },
+        "required": ["direction"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "evaluate_project",
+      "description": "Produce a structured viability assessment of the founder's business concept. Call after evaluating the selected direction to give the founder an honest go/no-go recommendation. Requires the refined concept and the founder's constraints.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "refined_proposition": {
+                "type": "string"
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false
+          },
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "medium", "funded"]
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"]
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"]
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": false
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"]
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"]
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's skills for assessing founder-market fit"
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "pain_points": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "willingness_to_pay": {
+                  "type": "string"
+                },
+                "accessibility": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "description", "pain_points"],
+              "additionalProperties": false
+            },
+            "description": "Target customer segments for assessing market viability"
+          },
+          "business_models": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["saas", "marketplace", "service", "product", "content", "consulting", "freemium", "licensing"]
+                },
+                "revenue_mechanism": {
+                  "type": "string"
+                },
+                "fit_score": {
+                  "type": "number"
+                },
+                "rationale": {
+                  "type": "string"
+                }
+              },
+              "required": ["type", "revenue_mechanism", "fit_score", "rationale"],
+              "additionalProperties": false
+            },
+            "description": "Candidate business models for assessing revenue feasibility"
+          }
+        },
+        "required": ["concept", "constraints"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "assess_technical_needs",
+      "description": "Evaluate the technical skills gap between what the founder can build and what the concept requires. Produces a gap analysis and, when appropriate, a recommendation for technical co-founding assistance. Call after evaluating project viability. Requires the refined concept, founder skills, and constraints.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined business concept from evaluate_direction."
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the skill."
+                },
+                "category": {
+                  "type": "string",
+                  "enum": ["technical", "business", "creative", "interpersonal"],
+                  "description": "Broad category the skill falls into."
+                },
+                "proficiency": {
+                  "type": "string",
+                  "enum": ["beginner", "intermediate", "advanced", "expert"],
+                  "description": "Self-assessed or inferred proficiency level."
+                }
+              },
+              "required": ["name", "category", "proficiency"],
+              "additionalProperties": false
+            },
+            "description": "The founder's skill inventory from collect_skills."
+          },
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "budget": {
+                "type": "string",
+                "enum": ["bootstrap", "small", "moderate", "funded"]
+              },
+              "time_commitment": {
+                "type": "string",
+                "enum": ["side_project", "part_time", "full_time"]
+              },
+              "risk_tolerance": {
+                "type": "string",
+                "enum": ["low", "medium", "high"]
+              }
+            },
+            "required": ["budget", "time_commitment", "risk_tolerance"],
+            "additionalProperties": true,
+            "description": "The founder's constraints from collect_constraints. The full output object is passed; budget, time_commitment, and risk_tolerance are the fields this skill uses."
+          },
+          "viability": {
+            "type": "object",
+            "properties": {
+              "viability_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "recommendation": {
+                "type": "string",
+                "enum": ["strong_go", "go", "conditional_go", "pivot", "no_go"]
+              }
+            },
+            "required": ["recommendation"],
+            "additionalProperties": true,
+            "description": "The viability assessment from evaluate_project. Used to suppress referrals for non-viable concepts."
+          }
+        },
+        "required": ["concept", "skills", "constraints"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "artifact_landing_page",
+      "description": "Generate a complete landing page including headline, copy, features, CTA, and self-contained HTML. Call when the founder wants a landing page for their validated direction. Requires the refined concept.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined concept to generate a landing page for."
+          }
+        },
+        "required": ["concept"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "artifact_pitch_deck",
+      "description": "Generate a structured pitch deck with slides covering problem, solution, market, model, and ask. Call when the founder wants a pitch deck. Requires the refined concept.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined concept to generate a pitch deck for."
+          }
+        },
+        "required": ["concept"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "artifact_elevator_pitch",
+      "description": "Generate 30-second and 60-second elevator pitches with a memorable hook. Call when the founder wants a verbal pitch. Requires the refined concept.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined concept to generate elevator pitches for."
+          }
+        },
+        "required": ["concept"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "artifact_competitive_analysis",
+      "description": "Analyze competitors and articulate the venture's differentiation. Call when the founder wants competitive positioning. Requires the refined concept.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined concept to analyze competitive positioning for."
+          }
+        },
+        "required": ["concept"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "artifact_financial_sketch",
+      "description": "Produce a rough financial sketch with revenue/cost estimates and break-even analysis. Call when the founder wants financial projections. Requires the refined concept.",
+      "strict": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the refined concept."
+              },
+              "refined_proposition": {
+                "type": "string",
+                "description": "The refined value proposition after evaluation."
+              },
+              "risks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identified risks for this direction."
+              },
+              "next_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Recommended next steps to pursue this direction."
+              },
+              "open_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Unresolved questions that need further exploration."
+              }
+            },
+            "required": ["name", "refined_proposition", "risks", "next_actions"],
+            "additionalProperties": false,
+            "description": "The refined concept to produce financial projections for."
+          }
+        },
+        "required": ["concept"],
+        "additionalProperties": false
+      }
+    }
+  }
+]

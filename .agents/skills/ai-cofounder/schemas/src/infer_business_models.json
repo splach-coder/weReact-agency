@@ -1,0 +1,66 @@
+{
+  "name": "infer_business_models",
+  "description": "Determine feasible revenue models based on constraints, skills, and target segments. Call after inferring the value proposition. Requires constraints, skills, and segments from prior steps.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "constraints": {
+        "type": "object",
+        "properties": {
+          "budget": {
+            "type": "string",
+            "enum": ["bootstrap", "small", "medium", "funded"],
+            "description": "The founder's available budget tier."
+          },
+          "time_commitment": {
+            "type": "string",
+            "enum": ["side_project", "part_time", "full_time"],
+            "description": "How much time the founder can dedicate."
+          },
+          "risk_tolerance": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "How much risk the founder is willing to accept."
+          }
+        },
+        "required": ["budget", "time_commitment", "risk_tolerance"],
+        "additionalProperties": true,
+        "description": "The founder's business constraints."
+      },
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's structured skill items."
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Inferred customer segments from prior step."
+      }
+    },
+    "required": ["constraints", "skills", "segments"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "models": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/BusinessModel"
+        },
+        "description": "Feasible business models ranked by fit."
+      },
+      "summary": {
+        "type": "string",
+        "description": "A brief narrative summary of the recommended models."
+      }
+    },
+    "required": ["models"],
+    "additionalProperties": true
+  }
+}

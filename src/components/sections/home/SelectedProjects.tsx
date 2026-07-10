@@ -1,84 +1,88 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { Link } from '@/i18n/navigation';
-import { featuredProjects } from '@/data/projects';
+import { ArrowRight } from 'lucide-react';
+import Link from '@/components/transition/TransitionLink';
+import { smoothEasing } from '@/lib/animations';
+
+const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
+const fade = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: smoothEasing } },
+};
+const mask = {
+  hidden: { y: '110%' },
+  visible: { y: '0%', transition: { duration: 0.9, ease: smoothEasing } },
+};
+const still = { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } };
+const stillMask = { hidden: { y: '0%' }, visible: { y: '0%' } };
 
 export default function SelectedProjects() {
   const t = useTranslations('Home.projects');
+  const reduceMotion = useReducedMotion();
+  const fadeVariant = reduceMotion ? still : fade;
+  const maskVariant = reduceMotion ? stillMask : mask;
 
   return (
-    <section className="bg-[var(--color-background-main)] py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 md:px-16">
-        {/* Header */}
-        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-mono mb-4 text-[var(--color-accent-clay-dark)]">{t('eyebrow')}</p>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[var(--color-text-main)]">
+    <section className="relative overflow-hidden bg-[var(--color-background-main)] py-24 [content-visibility:auto] md:py-36">
+      <div aria-hidden="true" data-depth="0" className="absolute inset-x-0 top-0 h-px bg-[rgba(58,90,64,0.18)]" />
+      <div
+        aria-hidden="true"
+        data-depth="1"
+        className="pointer-events-none absolute bottom-0 left-0 hidden h-28 w-full bg-[linear-gradient(180deg,transparent,rgba(227,227,220,0.45))] md:block"
+      />
+      <motion.div
+        aria-hidden="true"
+        data-depth="2"
+        initial={reduceMotion ? false : { opacity: 0, x: 36 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.9, ease: smoothEasing }}
+        className="pointer-events-none absolute right-0 top-1/2 hidden h-px w-[34vw] bg-[rgba(58,90,64,0.2)] md:block"
+      />
+
+      <motion.div
+        data-depth="4"
+        variants={wrap}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-[minmax(0,1fr)_360px] md:items-end md:px-16"
+      >
+        <div>
+          <motion.p variants={fadeVariant} className="text-mono mb-5 text-[var(--color-primary)]">
+            <span className="mr-3 text-2xl font-black leading-none text-[var(--color-accent-sage)]">02</span>
+            {t('eyebrow')}
+          </motion.p>
+
+          <span className="block overflow-hidden pb-[0.12em]">
+            <motion.h2
+              variants={maskVariant}
+              className="max-w-4xl font-display text-5xl leading-[0.96] tracking-tight text-[var(--color-text-main)] sm:text-6xl md:text-7xl"
+            >
               {t('title')}
-            </h2>
-            <p className="mt-4 text-lg font-light text-[var(--color-text-secondary)]">
-              {t('subtitle')}
-            </p>
-          </div>
+            </motion.h2>
+          </span>
+
+          <motion.p
+            variants={fadeVariant}
+            className="mt-7 max-w-2xl text-lg font-light leading-relaxed text-[var(--color-text-secondary)]"
+          >
+            {t('subtitle')}
+          </motion.p>
+        </div>
+
+        <motion.div variants={fadeVariant} className="md:justify-self-end">
           <Link
             href="/work"
-            className="group inline-flex items-center gap-2 text-mono text-[var(--color-primary)] hover:text-[var(--color-primary-dark)]"
+            className="group inline-flex min-h-12 cursor-pointer items-center gap-3 bg-[var(--color-primary)] px-7 py-4 text-mono text-white transition-colors duration-300 hover:bg-[var(--color-primary-dark)]"
           >
             {t('viewAll')}
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
-        </div>
-
-        {/* Project grid */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {featuredProjects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
-            >
-              <Link href={`/work/${project.id}`} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[var(--color-background-contrast)] shadow-[var(--shadow-sm)] transition-shadow duration-500 group-hover:shadow-[var(--shadow-xl)]">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} — ${project.category}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  />
-                  <span className="absolute bottom-4 right-4 flex items-center gap-1.5 rounded-full bg-[var(--color-accent-clay)] px-4 py-2 text-mono text-white opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    {t('viewCase')}
-                    <ArrowUpRight size={14} />
-                  </span>
-                </div>
-
-                <div className="mt-5 flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-[var(--color-text-main)]">
-                      {project.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
-                      {project.category}
-                    </p>
-                  </div>
-                  <span className="text-mono text-[var(--color-text-muted)]">{project.year}</span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

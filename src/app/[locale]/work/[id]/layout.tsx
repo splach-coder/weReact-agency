@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getProjectById } from '@/data/projects';
+import { siteConfig } from '@/config/site';
 
 export async function generateMetadata({
   params,
@@ -13,9 +14,13 @@ export async function generateMetadata({
     return { title: 'Case study' };
   }
 
+  const title = `${project.title} - ${project.category}`;
+  const image = `${siteConfig.url}${project.imageFull ?? project.image}`;
+
   return {
-    title: `${project.title} — ${project.category}`,
+    title,
     description: project.summary,
+    keywords: [project.title, project.category, 'website design Morocco', 'web agency Marrakech', 'case study'],
     alternates: {
       canonical: `/${locale}/work/${id}`,
       languages: {
@@ -26,9 +31,15 @@ export async function generateMetadata({
     },
     openGraph: {
       type: 'article',
-      title: `${project.title} — ${project.category}`,
+      title,
       description: project.summary,
-      images: [{ url: project.imageFull ?? project.image }],
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: project.summary,
+      images: [image],
     },
   };
 }

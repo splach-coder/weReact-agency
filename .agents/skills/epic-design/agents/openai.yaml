@@ -1,0 +1,4 @@
+interface:
+  display_name: "Epic Design"
+  short_description: "Cinematic scroll storytelling"
+  default_prompt: "Use $epic-design to plan a cinematic, brand-fit web experience without assuming a dark theme."

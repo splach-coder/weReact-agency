@@ -1,0 +1,40 @@
+{
+  "name": "collect_experience",
+  "description": "Parse the founder's professional experience into structured domain segments. Call after collecting interests to map the founder's background. Expects the founder's response about their work history and expertise areas.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "The founder's natural-language response about their work history and expertise areas."
+      },
+      "prior_experience": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ExperienceSegment"
+        },
+        "description": "Previously collected experience segments to merge with or refine."
+      }
+    },
+    "required": ["response"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/ExperienceSegment"
+        },
+        "description": "Structured experience segments extracted from the response."
+      },
+      "summary": {
+        "type": "string",
+        "description": "A brief narrative summary of the founder's experience."
+      }
+    },
+    "required": ["segments"],
+    "additionalProperties": true
+  }
+}

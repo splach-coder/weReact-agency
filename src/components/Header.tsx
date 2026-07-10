@@ -1,190 +1,211 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import Button from './Button';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import gsap from 'gsap';
+import Link from '@/components/transition/TransitionLink';
+import { getLenis } from '@/lib/lenis';
 import { siteConfig } from '@/config/site';
+import { trackLead } from '@/lib/analytics';
 
-const StaggeredMenu = dynamic(() => import('./StaggeredMenu'), { ssr: false });
-const CardNav = dynamic(() => import('./CardNav'), { ssr: false });
-import type { CardNavItem } from './CardNav';
-
+/**
+ * SOTD (exo-ape) style navigation, ported to weReact.
+ *
+ * A minimal fixed top bar — wordmark left, Menu/Close right, mix-blend-difference
+ * so it stays legible over both the dark hero and the light inner pages — that
+ * It opens a full-screen split overlay: hover-swapping creative brand imagery on the left,
+ * oversized word-reveal links on the right. Open/close + the staggered word
+ * reveal are driven by GSAP (ported from SOTD `hambMenu()`); links route through
+ * TransitionLink so the page-transition curtain plays. Honors reduced motion.
+ */
 export default function Header() {
-    const locale = useLocale();
-    const t = useTranslations('Nav');
-    const pathname = usePathname();
-    const [showCardNav, setShowCardNav] = useState(false);
+  const t = useTranslations('Nav');
+  const [open, setOpen] = useState(false);
+  const [activeImg, setActiveImg] = useState(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
-    // Check if we're on a page with green hero (Contact, About, Services, Work listing)
-    // Exclude individual case study pages (/work/[id])
-    const isGreenHeroPage = pathname?.includes('/contact') ||
-        pathname?.includes('/about') ||
-        pathname?.includes('/services') ||
-        pathname?.includes('/blog') ||
-        (pathname?.includes('/work') && !pathname?.match(/\/work\/[^/]+$/));
+  const links = [
+    { label: t('home'), href: '/', img: '/images/menu/menu-home.webp' },
+    { label: t('work'), href: '/work', img: '/images/menu/menu-work.webp' },
+    { label: t('blog'), href: '/blog', img: '/images/menu/menu-blog.webp' },
+    { label: t('contact'), href: '/contact', img: '/images/menu/menu-contact.webp' },
+  ];
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowCardNav(window.scrollY > 100);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  const socials = [
+    { label: 'Instagram', href: siteConfig.business.sameAs[0] },
+    { label: 'Facebook', href: siteConfig.business.facebook },
+  ];
 
-    const navItems = [
-        { label: t('about'), href: `/${locale}/about` },
-        { label: t('services'), href: `/${locale}/services` },
-        { label: t('work'), href: `/${locale}/work` },
-        { label: t('blog'), href: `/${locale}/blog` },
-    ];
+  // Open / close choreography.
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const words = overlay.querySelectorAll<HTMLElement>('.menu-word');
+    const fades = overlay.querySelectorAll<HTMLElement>('.menu-fade');
 
-    const cardNavItems: CardNavItem[] = [
-        {
-            label: 'Company',
-            bgColor: '#3A5A40',
-            textColor: '#ffffff',
-            links: [
-                { label: 'About', href: `/${locale}/about`, ariaLabel: 'About Us' },
-                { label: 'Contact', href: `/${locale}/contact`, ariaLabel: 'Contact' }
-            ]
-        },
-        {
-            label: 'Services',
-            bgColor: '#E3E3DC',
-            textColor: '#1A1A1A',
-            links: [
-                { label: 'Development', href: `/${locale}/services`, ariaLabel: 'Development Services' },
-                { label: 'Design', href: `/${locale}/services`, ariaLabel: 'Design Services' }
-            ]
-        },
-        {
-            label: 'Work',
-            bgColor: '#1A1A1A',
-            textColor: '#ffffff',
-            links: [
-                { label: 'Projects', href: `/${locale}/work`, ariaLabel: 'Recent Projects' },
-                { label: 'Case Studies', href: `/${locale}/work`, ariaLabel: 'Case Studies' }
-            ]
+    const ctx = gsap.context(() => {
+      if (open) {
+        getLenis()?.stop();
+        document.body.style.overflow = 'hidden';
+        if (reduce) {
+          gsap.set(overlay, { scaleY: 1, pointerEvents: 'auto' });
+          gsap.set(words, { yPercent: 0, y: 0, opacity: 1 });
+          gsap.set(fades, { y: 0, opacity: 1 });
+          return;
         }
-    ];
+        // fromTo with explicit start values — animating *from* a CSS scaleY(0)
+        // (a degenerate matrix) makes a plain .to() snap instead of tween.
+        gsap
+          .timeline()
+          .set(overlay, { pointerEvents: 'auto' })
+          .fromTo(overlay, { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: 'expo.inOut' })
+          .fromTo(
+            words,
+            { yPercent: 110, y: 0, opacity: 0 },
+            { yPercent: 0, y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'expo.out' },
+            '-=0.35'
+          )
+          .fromTo(
+            fades,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'power2.out' },
+            '-=0.5'
+          );
+      } else {
+        getLenis()?.start();
+        document.body.style.overflow = '';
+        if (reduce) {
+          gsap.set(overlay, { scaleY: 0, pointerEvents: 'none' });
+          return;
+        }
+        gsap
+          .timeline()
+          .to(words, { yPercent: 110, y: 0, opacity: 0, duration: 0.4, stagger: { each: 0.04, from: 'end' }, ease: 'expo.in' })
+          .to(fades, { opacity: 0, duration: 0.3 }, '<')
+          .to(overlay, { scaleY: 0, duration: 0.6, ease: 'expo.inOut' }, '-=0.1')
+          .set(overlay, { pointerEvents: 'none' });
+      }
+    }, overlay);
 
-    return (
-        <>
-            <AnimatePresence>
-                {!showCardNav && (
-                    <motion.header
-                        key="default-header"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20, transition: { duration: 0.3 } }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                        className="absolute top-0 left-0 w-full z-50 pt-3 px-6 block"
-                    >
-                        <div className="hidden md:grid max-w-[1300px] mx-auto grid-cols-3 items-center">
-                            {/* Left: Navigation */}
-                            <nav className="flex items-center gap-12 justify-start">
-                                {navItems.map((item) => (
-                                    <Link
-                                        key={item.label}
-                                        href={item.href}
-                                        className={`font-semibold text-xs tracking-widest uppercase transition-colors ${isGreenHeroPage
-                                            ? 'text-white hover:text-white/70'
-                                            : 'text-[var(--color-text-main)] hover:text-[var(--color-primary)]'
-                                            }`}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                ))}
-                            </nav>
+    return () => ctx.revert();
+  }, [open]);
 
-                            {/* Center: Logo */}
-                            <div className="flex justify-center">
-                                <Link
-                                    href={`/${locale}`}
-                                    className={`text-3xl font-black tracking-tighter mt-8 ${isGreenHeroPage ? 'text-white' : 'text-[var(--color-primary)]'
-                                        }`}
-                                >
-                                    -WeReact-
-                                </Link>
-                            </div>
+  // Reset overflow if unmounted while open.
+  useEffect(() => () => { document.body.style.overflow = ''; }, []);
 
-                            {/* Right: CTA (Desktop) */}
-                            <div className="justify-end hidden md:flex">
-                                <Link href={`/${locale}/contact`}>
-                                    <Button
-                                        variant="primary"
-                                        className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-none shadow-none ${isGreenHeroPage ? '!bg-[var(--color-background-main)] !text-[var(--color-primary)] hover:!bg-[var(--color-background-main)]/90' : ''
-                                            }`}
-                                    >
-                                        {t('startProject')}
-                                    </Button>
-                                </Link>
-                            </div>
-                        </div>
+  return (
+    <>
+      {/* Fixed top bar */}
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[105]">
+        <div className="mx-auto flex max-w-[95%] items-center justify-between py-8">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className={`pointer-events-auto text-2xl font-black tracking-tight transition-opacity hover:opacity-70 ${open ? 'text-white' : 'text-[var(--color-primary)]'}`}
+          >
+            &middot;wereact&middot;
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className={`text-mono pointer-events-auto cursor-pointer text-sm font-semibold uppercase tracking-widest transition-opacity hover:opacity-70 ${open ? 'text-white' : 'text-[var(--color-primary)]'}`}
+          >
+            {open ? t('close') : t('menu')}
+          </button>
+        </div>
+      </header>
 
-                        {/* Mobile Header Layout */}
-                        <div className="md:hidden w-full flex justify-between items-center h-full mt-2">
-                            {/* Left: Logo */}
-                            <Link href={`/${locale}`} className={`text-2xl font-black tracking-tighter z-50 relative pointer-events-auto leading-none flex items-center ${isGreenHeroPage ? 'text-white' : 'text-[var(--color-primary)]'
-                                }`}>
-                                -WeReact-
-                            </Link>
+      {/* Full-screen split overlay */}
+      <div
+        ref={overlayRef}
+        className="nav-panel-init pointer-events-none fixed inset-0 z-[100] origin-top overflow-hidden bg-[var(--color-primary-dark)]"
+      >
+        <div className="mx-auto flex h-full max-w-[1500px] flex-col items-center md:flex-row">
+          {/* Left: hover-swapping creative menu imagery (desktop) */}
+          <div className="hidden flex-1 items-center justify-center md:flex">
+            <div className="relative h-[70vh] w-[30vw] overflow-hidden rounded-[2px]">
+              {links.map((l, i) => (
+                <figure key={l.href} className="absolute inset-0">
+                  <Image
+                    src={l.img}
+                    alt=""
+                    fill
+                    sizes="30vw"
+                    className="object-cover"
+                    style={{
+                      transition: 'transform 0.8s ease, opacity 0.6s ease, filter 0.55s ease',
+                      transformOrigin: 'center',
+                      opacity: activeImg === i ? 1 : 0,
+                      transform: activeImg === i ? 'rotate(0deg) scale(1)' : 'rotate(-20deg) scale(1.5)',
+                      filter: activeImg === i ? 'grayscale(0) blur(0px)' : 'grayscale(1) blur(4px)',
+                    }}
+                  />
+                </figure>
+              ))}
+              {/* Reveal block — wipes up to uncover the imagery when the menu opens. */}
+              <div
+                aria-hidden
+                className="absolute inset-0 z-[5] origin-bottom bg-[var(--color-primary-dark)]"
+                style={{
+                  transform: open ? 'scaleY(0)' : 'scaleY(1)',
+                  transition: 'transform 0.7s cubic-bezier(0.76,0,0.24,1) 0.4s',
+                }}
+              />
+            </div>
+          </div>
 
-                            {/* Right: Menu */}
-                            <div className="relative h-10 w-10 flex items-center justify-center mr-2">
-                                <StaggeredMenu
-                                    items={[
-                                        { label: t('home'), ariaLabel: t('home'), link: `/${locale}/` },
-                                        { label: t('about'), ariaLabel: t('about'), link: `/${locale}/about` },
-                                        { label: t('services'), ariaLabel: t('services'), link: `/${locale}/services` },
-                                        { label: t('work'), ariaLabel: t('work'), link: `/${locale}/work` },
-                                        { label: t('blog'), ariaLabel: t('blog'), link: `/${locale}/blog` },
-                                        { label: t('contact'), ariaLabel: t('contact'), link: `/${locale}/contact` }
-                                    ]}
-                                    socialItems={[
-                                        { label: 'Facebook', link: siteConfig.business.facebook },
-                                        { label: 'Instagram', link: siteConfig.business.sameAs[0] },
-                                        { label: 'Twitter', link: siteConfig.business.sameAs[1] }
-                                    ]}
-                                    className="mobile-menu-override"
-                                    staticPosition={true}
-                                    menuButtonColor={isGreenHeroPage ? '#ffffff' : '#3A5A40'}
-                                />
-                            </div>
-                        </div>
-                    </motion.header>
-                )}
-            </AnimatePresence>
+          {/* Right: links + meta */}
+          <div className="flex flex-1 flex-col items-start justify-center gap-2 px-8 md:px-[6vw]">
+            <ul className="w-full">
+              {links.map((l, i) => (
+                <li key={l.href} className="overflow-hidden py-1">
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    onMouseEnter={() => setActiveImg(i)}
+                    className="menu-word nav-word-init block font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-[-0.02em] text-white transition-colors hover:text-[var(--color-accent-sage)]"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-            {/* Scroll Reveal Card Nav */}
-            <AnimatePresence>
-                {showCardNav && (
-                    <motion.div
-                        key="card-nav-wrapper"
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -100, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="fixed top-0 left-0 w-full z-[100] flex justify-center pointer-events-none"
-                    >
-                        <div className="pointer-events-auto w-full flex justify-center">
-                            <CardNav
-                                logo=""
-                                items={cardNavItems}
-                                baseColor="#ffffff"
-                                menuColor="#1A1A1A"
-                                buttonBgColor="#3A5A40"
-                                buttonTextColor="#ffffff"
-                                className="!relative !top-4 !left-auto !translate-x-0"
-                            />
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
-    );
+            {/* Socials */}
+            <ul className="menu-fade nav-fade-init mt-10 flex gap-8">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-mono text-sm uppercase tracking-widest text-white/70 transition-colors hover:text-white"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Bottom row */}
+            <div className="menu-fade nav-fade-init mt-8 flex flex-col gap-2">
+              <a
+                href={`mailto:${siteConfig.business.email}`}
+                onClick={() => trackLead('email', { page: 'menu', location: 'menu_email' })}
+                className="text-lg text-white/80 transition-colors hover:text-white"
+              >
+                {siteConfig.business.email}
+              </a>
+              <span className="text-mono text-xs uppercase tracking-widest text-[var(--color-accent-sage)]">
+                {t('menuTagline')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

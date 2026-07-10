@@ -10,6 +10,7 @@ type PageMetadataOptions = {
   type?: 'website' | 'article';
   publishedTime?: string;
   authors?: string[];
+  keywords?: string[];
 };
 
 export function createPageMetadata({
@@ -21,6 +22,7 @@ export function createPageMetadata({
   type = 'website',
   publishedTime,
   authors,
+  keywords = [],
 }: PageMetadataOptions): Metadata {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   const url = `${siteConfig.url}${normalizedPath}`;
@@ -29,6 +31,7 @@ export function createPageMetadata({
   return {
     title,
     description,
+    keywords: [...siteConfig.seo.keywords, ...keywords],
     alternates: {
       canonical: url,
       languages: Object.fromEntries(
@@ -60,12 +63,19 @@ export function createPageMetadata({
 }
 
 export function createServiceJsonLd() {
+  const areaServed = siteConfig.business.areaServed.map((area) => ({ '@type': 'Place', name: area }));
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${siteConfig.url}/#website-design-service`,
     name: 'Website design and development in Marrakech',
+    alternateName: ['Web agency Marrakech', 'Website designer Morocco', 'SEO-ready business websites'],
+    description: siteConfig.description,
+    serviceType: siteConfig.business.services,
+    category: siteConfig.business.category,
     provider: {
+      '@id': `${siteConfig.url}/#business`,
       '@type': 'ProfessionalService',
       name: siteConfig.business.legalName,
       url: siteConfig.url,
@@ -73,12 +83,27 @@ export function createServiceJsonLd() {
       email: siteConfig.business.email,
       address: {
         '@type': 'PostalAddress',
+        streetAddress: siteConfig.business.addressDisplay,
         addressLocality: siteConfig.business.city,
+        addressRegion: siteConfig.business.region,
         postalCode: siteConfig.business.postalCode,
         addressCountry: siteConfig.business.country,
       },
     },
-    areaServed: siteConfig.business.areaServed.map((area) => ({ '@type': 'Place', name: area })),
-    serviceType: siteConfig.business.services,
+    areaServed,
+    audience: siteConfig.seo.audience.map((audienceType) => ({ '@type': 'Audience', audienceType })),
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: `${siteConfig.url}/contact`,
+      servicePhone: siteConfig.business.phoneInternational,
+    },
+    offers: siteConfig.business.services.map((service) => ({
+      '@type': 'Offer',
+      name: service,
+      areaServed,
+      availability: 'https://schema.org/InStock',
+      priceCurrency: siteConfig.campaign.leadCurrency,
+      url: `${siteConfig.url}/contact`,
+    })),
   };
 }

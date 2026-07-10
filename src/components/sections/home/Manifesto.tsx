@@ -1,86 +1,129 @@
 'use client';
 
-import React, { useRef } from 'react';
-import Image from 'next/image';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, MotionValue, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { smoothEasing } from '@/lib/animations';
 
-// Parallax photo collage — calm version of the editorial "manifesto" beat.
-const COLLAGE = [
-  { src: '/images/projects/kasbah-angour.webp', className: 'left-[2%] top-[8%] w-[26%] md:w-[18%]', depth: 40 },
-  { src: '/images/projects/your-morocco.webp', className: 'right-[3%] top-[4%] w-[30%] md:w-[20%]', depth: 70 },
-  { src: '/images/projects/flying-tandem.webp', className: 'left-[8%] bottom-[6%] w-[28%] md:w-[19%]', depth: 90 },
-  { src: '/images/projects/by-marrakech.webp', className: 'right-[6%] bottom-[8%] w-[26%] md:w-[17%]', depth: 55 },
-];
+type ManifestoWordProps = {
+  text: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  reduceMotion: boolean;
+  isLast: boolean;
+};
 
-function CollageImage({
-  src,
-  className,
-  depth,
-  reduce,
-  progress,
-}: {
-  src: string;
-  className: string;
-  depth: number;
-  reduce: boolean;
-  progress: ReturnType<typeof useScroll>['scrollYProgress'];
-}) {
-  const y = useTransform(progress, [0, 1], [reduce ? 0 : depth, reduce ? 0 : -depth]);
+const enter = {
+  hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.75, ease: smoothEasing } },
+};
+
+const still = {
+  hidden: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+};
+
+function ManifestoWord({ text, index, total, progress, reduceMotion, isLast }: ManifestoWordProps) {
+  const start = Math.max(0, (index - 0.75) / total);
+  const end = Math.min(1, (index + 1.65) / total);
+  const clipPath = useTransform(
+    progress,
+    [start, end],
+    reduceMotion ? ['inset(0 0% 0 0)', 'inset(0 0% 0 0)'] : ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']
+  );
+  const fillOpacity = useTransform(progress, [start, end], reduceMotion ? [1, 1] : [0.72, 1]);
+  const wordContent = `${text}${isLast ? '' : '\u00a0'}`;
+
   return (
-    <motion.div
-      style={{ y }}
-      className={`pointer-events-none absolute overflow-hidden rounded-xl shadow-[var(--shadow-lg)] ${className}`}
-    >
-      <Image
-        src={src}
-        alt=""
-        width={400}
-        height={300}
-        className="h-full w-full object-cover opacity-90"
-      />
-    </motion.div>
+    <span className="relative inline-block overflow-hidden align-bottom text-[rgba(58,90,64,0.22)]">
+      <span>{wordContent}</span>
+      <motion.span
+        aria-hidden="true"
+        style={{ clipPath, opacity: fillOpacity }}
+        className="absolute inset-0 text-[var(--color-primary)]"
+      >
+        {wordContent}
+      </motion.span>
+    </span>
   );
 }
 
 export default function Manifesto() {
   const t = useTranslations('Home.manifesto');
-  const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion() ?? false;
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const reduceMotion = useReducedMotion() ?? false;
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+  const fillProgress = useTransform(scrollYProgress, [0.08, 0.72], [0, 1]);
+  const railScale = useTransform(scrollYProgress, [0.08, 0.72], [0, 1]);
+  const words = t('body').split(' ');
+  const activeEnter = reduceMotion ? still : enter;
 
   return (
     <section
-      ref={ref}
-      className="relative overflow-hidden bg-[var(--color-primary)] py-28 md:py-40 text-white"
+      id="belief"
+      ref={sectionRef}
+      data-scene="manifesto"
+      className={`relative isolate overflow-visible bg-[var(--color-background-main)] text-[var(--color-primary)] ${reduceMotion ? 'px-6 py-14 md:px-16 md:py-16' : 'min-h-[150vh]'}`}
     >
-      {/* Collage */}
-      <div aria-hidden="true" className="absolute inset-0 z-0 opacity-25 md:opacity-40">
-        {COLLAGE.map((c) => (
-          <CollageImage key={c.src} {...c} reduce={reduce} progress={scrollYProgress} />
-        ))}
-      </div>
+      <div aria-hidden="true" data-depth="0" className="absolute inset-0 -z-10 bg-[var(--color-background-main)]" />
+      <div
+        aria-hidden="true"
+        data-depth="1"
+        className="absolute left-1/2 top-1/2 -z-10 h-[min(34rem,calc(100vw-2rem))] w-[min(34rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(58,90,64,0.08)]"
+      />
 
-      {/* Statement */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-mono mb-8 text-[var(--color-accent-warm)]"
+      <div data-pin="belief" className={reduceMotion ? "" : "sticky top-[20vh] flex h-[60vh] items-center overflow-hidden px-6 md:px-16"}>
+        <motion.div
+          data-depth="4"
+          variants={activeEnter}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-110px' }}
+          className="mx-auto flex w-full max-w-4xl flex-col items-center text-center"
         >
-          {t('eyebrow')}
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7 }}
-          className="text-2xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight"
-        >
-          {t('body')}
-        </motion.p>
+          <motion.div
+            aria-hidden="true"
+            data-depth="5"
+            style={{ scaleX: railScale, transformOrigin: 'left center' }}
+            className="mb-8 h-px w-28 bg-[var(--color-accent-sage)] md:mb-10"
+          />
+
+          <p className="text-mono mb-7 flex items-center justify-center gap-2.5 text-[var(--color-primary)] md:mb-9">
+            <span className="inline-block h-1.5 w-1.5 bg-[var(--color-accent-sage)]" />
+            {t('eyebrow')}
+          </p>
+
+          <p
+            aria-label={t('body')}
+            className="font-display text-[clamp(1.55rem,3vw,3.15rem)] leading-[1.18] tracking-tight text-[var(--color-primary)]"
+          >
+            {words.map((word, index) => (
+              <ManifestoWord
+                key={`${word}-${index}`}
+                text={word}
+                index={index}
+                total={words.length}
+                progress={fillProgress}
+                reduceMotion={reduceMotion}
+                isLast={index === words.length - 1}
+              />
+            ))}
+          </p>
+
+          <motion.div
+            aria-hidden="true"
+            data-depth="2"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-120px' }}
+            transition={{ duration: 0.65, ease: smoothEasing }}
+            className="mt-9 h-1.5 w-1.5 bg-[var(--color-accent-sage)]"
+          />
+        </motion.div>
       </div>
     </section>
   );

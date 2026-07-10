@@ -1,4 +1,15 @@
 import localFont from 'next/font/local';
+import { Instrument_Serif } from 'next/font/google';
+
+// Elegant serif used for display headlines (the editorial reference look).
+export const instrumentSerif = Instrument_Serif({
+    weight: ['400'],
+    style: ['normal', 'italic'],
+    subsets: ['latin'],
+    variable: '--font-serif',
+    display: 'swap',
+    fallback: ['Georgia', 'Times New Roman', 'serif'],
+});
 
 export const nohemi = localFont({
     src: [

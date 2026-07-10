@@ -1,0 +1,37 @@
+{
+  "name": "evaluate_direction",
+  "description": "Refine a selected business direction, identify risks, and define next actions. Call after the founder selects one direction. Requires the chosen direction object.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "direction": {
+        "$ref": "shared_types.json#/$defs/Direction",
+        "description": "The business direction the founder selected."
+      },
+      "constraints": {
+        "type": "object",
+        "description": "The founder's business constraints, if available."
+      },
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's structured skill items, if available."
+      }
+    },
+    "required": ["direction"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "concept": {
+        "$ref": "shared_types.json#/$defs/RefinedConcept",
+        "description": "The refined concept with risks and next actions."
+      }
+    },
+    "required": ["concept"],
+    "additionalProperties": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "name": "evaluate_project",
+  "description": "Produce a structured viability assessment of the founder's business concept. Call after evaluating the selected direction to give the founder an honest go/no-go recommendation. Requires the refined concept and the founder's constraints.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "concept": {
+        "$ref": "shared_types.json#/$defs/RefinedConcept"
+      },
+      "constraints": {
+        "type": "object",
+        "properties": {
+          "budget": {
+            "type": "string",
+            "enum": ["bootstrap", "small", "medium", "funded"]
+          },
+          "time_commitment": {
+            "type": "string",
+            "enum": ["side_project", "part_time", "full_time"]
+          },
+          "risk_tolerance": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          }
+        },
+        "required": ["budget", "time_commitment", "risk_tolerance"],
+        "additionalProperties": false
+      },
+      "skills": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/SkillItem"
+        },
+        "description": "The founder's skills for assessing founder-market fit"
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/CustomerSegment"
+        },
+        "description": "Target customer segments for assessing market viability"
+      },
+      "business_models": {
+        "type": "array",
+        "items": {
+          "$ref": "shared_types.json#/$defs/BusinessModel"
+        },
+        "description": "Candidate business models for assessing revenue feasibility"
+      }
+    },
+    "required": ["concept", "constraints"],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "viability_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Overall viability score from 0 (do not pursue) to 1 (strong opportunity)"
+      },
+      "recommendation": {
+        "type": "string",
+        "enum": ["strong_go", "go", "conditional_go", "pivot", "no_go"],
+        "description": "Clear recommendation for the founder"
+      },
+      "strengths": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Key strengths of this business concept"
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Key weaknesses or concerns"
+      },
+      "founder_fit": {
+        "type": "string",
+        "description": "Assessment of how well this founder is positioned to execute this concept"
+      },
+      "market_opportunity": {
+        "type": "string",
+        "description": "Assessment of the market size and timing"
+      },
+      "key_assumptions": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Critical assumptions that must be validated before committing"
+      },
+      "suggested_validation_steps": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Concrete steps to validate the concept before investing significant resources"
+      },
+      "summary": {
+        "type": "string",
+        "description": "A frank 2-3 sentence assessment of the overall opportunity"
+      }
+    },
+    "required": ["viability_score", "recommendation", "strengths", "weaknesses", "key_assumptions"],
+    "additionalProperties": true
+  }
+}

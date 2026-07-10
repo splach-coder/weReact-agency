@@ -1,0 +1,77 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+ ⚠ Fast Refresh had to perform a full reload when ./src/components/transition/TransitionProvider.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/components/transition/TransitionProvider.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ./src/components/sections/home/WhatWeDo.tsx:128:19
+Parsing ecmascript source code failed
+[0m [90m 126 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 127 |[39m                 [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mdiv[33m>[39m
+[31m[1m>[22m[39m[90m 128 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m                   [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 129 |[39m
+ [90m     |[39m [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 130 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"mt-5 grid gap-px bg-[rgba(58,90,64,0.16)] md:grid-cols-2"[39m[33m>[39m
+ [90m     |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 131 |[39m               {items[33m.[39mmap((item[33m,[39m i) [33m=>[39m {
+ [90m 132 |[39m                 [36mconst[39m isActive [33m=[39m active [33m===[39m i[33m;[39m
+ [90m 133 |[39m                 [36mconst[39m [33mIcon[39m [33m=[39m [33mICONS[39m[i [33m%[39m [33mICONS[39m[33m.[39mlength][33m;[39m[0m
+
+Expected '</', got 'jsx text (
+
+            )'
+
+Import trace:
+  Server Component:
+    ./src/components/sections/home/WhatWeDo.tsx
+    ./src/app/[locale]/page.tsx
+
+
+ ⨯ ./src/components/sections/home/WhatWeDo.tsx:128:19
+Parsing ecmascript source code failed
+[0m [90m 126 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 127 |[39m                 [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mdiv[33m>[39m
+[31m[1m>[22m[39m[90m 128 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m                   [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 129 |[39m
+ [90m     |[39m [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 130 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"mt-5 grid gap-px bg-[rgba(58,90,64,0.16)] md:grid-cols-2"[39m[33m>[39m
+ [90m     |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 131 |[39m               {items[33m.[39mmap((item[33m,[39m i) [33m=>[39m {
+ [90m 132 |[39m                 [36mconst[39m isActive [33m=[39m active [33m===[39m i[33m;[39m
+ [90m 133 |[39m                 [36mconst[39m [33mIcon[39m [33m=[39m [33mICONS[39m[i [33m%[39m [33mICONS[39m[33m.[39mlength][33m;[39m[0m
+
+Expected '</', got 'jsx text (
+
+            )'
+
+Import trace:
+  Server Component:
+    ./src/components/sections/home/WhatWeDo.tsx
+    ./src/app/[locale]/page.tsx
+
+
+ ⨯ ./src/components/sections/home/WhatWeDo.tsx:128:19
+Parsing ecmascript source code failed
+[0m [90m 126 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 127 |[39m                 [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mdiv[33m>[39m
+[31m[1m>[22m[39m[90m 128 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m                   [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 129 |[39m
+ [90m     |[39m [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 130 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"mt-5 grid gap-px bg-[rgba(58,90,64,0.16)] md:grid-cols-2"[39m[33m>[39m
+ [90m     |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 131 |[39m               {items[33m.[39mmap((item[33m,[39m i) [33m=>[39m {
+ [90m 132 |[39m                 [36mconst[39m isActive [33m=[39m active [33m===[39m i[33m;[39m
+ [90m 133 |[39m                 [36mconst[39m [33mIcon[39m [33m=[39m [33mICONS[39m[i [33m%[39m [33mICONS[39m[33m.[39mlength][33m;[39m[0m
+
+Expected '</', got 'jsx text (
+
+            )'
+
+Import trace:
+  Server Component:
+    ./src/components/sections/home/WhatWeDo.tsx
+    ./src/app/[locale]/page.tsx
+
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
