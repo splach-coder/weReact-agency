@@ -74,7 +74,7 @@ if (staleBlogYears.length > 0) {
 const footerSource = readFileSync('src/components/Footer.tsx', 'utf8');
 const headerSource = readFileSync('src/components/Header.tsx', 'utf8');
 const contactPageSource = readFileSync('src/app/[locale]/contact/page.tsx', 'utf8');
-const homeContactSource = readFileSync('src/components/sections/Contact.tsx', 'utf8');
+const homeContactSource = readFileSync('src/components/sections/home/BookCall.tsx', 'utf8');
 
 if (/All rights reserved/.test(footerSource) && !/new Date\(\)\.getFullYear\(\)/.test(footerSource)) {
   throw new Error('Footer copyright year must use new Date().getFullYear().');
