@@ -67,7 +67,7 @@ export default function Manifesto() {
       id="belief"
       ref={sectionRef}
       data-scene="manifesto"
-      className={`relative isolate overflow-visible bg-[var(--color-background-main)] text-[var(--color-primary)] ${reduceMotion ? 'px-6 py-14 md:px-16 md:py-16' : 'min-h-[150vh]'}`}
+      className={`relative isolate overflow-visible bg-[var(--color-background-main)] text-[var(--color-primary)] ${reduceMotion ? 'px-6 py-14 md:px-16 md:py-16' : 'min-h-[128svh] md:min-h-[150vh]'}`}
     >
       <div aria-hidden="true" data-depth="0" className="absolute inset-0 -z-10 bg-[var(--color-background-main)]" />
       <div
@@ -76,7 +76,7 @@ export default function Manifesto() {
         className="absolute left-1/2 top-1/2 -z-10 h-[min(34rem,calc(100vw-2rem))] w-[min(34rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[rgba(58,90,64,0.08)]"
       />
 
-      <div data-pin="belief" className={reduceMotion ? "" : "sticky top-[20vh] flex h-[60vh] items-center overflow-hidden px-6 md:px-16"}>
+      <div data-pin="belief" className={reduceMotion ? "" : "sticky top-[14svh] flex h-[72svh] items-center overflow-hidden px-5 md:top-[20vh] md:h-[60vh] md:px-16"}>
         <motion.div
           data-depth="4"
           variants={activeEnter}
@@ -99,7 +99,7 @@ export default function Manifesto() {
 
           <p
             aria-label={t('body')}
-            className="font-display text-[clamp(1.55rem,3vw,3.15rem)] leading-[1.18] tracking-tight text-[var(--color-primary)]"
+            className="font-display text-[clamp(1.45rem,6.6vw,2rem)] leading-[1.22] tracking-tight md:text-[clamp(1.55rem,3vw,3.15rem)] md:leading-[1.18] text-[var(--color-primary)]"
           >
             {words.map((word, index) => (
               <ManifestoWord

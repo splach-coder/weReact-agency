@@ -25,7 +25,7 @@ export default function SelectedProjects() {
   const maskVariant = reduceMotion ? stillMask : mask;
 
   return (
-    <section className="relative overflow-hidden bg-[var(--color-background-main)] py-24 [content-visibility:auto] md:py-36">
+    <section className="relative overflow-hidden bg-[var(--color-background-main)] py-24 md:py-36">
       <div aria-hidden="true" data-depth="0" className="absolute inset-x-0 top-0 h-px bg-[rgba(58,90,64,0.18)]" />
       <div
         aria-hidden="true"

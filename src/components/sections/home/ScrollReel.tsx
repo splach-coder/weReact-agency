@@ -31,9 +31,13 @@ export default function ScrollReel() {
   useLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
     const ctx = gsap.context(() => {
-      gsap.set(mediaRef.current, { scale: 0.001, transformOrigin: '50% 50%', force3D: true });
+      gsap.set(mediaRef.current, isMobile
+        ? { scale: 1, yPercent: 82, transformOrigin: '50% 50%', force3D: true }
+        : { scale: 0.001, transformOrigin: '50% 50%', force3D: true },
+      );
       gsap.set([eyebrowRef.current, titleRef.current, captionRef.current], { autoAlpha: 0, y: 34 });
       gsap.set([leftRef.current, rightRef.current], { x: 0, y: 0, force3D: true });
 
@@ -41,7 +45,7 @@ export default function ScrollReel() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=270%',
+          end: isMobile ? '+=140%' : '+=270%',
           pin: panelRef.current,
           scrub: 1.05,
           anticipatePin: 1,
@@ -49,13 +53,15 @@ export default function ScrollReel() {
         },
       });
 
-      tl.to(mediaRef.current, { scale: 1, duration: 0.74, ease: 'power2.out', force3D: true }, 0)
-        .to([eyebrowRef.current, titleRef.current], { autoAlpha: 1, y: 0, duration: 0.28, ease: 'power2.out' }, 0.86)
-        .to(captionRef.current, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 0.98)
-        .to(leftRef.current, { x: '-14vw', y: '-4vh', duration: 0.46, ease: 'power1.inOut' }, 1.1)
-        .to(rightRef.current, { x: '14vw', y: '4vh', duration: 0.46, ease: 'power1.inOut' }, 1.1)
-        .to([eyebrowRef.current, titleRef.current, captionRef.current], { autoAlpha: 0, y: -20, duration: 0.32, ease: 'power2.inOut' }, 1.62)
-        .to({}, { duration: 0.56 });
+      tl.to(mediaRef.current, isMobile
+        ? { yPercent: 0, duration: 0.5, ease: 'power3.out', force3D: true }
+        : { scale: 1, duration: 0.74, ease: 'power2.out', force3D: true }, 0)
+        .to([eyebrowRef.current, titleRef.current], { autoAlpha: 1, y: 0, duration: 0.28, ease: 'power2.out' }, isMobile ? 0.58 : 0.86)
+        .to(captionRef.current, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }, isMobile ? 0.7 : 0.98)
+        .to(leftRef.current, { x: isMobile ? '-7vw' : '-14vw', y: isMobile ? '-2vh' : '-4vh', duration: 0.4, ease: 'power1.inOut' }, isMobile ? 0.82 : 1.1)
+        .to(rightRef.current, { x: isMobile ? '7vw' : '14vw', y: isMobile ? '2vh' : '4vh', duration: 0.4, ease: 'power1.inOut' }, isMobile ? 0.82 : 1.1)
+        .to([eyebrowRef.current, titleRef.current, captionRef.current], { autoAlpha: 0, y: -20, duration: 0.3, ease: 'power2.inOut' }, isMobile ? 1.36 : 1.62)
+        .to({}, { duration: isMobile ? 0.26 : 0.56 });
 
       ScrollTrigger.refresh();
     }, sectionRef);
@@ -65,7 +71,7 @@ export default function ScrollReel() {
 
   return (
     <section ref={sectionRef} className="relative bg-[var(--color-background-main)]">
-      <div ref={panelRef} className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      <div ref={panelRef} className="relative flex h-[82svh] w-full items-center justify-center overflow-hidden md:h-screen">
         <div ref={mediaRef} className="absolute inset-0 origin-center overflow-hidden will-change-transform transform-gpu">
           {MEDIA.map((media) => (
             <div key={media.src} className="absolute inset-0">
@@ -83,18 +89,18 @@ export default function ScrollReel() {
           <div aria-hidden className="absolute inset-0 bg-[rgba(16,26,18,0.46)]" />
         </div>
 
-        <span ref={eyebrowRef} className="text-mono absolute top-10 left-1/2 z-10 -translate-x-1/2 text-white/75">
+        <span ref={eyebrowRef} className="text-mono absolute top-7 left-1/2 z-10 -translate-x-1/2 text-center text-white/75 md:top-10">
           {t('eyebrow')}
         </span>
 
-        <h2 ref={titleRef} className="font-display relative z-10 flex items-center gap-[0.3em] whitespace-nowrap text-[clamp(2.4rem,8.5vw,7.5rem)] leading-none text-white drop-shadow-[0_2px_40px_rgba(0,0,0,0.45)]">
+        <h2 ref={titleRef} className="font-display relative z-10 flex flex-col items-center gap-0 px-5 text-center text-[clamp(2rem,10vw,3.2rem)] leading-[0.92] text-white drop-shadow-[0_2px_40px_rgba(0,0,0,0.45)] md:flex-row md:gap-[0.3em] md:px-0 md:text-left md:whitespace-nowrap md:text-[clamp(2.4rem,8.5vw,7.5rem)] md:leading-none">
           <span ref={leftRef} className="block">{t('titleLeft')}</span>
           <span ref={rightRef} className="block italic text-[var(--color-accent-sage)]">{t('titleRight')}</span>
         </h2>
 
         <p
           ref={captionRef}
-          className="absolute bottom-16 left-1/2 z-10 max-w-md -translate-x-1/2 px-6 text-center text-base font-light text-white/80"
+          className="absolute bottom-7 left-1/2 z-10 w-full max-w-md -translate-x-1/2 px-6 text-center text-sm leading-relaxed text-white/80 md:bottom-16 md:text-base"
         >
           {t('caption')}
         </p>

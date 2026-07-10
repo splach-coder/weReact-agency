@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -147,6 +147,110 @@ function IntroCopy({ t }: { t: ReturnType<typeof useTranslations<'Home.services'
   );
 }
 
+function useMobileLayout() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 767px)');
+    let frame = window.requestAnimationFrame(() => setIsMobile(media.matches));
+
+    const update = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => setIsMobile(media.matches));
+    };
+
+    media.addEventListener('change', update);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      media.removeEventListener('change', update);
+    };
+  }, []);
+
+  return isMobile;
+}
+
+function MobileWhatWeDo({
+  t,
+  items,
+  scenes,
+  reduceMotion,
+}: {
+  t: ReturnType<typeof useTranslations<'Home.services'>>;
+  items: ServiceItem[];
+  scenes: SceneMeta[];
+  reduceMotion: boolean;
+}) {
+  return (
+    <section
+      id="services"
+      data-scene="services"
+      className="relative overflow-hidden bg-[var(--color-background-main)] py-20 text-[var(--color-text-main)] md:hidden"
+    >
+      <motion.div
+        data-depth="4"
+        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={smooth}
+        className="px-6"
+      >
+        <p className="text-mono mb-5 flex items-center gap-3 text-[var(--color-primary)]">
+          <span className="text-xl font-black leading-none text-[var(--color-accent-sage)]">01</span>
+          <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)]" />
+          {t('eyebrow')}
+        </p>
+        <h2 className="max-w-[11ch] font-display text-4xl leading-[0.96] text-[var(--color-text-main)]">
+          {t('title')}
+        </h2>
+        <p className="mt-5 max-w-[32rem] text-base leading-relaxed text-[var(--color-text-secondary)]">
+          {t('subtitle')}
+        </p>
+      </motion.div>
+
+      <div className="mt-14 space-y-14">
+        {items.slice(0, scenes.length).map((item, index) => {
+          const scene = scenes[index] ?? SCENES[0];
+
+          return (
+            <motion.article
+              key={item.title}
+              data-depth="4"
+              initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: smoothEasing }}
+              className={`pb-10 ${index < Math.min(items.length, scenes.length) - 1 ? 'border-b border-[rgba(58,90,64,0.16)]' : ''}`}
+            >
+              <div data-depth="3" className="relative aspect-video overflow-hidden">
+                <Image
+                  src={scene.image}
+                  alt={scene.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+                <div
+                  data-depth="1"
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,32,22,0.02)_14%,rgba(18,32,22,0.76)_100%)]"
+                />
+                <div data-depth="4" className="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <div className="mb-3 flex items-center gap-3 text-mono text-white/78">
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)]" />
+                    <span>{scene.signal}</span>
+                  </div>
+                  <h3 className="max-w-[12ch] font-display text-3xl leading-[0.92]">{item.title}</h3>
+                </div>
+              </div>
+              <p className="px-6 pt-5 text-base leading-relaxed text-[var(--color-text-secondary)]">{item.text}</p>
+            </motion.article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
 function ServiceCopyLayer({
   item,
   scene,
@@ -221,6 +325,7 @@ export default function WhatWeDo() {
   const items = t.raw('items') as ServiceItem[];
   const sectionRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion() ?? false;
+  const isMobile = useMobileLayout();
   const sceneCount = Math.min(items.length, SCENES.length);
   const scenes = SCENES.slice(0, sceneCount);
   const { scrollYProgress } = useScroll({
@@ -236,6 +341,10 @@ export default function WhatWeDo() {
   const sceneProgress = useTransform(scrollYProgress, [SERVICE_START, SERVICE_END], [0, 1]);
   const serviceOpacity = useTransform(scrollYProgress, [SERVICE_START - 0.025, SERVICE_START + 0.045], [0, 1]);
   const serviceY = useTransform(scrollYProgress, [SERVICE_START - 0.025, SERVICE_START + 0.045], [28, 0]);
+
+  if (isMobile) {
+    return <MobileWhatWeDo t={t} items={items} scenes={scenes} reduceMotion={reduceMotion} />;
+  }
 
   return (
     <section
