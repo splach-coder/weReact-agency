@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/es/excursions/hammam-massage",
+  "index": 113,
+  "locale": "es",
+  "family": "excursions",
+  "slug": "hammam-massage",
+  "capturedAt": "2026-07-10T20:00:39.524Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5742
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Hammam & Spa"
+    },
+    {
+      "level": "h2",
+      "text": "La experiencia"
+    },
+    {
+      "level": "h3",
+      "text": "Reservar experiencia"
+    },
+    {
+      "level": "h2",
+      "text": "Otros viajes"
+    },
+    {
+      "level": "h2",
+      "text": "Listo para vivir Hammam & Massage?"
+    },
+    {
+      "level": "h2",
+      "text": "Lo que dicennuestros clientes"
+    },
+    {
+      "level": "h3",
+      "text": "Navegación"
+    },
+    {
+      "level": "h3",
+      "text": "Traslados y trayectos"
+    },
+    {
+      "level": "h3",
+      "text": "Contacto"
+    },
+    {
+      "level": "h3",
+      "text": "Excursiones desde Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Hammam & Spa",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "La experiencia",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Otros viajes",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Listo para vivir Hammam & Massage?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Lo que dicennuestros clientes",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Hammam & Massage | Just Luxury Transfers"
+}

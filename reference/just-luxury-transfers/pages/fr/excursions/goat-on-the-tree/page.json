@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/fr/excursions/goat-on-the-tree",
+  "index": 83,
+  "locale": "fr",
+  "family": "excursions",
+  "slug": "goat-on-the-tree",
+  "capturedAt": "2026-07-10T19:59:37.417Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5690
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Goat on the Tree"
+    },
+    {
+      "level": "h2",
+      "text": "L'expérience"
+    },
+    {
+      "level": "h3",
+      "text": "Réserver l'expérience"
+    },
+    {
+      "level": "h2",
+      "text": "Autres voyages"
+    },
+    {
+      "level": "h2",
+      "text": "Prêt à vivre Goats on Argan Trees?"
+    },
+    {
+      "level": "h2",
+      "text": "Ce que disentnos clients"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Transferts & trajets"
+    },
+    {
+      "level": "h3",
+      "text": "Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Excursions au départ d'Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Goat on the Tree",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "L'expérience",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Autres voyages",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Prêt à vivre Goats on Argan Trees?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Ce que disentnos clients",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Goats on Argan Trees Tour near Agadir — €30 | Just Luxury Transfers"
+}

@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/de/excursions/camel-riding",
+  "index": 164,
+  "locale": "de",
+  "family": "excursions",
+  "slug": "camel-riding",
+  "capturedAt": "2026-07-10T20:01:52.270Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5777
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Camel Riding"
+    },
+    {
+      "level": "h2",
+      "text": "Das Erlebnis"
+    },
+    {
+      "level": "h3",
+      "text": "Erlebnis buchen"
+    },
+    {
+      "level": "h2",
+      "text": "Weitere Touren"
+    },
+    {
+      "level": "h2",
+      "text": "Bereit für Camel Riding?"
+    },
+    {
+      "level": "h2",
+      "text": "Das sagenunsere Kunden"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Transfers & Strecken"
+    },
+    {
+      "level": "h3",
+      "text": "Kontakt"
+    },
+    {
+      "level": "h3",
+      "text": "Ausflüge ab Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Camel Riding",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "Das Erlebnis",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Weitere Touren",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Bereit für Camel Riding?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Das sagenunsere Kunden",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Camel Riding | Just Luxury Transfers"
+}

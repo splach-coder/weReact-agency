@@ -1,0 +1,136 @@
+{
+  "url": "https://www.justluxurytransfers.com/fr/transfers/agadir-taghazout",
+  "index": 69,
+  "locale": "fr",
+  "family": "transfers",
+  "slug": "agadir-taghazout",
+  "capturedAt": "2026-07-10T19:59:14.059Z",
+  "viewport": {
+    "width": 1280,
+    "height": 7179
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Agadir Airport → Taghazout"
+    },
+    {
+      "level": "h2",
+      "text": "Agadir → Taghazout Transfert"
+    },
+    {
+      "level": "h2",
+      "text": "Choisissez votre véhicule"
+    },
+    {
+      "level": "h3",
+      "text": "Sedan"
+    },
+    {
+      "level": "h3",
+      "text": "SUV"
+    },
+    {
+      "level": "h3",
+      "text": "Van"
+    },
+    {
+      "level": "h3",
+      "text": "Minivan"
+    },
+    {
+      "level": "h3",
+      "text": "Minibus"
+    },
+    {
+      "level": "h3",
+      "text": "VIP"
+    },
+    {
+      "level": "h2",
+      "text": "Le standard Luxe"
+    },
+    {
+      "level": "h2",
+      "text": "Questions fréquentes"
+    },
+    {
+      "level": "h2",
+      "text": "Vous pourriez aussi aimer"
+    },
+    {
+      "level": "h2",
+      "text": "Ce que disentnos clients"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Transferts & trajets"
+    },
+    {
+      "level": "h3",
+      "text": "Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Excursions au départ d'Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Agadir Airport → Taghazout",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "Agadir → Taghazout Transfert",
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Choisissez votre véhicule",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Le standard Luxe",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Questions fréquentes",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Ce que disentnos clients",
+      "id": "google-reviews-section",
+      "index": 7,
+      "label": null
+    }
+  ],
+  "title": "Transfert aéroport Agadir → Taghazout (dès 35 €) | Just Luxury Transfers"
+}

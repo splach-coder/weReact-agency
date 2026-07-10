@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/it/excursions/color-village-timlalin",
+  "index": 136,
+  "locale": "it",
+  "family": "excursions",
+  "slug": "color-village-timlalin",
+  "capturedAt": "2026-07-10T20:01:21.418Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5809
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Color Village Timlalin"
+    },
+    {
+      "level": "h2",
+      "text": "L'esperienza"
+    },
+    {
+      "level": "h3",
+      "text": "Prenota esperienza"
+    },
+    {
+      "level": "h2",
+      "text": "Altri viaggi"
+    },
+    {
+      "level": "h2",
+      "text": "Pronto a vivere Color Village (Aghroud) & Timlalin Dunes?"
+    },
+    {
+      "level": "h2",
+      "text": "Cosa diconoi nostri clienti"
+    },
+    {
+      "level": "h3",
+      "text": "Navigazione"
+    },
+    {
+      "level": "h3",
+      "text": "Transfer e percorsi"
+    },
+    {
+      "level": "h3",
+      "text": "Contatti"
+    },
+    {
+      "level": "h3",
+      "text": "Escursioni da Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Color Village Timlalin",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "L'esperienza",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Altri viaggi",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Pronto a vivere Color Village (Aghroud) & Timlalin Dunes?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Cosa diconoi nostri clienti",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Color Village (Aghroud) & Timlalin Dunes — €30 Trip | Just Luxury Transfers"
+}

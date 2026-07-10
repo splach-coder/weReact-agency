@@ -1,0 +1,154 @@
+{
+  "url": "https://www.justluxurytransfers.com/excursions/agadir-souk-visit",
+  "index": 19,
+  "locale": "en",
+  "family": "excursions",
+  "slug": "agadir-souk-visit",
+  "capturedAt": "2026-07-10T19:58:18.436Z",
+  "viewport": {
+    "width": 1280,
+    "height": 8630
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Agadir Souk"
+    },
+    {
+      "level": "h2",
+      "text": "The Experience"
+    },
+    {
+      "level": "h2",
+      "text": "Journey Itinerary"
+    },
+    {
+      "level": "h3",
+      "text": "Premium Inclusions"
+    },
+    {
+      "level": "h3",
+      "text": "Exclusions"
+    },
+    {
+      "level": "h3",
+      "text": "Book Experience"
+    },
+    {
+      "level": "h2",
+      "text": "Frequently Asked Questions"
+    },
+    {
+      "level": "h3",
+      "text": "What is Souk El Had?"
+    },
+    {
+      "level": "h3",
+      "text": "When is Souk El Had open?"
+    },
+    {
+      "level": "h3",
+      "text": "Is hotel pickup included?"
+    },
+    {
+      "level": "h2",
+      "text": "Other Journeys"
+    },
+    {
+      "level": "h2",
+      "text": "Ready to Experience Agadir Souk El Had?"
+    },
+    {
+      "level": "h2",
+      "text": "What OurClients Say"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Airport & Transfer Routes"
+    },
+    {
+      "level": "h3",
+      "text": "Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Excursions from Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Agadir Souk",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "The Experience",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "Journey Itinerary",
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Premium Inclusions",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Frequently Asked Questions",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 7,
+      "label": null
+    },
+    {
+      "heading": "Other Journeys",
+      "id": null,
+      "index": 8,
+      "label": null
+    },
+    {
+      "heading": "Ready to Experience Agadir Souk El Had?",
+      "id": null,
+      "index": 9,
+      "label": null
+    },
+    {
+      "heading": "What OurClients Say",
+      "id": "google-reviews-section",
+      "index": 10,
+      "label": null
+    }
+  ],
+  "title": "Souk El Had Agadir — Guided Market Tour €20 | Just Luxury Transfers"
+}

@@ -1,0 +1,112 @@
+{
+  "url": "https://www.justluxurytransfers.com/es/excursions",
+  "index": 94,
+  "locale": "es",
+  "family": "excursions",
+  "slug": "index",
+  "capturedAt": "2026-07-10T19:59:48.706Z",
+  "viewport": {
+    "width": 1280,
+    "height": 9969
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Excursiones de Agadir"
+    },
+    {
+      "level": "h2",
+      "text": "ParadiseValley"
+    },
+    {
+      "level": "h2",
+      "text": "Descubra nuestra colección"
+    },
+    {
+      "level": "h2",
+      "text": "Su viaje, sus reglas."
+    },
+    {
+      "level": "h2",
+      "text": "Nuestro proceso de conserjería"
+    },
+    {
+      "level": "h2",
+      "text": "¿Listo para explorar Marruecos?"
+    },
+    {
+      "level": "h2",
+      "text": "Lo que dicennuestros clientes"
+    },
+    {
+      "level": "h3",
+      "text": "Navegación"
+    },
+    {
+      "level": "h3",
+      "text": "Traslados y trayectos"
+    },
+    {
+      "level": "h3",
+      "text": "Contacto"
+    },
+    {
+      "level": "h3",
+      "text": "Excursiones desde Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Excursiones de Agadir",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "ParadiseValley",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "Descubra nuestra colección",
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Su viaje, sus reglas.",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Nuestro proceso de conserjería",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "¿Listo para explorar Marruecos?",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Lo que dicennuestros clientes",
+      "id": "google-reviews-section",
+      "index": 7,
+      "label": null
+    }
+  ],
+  "title": "Excursiones y escapadas de un día desde Agadir | Just Luxury Transfers"
+}

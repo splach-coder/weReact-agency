@@ -1,0 +1,162 @@
+{
+  "url": "https://www.justluxurytransfers.com/terms",
+  "index": 9,
+  "locale": "en",
+  "family": "terms",
+  "slug": "index",
+  "capturedAt": "2026-07-10T19:56:35.486Z",
+  "viewport": {
+    "width": 1280,
+    "height": 4919
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Terms of Service"
+    },
+    {
+      "level": "h2",
+      "text": "1. About Us"
+    },
+    {
+      "level": "h2",
+      "text": "2. Booking Process"
+    },
+    {
+      "level": "h2",
+      "text": "3. Pricing & Payment"
+    },
+    {
+      "level": "h2",
+      "text": "4. Cancellation & Modification"
+    },
+    {
+      "level": "h3",
+      "text": "Cancellations by the Client"
+    },
+    {
+      "level": "h3",
+      "text": "Modifications"
+    },
+    {
+      "level": "h3",
+      "text": "Cancellations by Just Luxury Transfers"
+    },
+    {
+      "level": "h2",
+      "text": "5. Client Responsibilities"
+    },
+    {
+      "level": "h2",
+      "text": "6. Limitation of Liability"
+    },
+    {
+      "level": "h2",
+      "text": "7. Force Majeure"
+    },
+    {
+      "level": "h2",
+      "text": "8. Excursions"
+    },
+    {
+      "level": "h2",
+      "text": "9. Governing Law & Disputes"
+    },
+    {
+      "level": "h2",
+      "text": "10. Changes to These Terms"
+    },
+    {
+      "level": "h2",
+      "text": "11. Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Airport & Transfer Routes"
+    },
+    {
+      "level": "h3",
+      "text": "Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Excursions from Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "1. About Us",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": "2. Booking Process",
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "3. Pricing & Payment",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "4. Cancellation & Modification",
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "5. Client Responsibilities",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "6. Limitation of Liability",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "7. Force Majeure",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "8. Excursions",
+      "id": null,
+      "index": 7,
+      "label": null
+    },
+    {
+      "heading": "9. Governing Law & Disputes",
+      "id": null,
+      "index": 8,
+      "label": null
+    },
+    {
+      "heading": "10. Changes to These Terms",
+      "id": null,
+      "index": 9,
+      "label": null
+    },
+    {
+      "heading": "11. Contact",
+      "id": null,
+      "index": 10,
+      "label": null
+    }
+  ],
+  "title": "Terms of Service | Just Luxury Transfers"
+}

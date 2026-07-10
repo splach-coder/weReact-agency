@@ -1,0 +1,336 @@
+{
+  "url": "https://www.justluxurytransfers.com/it",
+  "index": 121,
+  "locale": "it",
+  "family": "home",
+  "slug": "home",
+  "capturedAt": "2026-07-10T20:00:59.085Z",
+  "viewport": {
+    "width": 1280,
+    "height": 11323
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Transfer privati premium ad Agadir"
+    },
+    {
+      "level": "h2",
+      "text": "Scegli la tua esperienza"
+    },
+    {
+      "level": "h3",
+      "text": "Transfer aeroportuali"
+    },
+    {
+      "level": "h3",
+      "text": "La nostra flotta d'élite"
+    },
+    {
+      "level": "h3",
+      "text": "Escursioni private"
+    },
+    {
+      "level": "h2",
+      "text": "Percorsi di transfer popolari"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Airport City Center"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Airport Taghazout"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Airport Marrakech"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Airport Essaouira"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Airport Taroudant"
+    },
+    {
+      "level": "h3",
+      "text": "Taghazout Marrakech"
+    },
+    {
+      "level": "h2",
+      "text": "Flotta d'élite"
+    },
+    {
+      "level": "h3",
+      "text": "Mercedes E-Class"
+    },
+    {
+      "level": "h3",
+      "text": "Mercedes Vito"
+    },
+    {
+      "level": "h3",
+      "text": "Skoda Superb"
+    },
+    {
+      "level": "h3",
+      "text": "Skoda Kodiaq"
+    },
+    {
+      "level": "h3",
+      "text": "Ford Tourneo Custom"
+    },
+    {
+      "level": "h3",
+      "text": "Renault Trafic"
+    },
+    {
+      "level": "h3",
+      "text": "Mercedes Sprinter"
+    },
+    {
+      "level": "h3",
+      "text": "Volkswagen Crafter"
+    },
+    {
+      "level": "h3",
+      "text": "Toyota Land Cruiser"
+    },
+    {
+      "level": "h3",
+      "text": "La fiducia dei principali partner di viaggio"
+    },
+    {
+      "level": "h2",
+      "text": "Esperienze su misura"
+    },
+    {
+      "level": "h3",
+      "text": "Paradise Valley"
+    },
+    {
+      "level": "h3",
+      "text": "Safari Desert — Mini Sahara"
+    },
+    {
+      "level": "h3",
+      "text": "Marrakech Day Trip"
+    },
+    {
+      "level": "h3",
+      "text": "Essaouira Day Trip"
+    },
+    {
+      "level": "h3",
+      "text": "Taroudant & Tioute"
+    },
+    {
+      "level": "h3",
+      "text": "Quad Bike Adventure"
+    },
+    {
+      "level": "h3",
+      "text": "Buggy Adventure"
+    },
+    {
+      "level": "h3",
+      "text": "Legzira Beach & Tiznit Day Trip"
+    },
+    {
+      "level": "h3",
+      "text": "Horse Riding on the Beach"
+    },
+    {
+      "level": "h3",
+      "text": "Camel Riding"
+    },
+    {
+      "level": "h3",
+      "text": "Fantasia Berber Night Show"
+    },
+    {
+      "level": "h3",
+      "text": "Hammam & Massage"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Boat Trip"
+    },
+    {
+      "level": "h3",
+      "text": "Sandboarding"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir City Tour"
+    },
+    {
+      "level": "h3",
+      "text": "Color Village (Aghroud) & Timlalin Dunes"
+    },
+    {
+      "level": "h3",
+      "text": "Goats on Argan Trees"
+    },
+    {
+      "level": "h3",
+      "text": "Crocoparc Agadir"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Souk El Had"
+    },
+    {
+      "level": "h3",
+      "text": "Agadir Medina Polizzi"
+    },
+    {
+      "level": "h3",
+      "text": "Le parole del CEO"
+    },
+    {
+      "level": "h2",
+      "text": "Perché sceglierci"
+    },
+    {
+      "level": "h3",
+      "text": "Con licenza e assicurato"
+    },
+    {
+      "level": "h3",
+      "text": "Arrivo puntuale"
+    },
+    {
+      "level": "h3",
+      "text": "Autisti esperti"
+    },
+    {
+      "level": "h3",
+      "text": "Assistenza 24/7"
+    },
+    {
+      "level": "h2",
+      "text": "Domandefrequenti"
+    },
+    {
+      "level": "h3",
+      "text": "Il prezzo è per veicolo o per persona?"
+    },
+    {
+      "level": "h3",
+      "text": "I vostri transfer sono privati?"
+    },
+    {
+      "level": "h3",
+      "text": "Monitorate i voli in ritardo?"
+    },
+    {
+      "level": "h3",
+      "text": "L'attesa è gratuita?"
+    },
+    {
+      "level": "h3",
+      "text": "Offrite seggiolini per bambini?"
+    },
+    {
+      "level": "h3",
+      "text": "Si può pagare in contanti?"
+    },
+    {
+      "level": "h3",
+      "text": "Che veicolo avrò?"
+    },
+    {
+      "level": "h2",
+      "text": "Pronto a partire?"
+    },
+    {
+      "level": "h2",
+      "text": "Cosa diconoi nostri clienti"
+    },
+    {
+      "level": "h3",
+      "text": "Navigazione"
+    },
+    {
+      "level": "h3",
+      "text": "Transfer e percorsi"
+    },
+    {
+      "level": "h3",
+      "text": "Contatti"
+    },
+    {
+      "level": "h3",
+      "text": "Escursioni da Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Transfer privati premium ad Agadir",
+      "id": "hero",
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": "Scegli la tua esperienza",
+      "id": "journey",
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "Percorsi di transfer popolari",
+      "id": "routes",
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "Flotta d'élite",
+      "id": "fleet",
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "La fiducia dei principali partner di viaggio",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Esperienze su misura",
+      "id": "experiences",
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Perché sceglierci",
+      "id": "why-us",
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Domandefrequenti",
+      "id": "faq",
+      "index": 7,
+      "label": null
+    },
+    {
+      "heading": "Pronto a partire?",
+      "id": null,
+      "index": 8,
+      "label": null
+    },
+    {
+      "heading": "Cosa diconoi nostri clienti",
+      "id": "google-reviews-section",
+      "index": 9,
+      "label": null
+    }
+  ],
+  "title": "Transfer privati ed escursioni di lusso ad Agadir | Just Luxury Transfers"
+}

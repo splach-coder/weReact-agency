@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/it/excursions/essaouira-day-trip",
+  "index": 139,
+  "locale": "it",
+  "family": "excursions",
+  "slug": "essaouira-day-trip",
+  "capturedAt": "2026-07-10T20:01:24.333Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5777
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Essaouira Day Trip"
+    },
+    {
+      "level": "h2",
+      "text": "L'esperienza"
+    },
+    {
+      "level": "h3",
+      "text": "Prenota esperienza"
+    },
+    {
+      "level": "h2",
+      "text": "Altri viaggi"
+    },
+    {
+      "level": "h2",
+      "text": "Pronto a vivere Essaouira Day Trip?"
+    },
+    {
+      "level": "h2",
+      "text": "Cosa diconoi nostri clienti"
+    },
+    {
+      "level": "h3",
+      "text": "Navigazione"
+    },
+    {
+      "level": "h3",
+      "text": "Transfer e percorsi"
+    },
+    {
+      "level": "h3",
+      "text": "Contatti"
+    },
+    {
+      "level": "h3",
+      "text": "Escursioni da Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Essaouira Day Trip",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "L'esperienza",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Altri viaggi",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Pronto a vivere Essaouira Day Trip?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Cosa diconoi nostri clienti",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Essaouira Day Trip from Agadir — €40 with Hotel Pickup | Just Luxury Transfers"
+}

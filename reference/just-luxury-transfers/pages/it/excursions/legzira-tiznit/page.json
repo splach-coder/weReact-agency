@@ -1,0 +1,120 @@
+{
+  "url": "https://www.justluxurytransfers.com/it/excursions/legzira-tiznit",
+  "index": 144,
+  "locale": "it",
+  "family": "excursions",
+  "slug": "legzira-tiznit",
+  "capturedAt": "2026-07-10T20:01:29.348Z",
+  "viewport": {
+    "width": 1280,
+    "height": 6507
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Legzira & Tiznit"
+    },
+    {
+      "level": "h2",
+      "text": "L'esperienza"
+    },
+    {
+      "level": "h3",
+      "text": "Prenota esperienza"
+    },
+    {
+      "level": "h2",
+      "text": "Domande frequenti"
+    },
+    {
+      "level": "h3",
+      "text": "Cosa ha di speciale la spiaggia di Legzira?"
+    },
+    {
+      "level": "h3",
+      "text": "Quanto dista Legzira da Agadir?"
+    },
+    {
+      "level": "h2",
+      "text": "Altri viaggi"
+    },
+    {
+      "level": "h2",
+      "text": "Pronto a vivere Legzira Beach & Tiznit Day Trip?"
+    },
+    {
+      "level": "h2",
+      "text": "Cosa diconoi nostri clienti"
+    },
+    {
+      "level": "h3",
+      "text": "Navigazione"
+    },
+    {
+      "level": "h3",
+      "text": "Transfer e percorsi"
+    },
+    {
+      "level": "h3",
+      "text": "Contatti"
+    },
+    {
+      "level": "h3",
+      "text": "Escursioni da Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Legzira & Tiznit",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "L'esperienza",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Domande frequenti",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Altri viaggi",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Pronto a vivere Legzira Beach & Tiznit Day Trip?",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Cosa diconoi nostri clienti",
+      "id": "google-reviews-section",
+      "index": 7,
+      "label": null
+    }
+  ],
+  "title": "Spiaggia di Legzira e Tiznit da Agadir (45 €/pers) | Just Luxury Transfers"
+}

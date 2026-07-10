@@ -1,0 +1,120 @@
+{
+  "url": "https://www.justluxurytransfers.com/de/excursions/paradise-valley",
+  "index": 175,
+  "locale": "de",
+  "family": "excursions",
+  "slug": "paradise-valley",
+  "capturedAt": "2026-07-10T20:02:03.049Z",
+  "viewport": {
+    "width": 1280,
+    "height": 6494
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Paradise Valley"
+    },
+    {
+      "level": "h2",
+      "text": "Das Erlebnis"
+    },
+    {
+      "level": "h3",
+      "text": "Erlebnis buchen"
+    },
+    {
+      "level": "h2",
+      "text": "Häufige Fragen"
+    },
+    {
+      "level": "h3",
+      "text": "Wo liegt Paradise Valley und wie weit ist es von Agadir?"
+    },
+    {
+      "level": "h3",
+      "text": "Kann man in Paradise Valley schwimmen?"
+    },
+    {
+      "level": "h2",
+      "text": "Weitere Touren"
+    },
+    {
+      "level": "h2",
+      "text": "Bereit für Paradise Valley?"
+    },
+    {
+      "level": "h2",
+      "text": "Das sagenunsere Kunden"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Transfers & Strecken"
+    },
+    {
+      "level": "h3",
+      "text": "Kontakt"
+    },
+    {
+      "level": "h3",
+      "text": "Ausflüge ab Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Paradise Valley",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "Das Erlebnis",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Häufige Fragen",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Weitere Touren",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Bereit für Paradise Valley?",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Das sagenunsere Kunden",
+      "id": "google-reviews-section",
+      "index": 7,
+      "label": null
+    }
+  ],
+  "title": "Paradise Valley ab Agadir (25 €/Pers.) | Just Luxury Transfers"
+}

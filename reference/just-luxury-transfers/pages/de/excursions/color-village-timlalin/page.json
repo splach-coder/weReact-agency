@@ -1,0 +1,102 @@
+{
+  "url": "https://www.justluxurytransfers.com/de/excursions/color-village-timlalin",
+  "index": 165,
+  "locale": "de",
+  "family": "excursions",
+  "slug": "color-village-timlalin",
+  "capturedAt": "2026-07-10T20:01:53.448Z",
+  "viewport": {
+    "width": 1280,
+    "height": 5838
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Color Village Timlalin"
+    },
+    {
+      "level": "h2",
+      "text": "Das Erlebnis"
+    },
+    {
+      "level": "h3",
+      "text": "Erlebnis buchen"
+    },
+    {
+      "level": "h2",
+      "text": "Weitere Touren"
+    },
+    {
+      "level": "h2",
+      "text": "Bereit für Color Village (Aghroud) & Timlalin Dunes?"
+    },
+    {
+      "level": "h2",
+      "text": "Das sagenunsere Kunden"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Transfers & Strecken"
+    },
+    {
+      "level": "h3",
+      "text": "Kontakt"
+    },
+    {
+      "level": "h3",
+      "text": "Ausflüge ab Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Color Village Timlalin",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "Das Erlebnis",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Weitere Touren",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Bereit für Color Village (Aghroud) & Timlalin Dunes?",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Das sagenunsere Kunden",
+      "id": "google-reviews-section",
+      "index": 6,
+      "label": null
+    }
+  ],
+  "title": "Color Village (Aghroud) & Timlalin Dunes — €30 Trip | Just Luxury Transfers"
+}

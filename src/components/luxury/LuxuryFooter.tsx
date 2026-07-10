@@ -1,0 +1,42 @@
+import Link from 'next/link';
+import { ArrowUpRight, Instagram, Mail, MessageCircle } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+
+export default function LuxuryFooter({ locale }: { locale: string }) {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="luxury-footer">
+      <div className="luxury-container">
+        <div className="luxury-footer__top">
+          <div>
+            <span className="luxury-kicker">Marrakech / Morocco</span>
+            <h2>Arrive in Marrakech. Travel Morocco beautifully.</h2>
+          </div>
+          <Link className="luxury-button" href={`/${locale}/book`}>Plan your journey <ArrowUpRight size={15} /></Link>
+        </div>
+        <div className="luxury-footer__grid">
+          <div className="luxury-footer__column">
+            <h3>Explore</h3>
+            <Link href={`/${locale}/transfers`}>Marrakech transfers</Link>
+            <Link href={`/${locale}/fleet`}>Our fleet</Link>
+            <Link href={`/${locale}/excursions`}>Excursions</Link>
+            <Link href={`/${locale}/blog`}>Travel guides</Link>
+          </div>
+          <div className="luxury-footer__column">
+            <h3>Connect</h3>
+            <a href={siteConfig.business.whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={14} /> WhatsApp</a>
+            <a href={`mailto:${siteConfig.business.email}`}><Mail size={14} /> {siteConfig.business.email}</a>
+            <a href={siteConfig.business.instagram} target="_blank" rel="noreferrer"><Instagram size={14} /> Instagram</a>
+          </div>
+          <div className="luxury-footer__column">
+            <h3>Based in</h3>
+            <p>Marrakech, Morocco</p>
+            <p>{siteConfig.business.hoursDisplay}</p>
+            <a href={`tel:${siteConfig.business.phoneTel}`}>{siteConfig.business.phoneDisplay}</a>
+          </div>
+        </div>
+        <div className="luxury-footer__bottom"><span>Copyright {year} Just Luxury Transfers</span><span>Marrakech - Morocco</span></div>
+      </div>
+    </footer>
+  );
+}

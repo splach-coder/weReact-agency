@@ -1,0 +1,132 @@
+{
+  "url": "https://www.justluxurytransfers.com/excursions/horse-riding",
+  "index": 29,
+  "locale": "en",
+  "family": "excursions",
+  "slug": "horse-riding",
+  "capturedAt": "2026-07-10T19:58:29.108Z",
+  "viewport": {
+    "width": 1280,
+    "height": 7881
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Horse Riding"
+    },
+    {
+      "level": "h2",
+      "text": "The Experience"
+    },
+    {
+      "level": "h2",
+      "text": "Journey Itinerary"
+    },
+    {
+      "level": "h3",
+      "text": "Premium Inclusions"
+    },
+    {
+      "level": "h3",
+      "text": "Exclusions"
+    },
+    {
+      "level": "h3",
+      "text": "Book Experience"
+    },
+    {
+      "level": "h2",
+      "text": "Other Journeys"
+    },
+    {
+      "level": "h2",
+      "text": "Ready to Experience Horse Riding on the Beach?"
+    },
+    {
+      "level": "h2",
+      "text": "What OurClients Say"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Airport & Transfer Routes"
+    },
+    {
+      "level": "h3",
+      "text": "Contact"
+    },
+    {
+      "level": "h3",
+      "text": "Excursions from Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Horse Riding",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "The Experience",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": "Journey Itinerary",
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Premium Inclusions",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Other Journeys",
+      "id": null,
+      "index": 7,
+      "label": null
+    },
+    {
+      "heading": "Ready to Experience Horse Riding on the Beach?",
+      "id": null,
+      "index": 8,
+      "label": null
+    },
+    {
+      "heading": "What OurClients Say",
+      "id": "google-reviews-section",
+      "index": 9,
+      "label": null
+    }
+  ],
+  "title": "Horse Riding on Agadir Beach — €30, 2-Hour Ride | Just Luxury Transfers"
+}

@@ -1,0 +1,120 @@
+{
+  "url": "https://www.justluxurytransfers.com/es/excursions/agadir-medina-visit",
+  "index": 103,
+  "locale": "es",
+  "family": "excursions",
+  "slug": "agadir-medina-visit",
+  "capturedAt": "2026-07-10T20:00:29.363Z",
+  "viewport": {
+    "width": 1280,
+    "height": 6440
+  },
+  "screenshots": [
+    "full-page.jpg"
+  ],
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Agadir Medina"
+    },
+    {
+      "level": "h2",
+      "text": "La experiencia"
+    },
+    {
+      "level": "h3",
+      "text": "Reservar experiencia"
+    },
+    {
+      "level": "h2",
+      "text": "Preguntas frecuentes"
+    },
+    {
+      "level": "h3",
+      "text": "¿Qué es la Medina de Agadir (Polizzi)?"
+    },
+    {
+      "level": "h3",
+      "text": "¿Es adecuada para familias?"
+    },
+    {
+      "level": "h2",
+      "text": "Otros viajes"
+    },
+    {
+      "level": "h2",
+      "text": "Listo para vivir Agadir Medina Polizzi?"
+    },
+    {
+      "level": "h2",
+      "text": "Lo que dicennuestros clientes"
+    },
+    {
+      "level": "h3",
+      "text": "Navegación"
+    },
+    {
+      "level": "h3",
+      "text": "Traslados y trayectos"
+    },
+    {
+      "level": "h3",
+      "text": "Contacto"
+    },
+    {
+      "level": "h3",
+      "text": "Excursiones desde Agadir"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Agadir Medina",
+      "id": null,
+      "index": 0,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 1,
+      "label": null
+    },
+    {
+      "heading": "La experiencia",
+      "id": null,
+      "index": 2,
+      "label": null
+    },
+    {
+      "heading": null,
+      "id": null,
+      "index": 3,
+      "label": null
+    },
+    {
+      "heading": "Preguntas frecuentes",
+      "id": null,
+      "index": 4,
+      "label": null
+    },
+    {
+      "heading": "Otros viajes",
+      "id": null,
+      "index": 5,
+      "label": null
+    },
+    {
+      "heading": "Listo para vivir Agadir Medina Polizzi?",
+      "id": null,
+      "index": 6,
+      "label": null
+    },
+    {
+      "heading": "Lo que dicennuestros clientes",
+      "id": "google-reviews-section",
+      "index": 7,
+      "label": null
+    }
+  ],
+  "title": "Visita a la Medina de Agadir (Polizzi) (20 €/pers) | Just Luxury Transfers"
+}
