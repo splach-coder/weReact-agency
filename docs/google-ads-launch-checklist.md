@@ -3,7 +3,7 @@
 ## Required before traffic
 
 1. Set the production domain in Google Search Console and submit `https://www.wereact.agency/sitemap.xml`.
-2. Create a Google Analytics 4 web stream and add the ID as `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+2. Google Analytics is configured with `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-0HRPEYEZXY`.
 3. Create a Google Ads conversion action for qualified leads and add:
    - `NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXXX`
    - `NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL=XXXXXXXXXXXX`

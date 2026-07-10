@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { captureAttribution, trackPageView } from '@/lib/analytics';
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-0HRPEYEZXY';
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 const TAG_IDS = [GA_MEASUREMENT_ID, GOOGLE_ADS_ID].filter(Boolean) as string[];
 
