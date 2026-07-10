@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Settings2, X } from 'lucide-react';
+import { PRELOADER_COMPLETE_EVENT } from '@/lib/events';
 import {
   CONSENT_STORAGE_KEY,
   getConsentState,
@@ -44,15 +45,34 @@ export default function CookieConsent({ locale }: CookieConsentProps) {
   const content = locale === 'fr' ? copy.fr : copy.en;
 
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
+    let frame = 0;
+
+    const releaseBanner = () => {
+      frame = 0;
       setIsOpen(!readConsentChoice());
       setIsReady(true);
-    });
-    const openPreferences = () => setIsOpen(true);
+    };
+
+    const scheduleBannerRelease = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(releaseBanner);
+    };
+
+    const openPreferences = () => {
+      setIsReady(true);
+      setIsOpen(true);
+    };
+
+    window.addEventListener(PRELOADER_COMPLETE_EVENT, scheduleBannerRelease);
     window.addEventListener(OPEN_CONSENT_PREFERENCES_EVENT, openPreferences);
+
+    if (document.documentElement.dataset.wereactPreloaderComplete === 'true') {
+      scheduleBannerRelease();
+    }
 
     return () => {
       window.cancelAnimationFrame(frame);
+      window.removeEventListener(PRELOADER_COMPLETE_EVENT, scheduleBannerRelease);
       window.removeEventListener(OPEN_CONSENT_PREFERENCES_EVENT, openPreferences);
     };
   }, []);

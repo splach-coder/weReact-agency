@@ -3,9 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { CURTAIN, CURTAIN_VIEWBOX } from './curtain';
+import { PRELOADER_COMPLETE_EVENT } from '@/lib/events';
 
 const SESSION_KEY = 'wereact_preloaded';
 
+function announcePreloaderComplete() {
+  document.documentElement.dataset.wereactPreloaderComplete = 'true';
+  window.dispatchEvent(new Event(PRELOADER_COMPLETE_EVENT));
+}
 /**
  * First-load curtain — port of the SOTD `Preloader.js`. An Atlas-Green panel
  * with a live % counter that, once it reaches 100, plays the curve-morph
@@ -29,7 +34,10 @@ export default function Preloader() {
     const seen = sessionStorage.getItem(SESSION_KEY);
 
     if (reduce || seen) {
-      frame = window.requestAnimationFrame(() => setActive(false));
+      frame = window.requestAnimationFrame(() => {
+        announcePreloaderComplete();
+        setActive(false);
+      });
       return () => window.cancelAnimationFrame(frame);
     }
 
@@ -64,6 +72,7 @@ export default function Preloader() {
       tl.call(() => {
         document.documentElement.style.overflow = '';
         setActive(false);
+        window.requestAnimationFrame(announcePreloaderComplete);
       });
     });
 

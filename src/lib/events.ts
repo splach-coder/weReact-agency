@@ -1,0 +1,1 @@
+export const PRELOADER_COMPLETE_EVENT = 'wereact:preloader-complete';

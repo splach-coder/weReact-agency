@@ -13,7 +13,7 @@ import GoogleTag from '@/components/analytics/GoogleTag';
 import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults';
 import CookieConsent from '@/components/analytics/CookieConsent';
 import { siteConfig } from '@/config/site';
-import { nohemi, instrumentSerif } from '@/app/fonts';
+import { nohemi } from '@/app/fonts';
 import { createServiceJsonLd } from '@/lib/seo';
 
 const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
@@ -204,7 +204,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${nohemi.variable} ${instrumentSerif.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
+      <body className={`${nohemi.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <GoogleConsentDefaults />
           <GoogleTag />

@@ -23,6 +23,8 @@ export default function Header() {
   const t = useTranslations('Nav');
   const [open, setOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [headerBlurred, setHeaderBlurred] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const links = [
@@ -95,10 +97,54 @@ export default function Header() {
   // Reset overflow if unmounted while open.
   useEffect(() => () => { document.body.style.overflow = ''; }, []);
 
+  // Keep navigation out of the way while reading, then reveal it as soon as
+  // the visitor reverses direction. Only transform and backdrop are animated.
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastY = window.scrollY;
+    let frame = 0;
+
+    const updateHeader = () => {
+      frame = 0;
+      const nextY = Math.max(window.scrollY, 0);
+      const delta = nextY - lastY;
+
+      setHeaderBlurred(nextY > 16);
+
+      if (reduce || open || nextY <= 8) {
+        setHeaderVisible(true);
+      } else if (Math.abs(delta) >= 6) {
+        setHeaderVisible(delta < 0);
+      }
+
+      lastY = nextY;
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateHeader);
+    };
+
+    frame = window.requestAnimationFrame(updateHeader);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [open]);
+
   return (
     <>
       {/* Fixed top bar */}
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-[105]">
+      <header
+        className={[
+          'pointer-events-none fixed inset-x-0 top-0 z-[105] transition-[transform,background-color,backdrop-filter,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+          open || headerVisible ? 'translate-y-0' : '-translate-y-full',
+          headerBlurred && !open
+            ? 'bg-[rgba(246,246,242,0.78)] shadow-[0_1px_0_rgba(58,90,64,0.1)] backdrop-blur-[10px]'
+            : 'bg-transparent',
+        ].join(' ')}
+      >
         <div className="mx-auto flex max-w-[95%] items-center justify-between py-8">
           <Link
             href="/"
