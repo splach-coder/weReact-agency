@@ -7,7 +7,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackContactIntent, trackLead } from '@/lib/analytics';
+import { trackContactIntent } from '@/lib/analytics';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fade = {
@@ -74,7 +74,7 @@ export default function FinalCta() {
             href={siteConfig.business.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackLead('whatsapp', { page: 'home', location: 'final_cta' })}
+            onClick={() => trackContactIntent('final_cta_whatsapp', { method: 'whatsapp', page: 'home', location: 'final_cta' })}
             className="btn-base justify-center border border-white/40 bg-transparent text-white transition-colors hover:bg-white/10"
           >
             <MessageCircle size={18} aria-hidden="true" />

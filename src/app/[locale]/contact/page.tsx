@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { CheckCircle, Mail, MapPin, MessageCircle, Paperclip, Send } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { formatAttributionForEmail, trackLead } from '@/lib/analytics';
+import { formatAttributionForEmail, trackContactIntent, trackLead } from '@/lib/analytics';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -258,7 +258,7 @@ export default function ContactPage() {
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     aria-label={`${item.label}: ${item.value}`}
-                    onClick={() => item.method !== 'maps' && trackLead(item.method, { page: 'contact', location: 'contact_info' })}
+                    onClick={() => item.method !== 'maps' && trackContactIntent('contact_info_' + item.method, { method: item.method, page: 'contact', location: 'contact_info' })}
                     className="flex h-9 w-9 items-center justify-center border border-[rgba(26,26,26,0.16)] text-[var(--color-text-main)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
                   >
                     <item.icon size={16} aria-hidden="true" />

@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { CalendarClock, MessageCircle, Mail } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackLead } from '@/lib/analytics';
+import { trackContactIntent } from '@/lib/analytics';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fade = {
@@ -81,7 +81,7 @@ export default function BookCall() {
                 href={siteConfig.business.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackLead('whatsapp', { page: 'home', location: 'book_call' })}
+                onClick={() => trackContactIntent('book_call_whatsapp', { method: 'whatsapp', page: 'home', location: 'book_call' })}
                 className="btn-base btn-clay justify-center"
               >
                 <MessageCircle size={18} aria-hidden="true" />
@@ -89,7 +89,7 @@ export default function BookCall() {
               </a>
               <a
                 href={`mailto:${siteConfig.business.email}`}
-                onClick={() => trackLead('email', { page: 'home', location: 'book_call' })}
+                onClick={() => trackContactIntent('book_call_email', { method: 'email', page: 'home', location: 'book_call' })}
                 className="btn-base btn-ghost justify-center"
               >
                 <Mail size={18} aria-hidden="true" />

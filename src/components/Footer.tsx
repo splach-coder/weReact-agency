@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackLead } from '@/lib/analytics';
+import { trackContactIntent } from '@/lib/analytics';
 import { OPEN_CONSENT_PREFERENCES_EVENT } from '@/lib/consent';
 
 /**
@@ -106,8 +106,8 @@ export default function Footer() {
                     target={s.href.startsWith('http') ? '_blank' : undefined}
                     rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     onClick={() => {
-                      if (s.label === 'WhatsApp') trackLead('whatsapp', { page: 'footer', location: 'footer_connect' });
-                      if (s.label === 'Email') trackLead('email', { page: 'footer', location: 'footer_connect' });
+                      if (s.label === 'WhatsApp') trackContactIntent('footer_whatsapp', { method: 'whatsapp', page: 'footer', location: 'footer_connect' });
+                      if (s.label === 'Email') trackContactIntent('footer_email', { method: 'email', page: 'footer', location: 'footer_connect' });
                     }}
                     className="group inline-flex items-center gap-3 text-white/70 transition-colors hover:text-white"
                   >

@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import Link from '@/components/transition/TransitionLink';
 import { getLenis } from '@/lib/lenis';
 import { siteConfig } from '@/config/site';
-import { trackLead } from '@/lib/analytics';
+import { trackContactIntent } from '@/lib/analytics';
 
 /**
  * SOTD (exo-ape) style navigation, ported to weReact.
@@ -240,7 +240,7 @@ export default function Header() {
             <div className="menu-fade nav-fade-init mt-8 flex flex-col gap-2">
               <a
                 href={`mailto:${siteConfig.business.email}`}
-                onClick={() => trackLead('email', { page: 'menu', location: 'menu_email' })}
+                onClick={() => trackContactIntent('menu_email', { method: 'email', page: 'menu', location: 'menu_email' })}
                 className="text-lg text-white/80 transition-colors hover:text-white"
               >
                 {siteConfig.business.email}
