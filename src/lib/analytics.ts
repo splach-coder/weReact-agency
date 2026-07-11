@@ -42,6 +42,7 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? 'AW-18245192967';
 const GOOGLE_ADS_LEAD_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL ?? 'C9w5CPvkkc4cEIea_vtD';
 const LEAD_VALUE = Number(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_VALUE ?? '1');
 const LEAD_CURRENCY = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CURRENCY ?? 'MAD';
+const LEAD_TRACKING_TIMEOUT = 1200;
 
 function hasWindow() {
   return typeof window !== 'undefined';
@@ -172,12 +173,29 @@ export function trackLead(method: string, params: EventParams = {}) {
   trackEvent('generate_lead', leadParams);
   trackEvent('contact_lead', leadParams);
 
-  if (GOOGLE_ADS_ID && GOOGLE_ADS_LEAD_LABEL) {
-    trackEvent('conversion', {
+  if (!hasWindow() || typeof window.gtag !== 'function' || !GOOGLE_ADS_ID || !GOOGLE_ADS_LEAD_LABEL) {
+    return Promise.resolve();
+  }
+
+  const gtag = window.gtag;
+
+  return new Promise<void>((resolve) => {
+    let completed = false;
+    const complete = () => {
+      if (completed) return;
+      completed = true;
+      window.clearTimeout(timeout);
+      resolve();
+    };
+    const timeout = window.setTimeout(complete, LEAD_TRACKING_TIMEOUT);
+
+    gtag('event', 'conversion', {
       send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_LEAD_LABEL}`,
       currency: LEAD_CURRENCY,
       value: Number.isFinite(LEAD_VALUE) ? LEAD_VALUE : 1,
       method,
+      event_callback: complete,
+      event_timeout: LEAD_TRACKING_TIMEOUT,
     });
-  }
+  });
 }

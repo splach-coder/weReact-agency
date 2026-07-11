@@ -31,7 +31,7 @@ export default function ContactPage() {
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 34]);
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 70]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(`New project enquiry - ${formData.name}`);
     const body = encodeURIComponent(
@@ -42,13 +42,13 @@ export default function ContactPage() {
         formatAttributionForEmail()
     );
 
-    trackLead('contact_form', {
+    await trackLead('contact_form', {
       page: 'contact',
       has_company: Boolean(formData.company),
       has_message: Boolean(formData.message),
     });
-    window.location.href = `mailto:${siteConfig.business.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
+    window.location.href = `mailto:${siteConfig.business.email}?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
