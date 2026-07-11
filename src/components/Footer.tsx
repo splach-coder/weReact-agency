@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, Twitter, MessageCircle, Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -29,6 +29,36 @@ export default function Footer() {
   const t = useTranslations('Footer');
   const tNav = useTranslations('Nav');
   const year = 2026;
+  const [subscriberEmail, setSubscriberEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [newsletterError, setNewsletterError] = useState('');
+
+  const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setNewsletterStatus('sending');
+    setNewsletterError('');
+
+    try {
+      const form = new FormData(event.currentTarget);
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: subscriberEmail,
+          website: form.get('website') || '',
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) throw new Error(result.error || 'Unable to subscribe right now.');
+
+      setSubscriberEmail('');
+      setNewsletterStatus('success');
+    } catch (error) {
+      setNewsletterError(error instanceof Error ? error.message : 'Unable to subscribe right now.');
+      setNewsletterStatus('error');
+    }
+  };
 
   const navLinks = [
     { name: tNav('work'), href: '/work' },
@@ -123,22 +153,29 @@ export default function Footer() {
           <div className="md:col-span-3">
             <p className="text-mono mb-7 text-white/40">{t('newsletterTitle')}</p>
             <p className="mb-6 text-sm text-white/55">{t('newsletterText')}</p>
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-4">
               <label htmlFor="footer-email" className="sr-only">
                 {t('emailPlaceholder')}
               </label>
               <input
                 id="footer-email"
                 type="email"
+                required
+                value={subscriberEmail}
+                onChange={(event) => setSubscriberEmail(event.target.value)}
                 placeholder={t('emailPlaceholder')}
                 className="text-mono border-b border-white/30 bg-transparent py-3 text-sm text-white placeholder-white/40 transition-colors focus:border-white focus:outline-none"
               />
+              <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
               <button
                 type="submit"
-                className="w-fit bg-[var(--color-accent-warm)] px-7 py-3 text-mono text-[var(--color-primary-dark)] transition-colors hover:bg-white"
+                disabled={newsletterStatus === 'sending'}
+                className="w-fit bg-[var(--color-accent-warm)] px-7 py-3 text-mono text-[var(--color-primary-dark)] transition-colors hover:bg-white disabled:cursor-wait disabled:opacity-60"
               >
-                {t('subscribe')}
+                {newsletterStatus === 'sending' ? 'Saving...' : t('subscribe')}
               </button>
+              {newsletterStatus === 'success' && <p role="status" className="text-sm text-white/80">You&apos;re on the list.</p>}
+              {newsletterStatus === 'error' && <p role="alert" className="text-sm text-red-200">{newsletterError}</p>}
             </form>
           </div>
         </div>

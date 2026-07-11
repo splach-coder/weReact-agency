@@ -1,9 +1,20 @@
 import { NextResponse } from 'next/server';
-import { buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
+import { buildContactConfirmationEmail, buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
 
 export const runtime = 'nodejs';
 
 const RESEND_API_URL = 'https://api.resend.com/emails';
+
+async function sendEmail(payload: Record<string, unknown>, apiKey: string) {
+  return fetch(RESEND_API_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+}
 
 export async function POST(request: Request) {
   let submission: ContactSubmission;
@@ -29,25 +40,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 500 });
   }
 
-  const email = buildContactEmail(submission);
-  const response = await fetch(RESEND_API_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM_EMAIL ?? 'WeReact <onboarding@resend.dev>',
-      to: [process.env.CONTACT_RECIPIENT_EMAIL ?? 'anasbenbow123@gmail.com'],
-      subject: email.subject,
-      html: email.html,
-      reply_to: email.replyTo,
-    }),
-  });
+  const from = process.env.RESEND_FROM_EMAIL ?? 'WeReact <onboarding@resend.dev>';
+  const enquiry = buildContactEmail(submission);
+  const ownerResponse = await sendEmail({
+    from,
+    to: [process.env.CONTACT_RECIPIENT_EMAIL ?? 'anasbenbow123@gmail.com'],
+    subject: enquiry.subject,
+    html: enquiry.html,
+    reply_to: enquiry.replyTo,
+  }, apiKey);
 
-  if (!response.ok) {
-    console.error('Resend contact email failed.', await response.text());
+  if (!ownerResponse.ok) {
+    console.error('Resend contact email failed.', await ownerResponse.text());
     return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 502 });
+  }
+
+  const confirmation = buildContactConfirmationEmail(submission);
+  const confirmationResponse = await sendEmail({
+    from,
+    to: [submission.email.trim()],
+    subject: confirmation.subject,
+    html: confirmation.html,
+  }, apiKey);
+
+  if (!confirmationResponse.ok) {
+    console.error('Resend contact confirmation failed.', await confirmationResponse.text());
   }
 
   return NextResponse.json({ ok: true });

@@ -53,3 +53,19 @@ export function buildContactEmail(input: ContactSubmission) {
     `,
   };
 }
+
+export function buildContactConfirmationEmail(input: ContactSubmission) {
+  const name = input.name.trim();
+
+  return {
+    subject: 'We received your note',
+    html: `
+      <main style="max-width:560px;margin:0 auto;padding:40px 24px;font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6">
+        <p style="margin:0 0 28px;color:#3a5a40;font-weight:700">WeReact</p>
+        <h1 style="font-size:28px;line-height:1.15;margin:0 0 20px">Thanks for getting in touch, ${escapeHtml(name)}.</h1>
+        <p>We received your project note and will read it carefully. We will reply as soon as possible.</p>
+        <p style="margin-top:28px">WeReact<br />Marrakech, Morocco</p>
+      </main>
+    `,
+  };
+}
