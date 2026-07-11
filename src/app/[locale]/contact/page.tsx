@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { CheckCircle, Mail, MapPin, MessageCircle, Paperclip, Send } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { formatAttributionForEmail, trackContactIntent, trackLead } from '@/lib/analytics';
+import { trackContactIntent, trackLead } from '@/lib/analytics';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -24,7 +24,9 @@ export default function ContactPage() {
   const sceneRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', website: '' });
 
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ['start start', 'end start'] });
   const visualY = useTransform(scrollYProgress, [0, 1], [0, -42]);
@@ -33,24 +35,32 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`New project enquiry - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `Company: ${formData.company || '-'}\n\n` +
-        `${formData.message}` +
-        formatAttributionForEmail()
-    );
+    setSubmitting(true);
+    setFormError('');
 
-    await trackLead('contact_form', {
-      page: 'contact',
-      has_company: Boolean(formData.company),
-      has_message: Boolean(formData.message),
-    });
-    setSubmitted(true);
-    window.location.href = `mailto:${siteConfig.business.email}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) throw new Error(result.error || 'Unable to send your message right now.');
+
+      await trackLead('contact_form', {
+        page: 'contact',
+        has_company: Boolean(formData.company),
+        has_message: Boolean(formData.message),
+      });
+      setSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '', website: '' });
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : 'Unable to send your message right now.');
+    } finally {
+      setSubmitting(false);
+    }
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
