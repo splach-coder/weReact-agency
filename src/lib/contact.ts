@@ -16,6 +16,12 @@ type ValidationResult = { valid: true } | { valid: false; message: string };
 export type ContactField = 'name' | 'email' | 'phone' | 'whatsapp' | 'company' | 'message';
 export type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
+const requiredContactFields = new Set<ContactField>(['name', 'email', 'phone', 'message']);
+
+export function isRequiredContactField(field: ContactField) {
+  return requiredContactFields.has(field);
+}
+
 function isPhoneNumber(value: string) {
   return /^\+?[0-9().\s-]{7,40}$/.test(value);
 }

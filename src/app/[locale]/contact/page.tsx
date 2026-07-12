@@ -8,7 +8,7 @@ import { CheckCircle, Mail, MapPin, MessageCircle, Send, X } from 'lucide-react'
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { getStoredAttribution, trackContactIntent, trackLead } from '@/lib/analytics';
-import { getContactFieldErrors, type ContactField, type ContactFieldErrors } from '@/lib/contact';
+import { getContactFieldErrors, isRequiredContactField, type ContactField, type ContactFieldErrors } from '@/lib/contact';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -24,7 +24,8 @@ export default function ContactPage() {
   const t = useTranslations('Contact');
   const isFrench = useLocale() === 'fr';
   const phoneLabel = isFrench ? 'Numero de telephone' : 'Phone number';
-  const whatsappLabel = isFrench ? 'Numero WhatsApp (facultatif)' : 'WhatsApp number (optional)';
+  const whatsappLabel = isFrench ? 'Numero WhatsApp' : 'WhatsApp number';
+  const optionalLabel = isFrench ? 'Facultatif' : 'Optional';
   const receivedMessage = isFrench ? 'Votre demande est bien recue. Nous vous repondrons sous un jour ouvre.' : 'Your project note is with our team. We will reply within one business day.';
   const sceneRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -119,6 +120,14 @@ export default function ContactPage() {
   const fieldClass = (field: ContactField) =>
     `w-full border-0 border-b bg-transparent px-0 py-3 text-[15px] text-[var(--color-text-main)] outline-none transition-colors placeholder:text-[rgba(26,26,26,0.34)] focus:border-[var(--color-primary)] ${fieldErrors[field] ? 'border-[#a94442]' : 'border-[rgba(26,26,26,0.16)]'}`;
   const labelClass = 'mb-1.5 block text-mono text-[10px] uppercase text-[var(--color-text-muted)]';
+  const renderFieldStatus = (field: ContactField) => isRequiredContactField(field) ? (
+    <>
+      <span aria-hidden="true" className="ml-1 text-[12px] font-black text-[var(--color-primary)]">*</span>
+      <span className="sr-only"> required</span>
+    </>
+  ) : (
+    <span className="ml-1.5 text-[8px] font-normal tracking-[0.08em] text-[rgba(26,26,26,0.42)]">({optionalLabel})</span>
+  );
 
   return (
     <main className="bg-[var(--color-background-main)] text-[var(--color-text-main)]">
@@ -212,33 +221,33 @@ export default function ContactPage() {
               <form noValidate onSubmit={handleSubmit} className="mt-9">
                 <div className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className={labelClass}>{t('nameLabel')}</label>
-                    <input id="name" name="name" type="text" autoComplete="name" value={formData.name} onChange={handleChange} placeholder={t('namePlaceholder')} aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? 'name-error' : undefined} className={fieldClass('name')} />
+                    <label htmlFor="name" className={labelClass}>{t('nameLabel')}{renderFieldStatus('name')}</label>
+                    <input id="name" name="name" type="text" required aria-required="true" autoComplete="name" value={formData.name} onChange={handleChange} placeholder={t('namePlaceholder')} aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? 'name-error' : undefined} className={fieldClass('name')} />
                     {fieldErrors.name && <p id="name-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.name}</p>}
                   </div>
                   <div>
-                    <label htmlFor="email" className={labelClass}>{t('emailLabel')}</label>
-                    <input id="email" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} placeholder={t('emailPlaceholder')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? 'email-error' : undefined} className={fieldClass('email')} />
+                    <label htmlFor="email" className={labelClass}>{t('emailLabel')}{renderFieldStatus('email')}</label>
+                    <input id="email" name="email" type="email" required aria-required="true" autoComplete="email" value={formData.email} onChange={handleChange} placeholder={t('emailPlaceholder')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? 'email-error' : undefined} className={fieldClass('email')} />
                     {fieldErrors.email && <p id="email-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.email}</p>}
                   </div>
                   <div>
-                    <label htmlFor="phone" className={labelClass}>{phoneLabel}</label>
-                    <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} placeholder="+212 600 000 000" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} className={fieldClass('phone')} />
+                    <label htmlFor="phone" className={labelClass}>{phoneLabel}{renderFieldStatus('phone')}</label>
+                    <input id="phone" name="phone" type="tel" required aria-required="true" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} placeholder="+212 600 000 000" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} className={fieldClass('phone')} />
                     {fieldErrors.phone && <p id="phone-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.phone}</p>}
                   </div>
                   <div>
-                    <label htmlFor="whatsapp" className={labelClass}>{whatsappLabel}</label>
+                    <label htmlFor="whatsapp" className={labelClass}>{whatsappLabel}{renderFieldStatus('whatsapp')}</label>
                     <input id="whatsapp" name="whatsapp" type="tel" inputMode="tel" autoComplete="tel-national" value={formData.whatsapp} onChange={handleChange} placeholder="+212 611 000 000" aria-invalid={Boolean(fieldErrors.whatsapp)} aria-describedby={fieldErrors.whatsapp ? 'whatsapp-error' : undefined} className={fieldClass('whatsapp')} />
                     {fieldErrors.whatsapp && <p id="whatsapp-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.whatsapp}</p>}
                   </div>
                   <div className="sm:col-span-2">
-                    <label htmlFor="company" className={labelClass}>{t('companyLabel')}</label>
+                    <label htmlFor="company" className={labelClass}>{t('companyLabel')}{renderFieldStatus('company')}</label>
                     <input id="company" name="company" type="text" autoComplete="organization" value={formData.company} onChange={handleChange} placeholder={t('companyPlaceholder')} aria-invalid={Boolean(fieldErrors.company)} aria-describedby={fieldErrors.company ? 'company-error' : undefined} className={fieldClass('company')} />
                     {fieldErrors.company && <p id="company-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.company}</p>}
                   </div>
                   <div className="sm:col-span-2">
-                    <label htmlFor="message" className={labelClass}>{t('messageLabel')}</label>
-                    <textarea id="message" name="message" rows={5} value={formData.message} onChange={handleChange} placeholder={t('messagePlaceholder')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? 'message-error' : undefined} className={`${fieldClass('message')} resize-none`} />
+                    <label htmlFor="message" className={labelClass}>{t('messageLabel')}{renderFieldStatus('message')}</label>
+                    <textarea id="message" name="message" required aria-required="true" rows={5} value={formData.message} onChange={handleChange} placeholder={t('messagePlaceholder')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? 'message-error' : undefined} className={`${fieldClass('message')} resize-none`} />
                     {fieldErrors.message && <p id="message-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.message}</p>}
                   </div>
                 </div>

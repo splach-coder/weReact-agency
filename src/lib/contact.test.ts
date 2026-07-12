@@ -1,6 +1,15 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildContactConfirmationEmail, buildContactEmail, getContactFieldErrors, validateContactSubmission } from './contact';
+import { buildContactConfirmationEmail, buildContactEmail, getContactFieldErrors, isRequiredContactField, validateContactSubmission } from './contact';
+
+test('identifies the required contact fields', () => {
+  assert.equal(isRequiredContactField('name'), true);
+  assert.equal(isRequiredContactField('email'), true);
+  assert.equal(isRequiredContactField('phone'), true);
+  assert.equal(isRequiredContactField('message'), true);
+  assert.equal(isRequiredContactField('whatsapp'), false);
+  assert.equal(isRequiredContactField('company'), false);
+});
 
 test('validates a complete contact enquiry', () => {
   assert.deepEqual(
