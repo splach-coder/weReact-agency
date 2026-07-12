@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { buildContactConfirmationEmail, buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
+import { syncLeadToHubSpot } from '@/lib/hubspot';
 import { createLeadRecord, saveLead } from '@/lib/leads';
 
 export const runtime = 'nodejs';
@@ -42,7 +43,10 @@ export async function POST(request: Request) {
   }
 
   const lead = createLeadRecord(submission, submission.attribution);
-  const leadResult = await saveLead(lead);
+  const [leadResult, hubSpotResult] = await Promise.all([
+    saveLead(lead),
+    syncLeadToHubSpot(lead),
+  ]);
 
   const from = process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>';
   const enquiry = buildContactEmail(submission);
@@ -72,5 +76,5 @@ export async function POST(request: Request) {
     console.error('Resend contact confirmation failed.', await confirmationResponse.text());
   }
 
-  return NextResponse.json({ ok: true, leadStored: leadResult.stored });
+  return NextResponse.json({ ok: true, leadStored: leadResult.stored, crmSynced: hubSpotResult.synced });
 }
