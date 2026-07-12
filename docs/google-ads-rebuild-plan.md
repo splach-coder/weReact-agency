@@ -10,25 +10,44 @@ and `/fr/contact`.
 
 ---
 
-## 0. Why the first campaign failed (most likely)
+## 0. Why the first campaign failed — CONFIRMED from the data
 
-You got **0 emails/WhatsApp/calls**. A tracking bug can hide conversions that
-*happened* — it can't stop people from contacting you. So the money went to the
-**wrong traffic**. The usual causes, in order of likelihood:
+Search Terms report, 16 Jun – 11 Jul 2026:
 
-1. **Wrong campaign type.** Google's "smart"/default wizard often creates a
-   **Performance Max or Display** campaign that spends on YouTube, Gmail, and
-   random apps — huge reach, near-zero intent. (You weren't sure what type ran —
-   that's the tell.)
-2. **No/broad keywords + no negatives** → paid for "free website", "web design
-   course", "how to build a website", job seekers, etc.
-3. **Location set to "presence OR interest"** → clicks from outside Morocco.
-4. **Broken conversion signal** → even if a lead came, Smart Bidding optimized
-   toward nothing. (Fixed in code: `url_passthrough`; see §6.)
+| Metric | Value |
+|---|---|
+| Clicks | **1,110** |
+| Impressions | 28,078 |
+| Avg CPC | 2.86 MAD |
+| Cost | **3,176.73 MAD** |
+| Conversions | **0** |
 
-**To confirm exactly what happened, pull the Search Terms report** (see
-`scripts/google-ads/README.md` → FAST PATH). It shows the literal searches you
-paid for. Send it and negatives get tuned to your real waste.
+**The problem is intent, not volume.** You bought 1,110 clicks — but they were
+the *wrong people*. The search terms are dominated by:
+
+1. **Wrong service — marketing/agency/branding/SEO, not web design.** Hundreds of
+   clicks on "digital marketing", "marketing agency", "agence de communication",
+   "agence marketing", "branding", "SEO", "advertising", "content creation".
+   These people want ads/branding/marketing help — not to hire a web designer.
+2. **DIY & free-seekers.** "comment créer un site web gratuit", "create website
+   with ai", "wix", "wordpress", "webflow", "website builder", "how to make a
+   website". They want to build it themselves, free.
+3. **Competitor / navigational names.** weshore, mediaman, allo baba, genious,
+   "hello world agency", seocom, ikon, dropify, "someway agency"… people looking
+   for a *specific other company*.
+4. **Extreme fragmentation.** ~700 different search terms, most just 1 click
+   each, several at 20–50 MAD per click (e.g. "creation site web maroc" = 49.72
+   MAD for ONE click; "landing page maroc" = 46.45 MAD).
+
+**Root cause:** the campaigns used **"AI Max"** and **broad match**, which let
+Google spray the budget across the entire tangential "marketing/agency" space
+instead of tight "website design" buyer intent. A themed funnel (Campaigns 1–5)
+fed by broad keywords all pulled the same irrelevant marketing traffic. A paused
+**"Website Design Marrakech"** Display-type campaign likely ate more on cheap junk
+clicks (the low-CPC bulk).
+
+**Fix = flip the match strategy:** kill AI Max + broad, go phrase/exact, theme
+strictly on "website design / création site web", and load the negatives in §4.
 
 ---
 
@@ -56,7 +75,8 @@ Campaign: WeReact — Search — Morocco
 | Locations | Marrakech + Casablanca + Rabat + Agadir (or "Morocco") | Where your buyers are |
 | Location options | **"Presence: people in your targeted locations"** (NOT "presence or interest") | Stops worldwide/tourist-intent clicks |
 | Languages | English **and** French | Your audience |
-| Bidding | **Maximize Clicks with a max CPC limit (~3–5 MAD)** to start | No conversion history yet — do NOT use tCPA/Max Conversions until ~15–30 conversions exist |
+| Keyword matching | **Phrase + Exact only. AI Max = OFF. Broad match = OFF.** | This is what wasted the 3,176 MAD — AI Max/broad sprayed into "marketing/agency" searches |
+| Bidding | **Maximize Clicks with a max CPC limit (~3–5 MAD)** to start | No conversion history yet — do NOT use tCPA/Max Conversions until ~15–30 conversions exist. Caps runaway 50 MAD clicks |
 | Daily budget | **50–100 MAD/day** (set yours in §7) | Controlled test |
 | Ad schedule | All week; consider 8:00–22:00 | Cut overnight waste if data shows it |
 | Auto-applied recommendations | **OFF** | Google will re-add Display/broad match otherwise |
@@ -109,21 +129,40 @@ Campaign: WeReact — Search — Morocco
 
 ## 4. Negative keywords (add at CAMPAIGN level, day one)
 
+**Derived from your actual wasted spend.** These are the themes that burned the
+3,176 MAD. Add as **phrase-match negatives** (so "digital marketing agency",
+"agence de communication marrakech", etc. are all blocked by the root word).
+
+**A. Wrong service — marketing / advertising / branding / SEO (biggest leak):**
 ```
-free            gratuit          gratuitement     template
-templates       theme            themes           wordpress theme
-course          cours            formation        tutorial
-tutoriel        job              jobs             emploi
-recrutement     recrutment       salary           salaire
-internship      stage            download         télécharger
-crack           cracked          nulled           how to
-"comment créer" diy              wix              wix free
-godaddy         hostinger        blogger          learn
-apprendre       examples         exemples         école
-university      étudiant         definition       "c'est quoi"
-what is         freelance jobs   remote job       elementor
+marketing        "digital marketing"   "marketing digital"   "agence marketing"
+communication    "agence de communication"   "boite de communication"
+publicité        "agence de publicité"  advertising   "online advertising"
+branding         "brand identity"      "brand builder"       rebranding
+seo              "agence seo"          référencement          "content creation"
+"content marketing"   "social media"   "media buying"        "media buyer"
+"email marketing"     "lead generation"  "influence marketing"  smma
+"growth strategy"     "go to market"    ugc                    logo
 ```
-(Refine this from your real Search Terms report.)
+**B. DIY / builders / free (they won't hire you):**
+```
+free    gratuit   gratuitement   "how to"   comment    tutorial   tuto
+wix     wordpress webflow        shopify    magento    elementor  mobirise
+canva   "ai website"  "ai generated"  "website builder"  "site builder"
+"no code"  html   css   javascript  "from scratch"  blogger  youcan
+"create website"  "creer site"  "créer un site"  builder
+```
+**C. Jobs / study / freelance / navigational:**
+```
+job   jobs   emploi   stage   recrutement   école   university   étudiant
+ensa  ofppt  freelance  fiverr  salary  salaire  course  cours  formation
+```
+**D. Competitor / brand names seen in your data (extend as new ones appear):**
+```
+weshore   mediaman   "allo baba"   genious   tribal   "hello world"   seocom
+ikon      dropify    "someway agency"   webcinq   "digital speak"   engagia
+```
+(Review the Search Terms report weekly and keep adding.)
 
 ## 5. Ad copy — Responsive Search Ads (paste-ready)
 
