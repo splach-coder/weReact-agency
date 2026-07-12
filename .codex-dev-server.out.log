@@ -183,3 +183,16 @@
  GET /en/blog 200 in 581ms (compile: 557ms, proxy.ts: 3ms, render: 21ms)
  GET /en/about 200 in 594ms (compile: 565ms, proxy.ts: 3ms, render: 26ms)
  GET /en/contact 200 in 594ms (compile: 567ms, proxy.ts: 4ms, render: 23ms)
+ ✓ Compiled in 2.7s
+ GET /en/transfers 404 in 886ms (compile: 68ms, proxy.ts: 424ms, render: 394ms)
+ GET /en/transfers 404 in 63ms (compile: 18ms, proxy.ts: 9ms, render: 36ms)
+ GET /en/transfers 404 in 252ms (compile: 53ms, proxy.ts: 15ms, render: 184ms)
+ GET /en/transfers 404 in 276ms (compile: 80ms, proxy.ts: 12ms, render: 185ms)
+   Reload env: .env.local
+   Reload env: .env.local
+   Reload env: .env.local
+ ✓ Compiled in 271ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 68ms
+ ✓ Compiled in 68ms
+ ✓ Compiled in 309ms
