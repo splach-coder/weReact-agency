@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+﻿import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildContactConfirmationEmail, buildContactEmail, validateContactSubmission } from './contact';
 
@@ -37,4 +37,9 @@ test('builds a confirmation email for the sender', () => {
 
   assert.equal(email.subject, 'We received your note');
   assert.match(email.html, /Thanks for getting in touch, Anas/);
+  assert.equal(email.replyTo, 'hello@wereact.agency');
+  assert.match(email.html, /hello@wereact\.agency/);
+  assert.match(email.html, /\+212 602-258009/);
+  assert.match(email.html, /Chat with us on WhatsApp/);
+  assert.match(email.html, /wereact\.agency/);
 });

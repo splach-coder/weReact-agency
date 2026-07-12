@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { buildContactConfirmationEmail, buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
 
 export const runtime = 'nodejs';
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 500 });
   }
 
-  const from = process.env.RESEND_FROM_EMAIL ?? 'WeReact <onboarding@resend.dev>';
+  const from = process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>';
   const enquiry = buildContactEmail(submission);
   const ownerResponse = await sendEmail({
     from,
@@ -61,6 +61,7 @@ export async function POST(request: Request) {
     to: [submission.email.trim()],
     subject: confirmation.subject,
     html: confirmation.html,
+    reply_to: confirmation.replyTo,
   }, apiKey);
 
   if (!confirmationResponse.ok) {
