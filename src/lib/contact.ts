@@ -1,25 +1,41 @@
-﻿import { siteConfig } from '@/config/site';
+﻿import type { LeadAttribution } from '@/lib/leads';
+import { siteConfig } from '@/config/site';
 
 export type ContactSubmission = {
   name: string;
   email: string;
+  phone: string;
+  whatsapp?: string;
   company?: string;
   message: string;
   website?: string;
+  attribution?: LeadAttribution;
 };
 
 type ValidationResult = { valid: true } | { valid: false; message: string };
+
+function isPhoneNumber(value: string) {
+  return /^\+?[0-9().\s-]{7,40}$/.test(value);
+}
 
 export function validateContactSubmission(input: ContactSubmission): ValidationResult {
   if (!input.name.trim() || !input.email.trim() || !input.message.trim()) {
     return { valid: false, message: 'Please complete the required fields.' };
   }
 
+  if (!input.phone?.trim()) {
+    return { valid: false, message: 'Please add a phone number we can use to reach you.' };
+  }
+
   if (!/^\S+@\S+\.\S+$/.test(input.email.trim())) {
     return { valid: false, message: 'Please enter a valid email address.' };
   }
 
-  if (input.name.length > 120 || input.email.length > 254 || (input.company?.length ?? 0) > 160 || input.message.length > 5000) {
+  if (!isPhoneNumber(input.phone.trim()) || (input.whatsapp?.trim() && !isPhoneNumber(input.whatsapp.trim()))) {
+    return { valid: false, message: 'Please enter a valid phone or WhatsApp number.' };
+  }
+
+  if (input.name.length > 120 || input.email.length > 254 || input.phone.length > 40 || (input.whatsapp?.length ?? 0) > 40 || (input.company?.length ?? 0) > 160 || input.message.length > 5000) {
     return { valid: false, message: 'Please shorten your message and try again.' };
   }
 
@@ -39,6 +55,8 @@ function escapeHtml(value: string) {
 export function buildContactEmail(input: ContactSubmission) {
   const name = input.name.trim();
   const email = input.email.trim();
+  const phone = input.phone.trim();
+  const whatsapp = input.whatsapp?.trim() || 'Not provided';
   const company = input.company?.trim() || 'Not provided';
   const message = input.message.trim();
 
@@ -49,6 +67,8 @@ export function buildContactEmail(input: ContactSubmission) {
       <h2>New project enquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+      <p><strong>WhatsApp:</strong> ${escapeHtml(whatsapp)}</p>
       <p><strong>Company:</strong> ${escapeHtml(company)}</p>
       <hr />
       <p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>
@@ -62,6 +82,9 @@ export function buildContactConfirmationEmail(input: ContactSubmission) {
   const phone = siteConfig.business.phoneInternational;
   const whatsapp = siteConfig.business.whatsapp;
   const website = siteConfig.url;
+  const followUp = input.whatsapp?.trim()
+    ? 'We will reach you on WhatsApp as soon as possible. You can also reply directly to this email if that is easier.'
+    : 'We will reply by email within one business day. If you prefer WhatsApp, you can start the conversation using the button below.';
 
   return {
     subject: 'We received your note',
@@ -73,47 +96,45 @@ export function buildContactConfirmationEmail(input: ContactSubmission) {
           <span style="display:none!important;font-size:1px;color:#f6f6f2;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">Your WeReact project enquiry is safely with us.</span>
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f6f6f2;">
             <tr>
-              <td align="center" style="padding:32px 16px 40px;">
+              <td align="center" style="padding:32px 16px 42px;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
                   <tr>
-                    <td style="padding:0 0 28px;border-bottom:1px solid #cbd5c0;">
-                      <a href="${website}" style="display:inline-block;text-decoration:none;">
-                        <img src="${website}/images/logo.webp" width="138" alt="WeReact" style="display:block;width:138px;height:auto;border:0;outline:none;text-decoration:none;" />
-                      </a>
+                    <td style="padding:0 0 26px;border-bottom:1px solid #cbd5c0;">
+                      <a href="${website}" style="color:#2e4833;font-size:25px;font-weight:800;letter-spacing:-1.3px;text-decoration:none;">&middot;wereact&middot;</a>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:42px 0 30px;">
-                      <p style="margin:0 0 16px;color:#3a5a40;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;">Project enquiry received</p>
-                      <h1 style="margin:0;color:#1a1a1a;font-size:31px;line-height:1.18;font-weight:700;">Thanks for getting in touch, ${escapeHtml(name)}.</h1>
-                      <p style="margin:24px 0 0;color:#4f4f4f;font-size:17px;line-height:1.65;">Your note is with our team. We will review it carefully and reply within one business day with the next useful step for your project.</p>
+                    <td style="padding:40px 0 28px;">
+                      <p style="margin:0 0 15px;color:#3a5a40;font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Project enquiry received</p>
+                      <h1 style="margin:0;color:#1a1a1a;font-size:31px;line-height:1.16;font-weight:700;">Thanks for getting in touch, ${escapeHtml(name)}.</h1>
+                      <p style="margin:23px 0 0;color:#4f4f4f;font-size:17px;line-height:1.65;">Your note is safely with our studio. We will review it carefully and come back with the next useful step for your project.</p>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:24px 26px;background:#e7ece2;border-left:4px solid #3a5a40;">
-                      <p style="margin:0;color:#2e4833;font-size:15px;line-height:1.55;">Need to add something? Reply directly to this email or continue the conversation on WhatsApp. We work with businesses in Marrakech, across Morocco, and internationally.</p>
+                    <td style="padding:23px 25px;background:#e7ece2;border-left:4px solid #3a5a40;">
+                      <p style="margin:0;color:#2e4833;font-size:15px;line-height:1.6;">${followUp}</p>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:30px 0 38px;">
+                    <td style="padding:30px 0 36px;">
                       <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td style="background:#3a5a40;">
-                            <a href="mailto:${email}" style="display:inline-block;padding:14px 20px;color:#ffffff;font-size:13px;font-weight:700;letter-spacing:.6px;text-decoration:none;text-transform:uppercase;">Reply by email</a>
+                            <a href="mailto:${email}" style="display:inline-block;padding:14px 20px;color:#ffffff;font-size:12px;font-weight:700;letter-spacing:.7px;text-decoration:none;text-transform:uppercase;">Reply by email</a>
                           </td>
                           <td width="12" style="width:12px;">&nbsp;</td>
                           <td style="border:1px solid #3a5a40;">
-                            <a href="${whatsapp}" style="display:inline-block;padding:13px 19px;color:#3a5a40;font-size:13px;font-weight:700;letter-spacing:.6px;text-decoration:none;text-transform:uppercase;">Chat with us on WhatsApp</a>
+                            <a href="${whatsapp}" style="display:inline-block;padding:13px 19px;color:#3a5a40;font-size:12px;font-weight:700;letter-spacing:.7px;text-decoration:none;text-transform:uppercase;">Chat on WhatsApp</a>
                           </td>
                         </tr>
                       </table>
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding:24px 0 0;border-top:1px solid #cbd5c0;">
+                    <td style="padding:23px 0 0;border-top:1px solid #cbd5c0;">
                       <p style="margin:0;color:#1a1a1a;font-size:15px;font-weight:700;">WeReact agency</p>
-                      <p style="margin:7px 0 0;color:#5f5f5f;font-size:13px;line-height:1.65;">Web design, SEO foundations, and conversion-focused digital experiences.<br />Marrakech, Morocco · English &amp; French</p>
-                      <p style="margin:14px 0 0;color:#3a5a40;font-size:13px;line-height:1.7;"><a href="mailto:${email}" style="color:#3a5a40;text-decoration:underline;">${email}</a> &nbsp;·&nbsp; <a href="tel:${phone.replace(/\s/g, '')}" style="color:#3a5a40;text-decoration:underline;">${phone}</a> &nbsp;·&nbsp; <a href="${website}" style="color:#3a5a40;text-decoration:underline;">wereact.agency</a></p>
+                      <p style="margin:7px 0 0;color:#5f5f5f;font-size:13px;line-height:1.65;">Web design, SEO foundations, and conversion-focused digital experiences.<br />Marrakech, Morocco &middot; English and French</p>
+                      <p style="margin:14px 0 0;color:#3a5a40;font-size:13px;line-height:1.7;"><a href="mailto:${email}" style="color:#3a5a40;text-decoration:underline;">${email}</a> &middot; <a href="tel:${phone.replace(/[^\d+]/g, '')}" style="color:#3a5a40;text-decoration:underline;">${phone}</a> &middot; <a href="${website}" style="color:#3a5a40;text-decoration:underline;">wereact.agency</a></p>
                     </td>
                   </tr>
                 </table>

@@ -1,5 +1,6 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { buildContactConfirmationEmail, buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
+import { createLeadRecord, saveLead } from '@/lib/leads';
 
 export const runtime = 'nodejs';
 
@@ -40,6 +41,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 500 });
   }
 
+  const lead = createLeadRecord(submission, submission.attribution);
+  const leadResult = await saveLead(lead);
+
   const from = process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>';
   const enquiry = buildContactEmail(submission);
   const ownerResponse = await sendEmail({
@@ -68,5 +72,5 @@ export async function POST(request: Request) {
     console.error('Resend contact confirmation failed.', await confirmationResponse.text());
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, leadStored: leadResult.stored });
 }

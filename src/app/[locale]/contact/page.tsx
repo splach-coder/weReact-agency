@@ -3,11 +3,11 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { CheckCircle, Mail, MapPin, MessageCircle, Paperclip, Send } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackContactIntent, trackLead } from '@/lib/analytics';
+import { getStoredAttribution, trackContactIntent, trackLead } from '@/lib/analytics';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -21,12 +21,16 @@ const maskUp = {
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
+  const isFrench = useLocale() === 'fr';
+  const phoneLabel = isFrench ? 'Numero de telephone' : 'Phone number';
+  const whatsappLabel = isFrench ? 'Numero WhatsApp (facultatif)' : 'WhatsApp number (optional)';
+  const receivedMessage = isFrench ? 'Merci - votre demande est bien recue. Nous repondons sous un jour ouvre.' : 'Thanks - your project note is safely with us. We will reply within one business day.';
   const sceneRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', website: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
 
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ['start start', 'end start'] });
   const visualY = useTransform(scrollYProgress, [0, 1], [0, -42]);
@@ -42,7 +46,7 @@ export default function ContactPage() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, attribution: getStoredAttribution() }),
       });
       const result = (await response.json()) as { error?: string };
 
@@ -51,10 +55,12 @@ export default function ContactPage() {
       await trackLead('contact_form', {
         page: 'contact',
         has_company: Boolean(formData.company),
+        has_phone: Boolean(formData.phone),
+        has_whatsapp: Boolean(formData.whatsapp),
         has_message: Boolean(formData.message),
       });
       setSubmitted(true);
-      setFormData({ name: '', email: '', company: '', message: '', website: '' });
+      setFormData({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Unable to send your message right now.');
     } finally {
@@ -210,6 +216,35 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
+                  <label htmlFor="phone" className={labelClass}>{phoneLabel}</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+212 600 000 000"
+                    className={fieldClass}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="whatsapp" className={labelClass}>{whatsappLabel}</label>
+                  <input
+                    id="whatsapp"
+                    name="whatsapp"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel-national"
+                    value={formData.whatsapp}
+                    onChange={handleChange}
+                    placeholder="+212 611 000 000"
+                    className={fieldClass}
+                  />
+                </div>
+                <div>
                   <label htmlFor="company" className={labelClass}>{t('companyLabel')}</label>
                   <input
                     id="company"
@@ -253,7 +288,7 @@ export default function ContactPage() {
                 {submitted && (
                   <p role="status" className="flex items-start gap-2 text-sm font-medium leading-relaxed text-[var(--color-primary)]">
                     <CheckCircle size={17} className="mt-0.5 shrink-0" aria-hidden="true" />
-                    {t('sent')}
+                    {receivedMessage}
                   </p>
                 )}
               </form>
