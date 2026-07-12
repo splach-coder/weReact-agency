@@ -2,12 +2,13 @@
 
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle, Mail, MapPin, MessageCircle, Paperclip, Send } from 'lucide-react';
+import { CheckCircle, Mail, MapPin, MessageCircle, Send, X } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { getStoredAttribution, trackContactIntent, trackLead } from '@/lib/analytics';
+import { getContactFieldErrors, type ContactField, type ContactFieldErrors } from '@/lib/contact';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -24,12 +25,14 @@ export default function ContactPage() {
   const isFrench = useLocale() === 'fr';
   const phoneLabel = isFrench ? 'Numero de telephone' : 'Phone number';
   const whatsappLabel = isFrench ? 'Numero WhatsApp (facultatif)' : 'WhatsApp number (optional)';
-  const receivedMessage = isFrench ? 'Merci - votre demande est bien recue. Nous repondons sous un jour ouvre.' : 'Thanks - your project note is safely with us. We will reply within one business day.';
+  const receivedMessage = isFrench ? 'Votre demande est bien recue. Nous vous repondrons sous un jour ouvre.' : 'Your project note is with our team. We will reply within one business day.';
   const sceneRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [submitted, setSubmitted] = useState(false);
+  const [submittedWithWhatsApp, setSubmittedWithWhatsApp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
 
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ['start start', 'end start'] });
@@ -39,8 +42,17 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const validationErrors = getContactFieldErrors(formData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      setFormError('Please review the highlighted fields.');
+      return;
+    }
+
     setSubmitting(true);
     setFormError('');
+    setFieldErrors({});
 
     try {
       const response = await fetch('/api/contact', {
@@ -59,6 +71,7 @@ export default function ContactPage() {
         has_whatsapp: Boolean(formData.whatsapp),
         has_message: Boolean(formData.message),
       });
+      setSubmittedWithWhatsApp(Boolean(formData.whatsapp.trim()));
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
     } catch (error) {
@@ -67,10 +80,18 @@ export default function ContactPage() {
       setSubmitting(false);
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const field = e.target.name as ContactField;
+    setFormData((current) => ({ ...current, [field]: e.target.value }));
+    setFieldErrors((current) => {
+      if (!current[field]) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
+    if (formError) setFormError('');
+  };
   const contactInfo = [
     {
       icon: Mail,
@@ -95,9 +116,9 @@ export default function ContactPage() {
     },
   ];
 
-  const fieldClass =
-    'w-full border-0 border-b border-[rgba(26,26,26,0.16)] bg-transparent px-0 py-3 text-[15px] text-[var(--color-text-main)] outline-none transition-colors placeholder:text-[rgba(26,26,26,0.34)] focus:border-[var(--color-primary)]';
-  const labelClass = 'sr-only';
+  const fieldClass = (field: ContactField) =>
+    `w-full border-0 border-b bg-transparent px-0 py-3 text-[15px] text-[var(--color-text-main)] outline-none transition-colors placeholder:text-[rgba(26,26,26,0.34)] focus:border-[var(--color-primary)] ${fieldErrors[field] ? 'border-[#a94442]' : 'border-[rgba(26,26,26,0.16)]'}`;
+  const labelClass = 'mb-1.5 block text-mono text-[10px] uppercase text-[var(--color-text-muted)]';
 
   return (
     <main className="bg-[var(--color-background-main)] text-[var(--color-text-main)]">
@@ -117,7 +138,7 @@ export default function ContactPage() {
           <motion.div
             data-depth="3"
             style={reduceMotion ? undefined : { y: visualY }}
-            className="relative min-h-[520px] overflow-hidden bg-[var(--color-primary)] lg:min-h-[100svh]"
+            className="relative z-0 min-h-[520px] overflow-hidden bg-[var(--color-primary)] lg:min-h-[100svh]"
           >
             <motion.div
               data-depth="0"
@@ -181,116 +202,55 @@ export default function ContactPage() {
             variants={wrap}
             initial="hidden"
             animate="visible"
-            className="flex min-h-[620px] flex-col justify-center border-t border-[rgba(58,90,64,0.16)] bg-white px-6 py-12 sm:px-8 lg:min-h-[100svh] lg:border-l lg:border-t-0 lg:px-14 lg:py-28 xl:px-16"
+            className="relative z-10 flex min-h-[620px] flex-col justify-center border-t border-[rgba(58,90,64,0.16)] bg-white px-6 py-12 sm:px-8 lg:min-h-[100svh] lg:border-l lg:border-t-0 lg:px-14 lg:py-28 xl:px-16"
           >
             <div>
               <motion.p variants={fade} className="max-w-md text-base font-semibold leading-snug text-[var(--color-text-main)] sm:text-lg">
                 {t('subtitle')}
               </motion.p>
 
-              <form onSubmit={handleSubmit} className="mt-9 space-y-3">
-                <div>
-                  <label htmlFor="name" className={labelClass}>{t('nameLabel')}</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder={t('namePlaceholder')}
-                    className={fieldClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className={labelClass}>{t('emailLabel')}</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder={t('emailPlaceholder')}
-                    className={fieldClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className={labelClass}>{phoneLabel}</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+212 600 000 000"
-                    className={fieldClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="whatsapp" className={labelClass}>{whatsappLabel}</label>
-                  <input
-                    id="whatsapp"
-                    name="whatsapp"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel-national"
-                    value={formData.whatsapp}
-                    onChange={handleChange}
-                    placeholder="+212 611 000 000"
-                    className={fieldClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="company" className={labelClass}>{t('companyLabel')}</label>
-                  <input
-                    id="company"
-                    name="company"
-                    type="text"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder={t('companyPlaceholder')}
-                    className={fieldClass}
-                  />
-                </div>
-                <div className="relative">
-                  <label htmlFor="message" className={labelClass}>{t('messageLabel')}</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={3}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder={t('messagePlaceholder')}
-                    className={`${fieldClass} resize-none pr-10`}
-                  />
-                  <Paperclip
-                    size={17}
-                    className="pointer-events-none absolute right-1 top-4 text-[rgba(26,26,26,0.42)]"
-                    aria-hidden="true"
-                  />
+              <form noValidate onSubmit={handleSubmit} className="mt-9">
+                <div className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className={labelClass}>{t('nameLabel')}</label>
+                    <input id="name" name="name" type="text" autoComplete="name" value={formData.name} onChange={handleChange} placeholder={t('namePlaceholder')} aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? 'name-error' : undefined} className={fieldClass('name')} />
+                    {fieldErrors.name && <p id="name-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="email" className={labelClass}>{t('emailLabel')}</label>
+                    <input id="email" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} placeholder={t('emailPlaceholder')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? 'email-error' : undefined} className={fieldClass('email')} />
+                    {fieldErrors.email && <p id="email-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.email}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className={labelClass}>{phoneLabel}</label>
+                    <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} placeholder="+212 600 000 000" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} className={fieldClass('phone')} />
+                    {fieldErrors.phone && <p id="phone-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.phone}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="whatsapp" className={labelClass}>{whatsappLabel}</label>
+                    <input id="whatsapp" name="whatsapp" type="tel" inputMode="tel" autoComplete="tel-national" value={formData.whatsapp} onChange={handleChange} placeholder="+212 611 000 000" aria-invalid={Boolean(fieldErrors.whatsapp)} aria-describedby={fieldErrors.whatsapp ? 'whatsapp-error' : undefined} className={fieldClass('whatsapp')} />
+                    {fieldErrors.whatsapp && <p id="whatsapp-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.whatsapp}</p>}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="company" className={labelClass}>{t('companyLabel')}</label>
+                    <input id="company" name="company" type="text" autoComplete="organization" value={formData.company} onChange={handleChange} placeholder={t('companyPlaceholder')} aria-invalid={Boolean(fieldErrors.company)} aria-describedby={fieldErrors.company ? 'company-error' : undefined} className={fieldClass('company')} />
+                    {fieldErrors.company && <p id="company-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.company}</p>}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="message" className={labelClass}>{t('messageLabel')}</label>
+                    <textarea id="message" name="message" rows={5} value={formData.message} onChange={handleChange} placeholder={t('messagePlaceholder')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? 'message-error' : undefined} className={`${fieldClass('message')} resize-none`} />
+                    {fieldErrors.message && <p id="message-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.message}</p>}
+                  </div>
                 </div>
 
-                <div className="flex justify-end pt-6">
-                  <button
-                    type="submit"
-                    className="group flex h-12 min-w-[132px] items-center justify-center rounded-[999px] border border-[rgba(26,26,26,0.35)] px-8 text-[10px] font-black uppercase tracking-[0.12em] text-[var(--color-text-main)] transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
-                  >
-                    {t('send')}
+                {formError && <p role="alert" className="mt-5 text-sm font-medium text-[#a94442]">{formError}</p>}
+
+                <div className="flex justify-end pt-7">
+                  <button type="submit" disabled={submitting} className="group flex h-12 min-w-[156px] items-center justify-center border border-[var(--color-primary)] bg-[var(--color-primary)] px-6 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-transparent hover:text-[var(--color-primary)] disabled:cursor-wait disabled:opacity-60">
+                    {submitting ? 'Sending...' : t('send')}
                     <Send size={14} className="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </button>
                 </div>
-
-                {submitted && (
-                  <p role="status" className="flex items-start gap-2 text-sm font-medium leading-relaxed text-[var(--color-primary)]">
-                    <CheckCircle size={17} className="mt-0.5 shrink-0" aria-hidden="true" />
-                    {receivedMessage}
-                  </p>
-                )}
               </form>
             </div>
 
@@ -317,6 +277,26 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {submitted && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.16 }} className="fixed inset-0 z-[90] grid place-items-center bg-[rgba(26,26,26,0.32)] px-5 py-8" role="dialog" aria-modal="true" aria-labelledby="contact-success-title">
+            <motion.div initial={{ opacity: 0, y: 14, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8, scale: 0.99 }} transition={{ duration: 0.22, ease: smoothEasing }} className="relative w-full max-w-md border border-[rgba(58,90,64,0.22)] bg-[#F6F6F2] p-7 shadow-[0_24px_70px_rgba(26,26,26,0.2)] sm:p-9">
+              <button type="button" onClick={() => setSubmitted(false)} className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center border border-[rgba(26,26,26,0.14)] text-[var(--color-text-main)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]" aria-label="Close confirmation">
+                <X size={16} aria-hidden="true" />
+              </button>
+              <CheckCircle size={30} className="text-[var(--color-primary)]" aria-hidden="true" />
+              <p className="mt-6 text-mono text-[10px] uppercase text-[var(--color-primary)]">Message received</p>
+              <h2 id="contact-success-title" className="mt-3 font-serif text-3xl leading-tight text-[var(--color-text-main)]">Thank you. We have it.</h2>
+              <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--color-text-muted)]">{submittedWithWhatsApp ? 'We will reach you on WhatsApp as soon as possible. A confirmation is also on its way to your inbox.' : receivedMessage}</p>
+              <button type="button" onClick={() => setSubmitted(false)} className="mt-7 border-b border-[var(--color-primary)] pb-1 text-mono text-[10px] uppercase text-[var(--color-primary)]">Back to contact</button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
+
+
+

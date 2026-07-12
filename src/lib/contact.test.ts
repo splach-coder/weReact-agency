@@ -1,6 +1,6 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildContactConfirmationEmail, buildContactEmail, validateContactSubmission } from './contact';
+import { buildContactConfirmationEmail, buildContactEmail, getContactFieldErrors, validateContactSubmission } from './contact';
 
 test('validates a complete contact enquiry', () => {
   assert.deepEqual(
@@ -45,6 +45,7 @@ test('builds a confirmation email for the sender', () => {
   assert.match(email.html, /\+212 602-258009/);
   assert.match(email.html, /Chat on WhatsApp/);
   assert.match(email.html, /wereact\.agency/);
+  assert.match(email.html, /wereact-email-logo\.png/);
 });
 test('requires a direct phone number and keeps WhatsApp optional', () => {
   const missingPhone = validateContactSubmission({ name: 'Anas', email: 'anas@example.com', message: 'I need a site.' });
@@ -64,3 +65,23 @@ test('uses the client WhatsApp route when it is provided', () => {
   assert.match(enquiry.html, /\+212 611 000 000/);
   assert.doesNotMatch(confirmation.html, /images\/logo\.webp/);
 });
+
+test('returns useful field-level feedback before submitting the form', () => {
+  assert.deepEqual(
+    getContactFieldErrors({
+      name: '',
+      email: 'not-an-email',
+      phone: 'abc',
+      whatsapp: 'no',
+      message: '',
+    }),
+    {
+      name: 'Please add your name.',
+      email: 'Please enter a valid email address.',
+      phone: 'Please enter a valid phone number.',
+      whatsapp: 'Please enter a valid WhatsApp number.',
+      message: 'Tell us a little about your project.',
+    }
+  );
+});
+

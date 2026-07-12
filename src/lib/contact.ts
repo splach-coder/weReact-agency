@@ -1,4 +1,4 @@
-﻿import type { LeadAttribution } from '@/lib/leads';
+import type { LeadAttribution } from '@/lib/leads';
 import { siteConfig } from '@/config/site';
 
 export type ContactSubmission = {
@@ -13,33 +13,48 @@ export type ContactSubmission = {
 };
 
 type ValidationResult = { valid: true } | { valid: false; message: string };
+export type ContactField = 'name' | 'email' | 'phone' | 'whatsapp' | 'company' | 'message';
+export type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
 function isPhoneNumber(value: string) {
   return /^\+?[0-9().\s-]{7,40}$/.test(value);
 }
 
+export function getContactFieldErrors(input: ContactSubmission): ContactFieldErrors {
+  const errors: ContactFieldErrors = {};
+  const name = input.name?.trim() ?? '';
+  const email = input.email?.trim() ?? '';
+  const phone = input.phone?.trim() ?? '';
+  const whatsapp = input.whatsapp?.trim() ?? '';
+  const company = input.company?.trim() ?? '';
+  const message = input.message?.trim() ?? '';
+
+  if (!name) errors.name = 'Please add your name.';
+  else if (name.length > 120) errors.name = 'Please use a shorter name.';
+
+  if (!email) errors.email = 'Please add your email address.';
+  else if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = 'Please enter a valid email address.';
+  else if (email.length > 254) errors.email = 'Please use a shorter email address.';
+
+  if (!phone) errors.phone = 'Please add a phone number we can use to reach you.';
+  else if (!isPhoneNumber(phone)) errors.phone = 'Please enter a valid phone number.';
+  else if (phone.length > 40) errors.phone = 'Please use a shorter phone number.';
+
+  if (whatsapp && !isPhoneNumber(whatsapp)) errors.whatsapp = 'Please enter a valid WhatsApp number.';
+  else if (whatsapp.length > 40) errors.whatsapp = 'Please use a shorter WhatsApp number.';
+
+  if (company.length > 160) errors.company = 'Please use a shorter company name.';
+
+  if (!message) errors.message = 'Tell us a little about your project.';
+  else if (message.length > 5000) errors.message = 'Please shorten your message and try again.';
+
+  return errors;
+}
+
 export function validateContactSubmission(input: ContactSubmission): ValidationResult {
-  if (!input.name.trim() || !input.email.trim() || !input.message.trim()) {
-    return { valid: false, message: 'Please complete the required fields.' };
-  }
-
-  if (!input.phone?.trim()) {
-    return { valid: false, message: 'Please add a phone number we can use to reach you.' };
-  }
-
-  if (!/^\S+@\S+\.\S+$/.test(input.email.trim())) {
-    return { valid: false, message: 'Please enter a valid email address.' };
-  }
-
-  if (!isPhoneNumber(input.phone.trim()) || (input.whatsapp?.trim() && !isPhoneNumber(input.whatsapp.trim()))) {
-    return { valid: false, message: 'Please enter a valid phone or WhatsApp number.' };
-  }
-
-  if (input.name.length > 120 || input.email.length > 254 || input.phone.length > 40 || (input.whatsapp?.length ?? 0) > 40 || (input.company?.length ?? 0) > 160 || input.message.length > 5000) {
-    return { valid: false, message: 'Please shorten your message and try again.' };
-  }
-
-  return { valid: true };
+  const errors = getContactFieldErrors(input);
+  const firstError = Object.values(errors)[0];
+  return firstError ? { valid: false, message: firstError } : { valid: true };
 }
 
 function escapeHtml(value: string) {
@@ -100,7 +115,7 @@ export function buildContactConfirmationEmail(input: ContactSubmission) {
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
                   <tr>
                     <td style="padding:0 0 26px;border-bottom:1px solid #cbd5c0;">
-                      <a href="${website}" style="color:#2e4833;font-size:25px;font-weight:800;letter-spacing:-1.3px;text-decoration:none;">&middot;wereact&middot;</a>
+                      <a href="${website}" style="display:inline-block;text-decoration:none;"><img src="${website}/images/wereact-email-logo.png" width="174" height="40" alt="WeReact" style="display:block;width:174px;height:40px;border:0;outline:none;text-decoration:none;" /></a>
                     </td>
                   </tr>
                   <tr>
@@ -146,3 +161,4 @@ export function buildContactConfirmationEmail(input: ContactSubmission) {
     `,
   };
 }
+
