@@ -4,7 +4,11 @@ export interface BlogPost {
     excerpt: string;
     metaDescription?: string;
     date: string;
+    publishedAt: string;
+    modifiedAt: string;
     author: string;
+    authorRole: string;
+    relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages';
     category: string;
     categoryColor?: string;
     image: string;
@@ -20,7 +24,11 @@ export const blogPosts: BlogPost[] = [
         excerpt: "Moving beyond keywords: focusing on E-E-A-T and technical excellence to dominate search results.",
         metaDescription: "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
         date: "June 14, 2026",
-        author: "SEO Specialist",
+        publishedAt: "2026-06-14",
+        modifiedAt: "2026-07-12",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "seo-landing-pages",
         category: "SEO",
         categoryColor: "#10B981", // Green like 'Art' in image
         image: "/images/blog/seo-2026-real.webp",
@@ -44,7 +52,11 @@ export const blogPosts: BlogPost[] = [
         excerpt: "A practical guide for Marrakech businesses that want a website built for local visibility, trust, speed, and real client inquiries.",
         metaDescription: "Website design in Marrakech guide for local businesses. Learn how SEO, mobile UX, trust signals, speed, and conversion paths turn Google traffic into client inquiries.",
         date: "June 16, 2026",
-        author: "WeReact Team",
+        publishedAt: "2026-06-16",
+        modifiedAt: "2026-07-12",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "web-design-marrakech",
         category: "Local SEO",
         categoryColor: "#3A5A40",
         image: "/images/blog/marrakech-web-design-real.webp",
@@ -80,7 +92,11 @@ export const blogPosts: BlogPost[] = [
         excerpt: "How hotels, tour operators, transport companies, and travel brands in Morocco can build websites that improve discovery and direct inquiries.",
         metaDescription: "SEO guide for tourism and hospitality websites in Morocco. Learn how destination pages, mobile speed, trust signals, schema, and conversion UX improve direct inquiries.",
         date: "June 16, 2026",
-        author: "WeReact Team",
+        publishedAt: "2026-06-16",
+        modifiedAt: "2026-07-12",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "tourism-websites-morocco",
         category: "Tourism SEO",
         categoryColor: "#A3B18A",
         image: "/images/blog/morocco-tourism-seo-real.webp",
@@ -114,4 +130,3 @@ export const blogPosts: BlogPost[] = [
         `
     }
 ];
-

@@ -9,6 +9,7 @@ import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { getServiceLandingPage } from '@/data/services';
 
 interface Props {
     params: Promise<{ slug: string; locale: string }>;
@@ -34,7 +35,8 @@ export async function generateMetadata(
             siteName: 'WeReact Journal',
             images: [{ url: `${siteConfig.url}${post.image}`, width: 1200, height: 630, alt: post.title }],
             type: 'article',
-            publishedTime: post.date,
+            publishedTime: post.publishedAt,
+            modifiedTime: post.modifiedAt,
             authors: [post.author],
         },
         twitter: {
@@ -65,6 +67,7 @@ export default async function BlogPostPage({ params }: Props) {
 
     const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
     const postUrl = `${siteConfig.url}/${locale}/blog/${post.slug}`;
+    const relatedService = getServiceLandingPage(post.relatedServiceSlug);
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -72,8 +75,9 @@ export default async function BlogPostPage({ params }: Props) {
         headline: post.title,
         description: post.metaDescription || post.excerpt,
         image: `${siteConfig.url}${post.image}`,
-        datePublished: post.date,
-        author: { '@type': 'Person', name: post.author },
+        datePublished: post.publishedAt,
+        dateModified: post.modifiedAt,
+        author: { '@type': 'Organization', name: post.author, url: siteConfig.url },
         publisher: {
             '@type': 'Organization',
             name: 'WeReact',
@@ -116,7 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
                         </div>
                         <div className="text-left">
                             <p className="text-xs font-black uppercase tracking-widest text-[var(--color-text-main)]">{post.author}</p>
-                            <p className="text-[9px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] font-bold">WeReact</p>
+                            <p className="text-[9px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] font-bold">{post.authorRole}</p>
                         </div>
                     </div>
                 </div>
@@ -144,6 +148,16 @@ export default async function BlogPostPage({ params }: Props) {
                                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                             />
 
+                            {relatedService && (
+                                <aside className="mt-12 border-y border-[rgba(58,90,64,0.15)] py-8">
+                                    <p className="text-mono text-[var(--color-primary)]">Practical next step</p>
+                                    <h2 className="mt-3 text-2xl font-bold leading-tight text-[var(--color-text-main)]">{relatedService.copy[locale === 'fr' ? 'fr' : 'en'].title}</h2>
+                                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">{relatedService.copy[locale === 'fr' ? 'fr' : 'en'].description}</p>
+                                    <Link href={`/${locale}/${relatedService.slug}`} className="mt-5 inline-flex items-center gap-2 text-mono text-[var(--color-primary)] underline underline-offset-4">
+                                        Explore the service <ArrowRight size={14} aria-hidden="true" />
+                                    </Link>
+                                </aside>
+                            )}
                             <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
                                 <div className="flex flex-wrap gap-2">
                                     {post.tags.map(tag => (

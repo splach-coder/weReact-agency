@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
+import type { ServiceFaq, ServiceLandingPage } from '@/data/services';
 
 type PageMetadataOptions = {
   title: string;
@@ -104,6 +105,35 @@ export function createServiceJsonLd() {
       availability: 'https://schema.org/InStock',
       priceCurrency: siteConfig.campaign.leadCurrency,
       url: `${siteConfig.url}/contact`,
+    })),
+  };
+}
+export function createServicePageJsonLd(page: ServiceLandingPage, locale: string) {
+  const copy = page.copy[locale === 'fr' ? 'fr' : 'en'];
+  const url = `${siteConfig.url}/${locale}/${page.slug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: copy.title,
+    description: copy.description,
+    url,
+    serviceType: page.keywords,
+    provider: { '@id': `${siteConfig.url}/#business` },
+    areaServed: siteConfig.business.areaServed.map((name) => ({ '@type': 'Place', name })),
+    availableLanguage: locale === 'fr' ? ['French', 'English'] : ['English', 'French'],
+  };
+}
+
+export function createFaqJsonLd(faqs: readonly ServiceFaq[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
   };
 }

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, Twitter, MessageCircle, Mail } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
@@ -11,7 +11,7 @@ import { trackContactIntent } from '@/lib/analytics';
 import { OPEN_CONSENT_PREFERENCES_EVENT } from '@/lib/consent';
 
 /**
- * Footer — inherits the exo-ape structure: a big editorial statement over a
+ * Footer â€” inherits the exo-ape structure: a big editorial statement over a
  * hairline, a row of oversized nav links + connect + newsletter, and a
  * copyright line, all on a deep Atlas-Green field with a ghost wordmark.
  */
@@ -28,6 +28,7 @@ const mask = {
 export default function Footer() {
   const t = useTranslations('Footer');
   const tNav = useTranslations('Nav');
+  const locale = useLocale();
   const year = 2026;
   const [subscriberEmail, setSubscriberEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -66,6 +67,18 @@ export default function Footer() {
     { name: tNav('contact'), href: '/contact' },
   ];
 
+  const serviceLinks = locale === 'fr'
+    ? [
+        { name: 'Création de site à Marrakech', href: '/web-design-marrakech' },
+        { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
+        { name: 'Landing pages SEO', href: '/seo-landing-pages' },
+      ]
+    : [
+        { name: 'Website design in Marrakech', href: '/web-design-marrakech' },
+        { name: 'Tourism websites in Morocco', href: '/tourism-websites-morocco' },
+        { name: 'SEO-ready landing pages', href: '/seo-landing-pages' },
+      ];
+
   const socials = [
     { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: Instagram },
     { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
@@ -81,7 +94,7 @@ export default function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[4vw] left-1/2 -translate-x-1/2 select-none text-[26vw] font-black leading-none tracking-tighter text-white opacity-[0.04]"
       >
-        ·wereact·
+        Â·wereactÂ·
       </span>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-16">
@@ -108,7 +121,7 @@ export default function Footer() {
 
         {/* Links / connect / newsletter */}
         <div className="grid gap-14 py-16 md:grid-cols-12">
-          {/* Explore — oversized nav links */}
+          {/* Explore â€” oversized nav links */}
           <nav className="md:col-span-6">
             <p className="text-mono mb-7 text-white/40">{t('explore')}</p>
             <ul className="flex flex-col gap-1.5">
@@ -123,6 +136,18 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <div className="mt-10 border-t border-white/15 pt-7">
+              <p className="text-mono mb-4 text-white/40">Services</p>
+              <ul className="flex flex-col gap-2">
+                {serviceLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-white/70 transition-colors hover:text-white">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
 
           {/* Connect */}
@@ -183,7 +208,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/45 md:flex-row md:items-center md:justify-between">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <span>© WeReact {year} — {t('copyright')}</span>
+            <span>Â© WeReact {year} â€” {t('copyright')}</span>
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT))}
@@ -192,7 +217,7 @@ export default function Footer() {
               Privacy choices
             </button>
           </span>
-          <span>Marrakech · Morocco</span>
+          <span>Marrakech Â· Morocco</span>
         </div>
       </div>
     </footer>
