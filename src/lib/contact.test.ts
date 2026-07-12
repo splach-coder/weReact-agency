@@ -45,7 +45,8 @@ test('builds a confirmation email for the sender', () => {
   assert.match(email.html, /\+212 602-258009/);
   assert.match(email.html, /Chat on WhatsApp/);
   assert.match(email.html, /wereact\.agency/);
-  assert.match(email.html, /wereact-email-logo\.png/);
+  assert.match(email.html, /&middot;wereact&middot;/);
+  assert.doesNotMatch(email.html, /wereact-email-logo\.png/);
 });
 test('requires a direct phone number and keeps WhatsApp optional', () => {
   const missingPhone = validateContactSubmission({ name: 'Anas', email: 'anas@example.com', message: 'I need a site.' });

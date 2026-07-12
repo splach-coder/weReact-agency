@@ -115,7 +115,7 @@ export function buildContactConfirmationEmail(input: ContactSubmission) {
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
                   <tr>
                     <td style="padding:0 0 26px;border-bottom:1px solid #cbd5c0;">
-                      <a href="${website}" style="display:inline-block;text-decoration:none;"><img src="${website}/images/wereact-email-logo.png" width="174" height="40" alt="WeReact" style="display:block;width:174px;height:40px;border:0;outline:none;text-decoration:none;" /></a>
+                      <a href="${website}" style="color:#2e4833;font-size:25px;font-weight:800;letter-spacing:-1.3px;text-decoration:none;">&middot;wereact&middot;</a>
                     </td>
                   </tr>
                   <tr>
