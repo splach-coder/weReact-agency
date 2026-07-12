@@ -1,6 +1,7 @@
 import type { LeadRecord } from '@/lib/leads';
 
 const HUBSPOT_API_URL = 'https://api.hubapi.com';
+const HUBSPOT_SALES_OWNER_ID = '35904457';
 
 type Fetcher = typeof fetch;
 type HubSpotObject = { id: string };
@@ -39,6 +40,7 @@ export function buildHubSpotContactProperties(record: LeadRecord) {
     company: record.company,
     lifecyclestage: 'lead',
     hs_lead_status: 'NEW',
+    hubspot_owner_id: HUBSPOT_SALES_OWNER_ID,
   });
 }
 
@@ -48,6 +50,7 @@ export function buildHubSpotDealProperties(record: LeadRecord) {
     dealname: `Website enquiry - ${leadName}`,
     pipeline: 'default',
     dealstage: 'appointmentscheduled',
+    hubspot_owner_id: HUBSPOT_SALES_OWNER_ID,
     description: `${record.message}\n\nPhone: ${record.phone}\nWhatsApp: ${record.whatsapp ?? 'Not provided'}${formatAttribution(record)}`,
   };
 }

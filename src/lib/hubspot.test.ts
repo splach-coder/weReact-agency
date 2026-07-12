@@ -25,6 +25,7 @@ test('maps a website lead to standard HubSpot contact fields', () => {
     company: 'Atlas Studio',
     lifecyclestage: 'lead',
     hs_lead_status: 'NEW',
+    hubspot_owner_id: '35904457',
   });
 });
 
@@ -32,6 +33,7 @@ test('creates a new-enquiry deal payload with attribution', () => {
   const properties = buildHubSpotDealProperties(lead);
   assert.equal(properties.dealstage, 'appointmentscheduled');
   assert.equal(properties.pipeline, 'default');
+  assert.equal(properties.hubspot_owner_id, '35904457');
   assert.match(properties.dealname, /Atlas Studio - Karim Hida/);
   assert.match(properties.description, /utm_source: google/);
   assert.match(properties.description, /gclid: test-click/);
