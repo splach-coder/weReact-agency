@@ -17,7 +17,8 @@ export default function GoogleConsentDefaults() {
 
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-            window.gtag('consent', 'default', choice === 'accepted' ? ${acceptedState} : ${deniedState});
+            // Morocco-focused audience: default to granted (banner still lets visitors opt out).
+            window.gtag('consent', 'default', choice === 'rejected' ? ${deniedState} : ${acceptedState});
           })();
         `,
       }}

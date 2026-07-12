@@ -232,7 +232,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label htmlFor="phone" className={labelClass}>{phoneLabel}{renderFieldStatus('phone')}</label>
-                    <input id="phone" name="phone" type="tel" required aria-required="true" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} placeholder="+212 600 000 000" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} className={fieldClass('phone')} />
+                    <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} placeholder="+212 600 000 000" aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} className={fieldClass('phone')} />
                     {fieldErrors.phone && <p id="phone-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.phone}</p>}
                   </div>
                   <div>
@@ -247,7 +247,7 @@ export default function ContactPage() {
                   </div>
                   <div className="sm:col-span-2">
                     <label htmlFor="message" className={labelClass}>{t('messageLabel')}{renderFieldStatus('message')}</label>
-                    <textarea id="message" name="message" required aria-required="true" rows={5} value={formData.message} onChange={handleChange} placeholder={t('messagePlaceholder')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? 'message-error' : undefined} className={`${fieldClass('message')} resize-none`} />
+                    <textarea id="message" name="message" rows={5} value={formData.message} onChange={handleChange} placeholder={t('messagePlaceholder')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? 'message-error' : undefined} className={`${fieldClass('message')} resize-none`} />
                     {fieldErrors.message && <p id="message-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.message}</p>}
                   </div>
                 </div>

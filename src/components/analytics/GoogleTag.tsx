@@ -45,6 +45,7 @@ export default function GoogleTag() {
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
             window.gtag('js', new Date());
+            window.gtag('set', 'url_passthrough', true);
             ${configLines}
             window.gtag('event', 'page_view', {
               page_location: window.location.href,

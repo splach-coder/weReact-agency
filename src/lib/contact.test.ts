@@ -5,8 +5,8 @@ import { buildContactConfirmationEmail, buildContactEmail, getContactFieldErrors
 test('identifies the required contact fields', () => {
   assert.equal(isRequiredContactField('name'), true);
   assert.equal(isRequiredContactField('email'), true);
-  assert.equal(isRequiredContactField('phone'), true);
-  assert.equal(isRequiredContactField('message'), true);
+  assert.equal(isRequiredContactField('phone'), false);
+  assert.equal(isRequiredContactField('message'), false);
   assert.equal(isRequiredContactField('whatsapp'), false);
   assert.equal(isRequiredContactField('company'), false);
 });
@@ -57,12 +57,12 @@ test('builds a confirmation email for the sender', () => {
   assert.match(email.html, /&middot;wereact&middot;/);
   assert.doesNotMatch(email.html, /wereact-email-logo\.png/);
 });
-test('requires a direct phone number and keeps WhatsApp optional', () => {
-  const missingPhone = validateContactSubmission({ name: 'Anas', email: 'anas@example.com', message: 'I need a site.' });
-  assert.deepEqual(missingPhone, { valid: false, message: 'Please add a phone number we can use to reach you.' });
+test('requires only name and email, and validates phone only when provided', () => {
+  const nameEmailOnly = validateContactSubmission({ name: 'Anas', email: 'anas@example.com' });
+  assert.deepEqual(nameEmailOnly, { valid: true });
 
-  const withPhone = validateContactSubmission({ name: 'Anas', email: 'anas@example.com', phone: '+212 600 000 000', message: 'I need a site.' });
-  assert.deepEqual(withPhone, { valid: true });
+  const invalidPhone = validateContactSubmission({ name: 'Anas', email: 'anas@example.com', phone: 'abc' });
+  assert.deepEqual(invalidPhone, { valid: false, message: 'Please enter a valid phone number.' });
 });
 
 test('uses the client WhatsApp route when it is provided', () => {
@@ -90,7 +90,6 @@ test('returns useful field-level feedback before submitting the form', () => {
       email: 'Please enter a valid email address.',
       phone: 'Please enter a valid phone number.',
       whatsapp: 'Please enter a valid WhatsApp number.',
-      message: 'Tell us a little about your project.',
     }
   );
 });

@@ -4,10 +4,10 @@ import { siteConfig } from '@/config/site';
 export type ContactSubmission = {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   whatsapp?: string;
   company?: string;
-  message: string;
+  message?: string;
   website?: string;
   attribution?: LeadAttribution;
 };
@@ -16,7 +16,7 @@ type ValidationResult = { valid: true } | { valid: false; message: string };
 export type ContactField = 'name' | 'email' | 'phone' | 'whatsapp' | 'company' | 'message';
 export type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
-const requiredContactFields = new Set<ContactField>(['name', 'email', 'phone', 'message']);
+const requiredContactFields = new Set<ContactField>(['name', 'email']);
 
 export function isRequiredContactField(field: ContactField) {
   return requiredContactFields.has(field);
@@ -42,8 +42,7 @@ export function getContactFieldErrors(input: ContactSubmission): ContactFieldErr
   else if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = 'Please enter a valid email address.';
   else if (email.length > 254) errors.email = 'Please use a shorter email address.';
 
-  if (!phone) errors.phone = 'Please add a phone number we can use to reach you.';
-  else if (!isPhoneNumber(phone)) errors.phone = 'Please enter a valid phone number.';
+  if (phone && !isPhoneNumber(phone)) errors.phone = 'Please enter a valid phone number.';
   else if (phone.length > 40) errors.phone = 'Please use a shorter phone number.';
 
   if (whatsapp && !isPhoneNumber(whatsapp)) errors.whatsapp = 'Please enter a valid WhatsApp number.';
@@ -51,8 +50,7 @@ export function getContactFieldErrors(input: ContactSubmission): ContactFieldErr
 
   if (company.length > 160) errors.company = 'Please use a shorter company name.';
 
-  if (!message) errors.message = 'Tell us a little about your project.';
-  else if (message.length > 5000) errors.message = 'Please shorten your message and try again.';
+  if (message.length > 5000) errors.message = 'Please shorten your message and try again.';
 
   return errors;
 }
@@ -76,10 +74,10 @@ function escapeHtml(value: string) {
 export function buildContactEmail(input: ContactSubmission) {
   const name = input.name.trim();
   const email = input.email.trim();
-  const phone = input.phone.trim();
+  const phone = input.phone?.trim() || 'Not provided';
   const whatsapp = input.whatsapp?.trim() || 'Not provided';
   const company = input.company?.trim() || 'Not provided';
-  const message = input.message.trim();
+  const message = input.message?.trim() || '(No message provided)';
 
   return {
     subject: `New project enquiry - ${name}`,

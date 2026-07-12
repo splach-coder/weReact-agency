@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "tsx --test src/**/*.test.ts"
+    "test": "tsx --test src/**/*.test.ts",
+    "ads:token": "node scripts/google-ads/get-refresh-token.mjs",
+    "ads:list": "node scripts/google-ads/pull-account.mjs --list",
+    "ads:pull": "node scripts/google-ads/pull-account.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.6",
