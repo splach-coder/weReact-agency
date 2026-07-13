@@ -31,7 +31,7 @@ Optional:
 | Env var | When needed |
 |---|---|
 | `GOOGLE_ADS_LOGIN_CUSTOMER_ID` | if you access the account **through a Manager/MCC** — set it to the MCC's ID (digits only) |
-| `GOOGLE_ADS_API_VERSION` | defaults to `v18`. **Check the [release notes](https://developers.google.com/google-ads/api/docs/release-notes) and set the current version** (Google ships ~3/year, so this changes). |
+| `GOOGLE_ADS_API_VERSION` | defaults to `v21` (verified live). **If a call returns HTML/404, check the [release notes](https://developers.google.com/google-ads/api/docs/release-notes) and bump it** (Google ships ~3/year and sunsets old ones). |
 | `GOOGLE_ADS_START_DATE` / `GOOGLE_ADS_END_DATE` | `YYYY-MM-DD` window covering your campaign. If unset, defaults to `LAST_30_DAYS`. |
 
 ---

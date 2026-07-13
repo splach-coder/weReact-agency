@@ -54,6 +54,15 @@
     /* Lenis owns smooth scrolling; native CSS smooth fights lenis.scrollTo
        during page transitions, so keep this auto. */
     scroll-behavior: auto;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 }
 

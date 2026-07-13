@@ -9,7 +9,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
 loadEnv();
 
-const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v18';
+const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v21';
 const CLIENT_ID = process.env.GOOGLE_ADS_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_ADS_OAUTH_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.GOOGLE_ADS_REFRESH_TOKEN;

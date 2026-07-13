@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { motion, MotionValue, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { smoothEasing } from '@/lib/animations';
@@ -11,7 +11,6 @@ type ManifestoWordProps = {
   total: number;
   progress: MotionValue<number>;
   reduceMotion: boolean;
-  isLast: boolean;
 };
 
 const enter = {
@@ -24,7 +23,7 @@ const still = {
   visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
 };
 
-function ManifestoWord({ text, index, total, progress, reduceMotion, isLast }: ManifestoWordProps) {
+function ManifestoWord({ text, index, total, progress, reduceMotion }: ManifestoWordProps) {
   const start = Math.max(0, (index - 0.75) / total);
   const end = Math.min(1, (index + 1.65) / total);
   const clipPath = useTransform(
@@ -33,7 +32,7 @@ function ManifestoWord({ text, index, total, progress, reduceMotion, isLast }: M
     reduceMotion ? ['inset(0 0% 0 0)', 'inset(0 0% 0 0)'] : ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']
   );
   const fillOpacity = useTransform(progress, [start, end], reduceMotion ? [1, 1] : [0.72, 1]);
-  const wordContent = `${text}${isLast ? '' : '\u00a0'}`;
+  const wordContent = text;
 
   return (
     <span className="relative inline-block overflow-hidden align-bottom text-[rgba(58,90,64,0.22)]">
@@ -102,15 +101,16 @@ export default function Manifesto() {
             className="font-display text-[clamp(1.45rem,6.6vw,2rem)] leading-[1.22] tracking-tight md:text-[clamp(1.55rem,3vw,3.15rem)] md:leading-[1.18] text-[var(--color-primary)]"
           >
             {words.map((word, index) => (
-              <ManifestoWord
-                key={`${word}-${index}`}
-                text={word}
-                index={index}
-                total={words.length}
-                progress={fillProgress}
-                reduceMotion={reduceMotion}
-                isLast={index === words.length - 1}
-              />
+              <Fragment key={`${word}-${index}`}>
+                <ManifestoWord
+                  text={word}
+                  index={index}
+                  total={words.length}
+                  progress={fillProgress}
+                  reduceMotion={reduceMotion}
+                />
+                {index < words.length - 1 ? ' ' : null}
+              </Fragment>
             ))}
           </p>
 

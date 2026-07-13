@@ -204,3 +204,14 @@
  ✓ Compiled in 88ms
    Reload env: .env.local
  ✓ Compiled in 148ms
+   Reload env: .env.local
+   Reload env: .env.local
+   Reload env: .env.local
+   Reload env: .env.local
+ GET /en/contact 200 in 1622ms (compile: 839ms, proxy.ts: 348ms, render: 435ms)
+ GET /en/contact 200 in 87ms (compile: 11ms, proxy.ts: 7ms, render: 68ms)
+ GET /en/contact?mobiletest=1 200 in 134ms (compile: 23ms, proxy.ts: 5ms, render: 106ms)
+ ✓ Compiled in 766ms
+ GET /en/contact?mobiletest=1 200 in 422ms (compile: 202ms, proxy.ts: 22ms, render: 198ms)
+ GET /en/contact?mobiletest=1 200 in 126ms (compile: 14ms, proxy.ts: 5ms, render: 106ms)
+ GET /en/contact?mobiletest=1 200 in 116ms (compile: 13ms, proxy.ts: 6ms, render: 97ms)

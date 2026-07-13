@@ -94,7 +94,7 @@ export default function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[4vw] left-1/2 -translate-x-1/2 select-none text-[26vw] font-black leading-none tracking-tighter text-white opacity-[0.04]"
       >
-        Â·wereactÂ·
+        &middot;wereact&middot;
       </span>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-16">
@@ -208,7 +208,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/45 md:flex-row md:items-center md:justify-between">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <span>Â© WeReact {year} â€” {t('copyright')}</span>
+            <span>&copy; WeReact {year} &mdash; {t('copyright')}</span>
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT))}
@@ -217,7 +217,7 @@ export default function Footer() {
               Privacy choices
             </button>
           </span>
-          <span>Marrakech Â· Morocco</span>
+          <span>Marrakech &middot; Morocco</span>
         </div>
       </div>
     </footer>

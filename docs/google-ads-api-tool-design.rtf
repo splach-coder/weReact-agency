@@ -1,0 +1,42 @@
+{\rtf1\ansi\ansicpg1252\deff0
+{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+\f0\fs22
+{\b\fs30 WeReact Agency - Google Ads API Tool Design Document}\par
+\par
+{\b Company:} WeReact Agency\par
+{\b Website:} https://www.wereact.agency\par
+{\b Google Ads manager account (MCC):} 543-894-9129\par
+{\b Contact:} anasbenbow123@gmail.com\par
+{\b Access model:} Internal use only (employees of WeReact Agency)\par
+\par
+{\b\fs26 1. Company overview}\par
+WeReact Agency is a web design studio based in Marrakech, Morocco. We build fast, SEO-friendly business websites and landing pages for local Moroccan businesses (including tourism, hospitality, and service businesses). We advertise our own services on Google Ads to generate leads for our studio.\par
+\par
+{\b\fs26 2. Purpose of the tool}\par
+We are building a small internal tool that uses the Google Ads API to manage WeReact Agency's own single Google Ads account. After a manually managed campaign underperformed, we want to automate reporting and campaign management so we can optimize our lead-generation spend more reliably. The tool is used only by our own team to manage our own account. We do not resell API access, offer it to the general public, or manage third-party or client accounts with it.\par
+\par
+{\b\fs26 3. Google Ads API services used}\par
+{\b Read / reporting:}\par
+- GoogleAdsService.SearchStream: pull performance data from campaign, ad_group, keyword_view, search_term_view, and geographic_view (metrics: cost_micros, impressions, clicks, conversions, average_cpc, ctr).\par
+- CustomerService.ListAccessibleCustomers: discover which accounts the authenticated user can access.\par
+- ConversionActionService (via GoogleAdsService): read and verify the lead conversion action.\par
+{\b Write / management (mutate):}\par
+- CampaignBudgetService and CampaignService: create and update Search campaigns and daily budgets.\par
+- AdGroupService and AdGroupCriterionService: create ad groups, add phrase/exact keywords, and add negative keywords.\par
+- AdGroupAdService: create responsive search ads.\par
+\par
+{\b\fs26 4. Workflow}\par
+1. Authenticate to the API using OAuth2 with an offline refresh token and the https://www.googleapis.com/auth/adwords scope.\par
+2. Pull performance and search-term reports via SearchStream and store them locally as JSON/CSV for analysis.\par
+3. Based on that analysis, create or update a single Search campaign: set the daily budget, geographic and language targeting (Morocco, English and French), add phrase/exact keywords and negative keyword lists, and create responsive search ads.\par
+4. Monitor weekly: add negative keywords from the search-terms report, pause low performers, and adjust bids.\par
+\par
+{\b\fs26 5. Data handling and storage}\par
+API credentials (developer token, OAuth client ID/secret, and refresh token) are stored in a local, version-control-ignored environment file on the operator's machine. Report data is stored locally only. The tool does not collect, store, or share end-user personal data, and no data is transferred to any third party. All access is over HTTPS.\par
+\par
+{\b\fs26 6. Access and scale}\par
+Access is limited to internal WeReact Agency team members. The tool operates on a single Google Ads account under manager account 543-894-9129. It is not distributed to clients or the public. Expected API usage is low volume (periodic reporting pulls and occasional campaign updates).\par
+\par
+{\b\fs26 7. Technology}\par
+Node.js scripts that call the Google Ads REST API over HTTPS. The code is maintained in a private internal repository.\par
+}

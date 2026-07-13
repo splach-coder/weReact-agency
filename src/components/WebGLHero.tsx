@@ -254,7 +254,7 @@ function CrowdCanvas({ src, rows = 15, cols = 7, reduceMotion = false }: CrowdCa
 function HeroCrowd({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <div className="relative h-full w-full bg-[var(--color-background-main)] text-[var(--color-primary)] [transform:translateZ(0)]">
-      <div className="absolute inset-x-0 bottom-0 h-full w-screen">
+      <div className="absolute inset-x-0 bottom-0 h-full w-full">
         <CrowdCanvas src="/images/peeps/all-peeps.png" rows={15} cols={7} reduceMotion={reduceMotion} />
       </div>
     </div>

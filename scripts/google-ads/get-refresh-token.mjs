@@ -68,8 +68,9 @@ const server = createServer(async (req, res) => {
   } catch (error) {
     console.error('\nToken exchange failed:', error.message);
   } finally {
-    server.close();
-    process.exit(0);
+    server.closeAllConnections?.();
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(0), 1500).unref();
   }
 });
 
