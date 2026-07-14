@@ -50,14 +50,14 @@ one = target. Log in a sheet: name, contact (their Booking page → Google → p
 Instagram), current site state.
 
 **FR script (adapt, never paste identical):**
-> Bonjour [Nom], je suis Anas de WeReact, studio web à Marrakech. J'ai vu
+> Bonjour [Nom], ici l'équipe WeReact, studio web à Marrakech. Nous avons vu
 > [Riad X] sur Booking — superbes avis ! Par contre je n'ai pas trouvé votre
 > site de réservation directe. Chaque réservation qui passe par Booking vous
 > coûte 15–25% de commission. On crée des sites de réservation directe pour
 > les riads (voir kasbahangour.com). Ça vous dirait d'en parler 10 minutes ?
 
 **EN script (for foreign-owned riads — many are French/European owned):**
-> Hello [Name], I'm Anas from WeReact, a web studio here in Marrakech. Found
+> Hello [Name], this is the WeReact team, a web studio in Marrakech. We found
 > [Riad X] on Booking — great reviews! But no direct-booking site. Every
 > Booking reservation costs you 15–25% commission. We build direct-booking
 > sites for riads (see kasbahangour.com). Worth a 10-minute chat?

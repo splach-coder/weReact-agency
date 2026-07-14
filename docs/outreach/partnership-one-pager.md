@@ -28,7 +28,7 @@ Imprimeurs · Agences événementielles
 
 ## Contact
 
-**Anas — WeReact agency**
+**L'équipe WeReact**
 WhatsApp : +212 602-258009 · hello@wereact.agency · wereact.agency
 
 ---

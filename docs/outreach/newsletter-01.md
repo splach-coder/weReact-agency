@@ -36,6 +36,6 @@ Devis gratuit sous un jour ouvré.
 WhatsApp : +212 602-258009 · hello@wereact.agency
 
 À bientôt,
-**Anas — WeReact agency, Marrakech**
+**L'équipe WeReact, Marrakech**
 
 *Vous ne souhaitez plus recevoir ces emails ? Répondez « stop ».*
