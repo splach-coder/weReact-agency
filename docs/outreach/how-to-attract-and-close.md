@@ -53,22 +53,28 @@ Keep these ready; deploy the 1–2 that fit the business in front of you.
 ## 3. The launch offer (your closer) — personalize the numbers
 
 A new studio's best weapon is a genuine launch offer. It creates reciprocity,
-honest scarcity, and removes risk. Recommended structure:
+honest scarcity, and removes risk. **The offer (locked in):**
 
-- **Who:** the **first 5 businesses in Marrakech** that start this month. (Real
-  scarcity — you *do* want a few strong local references. Never fake it.)
-- **Price:** a launch rate — recommend **−20% to −30%**, or a headline price
-  (e.g. *site vitrine à partir de 3 500 MAD*). Set the exact number yourself.
-- **Free add-on:** **SEO foundations + an optimized Google Business Profile**
-  (~1 500 MAD value). Cheap for you, high perceived value for them.
+- **Product & price:** a **professional showcase site (site vitrine) for
+  2000 DH** — a launch price, below the standard rate — **live in 2–3 days.**
+- **Free with every site:** **SEO foundations + an optimized Google Business
+  Profile.** Cheap for you to deliver, high perceived value for them.
+- **Speed is the hook:** *"en ligne en 2 à 3 jours"* kills the "I don't have
+  time / it'll drag on forever" objection before it's even raised. Lead with it.
+- **Who:** the **first 5 businesses in Marrakech** this month. Real scarcity —
+  you *do* want a few strong local references. Never fake it.
 - **The clever trade:** in exchange, **an honest Google review at delivery.**
-  This solves *your* biggest weakness (you have zero reviews) and feeds social
-  proof for the next prospect. Every client makes the next sale easier.
+  This fixes *your* biggest weakness (zero reviews) and feeds social proof for
+  the next prospect. Every client makes the next sale easier.
+- **Riads / booking sites:** bigger, custom projects — offer the launch *rate*
+  + the same free SEO/GBP, **not** the flat 2000 DH (a riad booking site is a
+  different tier; see the pricing article ranges).
 - **Why it's limited (say it):** *"parce que nous lançons notre studio et nous
-  voulons quelques belles références locales."* True, and it makes them want in.
+  voulons quelques belles références locales."*
 
-Why it works: **reciprocity** (you're giving something), **scarcity** (5 spots),
-**risk reversal** (launch price + free SEO), and it manufactures your **proof
+Why it works: **irresistible math** — fast (2–3 days) + cheap (2000 DH) + free
+SEO + a launch discount leaves almost no reason to say no. Plus **reciprocity**
+(you give first), **scarcity** (5 spots), and it manufactures your **review
 engine** at the same time.
 
 ## 4. Objection handling (short, confident)
