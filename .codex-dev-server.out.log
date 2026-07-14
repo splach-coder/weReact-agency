@@ -259,3 +259,14 @@
  GET /en/contact?mobiletest=1 200 in 44ms (compile: 11ms, proxy.ts: 3ms, render: 29ms)
  ✓ Compiled in 98ms
  ✓ Compiled in 79ms
+   Reload env: .env.local
+ ✓ Compiled in 658ms
+ ✓ Compiled in 248ms
+ ✓ Compiled in 203ms
+ ✓ Compiled in 450ms
+ ✓ Compiled in 77ms
+ ✓ Compiled in 78ms
+ ✓ Compiled in 87ms
+ ✓ Compiled in 88ms
+ ✓ Compiled in 74ms
+ ✓ Compiled in 347ms

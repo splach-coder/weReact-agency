@@ -19,7 +19,9 @@ export const siteConfig = {
             'landing page design Morocco',
             'SEO website foundations Morocco',
             'multilingual website design Morocco',
-            'website maintenance Morocco'
+            'website maintenance Morocco',
+            'agence web marrakech',
+            'création site web maroc'
         ],
         geoKeywords: [
             'Marrakech web design',

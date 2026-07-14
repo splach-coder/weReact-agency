@@ -19,7 +19,7 @@ export type ServiceLocaleCopy = {
 };
 
 export type ServiceLandingPage = {
-  slug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages';
+  slug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages' | 'agence-web-marrakech';
   primaryKeyword: string;
   keywords: readonly string[];
   relatedProjectIds: readonly string[];
@@ -155,6 +155,50 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Créez-vous des landing pages pour Google Ads ?', answer: 'Oui. Nous pouvons créer une page de campagne claire avec cohérence de message, parcours de conversion, suivi des événements et expérience mobile.' },
           { question: 'Une landing page peut-elle aussi se positionner sur Google ?', answer: 'Oui, lorsqu’elle répond à une vraie intention de recherche et contient assez de contenu utile. Une page de campagne ne doit toutefois pas être surchargée de mots-clés inutiles.' },
           { question: 'Pouvez-vous aider à mesurer les leads ?', answer: 'Nous pouvons intégrer les événements nécessaires pour mesurer les formulaires qualifiés et les actions de contact importantes dans Google Ads et Google Analytics.' },
+        ],
+      },
+    },
+  },
+  {
+    slug: 'agence-web-marrakech',
+    primaryKeyword: 'agence web marrakech',
+    keywords: ['création site web maroc', 'création site internet marrakech', 'agence création site web', 'agence web maroc', 'création site web marrakech', 'refonte site web maroc'],
+    relatedProjectIds: ['flying-tandem', 'kasbah-angour', 'your-morocco'],
+    copy: {
+      en: {
+        title: 'Web Agency in Marrakech',
+        description: 'WeReact is a web agency in Marrakech building fast, bilingual, SEO-ready websites for riads, tourism brands, and local businesses across Morocco — with transparent pricing and a free quote.',
+        eyebrow: 'Web agency in Marrakech',
+        heading: 'The web agency in Marrakech for a website that brings you clients.',
+        lead: 'Website creation for riads, tourism experiences, and local businesses across Morocco: fast on mobile, bilingual French and English, SEO-ready, with transparent pricing and a free quote.',
+        outcomesTitle: 'What a good web agency should deliver',
+        outcomes: ['A fast website that loads well, even on an average mobile connection.', 'French and English versions planned from the start, not translated as an afterthought.', 'Clean SEO foundations so Google can find you in Morocco and abroad.', 'A clear contact journey: quote request, WhatsApp, and phone always within reach.'],
+        proofTitle: 'Real projects in Marrakech and across Morocco',
+        proof: 'We have built websites for tourism experiences, an Atlas hotel, and travel brands rooted in Morocco. Each project shows how a clear, fast website turns visitors into real enquiries.',
+        cta: 'Request a free quote',
+        ctaNote: 'Describe your project in a few lines. We reply within one business day.',
+        faqs: [
+          { question: 'How much does a website cost in Morocco?', answer: 'As honest ranges: a showcase website usually falls between 4,000 and 15,000 MAD, a website with booking features between 15,000 and 40,000 MAD, and an e-commerce site between 25,000 and 60,000 MAD. We send a precise, free quote within one business day based on your exact scope.' },
+          { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 6 weeks depending on scope: a simple showcase site moves faster, while booking or e-commerce features need more preparation. We agree on a clear timeline with the quote.' },
+          { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco — Casablanca, Rabat, Agadir — as well as remotely for international projects.' },
+        ],
+      },
+      fr: {
+        title: 'Agence web à Marrakech — création de site web au Maroc',
+        description: 'WeReact est une agence web à Marrakech qui crée des sites rapides, bilingues et prêts pour le SEO, pour les riads, le tourisme et les entreprises locales partout au Maroc — avec des tarifs transparents et un devis gratuit.',
+        eyebrow: 'Agence web à Marrakech',
+        heading: 'L’agence web à Marrakech pour un site qui vous amène des clients.',
+        lead: 'Création de site web pour les riads, les expériences touristiques et les entreprises locales partout au Maroc : rapide sur mobile, bilingue français et anglais, prêt pour le SEO, avec des tarifs transparents et un devis gratuit.',
+        outcomesTitle: 'Ce qu’une bonne agence web doit vous livrer',
+        outcomes: ['Un site rapide qui se charge bien, même sur une connexion mobile moyenne.', 'Des versions française et anglaise pensées dès le départ, pas traduites après coup.', 'Des fondations SEO propres pour être trouvé sur Google au Maroc et à l’international.', 'Un parcours de contact clair : demande de devis, WhatsApp et téléphone toujours à portée de main.'],
+        proofTitle: 'Des projets réels à Marrakech et au Maroc',
+        proof: 'Nous avons créé des sites pour des expériences touristiques, un hôtel de l’Atlas et des marques de voyage ancrées au Maroc. Chaque projet montre comment un site clair et rapide transforme des visiteurs en vraies demandes.',
+        cta: 'Demander un devis gratuit',
+        ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
+        faqs: [
+          { question: 'Combien coûte un site web au Maroc ?', answer: 'En fourchettes honnêtes : un site vitrine se situe généralement entre 4 000 et 15 000 MAD, un site avec réservation entre 15 000 et 40 000 MAD, et un site e-commerce entre 25 000 et 60 000 MAD. Nous envoyons un devis gratuit et précis sous un jour ouvré, selon votre périmètre exact.' },
+          { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 6 semaines selon le périmètre : un site vitrine simple avance plus vite, tandis qu’une réservation ou une boutique en ligne demande plus de préparation. Nous fixons un calendrier clair dès le devis.' },
+          { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc — Casablanca, Rabat, Agadir — ainsi qu’à distance pour les projets internationaux.' },
         ],
       },
     },

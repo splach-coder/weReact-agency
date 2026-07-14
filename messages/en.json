@@ -75,7 +75,7 @@
     "eyebrow": "Selected work",
     "title": "Websites we're proud of",
     "subtitle": "Real results for real businesses — a portfolio of tourism, hospitality, and local brands across Morocco and beyond.",
-    "statProjects": "Projects delivered",
+    "statProjects": "Projects built",
     "statLanguages": "Languages, by default",
     "statBased": "Based in Marrakech",
     "viewCase": "View case study",
@@ -236,7 +236,7 @@
     "eyebrow": "About WeReact",
     "title": "Moroccan craft, modern web",
     "subtitle": "We're a Marrakech-based web agency making tourism, hospitality, and local brands look world-class online — in English and French.",
-    "statProjects": "Projects delivered",
+    "statProjects": "Projects built",
     "statLanguages": "Languages, by default",
     "statBased": "Based in Marrakech",
     "statSince": "Building since",
@@ -399,8 +399,8 @@
       ]
     },
     "testimonials": {
-      "eyebrow": "Real client proof",
-      "title": "Trusted by real brands",
+      "eyebrow": "Selected work",
+      "title": "Projects, in short",
       "prev": "Previous testimonial",
       "next": "Next testimonial",
       "items": [
@@ -426,7 +426,7 @@
           "city": "Morocco"
         }
       ],
-      "proofLabel": "Real client"
+      "proofLabel": "Project notes"
     },
     "faq": {
       "eyebrow": "Good to know",

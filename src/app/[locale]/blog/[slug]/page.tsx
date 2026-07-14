@@ -1,5 +1,5 @@
 import React from 'react';
-import { blogPosts } from '@/data/blog';
+import { blogPosts, getLocalizedPost } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -18,9 +18,10 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug, locale } = await params;
-    const post = blogPosts.find((p) => p.slug === slug);
+    const basePost = blogPosts.find((p) => p.slug === slug);
 
-    if (!post) return { title: 'Post Not Found' };
+    if (!basePost) return { title: 'Post Not Found' };
+    const post = getLocalizedPost(basePost, locale);
 
     const metadata = createPageMetadata({
         title: `${post.title} | WeReact Journal`,
@@ -55,13 +56,17 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug, locale } = await params;
-    const post = blogPosts.find((p) => p.slug === slug);
+    const basePost = blogPosts.find((p) => p.slug === slug);
 
-    if (!post) {
+    if (!basePost) {
         notFound();
     }
 
-    const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+    const post = getLocalizedPost(basePost, locale);
+    const otherPosts = blogPosts
+        .filter((p) => p.slug !== slug)
+        .slice(0, 3)
+        .map((p) => getLocalizedPost(p, locale));
     const postUrl = `${siteConfig.url}/${locale}/blog/${post.slug}`;
     const relatedService = getServiceLandingPage(post.relatedServiceSlug);
 

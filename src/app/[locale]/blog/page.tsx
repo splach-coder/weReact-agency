@@ -1,5 +1,5 @@
 import React from 'react';
-import { blogPosts, BlogPost } from '@/data/blog';
+import { blogPosts, getLocalizedPost, BlogPost } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -76,8 +76,9 @@ function StoryLink({ post, locale, index }: { post: BlogPost; locale: string; in
 
 export default async function BlogListingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const [featuredPost, ...otherPosts] = blogPosts;
-  const heroImages = blogPosts.slice(0, 3);
+  const localizedPosts = blogPosts.map((post) => getLocalizedPost(post, locale));
+  const [featuredPost, ...otherPosts] = localizedPosts;
+  const heroImages = localizedPosts.slice(0, 3);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--color-background-main)] text-[var(--color-text-main)]">

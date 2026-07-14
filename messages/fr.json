@@ -75,7 +75,7 @@
     "eyebrow": "Réalisations choisies",
     "title": "Des sites dont nous sommes fiers",
     "subtitle": "Des résultats concrets pour de vraies entreprises — un portfolio de marques de tourisme, d'hôtellerie et locales, au Maroc et au-delà.",
-    "statProjects": "Projets livrés",
+    "statProjects": "Projets réalisés",
     "statLanguages": "Langues, par défaut",
     "statBased": "Basés à Marrakech",
     "viewCase": "Voir l'étude de cas",
@@ -236,7 +236,7 @@
     "eyebrow": "À propos de WeReact",
     "title": "Savoir-faire marocain, web moderne",
     "subtitle": "Nous sommes une agence web basée à Marrakech qui rend les marques de tourisme, d'hôtellerie et locales exceptionnelles en ligne — en français et en anglais.",
-    "statProjects": "Projets livrés",
+    "statProjects": "Projets réalisés",
     "statLanguages": "Langues, par défaut",
     "statBased": "Basés à Marrakech",
     "statSince": "Actifs depuis",
@@ -399,8 +399,8 @@
       ]
     },
     "testimonials": {
-      "eyebrow": "Preuves clients réels",
-      "title": "Des marques qui nous font confiance",
+      "eyebrow": "Réalisations choisies",
+      "title": "Nos projets, en bref",
       "prev": "Témoignage précédent",
       "next": "Témoignage suivant",
       "items": [
@@ -426,7 +426,7 @@
           "city": "Maroc"
         }
       ],
-      "proofLabel": "Client réel"
+      "proofLabel": "Note de projet"
     },
     "faq": {
       "eyebrow": "Bon à savoir",

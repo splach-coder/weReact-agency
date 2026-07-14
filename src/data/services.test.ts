@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getServiceLandingPage, serviceLandingPages } from './services';
 
-test('provides three approved commercial service pages', () => {
-  assert.equal(serviceLandingPages.length, 3);
+test('provides four approved commercial service pages', () => {
+  assert.equal(serviceLandingPages.length, 4);
   assert.equal(getServiceLandingPage('web-design-marrakech')?.primaryKeyword, 'website design Marrakech');
+  assert.equal(getServiceLandingPage('agence-web-marrakech')?.primaryKeyword, 'agence web marrakech');
   assert.equal(getServiceLandingPage('missing'), undefined);
 });
 

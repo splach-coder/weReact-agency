@@ -5,7 +5,7 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, ArrowLeft, Check, Calendar, Tag, Users, Monitor, Smartphone, Globe, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useParams, notFound } from 'next/navigation';
 import { trackContactIntent } from '@/lib/analytics';
 
 interface CaseStudyMetric {
@@ -71,16 +71,16 @@ export default function CaseStudyPage() {
             tagline: "Bringing the thrill of paragliding to life online",
             description: "A professional paragliding and tandem flight website showcasing aerial experiences, safety information, and booking details for adventure tourism enthusiasts. Built with modern web technologies for optimal performance.",
             challenge: "Create an engaging platform that captures the thrill of paragliding while maintaining a professional, trustworthy image. The site needed to handle bookings, showcase safety credentials, and work flawlessly on mobile devices for tourists on the go.",
-            solution: "We developed a dynamic, visually stunning website with integrated booking system, real-time availability, and comprehensive safety information. The design emphasizes the adventure while building trust through clear communication of safety protocols and certifications.",
+            solution: "We developed a dynamic, visually stunning website with a clear booking enquiry flow and comprehensive safety information. The design emphasizes the adventure while building trust through clear communication of safety protocols and certifications.",
             results: [
-                "Seamless booking experience with real-time availability",
-                "Mobile-responsive design optimized for on-the-go bookings",
+                "Clear experience pages with a direct booking enquiry flow",
+                "Mobile-responsive design optimized for on-the-go browsing",
                 "Multilingual support for international tourists",
-                "Integrated payment gateway for secure transactions",
-                "Weather integration for flight conditions",
-                "Photo gallery showcasing customer experiences"
+                "Safety and certification content built for trust",
+                "Photo gallery showcasing flight experiences",
+                "Performance-minded build for travelers on slow connections"
             ],
-            tags: ["Next.js", "React", "Booking System", "Responsive", "Payment Integration", "i18n"],
+            tags: ["Next.js", "React", "Booking Flow", "Responsive", "Mobile UX", "i18n"],
             link: "https://www.flyingtandem.com/",
             image: "/images/projects/flying-tandem.webp",
             imageFull: "/images/projects/flying-tandem-full.webp",
@@ -89,24 +89,24 @@ export default function CaseStudyPage() {
             features: [
                 {
                     icon: Monitor,
-                    title: "Real-time Booking",
-                    description: "Live availability calendar with instant confirmation"
+                    title: "Booking Enquiry Flow",
+                    description: "Direct enquiry paths from experience pages"
                 },
                 {
                     icon: Globe,
                     title: "Multi-language",
-                    description: "Support for English, French, and Arabic"
+                    description: "Content structured for international visitors"
                 },
                 {
                     icon: Smartphone,
                     title: "Mobile First",
-                    description: "Optimized for tourists booking on mobile devices"
+                    description: "Optimized for tourists browsing on mobile devices"
                 }
             ],
             metrics: [
-                { label: "Booking Conversion", value: "35%", description: "Increase in online bookings" },
-                { label: "Mobile Traffic", value: "68%", description: "Of total visitors" },
-                { label: "Page Speed", value: "2.1s", description: "Average load time" }
+                { label: "Experience", value: "Mobile-first", description: "Built for travelers booking on the go" },
+                { label: "Content", value: "Multilingual", description: "Structured for international visitors" },
+                { label: "Launched", value: "2025", description: "Live adventure tourism website" }
             ]
         },
         "kasbah-angour": {
@@ -119,14 +119,14 @@ export default function CaseStudyPage() {
             challenge: "Showcase the unique character and authentic Moroccan experience of Kasbah Angour while providing all necessary booking and contact information in an elegant, user-friendly interface that reflects the property's premium positioning.",
             solution: "We created a visually rich website that highlights the property's unique features through high-quality imagery and compelling content. The design balances aesthetics with functionality, making it easy for guests to explore rooms, amenities, and make reservations directly.",
             results: [
-                "Enhanced online presence with professional branding",
-                "Direct booking integration reducing commission fees",
+                "Professional branding and place-led storytelling",
+                "Direct enquiry routes for reservations",
                 "Beautiful visual showcase of property and amenities",
-                "Improved search engine visibility",
-                "Integrated contact forms and inquiry system",
-                "Room availability calendar"
+                "Search-ready content structure",
+                "Integrated contact forms and inquiry paths",
+                "Room and amenity presentation with photo galleries"
             ],
-            tags: ["Next.js", "CMS", "Hospitality", "SEO", "Booking", "Photography"],
+            tags: ["Next.js", "CMS", "Hospitality", "SEO", "Direct Enquiries", "Photography"],
             link: "https://www.kasbahangour.com/en",
             image: "/images/projects/kasbah-angour.webp",
             imageFull: "/images/projects/kasbah-angour-full.webp",
@@ -140,19 +140,19 @@ export default function CaseStudyPage() {
                 },
                 {
                     icon: Globe,
-                    title: "SEO Optimized",
-                    description: "Enhanced visibility in search results"
+                    title: "SEO Structure",
+                    description: "Search-ready content and page structure"
                 },
                 {
                     icon: Smartphone,
-                    title: "Direct Booking",
-                    description: "Commission-free reservation system"
+                    title: "Direct Enquiries",
+                    description: "Clear contact routes for reservations"
                 }
             ],
             metrics: [
-                { label: "Direct Bookings", value: "45%", description: "Increase in direct reservations" },
-                { label: "Organic Traffic", value: "120%", description: "Growth in 6 months" },
-                { label: "Bounce Rate", value: "-28%", description: "Improvement" }
+                { label: "Focus", value: "Direct", description: "Enquiry-first reservation paths" },
+                { label: "Experience", value: "Visual", description: "Photography-led room discovery" },
+                { label: "Launched", value: "2025", description: "Live hospitality website" }
             ]
         },
         "your-morocco": {
@@ -161,18 +161,18 @@ export default function CaseStudyPage() {
             year: "2025",
             category: "Travel Platform",
             tagline: "Curating authentic Moroccan experiences",
-            description: "A travel platform dedicated to Moroccan experiences, tours, and cultural discovery, designed to help visitors explore Morocco in a curated way. Features comprehensive tour listings and booking capabilities.",
-            challenge: "Create a comprehensive travel platform that showcases the diversity of Moroccan experiences while making it easy for travelers to discover, compare, and book tours and activities. The platform needed to handle complex itineraries and multiple tour operators.",
-            solution: "We built a feature-rich platform with advanced filtering, detailed tour descriptions, and integrated booking system. The design emphasizes visual storytelling while maintaining excellent usability and performance across all devices.",
+            description: "A travel platform dedicated to Moroccan experiences, tours, and cultural discovery, designed to help visitors explore Morocco in a curated way. Features comprehensive tour listings and clear inquiry routes.",
+            challenge: "Create a comprehensive travel platform that showcases the diversity of Moroccan experiences while making it easy for travelers to discover, compare, and inquire about tours and activities.",
+            solution: "We built a content-rich platform with tour filtering, detailed tour descriptions, and clear inquiry routes. The design emphasizes visual storytelling while maintaining excellent usability and performance across all devices.",
             results: [
                 "Curated travel experiences with detailed itineraries",
                 "Interactive tour discovery with smart filtering",
                 "Cultural immersion focus with local insights",
-                "Seamless booking and payment process",
-                "Tour operator management system",
-                "Customer review and rating system"
+                "Destination-led SEO content structure",
+                "Clear inquiry routes for travelers",
+                "Mobile-friendly browsing across devices"
             ],
-            tags: ["Next.js", "Travel", "Booking", "Multilingual", "CMS", "Reviews"],
+            tags: ["Next.js", "Travel", "Tour Discovery", "Multilingual", "CMS", "SEO"],
             link: "https://your-morocco.com/en",
             image: "/images/projects/your-morocco.webp",
             imageFull: "/images/projects/your-morocco-full.webp",
@@ -187,18 +187,18 @@ export default function CaseStudyPage() {
                 {
                     icon: Globe,
                     title: "Multi-language",
-                    description: "English, French, and Arabic support"
+                    description: "Multilingual structure for travel audiences"
                 },
                 {
                     icon: Smartphone,
-                    title: "Booking System",
-                    description: "End-to-end reservation management"
+                    title: "Inquiry Flow",
+                    description: "Clear routes from tour pages to contact"
                 }
             ],
             metrics: [
-                { label: "Tour Bookings", value: "250+", description: "In first 3 months" },
-                { label: "User Engagement", value: "4.2min", description: "Average session duration" },
-                { label: "Conversion Rate", value: "12%", description: "Visitor to booking" }
+                { label: "Content", value: "Tour-led", description: "Experience pages designed for comparison" },
+                { label: "Reach", value: "Global", description: "Built for Morocco travel audiences" },
+                { label: "Launched", value: "2025", description: "Live travel platform" }
             ]
         },
         "by-marrakech": {
@@ -208,17 +208,17 @@ export default function CaseStudyPage() {
             category: "Digital Guide",
             tagline: "Your digital companion to Marrakech",
             description: "A modern city guide for Marrakech highlighting places, culture, and experiences, built with a clean interface and multilingual support. Helps visitors discover the best of Marrakech.",
-            challenge: "Design a modern, intuitive city guide that helps visitors navigate Marrakech's rich cultural landscape while providing up-to-date information about places, events, and experiences. The platform needed to be fast, accessible, and work offline.",
-            solution: "We developed a clean, content-focused platform with excellent categorization, search functionality, and multilingual support. Implemented as a Progressive Web App for offline access and mobile-first experience.",
+            challenge: "Design a modern, intuitive city guide that helps visitors navigate Marrakech's rich cultural landscape while presenting places, culture, and experiences clearly. The platform needed to be fast, accessible, and easy to browse on the move.",
+            solution: "We developed a clean, content-focused platform with excellent categorization and multilingual support, built mobile-first for travelers exploring the city.",
             results: [
                 "Clean, modern interface for easy navigation",
-                "Comprehensive city coverage with regular updates",
-                "Multilingual platform (EN/FR/AR)",
+                "Categorized places, culture, and experience content",
+                "Multilingual content structure",
                 "Mobile-optimized for travelers on the go",
-                "Offline functionality via PWA",
-                "Interactive maps integration"
+                "Marrakech-first location signals",
+                "Reusable content sections built for growth"
             ],
-            tags: ["Next.js", "City Guide", "PWA", "i18n", "Content Management", "Maps"],
+            tags: ["Next.js", "City Guide", "i18n", "Content Management", "Mobile UX", "SEO"],
             link: "https://by-marrakech.vercel.app/en",
             image: "/images/projects/by-marrakech.webp",
             imageFull: "/images/projects/by-marrakech-full.webp",
@@ -232,28 +232,28 @@ export default function CaseStudyPage() {
                 },
                 {
                     icon: Globe,
-                    title: "PWA",
-                    description: "Works offline as a Progressive Web App"
+                    title: "Multilingual",
+                    description: "Content structured for international visitors"
                 },
                 {
                     icon: Smartphone,
-                    title: "Maps Integration",
-                    description: "Interactive maps with directions"
+                    title: "Mobile First",
+                    description: "Designed for browsing on the move"
                 }
             ],
             metrics: [
-                { label: "Monthly Users", value: "5K+", description: "Active monthly visitors" },
-                { label: "Page Views", value: "8.5", description: "Average per session" },
-                { label: "Return Rate", value: "42%", description: "Returning visitors" }
+                { label: "Location", value: "Marrakech", description: "Built around city discovery" },
+                { label: "Format", value: "Guide", description: "Designed for browsing and exploration" },
+                { label: "Launched", value: "2025", description: "Live city guide" }
             ]
         },
         "trust-drivers": {
             title: "Trust Drivers Tours",
-            client: "www.trustdrivers.tours",
+            client: "WeReact Studio",
             year: "2026",
-            category: "Private Transport And Tours",
+            category: "Studio Project — Transport & Tours",
             tagline: "Trust-first private transport and Morocco tour discovery",
-            description: "A tour and driver website concept built around clear services, credibility, local search visibility, and fast inquiry paths for travelers comparing transport options in Morocco.",
+            description: "A studio-built tour and driver website concept, owned and operated by WeReact, built around clear services, credibility, local search visibility, and fast inquiry paths for travelers comparing transport options in Morocco.",
             challenge: "Help visitors understand routes, driver credibility, and booking options quickly while keeping the experience professional and easy to trust.",
             solution: "We structured the content around tour services, local SEO signals, direct WhatsApp-style conversion paths, and reassuring service details for international travelers.",
             results: [
@@ -282,11 +282,11 @@ export default function CaseStudyPage() {
         },
         "yoo-marrakech": {
             title: "Yoo Marrakech",
-            client: "www.yoomarrakech.com",
+            client: "WeReact Studio",
             year: "2026",
-            category: "Marrakech Local Brand",
+            category: "Studio Project — Local Brand",
             tagline: "A polished local Marrakech brand presence",
-            description: "A Marrakech brand website concept designed for city visibility, professional service discovery, and smooth mobile browsing for local and visitor audiences.",
+            description: "A studio-built Marrakech brand website concept, owned and operated by WeReact, designed for city visibility, professional service discovery, and smooth mobile browsing for local and visitor audiences.",
             challenge: "Create a professional local web presence that can compete in Marrakech search results while making services easy to understand.",
             solution: "We organized service messaging, location signals, and clear calls to action inside a premium but familiar website structure.",
             results: [
@@ -315,11 +315,11 @@ export default function CaseStudyPage() {
         },
         "morocco-atlas-guide": {
             title: "Morocco Atlas Guide",
-            client: "www.moroccoatlasguide.com",
+            client: "WeReact Studio",
             year: "2026",
-            category: "Atlas Travel Guide",
+            category: "Studio Project — Travel Guide",
             tagline: "Destination content for Atlas mountain travel intent",
-            description: "A destination guide and travel service presence for Atlas mountain trips, Moroccan itinerary planning, and guide-led discovery.",
+            description: "A studio-built destination guide, owned and operated by WeReact, covering Atlas mountain trips, Moroccan itinerary planning, and guide-led discovery.",
             challenge: "Turn destination knowledge into an organized web experience travelers can scan, trust, and use while planning Atlas trips.",
             solution: "We shaped the content around guide-style sections, route discovery, itinerary clarity, and local expertise signals.",
             results: [
@@ -348,7 +348,11 @@ export default function CaseStudyPage() {
         }
     };
 
-    const project = projects[projectId] || projects["flying-tandem"];
+    const project = projects[projectId];
+
+    if (!project) {
+        notFound();
+    }
 
     return (
         <div className="min-h-screen bg-[var(--color-background-main)]">
@@ -668,7 +672,7 @@ export default function CaseStudyPage() {
                         >
                             <div className="sticky top-24 space-y-6">
                                 <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-4">
-                                    Key Metrics
+                                    At A Glance
                                 </h3>
                                 {project.metrics.map((metric, idx) => (
                                     <div key={idx} className="p-6 bg-white rounded-sm border-2 border-[var(--color-primary)]/10">
@@ -740,10 +744,10 @@ export default function CaseStudyPage() {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                            Project Results
+                            What We Built
                         </h2>
                         <p className="text-xl text-[var(--color-text-secondary)]">
-                            What we achieved together
+                            The work behind this project
                         </p>
                     </motion.div>
 
