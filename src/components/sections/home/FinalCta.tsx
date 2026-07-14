@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/SocialIcons';
 import Link from '@/components/transition/TransitionLink';
 import { smoothEasing } from '@/lib/animations';
 import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
@@ -78,7 +79,7 @@ export default function FinalCta() {
             onClick={() => trackWhatsAppLead('final_cta_whatsapp', { page: 'home', location: 'final_cta' })}
             className="btn-base justify-center border border-white/40 bg-transparent text-white transition-colors hover:bg-white/10"
           >
-            <MessageCircle size={18} aria-hidden="true" />
+            <WhatsAppIcon size={18} aria-hidden="true" />
             {t('ctaSecondary')}
           </a>
         </motion.div>

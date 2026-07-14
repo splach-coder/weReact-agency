@@ -4,7 +4,8 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle, Mail, MapPin, MessageCircle, Phone, Send, X } from 'lucide-react';
+import { CheckCircle, Mail, MapPin, Phone, Send, X } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { createLeadTransactionId, getStoredAttribution, trackContactIntent, trackLead, trackWhatsAppLead } from '@/lib/analytics';
@@ -120,7 +121,7 @@ export default function ContactPage() {
       method: 'phone',
     },
     {
-      icon: MessageCircle,
+      icon: WhatsAppIcon,
       label: 'WhatsApp',
       value: siteConfig.business.phoneDisplay,
       href: whatsappHref,
@@ -258,7 +259,7 @@ export default function ContactPage() {
                   onClick={() => trackWhatsAppLead('contact_primary_whatsapp', { page: 'contact', location: 'above_form' })}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#25D366] bg-[#25D366]/10 px-6 py-3 text-[11px] font-black uppercase tracking-[0.12em] text-[var(--color-primary-dark)] transition-colors hover:bg-[#25D366]/20 sm:w-auto"
                 >
-                  <MessageCircle size={16} aria-hidden="true" className="text-[#128C7E]" />
+                  <WhatsAppIcon size={16} aria-hidden="true" className="text-[#128C7E]" />
                   {t('whatsappCta')}
                 </a>
                 <p className="mt-4 text-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
@@ -354,7 +355,7 @@ export default function ContactPage() {
                   onClick={() => trackWhatsAppLead('success_modal_whatsapp', { page: 'contact', location: 'success_modal' })}
                   className="inline-flex min-h-11 items-center gap-2 bg-[var(--color-primary)] px-5 text-mono text-[10px] uppercase text-white transition-colors hover:bg-[var(--color-primary-dark)]"
                 >
-                  <MessageCircle size={14} aria-hidden="true" />
+                  <WhatsAppIcon size={14} aria-hidden="true" />
                   {t('successWhatsApp')}
                 </a>
                 <button type="button" onClick={() => setSubmitted(false)} className="border-b border-[var(--color-primary)] pb-1 text-mono text-[10px] uppercase text-[var(--color-primary)]">{t('successBack')}</button>

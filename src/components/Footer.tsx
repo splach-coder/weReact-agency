@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Twitter, MessageCircle, Mail } from 'lucide-react';
+import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, EmailIcon } from '@/components/icons/SocialIcons';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
@@ -81,11 +81,11 @@ export default function Footer() {
       ];
 
   const socials = [
-    { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: Instagram },
-    { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
-    { label: 'Twitter', href: siteConfig.business.sameAs[1], icon: Twitter },
-    { label: 'WhatsApp', href: buildWhatsAppLink(locale), icon: MessageCircle },
-    { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: Mail },
+    { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: InstagramIcon },
+    { label: 'Facebook', href: siteConfig.business.facebook, icon: FacebookIcon },
+    { label: 'X', href: siteConfig.business.sameAs[1], icon: XIcon },
+    { label: 'WhatsApp', href: buildWhatsAppLink(locale), icon: WhatsAppIcon },
+    { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: EmailIcon },
   ];
 
   return (
@@ -187,10 +187,11 @@ export default function Footer() {
                 id="footer-email"
                 type="email"
                 required
+                autoComplete="email"
                 value={subscriberEmail}
                 onChange={(event) => setSubscriberEmail(event.target.value)}
                 placeholder={t('emailPlaceholder')}
-                className="text-mono border-b border-white/30 bg-transparent py-3 text-sm text-white placeholder-white/40 transition-colors focus:border-white focus:outline-none"
+                className="border-b border-white/30 bg-transparent py-3 text-sm normal-case tracking-normal text-white placeholder-white/40 transition-colors focus:border-white focus:outline-none"
               />
               <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
               <button

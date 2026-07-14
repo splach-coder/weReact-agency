@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, MessageCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
 
@@ -35,7 +36,7 @@ export function GrowthCtas({ cta, contactHref, locale, slug }: GrowthCtasProps) 
         onClick={() => trackWhatsAppLead('growth_whatsapp', { page: slug })}
         className="inline-flex min-h-12 items-center gap-3 border border-[rgba(58,90,64,0.28)] px-6 py-4 text-mono text-[var(--color-primary)] transition-colors hover:border-[var(--color-primary)] hover:bg-white"
       >
-        <MessageCircle size={17} aria-hidden="true" />
+        <WhatsAppIcon size={17} aria-hidden="true" />
         WhatsApp
       </a>
     </div>

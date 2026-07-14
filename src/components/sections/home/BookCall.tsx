@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { CalendarClock, MessageCircle, Mail } from 'lucide-react';
+import { CalendarClock, Mail } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/SocialIcons';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
@@ -86,7 +87,7 @@ export default function BookCall() {
                 onClick={() => trackWhatsAppLead('book_call_whatsapp', { page: 'home', location: 'book_call' })}
                 className="btn-base btn-clay justify-center"
               >
-                <MessageCircle size={18} aria-hidden="true" />
+                <WhatsAppIcon size={18} aria-hidden="true" />
                 {t('cta')}
               </a>
               <a
