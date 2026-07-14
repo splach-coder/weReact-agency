@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "WeReact — l'agence web moderne du Maroc",
+    "title": "WeReact, l'agence web moderne du Maroc",
     "description": "Des sites web rapides et élégants qui relient les entreprises marocaines au monde."
   },
   "Nav": {
@@ -41,7 +41,7 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Parlez-nous de votre projet…",
     "send": "Envoyer le message",
-    "sent": "Votre message est prêt dans votre messagerie — il ne reste qu'à l'envoyer. Nous répondons sous un jour ouvré.",
+    "sent": "Votre message est prêt dans votre messagerie. Il ne reste qu'à l'envoyer. Nous répondons sous un jour ouvré.",
     "infoTitle": "Coordonnées",
     "infoSubtitle": "Vous préférez nous contacter directement ? Voici comment.",
     "labelEmail": "E-mail",
@@ -74,7 +74,7 @@
   "Work": {
     "eyebrow": "Réalisations choisies",
     "title": "Des sites dont nous sommes fiers",
-    "subtitle": "Des résultats concrets pour de vraies entreprises — un portfolio de marques de tourisme, d'hôtellerie et locales, au Maroc et au-delà.",
+    "subtitle": "Des résultats concrets pour de vraies entreprises : un portfolio de marques de tourisme, d'hôtellerie et locales, au Maroc et au-delà.",
     "statProjects": "Projets réalisés",
     "statLanguages": "Langues, par défaut",
     "statBased": "Basés à Marrakech",
@@ -86,7 +86,7 @@
   "Services": {
     "eyebrow": "Ce que nous faisons",
     "title": "Tout ce dont votre présence web a besoin",
-    "subtitle": "De la stratégie et du design au développement et au lancement — rapide, bilingue et optimisé pour le référencement.",
+    "subtitle": "De la stratégie et du design au développement et au lancement, rapide, bilingue et optimisé pour le référencement.",
     "servicesTitle": "Notre expertise",
     "included": "Ce qui est inclus",
     "getStarted": "Commencer",
@@ -183,47 +183,45 @@
       }
     ],
     "pricingTitle": "Des forfaits simples et transparents",
-    "pricingSubtitle": "Des points de départ — chaque projet reçoit un devis sur mesure.",
+    "pricingSubtitle": "Sites vitrines à partir de 2000 DH, e-commerce à partir de 3500 DH. Chaque projet reçoit un devis sur mesure.",
     "popularLabel": "Le plus populaire",
     "packages": [
       {
-        "name": "Starter",
-        "price": "2 999 $",
-        "desc": "Pour les petites entreprises et nouvelles marques.",
+        "name": "Site vitrine",
+        "price": "à partir de 2000 DH",
+        "desc": "Pour une entreprise qui doit être trouvée et contactée.",
         "features": [
-          "Site de 5 pages",
-          "Responsive mobile",
-          "Configuration SEO de base",
-          "Contact & réservation",
-          "1 mois de support"
+          "Site vitrine professionnel",
+          "Rapide et mobile-first",
+          "Fondations SEO incluses",
+          "Fiche Google Business configurée",
+          "En ligne en 2 à 3 jours"
         ],
         "popular": false
       },
       {
-        "name": "Professional",
-        "price": "5 999 $",
-        "desc": "Pour les entreprises en croissance.",
+        "name": "E-commerce",
+        "price": "à partir de 3500 DH",
+        "desc": "Vendez en ligne, front et back inclus.",
         "features": [
-          "Site de 10 pages",
-          "Design sur mesure",
-          "SEO avancé",
-          "Bilingue FR/EN",
-          "3 mois de support",
-          "Configuration analytics"
+          "Boutique en ligne, front et back",
+          "Catalogue produits et paiement",
+          "Intégration de paiement",
+          "Fondations SEO incluses",
+          "Prêt bilingue FR/EN"
         ],
         "popular": true
       },
       {
-        "name": "Enterprise",
+        "name": "Sur-mesure",
         "price": "Sur devis",
-        "desc": "Pour les projets plus larges et sur mesure.",
+        "desc": "Réservation, sites avancés ou multilingues.",
         "features": [
-          "Pages illimitées",
-          "Fonctionnalités sur mesure",
-          "SEO premium",
-          "Intégrations",
-          "12 mois de support",
-          "Interlocuteur dédié"
+          "Réservation directe ou fonctions sur mesure",
+          "Multilingue avancé",
+          "Intégrations tierces",
+          "Support prioritaire",
+          "Devis selon le périmètre"
         ],
         "popular": false
       }
@@ -235,7 +233,7 @@
   "About": {
     "eyebrow": "À propos de WeReact",
     "title": "Savoir-faire marocain, web moderne",
-    "subtitle": "Nous sommes une agence web basée à Marrakech qui rend les marques de tourisme, d'hôtellerie et locales exceptionnelles en ligne — en français et en anglais.",
+    "subtitle": "Nous sommes une agence web basée à Marrakech qui rend les marques de tourisme, d'hôtellerie et locales exceptionnelles en ligne, en français et en anglais.",
     "statProjects": "Projets réalisés",
     "statLanguages": "Langues, par défaut",
     "statBased": "Basés à Marrakech",
@@ -246,14 +244,14 @@
     "valSince": "2025",
     "storyTitle": "Notre histoire",
     "storyP1": "WeReact est née d'une conviction simple : les belles entreprises marocaines méritent des sites aussi exceptionnels que les expériences qu'elles offrent.",
-    "storyP2": "Trop de riads, de tour-opérateurs et de marques locales étaient coincés avec des sites lents et génériques qui n'inspiraient ni confiance ni réservations. Nous savions qu'il existait une meilleure voie — le savoir-faire local allié à l'ingénierie moderne.",
-    "storyP3": "Aujourd'hui, nous créons depuis Marrakech des sites rapides, multilingues et optimisés pour le référencement, pour des clients au Maroc et au-delà — et nous traitons chaque projet comme un partenariat durable.",
+    "storyP2": "Trop de riads, de tour-opérateurs et de marques locales étaient coincés avec des sites lents et génériques qui n'inspiraient ni confiance ni réservations. Nous savions qu'il existait une meilleure voie : le savoir-faire local allié à l'ingénierie moderne.",
+    "storyP3": "Aujourd'hui, nous créons depuis Marrakech des sites rapides, multilingues et optimisés pour le référencement, pour des clients au Maroc et au-delà, et nous traitons chaque projet comme un partenariat durable.",
     "valuesTitle": "Ce que nous défendons",
     "valuesSubtitle": "Les principes derrière chaque projet.",
     "values": [
       {
         "title": "Enracinés",
-        "desc": "Fiers de Marrakech et à l'aise avec le web international — nous relions les deux."
+        "desc": "Fiers de Marrakech et à l'aise avec le web international : nous relions les deux."
       },
       {
         "title": "Soignés",
@@ -269,7 +267,7 @@
       },
       {
         "title": "Rapides",
-        "desc": "La performance est une fonctionnalité — rapide à charger, rapide à convertir."
+        "desc": "La performance est une fonctionnalité : rapide à charger, rapide à convertir."
       },
       {
         "title": "Partenaires",
@@ -277,7 +275,7 @@
       }
     ],
     "missionTitle": "Notre mission",
-    "missionText": "Offrir aux entreprises marocaines des expériences numériques qui ne se contentent pas d'être belles — elles performent et rivalisent partout.",
+    "missionText": "Offrir aux entreprises marocaines des expériences numériques qui ne se contentent pas d'être belles : elles performent et rivalisent partout.",
     "visionTitle": "Notre vision",
     "visionText": "Être le partenaire web vers lequel les marques marocaines se tournent lorsqu'elles veulent être prises au sérieux par le monde.",
     "ctaTitle": "Prêt à collaborer ?",
@@ -286,14 +284,14 @@
   },
   "Home": {
     "hero": {
-      "eyebrow": "Marrakech — l'agence web moderne du Maroc",
+      "eyebrow": "Marrakech, l'agence web moderne du Maroc",
       "titleLine1": "Nous créons des",
       "titleLine2": "expériences qui",
       "highlight": "convertissent",
-      "subtitle": "Des sites rapides et élégants qui relient les entreprises marocaines au monde — conçus pour inspirer confiance et générer des réservations, en français et en anglais.",
+      "subtitle": "Des sites rapides et élégants qui relient les entreprises marocaines au monde, conçus pour inspirer confiance et générer des réservations, en français et en anglais.",
       "ctaPrimary": "Démarrer un projet",
       "ctaSecondary": "Voir nos réalisations",
-      "kicker": "Studio web — Marrakech, Maroc"
+      "kicker": "Studio web, Marrakech, Maroc"
     },
     "marquee": [
       "Création Web",
@@ -434,11 +432,11 @@
       "items": [
         {
           "q": "Quels types de sites créez-vous ?",
-          "a": "Sites vitrines, landing pages, e-commerce et projets sur mesure — surtout pour l'hôtellerie, le tourisme et les marques locales, au Maroc et ailleurs."
+          "a": "Sites vitrines, landing pages, e-commerce et projets sur mesure, surtout pour l'hôtellerie, le tourisme et les marques locales, au Maroc et ailleurs."
         },
         {
           "q": "Combien de temps dure un projet type ?",
-          "a": "La plupart des sites sont lancés en 3 à 6 semaines selon l'ampleur. Nous fixons un calendrier clair avant de commencer."
+          "a": "La plupart des sites sont lancés en 2 à 3 jours selon l'ampleur. Nous fixons un calendrier clair avant de commencer."
         },
         {
           "q": "Pouvez-vous travailler avec notre identité existante ?",
@@ -454,7 +452,7 @@
         },
         {
           "q": "Que se passe-t-il après le lancement ?",
-          "a": "Nous proposons des forfaits de suivi pour les mises à jour, la performance et les améliorations — ou nous vous livrons un site qui vous appartient entièrement."
+          "a": "Nous proposons des forfaits de suivi pour les mises à jour, la performance et les améliorations, ou nous vous livrons un site qui vous appartient entièrement."
         }
       ]
     },
@@ -467,7 +465,7 @@
     },
     "finalCta": {
       "title": "Prêt à créer un site qui convertit ?",
-      "subtitle": "Parlez-nous de votre projet — nous répondons sous un jour ouvré.",
+      "subtitle": "Parlez-nous de votre projet. Nous répondons sous un jour ouvré.",
       "ctaPrimary": "Démarrer un projet",
       "ctaSecondary": "Discuter sur WhatsApp"
     }

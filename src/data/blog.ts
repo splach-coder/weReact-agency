@@ -49,8 +49,8 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "combien-coute-site-web-maroc",
         title: "How Much Does a Website Cost in Morocco in 2026?",
-        excerpt: "Honest price ranges for a showcase site, a riad or hotel booking website, and e-commerce in Morocco — and what actually moves a quote up or down.",
-        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency price ranges for showcase sites, riad and hotel booking websites, and e-commerce, plus what drives the cost.",
+        excerpt: "Honest starting prices for a showcase site, an e-commerce store, and a custom quote for riad or hotel booking websites in Morocco, and what actually moves a quote up or down.",
+        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing for showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom-quoted riad and hotel booking websites, plus what drives the cost.",
         date: "July 14, 2026",
         publishedAt: "2026-07-14",
         modifiedAt: "2026-07-14",
@@ -63,109 +63,109 @@ export const blogPosts: BlogPost[] = [
         readTime: "9 min read",
         tags: ["Morocco", "Website Cost", "Pricing", "Web Design"],
         content: `
-            <p>Price is usually the first question a business owner asks about a new website — and the one most agencies in Morocco answer last. Quotes for what sounds like the same project can range from a few thousand dirhams to several months of salary, and without context those numbers are impossible to compare. This guide shares the ranges we actually quote at WeReact, explains what moves a project up or down inside them, and lists the questions worth asking before you accept any offer, including ours.</p>
+            <p>Price is usually the first question a business owner asks about a new website, and the one most agencies in Morocco answer last. Quotes for what sounds like the same project can range from a few thousand dirhams to several months of salary, and without context those numbers are impossible to compare. This guide shares the starting prices we actually quote at WeReact, explains what moves a project up from there, and lists the questions worth asking before you accept any offer, including ours.</p>
 
             <h2>Why website prices vary so much</h2>
             <p>Two websites can look almost identical in a portfolio screenshot and still be completely different products. The visible design is only one layer. Underneath sit the decisions that change both the cost and the value of the project: whether the pages are structured so Google can understand your services, whether the site loads quickly on a mid-range phone with an average connection, whether the content is written around what your customers actually search for, and whether tracking is in place so you can see which pages generate calls and WhatsApp messages. A website built as a commercial tool takes more work than a website built as an online brochure, and the price follows the work.</p>
 
-            <h2>Our price ranges in Morocco for 2026</h2>
-            <p>Every project is quoted on its own scope, but publishing ranges feels more honest than silence. This is the guidance we give businesses that contact us:</p>
+            <h2>Our starting prices in Morocco for 2026</h2>
+            <p>Every project is quoted on its own scope, but publishing starting prices feels more honest than silence. This is the guidance we give businesses that contact us:</p>
 
-            <h3>Showcase website (site vitrine): around 4,000 to 15,000 MAD</h3>
-            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. The lower end fits a compact site where you already have your text and photos ready. The upper end covers more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text.</p>
+            <h3>Showcase website (site vitrine): from 2,000 MAD</h3>
+            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. Pricing starts from 2,000 MAD for a compact site where you already have your text and photos ready, and it rises from there with more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text.</p>
 
-            <h3>Direct booking website for a riad or hotel: around 15,000 to 40,000 MAD</h3>
-            <p>Hospitality websites carry more weight. They need room or suite pages, photo-led layouts, the practical details travelers check before committing, a multilingual structure, and a clear route to a direct booking or inquiry so the business depends a little less on commission platforms. Within the range, the price moves with the number of rooms and languages, the booking flow you need, and how much of the content has to be created from scratch.</p>
+            <h3>Direct booking website for a riad or hotel: custom quote based on scope</h3>
+            <p>Hospitality websites carry more weight. They need room or suite pages, photo-led layouts, the practical details travelers check before committing, a multilingual structure, and a clear route to a direct booking or inquiry so the business depends a little less on commission platforms. Because scope varies so much here (number of rooms and languages, the booking flow you need, how much of the content has to be created from scratch), this type of project gets a custom quote based on scope rather than a fixed number.</p>
 
-            <h3>E-commerce website: around 25,000 to 60,000 MAD</h3>
-            <p>Selling online adds product pages, payment and delivery logic, legal pages, order management, and the product content that makes a visitor comfortable paying a business they have never met. E-commerce is where cutting corners costs the most: slow pages, unclear delivery information, and thin product descriptions all show up directly as abandoned carts.</p>
+            <h3>E-commerce website: from 3,500 MAD, front-end and back-end included</h3>
+            <p>Selling online adds product pages, payment and delivery logic, legal pages, order management, and the product content that makes a visitor comfortable paying a business they have never met. Pricing starts from 3,500 MAD with the front-end and back-end included, then rises with the number of products, payment integrations, and delivery logic you need. E-commerce is where cutting corners costs the most: slow pages, unclear delivery information, and thin product descriptions all show up directly as abandoned carts.</p>
 
             <h3>Website redesign: it depends on what exists</h3>
-            <p>A redesign can mean keeping your content and rebuilding the structure, or starting again from a cleaner base. A serious redesign quote begins with a look at your current site — what ranks, what loads slowly, which content deserves to stay — not with a flat number announced before anyone has opened your pages.</p>
+            <p>A redesign can mean keeping your content and rebuilding the structure, or starting again from a cleaner base. A serious redesign quote begins with a look at your current site: what ranks, what loads slowly, which content deserves to stay, not with a flat number announced before anyone has opened your pages.</p>
 
             <h2>What pushes a quote up or down</h2>
-            <p>Inside those ranges, a handful of factors do most of the work:</p>
+            <p>Inside those starting prices, a handful of factors do most of the work:</p>
             <ul>
-                <li><strong>Number of pages.</strong> Each real page — a service, a destination, a city — is content to write, structure, and maintain. More pages cost more and, done well, cover more of the searches that matter to you.</li>
+                <li><strong>Number of pages.</strong> Each real page (a service, a destination, a city) is content to write, structure, and maintain. More pages cost more and, done well, cover more of the searches that matter to you.</li>
                 <li><strong>Languages.</strong> A single-language site is cheaper than a French and English one. Proper translation is content work, not a switch: every extra language multiplies the pages that have to read naturally.</li>
                 <li><strong>Booking and forms.</strong> A contact form is simple. Availability requests, booking flows, and quote calculators take design, testing, and a connection to how you actually run your business day to day.</li>
-                <li><strong>SEO foundations.</strong> Metadata, clean structure, schema markup, internal linking, and a sitemap are partly invisible — which is exactly why low-cost offers skip them, and why some of those sites never appear on Google at all.</li>
-                <li><strong>Photos and content.</strong> If you arrive with good photos and clear text, the budget goes down. If everything has to be created, the budget goes up — but so does the quality of what visitors see.</li>
+                <li><strong>SEO foundations.</strong> Metadata, clean structure, schema markup, internal linking, and a sitemap are partly invisible, which is exactly why low-cost offers skip them, and why some of those sites never appear on Google at all.</li>
+                <li><strong>Photos and content.</strong> If you arrive with good photos and clear text, the budget goes down. If everything has to be created, the budget goes up, but so does the quality of what visitors see.</li>
             </ul>
 
             <h2>What a cheap website actually costs you later</h2>
-            <p>A very cheap website is not automatically a bad deal, but the discount usually hides somewhere specific. There is no page structure Google can work with, so the site never appears for useful searches. It is slow on the phones your customers actually use. There is no tracking, so a year later nobody can say whether the site produced a single client. The text is generic template filler that could describe any business in any city. The site exists, but it produces nothing — and eventually you pay a second time to rebuild it properly. The cheapest website is rarely the least expensive one.</p>
+            <p>A very cheap website is not automatically a bad deal, but the discount usually hides somewhere specific. There is no page structure Google can work with, so the site never appears for useful searches. It is slow on the phones your customers actually use. There is no tracking, so a year later nobody can say whether the site produced a single client. The text is generic template filler that could describe any business in any city. The site exists, but it produces nothing, and eventually you pay a second time to rebuild it properly. The cheapest website is rarely the least expensive one.</p>
 
             <blockquote>A website is never expensive or cheap in itself. It is expensive or cheap relative to the clients it brings you.</blockquote>
 
-            <h2>Questions to ask any agency — including us</h2>
+            <h2>Questions to ask any agency, including us</h2>
             <ul>
                 <li>What exactly is included: how many pages, which languages, who writes the content, who provides the photos?</li>
                 <li>Will the site be fast on mobile, and how will that be checked?</li>
-                <li>Are the SEO basics — titles, metadata, structure, sitemap — part of the project or billed separately?</li>
+                <li>Are the SEO basics (titles, metadata, structure, sitemap) part of the project or billed separately?</li>
                 <li>Who owns the domain, the hosting, and the code once the project is delivered?</li>
                 <li>What happens after launch: support, small changes, measurement?</li>
             </ul>
-            <p>A serious agency should answer all of this in plain language before asking for a signature. If the answers stay vague, the quote is vague too — no matter how precise the number looks.</p>
+            <p>A serious agency should answer all of this in plain language before asking for a signature. If the answers stay vague, the quote is vague too, no matter how precise the number looks.</p>
 
             <h2>Get a real number for your project</h2>
-            <p>Ranges are guidance; your project deserves an exact figure. Tell us what your business does, what the website needs to achieve, and what material you already have. We will reply with a clear, itemized quote — free, without obligation, and readable by a human. You can <a href="/en/contact">request your free quote</a> through our contact page or start the conversation directly on WhatsApp; we answer within one business day.</p>
+            <p>These are starting points; your project deserves an exact figure. Tell us what your business does, what the website needs to achieve, and what material you already have. We will reply with a clear, itemized quote: free, without obligation, and readable by a human. You can <a href="/en/contact">request your free quote</a> through our contact page or start the conversation directly on WhatsApp; we answer within one business day.</p>
         `,
         fr: {
             title: "Combien coûte un site web au Maroc en 2026 ?",
-            excerpt: "Fourchettes de prix honnêtes pour un site vitrine, un site de réservation pour riad ou hôtel et un e-commerce au Maroc — et ce qui fait vraiment varier un devis.",
-            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Fourchettes de prix d'agence pour site vitrine, site de réservation riad ou hôtel et e-commerce, et ce qui fait varier le devis.",
+            excerpt: "Prix de départ honnêtes pour un site vitrine, une boutique e-commerce, et un devis sur mesure pour un site de réservation riad ou hôtel au Maroc, et ce qui fait vraiment varier un devis.",
+            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs d'agence honnêtes : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour les sites de réservation riad ou hôtel, plus ce qui fait varier le prix.",
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
             content: `
-                <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web — et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les fourchettes que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter ou baisser un devis, et nous listons les questions à poser avant d'accepter une offre — y compris la nôtre.</p>
+                <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web, et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les prix de départ que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter un devis à partir de là, et nous listons les questions à poser avant d'accepter une offre, y compris la nôtre.</p>
 
                 <h2>Pourquoi les prix varient autant</h2>
                 <p>Deux sites web peuvent sembler presque identiques sur une capture d'écran de portfolio et rester des produits complètement différents. Le design visible n'est qu'une couche. En dessous se trouvent les décisions qui changent à la fois le coût et la valeur du projet : la structure des pages permet-elle à Google de comprendre vos services, le site se charge-t-il rapidement sur un téléphone de milieu de gamme avec une connexion moyenne, le contenu est-il rédigé autour de ce que vos clients recherchent vraiment, et le suivi statistique est-il en place pour savoir quelles pages génèrent des appels et des messages WhatsApp. Un site conçu comme un outil commercial demande plus de travail qu'une simple brochure en ligne, et le prix suit le travail.</p>
 
-                <h2>Nos fourchettes de prix au Maroc pour 2026</h2>
-                <p>Chaque projet est chiffré selon son propre périmètre, mais publier des fourchettes nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
+                <h2>Nos prix de départ au Maroc pour 2026</h2>
+                <p>Chaque projet est chiffré selon son propre périmètre, mais publier des prix de départ nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
 
-                <h3>Site vitrine : environ 4 000 à 15 000 MAD</h3>
-                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le bas de la fourchette correspond à un site compact pour lequel vous disposez déjà des textes et des photos. Le haut couvre davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage.</p>
+                <h3>Site vitrine : à partir de 2 000 DH</h3>
+                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le prix démarre à 2 000 DH pour un site compact pour lequel vous disposez déjà des textes et des photos, et il augmente ensuite avec davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage.</p>
 
-                <h3>Site de réservation directe pour riad ou hôtel : environ 15 000 à 40 000 MAD</h3>
-                <p>Les sites d'hôtellerie portent plus de responsabilités. Il leur faut des pages chambres ou suites, des mises en page portées par la photo, les informations pratiques que les voyageurs vérifient avant de s'engager, une structure multilingue et un chemin clair vers la réservation ou la demande directe, afin de dépendre un peu moins des plateformes à commission. À l'intérieur de la fourchette, le prix évolue avec le nombre de chambres et de langues, le parcours de réservation souhaité et la part de contenu à créer de zéro.</p>
+                <h3>Site de réservation directe pour riad ou hôtel : sur devis selon le périmètre</h3>
+                <p>Les sites d'hôtellerie portent plus de responsabilités. Il leur faut des pages chambres ou suites, des mises en page portées par la photo, les informations pratiques que les voyageurs vérifient avant de s'engager, une structure multilingue et un chemin clair vers la réservation ou la demande directe, afin de dépendre un peu moins des plateformes à commission. Le périmètre variant beaucoup d'un projet à l'autre (nombre de chambres et de langues, parcours de réservation souhaité, part de contenu à créer de zéro), ce type de projet est établi sur devis selon le périmètre plutôt qu'avec un chiffre fixe.</p>
 
-                <h3>Site e-commerce : environ 25 000 à 60 000 MAD</h3>
-                <p>Vendre en ligne ajoute des fiches produits, la logique de paiement et de livraison, les pages légales, la gestion des commandes et le contenu produit qui met un visiteur en confiance pour payer une entreprise qu'il n'a jamais rencontrée. C'est en e-commerce que les économies de façade coûtent le plus cher : pages lentes, informations de livraison floues et descriptions maigres se traduisent directement en paniers abandonnés.</p>
+                <h3>Site e-commerce : à partir de 3 500 DH, front et back inclus</h3>
+                <p>Vendre en ligne ajoute des fiches produits, la logique de paiement et de livraison, les pages légales, la gestion des commandes et le contenu produit qui met un visiteur en confiance pour payer une entreprise qu'il n'a jamais rencontrée. Le prix démarre à 3 500 DH, front et back inclus, puis augmente avec le nombre de produits, les intégrations de paiement et la logique de livraison nécessaires. C'est en e-commerce que les économies de façade coûtent le plus cher : pages lentes, informations de livraison floues et descriptions maigres se traduisent directement en paniers abandonnés.</p>
 
                 <h3>Refonte de site : selon l'existant</h3>
-                <p>Une refonte peut consister à conserver vos contenus en reconstruisant la structure, ou à repartir d'une base plus saine. Un devis de refonte sérieux commence par un examen de votre site actuel — ce qui se positionne, ce qui se charge lentement, ce qui mérite d'être conservé — et non par un chiffre annoncé avant même d'avoir ouvert vos pages.</p>
+                <p>Une refonte peut consister à conserver vos contenus en reconstruisant la structure, ou à repartir d'une base plus saine. Un devis de refonte sérieux commence par un examen de votre site actuel : ce qui se positionne, ce qui se charge lentement, ce qui mérite d'être conservé, et non par un chiffre annoncé avant même d'avoir ouvert vos pages.</p>
 
                 <h2>Ce qui fait monter ou baisser un devis</h2>
-                <p>À l'intérieur de ces fourchettes, quelques facteurs font l'essentiel de la différence :</p>
+                <p>Au-delà de ces prix de départ, quelques facteurs font l'essentiel de la différence :</p>
                 <ul>
-                    <li><strong>Le nombre de pages.</strong> Chaque vraie page — un service, une destination, une ville — représente du contenu à rédiger, à structurer et à maintenir. Plus de pages coûte plus cher et, bien fait, couvre davantage de recherches qui comptent pour vous.</li>
+                    <li><strong>Le nombre de pages.</strong> Chaque vraie page (un service, une destination, une ville) représente du contenu à rédiger, à structurer et à maintenir. Plus de pages coûte plus cher et, bien fait, couvre davantage de recherches qui comptent pour vous.</li>
                     <li><strong>Les langues.</strong> Un site dans une seule langue coûte moins cher qu'un site français-anglais. Une vraie traduction est un travail de contenu, pas un bouton : chaque langue supplémentaire multiplie les pages qui doivent se lire naturellement.</li>
                     <li><strong>Réservation et formulaires.</strong> Un formulaire de contact reste simple. Les demandes de disponibilité, les parcours de réservation et les calculateurs de devis demandent de la conception, des tests et une connexion avec votre organisation quotidienne.</li>
-                    <li><strong>Les fondations SEO.</strong> Métadonnées, structure propre, balisage schema, maillage interne et sitemap sont en partie invisibles — c'est précisément pour cela que les offres à bas prix les suppriment, et qu'une partie de ces sites n'apparaît jamais sur Google.</li>
-                    <li><strong>Photos et contenus.</strong> Si vous arrivez avec de bonnes photos et des textes clairs, le budget baisse. Si tout doit être créé, le budget monte — mais la qualité de ce que voient vos visiteurs monte aussi.</li>
+                    <li><strong>Les fondations SEO.</strong> Métadonnées, structure propre, balisage schema, maillage interne et sitemap sont en partie invisibles, c'est précisément pour cela que les offres à bas prix les suppriment, et qu'une partie de ces sites n'apparaît jamais sur Google.</li>
+                    <li><strong>Photos et contenus.</strong> Si vous arrivez avec de bonnes photos et des textes clairs, le budget baisse. Si tout doit être créé, le budget monte, mais la qualité de ce que voient vos visiteurs monte aussi.</li>
                 </ul>
 
                 <h2>Ce qu'un site pas cher vous coûte réellement plus tard</h2>
-                <p>Un site très bon marché n'est pas forcément une mauvaise affaire, mais la remise se cache généralement à un endroit précis. Aucune structure de pages exploitable par Google, donc le site n'apparaît jamais sur les recherches utiles. Une lenteur réelle sur les téléphones que vos clients utilisent vraiment. Aucun suivi statistique, si bien qu'un an plus tard, personne ne peut dire si le site a produit un seul client. Des textes génériques qui pourraient décrire n'importe quelle entreprise dans n'importe quelle ville. Le site existe, mais il ne produit rien — et vous finissez par payer une seconde fois pour le reconstruire correctement. Le site le moins cher est rarement le moins coûteux.</p>
+                <p>Un site très bon marché n'est pas forcément une mauvaise affaire, mais la remise se cache généralement à un endroit précis. Aucune structure de pages exploitable par Google, donc le site n'apparaît jamais sur les recherches utiles. Une lenteur réelle sur les téléphones que vos clients utilisent vraiment. Aucun suivi statistique, si bien qu'un an plus tard, personne ne peut dire si le site a produit un seul client. Des textes génériques qui pourraient décrire n'importe quelle entreprise dans n'importe quelle ville. Le site existe, mais il ne produit rien, et vous finissez par payer une seconde fois pour le reconstruire correctement. Le site le moins cher est rarement le moins coûteux.</p>
 
                 <blockquote>Un site web n'est jamais cher ou bon marché en soi. Il est cher ou bon marché par rapport aux clients qu'il vous apporte.</blockquote>
 
-                <h2>Les questions à poser à toute agence — y compris à nous</h2>
+                <h2>Les questions à poser à toute agence, y compris à nous</h2>
                 <ul>
                     <li>Qu'est-ce qui est précisément inclus : combien de pages, quelles langues, qui rédige les contenus, qui fournit les photos ?</li>
                     <li>Le site sera-t-il rapide sur mobile, et comment cela sera-t-il vérifié ?</li>
-                    <li>Les bases SEO — titres, métadonnées, structure, sitemap — font-elles partie du projet ou sont-elles facturées à part ?</li>
+                    <li>Les bases SEO (titres, métadonnées, structure, sitemap) font-elles partie du projet ou sont-elles facturées à part ?</li>
                     <li>Qui est propriétaire du nom de domaine, de l'hébergement et du code une fois le projet livré ?</li>
                     <li>Que se passe-t-il après la mise en ligne : support, petites modifications, mesure des résultats ?</li>
                 </ul>
-                <p>Une agence sérieuse doit pouvoir répondre à tout cela en langage clair avant de demander une signature. Si les réponses restent vagues, le devis l'est aussi — quelle que soit la précision apparente du chiffre.</p>
+                <p>Une agence sérieuse doit pouvoir répondre à tout cela en langage clair avant de demander une signature. Si les réponses restent vagues, le devis l'est aussi, quelle que soit la précision apparente du chiffre.</p>
 
                 <h2>Obtenez un chiffre précis pour votre projet</h2>
-                <p>Les fourchettes donnent un ordre de grandeur ; votre projet mérite un chiffre exact. Dites-nous ce que fait votre entreprise, ce que le site doit accomplir et les éléments dont vous disposez déjà. Nous vous répondrons avec un devis clair et détaillé — gratuit, sans engagement et lisible par un humain. Vous pouvez <a href="/fr/contact">demander votre devis gratuit</a> via notre page contact ou démarrer la conversation directement sur WhatsApp ; nous répondons sous un jour ouvré.</p>
+                <p>Ces prix donnent un point de départ ; votre projet mérite un chiffre exact. Dites-nous ce que fait votre entreprise, ce que le site doit accomplir et les éléments dont vous disposez déjà. Nous vous répondrons avec un devis clair et détaillé : gratuit, sans engagement et lisible par un humain. Vous pouvez <a href="/fr/contact">demander votre devis gratuit</a> via notre page contact ou démarrer la conversation directement sur WhatsApp ; nous répondons sous un jour ouvré.</p>
             `
         }
     },

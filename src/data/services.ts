@@ -167,7 +167,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     copy: {
       en: {
         title: 'Web Agency in Marrakech',
-        description: 'WeReact is a web agency in Marrakech building fast, bilingual, SEO-ready websites for riads, tourism brands, and local businesses across Morocco — with transparent pricing and a free quote.',
+        description: 'WeReact is a web agency in Marrakech building fast, bilingual, SEO-ready websites for riads, tourism brands, and local businesses across Morocco, with transparent pricing and a free quote.',
         eyebrow: 'Web agency in Marrakech',
         heading: 'The web agency in Marrakech for a website that brings you clients.',
         lead: 'Website creation for riads, tourism experiences, and local businesses across Morocco: fast on mobile, bilingual French and English, SEO-ready, with transparent pricing and a free quote.',
@@ -178,14 +178,14 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
-          { question: 'How much does a website cost in Morocco?', answer: 'As honest ranges: a showcase website usually falls between 4,000 and 15,000 MAD, a website with booking features between 15,000 and 40,000 MAD, and an e-commerce site between 25,000 and 60,000 MAD. We send a precise, free quote within one business day based on your exact scope.' },
-          { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 6 weeks depending on scope: a simple showcase site moves faster, while booking or e-commerce features need more preparation. We agree on a clear timeline with the quote.' },
-          { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco — Casablanca, Rabat, Agadir — as well as remotely for international projects.' },
+          { question: 'How much does a website cost in Morocco?', answer: 'As an honest starting point: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An e-commerce site starts from 3,500 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day based on your exact scope.' },
+          { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 3 days for most builds: a simple showcase site moves fastest, while booking or e-commerce features can take a little more preparation. We agree on a clear timeline with the quote.' },
+          { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco (Casablanca, Rabat, Agadir) as well as remotely for international projects.' },
         ],
       },
       fr: {
-        title: 'Agence web à Marrakech — création de site web au Maroc',
-        description: 'WeReact est une agence web à Marrakech qui crée des sites rapides, bilingues et prêts pour le SEO, pour les riads, le tourisme et les entreprises locales partout au Maroc — avec des tarifs transparents et un devis gratuit.',
+        title: 'Agence web à Marrakech : création de site web au Maroc',
+        description: 'WeReact est une agence web à Marrakech qui crée des sites rapides, bilingues et prêts pour le SEO, pour les riads, le tourisme et les entreprises locales partout au Maroc, avec des tarifs transparents et un devis gratuit.',
         eyebrow: 'Agence web à Marrakech',
         heading: 'L’agence web à Marrakech pour un site qui vous amène des clients.',
         lead: 'Création de site web pour les riads, les expériences touristiques et les entreprises locales partout au Maroc : rapide sur mobile, bilingue français et anglais, prêt pour le SEO, avec des tarifs transparents et un devis gratuit.',
@@ -196,9 +196,9 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
-          { question: 'Combien coûte un site web au Maroc ?', answer: 'En fourchettes honnêtes : un site vitrine se situe généralement entre 4 000 et 15 000 MAD, un site avec réservation entre 15 000 et 40 000 MAD, et un site e-commerce entre 25 000 et 60 000 MAD. Nous envoyons un devis gratuit et précis sous un jour ouvré, selon votre périmètre exact.' },
-          { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 6 semaines selon le périmètre : un site vitrine simple avance plus vite, tandis qu’une réservation ou une boutique en ligne demande plus de préparation. Nous fixons un calendrier clair dès le devis.' },
-          { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc — Casablanca, Rabat, Agadir — ainsi qu’à distance pour les projets internationaux.' },
+          { question: 'Combien coûte un site web au Maroc ?', answer: 'En clair : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré, selon votre périmètre exact.' },
+          { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 3 jours pour la plupart des sites : un site vitrine simple avance plus vite, tandis qu’une réservation ou une boutique en ligne peut demander un peu plus de préparation. Nous fixons un calendrier clair dès le devis.' },
+          { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc (Casablanca, Rabat, Agadir) ainsi qu’à distance pour les projets internationaux.' },
         ],
       },
     },

@@ -262,7 +262,7 @@ export default function ContactPage() {
                   {t('whatsappCta')}
                 </a>
                 <p className="mt-4 text-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
-                  — {t('orSendNote')} —
+                  {t('orSendNote')}
                 </p>
               </motion.div>
 

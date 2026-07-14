@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import Link from '@/components/transition/TransitionLink';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { getLenis } from '@/lib/lenis';
 import { siteConfig } from '@/config/site';
 import { trackContactIntent } from '@/lib/analytics';
@@ -161,14 +162,20 @@ export default function Header() {
           >
             &middot;wereact&middot;
           </Link>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            className={`text-mono pointer-events-auto cursor-pointer text-sm font-semibold uppercase tracking-widest transition-opacity hover:opacity-70 ${open ? 'text-white' : 'text-[var(--color-primary)]'}`}
-          >
-            {open ? t('close') : t('menu')}
-          </button>
+          <div className="pointer-events-auto flex items-center gap-5">
+            <LanguageSwitcher
+              variant="bar"
+              className={open ? 'text-white' : 'text-[var(--color-primary)]'}
+            />
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              className={`text-mono cursor-pointer text-sm font-semibold uppercase tracking-widest transition-opacity hover:opacity-70 ${open ? 'text-white' : 'text-[var(--color-primary)]'}`}
+            >
+              {open ? t('close') : t('menu')}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -243,6 +250,14 @@ export default function Header() {
                 </li>
               ))}
             </ul>
+
+            {/* Language */}
+            <div
+              className="menu-fade nav-fade-init mt-10"
+              onClick={() => setOpen(false)}
+            >
+              <LanguageSwitcher variant="menu" />
+            </div>
 
             {/* Bottom row */}
             <div className="menu-fade nav-fade-init mt-8 flex flex-col gap-2">

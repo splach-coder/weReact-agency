@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "WeReact — Morocco's modern web agency",
+    "title": "WeReact, Morocco's modern web agency",
     "description": "Fast, beautiful websites that bridge Moroccan businesses to the world."
   },
   "Nav": {
@@ -41,7 +41,7 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Tell us about your project…",
     "send": "Send message",
-    "sent": "Your message is ready in your email app — just hit send. We'll reply within one business day.",
+    "sent": "Your message is ready in your email app. Just hit send. We'll reply within one business day.",
     "infoTitle": "Contact information",
     "infoSubtitle": "Prefer to reach out directly? Here's how.",
     "labelEmail": "Email",
@@ -74,7 +74,7 @@
   "Work": {
     "eyebrow": "Selected work",
     "title": "Websites we're proud of",
-    "subtitle": "Real results for real businesses — a portfolio of tourism, hospitality, and local brands across Morocco and beyond.",
+    "subtitle": "Real results for real businesses: a portfolio of tourism, hospitality, and local brands across Morocco and beyond.",
     "statProjects": "Projects built",
     "statLanguages": "Languages, by default",
     "statBased": "Based in Marrakech",
@@ -86,7 +86,7 @@
   "Services": {
     "eyebrow": "What we do",
     "title": "Everything your web presence needs",
-    "subtitle": "From strategy and design to development and launch — built fast, bilingual, and search-ready.",
+    "subtitle": "From strategy and design to development and launch, built fast, bilingual, and search-ready.",
     "servicesTitle": "Our expertise",
     "included": "What's included",
     "getStarted": "Get started",
@@ -183,47 +183,45 @@
       }
     ],
     "pricingTitle": "Simple, transparent packages",
-    "pricingSubtitle": "Starting points — every project gets a tailored quote.",
+    "pricingSubtitle": "Showcase sites from 2000 DH, e-commerce from 3500 DH. Every project gets a tailored quote.",
     "popularLabel": "Most popular",
     "packages": [
       {
-        "name": "Starter",
-        "price": "$2,999",
-        "desc": "For small businesses and new brands.",
+        "name": "Showcase site",
+        "price": "from 2000 DH",
+        "desc": "For a business that needs to be found and contacted.",
         "features": [
-          "5-page website",
-          "Mobile responsive",
-          "Basic SEO setup",
-          "Contact & booking",
-          "1 month support"
+          "Professional showcase site",
+          "Fast, mobile-first",
+          "SEO foundations included",
+          "Google Business Profile setup",
+          "Live in 2 to 3 days"
         ],
         "popular": false
       },
       {
-        "name": "Professional",
-        "price": "$5,999",
-        "desc": "For growing businesses.",
+        "name": "E-commerce",
+        "price": "from 3500 DH",
+        "desc": "Sell online, front-end and back-end included.",
         "features": [
-          "10-page website",
-          "Custom design",
-          "Advanced SEO",
-          "Bilingual EN/FR",
-          "3 months support",
-          "Analytics setup"
+          "Online store, front and back",
+          "Product catalogue and checkout",
+          "Payment integration",
+          "SEO foundations included",
+          "Bilingual EN/FR ready"
         ],
         "popular": true
       },
       {
-        "name": "Enterprise",
-        "price": "Custom",
-        "desc": "For larger, custom projects.",
+        "name": "Custom",
+        "price": "Custom quote",
+        "desc": "Booking sites, advanced or multilingual builds.",
         "features": [
-          "Unlimited pages",
-          "Custom functionality",
-          "Premium SEO",
-          "Integrations",
-          "12 months support",
-          "Dedicated contact"
+          "Direct-booking or custom features",
+          "Advanced multilingual",
+          "Third-party integrations",
+          "Priority support",
+          "Quote based on scope"
         ],
         "popular": false
       }
@@ -235,7 +233,7 @@
   "About": {
     "eyebrow": "About WeReact",
     "title": "Moroccan craft, modern web",
-    "subtitle": "We're a Marrakech-based web agency making tourism, hospitality, and local brands look world-class online — in English and French.",
+    "subtitle": "We're a Marrakech-based web agency making tourism, hospitality, and local brands look world-class online, in English and French.",
     "statProjects": "Projects built",
     "statLanguages": "Languages, by default",
     "statBased": "Based in Marrakech",
@@ -246,14 +244,14 @@
     "valSince": "2025",
     "storyTitle": "Our story",
     "storyP1": "WeReact started with a simple conviction: great Moroccan businesses deserve websites as world-class as the experiences they offer.",
-    "storyP2": "Too many riads, tour operators, and local brands were stuck with slow, generic sites that didn't earn trust or bookings. We knew there was a better way — local craft paired with modern engineering.",
-    "storyP3": "Today we build fast, multilingual, search-ready websites from Marrakech for clients across Morocco and beyond — and we treat every project as a long-term partnership.",
+    "storyP2": "Too many riads, tour operators, and local brands were stuck with slow, generic sites that didn't earn trust or bookings. We knew there was a better way: local craft paired with modern engineering.",
+    "storyP3": "Today we build fast, multilingual, search-ready websites from Marrakech for clients across Morocco and beyond, and we treat every project as a long-term partnership.",
     "valuesTitle": "What we stand for",
     "valuesSubtitle": "The principles behind every project.",
     "values": [
       {
         "title": "Rooted",
-        "desc": "Proud of Marrakech and fluent in the international web — we bridge the two."
+        "desc": "Proud of Marrakech and fluent in the international web: we bridge the two."
       },
       {
         "title": "Crafted",
@@ -269,7 +267,7 @@
       },
       {
         "title": "Fast",
-        "desc": "Performance is a feature — quick to load, quick to convert."
+        "desc": "Performance is a feature: quick to load, quick to convert."
       },
       {
         "title": "Partners",
@@ -277,7 +275,7 @@
       }
     ],
     "missionTitle": "Our mission",
-    "missionText": "To give Moroccan businesses digital experiences that don't just look good — they perform, and they compete anywhere.",
+    "missionText": "To give Moroccan businesses digital experiences that don't just look good: they perform, and they compete anywhere.",
     "visionTitle": "Our vision",
     "visionText": "To be the web partner Moroccan brands reach for when they want to be taken seriously by the world.",
     "ctaTitle": "Ready to work together?",
@@ -286,14 +284,14 @@
   },
   "Home": {
     "hero": {
-      "eyebrow": "Marrakech — Morocco's modern web agency",
+      "eyebrow": "Marrakech, Morocco's modern web agency",
       "titleLine1": "We build digital",
       "titleLine2": "experiences that",
       "highlight": "convert",
-      "subtitle": "Fast, beautiful websites that bridge Moroccan businesses to the world — designed to earn trust and win bookings, in English and French.",
+      "subtitle": "Fast, beautiful websites that bridge Moroccan businesses to the world, designed to earn trust and win bookings, in English and French.",
       "ctaPrimary": "Start a project",
       "ctaSecondary": "View our work",
-      "kicker": "Web studio — Marrakech, Morocco"
+      "kicker": "Web studio, Marrakech, Morocco"
     },
     "marquee": [
       "Web Design",
@@ -434,11 +432,11 @@
       "items": [
         {
           "q": "What type of websites do you build?",
-          "a": "Business sites, landing pages, e-commerce, and custom builds — most for hospitality, tourism, and local brands across Morocco and beyond."
+          "a": "Business sites, landing pages, e-commerce, and custom builds, mostly for hospitality, tourism, and local brands across Morocco and beyond."
         },
         {
           "q": "How long does a typical project take?",
-          "a": "Most sites launch in 3–6 weeks depending on scope. We agree on a clear timeline before we start."
+          "a": "Most sites launch in 2 to 3 days depending on scope. We agree on a clear timeline before we start."
         },
         {
           "q": "Can you work with our existing brand identity?",
@@ -454,7 +452,7 @@
         },
         {
           "q": "What happens after launch?",
-          "a": "We offer care plans for updates, performance, and ongoing improvements — or hand over a site you fully own."
+          "a": "We offer care plans for updates, performance, and ongoing improvements, or hand over a site you fully own."
         }
       ]
     },
@@ -467,7 +465,7 @@
     },
     "finalCta": {
       "title": "Ready to build something that converts?",
-      "subtitle": "Tell us about your project — we'll reply within one business day.",
+      "subtitle": "Tell us about your project. We'll reply within one business day.",
       "ctaPrimary": "Start a project",
       "ctaSecondary": "Chat on WhatsApp"
     }
