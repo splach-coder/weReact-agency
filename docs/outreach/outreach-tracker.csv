@@ -1,2 +1,30 @@
-date,liste,nom,type,contact,canal,hook utilisé,statut,relance J+3,relance J+8,rdv,proposition,résultat,notes
-2026-07-15,A,Exemple Riad,riad,@exempleriad / +212600000000,whatsapp,commission Booking,envoyé,,,,,,première ligne d'exemple — supprimer
+niche,nom,type,contact,canal,statut,date_envoi,relance_J3,relance_J8,rdv,proposition,resultat,notes
+riad,Casa De Marrakech Riad Guest House,Riad (751 avis Booking),Booking messaging,booking,à contacter,,,,,,,pas de tél public
+riad,Riad Beni Sidel,Riad (398 avis),Booking messaging,booking,à contacter,,,,,,,pas de tél public
+riad,Riad Al Wifak,Riad (Booking 9.6),@riadalwifak,instagram,à contacter,,,,,,,
+riad,Riad Jnan El Cadi,Riad (Booking 9.3),@ryadjnanelcadi,instagram,à contacter,,,,,,,FB /riadjnancadi
+riad,Riad Laichi,Riad (Booking 8.6),@riad_laichi_marrakesh,instagram,à contacter,,,,,,,
+riad,Riad Atlas Guest House,Riad (Medina Kennaria),TripAdvisor messaging,autre,à contacter,,,,,,,pas Atlas Palace
+riad,Riad La Calèche & Spa,Riad (148 avis TA),FB /RiadLaCalecheMarrakesch,facebook,à contacter,,,,,,,même ruelle que Atlas Guest House
+resto,Chez Bejgueni,Grillades Gueliz,+212 674-747464,whatsapp,à contacter,,,,,,,
+resto,Chez Ouazzani,Grillades/tanjia Gueliz,+212 664 37 95 67,whatsapp,à contacter,,,,,,,domaine mort chezouazzani.com
+resto,Café Elite,Café Gueliz,+212 664-722168,whatsapp,à contacter,,,,,,,IG @elite_restaurant_marrakech
+resto,Restaurant Gargot,Gargote Medina,+212 644-220004,whatsapp,à contacter,,,,,,,
+resto,Oscar Progrès,Cuisine marocaine Medina,0666937148,whatsapp,à contacter,,,,,,,IG @restaurant_oscal_progres
+resto,Sweet & Sook,Glacier Medina,+212 661-063815,whatsapp,à contacter,,,,,,,IG @sweetandsook
+resto,Bendir Rooftop,Rooftop Medina,+212 605-044085,whatsapp,à contacter,,,,,,,IG @bendir_rooftop
+resto,Café Glacier L'Hivernage,Café Hivernage,+212 5 24 43 16 02,whatsapp,à contacter,,,,,,,
+beaute,Chanails,Onglerie Gueliz (18k),+212 666 049 129,whatsapp,à contacter,,,,,,,IG @chanailsmarrakech
+beaute,Beauty Lab,Salon Gueliz (21k),0524 447 609,whatsapp,à contacter,,,,,,,domaine beautylab.ma en erreur 402
+beaute,En Secret,Salon beauté Gueliz (9k),06 66 68 66 92,whatsapp,à contacter,,,,,,,IG @ensecretmarrakech
+beaute,Ribella Beauty & Hair,Coiffure afro Gueliz,+212 629 833 540,whatsapp,à contacter,,,,,,,IG @ribella_beauty_hair
+beaute,Le 7ème Sens,Institut/hammam Gueliz (9.5k),+212 808 576 353,whatsapp,à contacter,,,,,,,domaine le7emesens.ma mort
+beaute,Fun Fitness,Salle de sport Sidi Abbad (7k),0663 388 388,whatsapp,à contacter,,,,,,,ancien site funfitness.ma mort
+beaute,Spa Dyali,Spa/hammam Gueliz,@spadyali,instagram,à contacter,,,,,,,pas de tél public
+beaute,Hafid Tendance Coiffure,Coiffure Gueliz,+212 666 528 408,whatsapp,à contacter,,,,,,,mini-site Google 404
+activite,Atelier Cuisine Chef Tarik,Cours cuisine,TripAdvisor/Viator,autre,à contacter,,,,,,,site SSL cassé atelier-chef-tarik.com
+activite,Deniz Tours,Location voiture,+212 661 361 559,whatsapp,à contacter,,,,,,,site 500 / ©2018 contact@deniztours.com
+activite,La Cuisine du Chef,Traiteur/chef privé,+212 660 109 783,whatsapp,à contacter,,,,,,,IG @la_cuisine_du_chef
+activite,Poterie Ben Abdellah,Artisan poterie,poterie.benabdellah@gmail.com,email,à contacter,,,,,,,IG @poteriebenabdellah
+activite,Marrakech Quad & Loc,Quad/buggy Lalla Takerkoust,FB /marrakechquadandloc,facebook,à contacter,,,,,,,
+activite,Guide de Montagne (Hamid Idbelaid),Trekking Toubkal Asni,FB /guide.de.montagne.au.Maroc,facebook,à contacter,,,,,,,
