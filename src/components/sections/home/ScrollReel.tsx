@@ -27,17 +27,22 @@ export default function ScrollReel() {
   const leftRef = useRef<HTMLSpanElement>(null);
   const rightRef = useRef<HTMLSpanElement>(null);
   const captionRef = useRef<HTMLParagraphElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
+    // Mobile browser toolbars change the viewport height mid-scroll; without
+    // this the pinned panel re-measures and the image leaves a gap / jumps.
+    ScrollTrigger.config({ ignoreMobileResize: true });
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
     const ctx = gsap.context(() => {
       gsap.set(mediaRef.current, isMobile
-        ? { scale: 1.14, yPercent: 0, transformOrigin: '50% 50%', force3D: true }
+        ? { scale: 1.16, yPercent: 0, transformOrigin: '50% 50%', force3D: true }
         : { scale: 0.001, transformOrigin: '50% 50%', force3D: true },
       );
+      gsap.set(overlayRef.current, { opacity: 1 });
       gsap.set([eyebrowRef.current, titleRef.current, captionRef.current], { autoAlpha: 0, y: 34 });
       gsap.set([leftRef.current, rightRef.current], { x: 0, y: 0, force3D: true });
 
@@ -54,8 +59,9 @@ export default function ScrollReel() {
       });
 
       tl.to(mediaRef.current, isMobile
-        ? { scale: 1, duration: 0.9, ease: 'none', force3D: true }
+        ? { scale: 1.04, duration: 0.9, ease: 'none', force3D: true }
         : { scale: 1, duration: 0.74, ease: 'power2.out', force3D: true }, 0)
+        .to(overlayRef.current, { opacity: 0.72, duration: isMobile ? 0.6 : 0.7, ease: 'none' }, 0)
         .to([eyebrowRef.current, titleRef.current], { autoAlpha: 1, y: 0, duration: 0.28, ease: 'power2.out' }, isMobile ? 0.58 : 0.86)
         .to(captionRef.current, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }, isMobile ? 0.7 : 0.98)
         .to(leftRef.current, { x: isMobile ? '-7vw' : '-14vw', y: isMobile ? '-2vh' : '-4vh', duration: 0.4, ease: 'power1.inOut' }, isMobile ? 0.82 : 1.1)
@@ -71,7 +77,7 @@ export default function ScrollReel() {
 
   return (
     <section ref={sectionRef} className="relative bg-[var(--color-background-main)]">
-      <div ref={panelRef} className="relative flex h-[100svh] w-full items-center justify-center overflow-hidden md:h-screen">
+      <div ref={panelRef} className="relative flex h-[100lvh] min-h-[100svh] w-full items-center justify-center overflow-hidden md:h-screen md:min-h-0">
         <div ref={mediaRef} className="absolute inset-0 origin-center overflow-hidden will-change-transform transform-gpu">
           {MEDIA.map((media) => (
             <div key={media.src} className="absolute inset-0">
@@ -86,7 +92,7 @@ export default function ScrollReel() {
               />
             </div>
           ))}
-          <div aria-hidden className="absolute inset-0 bg-[rgba(16,26,18,0.46)]" />
+          <div ref={overlayRef} aria-hidden className="absolute inset-0 bg-[rgba(16,26,18,0.46)]" />
         </div>
 
         <span ref={eyebrowRef} className="text-mono absolute top-7 left-1/2 z-10 -translate-x-1/2 text-center text-white/75 md:top-10">
