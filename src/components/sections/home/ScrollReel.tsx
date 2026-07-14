@@ -35,7 +35,7 @@ export default function ScrollReel() {
 
     const ctx = gsap.context(() => {
       gsap.set(mediaRef.current, isMobile
-        ? { scale: 1, yPercent: 82, transformOrigin: '50% 50%', force3D: true }
+        ? { scale: 1.14, yPercent: 0, transformOrigin: '50% 50%', force3D: true }
         : { scale: 0.001, transformOrigin: '50% 50%', force3D: true },
       );
       gsap.set([eyebrowRef.current, titleRef.current, captionRef.current], { autoAlpha: 0, y: 34 });
@@ -45,16 +45,16 @@ export default function ScrollReel() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: isMobile ? '+=140%' : '+=270%',
+          end: isMobile ? '+=160%' : '+=270%',
           pin: panelRef.current,
-          scrub: 1.05,
+          scrub: isMobile ? 1.3 : 1.05,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
       tl.to(mediaRef.current, isMobile
-        ? { yPercent: 0, duration: 0.5, ease: 'power3.out', force3D: true }
+        ? { scale: 1, duration: 0.9, ease: 'none', force3D: true }
         : { scale: 1, duration: 0.74, ease: 'power2.out', force3D: true }, 0)
         .to([eyebrowRef.current, titleRef.current], { autoAlpha: 1, y: 0, duration: 0.28, ease: 'power2.out' }, isMobile ? 0.58 : 0.86)
         .to(captionRef.current, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' }, isMobile ? 0.7 : 0.98)
@@ -71,7 +71,7 @@ export default function ScrollReel() {
 
   return (
     <section ref={sectionRef} className="relative bg-[var(--color-background-main)]">
-      <div ref={panelRef} className="relative flex h-[82svh] w-full items-center justify-center overflow-hidden md:h-screen">
+      <div ref={panelRef} className="relative flex h-[100svh] w-full items-center justify-center overflow-hidden md:h-screen">
         <div ref={mediaRef} className="absolute inset-0 origin-center overflow-hidden will-change-transform transform-gpu">
           {MEDIA.map((media) => (
             <div key={media.src} className="absolute inset-0">
