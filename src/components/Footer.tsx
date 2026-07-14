@@ -209,7 +209,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/45 md:flex-row md:items-center md:justify-between">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <span>&copy; WeReact {year} &mdash; {t('copyright')}</span>
+            <span>&copy; WeReact {year} &middot; {t('copyright')}</span>
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT))}
