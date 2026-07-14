@@ -3,11 +3,12 @@ import { blogPosts } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { getServiceLandingPage } from '@/data/services';
 
@@ -15,35 +16,30 @@ interface Props {
     params: Promise<{ slug: string; locale: string }>;
 }
 
-export async function generateMetadata(
-    { params }: Props,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug, locale } = await params;
     const post = blogPosts.find((p) => p.slug === slug);
 
     if (!post) return { title: 'Post Not Found' };
 
-    return {
+    const metadata = createPageMetadata({
         title: `${post.title} | WeReact Journal`,
         description: post.metaDescription || post.excerpt,
+        path: `/${locale}/blog/${post.slug}`,
+        image: post.image,
+        locale,
+        type: 'article',
+        publishedTime: post.publishedAt,
+        authors: [post.author],
         keywords: [post.category, 'WeReact Journal', 'website design Marrakech', 'local SEO Morocco'],
+    });
+
+    return {
+        ...metadata,
         openGraph: {
-            title: post.title,
-            description: post.metaDescription || post.excerpt,
-            url: `${siteConfig.url}/${locale}/blog/${post.slug}`,
-            siteName: 'WeReact Journal',
-            images: [{ url: `${siteConfig.url}${post.image}`, width: 1200, height: 630, alt: post.title }],
+            ...metadata.openGraph,
             type: 'article',
-            publishedTime: post.publishedAt,
             modifiedTime: post.modifiedAt,
-            authors: [post.author],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: post.title,
-            description: post.metaDescription || post.excerpt,
-            images: [`${siteConfig.url}${post.image}`],
         },
     };
 }
@@ -81,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
             '@type': 'Organization',
             name: 'WeReact',
-            logo: { '@type': 'ImageObject', url: `${siteConfig.url}/logo_icon.ico` },
+            logo: { '@type': 'ImageObject', url: `${siteConfig.url}/images/logo.webp` },
         },
         mainEntityOfPage: { '@context': 'https://schema.org', '@type': 'WebPage', '@id': postUrl },
         inLanguage: locale,

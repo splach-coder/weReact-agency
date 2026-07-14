@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Check, MessageCircle } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getProjectById } from '@/data/projects';
 import { getServiceLandingPage, serviceLandingPages } from '@/data/services';
-import { siteConfig } from '@/config/site';
+import { GrowthCtas, GrowthContactCta } from '@/components/GrowthCtas';
 import { createFaqJsonLd, createPageMetadata, createServicePageJsonLd } from '@/lib/seo';
 
 type ServicePageProps = {
@@ -67,16 +67,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
             <p className="mt-7 max-w-2xl text-lg font-light leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
               {copy.lead}
             </p>
-            <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <Link href={contactHref} className="inline-flex min-h-12 items-center gap-3 bg-[var(--color-primary)] px-6 py-4 text-mono text-white transition-colors hover:bg-[var(--color-primary-dark)]">
-                {copy.cta}
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </Link>
-              <a href={siteConfig.business.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-3 border border-[rgba(58,90,64,0.28)] px-6 py-4 text-mono text-[var(--color-primary)] transition-colors hover:border-[var(--color-primary)] hover:bg-white">
-                <MessageCircle size={17} aria-hidden="true" />
-                WhatsApp
-              </a>
-            </div>
+            <GrowthCtas cta={copy.cta} contactHref={contactHref} locale={locale} slug={page.slug} />
             <p className="mt-4 text-sm text-[var(--color-text-muted)]">{copy.ctaNote}</p>
           </div>
           <p className="self-end border-l border-[rgba(58,90,64,0.18)] pl-5 text-sm leading-relaxed text-[var(--color-text-secondary)] lg:mb-3">
@@ -154,10 +145,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
               {locale === 'fr' ? 'Votre prochaine demande peut commencer ici.' : 'Your next enquiry can start here.'}
             </h2>
           </div>
-          <Link href={contactHref} className="inline-flex min-h-12 items-center gap-3 bg-[var(--color-primary)] px-6 py-4 text-mono text-white transition-colors hover:bg-[var(--color-primary-dark)]">
-            {copy.cta}
-            <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+          <GrowthContactCta cta={copy.cta} contactHref={contactHref} slug={page.slug} />
         </div>
       </section>
     </main>

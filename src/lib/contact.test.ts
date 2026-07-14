@@ -94,3 +94,48 @@ test('returns useful field-level feedback before submitting the form', () => {
   );
 });
 
+test('localizes validation errors for the French landing page', () => {
+  const errors = getContactFieldErrors({ name: '', email: 'not-an-email' }, 'fr');
+  assert.equal(errors.name, 'Merci d’ajouter votre nom.');
+  assert.equal(errors.email, 'Merci de saisir une adresse e-mail valide.');
+});
+
+test('includes escaped campaign attribution in the owner enquiry email', () => {
+  const email = buildContactEmail({
+    name: 'Anas',
+    email: 'anas@example.com',
+    message: 'I need a website.',
+    attribution: {
+      utm_source: 'google',
+      utm_campaign: 'search_marrakech',
+      gclid: 'abc<script>123',
+      transaction_id: 'tx-42',
+    },
+  });
+
+  assert.match(email.html, /Campaign attribution/);
+  assert.match(email.html, /utm_source:<\/strong> google/);
+  assert.match(email.html, /abc&lt;script&gt;123/);
+  assert.match(email.html, /tx-42/);
+  assert.doesNotMatch(email.html, /<script>/);
+});
+
+test('omits the attribution block when no attribution was captured', () => {
+  const email = buildContactEmail({ name: 'Anas', email: 'anas@example.com' });
+  assert.doesNotMatch(email.html, /Campaign attribution/);
+});
+
+test('sends the confirmation email in French for FR leads', () => {
+  const email = buildContactConfirmationEmail({
+    name: 'Yassine',
+    email: 'yassine@example.com',
+    locale: 'fr',
+  });
+
+  assert.equal(email.subject, 'Nous avons bien reçu votre message');
+  assert.match(email.html, /lang="fr"/);
+  assert.match(email.html, /Merci de nous avoir écrit, Yassine/);
+  assert.match(email.html, /Discuter sur WhatsApp/);
+  assert.match(email.html, /sous un jour ouvré/);
+});
+

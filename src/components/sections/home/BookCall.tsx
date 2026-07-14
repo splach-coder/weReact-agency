@@ -2,11 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { CalendarClock, MessageCircle, Mail } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackContactIntent } from '@/lib/analytics';
+import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
+import { buildWhatsAppLink } from '@/lib/whatsapp';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fade = {
@@ -24,6 +25,7 @@ const CAL_LINK = process.env.NEXT_PUBLIC_CALCOM_LINK;
 
 export default function BookCall() {
   const t = useTranslations('Home.booking');
+  const locale = useLocale();
 
   return (
     <section id="book" className="bg-[var(--color-background-contrast)] py-24 md:py-32">
@@ -78,10 +80,10 @@ export default function BookCall() {
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href={siteConfig.business.whatsapp}
+                href={buildWhatsAppLink(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackContactIntent('book_call_whatsapp', { method: 'whatsapp', page: 'home', location: 'book_call' })}
+                onClick={() => trackWhatsAppLead('book_call_whatsapp', { page: 'home', location: 'book_call' })}
                 className="btn-base btn-clay justify-center"
               >
                 <MessageCircle size={18} aria-hidden="true" />

@@ -5,7 +5,7 @@ export const siteConfig = {
     url: "https://www.wereact.agency",
     defaultLocale: 'en',
     locales: ['en', 'fr'],
-    ogImage: '/og-image.webp',
+    ogImage: '/og-image.jpg',
     twitterHandle: '@wereact',
     creator: 'WeReact agency',
     seo: {

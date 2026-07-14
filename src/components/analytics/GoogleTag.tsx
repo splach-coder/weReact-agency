@@ -5,8 +5,10 @@ import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { captureAttribution, trackPageView } from '@/lib/analytics';
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-0HRPEYEZXY';
-const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? 'AW-18245192967';
+// `||` (not `??`) so an empty-string env var still falls back to the live
+// production tag ids instead of silently disabling tracking.
+const GA_MEASUREMENT_ID = (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '').trim() || 'G-0HRPEYEZXY';
+const GOOGLE_ADS_ID = (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '').trim() || 'AW-18245192967';
 const TAG_IDS = [GA_MEASUREMENT_ID, GOOGLE_ADS_ID].filter(Boolean) as string[];
 
 export default function GoogleTag() {
@@ -27,8 +29,10 @@ export default function GoogleTag() {
   if (!TAG_IDS.length) return null;
 
   const primaryTagId = TAG_IDS[0];
-  const configLines = TAG_IDS.map(
-    (id) => `window.gtag('config', '${id}', { send_page_view: false });`
+  const configLines = TAG_IDS.map((id) =>
+    id.startsWith('AW-')
+      ? `window.gtag('config', '${id}', { send_page_view: false, allow_enhanced_conversions: true });`
+      : `window.gtag('config', '${id}', { send_page_view: false });`
   ).join('\n');
 
   return (

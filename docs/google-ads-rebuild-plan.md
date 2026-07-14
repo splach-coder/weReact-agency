@@ -72,9 +72,9 @@ Campaign: WeReact — Search — Morocco
 |---|---|---|
 | Campaign type | **Search only** | Highest intent for a service business |
 | Networks | **Search only** — UNCHECK "Search Partners" **and** "Display Network" | Display = the #1 budget drain |
-| Locations | Marrakech + Casablanca + Rabat + Agadir (or "Morocco") | Where your buyers are |
+| Locations | **Morocco (entire country)** | The "…maroc" keywords need Tangier/Fès/Kenitra/Meknès volume too; service is remote |
 | Location options | **"Presence: people in your targeted locations"** (NOT "presence or interest") | Stops worldwide/tourist-intent clicks |
-| Languages | English **and** French | Your audience |
+| Languages | English, French **and Arabic** | Google targets the user's interface language — many Moroccans type French keywords on Arabic-UI phones |
 | Keyword matching | **Phrase + Exact only. AI Max = OFF. Broad match = OFF.** | This is what wasted the 3,176 MAD — AI Max/broad sprayed into "marketing/agency" searches |
 | Bidding | **Maximize Clicks with a max CPC limit (~3–5 MAD)** to start | No conversion history yet — do NOT use tCPA/Max Conversions until ~15–30 conversions exist. Caps runaway 50 MAD clicks |
 | Daily budget | **50–100 MAD/day** (set yours in §7) | Controlled test |

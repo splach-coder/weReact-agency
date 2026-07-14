@@ -18,6 +18,11 @@ type StoredAttribution = Partial<Record<CampaignKey, string>> & {
   captured_at?: string;
 };
 
+export type LeadUserData = {
+  email?: string;
+  phone?: string;
+};
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -38,10 +43,17 @@ const CAMPAIGN_KEYS: CampaignKey[] = [
   'fbclid',
 ];
 
-const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? 'AW-18245192967';
-const GOOGLE_ADS_LEAD_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL ?? 'C9w5CPvkkc4cEIea_vtD';
+// `||` (not `??`) so an empty-string env var still falls back to the live
+// production values instead of silently disabling conversion tracking.
+const GOOGLE_ADS_ID = (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '').trim() || 'AW-18245192967';
+const GOOGLE_ADS_LEAD_LABEL =
+  (process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL || '').trim() || 'C9w5CPvkkc4cEIea_vtD';
+// WhatsApp clicks get their own (lower-value) conversion action. No default:
+// the conversion only fires once the action exists in Google Ads and its
+// label is deployed. Until then WhatsApp clicks still emit GA4 events.
+const GOOGLE_ADS_WHATSAPP_LABEL = (process.env.NEXT_PUBLIC_GOOGLE_ADS_WHATSAPP_LABEL || '').trim();
 const LEAD_VALUE = Number(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_VALUE ?? '1');
-const LEAD_CURRENCY = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CURRENCY ?? 'MAD';
+const LEAD_CURRENCY = (process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CURRENCY || '').trim() || 'MAD';
 const LEAD_TRACKING_TIMEOUT = 1200;
 
 function hasWindow() {
@@ -114,27 +126,42 @@ export function getStoredAttribution(): StoredAttribution | null {
   }
 }
 
-export function formatAttributionForEmail() {
-  const attribution = getStoredAttribution();
-  if (!attribution) return '';
+/**
+ * One id per lead: sent as the Ads conversion transaction_id (dedupes repeat
+ * fires) and stored with the lead so offline conversion uploads can match.
+ */
+export function createLeadTransactionId(): string {
+  try {
+    const uuid = globalThis.crypto?.randomUUID?.();
+    if (uuid) return uuid;
+  } catch {
+    // fall through to the manual id
+  }
+  return `tx-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
 
-  const lines = [
-    ['Source', attribution.utm_source],
-    ['Medium', attribution.utm_medium],
-    ['Campaign', attribution.utm_campaign],
-    ['Term', attribution.utm_term],
-    ['Content', attribution.utm_content],
-    ['Google click ID', attribution.gclid],
-    ['GBRAID', attribution.gbraid],
-    ['WBRAID', attribution.wbraid],
-    ['Landing page', attribution.landing_page],
-    ['Referrer', attribution.referrer],
-    ['Captured at', attribution.captured_at],
-  ]
-    .filter(([, value]) => value)
-    .map(([label, value]) => `${label}: ${value}`);
+/** Best-effort E.164 for Enhanced Conversions (+212… for local 0-prefixed numbers). */
+function normalizePhoneForAds(phone: string): string | undefined {
+  const digits = phone.replace(/[^\d+]/g, '');
+  if (!digits) return undefined;
+  if (digits.startsWith('+')) return digits;
+  if (digits.startsWith('00')) return `+${digits.slice(2)}`;
+  if (digits.startsWith('0') && digits.length === 10) return `+212${digits.slice(1)}`;
+  return `+${digits}`;
+}
 
-  return lines.length ? `\n\nCampaign attribution:\n${lines.join('\n')}` : '';
+/** Google hashes these client-side for Enhanced Conversions for Leads. */
+function setEnhancedConversionUserData(userData: LeadUserData | undefined) {
+  if (!userData || !hasWindow() || typeof window.gtag !== 'function') return;
+
+  const email = userData.email?.trim().toLowerCase();
+  const phoneNumber = userData.phone ? normalizePhoneForAds(userData.phone) : undefined;
+  if (!email && !phoneNumber) return;
+
+  window.gtag('set', 'user_data', {
+    ...(email ? { email } : {}),
+    ...(phoneNumber ? { phone_number: phoneNumber } : {}),
+  });
 }
 
 export function trackEvent(eventName: string, params: EventParams = {}) {
@@ -159,7 +186,34 @@ export function trackContactIntent(context: string, params: EventParams = {}) {
   });
 }
 
-export function trackLead(method: string, params: EventParams = {}) {
+/**
+ * WhatsApp is the dominant contact channel in Morocco: give it its own Google
+ * Ads conversion (once the action's label is configured) on top of the GA4
+ * intent event. Fire-and-forget — WhatsApp links open in a new tab, so there
+ * is no unload race to wait on.
+ */
+export function trackWhatsAppLead(context: string, params: EventParams = {}) {
+  trackContactIntent(context, { method: 'whatsapp', ...params });
+
+  if (!hasWindow() || typeof window.gtag !== 'function' || !GOOGLE_ADS_ID || !GOOGLE_ADS_WHATSAPP_LABEL) {
+    return;
+  }
+
+  window.gtag('event', 'conversion', {
+    send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_WHATSAPP_LABEL}`,
+    currency: LEAD_CURRENCY,
+    value: Number.isFinite(LEAD_VALUE) ? LEAD_VALUE : 1,
+    transaction_id: createLeadTransactionId(),
+    method: 'whatsapp',
+  });
+}
+
+export function trackLead(
+  method: string,
+  params: EventParams = {},
+  userData?: LeadUserData,
+  transactionId?: string
+) {
   const attribution = getStoredAttribution();
   const leadParams = {
     event_category: 'lead',
@@ -170,14 +224,18 @@ export function trackLead(method: string, params: EventParams = {}) {
     ...params,
   };
 
+  // Single canonical GA4 lead event; import/mark ONLY generate_lead as a key
+  // event so Ads never double-counts against the native AW conversion.
   trackEvent('generate_lead', leadParams);
-  trackEvent('contact_lead', leadParams);
 
   if (!hasWindow() || typeof window.gtag !== 'function' || !GOOGLE_ADS_ID || !GOOGLE_ADS_LEAD_LABEL) {
     return Promise.resolve();
   }
 
+  setEnhancedConversionUserData(userData);
+
   const gtag = window.gtag;
+  const txId = transactionId || createLeadTransactionId();
 
   return new Promise<void>((resolve) => {
     let completed = false;
@@ -193,6 +251,7 @@ export function trackLead(method: string, params: EventParams = {}) {
       send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_LEAD_LABEL}`,
       currency: LEAD_CURRENCY,
       value: Number.isFinite(LEAD_VALUE) ? LEAD_VALUE : 1,
+      transaction_id: txId,
       method,
       event_callback: complete,
       event_timeout: LEAD_TRACKING_TIMEOUT,

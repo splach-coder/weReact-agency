@@ -32,8 +32,14 @@ export default function Preloader() {
     let frame = 0;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const seen = sessionStorage.getItem(SESSION_KEY);
+    // Paid ad clicks (gclid/gbraid/wbraid/utm_*) skip the curtain entirely —
+    // paid visitors must reach the page instantly, not wait behind a ~3s
+    // scroll-locked loader they already paid to bypass.
+    const paidClick = /(?:^|[?&])(gclid|gbraid|wbraid|utm_[a-z]+)=/.test(window.location.search);
 
-    if (reduce || seen) {
+    if (reduce || seen || paidClick) {
+      // Still mark the session so later organic navigation doesn't replay it.
+      if (paidClick) sessionStorage.setItem(SESSION_KEY, '1');
       frame = window.requestAnimationFrame(() => {
         announcePreloaderComplete();
         setActive(false);

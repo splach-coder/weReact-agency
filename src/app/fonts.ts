@@ -2,16 +2,6 @@ import localFont from 'next/font/local';
 export const nohemi = localFont({
     src: [
         {
-            path: '../../public/fonts/Nohemi-Thin-BF6438cc5896c67.ttf',
-            weight: '100',
-            style: 'normal',
-        },
-        {
-            path: '../../public/fonts/Nohemi-ExtraLight-BF6438cc58a2634.ttf',
-            weight: '200',
-            style: 'normal',
-        },
-        {
             path: '../../public/fonts/Nohemi-Regular-BF6438cc4d0e493.ttf',
             weight: '400',
             style: 'normal',
@@ -24,11 +14,6 @@ export const nohemi = localFont({
         {
             path: '../../public/fonts/Nohemi-Bold-BF6438cc587b5b5.ttf',
             weight: '700',
-            style: 'normal',
-        },
-        {
-            path: '../../public/fonts/Nohemi-ExtraBold-BF6438cc5881baf.ttf',
-            weight: '800',
             style: 'normal',
         },
         {

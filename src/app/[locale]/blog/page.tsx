@@ -4,18 +4,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowUpRight, Calendar, Clock, Search } from 'lucide-react';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Journal | WeReact - Web, SEO, and Growth Notes',
-  description: 'Practical notes on web design, local SEO, tourism websites, performance, and content strategy from WeReact in Marrakech.',
-  keywords: ['local SEO Morocco', 'website design Marrakech', 'tourism website SEO', 'web design blog Morocco'],
-  openGraph: {
-    title: 'WeReact Journal',
-    description: 'Practical notes for Moroccan brands that need faster, clearer, search-ready websites.',
-    type: 'website',
-    images: [{ url: '/images/blog/marrakech-web-design-real.webp', width: 1200, height: 630, alt: 'WeReact Journal' }],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return createPageMetadata({
+    title: 'Journal | WeReact - Web, SEO, and Growth Notes',
+    description: 'Practical notes on web design, local SEO, tourism websites, performance, and content strategy from WeReact in Marrakech.',
+    path: `/${locale}/blog`,
+    image: '/images/blog/marrakech-web-design-real.webp',
+    locale,
+    keywords: ['local SEO Morocco', 'website design Marrakech', 'tourism website SEO', 'web design blog Morocco'],
+  });
+}
 
 function ArticleMeta({ post }: { post: BlogPost }) {
   return (

@@ -35,12 +35,15 @@ export function createPageMetadata({
     keywords: [...siteConfig.seo.keywords, ...keywords],
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(
-        siteConfig.locales.map((siteLocale) => [
-          siteLocale,
-          `${siteConfig.url}/${siteLocale}${normalizedPath.replace(/^\/(en|fr)/, '')}`,
-        ])
-      ),
+      languages: {
+        ...Object.fromEntries(
+          siteConfig.locales.map((siteLocale) => [
+            siteLocale,
+            `${siteConfig.url}/${siteLocale}${normalizedPath.replace(/^\/(en|fr)/, '')}`,
+          ])
+        ),
+        'x-default': `${siteConfig.url}/en${normalizedPath.replace(/^\/(en|fr)/, '')}`,
+      },
     },
     openGraph: {
       title,

@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Link from '@/components/transition/TransitionLink';
-import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackContactIntent } from '@/lib/analytics';
+import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
+import { buildWhatsAppLink } from '@/lib/whatsapp';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fade = {
@@ -21,6 +21,7 @@ const mask = {
 
 export default function FinalCta() {
   const t = useTranslations('Home.finalCta');
+  const locale = useLocale();
 
   return (
     <section className="relative overflow-hidden bg-[var(--color-primary)] py-28 md:py-40 text-white">
@@ -71,10 +72,10 @@ export default function FinalCta() {
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <a
-            href={siteConfig.business.whatsapp}
+            href={buildWhatsAppLink(locale)}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackContactIntent('final_cta_whatsapp', { method: 'whatsapp', page: 'home', location: 'final_cta' })}
+            onClick={() => trackWhatsAppLead('final_cta_whatsapp', { page: 'home', location: 'final_cta' })}
             className="btn-base justify-center border border-white/40 bg-transparent text-white transition-colors hover:bg-white/10"
           >
             <MessageCircle size={18} aria-hidden="true" />

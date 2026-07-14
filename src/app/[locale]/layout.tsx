@@ -113,12 +113,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const description = `${siteConfig.description} WeReact agency helps businesses in Marrakech, Morocco, and international markets launch fast, SEO-friendly websites with clear conversion paths.`;
+  const isFr = locale === 'fr';
+  const defaultTitle = isFr
+    ? `${siteConfig.name} | Création de sites web à Marrakech`
+    : `${siteConfig.name} | Website Design in Marrakech`;
+  const description = isFr
+    ? `WeReact agency est une agence web basée à Marrakech qui crée des sites business rapides, des landing pages, des fondations SEO et des expériences web sur mesure pour des clients au Maroc et à l'international. WeReact agency aide les entreprises de Marrakech, du Maroc et des marchés internationaux à lancer des sites web rapides, optimisés pour le SEO, avec des parcours de conversion clairs.`
+    : `${siteConfig.description} WeReact agency helps businesses in Marrakech, Morocco, and international markets launch fast, SEO-friendly websites with clear conversion paths.`;
   const keywords = [...siteConfig.seo.keywords, ...siteConfig.seo.geoKeywords];
 
   return {
     title: {
-      default: `${siteConfig.name} | Website Design in Marrakech`,
+      default: defaultTitle,
       template: `%s | ${siteConfig.name}`,
     },
     description,
@@ -153,7 +159,7 @@ export async function generateMetadata({
       locale: OG_LOCALE[locale] ?? 'en_US',
       alternateLocale: Object.values(OG_LOCALE).filter((l) => l !== (OG_LOCALE[locale] ?? 'en_US')),
       url: `${siteConfig.url}/${locale}`,
-      title: `${siteConfig.name} | Website Design in Marrakech`,
+      title: defaultTitle,
       description,
       siteName: siteConfig.name,
       images: [
@@ -167,7 +173,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${siteConfig.name} | Website Design in Marrakech`,
+      title: defaultTitle,
       description,
       images: [`${siteConfig.url}${siteConfig.ogImage}`],
       creator: siteConfig.twitterHandle,

@@ -23,6 +23,14 @@ export default function Header() {
   const t = useTranslations('Nav');
   const [open, setOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  // The overlay is always in the DOM (hidden at scaleY(0)), so its imagery
+  // would otherwise download on every route. Mount the images only once the
+  // menu first opens — the reveal block covers them for ~1.1s, plenty of time
+  // to fetch — and keep them mounted afterwards for hover-swaps and re-opens.
+  const [imagesMounted, setImagesMounted] = useState(false);
+  // Render-phase derivation (not an effect): once the menu opens, keep the
+  // imagery mounted for hover-swaps, re-opens, and the close animation.
+  if (open && !imagesMounted) setImagesMounted(true);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [headerBlurred, setHeaderBlurred] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -173,7 +181,7 @@ export default function Header() {
           {/* Left: hover-swapping creative menu imagery (desktop) */}
           <div className="hidden flex-1 items-center justify-center md:flex">
             <div className="relative h-[70vh] w-[30vw] overflow-hidden rounded-[2px]">
-              {links.map((l, i) => (
+              {imagesMounted && links.map((l, i) => (
                 <figure key={l.href} className="absolute inset-0">
                   <Image
                     src={l.img}

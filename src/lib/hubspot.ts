@@ -23,7 +23,7 @@ function compactProperties(properties: Record<string, string | null | undefined>
 }
 
 function formatAttribution(record: LeadRecord) {
-  const values = Object.entries(record.attribution)
+  const values = Object.entries(record.attribution ?? {})
     .filter(([, value]) => value)
     .map(([key, value]) => `${key}: ${value}`);
   return values.length ? `\n\nAttribution\n${values.join('\n')}` : '';

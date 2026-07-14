@@ -1,0 +1,796 @@
+{
+  "campaign": {
+    "name": "WeReact — Search — Morocco",
+    "dailyBudgetMAD": 100,
+    "biddingStrategy": "Maximize Clicks with a max CPC bid limit (no conversion history yet — switch to Maximize Conversions only after ~15-30 tracked conversions, then target CPA). AI Max OFF, broad match OFF, auto-applied recommendations OFF, optimized targeting OFF.",
+    "maxCpcMAD": 5,
+    "networks": "Google Search only — 'Search Partners' UNCHECKED and 'Display Network' UNCHECKED",
+    "locations": [
+      "Morocco (entire country)",
+      "Location option: 'Presence: people in your targeted locations' — NOT 'presence or interest'"
+    ],
+    "languages": [
+      "English",
+      "French",
+      "Arabic"
+    ]
+  },
+  "adGroups": [
+    {
+      "name": "Web Design Marrakech (EN)",
+      "keywords": [
+        {
+          "text": "website design marrakech",
+          "match": "exact"
+        },
+        {
+          "text": "web design marrakech",
+          "match": "exact"
+        },
+        {
+          "text": "website designer marrakech",
+          "match": "phrase"
+        },
+        {
+          "text": "web design agency marrakech",
+          "match": "phrase"
+        },
+        {
+          "text": "web agency marrakech",
+          "match": "exact"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/en/contact",
+        "path1": "web-design",
+        "path2": "marrakech",
+        "headlines": [
+          "Website Design in Marrakech",
+          "Web Design Agency Marrakech",
+          "Web Design in Marrakech",
+          "Marrakech Website Designers",
+          "WeReact: Marrakech Web Agency",
+          "Fast Websites That Get Leads",
+          "Get a Free Project Quote",
+          "Reply Within One Business Day",
+          "Modern, Mobile-First Sites",
+          "Launch in Weeks, Not Months",
+          "Built to Bring You Clients",
+          "SEO-Ready Business Websites",
+          "Websites in English & French",
+          "Book a Free Intro Call"
+        ],
+        "descriptions": [
+          "Marrakech web studio building fast, SEO-ready sites that turn visitors into clients.",
+          "Custom business websites, landing pages & tourism sites. EN & FR. Reply within one day.",
+          "Stop losing leads to a slow site. Get a modern, mobile-first website built to convert.",
+          "Web design in Marrakech with clear pricing and fast launch. Get your free quote today."
+        ]
+      }
+    },
+    {
+      "name": "Web Design Morocco (EN)",
+      "keywords": [
+        {
+          "text": "website design morocco",
+          "match": "phrase"
+        },
+        {
+          "text": "web design morocco",
+          "match": "phrase"
+        },
+        {
+          "text": "website designer morocco",
+          "match": "exact"
+        },
+        {
+          "text": "web agency morocco",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/en/contact",
+        "path1": "web-design",
+        "path2": "morocco",
+        "headlines": [
+          "Website Design in Morocco",
+          "Web Design Agency in Morocco",
+          "Web Design Across Morocco",
+          "Morocco Website Designers",
+          "WeReact: Moroccan Web Agency",
+          "Websites for Moroccan Brands",
+          "Fast Websites That Get Leads",
+          "Get a Free Project Quote",
+          "Reply Within One Business Day",
+          "Websites in English & French",
+          "Modern, Mobile-First Sites",
+          "Launch in Weeks, Not Months",
+          "Based in Marrakech, Morocco",
+          "Convert Visitors Into Clients"
+        ],
+        "descriptions": [
+          "Web design for businesses across Morocco. Fast, SEO-ready sites built to win you clients.",
+          "Custom business websites, landing pages & tourism sites. EN & FR. Reply within one day.",
+          "From Marrakech to Casablanca — websites designed for Morocco. Clear pricing, fast launch.",
+          "Stop losing leads to a slow site. Get a modern, mobile-first website built to convert."
+        ]
+      }
+    },
+    {
+      "name": "Landing Pages / Business Sites (EN)",
+      "keywords": [
+        {
+          "text": "business website design",
+          "match": "exact"
+        },
+        {
+          "text": "landing page design morocco",
+          "match": "phrase"
+        },
+        {
+          "text": "ecommerce website morocco",
+          "match": "phrase"
+        },
+        {
+          "text": "small business website morocco",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/en/contact",
+        "path1": "business",
+        "path2": "websites",
+        "headlines": [
+          "Business Website Design",
+          "Custom Business Websites",
+          "Business Websites in Morocco",
+          "Landing Pages That Convert",
+          "Landing Page Design Morocco",
+          "Ecommerce Websites Morocco",
+          "SEO-Ready Landing Pages",
+          "Small Business Websites",
+          "Get a Free Project Quote",
+          "Launch in Weeks, Not Months",
+          "Convert Visitors Into Clients",
+          "Reply Within One Business Day",
+          "WeReact: Marrakech Web Agency",
+          "Modern, Mobile-First Sites"
+        ],
+        "descriptions": [
+          "Business websites, landing pages & online stores built to turn visitors into clients.",
+          "Your business needs a site that sells. Fast, SEO-ready design with a free quote.",
+          "Landing pages and ecommerce sites for Moroccan businesses. Free quote, fast launch.",
+          "Marrakech web studio serving all of Morocco. EN & FR. We reply within one business day."
+        ]
+      }
+    },
+    {
+      "name": "Tourism & Riad Sites (EN)",
+      "keywords": [
+        {
+          "text": "tourism website design morocco",
+          "match": "phrase"
+        },
+        {
+          "text": "riad website design",
+          "match": "phrase"
+        },
+        {
+          "text": "hotel website design morocco",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/en/contact",
+        "path1": "tourism",
+        "path2": "riad-hotels",
+        "headlines": [
+          "Riad & Hotel Website Design",
+          "Tourism Website Design",
+          "Hotel Website Design Morocco",
+          "Tourism Websites for Morocco",
+          "Websites for Riads & Hotels",
+          "Riad Sites That Get Bookings",
+          "Get More Direct Bookings",
+          "Show Off Your Riad Online",
+          "Based in Marrakech, Morocco",
+          "Websites in English & French",
+          "Get a Free Project Quote",
+          "Fast, Mobile-First Sites",
+          "Reply Within One Business Day",
+          "WeReact: Marrakech Web Agency"
+        ],
+        "descriptions": [
+          "Websites for riads, hotels & tour operators in Morocco. Designed to win direct bookings.",
+          "Show your riad at its best: fast, photo-rich site in English & French. Free quote.",
+          "Tourism website design from a Marrakech studio. SEO-ready, mobile-first, fast to launch.",
+          "Turn lookers into guests. Hotel & riad websites built for bookings, not just looks."
+        ]
+      }
+    },
+    {
+      "name": "Création Site Web Marrakech (FR)",
+      "keywords": [
+        {
+          "text": "création site web marrakech",
+          "match": "exact"
+        },
+        {
+          "text": "création site internet marrakech",
+          "match": "phrase"
+        },
+        {
+          "text": "agence web marrakech",
+          "match": "phrase"
+        },
+        {
+          "text": "conception site web marrakech",
+          "match": "phrase"
+        },
+        {
+          "text": "refonte site web marrakech",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/fr/contact",
+        "path1": "creation-site",
+        "path2": "marrakech",
+        "headlines": [
+          "Création Site Web Marrakech",
+          "Création de Site Web Marrakech",
+          "Création Site Web à Marrakech",
+          "Agence Web à Marrakech",
+          "WeReact, Agence Web Marrakech",
+          "Sites Web Rapides et Efficaces",
+          "Devis Gratuit et Rapide",
+          "Sites Web Professionnels",
+          "Site Vitrine ou E-commerce",
+          "Design Moderne et Mobile",
+          "Sites Optimisés pour le SEO",
+          "Lancement en Quelques Semaines",
+          "Réponse Sous 24 Heures",
+          "Transformez Vos Visiteurs"
+        ],
+        "descriptions": [
+          "Studio web à Marrakech : sites rapides et SEO qui transforment les visiteurs en clients.",
+          "Sites vitrines, e-commerce et sites tourisme. FR & EN. Réponse sous un jour ouvré.",
+          "Ne perdez plus de clients avec un site lent. Site moderne et mobile conçu pour convertir.",
+          "Création de site web à Marrakech : devis gratuit, lancement rapide. Devis gratuit."
+        ]
+      }
+    },
+    {
+      "name": "Agence Web Maroc (FR)",
+      "keywords": [
+        {
+          "text": "création site web maroc",
+          "match": "phrase"
+        },
+        {
+          "text": "agence web maroc",
+          "match": "phrase"
+        },
+        {
+          "text": "site vitrine maroc",
+          "match": "phrase"
+        },
+        {
+          "text": "création site internet maroc",
+          "match": "phrase"
+        },
+        {
+          "text": "refonte site web maroc",
+          "match": "phrase"
+        },
+        {
+          "text": "création site e-commerce maroc",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/fr/contact",
+        "path1": "agence-web",
+        "path2": "maroc",
+        "headlines": [
+          "Agence Web au Maroc",
+          "WeReact, Agence Web Maroc",
+          "Votre Agence Web au Maroc",
+          "Création Site Web au Maroc",
+          "Création Site Internet Maroc",
+          "Site Vitrine pour le Maroc",
+          "Sites Web Professionnels",
+          "Sites Web Rapides et Efficaces",
+          "Devis Gratuit et Rapide",
+          "Réponse Sous 24 Heures",
+          "Sites en Français et Anglais",
+          "Design Moderne et Mobile",
+          "Basés à Marrakech, Maroc",
+          "Sites Optimisés pour le SEO"
+        ],
+        "descriptions": [
+          "Agence web au Maroc : sites vitrines, e-commerce et tourisme conçus pour convertir.",
+          "Des riads aux entreprises de services : des sites pensés pour le Maroc. devis gratuit.",
+          "Studio web basé à Marrakech, au service de tout le Maroc. Réponse sous un jour ouvré.",
+          "Site moderne, rapide et optimisé SEO pour votre entreprise. Devis gratuit sous 24h."
+        ]
+      }
+    },
+    {
+      "name": "Agence Web Casablanca (FR)",
+      "keywords": [
+        {
+          "text": "agence web casablanca",
+          "match": "exact"
+        },
+        {
+          "text": "création site web casablanca",
+          "match": "phrase"
+        },
+        {
+          "text": "création site internet casablanca",
+          "match": "phrase"
+        },
+        {
+          "text": "agence création site web casablanca",
+          "match": "phrase"
+        }
+      ],
+      "ad": {
+        "finalUrl": "https://www.wereact.agency/fr/contact",
+        "path1": "casablanca",
+        "path2": "devis",
+        "headlines": [
+          "Création Site Web Casablanca",
+          "Création Site Web à Casablanca",
+          "Agence Web à Casablanca",
+          "WeReact, Agence Web Casablanca",
+          "Sites Web Rapides et Efficaces",
+          "Devis Gratuit et Rapide",
+          "Sites Web Professionnels",
+          "Site Vitrine ou E-commerce",
+          "Design Moderne et Mobile",
+          "Sites Optimisés pour le SEO",
+          "Lancement en Quelques Semaines",
+          "Réponse Sous 24 Heures",
+          "Transformez Vos Visiteurs"
+        ],
+        "descriptions": [
+          "Agence web au Maroc : sites vitrines, e-commerce et tourisme conçus pour convertir.",
+          "Des riads aux entreprises de services : des sites pensés pour le Maroc. devis gratuit.",
+          "Studio web basé à Marrakech, au service de tout le Maroc. Réponse sous un jour ouvré.",
+          "Site moderne, rapide et optimisé SEO pour votre entreprise. Devis gratuit sous 24h."
+        ]
+      }
+    }
+  ],
+  "negativeKeywords": [
+    {
+      "text": "marketing",
+      "match": "phrase"
+    },
+    {
+      "text": "communication",
+      "match": "phrase"
+    },
+    {
+      "text": "publicité",
+      "match": "phrase"
+    },
+    {
+      "text": "advertising",
+      "match": "phrase"
+    },
+    {
+      "text": "branding",
+      "match": "phrase"
+    },
+    {
+      "text": "brand identity",
+      "match": "phrase"
+    },
+    {
+      "text": "rebranding",
+      "match": "phrase"
+    },
+    {
+      "text": "seo",
+      "match": "phrase"
+    },
+    {
+      "text": "référencement",
+      "match": "phrase"
+    },
+    {
+      "text": "content creation",
+      "match": "phrase"
+    },
+    {
+      "text": "social media",
+      "match": "phrase"
+    },
+    {
+      "text": "media buying",
+      "match": "phrase"
+    },
+    {
+      "text": "media buyer",
+      "match": "phrase"
+    },
+    {
+      "text": "lead generation",
+      "match": "phrase"
+    },
+    {
+      "text": "smma",
+      "match": "phrase"
+    },
+    {
+      "text": "growth strategy",
+      "match": "phrase"
+    },
+    {
+      "text": "go to market",
+      "match": "phrase"
+    },
+    {
+      "text": "ugc",
+      "match": "phrase"
+    },
+    {
+      "text": "logo",
+      "match": "phrase"
+    },
+    {
+      "text": "free",
+      "match": "phrase"
+    },
+    {
+      "text": "gratuit",
+      "match": "phrase"
+    },
+    {
+      "text": "gratuitement",
+      "match": "phrase"
+    },
+    {
+      "text": "how to",
+      "match": "phrase"
+    },
+    {
+      "text": "comment",
+      "match": "phrase"
+    },
+    {
+      "text": "tutorial",
+      "match": "phrase"
+    },
+    {
+      "text": "tuto",
+      "match": "phrase"
+    },
+    {
+      "text": "wix",
+      "match": "phrase"
+    },
+    {
+      "text": "wordpress",
+      "match": "phrase"
+    },
+    {
+      "text": "webflow",
+      "match": "phrase"
+    },
+    {
+      "text": "shopify",
+      "match": "phrase"
+    },
+    {
+      "text": "magento",
+      "match": "phrase"
+    },
+    {
+      "text": "elementor",
+      "match": "phrase"
+    },
+    {
+      "text": "mobirise",
+      "match": "phrase"
+    },
+    {
+      "text": "canva",
+      "match": "phrase"
+    },
+    {
+      "text": "ai website",
+      "match": "phrase"
+    },
+    {
+      "text": "ai generated",
+      "match": "phrase"
+    },
+    {
+      "text": "no code",
+      "match": "phrase"
+    },
+    {
+      "text": "html",
+      "match": "phrase"
+    },
+    {
+      "text": "css",
+      "match": "phrase"
+    },
+    {
+      "text": "javascript",
+      "match": "phrase"
+    },
+    {
+      "text": "from scratch",
+      "match": "phrase"
+    },
+    {
+      "text": "blogger",
+      "match": "phrase"
+    },
+    {
+      "text": "youcan",
+      "match": "phrase"
+    },
+    {
+      "text": "create website",
+      "match": "phrase"
+    },
+    {
+      "text": "creer site",
+      "match": "phrase"
+    },
+    {
+      "text": "créer un site",
+      "match": "phrase"
+    },
+    {
+      "text": "builder",
+      "match": "phrase"
+    },
+    {
+      "text": "job",
+      "match": "phrase"
+    },
+    {
+      "text": "jobs",
+      "match": "phrase"
+    },
+    {
+      "text": "emploi",
+      "match": "phrase"
+    },
+    {
+      "text": "stage",
+      "match": "phrase"
+    },
+    {
+      "text": "recrutement",
+      "match": "phrase"
+    },
+    {
+      "text": "école",
+      "match": "phrase"
+    },
+    {
+      "text": "university",
+      "match": "phrase"
+    },
+    {
+      "text": "étudiant",
+      "match": "phrase"
+    },
+    {
+      "text": "ensa",
+      "match": "phrase"
+    },
+    {
+      "text": "ofppt",
+      "match": "phrase"
+    },
+    {
+      "text": "freelance",
+      "match": "phrase"
+    },
+    {
+      "text": "fiverr",
+      "match": "phrase"
+    },
+    {
+      "text": "salary",
+      "match": "phrase"
+    },
+    {
+      "text": "salaire",
+      "match": "phrase"
+    },
+    {
+      "text": "course",
+      "match": "phrase"
+    },
+    {
+      "text": "cours",
+      "match": "phrase"
+    },
+    {
+      "text": "formation",
+      "match": "phrase"
+    },
+    {
+      "text": "weshore",
+      "match": "phrase"
+    },
+    {
+      "text": "mediaman",
+      "match": "phrase"
+    },
+    {
+      "text": "allo baba",
+      "match": "phrase"
+    },
+    {
+      "text": "genious",
+      "match": "phrase"
+    },
+    {
+      "text": "tribal",
+      "match": "phrase"
+    },
+    {
+      "text": "hello world",
+      "match": "phrase"
+    },
+    {
+      "text": "hello world agency",
+      "match": "phrase"
+    },
+    {
+      "text": "seocom",
+      "match": "phrase"
+    },
+    {
+      "text": "ikon",
+      "match": "phrase"
+    },
+    {
+      "text": "dropify",
+      "match": "phrase"
+    },
+    {
+      "text": "someway agency",
+      "match": "phrase"
+    },
+    {
+      "text": "webcinq",
+      "match": "phrase"
+    },
+    {
+      "text": "digital speak",
+      "match": "phrase"
+    },
+    {
+      "text": "engagia",
+      "match": "phrase"
+    },
+    {
+      "text": "template",
+      "match": "phrase"
+    },
+    {
+      "text": "templates",
+      "match": "phrase"
+    },
+    {
+      "text": "modèle",
+      "match": "phrase"
+    },
+    {
+      "text": "modèles",
+      "match": "phrase"
+    },
+    {
+      "text": "exemple",
+      "match": "phrase"
+    },
+    {
+      "text": "exemples",
+      "match": "phrase"
+    },
+    {
+      "text": "examples",
+      "match": "phrase"
+    },
+    {
+      "text": "ideas",
+      "match": "phrase"
+    },
+    {
+      "text": "inspiration",
+      "match": "phrase"
+    },
+    {
+      "text": "community manager",
+      "match": "phrase"
+    },
+    {
+      "text": "community management",
+      "match": "phrase"
+    },
+    {
+      "text": "réseaux sociaux",
+      "match": "phrase"
+    },
+    {
+      "text": "google ads",
+      "match": "phrase"
+    },
+    {
+      "text": "facebook ads",
+      "match": "phrase"
+    },
+    {
+      "text": "squarespace",
+      "match": "phrase"
+    },
+    {
+      "text": "godaddy",
+      "match": "phrase"
+    },
+    {
+      "text": "hostinger",
+      "match": "phrase"
+    },
+    {
+      "text": "site123",
+      "match": "phrase"
+    },
+    {
+      "text": "créer site",
+      "match": "phrase"
+    }
+  ],
+  "extensions": {
+    "callouts": [
+      "Free Quote",
+      "Reply in 1 Business Day",
+      "English & French",
+      "Mobile-First Design",
+      "SEO-Ready Websites",
+      "Devis Gratuit",
+      "Réponse Sous 24h",
+      "Lancement Rapide",
+      "Basés à Marrakech"
+    ],
+    "sitelinks": [
+      {
+        "text": "Our Work",
+        "url": "https://www.wereact.agency/en/work"
+      },
+      {
+        "text": "Our Services",
+        "url": "https://www.wereact.agency/en/#services"
+      },
+      {
+        "text": "Blog & Guides",
+        "url": "https://www.wereact.agency/en/blog"
+      },
+      {
+        "text": "Contact Us",
+        "url": "https://www.wereact.agency/en/contact"
+      }
+    ],
+    "snippetHeader": "Services",
+    "snippetValues": [
+      "Business Websites",
+      "Landing Pages",
+      "E-commerce",
+      "Tourism Sites"
+    ],
+    "phone": "+212602258009"
+  }
+}

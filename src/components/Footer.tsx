@@ -7,7 +7,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
-import { trackContactIntent } from '@/lib/analytics';
+import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
+import { buildWhatsAppLink } from '@/lib/whatsapp';
 import { OPEN_CONSENT_PREFERENCES_EVENT } from '@/lib/consent';
 
 /**
@@ -83,7 +84,7 @@ export default function Footer() {
     { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: Instagram },
     { label: 'Facebook', href: siteConfig.business.facebook, icon: Facebook },
     { label: 'Twitter', href: siteConfig.business.sameAs[1], icon: Twitter },
-    { label: 'WhatsApp', href: siteConfig.business.whatsapp, icon: MessageCircle },
+    { label: 'WhatsApp', href: buildWhatsAppLink(locale), icon: MessageCircle },
     { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: Mail },
   ];
 
@@ -161,7 +162,7 @@ export default function Footer() {
                     target={s.href.startsWith('http') ? '_blank' : undefined}
                     rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     onClick={() => {
-                      if (s.label === 'WhatsApp') trackContactIntent('footer_whatsapp', { method: 'whatsapp', page: 'footer', location: 'footer_connect' });
+                      if (s.label === 'WhatsApp') trackWhatsAppLead('footer_whatsapp', { page: 'footer', location: 'footer_connect' });
                       if (s.label === 'Email') trackContactIntent('footer_email', { method: 'email', page: 'footer', location: 'footer_connect' });
                     }}
                     className="group inline-flex items-center gap-3 text-white/70 transition-colors hover:text-white"

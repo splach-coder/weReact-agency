@@ -11,15 +11,15 @@ export async function generateMetadata({
 
   return createPageMetadata({
     title: isFr
-      ? 'Contact - Agence web a Marrakech'
+      ? 'Contact – Agence web à Marrakech'
       : 'Contact - Website Design Agency in Marrakech',
     description: isFr
-      ? "Contactez WeReact pour un site web rapide, credible et optimise SEO a Marrakech. Demandez un devis pour votre site business, tourisme, landing page ou projet web au Maroc."
+      ? "Contactez WeReact pour un site web rapide, crédible et optimisé SEO à Marrakech. Demandez un devis pour votre site business, tourisme, landing page ou projet web au Maroc."
       : 'Contact WeReact for fast, SEO-ready website design in Marrakech. Request a quote for business websites, tourism websites, landing pages, and web projects in Morocco.',
     path: `/${locale}/contact`,
     locale,
     keywords: isFr
-      ? ['agence web Marrakech', 'creation site web Marrakech', 'site internet Maroc', 'devis site web Marrakech']
+      ? ['agence web Marrakech', 'création site web Marrakech', 'site internet Maroc', 'devis site web Marrakech']
       : ['contact web agency Marrakech', 'website design quote Marrakech', 'web development Morocco', 'business website Morocco'],
   });
 }
