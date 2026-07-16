@@ -57,7 +57,7 @@ export const siteConfig = {
         phoneTel: '+212 602-258009',
         email: 'hello@wereact.agency',
         addressDisplay: 'Marrakech 40000',
-        city: 'Marrakesh',
+        city: 'Marrakech',
         postalCode: '40000',
         country: 'MA',
         latitude: 31.6336545,
@@ -67,7 +67,7 @@ export const siteConfig = {
         whatsapp: 'https://api.whatsapp.com/send/?phone=212602258009&text=Hello%20WeReact%20agency%2C%20I%20am%20interested%20in%20your%20web%20development%20services.%20I%20would%20like%20to%20discuss%20my%20project%20and%20get%20a%20quote.&type=phone_number&app_absent=0',
         facebook: 'https://www.facebook.com/share/14dgXYad7SB/',
         googleMapsUrl: 'https://www.google.com/maps/preview/place/WeReact+agency,+Marrakech+40000/@31.6336545,-8.008899,13z/data=!4m2!3m1!1s0xdafef169d102b53:0xc961feb47705924',
-        areaServed: ['Marrakech', 'Marrakesh', 'Casablanca', 'Rabat', 'Agadir', 'Fes', 'Tangier', 'Morocco', 'International'],
+        areaServed: ['Marrakech', 'Casablanca', 'Rabat', 'Agadir', 'Fes', 'Tangier', 'Morocco', 'International'],
         services: [
             'Website design',
             'Business websites',

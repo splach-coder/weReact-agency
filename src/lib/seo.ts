@@ -140,3 +140,16 @@ export function createFaqJsonLd(faqs: readonly ServiceFaq[]) {
     })),
   };
 }
+
+export function createBreadcrumbJsonLd(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith('http') ? item.url : `${siteConfig.url}${item.url}`,
+    })),
+  };
+}

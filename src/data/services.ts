@@ -23,6 +23,7 @@ export type ServiceLandingPage = {
   primaryKeyword: string;
   keywords: readonly string[];
   relatedProjectIds: readonly string[];
+  modifiedAt: string;
   copy: Record<'en' | 'fr', ServiceLocaleCopy>;
 };
 
@@ -32,6 +33,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'website design Marrakech',
     keywords: ['website design Marrakech', 'web agency Marrakech', 'création site internet Marrakech', 'site web professionnel Maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'flying-tandem'],
+    modifiedAt: '2026-07-15',
     copy: {
       en: {
         title: 'Website Design in Marrakech',
@@ -76,6 +78,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'tourism website design Morocco',
     keywords: ['tourism website design Morocco', 'hotel website Marrakech', 'travel website Morocco', 'site web tourisme Maroc'],
     relatedProjectIds: ['flying-tandem', 'kasbah-angour', 'morocco-atlas-guide', 'trust-drivers'],
+    modifiedAt: '2026-07-15',
     copy: {
       en: {
         title: 'Tourism and Hospitality Websites in Morocco',
@@ -120,6 +123,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'SEO landing pages Morocco',
     keywords: ['SEO landing pages Morocco', 'Google Ads landing page Marrakech', 'landing page design Morocco', 'page d’atterrissage SEO Maroc'],
     relatedProjectIds: ['trust-drivers', 'yoo-marrakech', 'morocco-atlas-guide'],
+    modifiedAt: '2026-07-15',
     copy: {
       en: {
         title: 'SEO-Ready Landing Pages in Morocco',
@@ -164,6 +168,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence web marrakech',
     keywords: ['création site web maroc', 'création site internet marrakech', 'agence création site web', 'agence web maroc', 'création site web marrakech', 'refonte site web maroc'],
     relatedProjectIds: ['flying-tandem', 'kasbah-angour', 'your-morocco'],
+    modifiedAt: '2026-07-15',
     copy: {
       en: {
         title: 'Web Agency in Marrakech',

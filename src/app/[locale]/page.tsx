@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import WebGLHero from '@/components/WebGLHero';
 import SectionErrorBoundary from '@/components/SectionErrorBoundary';
+import { createServiceJsonLd } from '@/lib/seo';
 
 // Below-the-fold sections are code-split.
 const Manifesto = dynamic(() => import('@/components/sections/home/Manifesto'));
@@ -23,8 +24,11 @@ const SECTIONS = [
 ];
 
 export default function Home() {
+  const serviceJsonLd = createServiceJsonLd();
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <WebGLHero />
       <Suspense
         fallback={<div className="h-screen bg-[var(--color-background-main)]" />}

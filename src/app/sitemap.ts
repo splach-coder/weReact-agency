@@ -4,7 +4,6 @@ import { blogPosts } from '@/data/blog';
 import { projects } from '@/data/projects';
 import { serviceLandingPages } from '@/data/services';
 
-const SITE_LAST_MODIFIED = new Date('2026-07-12');
 const STATIC_ROUTE_PRIORITY: Record<string, number> = {
   '': 1,
   '/contact': 0.95,
@@ -15,11 +14,12 @@ const STATIC_ROUTE_PRIORITY: Record<string, number> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const routes = ['', '/contact', '/work', '/blog'];
+  const buildDate = new Date();
 
   const staticRoutes = routes.flatMap((route) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}${route}`,
-      lastModified: SITE_LAST_MODIFIED,
+      lastModified: buildDate,
       changeFrequency: route === '/blog' ? ('weekly' as const) : ('monthly' as const),
       priority: STATIC_ROUTE_PRIORITY[route] ?? 0.7,
     }))
@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const serviceRoutes = serviceLandingPages.flatMap((page) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}/${page.slug}`,
-      lastModified: SITE_LAST_MODIFIED,
+      lastModified: new Date(page.modifiedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.86,
     }))
@@ -46,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const workRoutes = projects.flatMap((project) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}/work/${project.id}`,
-      lastModified: SITE_LAST_MODIFIED,
+      lastModified: buildDate,
       changeFrequency: 'monthly' as const,
       priority: 0.78,
     }))

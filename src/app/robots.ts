@@ -9,6 +9,26 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
                 disallow: ['/api/', '/_next/'],
             },
+            {
+                userAgent: 'GPTBot',
+                allow: '/',
+            },
+            {
+                userAgent: 'OAI-SearchBot',
+                allow: '/',
+            },
+            {
+                userAgent: 'PerplexityBot',
+                allow: '/',
+            },
+            {
+                userAgent: 'ClaudeBot',
+                allow: '/',
+            },
+            {
+                userAgent: 'Google-Extended',
+                allow: '/',
+            },
         ],
         sitemap: `${siteConfig.url}/sitemap.xml`,
     };

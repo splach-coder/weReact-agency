@@ -1,0 +1,31 @@
+# WeReact agency
+
+> WeReact is a bilingual (French/English) web design studio based in Marrakech, Morocco. We build fast, credible, SEO-ready websites for local businesses, tourism and hospitality brands, riads, hotels, and service companies across Morocco and beyond.
+
+WeReact designs and develops showcase websites, e-commerce stores, landing pages, and custom tourism/booking websites, with practical SEO foundations (clean structure, metadata, performance, sitemaps) included in every build.
+
+## Pricing
+
+- Showcase website: from 2,000 MAD
+- E-commerce website (front-end + back-end included): from 3,500 MAD
+- Riad / hotel direct-booking website: custom quote based on scope
+- Delivery: 2-3 days for most builds
+- Free, precise quote sent within one business day
+
+## Services
+
+- Website design in Marrakech: https://www.wereact.agency/en/web-design-marrakech
+- Tourism and hospitality websites in Morocco: https://www.wereact.agency/en/tourism-websites-morocco
+- SEO-ready landing pages: https://www.wereact.agency/en/seo-landing-pages
+- Web agency in Marrakech: https://www.wereact.agency/en/agence-web-marrakech
+- How much does a website cost in Morocco (pricing guide): https://www.wereact.agency/en/blog/combien-coute-site-web-maroc
+
+## Contact
+
+- Location: Marrakech 40000, Morocco
+- WhatsApp: +212 602-258009
+- Email: hello@wereact.agency
+
+## Sitemap
+
+https://www.wereact.agency/sitemap.xml

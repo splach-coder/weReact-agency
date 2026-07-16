@@ -3,7 +3,8 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import Link from '@/components/transition/TransitionLink';
 import { smoothEasing } from '@/lib/animations';
 
 type ServiceItem = { title: string; text: string };
@@ -320,8 +321,47 @@ function ServiceCopyLayer({
   );
 }
 
+function ServiceLinksRow({ locale }: { locale: string }) {
+  const links = locale === 'fr'
+    ? [
+        { name: 'Agence web à Marrakech', href: '/agence-web-marrakech' },
+        { name: 'Création de site web', href: '/web-design-marrakech' },
+        { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
+        { name: 'Landing pages SEO', href: '/seo-landing-pages' },
+      ]
+    : [
+        { name: 'Web agency in Marrakech', href: '/agence-web-marrakech' },
+        { name: 'Website design', href: '/web-design-marrakech' },
+        { name: 'Tourism websites', href: '/tourism-websites-morocco' },
+        { name: 'SEO landing pages', href: '/seo-landing-pages' },
+      ];
+
+  return (
+    <div className="relative border-t border-[rgba(58,90,64,0.16)] bg-[var(--color-background-main)] px-6 py-10 md:px-12 md:py-12">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-10 gap-y-4">
+        <p className="text-mono text-[var(--color-text-secondary)]">
+          {locale === 'fr' ? 'Nos services' : 'Our services'}
+        </p>
+        <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-sm font-medium text-[var(--color-text-main)] underline decoration-[var(--color-accent-sage)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--color-primary)]"
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export default function WhatWeDo() {
   const t = useTranslations('Home.services');
+  const locale = useLocale();
   const items = t.raw('items') as ServiceItem[];
   const sectionRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion() ?? false;
@@ -343,76 +383,84 @@ export default function WhatWeDo() {
   const serviceY = useTransform(scrollYProgress, [SERVICE_START - 0.025, SERVICE_START + 0.045], [28, 0]);
 
   if (isMobile) {
-    return <MobileWhatWeDo t={t} items={items} scenes={scenes} reduceMotion={reduceMotion} />;
+    return (
+      <>
+        <MobileWhatWeDo t={t} items={items} scenes={scenes} reduceMotion={reduceMotion} />
+        <ServiceLinksRow locale={locale} />
+      </>
+    );
   }
 
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      data-scene="services"
-      className="relative isolate overflow-x-clip bg-[var(--color-background-main)] text-[var(--color-text-main)]"
-      style={{ minHeight: reduceMotion ? undefined : `${sceneCount * 200 + 260}vh` }}
-    >
-      <div className={reduceMotion ? 'px-5 py-20 md:px-12 md:py-28' : 'sticky top-0 min-h-screen overflow-hidden'}>
-        <div className="relative min-h-screen">
-          <motion.div
-            data-depth="4"
-            style={reduceMotion ? undefined : { opacity: introOpacity, y: introY, scale: introScale, filter: introBlur }}
-            className="absolute inset-0 z-10 mx-auto flex w-full max-w-7xl items-center px-5 py-10 md:px-12 md:py-12"
-          >
-            <IntroCopy t={t} />
-          </motion.div>
+    <>
+      <section
+        id="services"
+        ref={sectionRef}
+        data-scene="services"
+        className="relative isolate overflow-x-clip bg-[var(--color-background-main)] text-[var(--color-text-main)]"
+        style={{ minHeight: reduceMotion ? undefined : `${sceneCount * 200 + 260}vh` }}
+      >
+        <div className={reduceMotion ? 'px-5 py-20 md:px-12 md:py-28' : 'sticky top-0 min-h-screen overflow-hidden'}>
+          <div className="relative min-h-screen">
+            <motion.div
+              data-depth="4"
+              style={reduceMotion ? undefined : { opacity: introOpacity, y: introY, scale: introScale, filter: introBlur }}
+              className="absolute inset-0 z-10 mx-auto flex w-full max-w-7xl items-center px-5 py-10 md:px-12 md:py-12"
+            >
+              <IntroCopy t={t} />
+            </motion.div>
 
-          <motion.div
-            data-depth="3"
-            aria-hidden="true"
-            style={reduceMotion ? undefined : { scale: imageScale, opacity: imageOpacity }}
-            className="absolute inset-0 z-20 origin-center overflow-hidden will-change-[transform,opacity]"
-          >
-            {scenes.map((scene, index) => (
-              <ServiceImageLayer
-                key={scene.image}
-                index={index}
-                count={Math.max(1, sceneCount)}
-                scene={scene}
-                progress={sceneProgress}
-                reduceMotion={reduceMotion}
-              />
-            ))}
-            <div
-              data-depth="1"
+            <motion.div
+              data-depth="3"
               aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,22,15,0.82)_0%,rgba(12,22,15,0.58)_34%,rgba(12,22,15,0.2)_62%,rgba(12,22,15,0)_100%)] md:bg-[linear-gradient(90deg,rgba(12,22,15,0.8)_0%,rgba(12,22,15,0.52)_30%,rgba(12,22,15,0.14)_58%,rgba(12,22,15,0)_100%)]"
-            />
-            <div
-              data-depth="1"
-              aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,22,15,0.22)_0%,rgba(12,22,15,0)_35%,rgba(12,22,15,0.34)_100%)]"
-            />
-          </motion.div>
-
-          <motion.div
-            data-depth="4"
-            style={reduceMotion ? undefined : { opacity: serviceOpacity, y: serviceY }}
-            className="relative z-30 mx-auto flex min-h-screen w-full max-w-7xl items-center px-5 py-10 md:px-12 md:py-12"
-          >
-            <div className="relative min-h-[26rem] w-full max-w-[38rem] md:min-h-[28rem]">
-              {items.slice(0, sceneCount).map((item, index) => (
-                <ServiceCopyLayer
-                  key={item.title}
-                  item={item}
-                  scene={scenes[index] ?? SCENES[0]}
+              style={reduceMotion ? undefined : { scale: imageScale, opacity: imageOpacity }}
+              className="absolute inset-0 z-20 origin-center overflow-hidden will-change-[transform,opacity]"
+            >
+              {scenes.map((scene, index) => (
+                <ServiceImageLayer
+                  key={scene.image}
                   index={index}
                   count={Math.max(1, sceneCount)}
+                  scene={scene}
                   progress={sceneProgress}
                   reduceMotion={reduceMotion}
                 />
               ))}
-            </div>
-          </motion.div>
+              <div
+                data-depth="1"
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,22,15,0.82)_0%,rgba(12,22,15,0.58)_34%,rgba(12,22,15,0.2)_62%,rgba(12,22,15,0)_100%)] md:bg-[linear-gradient(90deg,rgba(12,22,15,0.8)_0%,rgba(12,22,15,0.52)_30%,rgba(12,22,15,0.14)_58%,rgba(12,22,15,0)_100%)]"
+              />
+              <div
+                data-depth="1"
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,22,15,0.22)_0%,rgba(12,22,15,0)_35%,rgba(12,22,15,0.34)_100%)]"
+              />
+            </motion.div>
+
+            <motion.div
+              data-depth="4"
+              style={reduceMotion ? undefined : { opacity: serviceOpacity, y: serviceY }}
+              className="relative z-30 mx-auto flex min-h-screen w-full max-w-7xl items-center px-5 py-10 md:px-12 md:py-12"
+            >
+              <div className="relative min-h-[26rem] w-full max-w-[38rem] md:min-h-[28rem]">
+                {items.slice(0, sceneCount).map((item, index) => (
+                  <ServiceCopyLayer
+                    key={item.title}
+                    item={item}
+                    scene={scenes[index] ?? SCENES[0]}
+                    index={index}
+                    count={Math.max(1, sceneCount)}
+                    progress={sceneProgress}
+                    reduceMotion={reduceMotion}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ServiceLinksRow locale={locale} />
+    </>
   );
 }

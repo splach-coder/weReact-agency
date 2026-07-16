@@ -14,7 +14,6 @@ import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults'
 import CookieConsent from '@/components/analytics/CookieConsent';
 import { siteConfig } from '@/config/site';
 import { nohemi } from '@/app/fonts';
-import { createServiceJsonLd } from '@/lib/seo';
 
 const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
 const areaServedJsonLd = siteConfig.business.areaServed.map((area) => ({ '@type': 'Place', name: area }));
@@ -191,8 +190,6 @@ export async function generateMetadata({
   };
 }
 
-const serviceJsonLd = createServiceJsonLd();
-
 export default async function LocaleLayout({
   children,
   params,
@@ -229,10 +226,6 @@ export default async function LocaleLayout({
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
             />
             <Footer />
           </TransitionProvider>

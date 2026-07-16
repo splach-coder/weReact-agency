@@ -8,7 +8,7 @@ import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react'
 import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
-import { createPageMetadata } from '@/lib/seo';
+import { createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { getServiceLandingPage } from '@/data/services';
 
@@ -88,9 +88,16 @@ export default async function BlogPostPage({ params }: Props) {
         inLanguage: locale,
     };
 
+    const breadcrumbJsonLd = createBreadcrumbJsonLd([
+        { name: locale === 'fr' ? 'Accueil' : 'Home', url: `/${locale}` },
+        { name: 'Blog', url: `/${locale}/blog` },
+        { name: post.title, url: `/${locale}/blog/${post.slug}` },
+    ]);
+
     return (
         <article className="min-h-screen bg-[var(--color-background-main)]">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
             <BlogShare url={postUrl} title={post.title} variant="floating" />
 

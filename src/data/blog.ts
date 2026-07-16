@@ -18,7 +18,7 @@ export interface BlogPost {
     modifiedAt: string;
     author: string;
     authorRole: string;
-    relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages';
+    relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages' | 'agence-web-marrakech';
     category: string;
     categoryColor?: string;
     image: string;
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
         modifiedAt: "2026-07-14",
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
-        relatedServiceSlug: "web-design-marrakech",
+        relatedServiceSlug: "agence-web-marrakech",
         category: "Pricing",
         categoryColor: "#588157",
         image: "/images/blog/agence-web-maroc.png",

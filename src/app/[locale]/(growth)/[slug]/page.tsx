@@ -7,7 +7,7 @@ import { routing } from '@/i18n/routing';
 import { getProjectById } from '@/data/projects';
 import { getServiceLandingPage, serviceLandingPages } from '@/data/services';
 import { GrowthCtas, GrowthContactCta } from '@/components/GrowthCtas';
-import { createFaqJsonLd, createPageMetadata, createServicePageJsonLd } from '@/lib/seo';
+import { createBreadcrumbJsonLd, createFaqJsonLd, createPageMetadata, createServicePageJsonLd } from '@/lib/seo';
 
 type ServicePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -48,11 +48,16 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
   const contactHref = `/${locale}/contact`;
   const serviceJsonLd = createServicePageJsonLd(page, locale);
   const faqJsonLd = createFaqJsonLd(copy.faqs);
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: locale === 'fr' ? 'Accueil' : 'Home', url: `/${locale}` },
+    { name: copy.title, url: `/${locale}/${page.slug}` },
+  ]);
 
   return (
-    <main className="min-h-screen bg-[var(--color-background-main)] pt-28 text-[var(--color-text-main)] md:pt-36">
+    <div className="min-h-screen bg-[var(--color-background-main)] pt-28 text-[var(--color-text-main)] md:pt-36">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <section className="px-6 pb-20 pt-12 md:px-16 md:pb-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_0.15fr] lg:gap-16">
@@ -148,6 +153,6 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
           <GrowthContactCta cta={copy.cta} contactHref={contactHref} slug={page.slug} />
         </div>
       </section>
-    </main>
+    </div>
   );
 }
