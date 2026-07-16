@@ -10,7 +10,11 @@
     "test": "tsx --test src/**/*.test.ts",
     "ads:token": "node scripts/google-ads/get-refresh-token.mjs",
     "ads:list": "node scripts/google-ads/pull-account.mjs --list",
-    "ads:pull": "node scripts/google-ads/pull-account.mjs"
+    "ads:pull": "node scripts/google-ads/pull-account.mjs",
+    "gbp:token": "node scripts/google-business/get-refresh-token.mjs",
+    "gbp:pull": "node scripts/google-business/pull-account.mjs",
+    "gbp:apply": "node scripts/google-business/apply-profile.mjs",
+    "gbp:post": "node scripts/google-business/create-post.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.6",

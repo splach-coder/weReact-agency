@@ -1,0 +1,11 @@
+{
+  "_comment": "Desired GBP state. Category names come from `npm run gbp:pull -- --categories <word>`. Description max 750 chars.",
+  "description": "WeReact est un studio de création de sites web basé à Marrakech. Nous concevons des sites rapides, bilingues (français/anglais) et optimisés pour Google, pensés pour transformer les visiteurs en clients. Site vitrine pour entreprise locale à partir de 2 000 MAD ; site e-commerce (front + back) à partir de 3 500 MAD ; site de réservation directe pour riads et hôtels (fini les commissions Booking) sur devis. Chaque projet inclut les fondations SEO, le suivi des conversions et un design mobile-first, livré en 2 à 3 jours. Devis gratuit le jour même par téléphone, WhatsApp ou via notre site. Nous travaillons à Marrakech, Casablanca, Rabat, Agadir et partout au Maroc.",
+  "websiteUri": "https://www.wereact.agency",
+  "primaryCategory": "categories/gcid:website_designer",
+  "additionalCategories": [
+    "categories/gcid:marketing_agency",
+    "categories/gcid:internet_marketing_service",
+    "categories/gcid:software_company"
+  ]
+}
