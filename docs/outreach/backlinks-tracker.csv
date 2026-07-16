@@ -1,0 +1,21 @@
+tier,target,url,category,status,date_submitted,live_url,notes
+0,Bing Places,https://www.bingplaces.com,maps,todo,,,import from GBP
+0,Apple Business Connect,https://businessconnect.apple.com,maps,todo,,,
+0,LinkedIn Company Page,https://www.linkedin.com/company/setup/new,social,todo,,,post weekly after
+0,Crunchbase,https://www.crunchbase.com/register,data,todo,,,
+0,Trustpilot business,https://business.trustpilot.com,reviews,todo,,,send review-ask after
+1,Behance,https://www.behance.net,portfolio,todo,,,3 case studies
+1,Dribbble,https://dribbble.com,portfolio,todo,,,
+1,GitHub profile,https://github.com/splach-coder,portfolio,todo,,,add site to bio
+2,Telecontact,https://www.telecontact.ma,MA-directory,todo,,,main MA directory
+2,Kerix,https://www.kerix.net,MA-directory,todo,,,B2B annuaire
+2,MarocAnnonces,https://www.marocannonces.com,MA-directory,todo,,,
+2,Europages,https://www.europages.fr,B2B,todo,,,
+3,Sortlist,https://www.sortlist.com,agency-dir,todo,,,
+3,Clutch,https://clutch.co,agency-dir,todo,,,needs 1 client review
+3,GoodFirms,https://www.goodfirms.co,agency-dir,todo,,,
+3,DesignRush,https://www.designrush.com,agency-dir,todo,,,
+3,The Manifest,https://www.themanifest.com,agency-dir,todo,,,
+4,Client footer - Flying Tandem,https://flyingtandem.com,client-credit,todo,,,ask owner / self-add
+4,Client footer - Kasbah Angour,https://kasbahangour.com,client-credit,todo,,,ask owner / self-add
+4,Client footer - Your Morocco,https://your-morocco.com,client-credit,todo,,,ask owner / self-add
