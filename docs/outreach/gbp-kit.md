@@ -23,12 +23,8 @@ Everything below is decision-free: copy the value, paste it into the matching GB
 | **Website** | `https://www.wereact.agency` |
 | **Appointment link** | `https://www.wereact.agency/en/contact` |
 
-### ⚠️ Hours — pick one and I'll match the website to it
-Your site currently says **"Open 24 hours"** — Google often flags that as spam for an agency, and it must match GBP. Pick:
-- **(Recommended)** Mon–Sat **09:00–19:00**, Sun closed.
-- Or Mon–Fri 09:00–18:00.
-
-Tell me which and I'll update `src/config/site.ts` so the schema + GBP agree.
+### Hours
+Set **"Open 24 hours"** on GBP — this matches the website schema (`Mo-Su 00:00-23:59`), so the two agree. If Google ever flags it or asks, switch both to Mon–Sat 09:00–19:00 and tell me to update `src/config/site.ts`.
 
 ---
 
