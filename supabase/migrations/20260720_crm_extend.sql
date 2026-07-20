@@ -74,10 +74,8 @@ drop trigger if exists leads_log_created on public.leads;
 create trigger leads_log_created after insert on public.leads
   for each row execute function public.leads_log_created();
 
--- 6. Seed the team allowlist. EDIT these to your real login emails (add your seller).
+-- 6. Team allowlist — only these Google accounts can sign in. Both are admins.
 insert into public.team_members (email, name, role) values
-  ('anasbenbow123@gmail.com', 'Anas', 'owner')
+  ('anasbenbow123@gmail.com', 'Anas', 'owner'),
+  ('70karim.hida@gmail.com', 'Karim', 'owner')
 on conflict (email) do nothing;
-
--- To add your seller later:
---   insert into public.team_members (email, name, role) values ('seller@example.com','Seller','seller');
