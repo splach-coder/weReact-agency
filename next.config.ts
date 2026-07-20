@@ -1,12 +1,20 @@
 import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 
 const withNextIntl = createNextIntlPlugin();
 
+// Makes Cloudflare bindings/env available via getCloudflareContext() when
+// running `next dev`. No-op in production builds.
+initOpenNextCloudflareForDev();
+
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  // Add this images configuration block
   images: {
+    // On Cloudflare, sharp can't run — optimize via Cloudflare Image
+    // Transformations through a custom loader (see image-loader.ts).
+    loader: 'custom',
+    loaderFile: './image-loader.ts',
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
