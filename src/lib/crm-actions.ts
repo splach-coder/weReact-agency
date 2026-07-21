@@ -1,4 +1,4 @@
-import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
+﻿import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
 
 export type LeadUpdate = {
   status: LeadStatus;
@@ -14,6 +14,7 @@ export type ProjectBriefUpdate = {
   project_id: string | null;
   project_name: string;
   project_type: string;
+  domain_name: string;
   status: ProjectStatus;
   goals: string;
   pages: string[];
@@ -55,7 +56,12 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
   const pages = cleanList(value.pages);
   const features = cleanList(value.features);
   const languages = cleanList(value.languages, 10);
-  const status = isProjectStatus(value.status) ? value.status : 'discovery';
+  const status = isProjectStatus(value.status) ? value.status : 'briefing';
+  const domainName = cleanText(value.domainName, 253)
+    .toLowerCase()
+    .replace(/^https?:\/\//, '')
+    .replace(/^www\./, '')
+    .replace(/\/.*$/, '');
 
   if (!projectName || !projectType) {
     return { valid: false, error: 'Add a project name and website type.' };
@@ -85,6 +91,7 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
       project_name: projectName,
       project_type: projectType,
       status,
+      domain_name: domainName,
       goals,
       pages,
       features,

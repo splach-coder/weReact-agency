@@ -1,10 +1,10 @@
-import assert from 'node:assert/strict';
+﻿import assert from 'node:assert/strict';
 import test from 'node:test';
 import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from './crm-actions';
 
 test('normalizes a complete lead workflow update', () => {
   const result = parseLeadUpdate({
-    status: 'qualified',
+    status: 'discovery',
     assignedTo: '  karim@example.com ',
     estimatedValue: '3500.50',
     nextFollowUp: '2026-07-25T08:30:00.000Z',
@@ -14,7 +14,7 @@ test('normalizes a complete lead workflow update', () => {
   assert.deepEqual(result, {
     valid: true,
     value: {
-      status: 'qualified',
+      status: 'discovery',
       assigned_to: 'karim@example.com',
       estimated_value: 3500.5,
       next_follow_up: '2026-07-25T08:30:00.000Z',
@@ -94,6 +94,7 @@ test('normalizes a complete website project brief', () => {
     projectName: '  Atlas Riad website ',
     projectType: 'Business website',
     status: 'ready_for_dev',
+    domainName: ' AtlasRiad.ma ',
     goals: ' Increase direct bookings. ',
     pages: 'Home\nRooms\nBooking\nContact',
     features: 'WhatsApp, booking request',
@@ -113,6 +114,7 @@ test('normalizes a complete website project brief', () => {
       project_name: 'Atlas Riad website',
       project_type: 'Business website',
       status: 'ready_for_dev',
+      domain_name: 'atlasriad.ma',
       goals: 'Increase direct bookings.',
       pages: ['Home', 'Rooms', 'Booking', 'Contact'],
       features: ['WhatsApp', 'booking request'],
@@ -134,6 +136,7 @@ test('blocks developer handoff until the essential brief is complete', () => {
     projectName: 'Riad website',
     projectType: 'Business website',
     status: 'ready_for_dev',
+    domainName: ' AtlasRiad.ma ',
     goals: '',
     pages: '',
     features: 'WhatsApp',

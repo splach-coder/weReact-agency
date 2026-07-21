@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+﻿import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   CRM_STATUSES,
@@ -36,17 +36,18 @@ function lead(overrides: Partial<CrmLead> = {}): CrmLead {
   };
 }
 
-test('groups every lead into the five stable pipeline stages', () => {
+test('groups every lead into the seven sales pipeline stages', () => {
   const grouped = groupLeadsByStatus([
     lead(),
-    lead({ id: 'lead-2', status: 'qualified' }),
+    lead({ id: 'lead-2', status: 'discovery' }),
     lead({ id: 'lead-3', status: 'won' }),
   ]);
 
+  assert.deepEqual(CRM_STATUSES, ['new', 'contacted', 'discovery', 'proposal_sent', 'negotiation', 'won', 'lost']);
   assert.deepEqual(Object.keys(grouped), CRM_STATUSES);
   assert.equal(grouped.new.length, 1);
   assert.equal(grouped.contacted.length, 0);
-  assert.equal(grouped.qualified[0].id, 'lead-2');
+  assert.equal(grouped.discovery[0].id, 'lead-2');
   assert.equal(grouped.won[0].id, 'lead-3');
 });
 
@@ -98,11 +99,11 @@ test('formats lead age without unstable locale output', () => {
 test('keeps Karim as the automatic seller and exposes stable project stages', () => {
   assert.equal(DEFAULT_SELLER_EMAIL, '70karim.hida@gmail.com');
   assert.deepEqual(PROJECT_STATUSES, [
-    'discovery',
+    'briefing',
     'ready_for_dev',
     'building',
     'review',
-    'delivered',
+    'launched',
     'paused',
   ]);
 });

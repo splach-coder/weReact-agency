@@ -1,11 +1,19 @@
-export const CRM_STATUSES = ['new', 'contacted', 'qualified', 'won', 'lost'] as const;
+﻿export const CRM_STATUSES = [
+  'new',
+  'contacted',
+  'discovery',
+  'proposal_sent',
+  'negotiation',
+  'won',
+  'lost',
+] as const;
 export const DEFAULT_SELLER_EMAIL = '70karim.hida@gmail.com';
 export const PROJECT_STATUSES = [
-  'discovery',
+  'briefing',
   'ready_for_dev',
   'building',
   'review',
-  'delivered',
+  'launched',
   'paused',
 ] as const;
 
@@ -31,6 +39,7 @@ export type CrmProject = {
   originating_lead_id: string | null;
   project_name: string;
   project_type: string;
+  domain_name: string;
   status: ProjectStatus;
   goals: string;
   pages: string[];
@@ -128,7 +137,9 @@ export function groupLeadsByStatus(leads: CrmLead[]): Record<LeadStatus, CrmLead
   const groups: Record<LeadStatus, CrmLead[]> = {
     new: [],
     contacted: [],
-    qualified: [],
+    discovery: [],
+    proposal_sent: [],
+    negotiation: [],
     won: [],
     lost: [],
   };

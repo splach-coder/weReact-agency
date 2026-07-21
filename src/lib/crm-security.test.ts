@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+﻿import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
@@ -7,6 +7,7 @@ const migration = [
   '20260721_crm_security_v2.sql',
   '20260721_crm_security_v3.sql',
   '20260721_crm_project_handoff.sql',
+  '20260721_crm_professional_workspace.sql',
 ].map((file) => readFileSync(
   new URL(`../../supabase/migrations/${file}`, import.meta.url),
   'utf8',
@@ -51,4 +52,12 @@ test('creates a multi-project client model with automatic Karim ownership', () =
   assert.match(migration, /create or replace function public\.crm_upsert_project/i);
   assert.match(migration, /if not public\.is_team_member\(\)/i);
   assert.match(migration, /add table public\.crm_projects/i);
+});
+test('separates sales stages from project delivery and secures drag moves', () => {
+  assert.match(migration, /'proposal_sent'[\s\S]*'negotiation'/i);
+  assert.match(migration, /'briefing'[\s\S]*'ready_for_dev'[\s\S]*'launched'/i);
+  assert.match(migration, /add column if not exists domain_name text/i);
+  assert.match(migration, /create or replace function public\.crm_move_lead/i);
+  assert.match(migration, /p_expected_updated_at timestamptz/i);
+  assert.match(migration, /grant execute on function public\.crm_move_lead/i);
 });
