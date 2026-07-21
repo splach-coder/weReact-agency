@@ -8,6 +8,7 @@ const migration = [
   '20260721_crm_security_v3.sql',
   '20260721_crm_project_handoff.sql',
   '20260721_crm_professional_workspace.sql',
+  '20260721_newsletter_subscribers.sql',
 ].map((file) => readFileSync(
   new URL(`../../supabase/migrations/${file}`, import.meta.url),
   'utf8',
@@ -60,4 +61,9 @@ test('separates sales stages from project delivery and secures drag moves', () =
   assert.match(migration, /create or replace function public\.crm_move_lead/i);
   assert.match(migration, /p_expected_updated_at timestamptz/i);
   assert.match(migration, /grant execute on function public\.crm_move_lead/i);
+});
+test('stores newsletter subscribers behind row-level security', () => {
+  assert.match(migration, /create table if not exists public\.newsletter_subscribers/i);
+  assert.match(migration, /alter table public\.newsletter_subscribers enable row level security/i);
+  assert.match(migration, /revoke all on table public\.newsletter_subscribers from anon, authenticated/i);
 });
