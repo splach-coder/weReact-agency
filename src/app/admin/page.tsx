@@ -39,7 +39,7 @@ export default async function AdminHome() {
       .order('created_at', { ascending: false }),
     supabase
       .from('crm_projects')
-      .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by')
+      .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by')
       .order('updated_at', { ascending: false }),
   ]);
 

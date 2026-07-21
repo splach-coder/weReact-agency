@@ -5,6 +5,38 @@ import { buildSubscriberRecord, storeSubscriber } from '@/lib/newsletter-store';
 export const runtime = 'nodejs';
 
 const RESEND_API_URL = 'https://api.resend.com';
+const SUBSCRIBE_WINDOW_MS = 60 * 60 * 1000;
+const SUBSCRIBE_LIMIT = 5;
+const subscribeAttempts = new Map<string, { count: number; resetAt: number }>();
+
+function isAllowedOrigin(request: Request) {
+  const origin = request.headers.get('origin');
+  if (!origin) return true;
+  try {
+    const hostname = new URL(origin).hostname;
+    return hostname === 'localhost' || hostname === 'wereact.agency' || hostname === 'www.wereact.agency'
+      || hostname === 'wereact-agency.wereact.workers.dev';
+  } catch {
+    return false;
+  }
+}
+
+function isRateLimited(request: Request, now = Date.now()) {
+  const key = request.headers.get('cf-connecting-ip')
+    || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || 'local';
+  const current = subscribeAttempts.get(key);
+  if (!current || current.resetAt <= now) {
+    subscribeAttempts.set(key, { count: 1, resetAt: now + SUBSCRIBE_WINDOW_MS });
+    return false;
+  }
+  if (current.count >= SUBSCRIBE_LIMIT) return true;
+  current.count += 1;
+  if (subscribeAttempts.size > 5000) {
+    for (const [ip, attempt] of subscribeAttempts) if (attempt.resetAt <= now) subscribeAttempts.delete(ip);
+  }
+  return false;
+}
 
 async function resendRequest(path: string, init: RequestInit, apiKey: string) {
   return fetch(`${RESEND_API_URL}${path}`, {
@@ -18,6 +50,9 @@ async function resendRequest(path: string, init: RequestInit, apiKey: string) {
 }
 
 export async function POST(request: Request) {
+  if (!isAllowedOrigin(request)) return NextResponse.json({ error: 'Invalid request.' }, { status: 403 });
+  if (isRateLimited(request)) return NextResponse.json({ error: 'Too many attempts. Please try again later.' }, { status: 429 });
+
   let body: { email?: string; website?: string; locale?: string };
 
   try {

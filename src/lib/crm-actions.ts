@@ -1,4 +1,4 @@
-﻿import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
+import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
 
 export type LeadUpdate = {
   status: LeadStatus;
@@ -12,6 +12,7 @@ type ParseResult<T> = { valid: true; value: T } | { valid: false; error: string 
 
 export type ProjectBriefUpdate = {
   project_id: string | null;
+  expected_updated_at: string | null;
   project_name: string;
   project_type: string;
   domain_name: string;
@@ -50,6 +51,12 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
     return { valid: false, error: 'Invalid project reference.' };
   }
 
+  const rawVersion = cleanText(value.expectedUpdatedAt, 40);
+  const parsedVersion = new Date(rawVersion);
+  if (projectId && (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(parsedVersion.getTime()))) {
+    return { valid: false, error: 'Refresh this project before saving.' };
+  }
+
   const projectName = cleanText(value.projectName, 140);
   const projectType = cleanText(value.projectType, 80);
   const goals = cleanText(value.goals, 2000);
@@ -66,8 +73,8 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
   if (!projectName || !projectType) {
     return { valid: false, error: 'Add a project name and website type.' };
   }
-  if (status === 'ready_for_dev' && (!goals || pages.length === 0)) {
-    return { valid: false, error: 'Complete the goals and pages before handing this project to Anas.' };
+  if (status === 'ready_for_dev' && (!goals || pages.length === 0 || features.length === 0 || languages.length === 0)) {
+    return { valid: false, error: 'Complete the goals, pages, features, and languages before development.' };
   }
 
   let budget: number | null = null;
@@ -88,6 +95,7 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
     valid: true,
     value: {
       project_id: projectId || null,
+      expected_updated_at: projectId ? parsedVersion.toISOString() : null,
       project_name: projectName,
       project_type: projectType,
       status,

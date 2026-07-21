@@ -1,4 +1,4 @@
-﻿begin;
+begin;
 
 alter table public.leads drop constraint if exists leads_status_check;
 update public.leads set status = 'discovery' where status = 'qualified';
@@ -14,6 +14,9 @@ alter table public.crm_projects
   alter column status set default 'briefing',
   add constraint crm_projects_status_check
   check (status in ('briefing','ready_for_dev','building','review','launched','paused'));
+
+revoke all on function public.crm_update_lead(uuid,text,text,numeric,timestamptz,timestamptz) from public, anon, authenticated;
+drop function if exists public.crm_update_lead(uuid,text,text,numeric,timestamptz,timestamptz);
 
 create or replace function public.crm_update_sales(
   p_lead_id uuid,
@@ -181,6 +184,7 @@ declare
   v_lead public.leads%rowtype;
   v_client_id uuid;
   v_project_id uuid;
+  v_current_project_updated_at timestamptz;
   v_status text := coalesce(p_brief ->> 'status', 'briefing');
   v_author text;
 begin
@@ -201,6 +205,8 @@ begin
      and (
        nullif(trim(p_brief ->> 'goals'), '') is null
        or jsonb_array_length(coalesce(p_brief -> 'pages', '[]'::jsonb)) = 0
+       or jsonb_array_length(coalesce(p_brief -> 'features', '[]'::jsonb)) = 0
+       or jsonb_array_length(coalesce(p_brief -> 'languages', '[]'::jsonb)) = 0
      ) then
     raise exception 'Project brief is incomplete' using errcode = '22023';
   end if;
@@ -235,7 +241,7 @@ begin
       p_lead_id,
       p_brief ->> 'project_name',
       p_brief ->> 'project_type',
-      coalesce(p_brief ->> 'domain_name', ''),
+      regexp_replace(regexp_replace(regexp_replace(lower(trim(coalesce(p_brief ->> 'domain_name', ''))), '^https?://', ''), '^www\.', ''), '/.*$', ''),
       v_status,
       coalesce(p_brief ->> 'goals', ''),
       array(select jsonb_array_elements_text(coalesce(p_brief -> 'pages', '[]'::jsonb))),
@@ -252,10 +258,25 @@ begin
       v_author
     ) returning id into v_project_id;
   else
+    select updated_at into v_current_project_updated_at
+    from public.crm_projects
+    where id = p_project_id and client_id = v_client_id
+    for update;
+
+    if v_current_project_updated_at is null then
+      raise exception 'Project not found' using errcode = 'P0002';
+    end if;
+
+    if nullif(p_brief ->> 'expected_updated_at', '') is null
+       or date_trunc('milliseconds', v_current_project_updated_at)
+          <> date_trunc('milliseconds', (p_brief ->> 'expected_updated_at')::timestamptz) then
+      raise exception 'Project changed in another session' using errcode = '40001';
+    end if;
+
     update public.crm_projects set
       project_name = p_brief ->> 'project_name',
       project_type = p_brief ->> 'project_type',
-      domain_name = coalesce(p_brief ->> 'domain_name', ''),
+      domain_name = regexp_replace(regexp_replace(regexp_replace(lower(trim(coalesce(p_brief ->> 'domain_name', ''))), '^https?://', ''), '^www\.', ''), '/.*$', ''),
       status = v_status,
       goals = coalesce(p_brief ->> 'goals', ''),
       pages = array(select jsonb_array_elements_text(coalesce(p_brief -> 'pages', '[]'::jsonb))),

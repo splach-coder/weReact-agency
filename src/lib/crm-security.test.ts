@@ -1,14 +1,14 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const migration = [
-  '20260721_crm_security.sql',
-  '20260721_crm_security_v2.sql',
-  '20260721_crm_security_v3.sql',
-  '20260721_crm_project_handoff.sql',
-  '20260721_crm_professional_workspace.sql',
-  '20260721_newsletter_subscribers.sql',
+  '20260721090000_crm_security.sql',
+  '20260721090100_crm_security_v2.sql',
+  '20260721090200_crm_security_v3.sql',
+  '20260721090300_crm_project_handoff.sql',
+  '20260721210000_crm_professional_workspace.sql',
+  '20260721210100_newsletter_subscribers.sql',
 ].map((file) => readFileSync(
   new URL(`../../supabase/migrations/${file}`, import.meta.url),
   'utf8',
@@ -61,6 +61,10 @@ test('separates sales stages from project delivery and secures drag moves', () =
   assert.match(migration, /create or replace function public\.crm_move_lead/i);
   assert.match(migration, /p_expected_updated_at timestamptz/i);
   assert.match(migration, /grant execute on function public\.crm_move_lead/i);
+  assert.match(migration, /create or replace function public\.crm_update_sales/i);
+  assert.match(migration, /drop function if exists public\.crm_update_lead/i);
+  assert.match(migration, /Project changed in another session/i);
+  assert.match(migration, /regexp_replace[\s\S]*lower\(trim\(coalesce\(p_brief ->> 'domain_name'/i);
 });
 test('stores newsletter subscribers behind row-level security', () => {
   assert.match(migration, /create table if not exists public\.newsletter_subscribers/i);

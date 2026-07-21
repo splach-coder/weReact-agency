@@ -1,4 +1,4 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import test from 'node:test';
 import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from './crm-actions';
 
@@ -111,6 +111,7 @@ test('normalizes a complete website project brief', () => {
     valid: true,
     value: {
       project_id: null,
+      expected_updated_at: null,
       project_name: 'Atlas Riad website',
       project_type: 'Business website',
       status: 'ready_for_dev',
@@ -131,6 +132,17 @@ test('normalizes a complete website project brief', () => {
   });
 });
 
+test('requires a current version when editing an existing website project', () => {
+  assert.deepEqual(parseProjectBrief({
+    projectId: '123e4567-e89b-42d3-a456-426614174000',
+    projectName: 'Riad website',
+    projectType: 'Business website',
+    status: 'briefing',
+  }), {
+    valid: false,
+    error: 'Refresh this project before saving.',
+  });
+});
 test('blocks developer handoff until the essential brief is complete', () => {
   assert.deepEqual(parseProjectBrief({
     projectName: 'Riad website',
@@ -143,6 +155,6 @@ test('blocks developer handoff until the essential brief is complete', () => {
     languages: 'English',
   }), {
     valid: false,
-    error: 'Complete the goals and pages before handing this project to Anas.',
+    error: 'Complete the goals, pages, features, and languages before development.',
   });
 });

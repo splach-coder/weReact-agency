@@ -3,21 +3,20 @@
 import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from '@/lib/crm-actions';
-import { DEFAULT_SELLER_EMAIL } from '@/lib/crm';
+import { isLeadStatus } from '@/lib/crm';
 
 export type CrmActionResult = {
   ok: boolean;
   error?: string;
   projectId?: string;
+  updatedAt?: string;
 };
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 async function getAuthorizedContext() {
   const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!user?.email) return { error: 'Your CRM session has expired. Sign in again.' } as const;
 
@@ -33,7 +32,6 @@ async function getAuthorizedContext() {
     .maybeSingle();
 
   if (error || !member) return { error: 'This account is not authorized for the CRM.' } as const;
-
   return { supabase, member } as const;
 }
 
@@ -41,6 +39,43 @@ function refreshLeadRoutes(leadId: string) {
   revalidatePath('/admin');
   revalidatePath('/crm');
   revalidatePath(`/admin/leads/${leadId}`);
+}
+
+export async function moveLeadStageAction(
+  leadId: string,
+  status: unknown,
+  expectedUpdatedAt: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
+  if (!isLeadStatus(status)) return { ok: false, error: 'Choose a valid sales stage.' };
+
+  const rawVersion = typeof expectedUpdatedAt === 'string' ? expectedUpdatedAt : '';
+  const version = new Date(rawVersion);
+  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(version.getTime())) {
+    return { ok: false, error: 'Refresh before moving this client.' };
+  }
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_move_lead', {
+    p_lead_id: leadId,
+    p_status: status,
+    p_expected_updated_at: version.toISOString(),
+  });
+
+  if (error) {
+    console.error('CRM stage move failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This client changed in another session. Refresh and try again.'
+        : 'Could not move this client. Please try again.',
+    };
+  }
+
+  refreshLeadRoutes(leadId);
+  return { ok: true, updatedAt: typeof data === 'string' ? data : undefined };
 }
 
 export async function updateLeadAction(leadId: string, input: unknown): Promise<CrmActionResult> {
@@ -52,21 +87,20 @@ export async function updateLeadAction(leadId: string, input: unknown): Promise<
   const context = await getAuthorizedContext();
   if ('error' in context) return { ok: false, error: context.error };
 
-  const { error } = await context.supabase.rpc('crm_update_lead', {
+  const { error } = await context.supabase.rpc('crm_update_sales', {
     p_lead_id: leadId,
     p_status: parsed.value.status,
-    p_assigned_to: DEFAULT_SELLER_EMAIL,
     p_estimated_value: parsed.value.estimated_value,
     p_next_follow_up: parsed.value.next_follow_up,
     p_expected_updated_at: parsed.value.expected_updated_at,
   });
 
   if (error) {
-    console.error('CRM lead update failed.', error);
+    console.error('CRM sales update failed.', error);
     if (error.code === '40001') {
-      return { ok: false, error: 'This lead changed in another session. Refresh before saving.' };
+      return { ok: false, error: 'This client changed in another session. Refresh before saving.' };
     }
-    return { ok: false, error: 'Could not save this lead. Please try again.' };
+    return { ok: false, error: 'Could not save this sales update. Please try again.' };
   }
 
   refreshLeadRoutes(leadId);
@@ -92,14 +126,27 @@ export async function saveProjectBriefAction(leadId: string, input: unknown): Pr
     console.error('CRM project brief save failed.', error);
     return {
       ok: false,
-      error: error.code === '22023'
-        ? 'Complete the required project details before handoff.'
-        : 'Could not save the project brief. Please try again.',
+      error: error.code === '40001'
+        ? 'This website changed in another session. Refresh before saving.'
+        : error.code === '22023'
+          ? 'Complete the required project details before handoff.'
+          : 'Could not save the project brief. Please try again.',
     };
   }
 
+  const projectId = typeof data === 'string' ? data : undefined;
+  let updatedAt: string | undefined;
+  if (projectId) {
+    const { data: version } = await context.supabase
+      .from('crm_projects')
+      .select('updated_at')
+      .eq('id', projectId)
+      .maybeSingle();
+    updatedAt = typeof version?.updated_at === 'string' ? version.updated_at : undefined;
+  }
+
   refreshLeadRoutes(leadId);
-  return { ok: true, projectId: typeof data === 'string' ? data : undefined };
+  return { ok: true, projectId, updatedAt };
 }
 
 export async function addLeadNoteAction(leadId: string, note: unknown): Promise<CrmActionResult> {
