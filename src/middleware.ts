@@ -8,7 +8,7 @@ const intlMiddleware = createMiddleware(routing);
 export default async function middleware(request: NextRequest) {
   // The CRM dashboard lives outside the localized site - it gets Supabase
   // session handling instead of next-intl locale routing.
-  if (request.nextUrl.pathname.startsWith('/admin')) {
+  if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/crm')) {
     return updateSession(request);
   }
   return intlMiddleware(request);

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseLeadNote, parseLeadUpdate } from './crm-actions';
+import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from './crm-actions';
 
 test('normalizes a complete lead workflow update', () => {
   const result = parseLeadUpdate({
@@ -86,5 +86,60 @@ test('trims useful notes and rejects empty or oversized notes', () => {
   assert.deepEqual(parseLeadNote('x'.repeat(2001)), {
     valid: false,
     error: 'Keep notes under 2,000 characters.',
+  });
+});
+test('normalizes a complete website project brief', () => {
+  assert.deepEqual(parseProjectBrief({
+    projectId: '',
+    projectName: '  Atlas Riad website ',
+    projectType: 'Business website',
+    status: 'ready_for_dev',
+    goals: ' Increase direct bookings. ',
+    pages: 'Home\nRooms\nBooking\nContact',
+    features: 'WhatsApp, booking request',
+    languages: ['English', 'French'],
+    contentStatus: 'client_preparing',
+    brandStatus: 'ready',
+    domainStatus: 'owned',
+    hostingStatus: 'needed',
+    references: 'https://example.com\nhttps://example.org',
+    budget: '8500',
+    targetLaunch: '2026-09-15',
+    developerNotes: 'Use the current photography.',
+  }), {
+    valid: true,
+    value: {
+      project_id: null,
+      project_name: 'Atlas Riad website',
+      project_type: 'Business website',
+      status: 'ready_for_dev',
+      goals: 'Increase direct bookings.',
+      pages: ['Home', 'Rooms', 'Booking', 'Contact'],
+      features: ['WhatsApp', 'booking request'],
+      languages: ['English', 'French'],
+      content_status: 'client_preparing',
+      brand_status: 'ready',
+      domain_status: 'owned',
+      hosting_status: 'needed',
+      reference_sites: ['https://example.com', 'https://example.org'],
+      budget: 8500,
+      target_launch: '2026-09-15',
+      developer_notes: 'Use the current photography.',
+    },
+  });
+});
+
+test('blocks developer handoff until the essential brief is complete', () => {
+  assert.deepEqual(parseProjectBrief({
+    projectName: 'Riad website',
+    projectType: 'Business website',
+    status: 'ready_for_dev',
+    goals: '',
+    pages: '',
+    features: 'WhatsApp',
+    languages: 'English',
+  }), {
+    valid: false,
+    error: 'Complete the goals and pages before handing this project to Anas.',
   });
 });

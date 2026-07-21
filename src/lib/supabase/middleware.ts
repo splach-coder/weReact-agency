@@ -31,14 +31,14 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
-  const isAuthRoute = pathname === '/admin/login' || pathname.startsWith('/admin/auth');
+  const isAuthRoute = pathname === '/admin/login' || pathname === '/crm/login' || pathname.startsWith('/admin/auth');
 
   if (!user && !isAuthRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = '/admin/login';
+    url.pathname = pathname.startsWith('/crm') ? '/crm/login' : '/admin/login';
     return NextResponse.redirect(url);
   }
-  if (user && pathname === '/admin/login') {
+  if (user && (pathname === '/admin/login' || pathname === '/crm/login')) {
     const url = request.nextUrl.clone();
     url.pathname = '/admin';
     return NextResponse.redirect(url);

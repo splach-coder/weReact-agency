@@ -6,6 +6,7 @@ const migration = [
   '20260721_crm_security.sql',
   '20260721_crm_security_v2.sql',
   '20260721_crm_security_v3.sql',
+  '20260721_crm_project_handoff.sql',
 ].map((file) => readFileSync(
   new URL(`../../supabase/migrations/${file}`, import.meta.url),
   'utf8',
@@ -40,4 +41,14 @@ test('rejects stale workflow writes before updating the row', () => {
 test('provisions both CRM streams in the realtime publication', () => {
   assert.match(migration, /add table public\.leads/i);
   assert.match(migration, /add table public\.lead_events/i);
+});
+test('creates a multi-project client model with automatic Karim ownership', () => {
+  assert.match(migration, /create table if not exists public\.clients/i);
+  assert.match(migration, /create table if not exists public\.crm_projects/i);
+  assert.match(migration, /originating_lead_id uuid/i);
+  assert.match(migration, /default '70karim\.hida@gmail\.com'/i);
+  assert.match(migration, /update public\.leads[\s\S]*assigned_to = '70karim\.hida@gmail\.com'/i);
+  assert.match(migration, /create or replace function public\.crm_upsert_project/i);
+  assert.match(migration, /if not public\.is_team_member\(\)/i);
+  assert.match(migration, /add table public\.crm_projects/i);
 });

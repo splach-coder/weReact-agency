@@ -1,4 +1,4 @@
-import { isLeadStatus, type LeadStatus } from './crm';
+import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
 
 export type LeadUpdate = {
   status: LeadStatus;
@@ -9,6 +9,97 @@ export type LeadUpdate = {
 };
 
 type ParseResult<T> = { valid: true; value: T } | { valid: false; error: string };
+
+export type ProjectBriefUpdate = {
+  project_id: string | null;
+  project_name: string;
+  project_type: string;
+  status: ProjectStatus;
+  goals: string;
+  pages: string[];
+  features: string[];
+  languages: string[];
+  content_status: string;
+  brand_status: string;
+  domain_status: string;
+  hosting_status: string;
+  reference_sites: string[];
+  budget: number | null;
+  target_launch: string | null;
+  developer_notes: string;
+};
+
+function cleanText(value: unknown, max: number) {
+  return typeof value === 'string' ? value.trim().slice(0, max) : '';
+}
+
+function cleanList(value: unknown, maxItems = 30) {
+  const items = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[\n,]+/) : [];
+  return [...new Set(items.map((item) => String(item).trim()).filter(Boolean))].slice(0, maxItems);
+}
+
+export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdate> {
+  if (!input || typeof input !== 'object') {
+    return { valid: false, error: 'Project brief is missing.' };
+  }
+
+  const value = input as Record<string, unknown>;
+  const projectId = cleanText(value.projectId, 36);
+  if (projectId && !/^[0-9a-f-]{36}$/i.test(projectId)) {
+    return { valid: false, error: 'Invalid project reference.' };
+  }
+
+  const projectName = cleanText(value.projectName, 140);
+  const projectType = cleanText(value.projectType, 80);
+  const goals = cleanText(value.goals, 2000);
+  const pages = cleanList(value.pages);
+  const features = cleanList(value.features);
+  const languages = cleanList(value.languages, 10);
+  const status = isProjectStatus(value.status) ? value.status : 'discovery';
+
+  if (!projectName || !projectType) {
+    return { valid: false, error: 'Add a project name and website type.' };
+  }
+  if (status === 'ready_for_dev' && (!goals || pages.length === 0)) {
+    return { valid: false, error: 'Complete the goals and pages before handing this project to Anas.' };
+  }
+
+  let budget: number | null = null;
+  if (value.budget !== '' && value.budget != null) {
+    const parsed = Number(value.budget);
+    if (!Number.isFinite(parsed) || parsed < 0 || parsed > 10_000_000) {
+      return { valid: false, error: 'Budget must be a positive amount.' };
+    }
+    budget = Math.round(parsed * 100) / 100;
+  }
+
+  const targetLaunch = cleanText(value.targetLaunch, 10);
+  if (targetLaunch && !/^\d{4}-\d{2}-\d{2}$/.test(targetLaunch)) {
+    return { valid: false, error: 'Choose a valid target launch date.' };
+  }
+
+  return {
+    valid: true,
+    value: {
+      project_id: projectId || null,
+      project_name: projectName,
+      project_type: projectType,
+      status,
+      goals,
+      pages,
+      features,
+      languages,
+      content_status: cleanText(value.contentStatus, 40) || 'unknown',
+      brand_status: cleanText(value.brandStatus, 40) || 'unknown',
+      domain_status: cleanText(value.domainStatus, 40) || 'unknown',
+      hosting_status: cleanText(value.hostingStatus, 40) || 'unknown',
+      reference_sites: cleanList(value.references, 10),
+      budget,
+      target_launch: targetLaunch || null,
+      developer_notes: cleanText(value.developerNotes, 4000),
+    },
+  };
+}
 
 export function parseLeadUpdate(input: unknown): ParseResult<LeadUpdate> {
   if (!input || typeof input !== 'object') {

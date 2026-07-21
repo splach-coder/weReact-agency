@@ -2,11 +2,13 @@
 
 import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { parseLeadNote, parseLeadUpdate } from '@/lib/crm-actions';
+import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from '@/lib/crm-actions';
+import { DEFAULT_SELLER_EMAIL } from '@/lib/crm';
 
 export type CrmActionResult = {
   ok: boolean;
   error?: string;
+  projectId?: string;
 };
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -32,11 +34,12 @@ async function getAuthorizedContext() {
 
   if (error || !member) return { error: 'This account is not authorized for the CRM.' } as const;
 
-  return { supabase } as const;
+  return { supabase, member } as const;
 }
 
 function refreshLeadRoutes(leadId: string) {
   revalidatePath('/admin');
+  revalidatePath('/crm');
   revalidatePath(`/admin/leads/${leadId}`);
 }
 
@@ -49,23 +52,10 @@ export async function updateLeadAction(leadId: string, input: unknown): Promise<
   const context = await getAuthorizedContext();
   if ('error' in context) return { ok: false, error: context.error };
 
-  const { supabase } = context;
-  if (parsed.value.assigned_to) {
-    const { data: assignee, error: assigneeError } = await supabase
-      .from('team_members')
-      .select('email')
-      .eq('email', parsed.value.assigned_to.toLowerCase())
-      .maybeSingle();
-
-    if (assigneeError || !assignee) {
-      return { ok: false, error: 'Choose a valid WeReact team member.' };
-    }
-  }
-
-  const { error } = await supabase.rpc('crm_update_lead', {
+  const { error } = await context.supabase.rpc('crm_update_lead', {
     p_lead_id: leadId,
     p_status: parsed.value.status,
-    p_assigned_to: parsed.value.assigned_to,
+    p_assigned_to: DEFAULT_SELLER_EMAIL,
     p_estimated_value: parsed.value.estimated_value,
     p_next_follow_up: parsed.value.next_follow_up,
     p_expected_updated_at: parsed.value.expected_updated_at,
@@ -81,6 +71,35 @@ export async function updateLeadAction(leadId: string, input: unknown): Promise<
 
   refreshLeadRoutes(leadId);
   return { ok: true };
+}
+
+export async function saveProjectBriefAction(leadId: string, input: unknown): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
+
+  const parsed = parseProjectBrief(input);
+  if (!parsed.valid) return { ok: false, error: parsed.error };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_upsert_project', {
+    p_lead_id: leadId,
+    p_project_id: parsed.value.project_id,
+    p_brief: parsed.value,
+  });
+
+  if (error) {
+    console.error('CRM project brief save failed.', error);
+    return {
+      ok: false,
+      error: error.code === '22023'
+        ? 'Complete the required project details before handoff.'
+        : 'Could not save the project brief. Please try again.',
+    };
+  }
+
+  refreshLeadRoutes(leadId);
+  return { ok: true, projectId: typeof data === 'string' ? data : undefined };
 }
 
 export async function addLeadNoteAction(leadId: string, note: unknown): Promise<CrmActionResult> {

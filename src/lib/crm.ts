@@ -1,6 +1,51 @@
 export const CRM_STATUSES = ['new', 'contacted', 'qualified', 'won', 'lost'] as const;
+export const DEFAULT_SELLER_EMAIL = '70karim.hida@gmail.com';
+export const PROJECT_STATUSES = [
+  'discovery',
+  'ready_for_dev',
+  'building',
+  'review',
+  'delivered',
+  'paused',
+] as const;
 
 export type LeadStatus = (typeof CRM_STATUSES)[number];
+export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
+
+export type CrmClient = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  email: string;
+  company: string | null;
+  phone: string | null;
+  whatsapp: string | null;
+};
+
+export type CrmProject = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  client_id: string;
+  originating_lead_id: string | null;
+  project_name: string;
+  project_type: string;
+  status: ProjectStatus;
+  goals: string;
+  pages: string[];
+  features: string[];
+  languages: string[];
+  content_status: string;
+  brand_status: string;
+  domain_status: string;
+  hosting_status: string;
+  reference_sites: string[];
+  budget: number | null;
+  target_launch: string | null;
+  developer_notes: string;
+  created_by: string | null;
+};
 
 export type CrmLead = {
   id: string;
@@ -47,6 +92,36 @@ export type LeadFilters = {
 
 export function isLeadStatus(value: unknown): value is LeadStatus {
   return typeof value === 'string' && CRM_STATUSES.includes(value as LeadStatus);
+}
+export function isProjectStatus(value: unknown): value is ProjectStatus {
+  return typeof value === 'string' && PROJECT_STATUSES.includes(value as ProjectStatus);
+}
+
+const PROJECT_BRIEF_FIELDS = [
+  'project_name',
+  'project_type',
+  'goals',
+  'pages',
+  'features',
+  'languages',
+] as const;
+
+export function getProjectBriefProgress(
+  project: Pick<CrmProject, (typeof PROJECT_BRIEF_FIELDS)[number]>,
+) {
+  const missing = PROJECT_BRIEF_FIELDS.filter((field) => {
+    const value = project[field];
+    return Array.isArray(value) ? value.length === 0 : value.trim().length === 0;
+  });
+  const completed = PROJECT_BRIEF_FIELDS.length - missing.length;
+
+  return {
+    completed,
+    total: PROJECT_BRIEF_FIELDS.length,
+    percentage: Math.round((completed / PROJECT_BRIEF_FIELDS.length) * 100),
+    missing: [...missing],
+    ready: missing.length === 0,
+  };
 }
 
 export function groupLeadsByStatus(leads: CrmLead[]): Record<LeadStatus, CrmLead[]> {

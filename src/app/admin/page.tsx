@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import type { CrmLead, TeamMember } from '@/lib/crm';
+import type { CrmLead, CrmProject, TeamMember } from '@/lib/crm';
 import { AdminHeader } from './AdminHeader';
 import { DashboardClient } from './DashboardClient';
 import { RealtimeRefresh } from './RealtimeRefresh';
@@ -10,10 +10,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function AdminHome() {
   const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user?.email) redirect('/admin/login');
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user?.email) redirect('/crm/login');
 
   const { data: member, error: memberError } = await supabase
     .from('team_members')
@@ -34,28 +32,23 @@ export default async function AdminHome() {
     );
   }
 
-  const [{ data: leads, error: leadsError }, { data: members, error: teamError }] = await Promise.all([
+  const [{ data: leads, error: leadsError }, { data: projects, error: projectsError }] = await Promise.all([
     supabase
       .from('leads')
       .select('id,created_at,updated_at,name,email,company,phone,whatsapp,message,status,source,attribution,notes,assigned_to,estimated_value,next_follow_up,last_contacted_at')
       .order('created_at', { ascending: false }),
     supabase
-      .from('team_members')
-      .select('email,name,role')
-      .order('name', { ascending: true }),
+      .from('crm_projects')
+      .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by')
+      .order('updated_at', { ascending: false }),
   ]);
 
-  if (leadsError || teamError) {
-    console.error('CRM dashboard query failed.', { leadsError, teamError });
+  if (leadsError || projectsError) {
+    console.error('CRM dashboard query failed.', { leadsError, projectsError });
     return (
       <>
         <AdminHeader member={member as TeamMember} />
-        <main className="crm-error">
-          <div>
-            <h1>Could not load the pipeline.</h1>
-            <p>The CRM is connected, but the latest lead data could not be read. Refresh once or try again shortly.</p>
-          </div>
-        </main>
+        <main className="crm-error"><div><h1>Could not load the workspace.</h1><p>Refresh once or try again shortly.</p></div></main>
       </>
     );
   }
@@ -63,8 +56,8 @@ export default async function AdminHome() {
   return (
     <>
       <AdminHeader member={member as TeamMember} />
-      <DashboardClient leads={(leads ?? []) as CrmLead[]} />
-      <RealtimeRefresh />
+      <DashboardClient leads={(leads ?? []) as CrmLead[]} projects={(projects ?? []) as CrmProject[]} />
+      <RealtimeRefresh tables={['leads', 'crm_projects']} />
     </>
   );
 }

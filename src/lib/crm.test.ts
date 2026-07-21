@@ -2,11 +2,15 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   CRM_STATUSES,
+  DEFAULT_SELLER_EMAIL,
+  PROJECT_STATUSES,
   filterLeads,
   formatLeadAge,
   getLeadContactRoute,
+  getProjectBriefProgress,
   groupLeadsByStatus,
   type CrmLead,
+  type CrmProject,
 } from './crm';
 
 function lead(overrides: Partial<CrmLead> = {}): CrmLead {
@@ -90,4 +94,42 @@ test('formats lead age without unstable locale output', () => {
   assert.equal(formatLeadAge('2026-07-21T09:00:00.000Z', now), 'Today');
   assert.equal(formatLeadAge('2026-07-20T10:00:00.000Z', now), '1 day ago');
   assert.equal(formatLeadAge('2026-07-16T10:00:00.000Z', now), '5 days ago');
+});
+test('keeps Karim as the automatic seller and exposes stable project stages', () => {
+  assert.equal(DEFAULT_SELLER_EMAIL, '70karim.hida@gmail.com');
+  assert.deepEqual(PROJECT_STATUSES, [
+    'discovery',
+    'ready_for_dev',
+    'building',
+    'review',
+    'delivered',
+    'paused',
+  ]);
+});
+
+test('measures whether a project brief is ready for developer handoff', () => {
+  const project = {
+    project_name: 'Atlas Riad booking website',
+    project_type: 'Business website',
+    goals: 'Increase direct bookings and reduce OTA dependence.',
+    pages: ['Home', 'Rooms', 'Booking', 'Contact'],
+    features: ['WhatsApp', 'Booking request'],
+    languages: ['English', 'French'],
+  } as CrmProject;
+
+  assert.deepEqual(getProjectBriefProgress(project), {
+    completed: 6,
+    total: 6,
+    percentage: 100,
+    missing: [],
+    ready: true,
+  });
+
+  assert.deepEqual(getProjectBriefProgress({ ...project, pages: [] }), {
+    completed: 5,
+    total: 6,
+    percentage: 83,
+    missing: ['pages'],
+    ready: false,
+  });
 });
