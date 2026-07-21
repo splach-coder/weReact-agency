@@ -5,6 +5,7 @@ import test from 'node:test';
 const migration = [
   '20260721_crm_security.sql',
   '20260721_crm_security_v2.sql',
+  '20260721_crm_security_v3.sql',
 ].map((file) => readFileSync(
   new URL(`../../supabase/migrations/${file}`, import.meta.url),
   'utf8',
@@ -22,6 +23,8 @@ test('routes CRM writes through validated security-definer functions', () => {
 test('requires Google OAuth and validates assignments against the team', () => {
   assert.match(migration, /item\s*->>\s*'method'\s*=\s*'oauth'/i);
   assert.match(migration, /app_metadata'[\s\S]*provider'[\s\S]*=\s*'google'/i);
+  assert.match(migration, /from auth\.identities[\s\S]*provider = 'google'/i);
+  assert.match(migration, /not exists[\s\S]*from auth\.identities[\s\S]*provider <> 'google'/i);
   assert.match(migration, /from public\.team_members[\s\S]*lower\(tm\.email\) = lower\(p_assigned_to\)/i);
 });
 
