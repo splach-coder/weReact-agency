@@ -95,6 +95,7 @@ export function LeadWorkflowEditor({
         assignedTo,
         estimatedValue,
         nextFollowUp,
+        expectedUpdatedAt: lead.updated_at,
       });
 
       setIsError(!result.ok);

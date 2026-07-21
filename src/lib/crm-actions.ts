@@ -5,6 +5,7 @@ export type LeadUpdate = {
   assigned_to: string | null;
   estimated_value: number | null;
   next_follow_up: string | null;
+  expected_updated_at: string;
 };
 
 type ParseResult<T> = { valid: true; value: T } | { valid: false; error: string };
@@ -43,6 +44,12 @@ export function parseLeadUpdate(input: unknown): ParseResult<LeadUpdate> {
     nextFollowUp = parsed.toISOString();
   }
 
+  const rawVersion = typeof value.expectedUpdatedAt === 'string' ? value.expectedUpdatedAt : '';
+  const parsedVersion = new Date(rawVersion);
+  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(parsedVersion.getTime())) {
+    return { valid: false, error: 'Refresh this lead before saving.' };
+  }
+
   return {
     valid: true,
     value: {
@@ -50,6 +57,7 @@ export function parseLeadUpdate(input: unknown): ParseResult<LeadUpdate> {
       assigned_to: assignedTo || null,
       estimated_value: estimatedValue,
       next_follow_up: nextFollowUp,
+      expected_updated_at: parsedVersion.toISOString(),
     },
   };
 }

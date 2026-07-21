@@ -8,6 +8,7 @@ test('normalizes a complete lead workflow update', () => {
     assignedTo: '  karim@example.com ',
     estimatedValue: '3500.50',
     nextFollowUp: '2026-07-25T08:30:00.000Z',
+    expectedUpdatedAt: '2026-07-21T10:00:00.000Z',
   });
 
   assert.deepEqual(result, {
@@ -17,6 +18,7 @@ test('normalizes a complete lead workflow update', () => {
       assigned_to: 'karim@example.com',
       estimated_value: 3500.5,
       next_follow_up: '2026-07-25T08:30:00.000Z',
+      expected_updated_at: '2026-07-21T10:00:00.000Z',
     },
   });
 });
@@ -28,6 +30,7 @@ test('accepts cleared optional workflow values', () => {
       assignedTo: '',
       estimatedValue: '',
       nextFollowUp: '',
+      expectedUpdatedAt: '2026-07-21T10:00:00.000Z',
     }),
     {
       valid: true,
@@ -36,6 +39,7 @@ test('accepts cleared optional workflow values', () => {
         assigned_to: null,
         estimated_value: null,
         next_follow_up: null,
+        expected_updated_at: '2026-07-21T10:00:00.000Z',
       },
     },
   );
@@ -60,6 +64,16 @@ test('rejects unsupported statuses, negative money, and invalid dates', () => {
   });
 });
 
+test('requires a timezone-explicit lead version for conflict detection', () => {
+  assert.deepEqual(parseLeadUpdate({ status: 'new' }), {
+    valid: false,
+    error: 'Refresh this lead before saving.',
+  });
+  assert.deepEqual(parseLeadUpdate({ status: 'new', expectedUpdatedAt: '2026-07-21T10:00' }), {
+    valid: false,
+    error: 'Refresh this lead before saving.',
+  });
+});
 test('trims useful notes and rejects empty or oversized notes', () => {
   assert.deepEqual(parseLeadNote('  Called the client and sent the proposal.  '), {
     valid: true,

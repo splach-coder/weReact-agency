@@ -68,10 +68,14 @@ export async function updateLeadAction(leadId: string, input: unknown): Promise<
     p_assigned_to: parsed.value.assigned_to,
     p_estimated_value: parsed.value.estimated_value,
     p_next_follow_up: parsed.value.next_follow_up,
+    p_expected_updated_at: parsed.value.expected_updated_at,
   });
 
   if (error) {
     console.error('CRM lead update failed.', error);
+    if (error.code === '40001') {
+      return { ok: false, error: 'This lead changed in another session. Refresh before saving.' };
+    }
     return { ok: false, error: 'Could not save this lead. Please try again.' };
   }
 
