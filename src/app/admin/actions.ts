@@ -3,7 +3,6 @@
 import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { parseLeadNote, parseLeadUpdate } from '@/lib/crm-actions';
-import type { LeadStatus } from '@/lib/crm';
 
 export type CrmActionResult = {
   ok: boolean;
@@ -20,6 +19,11 @@ async function getAuthorizedContext() {
 
   if (!user?.email) return { error: 'Your CRM session has expired. Sign in again.' } as const;
 
+  const providers = Array.isArray(user.app_metadata.providers) ? user.app_metadata.providers : [];
+  if (user.app_metadata.provider !== 'google' && !providers.includes('google')) {
+    return { error: 'Sign in with the approved Google account.' } as const;
+  }
+
   const { data: member, error } = await supabase
     .from('team_members')
     .select('email,name,role')
@@ -28,7 +32,7 @@ async function getAuthorizedContext() {
 
   if (error || !member) return { error: 'This account is not authorized for the CRM.' } as const;
 
-  return { supabase, user, member } as const;
+  return { supabase } as const;
 }
 
 function refreshLeadRoutes(leadId: string) {
@@ -45,36 +49,30 @@ export async function updateLeadAction(leadId: string, input: unknown): Promise<
   const context = await getAuthorizedContext();
   if ('error' in context) return { ok: false, error: context.error };
 
-  const { supabase, member } = context;
-  const { data: current, error: readError } = await supabase
-    .from('leads')
-    .select('status')
-    .eq('id', leadId)
-    .maybeSingle();
+  const { supabase } = context;
+  if (parsed.value.assigned_to) {
+    const { data: assignee, error: assigneeError } = await supabase
+      .from('team_members')
+      .select('email')
+      .eq('email', parsed.value.assigned_to.toLowerCase())
+      .maybeSingle();
 
-  if (readError || !current) return { ok: false, error: 'Lead not found or no longer accessible.' };
-
-  const previousStatus = current.status as LeadStatus;
-  const update: Record<string, unknown> = { ...parsed.value };
-  if (parsed.value.status === 'contacted' && previousStatus !== 'contacted') {
-    update.last_contacted_at = new Date().toISOString();
+    if (assigneeError || !assignee) {
+      return { ok: false, error: 'Choose a valid WeReact team member.' };
+    }
   }
 
-  const { error: updateError } = await supabase.from('leads').update(update).eq('id', leadId);
-  if (updateError) {
-    console.error('CRM lead update failed.', updateError);
+  const { error } = await supabase.rpc('crm_update_lead', {
+    p_lead_id: leadId,
+    p_status: parsed.value.status,
+    p_assigned_to: parsed.value.assigned_to,
+    p_estimated_value: parsed.value.estimated_value,
+    p_next_follow_up: parsed.value.next_follow_up,
+  });
+
+  if (error) {
+    console.error('CRM lead update failed.', error);
     return { ok: false, error: 'Could not save this lead. Please try again.' };
-  }
-
-  if (previousStatus !== parsed.value.status) {
-    const { error: eventError } = await supabase.from('lead_events').insert({
-      lead_id: leadId,
-      author: member.name ?? member.email,
-      kind: 'status_change',
-      body: `Status changed from ${previousStatus} to ${parsed.value.status}`,
-      meta: { from: previousStatus, to: parsed.value.status },
-    });
-    if (eventError) console.error('CRM status event failed.', eventError);
   }
 
   refreshLeadRoutes(leadId);
@@ -90,13 +88,9 @@ export async function addLeadNoteAction(leadId: string, note: unknown): Promise<
   const context = await getAuthorizedContext();
   if ('error' in context) return { ok: false, error: context.error };
 
-  const { supabase, member } = context;
-  const { error } = await supabase.from('lead_events').insert({
-    lead_id: leadId,
-    author: member.name ?? member.email,
-    kind: 'note',
-    body: parsed.value,
-    meta: {},
+  const { error } = await context.supabase.rpc('crm_add_lead_note', {
+    p_lead_id: leadId,
+    p_note: parsed.value,
   });
 
   if (error) {
