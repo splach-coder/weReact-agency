@@ -16,7 +16,7 @@ export async function createSupabaseServerClient() {
           try {
             for (const { name, value, options } of cookiesToSet) cookieStore.set(name, value, options);
           } catch {
-            // Called from a Server Component where cookies are read-only —
+            // Called from a Server Component where cookies are read-only -
             // safe to ignore; the middleware refreshes the session cookie.
           }
         },

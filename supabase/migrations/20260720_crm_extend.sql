@@ -1,7 +1,7 @@
 -- CRM extension: workflow fields on leads, activity timeline, team allowlist,
 -- and RLS so the authenticated dashboard (Supabase Auth) can read/write while
 -- the public site keeps writing via the service-role key (which bypasses RLS).
--- Idempotent — safe to run more than once.
+-- Idempotent - safe to run more than once.
 
 -- 1. Extend leads with CRM workflow fields
 alter table public.leads
@@ -23,7 +23,7 @@ create table if not exists public.lead_events (
 create index if not exists lead_events_lead_id_idx on public.lead_events (lead_id, created_at desc);
 alter table public.lead_events enable row level security;
 
--- 3. Team allowlist — only these emails can sign in to the dashboard
+-- 3. Team allowlist - only these emails can sign in to the dashboard
 create table if not exists public.team_members (
   email text primary key,
   name text,
@@ -74,7 +74,7 @@ drop trigger if exists leads_log_created on public.leads;
 create trigger leads_log_created after insert on public.leads
   for each row execute function public.leads_log_created();
 
--- 6. Team allowlist — only these Google accounts can sign in. Both are admins.
+-- 6. Team allowlist - only these Google accounts can sign in. Both are admins.
 insert into public.team_members (email, name, role) values
   ('anasbenbow123@gmail.com', 'Anas', 'owner'),
   ('70karim.hida@gmail.com', 'Karim', 'owner')

@@ -1,5 +1,9 @@
 import { redirect } from 'next/navigation';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import type { CrmLead, TeamMember } from '@/lib/crm';
+import { AdminHeader } from './AdminHeader';
+import { DashboardClient } from './DashboardClient';
+import { RealtimeRefresh } from './RealtimeRefresh';
 import { SignOutButton } from './SignOutButton';
 
 export const dynamic = 'force-dynamic';
@@ -9,53 +13,58 @@ export default async function AdminHome() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect('/admin/login');
+  if (!user?.email) redirect('/admin/login');
 
-  // Authorization: only allowlisted team members (RLS returns their row only).
-  const { data: member } = await supabase
+  const { data: member, error: memberError } = await supabase
     .from('team_members')
     .select('email,name,role')
     .eq('email', user.email)
     .maybeSingle();
 
-  if (!member) {
+  if (memberError || !member) {
     return (
-      <main className="flex min-h-screen items-center justify-center p-6">
-        <div className="max-w-md rounded-2xl border border-neutral-200 bg-white p-8 text-center shadow-sm">
-          <h1 className="text-lg font-semibold">Not authorized</h1>
-          <p className="mt-2 text-sm text-neutral-500">
-            <strong>{user.email}</strong> isn&apos;t on the WeReact team allowlist. Ask the owner to add you.
-          </p>
-          <div className="mt-6">
-            <SignOutButton />
-          </div>
+      <main className="crm-error">
+        <div>
+          <p className="crm-eyebrow"><span /> Private workspace</p>
+          <h1>Access is not enabled.</h1>
+          <p>{user.email} is signed in, but this account is not on the WeReact CRM allowlist.</p>
+          <div className="mt-6"><SignOutButton /></div>
         </div>
       </main>
     );
   }
 
-  const { count } = await supabase.from('leads').select('*', { count: 'exact', head: true });
+  const [{ data: leads, error: leadsError }, { data: members, error: teamError }] = await Promise.all([
+    supabase
+      .from('leads')
+      .select('id,created_at,updated_at,name,email,company,phone,whatsapp,message,status,source,attribution,notes,assigned_to,estimated_value,next_follow_up,last_contacted_at')
+      .order('created_at', { ascending: false }),
+    supabase
+      .from('team_members')
+      .select('email,name,role')
+      .order('name', { ascending: true }),
+  ]);
+
+  if (leadsError || teamError) {
+    console.error('CRM dashboard query failed.', { leadsError, teamError });
+    return (
+      <>
+        <AdminHeader member={member as TeamMember} />
+        <main className="crm-error">
+          <div>
+            <h1>Could not load the pipeline.</h1>
+            <p>The CRM is connected, but the latest lead data could not be read. Refresh once or try again shortly.</p>
+          </div>
+        </main>
+      </>
+    );
+  }
 
   return (
-    <main className="mx-auto max-w-3xl p-8">
-      <header className="flex items-center justify-between">
-        <div>
-          <p className="text-lg font-black tracking-tight text-[#3a5a40]">&middot;wereact&middot; CRM</p>
-          <p className="mt-1 text-sm text-neutral-500">
-            Signed in as {member.name ?? member.email} ({member.role})
-          </p>
-        </div>
-        <SignOutButton />
-      </header>
-
-      <section className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <p className="text-sm text-neutral-500">Total leads</p>
-        <p className="mt-1 text-4xl font-bold">{count ?? 0}</p>
-        <p className="mt-4 text-sm text-neutral-400">
-          Foundation is live — auth, team allowlist, and data access all work. The pipeline board,
-          lead detail, notes, and realtime land in Phase 2.
-        </p>
-      </section>
-    </main>
+    <>
+      <AdminHeader member={member as TeamMember} />
+      <DashboardClient leads={(leads ?? []) as CrmLead[]} />
+      <RealtimeRefresh />
+    </>
   );
 }
