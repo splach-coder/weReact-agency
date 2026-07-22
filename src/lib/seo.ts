@@ -1,6 +1,20 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import type { ServiceFaq, ServiceLandingPage } from '@/data/services';
+
+export function createLocalizedAlternates(path: string) {
+  const withoutLocale = path.replace(/^\/(en|fr)(?=\/|$)/, '');
+  const cleanPath = withoutLocale.replace(/\/$/, '');
+  const suffix = cleanPath && cleanPath !== '/'
+    ? (cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath)
+    : '';
+
+  return {
+    en: siteConfig.url + '/en' + suffix,
+    fr: siteConfig.url + '/fr' + suffix,
+    'x-default': siteConfig.url + '/en' + suffix,
+  };
+}
 
 type PageMetadataOptions = {
   title: string;
@@ -35,15 +49,7 @@ export function createPageMetadata({
     keywords: [...siteConfig.seo.keywords, ...keywords],
     alternates: {
       canonical: url,
-      languages: {
-        ...Object.fromEntries(
-          siteConfig.locales.map((siteLocale) => [
-            siteLocale,
-            `${siteConfig.url}/${siteLocale}${normalizedPath.replace(/^\/(en|fr)/, '')}`,
-          ])
-        ),
-        'x-default': `${siteConfig.url}/en${normalizedPath.replace(/^\/(en|fr)/, '')}`,
-      },
+      languages: createLocalizedAlternates(normalizedPath),
     },
     openGraph: {
       title,

@@ -14,6 +14,7 @@ import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults'
 import CookieConsent from '@/components/analytics/CookieConsent';
 import { siteConfig } from '@/config/site';
 import { nohemi } from '@/app/fonts';
+import { createLocalizedAlternates } from '@/lib/seo';
 
 const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
 const areaServedJsonLd = siteConfig.business.areaServed.map((area) => ({ '@type': 'Place', name: area }));
@@ -136,11 +137,7 @@ export async function generateMetadata({
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: `/${locale}`,
-      languages: {
-        en: '/en',
-        fr: '/fr',
-        'x-default': '/en',
-      },
+      languages: createLocalizedAlternates('/'),
     },
     robots: {
       index: true,
