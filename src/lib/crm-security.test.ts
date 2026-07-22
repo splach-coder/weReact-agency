@@ -31,6 +31,27 @@ test('requires Google OAuth and validates assignments against the team', () => {
   assert.match(migration, /from public\.team_members[\s\S]*lower\(tm\.email\) = lower\(p_assigned_to\)/i);
 });
 
+test('rejects non-team Google sessions before serving the CRM', () => {
+  const middleware = readFileSync(
+    new URL('./supabase/middleware.ts', import.meta.url),
+    'utf8',
+  );
+  const callback = readFileSync(
+    new URL('../app/admin/auth/callback/route.ts', import.meta.url),
+    'utf8',
+  );
+  const pageGuard = readFileSync(
+    new URL('./admin-auth.ts', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(middleware, /rpc\(['"]is_team_member['"]\)/i);
+  assert.match(middleware, /auth\.signOut\(\)/i);
+  assert.match(callback, /rpc\(['"]is_team_member['"]\)/i);
+  assert.match(callback, /auth\.signOut\(\)/i);
+  assert.match(pageGuard, /rpc\(['"]is_team_member['"]\)/i);
+});
+
 test('rejects stale workflow writes before updating the row', () => {
   assert.match(migration, /p_expected_updated_at timestamptz/i);
   assert.match(

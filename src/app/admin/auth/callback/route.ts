@@ -11,7 +11,15 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) return NextResponse.redirect(new URL('/admin', url.origin));
+    if (!error) {
+      const { data: isTeamMember, error: membershipError } = await supabase.rpc('is_team_member');
+      if (!membershipError && isTeamMember === true) {
+        return NextResponse.redirect(new URL('/admin', url.origin));
+      }
+
+      await supabase.auth.signOut();
+      return NextResponse.redirect(new URL('/admin/login?error=access', url.origin));
+    }
   }
 
   return NextResponse.redirect(new URL('/admin/login?error=auth', url.origin));
