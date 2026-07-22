@@ -3,6 +3,7 @@ export const FINANCE_STATUSES = ['pending', 'paid'] as const;
 
 export type FinanceType = (typeof FINANCE_TYPES)[number];
 export type FinanceStatus = (typeof FINANCE_STATUSES)[number];
+export type FinanceSource = 'manual' | 'project_close' | 'adjustment';
 
 export type FinanceTransaction = {
   id: string;
@@ -16,6 +17,7 @@ export type FinanceTransaction = {
   reference: string | null;
   client_id: string | null;
   project_id: string | null;
+  source: FinanceSource;
   created_by: string;
 };
 
@@ -89,6 +91,7 @@ export function parseFinanceEntry(input: unknown): Valid<Omit<FinanceTransaction
       reference: text(value.reference, 80) || null,
       client_id: nullableUuid(value.clientId),
       project_id: nullableUuid(value.projectId),
+      source: 'manual',
     },
   };
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState, useTransition } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, CircleCheckBig, Globe2, Plus, RotateCcw, Save, Send, XCircle } from 'lucide-react';
 import { addLeadNoteAction, saveProjectBriefAction, updateLeadAction } from '../../actions';
@@ -15,6 +16,7 @@ import {
   type LeadStatus,
   type ProjectStatus,
 } from '@/lib/crm';
+import { formatMad } from '@/lib/operations';
 
 const STATUS_LABELS: Record<LeadStatus, string> = {
   new: 'New enquiry',
@@ -367,7 +369,7 @@ export function ProjectBriefEditor({
       setIsError(!result.ok);
       setMessage(result.ok
         ? (nextStatus === 'launched'
-          ? 'Project completed and moved to Closed Projects.'
+          ? `Project closed and ${formatMad(Number(draft.budget))} recorded as paid revenue.`
           : `${PROJECT_STATUS_LABELS[nextStatus]} saved.`)
         : (result.error ?? 'Could not save.'));
       if (result.ok) {
@@ -388,13 +390,20 @@ export function ProjectBriefEditor({
   }
 
   const lifecycleAction = getProjectLifecycleAction(draft.status);
+  const confirmedBudget = Number(draft.budget);
+  const closingWithoutAmount = lifecycleAction?.nextStatus === 'launched'
+    && (!Number.isFinite(confirmedBudget) || confirmedBudget <= 0);
   const lifecycleDisabled = saving
     || !progress.ready
+    || closingWithoutAmount
     || (draft.status !== 'briefing' && !draft.projectId);
 
   function advanceProject() {
     if (!lifecycleAction) return;
-    if (lifecycleAction.confirmation && !window.confirm(lifecycleAction.confirmation)) return;
+    const confirmation = lifecycleAction.nextStatus === 'launched'
+      ? `Close this project and record ${formatMad(confirmedBudget)} as paid revenue?`
+      : lifecycleAction.confirmation;
+    if (confirmation && !window.confirm(confirmation)) return;
     submitProject(lifecycleAction.nextStatus);
   }
 
@@ -550,7 +559,7 @@ export function ProjectBriefEditor({
               <div className="crm-form-grid">
                 <div className="crm-field">
                   <label htmlFor="project-budget">Confirmed budget (MAD)</label>
-                  <input id="project-budget" type="number" min="0" inputMode="decimal" value={draft.budget} onChange={(event) => update('budget', event.target.value)} placeholder="e.g. 6000" />
+                  <input id="project-budget" type="number" min="0" inputMode="decimal" value={draft.budget} onChange={(event) => update('budget', event.target.value)} placeholder="e.g. 6000" disabled={draft.status === 'launched'} />
                 </div>
                 <div className="crm-field">
                   <label htmlFor="project-date">Target launch</label>
@@ -569,6 +578,9 @@ export function ProjectBriefEditor({
         {progress.missing.length > 0 && (
           <p className="crm-brief-hint">Before handoff: add {progress.missing.map((field) => field.replace('_', ' ')).join(', ')}.</p>
         )}
+        {closingWithoutAmount && (
+          <p className="crm-brief-hint is-payment">Add the confirmed project amount before closing and recording payment.</p>
+        )}
 
         <div className="crm-brief-actions">
           <button type="submit" className="crm-secondary-button" disabled={saving || !dirty}>
@@ -585,9 +597,10 @@ export function ProjectBriefEditor({
             <div className="crm-project-complete" role="status">
               <CircleCheckBig size={18} />
               <div>
-                <strong>Project completed</strong>
-                <span>Filed in Closed Projects</span>
+                <strong>Payment recorded</strong>
+                <span>{formatMad(confirmedBudget)} · Project filed in Closed Projects</span>
               </div>
+              <Link href="/admin/finance" className="crm-project-complete__link">View in Finance</Link>
             </div>
           )}
         </div>

@@ -159,6 +159,21 @@ test('blocks developer handoff until the essential brief is complete', () => {
   });
 });
 
+test('requires a confirmed amount before closing a project as fully paid', () => {
+  assert.deepEqual(parseProjectBrief({
+    projectName: 'Riad website',
+    projectType: 'Business website',
+    status: 'launched',
+    goals: 'Increase direct bookings.',
+    pages: 'Home, Rooms, Contact',
+    features: 'Booking request',
+    languages: 'English, French',
+    budget: '',
+  }), {
+    valid: false,
+    error: 'Add the confirmed project amount before closing it.',
+  });
+});
 test('normalizes a phone-first manual enquiry without inventing an email', () => {
   assert.deepEqual(parseManualLead({
     name: '  Salma Idrissi  ',

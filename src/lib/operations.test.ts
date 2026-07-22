@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import {
   buildCashflowSeries,
@@ -9,9 +10,9 @@ import {
 } from './operations';
 
 const transactions: FinanceTransaction[] = [
-  { id: '1', created_at: '2026-07-01T00:00:00.000Z', occurred_on: '2026-07-02', type: 'income', status: 'paid', amount: 12000, category: 'Website project', description: 'Atlas deposit', reference: null, client_id: null, project_id: null, created_by: 'owner@wereact.agency' },
-  { id: '2', created_at: '2026-07-03T00:00:00.000Z', occurred_on: '2026-07-03', type: 'expense', status: 'paid', amount: 2500, category: 'Software', description: 'Subscriptions', reference: null, client_id: null, project_id: null, created_by: 'owner@wereact.agency' },
-  { id: '3', created_at: '2026-07-04T00:00:00.000Z', occurred_on: '2026-07-04', type: 'income', status: 'pending', amount: 4000, category: 'SEO', description: 'Monthly retainer', reference: null, client_id: null, project_id: null, created_by: 'owner@wereact.agency' },
+  { id: '1', created_at: '2026-07-01T00:00:00.000Z', occurred_on: '2026-07-02', type: 'income', status: 'paid', amount: 12000, category: 'Website project', description: 'Atlas deposit', reference: null, client_id: null, project_id: null, source: 'manual', created_by: 'owner@wereact.agency' },
+  { id: '2', created_at: '2026-07-03T00:00:00.000Z', occurred_on: '2026-07-03', type: 'expense', status: 'paid', amount: 2500, category: 'Software', description: 'Subscriptions', reference: null, client_id: null, project_id: null, source: 'manual', created_by: 'owner@wereact.agency' },
+  { id: '3', created_at: '2026-07-04T00:00:00.000Z', occurred_on: '2026-07-04', type: 'income', status: 'pending', amount: 4000, category: 'SEO', description: 'Monthly retainer', reference: null, client_id: null, project_id: null, source: 'manual', created_by: 'owner@wereact.agency' },
 ];
 
 test('calculates paid company performance separately from pending income', () => {
@@ -28,7 +29,7 @@ test('builds a stable six-month cashflow series including empty months', () => {
 test('validates and normalizes a finance entry', () => {
   assert.deepEqual(parseFinanceEntry({ type: ' income ', status: 'paid', amount: '12,500.50', category: ' Website project ', description: ' Atlas final payment ', occurredOn: '2026-07-22', reference: ' INV-042 ', clientId: '', projectId: '' }), {
     valid: true,
-    value: { type: 'income', status: 'paid', amount: 12500.5, category: 'Website project', description: 'Atlas final payment', occurred_on: '2026-07-22', reference: 'INV-042', client_id: null, project_id: null },
+    value: { type: 'income', status: 'paid', amount: 12500.5, category: 'Website project', description: 'Atlas final payment', occurred_on: '2026-07-22', reference: 'INV-042', client_id: null, project_id: null, source: 'manual' },
   });
 });
 
@@ -42,4 +43,17 @@ test('normalizes a focused newsletter campaign', () => {
     valid: true,
     value: { subject: 'Three ways to improve your website', preview: 'Practical notes from WeReact.', message: 'A useful opening.\n\nA second paragraph.' },
   });
+});
+test('exposes automatic project-close revenue throughout Finance', () => {
+  const operations = readFileSync(new URL('./operations.ts', import.meta.url), 'utf8');
+  const workspace = readFileSync(new URL('../app/admin/finance/FinanceWorkspace.tsx', import.meta.url), 'utf8');
+  const overviewPage = readFileSync(new URL('../app/admin/page.tsx', import.meta.url), 'utf8');
+  const financePage = readFileSync(new URL('../app/admin/finance/page.tsx', import.meta.url), 'utf8');
+
+  assert.match(operations, /export type FinanceSource = 'manual' \| 'project_close' \| 'adjustment'/);
+  assert.match(operations, /source: FinanceSource/);
+  assert.match(workspace, /Project payment/);
+  assert.match(workspace, /item\.source === 'project_close'/);
+  assert.match(overviewPage, /project_id,source,created_by/);
+  assert.match(financePage, /project_id,source,created_by/);
 });

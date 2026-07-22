@@ -152,8 +152,8 @@ test('exposes one clear next action for each active project stage', () => {
   });
   assert.deepEqual(getProjectLifecycleAction('review'), {
     nextStatus: 'launched',
-    label: 'Complete project',
-    confirmation: 'Complete this project and move it to Closed Projects?',
+    label: 'Close project and record payment',
+    confirmation: 'Close this project and record its confirmed amount as paid revenue?',
   });
   assert.deepEqual(getProjectLifecycleAction('paused'), {
     nextStatus: 'building',

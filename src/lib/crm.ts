@@ -141,8 +141,8 @@ export function getProjectLifecycleAction(status: ProjectStatus): ProjectLifecyc
   if (status === 'review') {
     return {
       nextStatus: 'launched',
-      label: 'Complete project',
-      confirmation: 'Complete this project and move it to Closed Projects?',
+      label: 'Close project and record payment',
+      confirmation: 'Close this project and record its confirmed amount as paid revenue?',
     };
   }
   if (status === 'paused') return { nextStatus: 'building', label: 'Resume development' };

@@ -2415,6 +2415,20 @@ body {
   text-transform: uppercase;
 }
 
+.crm-project-complete__link {
+  margin-left: 8px;
+  color: var(--crm-green);
+  font-size: 9px;
+  font-weight: 720;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-transform: uppercase;
+}
+
+.crm-brief-hint.is-payment {
+  color: #8a5e15;
+}
+
 @media (max-width: 560px) {
   .crm-brief-actions .crm-primary-button,
   .crm-project-complete {
@@ -2426,7 +2440,10 @@ body {
     padding: 10px 12px;
     border: 1px solid var(--crm-line);
     border-left: 2px solid var(--crm-green);
+    flex-wrap: wrap;
   }
+
+  .crm-project-complete__link { margin-left: auto; }
 }
 
 /* Focused client workspace */

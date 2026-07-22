@@ -47,13 +47,13 @@ export function FinanceWorkspace({ transactions, projects }: { transactions: Fin
           <label className="is-wide"><span>Description</span><input name="description" required maxLength={180} placeholder="What was paid or purchased?" /></label>
           <label className="is-wide"><span>Reference</span><input name="reference" maxLength={80} placeholder="Invoice or receipt number (optional)" /></label>
         </div>
-        <footer><button type="submit" className="ops-primary-button" disabled={isPending}><ReceiptText size={16} /> {isPending ? 'Saving…' : 'Save transaction'}</button></footer>
+        <footer><button type="submit" className="ops-primary-button" disabled={isPending}><ReceiptText size={16} /> {isPending ? 'Saving...' : 'Save transaction'}</button></footer>
       </form>}
       {result && <p className={`ops-form-result${result === 'Transaction saved.' ? ' is-success' : ' is-error'}`} role="status">{result}</p>}
 
       <div className="ops-finance-grid">
         <section className="ops-panel ops-finance-chart"><header><div><p>Six months</p><h2>Income vs expenses</h2></div></header><div>{months.map((month) => <article key={month.key}><span>{month.label}</span><div><i style={{ width: `${month.income / maxValue * 100}%` }} /><i style={{ width: `${month.expenses / maxValue * 100}%` }} /></div><small>{formatMad(month.income)} / {formatMad(month.expenses)}</small></article>)}</div></section>
-        <section className="ops-panel ops-ledger"><header><div><p>All entries</p><h2>Transaction ledger</h2></div><span>{transactions.length} entries</span></header><div>{transactions.map((item) => <article key={item.id}><span className={`ops-ledger-icon is-${item.type}`}>{item.type === 'income' ? <ArrowDownLeft size={16} /> : <ArrowUpRight size={16} />}</span><span><strong>{item.description}</strong><small>{item.category} · {formatDate(item.occurred_on)}{item.reference ? ` · ${item.reference}` : ''}</small></span><span><b>{item.type === 'income' ? '+' : '-'}{formatMad(item.amount)}</b><small className={`is-${item.status}`}>{item.status}</small></span></article>)}{!transactions.length && <div className="ops-panel-empty">No transactions yet.</div>}</div></section>
+        <section className="ops-panel ops-ledger"><header><div><p>All entries</p><h2>Transaction ledger</h2></div><span>{transactions.length} entries</span></header><div>{transactions.map((item) => <article key={item.id}><span className={`ops-ledger-icon is-${item.type}`}>{item.type === 'income' ? <ArrowDownLeft size={16} /> : <ArrowUpRight size={16} />}</span><span><strong>{item.description}</strong><small>{item.category} - {formatDate(item.occurred_on)}{item.reference ? ` - ${item.reference}` : ''}</small>{item.source === 'project_close' && <em className="ops-ledger-source">Project payment</em>}</span><span><b>{item.type === 'income' ? '+' : '-'}{formatMad(item.amount)}</b><small className={`is-${item.status}`}>{item.status}</small></span></article>)}{!transactions.length && <div className="ops-panel-empty">No transactions yet.</div>}</div></section>
       </div>
     </main>
   );

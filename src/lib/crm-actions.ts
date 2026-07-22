@@ -137,6 +137,9 @@ export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdat
     }
     budget = Math.round(parsed * 100) / 100;
   }
+  if (status === 'launched' && (!budget || budget <= 0)) {
+    return { valid: false, error: 'Add the confirmed project amount before closing it.' };
+  }
 
   const targetLaunch = cleanText(value.targetLaunch, 10);
   if (targetLaunch && !/^\d{4}-\d{2}-\d{2}$/.test(targetLaunch)) {

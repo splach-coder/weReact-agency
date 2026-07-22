@@ -427,11 +427,12 @@
 .ops-ledger small { color: var(--crm-muted); font-size: 8px; }
 .ops-ledger small.is-pending { color: var(--crm-gold); text-transform: uppercase; }
 .ops-ledger small.is-paid { color: var(--crm-green); text-transform: uppercase; }
+.ops-ledger-source { width: max-content; padding: 2px 5px; color: var(--crm-green); border: 1px solid rgba(58,90,64,.18); border-radius: 2px; background: var(--crm-soft-green); font-size: 7px; font-style: normal; font-weight: 720; letter-spacing: 0; text-transform: uppercase; }
 
 @media (max-width: 1080px) {
   .ops-sidebar { width: 82px; padding: 27px 12px 17px; }
   .ops-sidebar .ops-brand { overflow: hidden; width: 28px; font-size: 0; }
-  .ops-sidebar .ops-brand::after { content: '·w·'; font-size: 20px; }
+  .ops-sidebar .ops-brand::after { content: 'Â·wÂ·'; font-size: 20px; }
   .ops-nav__label,
   .ops-nav a span,
   .ops-member > span:last-child,

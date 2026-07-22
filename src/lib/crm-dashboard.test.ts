@@ -36,3 +36,16 @@ test('mobile cards expose explicit, accessible stage controls', () => {
   assert.match(dashboard, /movingLeadId === lead\.id/);
   assert.match(dashboard, /movingProjectId === project\.id/);
 });
+test('connects project closure to its confirmed paid revenue', () => {
+  const editor = readFileSync(
+    new URL('../app/admin/leads/[id]/LeadEditor.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(editor, /draft\.budget/);
+  assert.match(editor, /Close this project and record/);
+  assert.match(editor, /formatMad\(confirmedBudget\)/);
+  assert.match(editor, /Payment recorded/);
+  assert.match(editor, /href="\/admin\/finance"/);
+  assert.match(editor, /disabled=\{draft\.status === 'launched'\}/);
+});
