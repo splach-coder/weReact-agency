@@ -52,6 +52,25 @@ test('rejects non-team Google sessions before serving the CRM', () => {
   assert.match(pageGuard, /rpc\(['"]is_team_member['"]\)/i);
 });
 
+test('explains an access-denied login without exposing the allowlist', () => {
+  const loginPage = readFileSync(
+    new URL('../app/admin/login/page.tsx', import.meta.url),
+    'utf8',
+  );
+  const loginClient = readFileSync(
+    new URL('../app/admin/login/AdminLoginClient.tsx', import.meta.url),
+    'utf8',
+  );
+  const login = `${loginPage}\n${loginClient}`;
+
+  assert.match(loginPage, /searchParams/i);
+  assert.match(login, /reason\s*===\s*['"]access['"]/i);
+  assert.match(login, /role=['"]alert['"]/i);
+  assert.match(login, /Access denied/i);
+  assert.match(login, /not approved for the WeReact workspace/i);
+  assert.doesNotMatch(login, /anasbenbow123|70karim\.hida/i);
+});
+
 test('rejects stale workflow writes before updating the row', () => {
   assert.match(migration, /p_expected_updated_at timestamptz/i);
   assert.match(

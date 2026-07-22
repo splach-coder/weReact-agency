@@ -47,7 +47,10 @@ export function AdminShell({ member, children }: { member: TeamMember; children:
       <div className="ops-app">
         <header className="ops-mobile-header">
           <Link href="/admin" className="ops-brand">&middot;wereact&middot;</Link>
-          <span>{navigation.find(({ href }) => isActive(pathname, href))?.label ?? 'Workspace'}</span>
+          <div className="ops-mobile-header__actions">
+            <span className="ops-mobile-header__label">{navigation.find(({ href }) => isActive(pathname, href))?.label ?? 'Workspace'}</span>
+            <SignOutButton compact />
+          </div>
         </header>
         {children}
       </div>
