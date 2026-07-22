@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "tsx --test src/**/*.test.ts",
+    "seo:indexnow": "tsx scripts/submit-indexnow.ts",
     "ads:token": "node scripts/google-ads/get-refresh-token.mjs",
     "ads:list": "node scripts/google-ads/pull-account.mjs --list",
     "ads:pull": "node scripts/google-ads/pull-account.mjs",
