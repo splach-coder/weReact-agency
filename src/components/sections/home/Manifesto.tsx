@@ -114,6 +114,10 @@ export default function Manifesto() {
             ))}
           </p>
 
+          <p className="mt-7 max-w-3xl text-mono text-[10px] leading-relaxed text-[var(--color-text-secondary)] md:text-xs">
+            {t('credentials')}
+          </p>
+
           <motion.div
             aria-hidden="true"
             data-depth="2"

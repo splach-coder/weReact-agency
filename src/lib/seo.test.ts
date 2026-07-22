@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getServiceLandingPage } from '@/data/services';
 import { getProjectById } from '@/data/projects';
-import { createFaqJsonLd, createLocalizedAlternates, createProjectJsonLd, createServicePageJsonLd } from './seo';
+import { createBusinessJsonLd, createFaqJsonLd, createLocalizedAlternates, createProjectJsonLd, createServicePageJsonLd, createWebsiteJsonLd } from './seo';
 
 test('creates a localized Service schema for a landing page', () => {
   const page = getServiceLandingPage('web-design-marrakech');
@@ -32,8 +32,17 @@ test('creates factual CreativeWork schema without review claims', () => {
   assert.ok(project);
   const schema = createProjectJsonLd(project, 'en');
   assert.equal(schema['@type'], 'CreativeWork');
-  assert.equal(schema.creator['@id'], 'https://www.wereact.agency/#organization');
+  assert.equal(schema.creator['@id'], 'https://www.wereact.agency/#business');
   assert.equal(schema.url, 'https://www.wereact.agency/en/work/flying-tandem');
   assert.ok(!('review' in schema));
   assert.ok(!('aggregateRating' in schema));
+});
+
+test('uses stable business and website identifiers', () => {
+  const business = createBusinessJsonLd();
+  const website = createWebsiteJsonLd();
+  assert.equal(business['@id'], 'https://www.wereact.agency/#business');
+  assert.equal(website.publisher['@id'], business['@id']);
+  assert.equal(website.about['@id'], business['@id']);
+  assert.equal(business.email, 'hello@wereact.agency');
 });

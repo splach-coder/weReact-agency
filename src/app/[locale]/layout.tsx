@@ -17,96 +17,6 @@ import { nohemi } from '@/app/fonts';
 import { createLocalizedAlternates } from '@/lib/seo';
 
 const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
-const areaServedJsonLd = siteConfig.business.areaServed.map((area) => ({ '@type': 'Place', name: area }));
-
-const businessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'ProfessionalService'],
-  '@id': `${siteConfig.url}/#business`,
-  name: siteConfig.business.legalName,
-  alternateName: siteConfig.shortName,
-  description: siteConfig.description,
-  slogan: 'Fast websites for Moroccan businesses that need leads.',
-  url: siteConfig.url,
-  image: `${siteConfig.url}${siteConfig.ogImage}`,
-  logo: `${siteConfig.url}/images/logo.webp`,
-  telephone: siteConfig.business.phoneInternational,
-  email: siteConfig.business.email,
-  priceRange: '$$',
-  currenciesAccepted: siteConfig.campaign.leadCurrency,
-  paymentAccepted: 'Bank transfer, card, cash',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: siteConfig.business.addressDisplay,
-    addressLocality: siteConfig.business.city,
-    addressRegion: siteConfig.business.region,
-    postalCode: siteConfig.business.postalCode,
-    addressCountry: siteConfig.business.country,
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: siteConfig.business.latitude,
-    longitude: siteConfig.business.longitude,
-  },
-  hasMap: siteConfig.business.googleMapsUrl,
-  openingHours: siteConfig.business.openingHours,
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '00:00',
-      closes: '23:59',
-    },
-  ],
-  areaServed: areaServedJsonLd,
-  knowsAbout: [...siteConfig.seo.keywords, ...siteConfig.seo.geoKeywords],
-  audience: siteConfig.seo.audience.map((name) => ({ '@type': 'Audience', audienceType: name })),
-  availableLanguage: siteConfig.seo.languages,
-  contactPoint: [
-    {
-      '@type': 'ContactPoint',
-      contactType: 'sales',
-      telephone: siteConfig.business.phoneInternational,
-      email: siteConfig.business.email,
-      areaServed: siteConfig.business.country,
-      availableLanguage: siteConfig.seo.languages,
-    },
-  ],
-  sameAs: siteConfig.business.sameAs,
-  makesOffer: siteConfig.business.services.map((service) => ({
-    '@type': 'Offer',
-    itemOffered: {
-      '@type': 'Service',
-      name: service,
-      provider: { '@id': `${siteConfig.url}/#business` },
-      areaServed: areaServedJsonLd,
-    },
-  })),
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Website design and lead generation services',
-    itemListElement: siteConfig.business.services.map((service) => ({
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: service,
-      },
-    })),
-  },
-};
-
-const websiteJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${siteConfig.url}/#website`,
-  name: siteConfig.name,
-  alternateName: siteConfig.shortName,
-  url: siteConfig.url,
-  inLanguage: siteConfig.locales,
-  publisher: { '@id': `${siteConfig.url}/#business` },
-  about: { '@id': `${siteConfig.url}/#business` },
-};
-
 export async function generateMetadata({
   params,
 }: {
@@ -216,14 +126,6 @@ export default async function LocaleLayout({
             <main className="flex-grow">
               {children}
             </main>
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-            />
             <Footer />
           </TransitionProvider>
         </NextIntlClientProvider>
