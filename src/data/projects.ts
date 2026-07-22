@@ -9,9 +9,11 @@ export type Project = {
   title: string;
   domain: string;
   externalUrl: string;
+  relationship: 'client-work' | 'studio-owned' | 'independent-project';
   category: string;
   summary: string;
   year: string;
+  modifiedAt: string;
   status: 'live' | 'featured' | 'indexed';
   image: string;
   imageFull?: string;
@@ -30,15 +32,17 @@ export const projects: Project[] = [
     title: 'Flying Tandem',
     domain: 'flyingtandem.com',
     externalUrl: 'https://www.flyingtandem.com/',
+    relationship: 'client-work',
     category: 'Adventure Tourism Website',
     summary: 'A high-trust adventure tourism website for paragliding bookings, safety content, and mobile-first discovery.',
     year: '2025',
+    modifiedAt: '2026-07-22',
     status: 'featured',
     image: '/images/projects/flying-tandem.webp',
     imageFull: '/images/projects/flying-tandem-full.webp',
     services: ['Booking flow', 'Performance', 'Mobile UX'],
     metrics: [
-      { label: 'Mobile ready', value: '100%', detail: 'Built for visitors booking while traveling.' },
+      { label: 'Experience', value: 'Mobile-first', detail: 'Built for visitors booking while traveling.' },
       { label: 'Sector', value: 'Tourism', detail: 'Adventure experience positioning.' },
     ],
     caseStudy: {
@@ -52,9 +56,11 @@ export const projects: Project[] = [
     title: 'Kasbah Angour',
     domain: 'kasbahangour.com',
     externalUrl: 'https://www.kasbahangour.com/en',
+    relationship: 'client-work',
     category: 'Hospitality Website',
     summary: 'A hospitality website built to communicate Moroccan character, direct booking confidence, and premium place discovery.',
     year: '2025',
+    modifiedAt: '2026-07-22',
     status: 'featured',
     image: '/images/projects/kasbah-angour.webp',
     imageFull: '/images/projects/kasbah-angour-full.webp',
@@ -74,9 +80,11 @@ export const projects: Project[] = [
     title: 'Your Morocco',
     domain: 'your-morocco.com',
     externalUrl: 'https://your-morocco.com/en',
+    relationship: 'client-work',
     category: 'Travel Platform',
     summary: 'A Morocco travel platform for curated tours, local experiences, and multilingual destination discovery.',
     year: '2025',
+    modifiedAt: '2026-07-22',
     status: 'featured',
     image: '/images/projects/your-morocco.webp',
     imageFull: '/images/projects/your-morocco-full.webp',
@@ -96,9 +104,11 @@ export const projects: Project[] = [
     title: 'By Marrakech',
     domain: 'by-marrakech.vercel.app',
     externalUrl: 'https://by-marrakech.vercel.app/en',
+    relationship: 'independent-project',
     category: 'City Guide',
     summary: 'A modern Marrakech guide experience for places, culture, and destination content.',
     year: '2025',
+    modifiedAt: '2026-07-22',
     status: 'featured',
     image: '/images/projects/by-marrakech.webp',
     imageFull: '/images/projects/by-marrakech-full.webp',
@@ -118,9 +128,11 @@ export const projects: Project[] = [
     title: 'Trust Drivers Tours',
     domain: 'www.trustdrivers.tours',
     externalUrl: 'https://www.trustdrivers.tours/',
+    relationship: 'studio-owned',
     category: 'Studio Project: Transport & Tours',
     summary: 'A studio-built tour and driver website concept, owned by WeReact, for visitors comparing transport options in Morocco.',
     year: '2026',
+    modifiedAt: '2026-07-22',
     status: 'indexed',
     image: '/images/projects/live/trust-drivers-hero-settled.webp',
     imageFull: '/images/projects/live/trust-drivers-full-settled.webp',
@@ -140,9 +152,11 @@ export const projects: Project[] = [
     title: 'Yoo Marrakech',
     domain: 'www.yoomarrakech.com',
     externalUrl: 'https://www.yoomarrakech.com/',
+    relationship: 'studio-owned',
     category: 'Studio Project: Local Brand',
     summary: 'A studio-built Marrakech brand concept, owned by WeReact, designed for city visibility, service discovery, and polished mobile browsing.',
     year: '2026',
+    modifiedAt: '2026-07-22',
     status: 'indexed',
     image: '/images/projects/live/yoo-marrakech-hero-settled.webp',
     imageFull: '/images/projects/live/yoo-marrakech-full-settled.webp',
@@ -162,9 +176,11 @@ export const projects: Project[] = [
     title: 'Morocco Atlas Guide',
     domain: 'www.moroccoatlasguide.com',
     externalUrl: 'https://www.moroccoatlasguide.com/',
+    relationship: 'studio-owned',
     category: 'Studio Project: Travel Guide',
     summary: 'A studio-built destination guide, owned by WeReact, for Atlas mountain trips, tours, and Moroccan itinerary discovery.',
     year: '2026',
+    modifiedAt: '2026-07-22',
     status: 'indexed',
     image: '/images/projects/live/morocco-atlas-guide-hero-settled.webp',
     imageFull: '/images/projects/live/morocco-atlas-guide-full-settled.webp',

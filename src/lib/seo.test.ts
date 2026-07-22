@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getServiceLandingPage } from '@/data/services';
-import { createFaqJsonLd, createLocalizedAlternates, createServicePageJsonLd } from './seo';
+import { getProjectById } from '@/data/projects';
+import { createFaqJsonLd, createLocalizedAlternates, createProjectJsonLd, createServicePageJsonLd } from './seo';
 
 test('creates a localized Service schema for a landing page', () => {
   const page = getServiceLandingPage('web-design-marrakech');
@@ -24,4 +25,15 @@ test('uses a final English URL as x-default', () => {
   assert.equal(alternates.en, 'https://www.wereact.agency/en/blog');
   assert.equal(alternates.fr, 'https://www.wereact.agency/fr/blog');
   assert.equal(alternates['x-default'], 'https://www.wereact.agency/en/blog');
+});
+
+test('creates factual CreativeWork schema without review claims', () => {
+  const project = getProjectById('flying-tandem');
+  assert.ok(project);
+  const schema = createProjectJsonLd(project, 'en');
+  assert.equal(schema['@type'], 'CreativeWork');
+  assert.equal(schema.creator['@id'], 'https://www.wereact.agency/#organization');
+  assert.equal(schema.url, 'https://www.wereact.agency/en/work/flying-tandem');
+  assert.ok(!('review' in schema));
+  assert.ok(!('aggregateRating' in schema));
 });

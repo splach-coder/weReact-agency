@@ -396,35 +396,33 @@
         }
       ]
     },
-    "testimonials": {
+    "projectEvidence": {
       "eyebrow": "Réalisations choisies",
-      "title": "Nos projets, en bref",
-      "prev": "Témoignage précédent",
-      "next": "Témoignage suivant",
+      "title": "Le problème que chaque projet devait résoudre",
       "items": [
         {
-          "quote": "Une expérience de réservation plus claire pour les voyageurs qui comparent des vols tandem à Marrakech et dans l'Atlas.",
+          "summary": "Une expérience de réservation plus claire pour les voyageurs qui comparent des vols tandem à Marrakech et dans l'Atlas.",
           "name": "Flying Tandem",
-          "role": "Marque de tourisme aventure",
-          "company": "Parcours de réservation et UX mobile",
-          "city": "Marrakech"
+          "category": "Marque de tourisme aventure",
+          "focus": "Parcours de réservation et UX mobile",
+          "location": "Marrakech"
         },
         {
-          "quote": "Un site hôtelier plus calme, avec chambres, localisation, atmosphère et contact direct présentés avec clarté premium.",
+          "summary": "Un site hôtelier plus calme, avec chambres, localisation, atmosphère et contact direct présentés avec clarté premium.",
           "name": "Kasbah Angour",
-          "role": "Hôtel boutique et maison d'hôtes",
-          "company": "UX hôtellerie et structure SEO",
-          "city": "Atlas"
+          "category": "Hôtel boutique et maison d'hôtes",
+          "focus": "UX hôtellerie et structure SEO",
+          "location": "Atlas"
         },
         {
-          "quote": "Un site de voyage structuré pour la découverte des tours, la clarté multilingue et des demandes plus qualifiées.",
+          "summary": "Un site de voyage structuré pour la découverte des tours, la clarté multilingue et des demandes plus qualifiées.",
           "name": "Your Morocco",
-          "role": "Expériences de voyage privées",
-          "company": "UX voyage et structure de contenu",
-          "city": "Maroc"
+          "category": "Expériences de voyage privées",
+          "focus": "UX voyage et structure de contenu",
+          "location": "Maroc"
         }
       ],
-      "proofLabel": "Note de projet"
+      "proofLabel": "Éléments du projet"
     },
     "faq": {
       "eyebrow": "Bon à savoir",

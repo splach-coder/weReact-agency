@@ -10,7 +10,7 @@ const AudiencePaths = dynamic(() => import('@/components/sections/home/AudienceP
 const SelectedProjects = dynamic(() => import('@/components/sections/home/SelectedProjects'));
 const WhatWeDo = dynamic(() => import('@/components/sections/home/WhatWeDo'));
 const ScrollReel = dynamic(() => import('@/components/sections/home/ScrollReel'));
-const Testimonials = dynamic(() => import('@/components/sections/home/Testimonials'));
+const ProjectEvidence = dynamic(() => import('@/components/sections/home/Testimonials'));
 const Faq = dynamic(() => import('@/components/sections/home/Faq'));
 const BookCall = dynamic(() => import('@/components/sections/home/BookCall'));
 
@@ -20,7 +20,7 @@ const SECTIONS = [
   WhatWeDo,
   SelectedProjects,
   ScrollReel,
-  Testimonials,
+  ProjectEvidence,
   Faq,
   BookCall,
 ];

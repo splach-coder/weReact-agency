@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import type { ServiceFaq, ServiceLocaleCopy } from '@/data/services';
+import type { Project } from '@/data/projects';
 
 export function createLocalizedAlternates(path: string) {
   const withoutLocale = path.replace(/^\/(en|fr)(?=\/|$)/, '');
@@ -163,5 +164,32 @@ export function createBreadcrumbJsonLd(items: { name: string; url: string }[]) {
       name: item.name,
       item: item.url.startsWith('http') ? item.url : `${siteConfig.url}${item.url}`,
     })),
+  };
+}
+
+export function createProjectJsonLd(project: Project, locale: string) {
+  const language = locale === 'fr' ? 'fr' : 'en';
+  const url = `${siteConfig.url}/${language}/work/${project.id}`;
+  const image = project.imageFull ?? project.image;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${url}#project`,
+    name: project.title,
+    description: project.summary,
+    url,
+    image: image.startsWith('http') ? image : `${siteConfig.url}${image}`,
+    dateCreated: project.year,
+    dateModified: project.modifiedAt,
+    creator: {
+      '@type': 'Organization',
+      '@id': `${siteConfig.url}/#organization`,
+      name: siteConfig.business.legalName,
+      url: siteConfig.url,
+    },
+    inLanguage: language,
+    sameAs: project.externalUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
 }

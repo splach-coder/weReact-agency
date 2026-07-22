@@ -396,35 +396,33 @@
         }
       ]
     },
-    "testimonials": {
+    "projectEvidence": {
       "eyebrow": "Selected work",
-      "title": "Projects, in short",
-      "prev": "Previous testimonial",
-      "next": "Next testimonial",
+      "title": "What each project was built to solve",
       "items": [
         {
-          "quote": "A focused booking experience for travelers comparing tandem flight options in Marrakech and the Atlas Mountains.",
+          "summary": "A focused booking experience for travelers comparing tandem flight options in Marrakech and the Atlas Mountains.",
           "name": "Flying Tandem",
-          "role": "Adventure tourism brand",
-          "company": "Booking flow and mobile UX",
-          "city": "Marrakech"
+          "category": "Adventure tourism brand",
+          "focus": "Booking flow and mobile UX",
+          "location": "Marrakech"
         },
         {
-          "quote": "A calmer hospitality website that presents rooms, location, atmosphere, and direct inquiry paths with premium clarity.",
+          "summary": "A calmer hospitality website that presents rooms, location, atmosphere, and direct inquiry paths with premium clarity.",
           "name": "Kasbah Angour",
-          "role": "Boutique hotel and guesthouse",
-          "company": "Hospitality UX and SEO structure",
-          "city": "Atlas Mountains"
+          "category": "Boutique hotel and guesthouse",
+          "focus": "Hospitality UX and SEO structure",
+          "location": "Atlas Mountains"
         },
         {
-          "quote": "A travel experience site structured for tour discovery, multilingual clarity, and stronger inquiry intent.",
+          "summary": "A travel experience site structured for tour discovery, multilingual clarity, and stronger inquiry intent.",
           "name": "Your Morocco",
-          "role": "Private travel experiences",
-          "company": "Travel UX and content structure",
-          "city": "Morocco"
+          "category": "Private travel experiences",
+          "focus": "Travel UX and content structure",
+          "location": "Morocco"
         }
       ],
-      "proofLabel": "Project notes"
+      "proofLabel": "Project evidence"
     },
     "faq": {
       "eyebrow": "Good to know",

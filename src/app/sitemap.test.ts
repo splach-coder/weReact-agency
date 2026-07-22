@@ -16,3 +16,12 @@ test('includes both new audience paths in English and French', () => {
   assert.ok(routes.some((entry) => entry.url.endsWith('/en/international-web-design-agency')));
   assert.ok(routes.some((entry) => entry.url.endsWith('/fr/international-web-design-agency')));
 });
+
+test('uses stable project modification dates instead of the build time', () => {
+  const createSitemap = sitemap as (buildDate?: Date) => ReturnType<typeof sitemap>;
+  const routes = createSitemap(new Date('2030-01-02T00:00:00.000Z'));
+  const home = routes.find((entry) => entry.url.endsWith('/en'));
+  const project = routes.find((entry) => entry.url.endsWith('/en/work/flying-tandem'));
+  assert.equal(new Date(home?.lastModified ?? '').toISOString().slice(0, 10), '2030-01-02');
+  assert.equal(new Date(project?.lastModified ?? '').toISOString().slice(0, 10), '2026-07-22');
+});
