@@ -14,6 +14,7 @@ export type LeadAttribution = Partial<{
   referrer: string;
   captured_at: string;
   transaction_id: string;
+  source_page: string;
 }>;
 
 const ATTRIBUTION_KEYS: (keyof LeadAttribution)[] = [
@@ -30,6 +31,7 @@ const ATTRIBUTION_KEYS: (keyof LeadAttribution)[] = [
   'referrer',
   'captured_at',
   'transaction_id',
+  'source_page',
 ];
 
 const ATTRIBUTION_VALUE_MAX_LENGTH = 512;
@@ -44,11 +46,40 @@ export function sanitizeAttribution(attribution: unknown): LeadAttribution {
   const clean: LeadAttribution = {};
   for (const key of ATTRIBUTION_KEYS) {
     const value = (attribution as Record<string, unknown>)[key];
+    if (key === 'source_page') {
+      const sourcePage = getAllowedSourcePage(value);
+      if (sourcePage) clean.source_page = sourcePage;
+      continue;
+    }
     if (typeof value === 'string' && value.length > 0) {
       clean[key] = value.slice(0, ATTRIBUTION_VALUE_MAX_LENGTH);
     }
   }
   return clean;
+}
+
+const ALLOWED_SOURCE_PAGES = new Set([
+  'web-design-marrakech',
+  'tourism-websites-morocco',
+  'seo-landing-pages',
+  'agence-web-marrakech',
+  'website-design-moroccan-businesses',
+  'international-web-design-agency',
+]);
+
+export function getAllowedSourcePage(value: unknown) {
+  return typeof value === 'string' && ALLOWED_SOURCE_PAGES.has(value) ? value : undefined;
+}
+
+function formatLeadMessage(input: ContactSubmission) {
+  const qualification = [
+    input.projectType ? `Project type: ${input.projectType}` : '',
+    input.budget ? `Budget: ${input.budget}` : '',
+    input.timeline ? `Timeline: ${input.timeline}` : '',
+  ].filter(Boolean);
+  const message = input.message?.trim() ?? '';
+
+  return [qualification.join('\n'), message].filter(Boolean).join('\n\n');
 }
 
 export type LeadRecord = {
@@ -70,7 +101,7 @@ export function createLeadRecord(input: ContactSubmission, attribution: unknown 
     company: input.company?.trim() || null,
     phone: input.phone?.trim() ?? '',
     whatsapp: input.whatsapp?.trim() || null,
-    message: input.message?.trim() ?? '',
+    message: formatLeadMessage(input),
     status: 'new',
     source: 'website_contact_form',
     attribution: sanitizeAttribution(attribution),

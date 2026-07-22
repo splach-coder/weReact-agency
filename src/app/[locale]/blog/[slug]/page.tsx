@@ -11,6 +11,7 @@ import { siteConfig } from '@/config/site';
 import { createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { getServiceLandingPage } from '@/data/services';
+import { getBlogUi } from '@/data/blog-ui';
 
 interface Props {
     params: Promise<{ slug: string; locale: string }>;
@@ -22,9 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!basePost) return { title: 'Post Not Found' };
     const post = getLocalizedPost(basePost, locale);
+    const ui = getBlogUi(locale);
 
     const metadata = createPageMetadata({
-        title: `${post.title} | WeReact Journal`,
+        title: `${post.title} | ${ui.journal}`,
         description: post.metaDescription || post.excerpt,
         path: `/${locale}/blog/${post.slug}`,
         image: post.image,
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         type: 'article',
         publishedTime: post.publishedAt,
         authors: [post.author],
-        keywords: [post.category, 'WeReact Journal', 'website design Marrakech', 'local SEO Morocco'],
+        keywords: [post.category, ui.journal, 'website design Marrakech', 'local SEO Morocco'],
     });
 
     return {
@@ -63,6 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
     }
 
     const post = getLocalizedPost(basePost, locale);
+    const ui = getBlogUi(locale);
     const otherPosts = blogPosts
         .filter((p) => p.slug !== slug)
         .slice(0, 3)
@@ -90,7 +93,7 @@ export default async function BlogPostPage({ params }: Props) {
 
     const breadcrumbJsonLd = createBreadcrumbJsonLd([
         { name: locale === 'fr' ? 'Accueil' : 'Home', url: `/${locale}` },
-        { name: 'Blog', url: `/${locale}/blog` },
+        { name: ui.journal, url: `/${locale}/blog` },
         { name: post.title, url: `/${locale}/blog/${post.slug}` },
     ]);
 
@@ -99,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-            <BlogShare url={postUrl} title={post.title} variant="floating" />
+            <BlogShare url={postUrl} title={post.title} locale={locale} variant="floating" />
 
             {/* Post Header */}
             <header className="relative pt-36 pb-16 md:pt-48 md:pb-24 px-6 bg-[var(--color-background-main)] text-[var(--color-text-main)] overflow-hidden text-center md:text-left">
@@ -109,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
                         className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-all mb-8 text-mono group"
                     >
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
-                        Journal index
+                        {ui.back}
                     </Link>
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-[9px] font-black uppercase tracking-[0.2em] mb-6">
@@ -158,11 +161,11 @@ export default async function BlogPostPage({ params }: Props) {
 
                             {relatedService && (
                                 <aside className="mt-12 border-y border-[rgba(58,90,64,0.15)] py-8">
-                                    <p className="text-mono text-[var(--color-primary)]">Practical next step</p>
+                                    <p className="text-mono text-[var(--color-primary)]">{ui.nextStep}</p>
                                     <h2 className="mt-3 text-2xl font-bold leading-tight text-[var(--color-text-main)]">{relatedService.copy[locale === 'fr' ? 'fr' : 'en'].title}</h2>
                                     <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-text-secondary)]">{relatedService.copy[locale === 'fr' ? 'fr' : 'en'].description}</p>
                                     <Link href={`/${locale}/${relatedService.slug}`} className="mt-5 inline-flex items-center gap-2 text-mono text-[var(--color-primary)] underline underline-offset-4">
-                                        Explore the service <ArrowRight size={14} aria-hidden="true" />
+                                        {ui.exploreService} <ArrowRight size={14} aria-hidden="true" />
                                     </Link>
                                 </aside>
                             )}
@@ -174,7 +177,7 @@ export default async function BlogPostPage({ params }: Props) {
                                         </span>
                                     ))}
                                 </div>
-                                <BlogShare url={postUrl} title={post.title} variant="inline" />
+                                <BlogShare url={postUrl} title={post.title} locale={locale} variant="inline" />
                             </div>
                         </div>
                     </div>
@@ -184,7 +187,7 @@ export default async function BlogPostPage({ params }: Props) {
                         <div className="bg-white p-6 rounded-sm border border-gray-100 shadow-sm">
                             <h3 className="text-lg font-bold text-[var(--color-primary)] mb-6 flex items-center gap-2 uppercase tracking-tighter">
                                 <div className="w-1 h-4 bg-[var(--color-primary)] rounded-sm" />
-                                Latest Briefings
+                                {ui.latestBriefings}
                             </h3>
                             <div className="space-y-6">
                                 {otherPosts.map(p => (
@@ -197,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
                                             {p.title}
                                         </h4>
                                         <div className="flex items-center gap-1.5 text-[var(--color-primary)] text-[9px] font-black uppercase lg:opacity-0 group-hover:opacity-100 transition-all">
-                                            Read <ArrowRight size={12} />
+                                            {ui.readArticle} <ArrowRight size={12} />
                                         </div>
                                     </Link>
                                 ))}
@@ -205,13 +208,13 @@ export default async function BlogPostPage({ params }: Props) {
                         </div>
 
                         <div className="bg-[var(--color-primary)] p-8 rounded-sm text-white relative overflow-hidden group shadow-lg">
-                            <h3 className="text-2xl font-bold mb-4 tracking-tighter uppercase leading-[0.9]">Architecting Futures</h3>
-                            <p className="text-white/50 mb-8 text-sm leading-relaxed">Let's translate insights into high-performance digital assets.</p>
+                            <h3 className="text-2xl font-bold mb-4 tracking-tighter uppercase leading-[0.9]">{ui.contactTitle}</h3>
+                            <p className="text-white/50 mb-8 text-sm leading-relaxed">{ui.contactCopy}</p>
                             <Link
                                 href={`/${locale}/contact`}
                                 className="inline-flex items-center justify-between w-full p-1.5 pl-6 bg-white text-[var(--color-primary)] rounded-sm group/btn transition-all font-black uppercase text-[9px] tracking-widest"
                             >
-                                Contact Us
+                                {ui.contact}
                                 <div className="w-8 h-8 rounded-sm bg-[var(--color-primary)] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <ArrowRight size={14} />
                                 </div>

@@ -3,6 +3,14 @@ import { siteConfig } from '@/config/site';
 
 export type ContactLocale = 'en' | 'fr';
 
+export const PROJECT_TYPES = ['tourism', 'local-business', 'international', 'ecommerce', 'landing-page', 'other'] as const;
+export const BUDGET_RANGES = ['under-5000', '5000-10000', '10000-25000', '25000-plus', 'not-sure'] as const;
+export const TIMELINES = ['asap', 'within-month', 'one-three-months', 'flexible'] as const;
+
+export type ProjectType = (typeof PROJECT_TYPES)[number];
+export type BudgetRange = (typeof BUDGET_RANGES)[number];
+export type ProjectTimeline = (typeof TIMELINES)[number];
+
 export type ContactSubmission = {
   name: string;
   email: string;
@@ -10,13 +18,16 @@ export type ContactSubmission = {
   whatsapp?: string;
   company?: string;
   message?: string;
+  projectType?: ProjectType | '';
+  budget?: BudgetRange | '';
+  timeline?: ProjectTimeline | '';
   website?: string;
   locale?: ContactLocale;
   attribution?: LeadAttribution | null;
 };
 
 type ValidationResult = { valid: true } | { valid: false; message: string };
-export type ContactField = 'name' | 'email' | 'phone' | 'whatsapp' | 'company' | 'message';
+export type ContactField = 'name' | 'email' | 'phone' | 'whatsapp' | 'company' | 'message' | 'projectType' | 'budget' | 'timeline';
 export type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
 const requiredContactFields = new Set<ContactField>(['name', 'email']);
@@ -44,6 +55,9 @@ const VALIDATION_MESSAGES = {
     whatsappTooLong: 'Please use a shorter WhatsApp number.',
     companyTooLong: 'Please use a shorter company name.',
     messageTooLong: 'Please shorten your message and try again.',
+    projectTypeInvalid: 'Please choose a valid project type.',
+    budgetInvalid: 'Please choose a valid budget range.',
+    timelineInvalid: 'Please choose a valid timeline.',
   },
   fr: {
     nameMissing: 'Merci d’ajouter votre nom.',
@@ -57,6 +71,9 @@ const VALIDATION_MESSAGES = {
     whatsappTooLong: 'Merci d’utiliser un numéro WhatsApp plus court.',
     companyTooLong: 'Merci d’utiliser un nom d’entreprise plus court.',
     messageTooLong: 'Merci de raccourcir votre message et de réessayer.',
+    projectTypeInvalid: 'Merci de choisir un type de projet valide.',
+    budgetInvalid: 'Merci de choisir une fourchette de budget valide.',
+    timelineInvalid: 'Merci de choisir un délai valide.',
   },
 } as const;
 
@@ -73,6 +90,9 @@ export function getContactFieldErrors(input: ContactSubmission, locale?: string)
   const whatsapp = input.whatsapp?.trim() ?? '';
   const company = input.company?.trim() ?? '';
   const message = input.message?.trim() ?? '';
+  const projectType = input.projectType ?? '';
+  const budget = input.budget ?? '';
+  const timeline = input.timeline ?? '';
 
   if (!name) errors.name = copy.nameMissing;
   else if (name.length > 120) errors.name = copy.nameTooLong;
@@ -90,6 +110,10 @@ export function getContactFieldErrors(input: ContactSubmission, locale?: string)
   if (company.length > 160) errors.company = copy.companyTooLong;
 
   if (message.length > 5000) errors.message = copy.messageTooLong;
+
+  if (projectType && !(PROJECT_TYPES as readonly string[]).includes(projectType)) errors.projectType = copy.projectTypeInvalid;
+  if (budget && !(BUDGET_RANGES as readonly string[]).includes(budget)) errors.budget = copy.budgetInvalid;
+  if (timeline && !(TIMELINES as readonly string[]).includes(timeline)) errors.timeline = copy.timelineInvalid;
 
   return errors;
 }

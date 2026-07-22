@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { createLeadRecord } from './leads';
+import { createLeadRecord, getAllowedSourcePage } from './leads';
 
 test('creates a new lead record with direct contact routes and attribution', () => {
   const lead = createLeadRecord(
@@ -43,6 +43,7 @@ test('whitelists attribution keys, keeps strings only, and truncates oversized v
       injected_key: 'evil',
       utm_source: { nested: 'object' },
       landing_page: 'x'.repeat(2000),
+      source_page: 'forged-admin-page',
     }
   );
 
@@ -52,4 +53,26 @@ test('whitelists attribution keys, keeps strings only, and truncates oversized v
   assert.equal('injected_key' in lead.attribution, false);
   assert.equal('utm_source' in lead.attribution, false);
   assert.equal(lead.attribution.landing_page?.length, 512);
+  assert.equal(lead.attribution.source_page, undefined);
+});
+
+test('stores qualification inside the existing lead message', () => {
+  const lead = createLeadRecord({
+    name: 'Amina',
+    email: 'amina@example.com',
+    projectType: 'tourism',
+    budget: '5000-10000',
+    timeline: 'within-month',
+    message: 'We need a bilingual booking website.',
+  });
+  assert.match(lead.message, /Project type: tourism/);
+  assert.match(lead.message, /Budget: 5000-10000/);
+  assert.match(lead.message, /Timeline: within-month/);
+  assert.match(lead.message, /We need a bilingual booking website/);
+});
+
+test('allows only known commercial pages as lead sources', () => {
+  assert.equal(getAllowedSourcePage('tourism-websites-morocco'), 'tourism-websites-morocco');
+  assert.equal(getAllowedSourcePage('international-web-design-agency'), 'international-web-design-agency');
+  assert.equal(getAllowedSourcePage('forged-admin-page'), undefined);
 });

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowUpRight, Calendar, Clock, Search } from 'lucide-react';
 import { createPageMetadata } from '@/lib/seo';
+import { getBlogUi } from '@/data/blog-ui';
 
 export async function generateMetadata({
   params,
@@ -12,10 +13,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const ui = getBlogUi(locale);
 
   return createPageMetadata({
-    title: 'Journal | WeReact - Web, SEO, and Growth Notes',
-    description: 'Practical notes on web design, local SEO, tourism websites, performance, and content strategy from WeReact in Marrakech.',
+    title: ui.indexTitle,
+    description: ui.indexDescription,
     path: `/${locale}/blog`,
     image: '/images/blog/marrakech-web-design-real.webp',
     locale,
@@ -76,6 +78,7 @@ function StoryLink({ post, locale, index }: { post: BlogPost; locale: string; in
 
 export default async function BlogListingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const ui = getBlogUi(locale);
   const localizedPosts = blogPosts.map((post) => getLocalizedPost(post, locale));
   const [featuredPost, ...otherPosts] = localizedPosts;
   const heroImages = localizedPosts.slice(0, 3);
@@ -94,13 +97,13 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
           <div data-depth="4">
             <p className="text-mono mb-5 flex items-center gap-3 text-[var(--color-primary)]">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent-sage)]" aria-hidden="true" />
-              WeReact Journal
+              {ui.journal}
             </p>
             <h1 className="font-display max-w-3xl text-[clamp(2.6rem,5vw,4.9rem)] leading-[0.94] text-[var(--color-text-main)]">
-              Ideas for brands that need to be found.
+              {ui.hero}
             </h1>
             <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-[var(--color-text-secondary)]">
-              Practical notes on web design, local SEO, tourism growth, and content structure from our Marrakech studio.
+              {ui.heroCopy}
             </p>
           </div>
 
@@ -123,7 +126,7 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
             <div className="absolute bottom-6 left-5 z-10 border border-[rgba(58,90,64,0.18)] bg-[rgba(246,246,242,0.88)] px-4 py-3 shadow-[var(--shadow-md)] backdrop-blur-md">
               <div className="flex items-center gap-3 text-mono text-[var(--color-primary)]">
                 <Search size={15} aria-hidden="true" />
-                Search-ready notes
+                {ui.searchReady}
               </div>
             </div>
           </div>
@@ -134,12 +137,12 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
         <section className="px-6 pb-12 md:px-16 md:pb-16">
           <div className="mx-auto grid max-w-7xl gap-8 border-y border-[rgba(58,90,64,0.16)] py-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12 lg:py-12">
             <aside className="lg:sticky lg:top-28 lg:self-start">
-              <p className="text-mono text-[var(--color-primary)]">Featured insight</p>
+              <p className="text-mono text-[var(--color-primary)]">{ui.featured}</p>
               <h2 className="mt-4 font-display text-[clamp(2rem,3.2vw,3.9rem)] leading-[0.94] text-[var(--color-text-main)]">
-                Start with the problem your visitor already has.
+                {ui.featuredTitle}
               </h2>
               <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-[var(--color-text-secondary)] md:text-base">
-                The journal is intentionally small: fewer posts, stronger intent, and topics that help Moroccan brands earn trust faster.
+                {ui.featuredCopy}
               </p>
             </aside>
 
@@ -156,7 +159,7 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(246,246,242,0)_35%,rgba(24,42,28,0.42)_100%)]" aria-hidden="true" />
                   <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4 text-white">
-                    <span className="text-mono">Latest</span>
+                    <span className="text-mono">{ui.latest}</span>
                     <ArrowUpRight size={24} className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
                   </div>
                 </div>
@@ -178,9 +181,9 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
       <section className="px-6 pb-14 md:px-16 md:pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-4 flex items-end justify-between gap-8">
-            <p className="text-mono text-[var(--color-primary)]">All notes</p>
+            <p className="text-mono text-[var(--color-primary)]">{ui.allNotes}</p>
             <p className="hidden max-w-sm text-right text-sm leading-relaxed text-[var(--color-text-muted)] md:block">
-              Built for scanning first, reading second, and taking action when the idea fits your business.
+              {ui.allNotesCopy}
             </p>
           </div>
           {otherPosts.map((post, index) => (
@@ -192,20 +195,20 @@ export default async function BlogListingPage({ params }: { params: Promise<{ lo
       <section className="px-6 pb-16 md:px-16 md:pb-24">
         <div className="mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-lg border border-[rgba(58,90,64,0.16)] bg-[var(--color-primary)] p-7 text-white md:grid-cols-[0.68fr_0.32fr] md:p-10 lg:p-12">
           <div>
-            <p className="text-mono mb-5 text-[var(--color-accent-sage)]">Need content that sells?</p>
+            <p className="text-mono mb-5 text-[var(--color-accent-sage)]">{ui.contactEyebrow}</p>
             <h2 className="font-display max-w-4xl text-[clamp(2rem,3.4vw,3.9rem)] leading-[0.98]">
-              Turn your expertise into pages people can find.
+              {ui.contactTitle}
             </h2>
           </div>
           <div className="flex flex-col justify-end gap-5 md:items-start">
             <p className="text-base font-light leading-relaxed text-white/72">
-              We can shape your service pages, local SEO structure, and article ideas around real search intent.
+              {ui.contactCopy}
             </p>
             <Link
               href={`/${locale}/contact`}
               className="inline-flex items-center gap-3 bg-white px-5 py-4 text-mono text-[var(--color-primary)] transition-transform duration-300 hover:-translate-y-1"
             >
-              Start a project
+              {ui.contact}
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>

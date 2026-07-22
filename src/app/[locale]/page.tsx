@@ -2,32 +2,38 @@ import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import WebGLHero from '@/components/WebGLHero';
 import SectionErrorBoundary from '@/components/SectionErrorBoundary';
-import { createServiceJsonLd } from '@/lib/seo';
+import { createBusinessJsonLd, createServiceJsonLd, createWebsiteJsonLd } from '@/lib/seo';
 
 // Below-the-fold sections are code-split.
 const Manifesto = dynamic(() => import('@/components/sections/home/Manifesto'));
+const AudiencePaths = dynamic(() => import('@/components/sections/home/AudiencePaths'));
 const SelectedProjects = dynamic(() => import('@/components/sections/home/SelectedProjects'));
 const WhatWeDo = dynamic(() => import('@/components/sections/home/WhatWeDo'));
 const ScrollReel = dynamic(() => import('@/components/sections/home/ScrollReel'));
-const Testimonials = dynamic(() => import('@/components/sections/home/Testimonials'));
+const ProjectEvidence = dynamic(() => import('@/components/sections/home/Testimonials'));
 const Faq = dynamic(() => import('@/components/sections/home/Faq'));
 const BookCall = dynamic(() => import('@/components/sections/home/BookCall'));
 
 const SECTIONS = [
   Manifesto,
+  AudiencePaths,
   WhatWeDo,
   SelectedProjects,
   ScrollReel,
-  Testimonials,
+  ProjectEvidence,
   Faq,
   BookCall,
 ];
 
 export default function Home() {
   const serviceJsonLd = createServiceJsonLd();
+  const businessJsonLd = createBusinessJsonLd();
+  const websiteJsonLd = createWebsiteJsonLd();
 
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <WebGLHero />
       <Suspense

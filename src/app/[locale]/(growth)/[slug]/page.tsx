@@ -6,8 +6,12 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getProjectById } from '@/data/projects';
 import { getServiceLandingPage, serviceLandingPages } from '@/data/services';
+import { audienceLandingPages, getAudienceLandingPage } from '@/data/audiences';
 import { GrowthCtas, GrowthContactCta } from '@/components/GrowthCtas';
 import { createBreadcrumbJsonLd, createFaqJsonLd, createPageMetadata, createServicePageJsonLd } from '@/lib/seo';
+
+const growthLandingPages = [...serviceLandingPages, ...audienceLandingPages];
+const getGrowthLandingPage = (slug: string) => getServiceLandingPage(slug) ?? getAudienceLandingPage(slug);
 
 type ServicePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -15,13 +19,13 @@ type ServicePageProps = {
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
-    serviceLandingPages.map((page) => ({ locale, slug: page.slug }))
+    growthLandingPages.map((page) => ({ locale, slug: page.slug }))
   );
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const page = getServiceLandingPage(slug);
+  const page = getGrowthLandingPage(slug);
 
   if (!page) return { title: 'Page not found' };
 
@@ -37,7 +41,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
 export default async function ServiceLandingPage({ params }: ServicePageProps) {
   const { locale, slug } = await params;
-  const page = getServiceLandingPage(slug);
+  const page = getGrowthLandingPage(slug);
 
   if (!page) notFound();
 
@@ -45,7 +49,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
   const projectCards = page.relatedProjectIds
     .map((projectId) => getProjectById(projectId))
     .filter((project): project is NonNullable<typeof project> => Boolean(project));
-  const contactHref = `/${locale}/contact`;
+  const contactHref = `/${locale}/contact?from=${page.slug}`;
   const serviceJsonLd = createServicePageJsonLd(page, locale);
   const faqJsonLd = createFaqJsonLd(copy.faqs);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([

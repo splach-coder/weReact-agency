@@ -1,6 +1,27 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
-import type { ServiceFaq, ServiceLandingPage } from '@/data/services';
+import type { ServiceFaq, ServiceLocaleCopy } from '@/data/services';
+import type { Project } from '@/data/projects';
+
+export function createLocalizedAlternates(path: string) {
+  const withoutLocale = path.replace(/^\/(en|fr)(?=\/|$)/, '');
+  const cleanPath = withoutLocale.replace(/\/$/, '');
+  const suffix = cleanPath && cleanPath !== '/'
+    ? (cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath)
+    : '';
+
+  return {
+    en: siteConfig.url + '/en' + suffix,
+    fr: siteConfig.url + '/fr' + suffix,
+    'x-default': siteConfig.url + '/en' + suffix,
+  };
+}
+
+type ServiceSchemaPage = {
+  slug: string;
+  keywords: readonly string[];
+  copy: Record<'en' | 'fr', ServiceLocaleCopy>;
+};
 
 type PageMetadataOptions = {
   title: string;
@@ -35,15 +56,7 @@ export function createPageMetadata({
     keywords: [...siteConfig.seo.keywords, ...keywords],
     alternates: {
       canonical: url,
-      languages: {
-        ...Object.fromEntries(
-          siteConfig.locales.map((siteLocale) => [
-            siteLocale,
-            `${siteConfig.url}/${siteLocale}${normalizedPath.replace(/^\/(en|fr)/, '')}`,
-          ])
-        ),
-        'x-default': `${siteConfig.url}/en${normalizedPath.replace(/^\/(en|fr)/, '')}`,
-      },
+      languages: createLocalizedAlternates(normalizedPath),
     },
     openGraph: {
       title,
@@ -63,6 +76,78 @@ export function createPageMetadata({
       images: [imageUrl],
       creator: siteConfig.twitterHandle,
     },
+  };
+}
+
+export function createBusinessJsonLd() {
+  const businessId = `${siteConfig.url}/#business`;
+  const areaServed = siteConfig.business.areaServed.map((name) => ({ '@type': 'Place', name }));
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'ProfessionalService'],
+    '@id': businessId,
+    name: siteConfig.business.legalName,
+    alternateName: siteConfig.shortName,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    logo: `${siteConfig.url}/images/logo.webp`,
+    telephone: siteConfig.business.phoneInternational,
+    email: siteConfig.business.email,
+    currenciesAccepted: siteConfig.campaign.leadCurrency,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.business.addressDisplay,
+      addressLocality: siteConfig.business.city,
+      addressRegion: siteConfig.business.region,
+      postalCode: siteConfig.business.postalCode,
+      addressCountry: siteConfig.business.country,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: siteConfig.business.latitude,
+      longitude: siteConfig.business.longitude,
+    },
+    hasMap: siteConfig.business.googleMapsUrl,
+    openingHours: siteConfig.business.openingHours,
+    areaServed,
+    knowsAbout: [...siteConfig.seo.keywords, ...siteConfig.seo.geoKeywords],
+    audience: siteConfig.seo.audience.map((audienceType) => ({ '@type': 'Audience', audienceType })),
+    availableLanguage: siteConfig.seo.languages,
+    contactPoint: [{
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: siteConfig.business.phoneInternational,
+      email: siteConfig.business.email,
+      areaServed: siteConfig.business.country,
+      availableLanguage: siteConfig.seo.languages,
+    }],
+    sameAs: siteConfig.business.sameAs,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Website design and growth services',
+      itemListElement: siteConfig.business.services.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: service, provider: { '@id': businessId } },
+      })),
+    },
+  };
+}
+
+export function createWebsiteJsonLd() {
+  const businessId = `${siteConfig.url}/#business`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.url}/#website`,
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteConfig.url,
+    inLanguage: siteConfig.locales,
+    publisher: { '@id': businessId },
+    about: { '@id': businessId },
   };
 }
 
@@ -111,7 +196,7 @@ export function createServiceJsonLd() {
     })),
   };
 }
-export function createServicePageJsonLd(page: ServiceLandingPage, locale: string) {
+export function createServicePageJsonLd(page: ServiceSchemaPage, locale: string) {
   const copy = page.copy[locale === 'fr' ? 'fr' : 'en'];
   const url = `${siteConfig.url}/${locale}/${page.slug}`;
 
@@ -151,5 +236,32 @@ export function createBreadcrumbJsonLd(items: { name: string; url: string }[]) {
       name: item.name,
       item: item.url.startsWith('http') ? item.url : `${siteConfig.url}${item.url}`,
     })),
+  };
+}
+
+export function createProjectJsonLd(project: Project, locale: string) {
+  const language = locale === 'fr' ? 'fr' : 'en';
+  const url = `${siteConfig.url}/${language}/work/${project.id}`;
+  const image = project.imageFull ?? project.image;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `${url}#project`,
+    name: project.title,
+    description: project.summary,
+    url,
+    image: image.startsWith('http') ? image : `${siteConfig.url}${image}`,
+    dateCreated: project.year,
+    dateModified: project.modifiedAt,
+    creator: {
+      '@type': 'Organization',
+      '@id': `${siteConfig.url}/#business`,
+      name: siteConfig.business.legalName,
+      url: siteConfig.url,
+    },
+    inLanguage: language,
+    sameAs: project.externalUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
 }

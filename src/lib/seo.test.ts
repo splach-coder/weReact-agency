@@ -1,7 +1,8 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getServiceLandingPage } from '@/data/services';
-import { createFaqJsonLd, createServicePageJsonLd } from './seo';
+import { getProjectById } from '@/data/projects';
+import { createBusinessJsonLd, createFaqJsonLd, createLocalizedAlternates, createProjectJsonLd, createServicePageJsonLd, createWebsiteJsonLd } from './seo';
 
 test('creates a localized Service schema for a landing page', () => {
   const page = getServiceLandingPage('web-design-marrakech');
@@ -17,4 +18,31 @@ test('creates FAQPage schema from factual page answers', () => {
   const schema = createFaqJsonLd(page.copy.en.faqs);
   assert.equal(schema['@type'], 'FAQPage');
   assert.equal(schema.mainEntity.length, 3);
+});
+
+test('uses a final English URL as x-default', () => {
+  const alternates = createLocalizedAlternates('/blog');
+  assert.equal(alternates.en, 'https://www.wereact.agency/en/blog');
+  assert.equal(alternates.fr, 'https://www.wereact.agency/fr/blog');
+  assert.equal(alternates['x-default'], 'https://www.wereact.agency/en/blog');
+});
+
+test('creates factual CreativeWork schema without review claims', () => {
+  const project = getProjectById('flying-tandem');
+  assert.ok(project);
+  const schema = createProjectJsonLd(project, 'en');
+  assert.equal(schema['@type'], 'CreativeWork');
+  assert.equal(schema.creator['@id'], 'https://www.wereact.agency/#business');
+  assert.equal(schema.url, 'https://www.wereact.agency/en/work/flying-tandem');
+  assert.ok(!('review' in schema));
+  assert.ok(!('aggregateRating' in schema));
+});
+
+test('uses stable business and website identifiers', () => {
+  const business = createBusinessJsonLd();
+  const website = createWebsiteJsonLd();
+  assert.equal(business['@id'], 'https://www.wereact.agency/#business');
+  assert.equal(website.publisher['@id'], business['@id']);
+  assert.equal(website.about['@id'], business['@id']);
+  assert.equal(business.email, 'hello@wereact.agency');
 });

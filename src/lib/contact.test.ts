@@ -139,3 +139,22 @@ test('sends the confirmation email in French for FR leads', () => {
   assert.match(email.html, /sous un jour ouvré/);
 });
 
+test('accepts allowlisted optional qualification values', () => {
+  const result = validateContactSubmission({
+    name: 'Amina',
+    email: 'amina@example.com',
+    projectType: 'tourism',
+    budget: '5000-10000',
+    timeline: 'within-month',
+  });
+  assert.equal(result.valid, true);
+});
+
+test('rejects forged qualification values', () => {
+  const result = validateContactSubmission({
+    name: 'Amina',
+    email: 'amina@example.com',
+    projectType: 'forged' as never,
+  });
+  assert.equal(result.valid, false);
+});

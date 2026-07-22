@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import { trackContactIntent } from '@/lib/analytics';
+import { getProjectById } from '@/data/projects';
 
 interface CaseStudyMetric {
     value: string;
@@ -22,7 +23,6 @@ interface CaseStudyFeature {
 
 interface CaseStudy {
     title: string;
-    client: string;
     year: string;
     category: string;
     tagline: string;
@@ -44,6 +44,7 @@ interface CaseStudy {
 export default function CaseStudyPage() {
     const params = useParams();
     const projectId = params.id as string;
+    const locale = params.locale === 'fr' ? 'fr' : 'en';
 
     const heroRef = useRef(null);
     const overviewRef = useRef(null);
@@ -65,7 +66,6 @@ export default function CaseStudyPage() {
     const projects: Record<string, CaseStudy> = {
         "flying-tandem": {
             title: "Flying Tandem",
-            client: "Adventure Tourism",
             year: "2025",
             category: "Tourism Website",
             tagline: "Bringing the thrill of paragliding to life online",
@@ -111,7 +111,6 @@ export default function CaseStudyPage() {
         },
         "kasbah-angour": {
             title: "Kasbah Angour",
-            client: "Hospitality",
             year: "2025",
             category: "Hotel Website",
             tagline: "Showcasing authentic Moroccan hospitality",
@@ -157,7 +156,6 @@ export default function CaseStudyPage() {
         },
         "your-morocco": {
             title: "Your Morocco",
-            client: "Travel & Experiences",
             year: "2025",
             category: "Travel Platform",
             tagline: "Curating authentic Moroccan experiences",
@@ -203,7 +201,6 @@ export default function CaseStudyPage() {
         },
         "by-marrakech": {
             title: "By Marrakech",
-            client: "City Guide",
             year: "2025",
             category: "Digital Guide",
             tagline: "Your digital companion to Marrakech",
@@ -249,7 +246,6 @@ export default function CaseStudyPage() {
         },
         "trust-drivers": {
             title: "Trust Drivers Tours",
-            client: "WeReact Studio",
             year: "2026",
             category: "Studio Project · Transport & Tours",
             tagline: "Trust-first private transport and Morocco tour discovery",
@@ -282,7 +278,6 @@ export default function CaseStudyPage() {
         },
         "yoo-marrakech": {
             title: "Yoo Marrakech",
-            client: "WeReact Studio",
             year: "2026",
             category: "Studio Project · Local Brand",
             tagline: "A polished local Marrakech brand presence",
@@ -315,7 +310,6 @@ export default function CaseStudyPage() {
         },
         "morocco-atlas-guide": {
             title: "Morocco Atlas Guide",
-            client: "WeReact Studio",
             year: "2026",
             category: "Studio Project · Travel Guide",
             tagline: "Destination content for Atlas mountain travel intent",
@@ -349,10 +343,17 @@ export default function CaseStudyPage() {
     };
 
     const project = projects[projectId];
+    const projectRecord = getProjectById(projectId);
 
-    if (!project) {
+    if (!project || !projectRecord) {
         notFound();
     }
+
+    const relationshipLabel = {
+        'client-work': locale === 'fr' ? 'Projet client' : 'Client work',
+        'studio-owned': locale === 'fr' ? 'Projet du studio WeReact' : 'WeReact studio project',
+        'independent-project': locale === 'fr' ? 'Projet indépendant' : 'Independent project',
+    }[projectRecord.relationship];
 
     return (
         <div className="min-h-screen bg-[var(--color-background-main)]">
@@ -371,7 +372,7 @@ export default function CaseStudyPage() {
                         >
                             {/* Back Button */}
                             <Link
-                                href="/work"
+                                href={`/${locale}/work`}
                                 className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors mb-4 md:mb-8 group"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:-translate-x-1" />
@@ -420,8 +421,8 @@ export default function CaseStudyPage() {
                                         <Users className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Client</div>
-                                        <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.client}</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">{locale === 'fr' ? 'Relation' : 'Relationship'}</div>
+                                        <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{relationshipLabel}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
@@ -806,7 +807,7 @@ export default function CaseStudyPage() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                             <Link
-                                href="/contact"
+                                href={`/${locale}/contact`}
                                 onClick={() => trackContactIntent('case_study_cta', { destination: 'contact' })}
                                 className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
                             >
@@ -814,7 +815,7 @@ export default function CaseStudyPage() {
                                 <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
                             </Link>
                             <Link
-                                href="/work"
+                                href={`/${locale}/work`}
                                 className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-sm font-bold text-sm md:text-lg hover:bg-white/10 transition-all duration-300"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />

@@ -9,7 +9,7 @@ WeReact designs and develops showcase websites, e-commerce stores, landing pages
 - Showcase website: from 2,000 MAD
 - E-commerce website (front-end + back-end included): from 3,500 MAD
 - Riad / hotel direct-booking website: custom quote based on scope
-- Delivery: 2-3 days for most builds
+- Delivery: 2-3 days for defined-scope showcase sites and landing pages; booking, e-commerce, and complex integration work receives a scoped timeline before work begins
 - Free, precise quote sent within one business day
 
 ## Services
@@ -19,6 +19,12 @@ WeReact designs and develops showcase websites, e-commerce stores, landing pages
 - SEO-ready landing pages: https://www.wereact.agency/en/seo-landing-pages
 - Web agency in Marrakech: https://www.wereact.agency/en/agence-web-marrakech
 - How much does a website cost in Morocco (pricing guide): https://www.wereact.agency/en/blog/combien-coute-site-web-maroc
+
+## Audience paths
+
+- Tourism and hospitality businesses: https://www.wereact.agency/en/tourism-websites-morocco
+- Moroccan local businesses: https://www.wereact.agency/en/website-design-moroccan-businesses
+- International founders, agencies, and teams: https://www.wereact.agency/en/international-web-design-agency
 
 ## Contact
 
