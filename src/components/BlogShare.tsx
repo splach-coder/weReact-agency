@@ -2,14 +2,17 @@
 
 import React from 'react';
 import { Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { getBlogUi } from '@/data/blog-ui';
 
 interface BlogShareProps {
     url: string;
     title: string;
+    locale?: string;
     variant?: 'floating' | 'inline';
 }
 
-export default function BlogShare({ url, title, variant = 'floating' }: BlogShareProps) {
+export default function BlogShare({ url, title, locale = 'en', variant = 'floating' }: BlogShareProps) {
+    const ui = getBlogUi(locale);
     const shareLinks = {
         twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
@@ -39,19 +42,19 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(url);
-        alert('Link copied to clipboard!');
+        alert(ui.linkCopied);
     };
 
     if (variant === 'inline') {
         return (
             <div className="flex items-center gap-4">
-                <span className="text-[9px] font-black uppercase tracking-widest opacity-30">Share Article</span>
+                <span className="text-[9px] font-black uppercase tracking-widest opacity-30">{ui.shareArticle}</span>
                 <div className="flex gap-2">
                     <a
                         href={shareLinks.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Share on Twitter"
+                        aria-label={ui.shareTwitter}
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition-all duration-300"
                     >
                         <Twitter size={16} aria-hidden="true" />
@@ -60,14 +63,14 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
                         href={shareLinks.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Share on LinkedIn"
+                        aria-label={ui.shareLinkedIn}
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#0077B5] hover:text-white transition-all duration-300"
                     >
                         <Linkedin size={16} aria-hidden="true" />
                     </a>
                     <button
                         onClick={copyToClipboard}
-                        aria-label="Copy link to clipboard"
+                        aria-label={ui.copyLink}
                         className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300"
                     >
                         <LinkIcon size={16} aria-hidden="true" />
@@ -82,12 +85,12 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
     return (
         <div className="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-40 animate-in fade-in duration-300">
             <div className="p-3 bg-white rounded-sm shadow-xl border border-gray-100 flex flex-col gap-5 items-center">
-                <span className="text-[9px] font-black uppercase tracking-widest vertical-text opacity-30 mb-2">Share</span>
+                <span className="text-[9px] font-black uppercase tracking-widest vertical-text opacity-30 mb-2">{ui.share}</span>
                 <a
                     href={shareLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Share on Twitter"
+                    aria-label={ui.shareTwitter}
                     className="text-gray-400 hover:text-[#1DA1F2] transition-colors"
                 >
                     <Twitter size={18} aria-hidden="true" />
@@ -96,14 +99,14 @@ export default function BlogShare({ url, title, variant = 'floating' }: BlogShar
                     href={shareLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Share on LinkedIn"
+                    aria-label={ui.shareLinkedIn}
                     className="text-gray-400 hover:text-[#0077B5] transition-colors"
                 >
                     <Linkedin size={18} aria-hidden="true" />
                 </a>
                 <button
                     onClick={copyToClipboard}
-                    aria-label="Copy link to clipboard"
+                    aria-label={ui.copyLink}
                     className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
                 >
                     <LinkIcon size={18} aria-hidden="true" />

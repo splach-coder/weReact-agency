@@ -6,6 +6,7 @@ export interface BlogPostLocaleCopy {
     date?: string;
     readTime?: string;
     category?: string;
+    authorRole?: string;
 }
 
 export interface BlogPost {
@@ -19,6 +20,7 @@ export interface BlogPost {
     author: string;
     authorRole: string;
     relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages' | 'agence-web-marrakech';
+    relatedAudienceSlug: 'tourism-websites-morocco' | 'website-design-moroccan-businesses' | 'international-web-design-agency';
     category: string;
     categoryColor?: string;
     image: string;
@@ -42,6 +44,7 @@ export function getLocalizedPost(post: BlogPost, locale: string): BlogPost {
         date: post.fr.date ?? post.date,
         readTime: post.fr.readTime ?? post.readTime,
         category: post.fr.category ?? post.category,
+        authorRole: post.fr.authorRole ?? post.authorRole,
     };
 }
 
@@ -57,6 +60,7 @@ export const blogPosts: BlogPost[] = [
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
         relatedServiceSlug: "agence-web-marrakech",
+        relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Pricing",
         categoryColor: "#588157",
         image: "/images/blog/agence-web-maroc.png",
@@ -118,6 +122,7 @@ export const blogPosts: BlogPost[] = [
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
+            authorRole: "Studio de création web et SEO",
             content: `
                 <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web, et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les prix de départ que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter un devis à partir de là, et nous listons les questions à poser avant d'accepter une offre, y compris la nôtre.</p>
 
@@ -180,6 +185,7 @@ export const blogPosts: BlogPost[] = [
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
         relatedServiceSlug: "seo-landing-pages",
+        relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "SEO",
         categoryColor: "#10B981", // Green like 'Art' in image
         image: "/images/blog/seo-2026-real.webp",
@@ -202,6 +208,8 @@ export const blogPosts: BlogPost[] = [
             metaDescription: "Découvrez comment positionner votre agence en 2026 en misant sur l'E-E-A-T et le SEO technique, à l'ère de l'IA générative et des nouveaux moteurs de recherche.",
             date: "14 juin 2026",
             readTime: "10 min de lecture",
+            category: "Stratégie SEO",
+            authorRole: "Studio de création web et SEO",
             content: `
                 <p>Le référencement naturel évolue. Avec l'essor de la recherche assistée par l'IA, l'ancienne recette du bourrage de mots-clés est morte et enterrée. Aujourd'hui, un SEO efficace repose sur deux piliers : l'excellence technique et une autorité authentique.</p>
 
@@ -226,6 +234,7 @@ export const blogPosts: BlogPost[] = [
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
         relatedServiceSlug: "web-design-marrakech",
+        relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Local SEO",
         categoryColor: "#3A5A40",
         image: "/images/blog/marrakech-web-design-real.webp",
@@ -261,6 +270,7 @@ export const blogPosts: BlogPost[] = [
             date: "16 juin 2026",
             readTime: "9 min de lecture",
             category: "SEO local",
+            authorRole: "Studio de création web et SEO",
             content: `
                 <p>Pour une entreprise locale à Marrakech, un site web doit faire plus que paraître professionnel. Il doit aider les visiteurs à comprendre ce que vous proposez, où vous intervenez, pourquoi ils peuvent vous faire confiance et comment vous contacter sans friction. Un bon site relie l'intention de recherche, la preuve locale, la rapidité et la conversion en un seul système clair.</p>
 
@@ -297,6 +307,7 @@ export const blogPosts: BlogPost[] = [
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
         relatedServiceSlug: "tourism-websites-morocco",
+        relatedAudienceSlug: "tourism-websites-morocco",
         category: "Tourism SEO",
         categoryColor: "#A3B18A",
         image: "/images/blog/morocco-tourism-seo-real.webp",
@@ -335,6 +346,7 @@ export const blogPosts: BlogPost[] = [
             date: "16 juin 2026",
             readTime: "10 min de lecture",
             category: "SEO tourisme",
+            authorRole: "Studio de création web et SEO",
             content: `
                 <p>Au Maroc, les sites de tourisme et d'hôtellerie évoluent dans un paysage de recherche très concurrentiel. Les voyageurs comparent destinations, itinéraires, hôtels, excursions, chauffeurs, avis, photos et prix dans de nombreux onglets. Votre site doit être rapide, clair, digne de confiance et organisé selon la façon dont les gens préparent leur voyage.</p>
 
