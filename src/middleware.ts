@@ -3,7 +3,10 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
 import { updateSession } from './lib/supabase/middleware';
 import { getEarlyRequestRedirect } from './lib/auth-callback';
-import { getPermanentPublicRedirect } from './lib/public-redirects';
+import {
+  getPermanentPublicRedirect,
+  shouldApplyLocaleMiddleware,
+} from './lib/public-redirects';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -21,6 +24,11 @@ export default async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/crm')) {
     return updateSession(request);
   }
+
+  if (!shouldApplyLocaleMiddleware(request.nextUrl.pathname)) {
+    return NextResponse.next();
+  }
+
   return intlMiddleware(request);
 }
 

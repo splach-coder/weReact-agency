@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getPermanentPublicRedirect } from './public-redirects';
+import {
+  getPermanentPublicRedirect,
+  shouldApplyLocaleMiddleware,
+} from './public-redirects';
 
 test('permanently canonicalizes known unprefixed public routes', () => {
   assert.equal(getPermanentPublicRedirect('/'), '/en');
@@ -17,4 +20,11 @@ test('recovers the confirmed indexed legacy article', () => {
 
 test('does not turn unknown paths into soft 404s', () => {
   assert.equal(getPermanentPublicRedirect('/not-a-real-page'), undefined);
+});
+
+test('applies locale middleware only to paths with a supported locale segment', () => {
+  assert.equal(shouldApplyLocaleMiddleware('/en'), true);
+  assert.equal(shouldApplyLocaleMiddleware('/fr/blog'), true);
+  assert.equal(shouldApplyLocaleMiddleware('/not-a-real-page'), false);
+  assert.equal(shouldApplyLocaleMiddleware('/enough'), false);
 });

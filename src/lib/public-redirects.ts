@@ -1,3 +1,5 @@
+import { siteConfig } from '@/config/site';
+
 const CURRENT_PUBLIC_PATHS = new Set([
   '/contact',
   '/work',
@@ -19,4 +21,10 @@ export function getPermanentPublicRedirect(pathname: string) {
   if (LEGACY_REDIRECTS[pathname]) return LEGACY_REDIRECTS[pathname];
   if (CURRENT_PUBLIC_PATHS.has(pathname)) return '/en' + pathname;
   return undefined;
+}
+
+export function shouldApplyLocaleMiddleware(pathname: string) {
+  return siteConfig.locales.some(
+    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+  );
 }
