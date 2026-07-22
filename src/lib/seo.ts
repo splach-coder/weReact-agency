@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
-import type { ServiceFaq, ServiceLandingPage } from '@/data/services';
+import type { ServiceFaq, ServiceLocaleCopy } from '@/data/services';
 
 export function createLocalizedAlternates(path: string) {
   const withoutLocale = path.replace(/^\/(en|fr)(?=\/|$)/, '');
@@ -15,6 +15,12 @@ export function createLocalizedAlternates(path: string) {
     'x-default': siteConfig.url + '/en' + suffix,
   };
 }
+
+type ServiceSchemaPage = {
+  slug: string;
+  keywords: readonly string[];
+  copy: Record<'en' | 'fr', ServiceLocaleCopy>;
+};
 
 type PageMetadataOptions = {
   title: string;
@@ -117,7 +123,7 @@ export function createServiceJsonLd() {
     })),
   };
 }
-export function createServicePageJsonLd(page: ServiceLandingPage, locale: string) {
+export function createServicePageJsonLd(page: ServiceSchemaPage, locale: string) {
   const copy = page.copy[locale === 'fr' ? 'fr' : 'en'];
   const url = `${siteConfig.url}/${locale}/${page.slug}`;
 

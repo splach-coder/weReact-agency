@@ -6,6 +6,7 @@ import { createServiceJsonLd } from '@/lib/seo';
 
 // Below-the-fold sections are code-split.
 const Manifesto = dynamic(() => import('@/components/sections/home/Manifesto'));
+const AudiencePaths = dynamic(() => import('@/components/sections/home/AudiencePaths'));
 const SelectedProjects = dynamic(() => import('@/components/sections/home/SelectedProjects'));
 const WhatWeDo = dynamic(() => import('@/components/sections/home/WhatWeDo'));
 const ScrollReel = dynamic(() => import('@/components/sections/home/ScrollReel'));
@@ -15,6 +16,7 @@ const BookCall = dynamic(() => import('@/components/sections/home/BookCall'));
 
 const SECTIONS = [
   Manifesto,
+  AudiencePaths,
   WhatWeDo,
   SelectedProjects,
   ScrollReel,

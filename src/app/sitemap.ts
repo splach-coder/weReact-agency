@@ -1,8 +1,9 @@
-﻿import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/site';
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blog';
 import { projects } from '@/data/projects';
 import { serviceLandingPages } from '@/data/services';
+import { audienceLandingPages } from '@/data/audiences';
 
 const STATIC_ROUTE_PRIORITY: Record<string, number> = {
   '': 1,
@@ -34,6 +35,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
+
+  const audienceRoutes = audienceLandingPages.flatMap((page) =>
+    siteConfig.locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/${page.slug}`,
+      lastModified: new Date(page.modifiedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.88,
+    }))
+  );
+
   const postRoutes = blogPosts.flatMap((post) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
@@ -52,5 +63,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...workRoutes, ...postRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes, ...workRoutes, ...postRoutes];
 }
