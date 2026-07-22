@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { LogOut } from 'lucide-react';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 
 export function SignOutButton() {
@@ -16,9 +17,11 @@ export function SignOutButton() {
     <button
       type="button"
       onClick={signOut}
-      className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50"
+      className="crm-sign-out"
+      title="Sign out of the CRM"
     >
-      Sign out
+      <LogOut size={16} aria-hidden="true" />
+      <span>Sign out</span>
     </button>
   );
 }

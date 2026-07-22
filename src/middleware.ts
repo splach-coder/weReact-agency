@@ -2,10 +2,14 @@ import createMiddleware from 'next-intl/middleware';
 import { type NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
 import { updateSession } from './lib/supabase/middleware';
+import { recoverMisroutedAuthCallback } from './lib/auth-callback';
 
 const intlMiddleware = createMiddleware(routing);
 
 export default async function middleware(request: NextRequest) {
+  const recoveredAuthCallback = recoverMisroutedAuthCallback(request.nextUrl);
+  if (recoveredAuthCallback) return Response.redirect(recoveredAuthCallback);
+
   // The CRM dashboard lives outside the localized site - it gets Supabase
   // session handling instead of next-intl locale routing.
   if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/crm')) {

@@ -2,12 +2,14 @@
 
 import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from '@/lib/crm-actions';
-import { isLeadStatus } from '@/lib/crm';
+import { parseLeadNote, parseLeadUpdate, parseManualLead, parseProjectBrief } from '@/lib/crm-actions';
+import { isLeadStatus, isProjectStatus } from '@/lib/crm';
 
 export type CrmActionResult = {
   ok: boolean;
   error?: string;
+  leadId?: string;
+  duplicate?: boolean;
   projectId?: string;
   updatedAt?: string;
 };
@@ -37,10 +39,39 @@ async function getAuthorizedContext() {
 
 function refreshLeadRoutes(leadId: string) {
   revalidatePath('/admin');
+  revalidatePath('/admin/pipeline');
   revalidatePath('/crm');
   revalidatePath(`/admin/leads/${leadId}`);
 }
 
+export async function createManualLeadAction(input: unknown): Promise<CrmActionResult> {
+  const parsed = parseManualLead(input);
+  if (!parsed.valid) return { ok: false, error: parsed.error };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_create_manual_lead', {
+    p_payload: parsed.value,
+  });
+
+  if (error) {
+    console.error('CRM manual lead creation failed.', error);
+    return { ok: false, error: 'Could not add this client. Please try again.' };
+  }
+
+  const result = data && typeof data === 'object' && !Array.isArray(data)
+    ? data as Record<string, unknown>
+    : {};
+  const leadId = typeof result.lead_id === 'string' ? result.lead_id : '';
+
+  if (!UUID_PATTERN.test(leadId)) {
+    return { ok: false, error: 'The client was saved, but the record could not be opened.' };
+  }
+
+  refreshLeadRoutes(leadId);
+  return { ok: true, leadId, duplicate: result.created === false };
+}
 export async function moveLeadStageAction(
   leadId: string,
   status: unknown,
@@ -78,6 +109,46 @@ export async function moveLeadStageAction(
   return { ok: true, updatedAt: typeof data === 'string' ? data : undefined };
 }
 
+export async function moveProjectStageAction(
+  projectId: string,
+  status: unknown,
+  expectedUpdatedAt: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(projectId)) return { ok: false, error: 'Invalid project reference.' };
+  if (!isProjectStatus(status) || !['ready_for_dev', 'building', 'review'].includes(status)) {
+    return { ok: false, error: 'Choose a valid delivery stage.' };
+  }
+
+  const rawVersion = typeof expectedUpdatedAt === 'string' ? expectedUpdatedAt : '';
+  const version = new Date(rawVersion);
+  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(version.getTime())) {
+    return { ok: false, error: 'Refresh before moving this project.' };
+  }
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_move_project', {
+    p_project_id: projectId,
+    p_status: status,
+    p_expected_updated_at: version.toISOString(),
+  });
+
+  if (error) {
+    console.error('CRM project stage move failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This project changed in another session. Refresh and try again.'
+        : 'Could not move this project. Please try again.',
+    };
+  }
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/pipeline');
+  revalidatePath('/crm');
+  return { ok: true, updatedAt: typeof data === 'string' ? data : undefined };
+}
 export async function updateLeadAction(leadId: string, input: unknown): Promise<CrmActionResult> {
   if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
 

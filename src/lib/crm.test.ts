@@ -1,12 +1,15 @@
-﻿import assert from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   CRM_STATUSES,
   DEFAULT_SELLER_EMAIL,
   PROJECT_STATUSES,
+  SALES_PIPELINE_STATUSES,
   filterLeads,
   formatLeadAge,
   getLeadContactRoute,
+  getLeadLifecycleAction,
+  getProjectLifecycleAction,
   getProjectBriefProgress,
   groupLeadsByStatus,
   type CrmLead,
@@ -133,4 +136,53 @@ test('measures whether a project brief is ready for developer handoff', () => {
     missing: ['pages'],
     ready: false,
   });
+});
+test('exposes one clear next action for each active project stage', () => {
+  assert.deepEqual(getProjectLifecycleAction('briefing'), {
+    nextStatus: 'ready_for_dev',
+    label: 'Send to development',
+  });
+  assert.deepEqual(getProjectLifecycleAction('ready_for_dev'), {
+    nextStatus: 'building',
+    label: 'Start development',
+  });
+  assert.deepEqual(getProjectLifecycleAction('building'), {
+    nextStatus: 'review',
+    label: 'Send to client review',
+  });
+  assert.deepEqual(getProjectLifecycleAction('review'), {
+    nextStatus: 'launched',
+    label: 'Complete project',
+    confirmation: 'Complete this project and move it to Closed Projects?',
+  });
+  assert.deepEqual(getProjectLifecycleAction('paused'), {
+    nextStatus: 'building',
+    label: 'Resume development',
+  });
+});
+
+test('does not expose another lifecycle action after a project is completed', () => {
+  assert.equal(getProjectLifecycleAction('launched'), null);
+});
+
+test('keeps closed sales outcomes outside the active sales pipeline', () => {
+  assert.deepEqual(SALES_PIPELINE_STATUSES, [
+    'new',
+    'contacted',
+    'discovery',
+    'proposal_sent',
+    'negotiation',
+  ]);
+  assert.equal(SALES_PIPELINE_STATUSES.includes('lost' as never), false);
+  assert.equal(SALES_PIPELINE_STATUSES.includes('won' as never), false);
+});
+
+test('provides one connected next action for every active sales stage', () => {
+  assert.deepEqual(getLeadLifecycleAction('new'), { nextStatus: 'contacted', label: 'Mark as contacted' });
+  assert.deepEqual(getLeadLifecycleAction('contacted'), { nextStatus: 'discovery', label: 'Start discovery' });
+  assert.deepEqual(getLeadLifecycleAction('discovery'), { nextStatus: 'proposal_sent', label: 'Mark proposal sent' });
+  assert.deepEqual(getLeadLifecycleAction('proposal_sent'), { nextStatus: 'negotiation', label: 'Start negotiation' });
+  assert.deepEqual(getLeadLifecycleAction('negotiation'), { nextStatus: 'won', label: 'Mark as won' });
+  assert.equal(getLeadLifecycleAction('won'), null);
+  assert.equal(getLeadLifecycleAction('lost'), null);
 });

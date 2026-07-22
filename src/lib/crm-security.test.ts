@@ -71,3 +71,17 @@ test('stores newsletter subscribers behind row-level security', () => {
   assert.match(migration, /alter table public\.newsletter_subscribers enable row level security/i);
   assert.match(migration, /revoke all on table public\.newsletter_subscribers from anon, authenticated/i);
 });
+
+test('secures manual lead creation and supports phone-only client identity', () => {
+  const manualMigration = readFileSync(
+    new URL('../../supabase/migrations/20260722090000_crm_manual_leads.sql', import.meta.url),
+    'utf8',
+  );
+  assert.match(manualMigration, /add column if not exists client_id uuid/i);
+  assert.match(manualMigration, /alter column email drop not null/i);
+  assert.match(manualMigration, /create or replace function public\.crm_create_manual_lead/i);
+  assert.match(manualMigration, /if not public\.is_team_member\(\)/i);
+  assert.match(manualMigration, /assigned_to[\s\S]*70karim\.hida@gmail\.com/i);
+  assert.match(manualMigration, /grant execute on function public\.crm_create_manual_lead\(jsonb\) to authenticated/i);
+  assert.doesNotMatch(manualMigration, /grant execute[\s\S]*crm_create_manual_lead[\s\S]*to anon/i);
+});

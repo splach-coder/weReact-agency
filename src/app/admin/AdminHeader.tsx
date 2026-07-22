@@ -8,16 +8,12 @@ export function AdminHeader({ member }: { member: TeamMember }) {
     <header className="crm-header">
       <div className="crm-header__inner">
         <Link href="/admin" className="crm-brand" aria-label="WeReact CRM dashboard">
-          <span className="crm-brand__mark">W</span>
-          <span>
-            <strong>WeReact</strong>
-            <small>Client pipeline</small>
-          </span>
+          &middot;wereact&middot;
         </Link>
 
         <div className="crm-header__actions">
           <Link href="/admin" className="crm-icon-link" aria-label="Dashboard" title="Dashboard">
-            <LayoutDashboard size={18} />
+            <LayoutDashboard size={17} />
           </Link>
           <div className="crm-member">
             <span>{member.name ?? member.email}</span>

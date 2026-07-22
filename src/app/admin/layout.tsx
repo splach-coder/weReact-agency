@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '../globals.css';
 import './admin.css';
+import './operations.css';
 import { nohemi } from '@/app/fonts';
 
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${nohemi.variable} min-h-screen antialiased`}>{children}</body>
+      <body className={`${nohemi.variable} min-h-screen antialiased`} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

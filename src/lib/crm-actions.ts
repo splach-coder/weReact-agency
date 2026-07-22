@@ -10,6 +10,27 @@ export type LeadUpdate = {
 
 type ParseResult<T> = { valid: true; value: T } | { valid: false; error: string };
 
+export const MANUAL_LEAD_SOURCES = [
+  'whatsapp',
+  'phone',
+  'referral',
+  'instagram',
+  'walk_in',
+  'other',
+] as const;
+
+export type ManualLeadSource = (typeof MANUAL_LEAD_SOURCES)[number];
+
+export type ManualLeadInput = {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  whatsapp: string;
+  source: ManualLeadSource;
+  message: string;
+};
+
 export type ProjectBriefUpdate = {
   project_id: string | null;
   expected_updated_at: string | null;
@@ -38,6 +59,37 @@ function cleanText(value: unknown, max: number) {
 function cleanList(value: unknown, maxItems = 30) {
   const items = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[\n,]+/) : [];
   return [...new Set(items.map((item) => String(item).trim()).filter(Boolean))].slice(0, maxItems);
+}
+
+export function parseManualLead(input: unknown): ParseResult<ManualLeadInput> {
+  if (!input || typeof input !== 'object') {
+    return { valid: false, error: 'Client details are missing.' };
+  }
+
+  const value = input as Record<string, unknown>;
+  const name = cleanText(value.name, 120);
+  const email = cleanText(value.email, 254).toLowerCase();
+  const company = cleanText(value.company, 160);
+  const phone = cleanText(value.phone, 40);
+  const whatsapp = cleanText(value.whatsapp, 40);
+  const message = cleanText(value.message, 2000) || 'Manual enquiry added by the team.';
+  const source = typeof value.source === 'string' && MANUAL_LEAD_SOURCES.includes(value.source as ManualLeadSource)
+    ? value.source as ManualLeadSource
+    : null;
+
+  if (!name) return { valid: false, error: 'Add the client name.' };
+  if (!email && !phone && !whatsapp) {
+    return { valid: false, error: 'Add an email, phone, or WhatsApp number.' };
+  }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { valid: false, error: 'Enter a valid email address.' };
+  }
+  if (!source) return { valid: false, error: 'Choose a valid enquiry source.' };
+
+  return {
+    valid: true,
+    value: { name, email, company, phone, whatsapp, source, message },
+  };
 }
 
 export function parseProjectBrief(input: unknown): ParseResult<ProjectBriefUpdate> {

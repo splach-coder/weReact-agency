@@ -1,4 +1,4 @@
-﻿export const CRM_STATUSES = [
+export const CRM_STATUSES = [
   'new',
   'contacted',
   'discovery',
@@ -6,6 +6,13 @@
   'negotiation',
   'won',
   'lost',
+] as const;
+export const SALES_PIPELINE_STATUSES = [
+  'new',
+  'contacted',
+  'discovery',
+  'proposal_sent',
+  'negotiation',
 ] as const;
 export const DEFAULT_SELLER_EMAIL = '70karim.hida@gmail.com';
 export const PROJECT_STATUSES = [
@@ -60,6 +67,7 @@ export type CrmLead = {
   id: string;
   created_at: string;
   updated_at: string;
+  client_id?: string | null;
   name: string;
   email: string;
   company: string | null;
@@ -102,8 +110,43 @@ export type LeadFilters = {
 export function isLeadStatus(value: unknown): value is LeadStatus {
   return typeof value === 'string' && CRM_STATUSES.includes(value as LeadStatus);
 }
+export type LeadLifecycleAction = {
+  nextStatus: LeadStatus;
+  label: string;
+};
+
+export function getLeadLifecycleAction(status: LeadStatus): LeadLifecycleAction | null {
+  if (status === 'new') return { nextStatus: 'contacted', label: 'Mark as contacted' };
+  if (status === 'contacted') return { nextStatus: 'discovery', label: 'Start discovery' };
+  if (status === 'discovery') return { nextStatus: 'proposal_sent', label: 'Mark proposal sent' };
+  if (status === 'proposal_sent') return { nextStatus: 'negotiation', label: 'Start negotiation' };
+  if (status === 'negotiation') return { nextStatus: 'won', label: 'Mark as won' };
+  return null;
+}
+
 export function isProjectStatus(value: unknown): value is ProjectStatus {
   return typeof value === 'string' && PROJECT_STATUSES.includes(value as ProjectStatus);
+}
+
+export type ProjectLifecycleAction = {
+  nextStatus: ProjectStatus;
+  label: string;
+  confirmation?: string;
+};
+
+export function getProjectLifecycleAction(status: ProjectStatus): ProjectLifecycleAction | null {
+  if (status === 'briefing') return { nextStatus: 'ready_for_dev', label: 'Send to development' };
+  if (status === 'ready_for_dev') return { nextStatus: 'building', label: 'Start development' };
+  if (status === 'building') return { nextStatus: 'review', label: 'Send to client review' };
+  if (status === 'review') {
+    return {
+      nextStatus: 'launched',
+      label: 'Complete project',
+      confirmation: 'Complete this project and move it to Closed Projects?',
+    };
+  }
+  if (status === 'paused') return { nextStatus: 'building', label: 'Resume development' };
+  return null;
 }
 
 const PROJECT_BRIEF_FIELDS = [

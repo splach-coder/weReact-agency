@@ -3,10 +3,11 @@ import { notFound, redirect } from 'next/navigation';
 import { ArrowLeft, Mail, Phone } from 'lucide-react';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { getWhatsAppHref, type CrmLead, type CrmProject, type LeadEvent, type TeamMember } from '@/lib/crm';
-import { AdminHeader } from '../../AdminHeader';
+import { AdminShell } from '../../AdminShell';
 import { RealtimeRefresh } from '../../RealtimeRefresh';
-import { LeadActivity, LeadWorkflowEditor, ProjectBriefEditor } from './LeadEditor';
-import { CopyButton, WhatsAppIcon } from './CopyButton';
+import { LeadWorkflowEditor, ProjectBriefEditor } from './LeadEditor';
+import { WhatsAppIcon } from './CopyButton';
+import { ClientDetailPanels } from './ClientDetailPanels';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,8 +30,14 @@ function dataLabel(value: string) {
   return value.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function LeadDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ project?: string }>;
+}) {
+  const [{ id }, { project: initialProjectId }] = await Promise.all([params, searchParams]);
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user?.email) redirect('/crm/login');
@@ -45,7 +52,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   const [{ data: lead, error: leadError }, { data: events, error: eventsError }] = await Promise.all([
     supabase
       .from('leads')
-      .select('id,created_at,updated_at,name,email,company,phone,whatsapp,message,status,source,attribution,notes,assigned_to,estimated_value,next_follow_up,last_contacted_at')
+      .select('id,created_at,updated_at,client_id,name,email,company,phone,whatsapp,message,status,source,attribution,notes,assigned_to,estimated_value,next_follow_up,last_contacted_at')
       .eq('id', id)
       .maybeSingle(),
     supabase
@@ -59,20 +66,23 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   if (leadError || eventsError || !lead) {
     console.error('CRM lead detail query failed.', { leadError, eventsError });
     return (
-      <>
-        <AdminHeader member={member as TeamMember} />
+      <AdminShell member={member as TeamMember}>
         <main className="crm-error"><div><h1>Could not load this client.</h1><p>Refresh the page or return to the dashboard.</p></div></main>
-      </>
+      </AdminShell>
     );
   }
 
-  const typedLead = lead as CrmLead;
-  const { data: client } = await supabase
-    .from('clients')
-    .select('id')
-    .eq('email', typedLead.email.toLowerCase())
-    .maybeSingle();
+  const typedLead = { ...lead, email: lead.email ?? '', phone: lead.phone ?? '' } as CrmLead;
+  let client: { id: string } | null = typedLead.client_id ? { id: typedLead.client_id } : null;
 
+  if (!client && typedLead.email) {
+    const { data } = await supabase
+      .from('clients')
+      .select('id')
+      .eq('email', typedLead.email.toLowerCase())
+      .maybeSingle();
+    client = data;
+  }
   const { data: projects, error: projectsError } = client
     ? await supabase
         .from('crm_projects')
@@ -93,7 +103,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
 
   const contactActions = (
     <>
-      <a href={'mailto:' + typedLead.email} className="crm-action-link"><Mail size={16} /> Email</a>
+      {typedLead.email && <a href={'mailto:' + typedLead.email} className="crm-action-link"><Mail size={16} /> Email</a>}
       {typedLead.phone && <a href={phoneHref(typedLead.phone)} className="crm-action-link"><Phone size={16} /> Call</a>}
       {typedLead.whatsapp && (
         <a href={getWhatsAppHref(typedLead.whatsapp)} target="_blank" rel="noreferrer" className="crm-primary-button">
@@ -104,103 +114,57 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   );
 
   return (
-    <>
-      <AdminHeader member={member as TeamMember} />
-      <main className="crm-detail">
-        <Link href="/admin" className="crm-back-link"><ArrowLeft size={16} /> Pipeline</Link>
+    <AdminShell member={member as TeamMember}>
+      <main className="crm-detail crm-client-page">
+        <div className="crm-client-commandbar">
+          <Link href="/admin/pipeline" className="crm-back-link"><ArrowLeft size={16} /> Pipeline</Link>
+          <ClientDetailPanels
+            lead={typedLead}
+            events={typedEvents}
+            received={formatReceived(typedLead.created_at)}
+            clientId={client?.id}
+            acquisition={acquisition.map(([key, value]) => ({ label: dataLabel(key), value: String(value) }))}
+            technical={[
+              { label: 'Created', value: formatReceived(typedLead.created_at) },
+              { label: 'Last updated', value: formatReceived(typedLead.updated_at) },
+              ...technicalAttribution.map(([key, value]) => ({ label: dataLabel(key), value: String(value) })),
+            ]}
+          />
+        </div>
 
-        <section className="crm-detail-hero">
+        <section className="crm-client-hero">
           <div>
             <p className="crm-eyebrow"><span /> {typedLead.company || 'Website enquiry'}</p>
             <h1>{typedLead.name}</h1>
-            <p>Received {formatReceived(typedLead.created_at)}</p>
+            <p>{typedLead.email || typedLead.whatsapp || typedLead.phone || 'No contact details'}</p>
           </div>
           <div className="crm-contact-actions">{contactActions}</div>
         </section>
 
-        <div className="crm-detail-grid">
-          <div className="crm-detail-stack">
-            <section className="crm-section">
-              <header><h2>Contact</h2><span>Client details</span></header>
-              <div className="crm-contact-grid">
-                <div className="crm-data-cell crm-data-cell--action">
-                  <span>Email</span>
-                  <div><a href={'mailto:' + typedLead.email}>{typedLead.email}</a><CopyButton value={typedLead.email} label="Copy email" /></div>
-                </div>
-                <div className="crm-data-cell crm-data-cell--action">
-                  <span>Phone</span>
-                  {typedLead.phone
-                    ? <div><a href={phoneHref(typedLead.phone)}>{typedLead.phone}</a><CopyButton value={typedLead.phone} label="Copy phone" /></div>
-                    : <strong>Not provided</strong>}
-                </div>
-                <div className="crm-data-cell crm-data-cell--action">
-                  <span>WhatsApp</span>
-                  {typedLead.whatsapp
-                    ? <div><a href={getWhatsAppHref(typedLead.whatsapp)} target="_blank" rel="noreferrer"><WhatsAppIcon size={16} /> {typedLead.whatsapp}</a><CopyButton value={typedLead.whatsapp} label="Copy WhatsApp number" /></div>
-                    : <strong>Not provided</strong>}
-                </div>
-                <div className="crm-data-cell"><span>Company</span><strong>{typedLead.company || 'Not provided'}</strong></div>
-              </div>
-            </section>
-
-            <section className="crm-section">
-              <header><h2>Original request</h2><span>Submitted by the client</span></header>
-              <p className="crm-message">{message}</p>
-            </section>
-
-            <ProjectBriefEditor key={typedProjects.map((project) => project.id + ':' + project.updated_at).join('|') || 'new'} lead={typedLead} projects={typedProjects} />
-
-            <LeadActivity leadId={typedLead.id} events={typedEvents} />
-
-            {acquisition.length > 0 && (
-              <details className="crm-section crm-collapsible">
-                <summary>
-                  <span>Acquisition</span>
-                  <small>{acquisition.length} fields</small>
-                </summary>
-                <div className="crm-attribution-grid crm-collapsible__content">
-                  {acquisition.map(([key, value]) => (
-                    <div className="crm-data-cell" key={key}><span>{dataLabel(key)}</span><strong>{String(value)}</strong></div>
-                  ))}
-                </div>
-              </details>
-            )}
-
-            <details className="crm-section crm-collapsible">
-              <summary>
-                <span>Technical details</span>
-                <small>IDs and timestamps</small>
-              </summary>
-              <div className="crm-attribution-grid crm-collapsible__content">
-                <div className="crm-data-cell crm-data-cell--action">
-                  <span>Lead ID</span>
-                  <div><strong>{typedLead.id}</strong><CopyButton value={typedLead.id} label="Copy lead ID" /></div>
-                </div>
-                <div className="crm-data-cell"><span>Source</span><strong>{typedLead.source || 'Unknown'}</strong></div>
-                <div className="crm-data-cell"><span>Created</span><strong>{formatReceived(typedLead.created_at)}</strong></div>
-                <div className="crm-data-cell"><span>Last updated</span><strong>{formatReceived(typedLead.updated_at)}</strong></div>
-                {client?.id && (
-                  <div className="crm-data-cell crm-data-cell--action">
-                    <span>Client ID</span>
-                    <div><strong>{client.id}</strong><CopyButton value={client.id} label="Copy client ID" /></div>
-                  </div>
-                )}
-                {technicalAttribution.map(([key, value]) => (
-                  <div className="crm-data-cell crm-data-cell--action" key={key}>
-                    <span>{dataLabel(key)}</span>
-                    <div><strong>{String(value)}</strong><CopyButton value={String(value)} label={'Copy ' + dataLabel(key)} /></div>
-                  </div>
-                ))}
-              </div>
-            </details>
+        <section className="crm-client-request">
+          <div>
+            <span>Client request</span>
+            <small>Submitted {formatReceived(typedLead.created_at)}</small>
           </div>
+          <p>{message}</p>
+        </section>
 
-          <LeadWorkflowEditor key={typedLead.updated_at} lead={typedLead} />
+        <div className="crm-client-workspace">
+          {typedLead.status !== 'won' && (
+            <LeadWorkflowEditor key={typedLead.updated_at} lead={typedLead} hasProjects={typedProjects.length > 0} />
+          )}
+
+          <ProjectBriefEditor
+            key={(initialProjectId ?? 'default') + ':' + (typedProjects.map((project) => project.id + ':' + project.updated_at).join('|') || 'new')}
+            lead={typedLead}
+            projects={typedProjects}
+            initialProjectId={initialProjectId}
+          />
         </div>
 
         <div className="crm-mobile-contact" aria-label="Contact client">{contactActions}</div>
         <RealtimeRefresh tables={['leads', 'lead_events', 'crm_projects']} />
       </main>
-    </>
+    </AdminShell>
   );
 }

@@ -2,11 +2,12 @@
 
 import { FormEvent, useMemo, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, Globe2, Plus, Save, Send } from 'lucide-react';
+import { ArrowRight, CircleCheckBig, Globe2, Plus, RotateCcw, Save, Send, XCircle } from 'lucide-react';
 import { addLeadNoteAction, saveProjectBriefAction, updateLeadAction } from '../../actions';
 import {
-  CRM_STATUSES,
-  PROJECT_STATUSES,
+  SALES_PIPELINE_STATUSES,
+  getLeadLifecycleAction,
+  getProjectLifecycleAction,
   getProjectBriefProgress,
   type CrmLead,
   type CrmProject,
@@ -30,7 +31,7 @@ const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
   ready_for_dev: 'Ready for development',
   building: 'Building',
   review: 'Client review',
-  launched: 'Launched',
+  launched: 'Completed',
   paused: 'Paused',
 };
 
@@ -94,9 +95,8 @@ function formatTimestamp(value: string) {
   }).format(new Date(value));
 }
 
-export function LeadWorkflowEditor({ lead }: { lead: CrmLead }) {
+export function LeadWorkflowEditor({ lead, hasProjects }: { lead: CrmLead; hasProjects: boolean }) {
   const router = useRouter();
-  const [status, setStatus] = useState<LeadStatus>(lead.status);
   const [estimatedValue, setEstimatedValue] = useState(
     lead.estimated_value == null ? '' : String(lead.estimated_value),
   );
@@ -104,9 +104,14 @@ export function LeadWorkflowEditor({ lead }: { lead: CrmLead }) {
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
   const [saving, startSaving] = useTransition();
+  const lifecycleAction = getLeadLifecycleAction(lead.status);
+  const activeStageIndex = SALES_PIPELINE_STATUSES.indexOf(
+    lead.status as (typeof SALES_PIPELINE_STATUSES)[number],
+  );
+  const isClosed = lead.status === 'won' || lead.status === 'lost';
+  const winningWithoutProject = lifecycleAction?.nextStatus === 'won' && !hasProjects;
 
-  function saveWorkflow(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function submitWorkflow(nextStatus: LeadStatus, successMessage: string) {
     setMessage('');
     setIsError(false);
 
@@ -123,7 +128,7 @@ export function LeadWorkflowEditor({ lead }: { lead: CrmLead }) {
       }
 
       const result = await updateLeadAction(lead.id, {
-        status,
+        status: nextStatus,
         assignedTo: '',
         estimatedValue,
         nextFollowUp,
@@ -131,55 +136,133 @@ export function LeadWorkflowEditor({ lead }: { lead: CrmLead }) {
       });
 
       setIsError(!result.ok);
-      setMessage(result.ok ? 'Sales next step saved.' : (result.error ?? 'Could not save.'));
+      setMessage(result.ok ? successMessage : (result.error ?? 'Could not save.'));
       if (result.ok) router.refresh();
     });
   }
 
+  function saveWorkflow(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    submitWorkflow(lead.status, 'Sales details saved.');
+  }
+
+  function advanceLead() {
+    if (!lifecycleAction || winningWithoutProject) return;
+    submitWorkflow(lifecycleAction.nextStatus, lifecycleAction.nextStatus === 'won'
+      ? 'Sale won. The client is now linked to website delivery.'
+      : 'Sales phase updated.');
+  }
+
+  function markLost() {
+    if (!window.confirm('Mark this enquiry as lost? You can reopen it later.')) return;
+    submitWorkflow('lost', 'Client moved to Lost clients.');
+  }
+
+  function reopenLead() {
+    submitWorkflow('discovery', 'Client reopened in Discovery.');
+  }
+
   return (
-    <aside className="crm-workflow">
-      <p className="crm-eyebrow"><span /> Sales</p>
-      <h2>Next action</h2>
-      <p>Keep the deal stage, value, and next follow-up current.</p>
+    <aside className="crm-workflow crm-sales-phase">
+      <header className="crm-sales-phase__header">
+        <div>
+          <p className="crm-eyebrow"><span /> Sales phase</p>
+          <h2>{STATUS_LABELS[lead.status]}</h2>
+        </div>
+        <span className={'crm-outcome-badge crm-outcome-badge--' + lead.status}>
+          {isClosed ? STATUS_LABELS[lead.status] : 'Active'}
+        </span>
+      </header>
+
+      <ol className="crm-sales-rail" aria-label="Sales progress">
+        {SALES_PIPELINE_STATUSES.map((stage, index) => (
+          <li
+            className={
+              index < activeStageIndex
+                ? 'is-complete'
+                : index === activeStageIndex
+                  ? 'is-current'
+                  : ''
+            }
+            aria-current={index === activeStageIndex ? 'step' : undefined}
+            key={stage}
+          >
+            <span>{index + 1}</span>
+            <small>{STATUS_LABELS[stage]}</small>
+          </li>
+        ))}
+      </ol>
+
+      {isClosed && (
+        <div className={'crm-sales-outcome crm-sales-outcome--' + lead.status}>
+          <strong>{lead.status === 'won' ? 'Sale won' : 'Sale lost'}</strong>
+          <span>{lead.status === 'won'
+            ? 'The sales record is closed; delivery continues through its website project.'
+            : 'This enquiry is stored in Lost clients and no longer clutters the active pipeline.'}</span>
+        </div>
+      )}
 
       <form className="crm-editor-form" onSubmit={saveWorkflow}>
-        <div className="crm-field">
-          <label htmlFor="lead-status">Sales stage</label>
-          <select id="lead-status" value={status} onChange={(event) => setStatus(event.target.value as LeadStatus)}>
-            {CRM_STATUSES.map((item) => <option value={item} key={item}>{STATUS_LABELS[item]}</option>)}
-          </select>
+        <div className="crm-sales-fields">
+          <div className="crm-field">
+            <label htmlFor="lead-follow-up">Next follow-up</label>
+            <input id="lead-follow-up" type="datetime-local" value={followUp} onChange={(event) => setFollowUp(event.target.value)} />
+          </div>
+
+          <div className="crm-field">
+            <label htmlFor="lead-value">Expected budget (MAD)</label>
+            <input
+              id="lead-value"
+              type="number"
+              min="0"
+              max="10000000"
+              step="50"
+              inputMode="decimal"
+              value={estimatedValue}
+              onChange={(event) => setEstimatedValue(event.target.value)}
+              placeholder="Optional"
+            />
+          </div>
         </div>
 
-        <div className="crm-field">
-          <label htmlFor="lead-follow-up">Next follow-up</label>
-          <input id="lead-follow-up" type="datetime-local" value={followUp} onChange={(event) => setFollowUp(event.target.value)} />
+        <div className="crm-sales-actions">
+          <button type="submit" className="crm-secondary-button" disabled={saving}>
+            <Save size={16} />
+            {saving ? 'Saving...' : 'Save details'}
+          </button>
+
+          {lifecycleAction && (
+            <button
+              type="button"
+              className="crm-primary-button"
+              disabled={saving || winningWithoutProject}
+              title={winningWithoutProject ? 'Create a website project before closing this sale as won.' : undefined}
+              onClick={advanceLead}
+            >
+              <ArrowRight size={16} />
+              {lifecycleAction.label}
+            </button>
+          )}
+
+          {isClosed ? (
+            <button type="button" className="crm-text-button" disabled={saving} onClick={reopenLead}>
+              <RotateCcw size={15} /> Reopen in discovery
+            </button>
+          ) : (
+            <button type="button" className="crm-text-button crm-text-button--danger" disabled={saving} onClick={markLost}>
+              <XCircle size={15} /> Mark as lost
+            </button>
+          )}
         </div>
 
-        <div className="crm-field">
-          <label htmlFor="lead-value">Expected budget (MAD)</label>
-          <input
-            id="lead-value"
-            type="number"
-            min="0"
-            max="10000000"
-            step="50"
-            inputMode="decimal"
-            value={estimatedValue}
-            onChange={(event) => setEstimatedValue(event.target.value)}
-            placeholder="Optional"
-          />
-        </div>
-
-        <button type="submit" className="crm-primary-button crm-button-wide" disabled={saving}>
-          <Save size={16} />
-          {saving ? 'Saving...' : 'Save next step'}
-        </button>
+        {winningWithoutProject && (
+          <p className="crm-workflow-hint">Create the website project below before marking the sale as won.</p>
+        )}
         <p className={'crm-form-message ' + (isError ? 'is-error' : '')} aria-live="polite">{message}</p>
       </form>
     </aside>
   );
 }
-
 type ProjectDraft = {
   projectId: string;
   expectedUpdatedAt: string;
@@ -224,9 +307,20 @@ function projectToDraft(project?: CrmProject): ProjectDraft {
   };
 }
 
-export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects: CrmProject[] }) {
+export function ProjectBriefEditor({
+  lead,
+  projects,
+  initialProjectId,
+}: {
+  lead: CrmLead;
+  projects: CrmProject[];
+  initialProjectId?: string;
+}) {
   const router = useRouter();
-  const [draft, setDraft] = useState<ProjectDraft>(() => projectToDraft(projects[0]));
+  const [draft, setDraft] = useState<ProjectDraft>(() => {
+    const initialProject = projects.find((project) => project.id === initialProjectId) ?? projects[0];
+    return projectToDraft(initialProject);
+  });
   const [section, setSection] = useState<ProjectSection>('overview');
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
@@ -254,6 +348,10 @@ export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects
     setSection('overview');
     setMessage('');
     setIsError(false);
+    router.replace(
+      project ? `/admin/leads/${lead.id}?project=${project.id}` : `/admin/leads/${lead.id}`,
+      { scroll: false },
+    );
   }
 
   function saveProject(event: FormEvent<HTMLFormElement>) {
@@ -268,16 +366,36 @@ export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects
       const result = await saveProjectBriefAction(lead.id, { ...draft, status: nextStatus });
       setIsError(!result.ok);
       setMessage(result.ok
-        ? (nextStatus === 'ready_for_dev' ? 'Brief is ready for development.' : 'Project brief saved.')
+        ? (nextStatus === 'launched'
+          ? 'Project completed and moved to Closed Projects.'
+          : `${PROJECT_STATUS_LABELS[nextStatus]} saved.`)
         : (result.error ?? 'Could not save.'));
       if (result.ok) {
-        update('status', nextStatus);
-        if (result.projectId) update('projectId', result.projectId);
-        if (result.updatedAt) update('expectedUpdatedAt', result.updatedAt);
+        const projectId = result.projectId ?? draft.projectId;
+        setDraft((current) => ({
+          ...current,
+          status: nextStatus,
+          projectId,
+          expectedUpdatedAt: result.updatedAt ?? current.expectedUpdatedAt,
+        }));
         setDirty(false);
+        if (projectId) {
+          router.replace(`/admin/leads/${lead.id}?project=${projectId}`, { scroll: false });
+        }
         router.refresh();
       }
     });
+  }
+
+  const lifecycleAction = getProjectLifecycleAction(draft.status);
+  const lifecycleDisabled = saving
+    || !progress.ready
+    || (draft.status !== 'briefing' && !draft.projectId);
+
+  function advanceProject() {
+    if (!lifecycleAction) return;
+    if (lifecycleAction.confirmation && !window.confirm(lifecycleAction.confirmation)) return;
+    submitProject(lifecycleAction.nextStatus);
   }
 
   return (
@@ -429,13 +547,7 @@ export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects
 
           {section === 'delivery' && (
             <>
-              <div className="crm-form-grid crm-form-grid--three">
-                <div className="crm-field">
-                  <label htmlFor="project-stage">Delivery stage</label>
-                  <select id="project-stage" value={draft.status} onChange={(event) => update('status', event.target.value as ProjectStatus)}>
-                    {PROJECT_STATUSES.map((status) => <option value={status} key={status}>{PROJECT_STATUS_LABELS[status]}</option>)}
-                  </select>
-                </div>
+              <div className="crm-form-grid">
                 <div className="crm-field">
                   <label htmlFor="project-budget">Confirmed budget (MAD)</label>
                   <input id="project-budget" type="number" min="0" inputMode="decimal" value={draft.budget} onChange={(event) => update('budget', event.target.value)} placeholder="e.g. 6000" />
@@ -459,12 +571,25 @@ export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects
         )}
 
         <div className="crm-brief-actions">
-          <button type="submit" className="crm-secondary-button" disabled={saving}>
-            <Save size={16} /> {saving ? 'Saving...' : 'Save project'}
+          <button type="submit" className="crm-secondary-button" disabled={saving || !dirty}>
+            <Save size={16} /> {saving ? 'Saving...' : 'Save changes'}
           </button>
-          <button type="button" className="crm-primary-button" disabled={saving || !progress.ready} onClick={() => submitProject('ready_for_dev')}>
-            <Check size={16} /> Ready for development
-          </button>
+          {lifecycleAction ? (
+            <button type="button" className="crm-primary-button" disabled={lifecycleDisabled} onClick={advanceProject}>
+              {lifecycleAction.nextStatus === 'launched'
+                ? <CircleCheckBig size={16} />
+                : <ArrowRight size={16} />}
+              {saving ? 'Updating...' : lifecycleAction.label}
+            </button>
+          ) : (
+            <div className="crm-project-complete" role="status">
+              <CircleCheckBig size={18} />
+              <div>
+                <strong>Project completed</strong>
+                <span>Filed in Closed Projects</span>
+              </div>
+            </div>
+          )}
         </div>
         <p className={'crm-form-message ' + (isError ? 'is-error' : '')} aria-live="polite">{message}</p>
       </form>
@@ -472,7 +597,15 @@ export function ProjectBriefEditor({ lead, projects }: { lead: CrmLead; projects
   );
 }
 
-export function LeadActivity({ leadId, events }: { leadId: string; events: LeadEvent[] }) {
+export function LeadActivity({
+  leadId,
+  events,
+  embedded = false,
+}: {
+  leadId: string;
+  events: LeadEvent[];
+  embedded?: boolean;
+}) {
   const router = useRouter();
   const [note, setNote] = useState('');
   const [message, setMessage] = useState('');
@@ -494,36 +627,47 @@ export function LeadActivity({ leadId, events }: { leadId: string; events: LeadE
     });
   }
 
+  const content = (
+    <>
+      <form className="crm-note-composer" onSubmit={saveNote}>
+        <div className="crm-field">
+          <label htmlFor="lead-note">Private sales note</label>
+          <textarea id="lead-note" value={note} onChange={(event) => setNote(event.target.value)} placeholder="Call outcome, objection, proposal sent, next action..." maxLength={2000} />
+        </div>
+        <div className="crm-form-actions">
+          <button type="submit" className="crm-secondary-button" disabled={saving}>
+            <Send size={14} />{saving ? 'Adding...' : 'Add note'}
+          </button>
+          <p className={'crm-form-message ' + (isError ? 'is-error' : '')} aria-live="polite">{message}</p>
+        </div>
+      </form>
+      <div className="crm-timeline">
+        {events.map((item) => (
+          <article className="crm-event" key={item.id}>
+            <span className="crm-event__dot" />
+            <div>
+              <strong>{eventTitle(item.kind)}</strong>
+              {item.body && <p>{item.body}</p>}
+            </div>
+            <time dateTime={item.created_at}>{formatTimestamp(item.created_at)}</time>
+          </article>
+        ))}
+        {events.length === 0 && <div className="crm-empty-state">No activity recorded yet.</div>}
+      </div>
+    </>
+  );
+
+  if (embedded) {
+    return <div className="crm-drawer-activity">{content}</div>;
+  }
+
   return (
     <details className="crm-section crm-collapsible crm-activity-details">
       <summary>
         <span>History</span>
         <small>{events.length} {events.length === 1 ? 'entry' : 'entries'}</small>
       </summary>
-      <div className="crm-collapsible__content">
-        <form className="crm-note-composer" onSubmit={saveNote}>
-          <div className="crm-field">
-            <label htmlFor="lead-note">Private sales note</label>
-            <textarea id="lead-note" value={note} onChange={(event) => setNote(event.target.value)} placeholder="Call outcome, client objection, proposal sent, next action..." maxLength={2000} />
-          </div>
-          <div className="crm-form-actions">
-            <button type="submit" className="crm-secondary-button" disabled={saving}><Send size={14} />{saving ? 'Adding...' : 'Add note'}</button>
-            <p className={'crm-form-message ' + (isError ? 'is-error' : '')} aria-live="polite">{message}</p>
-          </div>
-        </form>
-        <div className="crm-timeline">
-          {events.map((item) => (
-            <article className="crm-event" key={item.id}>
-              <span className="crm-event__dot" />
-              <div>
-                <strong>{eventTitle(item.kind)}</strong>
-                {item.body && <p>{item.body}</p>}              </div>
-              <time dateTime={item.created_at}>{formatTimestamp(item.created_at)}</time>
-            </article>
-          ))}
-          {events.length === 0 && <div className="crm-empty-state">No activity recorded yet.</div>}
-        </div>
-      </div>
+      <div className="crm-collapsible__content">{content}</div>
     </details>
   );
 }

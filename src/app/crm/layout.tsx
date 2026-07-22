@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 export default function CrmLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${nohemi.variable} min-h-screen antialiased`}>{children}</body>
+      <body className={`${nohemi.variable} min-h-screen antialiased`} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

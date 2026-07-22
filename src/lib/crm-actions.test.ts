@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseLeadNote, parseLeadUpdate, parseProjectBrief } from './crm-actions';
+import { parseLeadNote, parseLeadUpdate, parseManualLead, parseProjectBrief } from './crm-actions';
 
 test('normalizes a complete lead workflow update', () => {
   const result = parseLeadUpdate({
@@ -156,5 +156,50 @@ test('blocks developer handoff until the essential brief is complete', () => {
   }), {
     valid: false,
     error: 'Complete the goals, pages, features, and languages before development.',
+  });
+});
+
+test('normalizes a phone-first manual enquiry without inventing an email', () => {
+  assert.deepEqual(parseManualLead({
+    name: '  Salma Idrissi  ',
+    email: '',
+    company: ' Atlas House ',
+    phone: ' +212 612 345 678 ',
+    whatsapp: ' 06 12 34 56 78 ',
+    source: 'whatsapp',
+    message: ' Needs a booking website. ',
+  }), {
+    valid: true,
+    value: {
+      name: 'Salma Idrissi',
+      email: '',
+      company: 'Atlas House',
+      phone: '+212 612 345 678',
+      whatsapp: '06 12 34 56 78',
+      source: 'whatsapp',
+      message: 'Needs a booking website.',
+    },
+  });
+});
+
+test('requires a name and at least one usable manual contact route', () => {
+  assert.deepEqual(parseManualLead({ name: '', phone: '+212600000000' }), {
+    valid: false,
+    error: 'Add the client name.',
+  });
+  assert.deepEqual(parseManualLead({ name: 'Salma' }), {
+    valid: false,
+    error: 'Add an email, phone, or WhatsApp number.',
+  });
+});
+
+test('rejects malformed manual emails and unsupported lead sources', () => {
+  assert.deepEqual(parseManualLead({ name: 'Salma', email: 'not-an-email' }), {
+    valid: false,
+    error: 'Enter a valid email address.',
+  });
+  assert.deepEqual(parseManualLead({ name: 'Salma', phone: '+212600000000', source: 'unknown-network' }), {
+    valid: false,
+    error: 'Choose a valid enquiry source.',
   });
 });

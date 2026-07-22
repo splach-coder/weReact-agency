@@ -4,29 +4,40 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
-  closestCorners,
-  useDraggable,
+  closestCenter,
   useDroppable,
   useSensor,
   useSensors,
   type DragEndEvent,
+  type DragStartEvent,
 } from '@dnd-kit/core';
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import {
   ArrowUpRight,
   CalendarClock,
+  ChevronDown,
   GripVertical,
   LayoutGrid,
   List,
   Mail,
   Phone,
   Search,
+  UserPlus,
 } from 'lucide-react';
-import { moveLeadStageAction } from './actions';
+import { moveLeadStageAction, moveProjectStageAction } from './actions';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ManualLeadDrawer } from './ManualLeadDrawer';
 import {
   CRM_STATUSES,
+  SALES_PIPELINE_STATUSES,
   filterLeads,
   formatLeadAge,
   getWhatsAppHref,
@@ -44,6 +55,15 @@ const STATUS_META: Record<LeadStatus, { label: string; short: string }> = {
   negotiation: { label: 'Terms in discussion', short: 'Negotiation' },
   won: { label: 'Sale won', short: 'Won' },
   lost: { label: 'Sale lost', short: 'Lost' },
+};
+
+const DELIVERY_STATUSES = ['ready_for_dev', 'building', 'review'] as const;
+type DeliveryStatus = (typeof DELIVERY_STATUSES)[number];
+
+const DELIVERY_META: Record<DeliveryStatus, { label: string; short: string }> = {
+  ready_for_dev: { label: 'Ready for development', short: 'Ready for dev' },
+  building: { label: 'Developing', short: 'Developing' },
+  review: { label: 'Client review', short: 'Review' },
 };
 
 function formatDate(value: string) {
@@ -79,9 +99,11 @@ function ContactActions({ lead }: { lead: CrmLead }) {
           <Phone size={17} />
         </a>
       )}
-      <a href={`mailto:${lead.email.trim()}`} aria-label={`Email ${lead.name}`} title="Email">
-        <Mail size={17} />
-      </a>
+      {lead.email.trim() && (
+        <a href={`mailto:${lead.email.trim()}`} aria-label={`Email ${lead.name}`} title="Email">
+          <Mail size={17} />
+        </a>
+      )}
       <Link href={`/admin/leads/${lead.id}`} aria-label={`Open ${lead.name}`} title="Open client">
         <ArrowUpRight size={17} />
       </Link>
@@ -94,17 +116,20 @@ type LeadCardProps = {
   projects: CrmProject[];
   onMove: (leadId: string, status: LeadStatus) => void;
   draggable?: boolean;
+  showStageSelect?: boolean;
+  moving?: boolean;
 };
 
-function LeadCard({ lead, projects, onMove, draggable = false }: LeadCardProps) {
-  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
+function LeadCard({ lead, projects, onMove, draggable = false, showStageSelect = true, moving = false }: LeadCardProps) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: `lead:${lead.id}`,
-    data: { leadId: lead.id, status: lead.status },
+    data: { leadId: lead.id, status: lead.status, stage: lead.status },
     disabled: !draggable,
   });
-  const style = transform
-    ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` }
-    : undefined;
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   return (
     <article
@@ -129,7 +154,7 @@ function LeadCard({ lead, projects, onMove, draggable = false }: LeadCardProps) 
       </div>
 
       <Link href={`/admin/leads/${lead.id}`} className="crm-lead-card__name">{lead.name}</Link>
-      <p className="crm-lead-card__company">{lead.company || lead.email}</p>
+      <p className="crm-lead-card__company">{lead.company || lead.email || lead.whatsapp || lead.phone || 'No company'}</p>
       <p className="crm-lead-card__project">{getProjectSummary(projects)}</p>
 
       {lead.next_follow_up && (
@@ -139,18 +164,19 @@ function LeadCard({ lead, projects, onMove, draggable = false }: LeadCardProps) 
         </p>
       )}
 
-      <label className="crm-mobile-stage-select">
-        <span>Sales stage</span>
+      {showStageSelect && <label className="crm-mobile-stage-select">
+        <span>{moving ? 'Moving client...' : 'Move client'}</span>
         <select
           value={lead.status}
           onChange={(event) => onMove(lead.id, event.target.value as LeadStatus)}
-          aria-label={`Sales stage for ${lead.name}`}
+          aria-label={`Move client ${lead.name} to another sales stage`}
+          disabled={moving}
         >
           {CRM_STATUSES.map((stage) => (
             <option value={stage} key={stage}>{STATUS_META[stage].short}</option>
           ))}
         </select>
-      </label>
+      </label>}
 
       <div className="crm-lead-card__footer">
         <ContactActions lead={lead} />
@@ -164,11 +190,15 @@ function PipelineStage({
   leads,
   projectsByLead,
   onMove,
+  collapsed,
+  onToggle,
 }: {
   stage: LeadStatus;
   leads: CrmLead[];
   projectsByLead: Map<string, CrmProject[]>;
   onMove: (leadId: string, status: LeadStatus) => void;
+  collapsed: boolean;
+  onToggle: () => void;
 }) {
   const { setNodeRef, isOver } = useDroppable({
     id: `stage:${stage}`,
@@ -176,23 +206,107 @@ function PipelineStage({
   });
 
   return (
-    <section ref={setNodeRef} className={`crm-stage${isOver ? ' is-over' : ''}`}>
+    <section ref={setNodeRef} className={`crm-stage${isOver ? ' is-over' : ''}${collapsed ? ' is-collapsed' : ''}`}>
       <header>
-        <div><span className={`crm-status-dot crm-status-dot--${stage}`} /><h2>{STATUS_META[stage].short}</h2></div>
+        <button type="button" className="crm-stage__toggle" onClick={onToggle} aria-expanded={!collapsed}>
+          <span className={`crm-status-dot crm-status-dot--${stage}`} />
+          <h2>{STATUS_META[stage].short}</h2>
+          {leads.length === 0 && <ChevronDown size={15} aria-hidden="true" />}
+        </button>
         <strong>{leads.length}</strong>
       </header>
-      <div className="crm-stage__leads">
-        {leads.map((lead) => (
-          <LeadCard
-            lead={lead}
-            projects={projectsByLead.get(lead.id) ?? []}
-            onMove={onMove}
-            draggable
-            key={lead.id}
-          />
-        ))}
-        {leads.length === 0 && <p className="crm-stage__empty">Drop a client here</p>}
+      {!collapsed && (
+        <SortableContext items={leads.map((lead) => `lead:${lead.id}`)} strategy={verticalListSortingStrategy}>
+          <div className="crm-stage__leads">
+            {leads.map((lead) => (
+              <LeadCard
+                lead={lead}
+                projects={projectsByLead.get(lead.id) ?? []}
+                onMove={onMove}
+                draggable
+                key={lead.id}
+              />
+            ))}
+            {leads.length === 0 && <p className="crm-stage__empty">Drop a client here</p>}
+          </div>
+        </SortableContext>
+      )}
+    </section>
+  );
+}
+
+function ProjectCard({ project, onMove, dragOverlay = false, readOnly = false, draggable = true, moving = false }: {
+  project: CrmProject;
+  onMove: (projectId: string, status: DeliveryStatus) => void;
+  dragOverlay?: boolean;
+  readOnly?: boolean;
+  draggable?: boolean;
+  moving?: boolean;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: `project:${project.id}`,
+    data: { projectId: project.id, stage: project.status },
+    disabled: !draggable || readOnly,
+  });
+  const style = { transform: CSS.Transform.toString(transform), transition };
+
+  return (
+    <article ref={setNodeRef} className={`crm-project-card${isDragging ? ' is-dragging' : ''}`} style={style}>
+      <div className="crm-project-card__top">
+        <span className={`crm-status-dot crm-status-dot--${project.status}`} />
+        <span>{DELIVERY_META[project.status as DeliveryStatus]?.short ?? project.status}</span>
+        {!readOnly && draggable && <button type="button" className="crm-drag-handle" aria-label={`Move ${project.project_name}`} title="Drag to move" {...attributes} {...listeners}>
+          <GripVertical size={17} />
+        </button>}
       </div>
+      {project.originating_lead_id ? (
+        <Link href={`/admin/leads/${project.originating_lead_id}?project=${project.id}`} className="crm-project-card__name">{project.project_name}</Link>
+      ) : (
+        <strong className="crm-project-card__name">{project.project_name}</strong>
+      )}
+      <p className="crm-project-card__domain">{project.domain_name || project.project_type}</p>
+      {!readOnly && <label className="crm-mobile-stage-select">
+        <span>{moving ? 'Moving project...' : 'Move project'}</span>
+        <select
+          value={project.status}
+          onChange={(event) => onMove(project.id, event.target.value as DeliveryStatus)}
+          aria-label={`Move project ${project.project_name} to another delivery stage`}
+          disabled={moving}
+        >
+          {DELIVERY_STATUSES.map((stage) => <option value={stage} key={stage}>{DELIVERY_META[stage].short}</option>)}
+        </select>
+      </label>}
+    </article>
+  );
+}
+
+function DeliveryStage({ stage, projects, onMove, collapsed, onToggle }: {
+  stage: DeliveryStatus;
+  projects: CrmProject[];
+  onMove: (projectId: string, status: DeliveryStatus) => void;
+  collapsed: boolean;
+  onToggle: () => void;
+}) {
+  const { setNodeRef, isOver } = useDroppable({ id: `delivery:${stage}`, data: { stage } });
+
+  return (
+    <section ref={setNodeRef} className={`crm-stage crm-stage--delivery${isOver ? ' is-over' : ''}${collapsed ? ' is-collapsed' : ''}`}>
+      <header>
+        <button type="button" className="crm-stage__toggle" onClick={onToggle} aria-expanded={!collapsed}>
+          <span className={`crm-status-dot crm-status-dot--${stage}`} />
+          <h2>{DELIVERY_META[stage].short}</h2>
+          {projects.length === 0 && <ChevronDown size={15} aria-hidden="true" />}
+        </button>
+        <strong>{projects.length}</strong>
+      </header>
+      {!collapsed && (
+        <SortableContext items={projects.map((project) => `project:${project.id}`)} strategy={verticalListSortingStrategy}>
+          <div className="crm-stage__leads">
+            {projects.map((project) => <ProjectCard project={project} onMove={onMove} key={project.id} />)}
+            {projects.length === 0 && <p className="crm-stage__empty">Drop a project here</p>}
+          </div>
+        </SortableContext>
+      )}
     </section>
   );
 }
@@ -207,11 +321,19 @@ function Metric({ label, value, detail, tone }: { label: string; value: number; 
 
 export function DashboardClient({ leads, projects }: { leads: CrmLead[]; projects: CrmProject[] }) {
   const [boardLeads, setBoardLeads] = useState(leads);
+  const [boardProjects, setBoardProjects] = useState(projects);
   const [query, setQuery] = useState('');
+  const [showNewClient, setShowNewClient] = useState(false);
   const [status, setStatus] = useState<LeadStatus | 'all'>('all');
+  const [board, setBoard] = useState<'sales' | 'delivery' | 'closed' | 'lost'>('sales');
   const [view, setView] = useState<'pipeline' | 'list'>('pipeline');
+  const [mobileSalesStage, setMobileSalesStage] = useState<(typeof SALES_PIPELINE_STATUSES)[number]>('new');
+  const [mobileDeliveryStage, setMobileDeliveryStage] = useState<DeliveryStatus>('ready_for_dev');
   const [moveError, setMoveError] = useState('');
   const [movingLeadId, setMovingLeadId] = useState<string | null>(null);
+  const [movingProjectId, setMovingProjectId] = useState<string | null>(null);
+  const [activeDragId, setActiveDragId] = useState<string | null>(null);
+  const [collapsedStages, setCollapsedStages] = useState<Record<string, boolean>>({});
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor),
@@ -219,23 +341,42 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
 
   useEffect(() => {
     if (!movingLeadId) setBoardLeads(leads);
-  }, [leads, movingLeadId]);
+    if (!movingProjectId) setBoardProjects(projects);
+  }, [leads, projects, movingLeadId, movingProjectId]);
 
-  const filtered = useMemo(() => filterLeads(boardLeads, { query, status }), [boardLeads, query, status]);
+  const activeSalesLeads = useMemo(() => boardLeads.filter((lead) => SALES_PIPELINE_STATUSES.includes(lead.status as (typeof SALES_PIPELINE_STATUSES)[number])), [boardLeads]);
+  const closedProjects = useMemo(() => boardProjects.filter((project) => project.status === 'launched'), [boardProjects]);
+  const lostLeads = useMemo(() => filterLeads(boardLeads.filter((lead) => lead.status === 'lost'), { query, status: 'all' }), [boardLeads, query]);
+  const filtered = useMemo(() => filterLeads(activeSalesLeads, { query, status }), [activeSalesLeads, query, status]);
+  const filteredClosedProjects = useMemo(() => closedProjects.filter((project) => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) return true;
+    return [project.project_name, project.domain_name, project.project_type].some((value) => value.toLowerCase().includes(needle));
+  }), [closedProjects, query]);
   const grouped = useMemo(() => groupLeadsByStatus(filtered), [filtered]);
+  const deliveryProjects = useMemo(() => boardProjects.filter((project) => {
+    if (!DELIVERY_STATUSES.includes(project.status as DeliveryStatus)) return false;
+    const needle = query.trim().toLowerCase();
+    if (!needle) return true;
+    return [project.project_name, project.domain_name, project.project_type].some((value) => value.toLowerCase().includes(needle));
+  }), [boardProjects, query]);
+  const groupedDelivery = useMemo(() => DELIVERY_STATUSES.reduce<Record<DeliveryStatus, CrmProject[]>>((groups, stage) => {
+    groups[stage] = deliveryProjects.filter((project) => project.status === stage);
+    return groups;
+  }, { ready_for_dev: [], building: [], review: [] }), [deliveryProjects]);
   const projectsByLead = useMemo(() => {
     const map = new Map<string, CrmProject[]>();
-    projects.forEach((project) => {
+    boardProjects.forEach((project) => {
       if (!project.originating_lead_id) return;
       map.set(project.originating_lead_id, [...(map.get(project.originating_lead_id) ?? []), project]);
     });
     return map;
-  }, [projects]);
+  }, [boardProjects]);
 
   const newCount = boardLeads.filter((lead) => lead.status === 'new').length;
   const overdueCount = boardLeads.filter((lead) => isOverdue(lead.next_follow_up)).length;
   const activeSalesCount = boardLeads.filter((lead) => ['proposal_sent', 'negotiation'].includes(lead.status)).length;
-  const activeBuildCount = projects.filter((project) => ['building', 'review'].includes(project.status)).length;
+  const activeBuildCount = boardProjects.filter((project) => ['ready_for_dev', 'building', 'review'].includes(project.status)).length;
 
   async function moveLead(leadId: string, nextStatus: LeadStatus) {
     const lead = boardLeads.find((item) => item.id === leadId);
@@ -269,23 +410,61 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
     }
   }
 
-  function handleDragEnd(event: DragEndEvent) {
+  async function moveProject(projectId: string, nextStatus: DeliveryStatus) {
+    const project = boardProjects.find((item) => item.id === projectId);
+    if (!project || project.status === nextStatus || movingProjectId) return;
+
+    const previousProjects = boardProjects;
+    setMoveError('');
+    setMovingProjectId(projectId);
+    setBoardProjects((current) => current.map((item) => item.id === projectId ? { ...item, status: nextStatus } : item));
+
+    try {
+      const result = await moveProjectStageAction(projectId, nextStatus, project.updated_at);
+      if (!result.ok) {
+        setBoardProjects(previousProjects);
+        setMoveError(result.error || 'Could not move this project.');
+        return;
+      }
+      if (result.updatedAt) {
+        setBoardProjects((current) => current.map((item) => item.id === projectId ? { ...item, updated_at: result.updatedAt as string } : item));
+      }
+    } catch {
+      setBoardProjects(previousProjects);
+      setMoveError('Could not move this project. Check your connection and try again.');
+    } finally {
+      setMovingProjectId(null);
+    }
+  }
+
+  function handleDragStart(event: DragStartEvent) {
+    setActiveDragId(String(event.active.id));
+  }
+
+  function handleDragCancel() {
+    setActiveDragId(null);
+  }
+
+  function handleLeadDragEnd(event: DragEndEvent) {
+    setActiveDragId(null);
     const leadId = String(event.active.data.current?.leadId || '').trim();
     const stage = event.over?.data.current?.stage;
     if (leadId && CRM_STATUSES.includes(stage as LeadStatus)) void moveLead(leadId, stage as LeadStatus);
   }
 
+  function handleProjectDragEnd(event: DragEndEvent) {
+    setActiveDragId(null);
+    const projectId = String(event.active.data.current?.projectId || '').trim();
+    const stage = event.over?.data.current?.stage;
+    if (projectId && DELIVERY_STATUSES.includes(stage as DeliveryStatus)) void moveProject(projectId, stage as DeliveryStatus);
+  }
+
+  function toggleStage(stage: string, isCollapsed: boolean) {
+    setCollapsedStages((current) => ({ ...current, [stage]: !isCollapsed }));
+  }
+
   return (
     <main className="crm-main">
-      <section className="crm-page-intro">
-        <div>
-          <p className="crm-eyebrow"><span /> Sales workspace</p>
-          <h1>Client pipeline</h1>
-          <p>Move each enquiry from first contact to a signed project.</p>
-        </div>
-        <div className="crm-live"><span /> Live</div>
-      </section>
-
       <section className="crm-metrics crm-metrics--four" aria-label="Work summary">
         <Metric label="New" value={newCount} detail="Needs first reply" tone="new" />
         <Metric label="Follow-ups" value={overdueCount} detail="Due now" tone="due" />
@@ -294,56 +473,216 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
       </section>
 
       <section className="crm-workspace">
-        <div className="crm-toolbar">
-          <div className="crm-search"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find a client" aria-label="Search clients" /></div>
-          <select value={status} onChange={(event) => setStatus(event.target.value as LeadStatus | 'all')} className="crm-select" aria-label="Filter by status">
-            <option value="all">All stages</option>
-            {CRM_STATUSES.map((item) => <option value={item} key={item}>{STATUS_META[item].label}</option>)}
-          </select>
-          <div className="crm-segmented" aria-label="Dashboard view">
-            <button type="button" className={view === 'pipeline' ? 'is-active' : ''} onClick={() => setView('pipeline')} aria-label="Pipeline view"><LayoutGrid size={17} /></button>
-            <button type="button" className={view === 'list' ? 'is-active' : ''} onClick={() => setView('list')} aria-label="List view"><List size={17} /></button>
+        <div className="crm-workspace-heading">
+          <div className="crm-workspace-tabs" role="tablist" aria-label="CRM workspaces">
+            <button type="button" role="tab" aria-selected={board === 'sales'} className={board === 'sales' ? 'is-active' : ''} onClick={() => setBoard('sales')}>Sales pipeline</button>
+            <button type="button" role="tab" aria-selected={board === 'delivery'} className={board === 'delivery' ? 'is-active' : ''} onClick={() => setBoard('delivery')}>Website delivery <span>{activeBuildCount}</span></button>
+            <button type="button" role="tab" aria-selected={board === 'closed'} className={board === 'closed' ? 'is-active' : ''} onClick={() => setBoard('closed')}>Closed projects <span>{closedProjects.length}</span></button>
+            <button type="button" role="tab" aria-selected={board === 'lost'} className={board === 'lost' ? 'is-active' : ''} onClick={() => setBoard('lost')}>Lost clients <span>{lostLeads.length}</span></button>
           </div>
+          <button type="button" className="crm-new-client-button" onClick={() => setShowNewClient(true)}>
+            <UserPlus size={17} /> New client
+          </button>
+        </div>
+
+        <div className={`crm-toolbar${board === 'delivery' ? ' crm-toolbar--delivery' : ''}`}>
+          <div className="crm-search"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={board === 'delivery' || board === 'closed' ? 'Find a project' : 'Find a client'} aria-label={board === 'delivery' || board === 'closed' ? 'Search projects' : 'Search clients'} /></div>
+          {board === 'sales' && (
+            <>
+              <select value={status} onChange={(event) => setStatus(event.target.value as LeadStatus | 'all')} className="crm-select" aria-label="Filter by status">
+                <option value="all">All stages</option>
+                {SALES_PIPELINE_STATUSES.map((item) => <option value={item} key={item}>{STATUS_META[item].label}</option>)}
+              </select>
+              <div className="crm-segmented" aria-label="Dashboard view">
+                <button type="button" className={view === 'pipeline' ? 'is-active' : ''} onClick={() => setView('pipeline')} aria-label="Pipeline view"><LayoutGrid size={17} /></button>
+                <button type="button" className={view === 'list' ? 'is-active' : ''} onClick={() => setView('list')} aria-label="List view"><List size={17} /></button>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="crm-results-line">
-          <span>{filtered.length} {filtered.length === 1 ? 'client' : 'clients'}</span>
+          <span>
+            {board === 'sales' && `${filtered.length} ${filtered.length === 1 ? 'client' : 'clients'}`}
+            {board === 'delivery' && `${deliveryProjects.length} ${deliveryProjects.length === 1 ? 'project' : 'projects'}`}
+            {board === 'closed' && `${filteredClosedProjects.length} ${filteredClosedProjects.length === 1 ? 'closed project' : 'closed projects'}`}
+            {board === 'lost' && `${lostLeads.length} ${lostLeads.length === 1 ? 'lost client' : 'lost clients'}`}
+          </span>
           {(query || status !== 'all') && <button type="button" onClick={() => { setQuery(''); setStatus('all'); }}>Clear</button>}
         </div>
 
         {moveError && <p className="crm-action-message is-error" role="alert">{moveError}</p>}
         <p className="sr-only" aria-live="polite">
-          {movingLeadId ? 'Moving client' : moveError ? moveError : ''}
+          {movingLeadId || movingProjectId ? 'Moving work item' : moveError ? moveError : ''}
         </p>
 
-        {view === 'pipeline' ? (
-          <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+        {board === 'sales' && view === 'pipeline' && (
+          <>
+          <div className="crm-desktop-board">
+          <DndContext id="crm-sales-pipeline" sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragCancel={handleDragCancel} onDragEnd={handleLeadDragEnd}>
             <div className="crm-pipeline">
-              {CRM_STATUSES.map((stage) => (
+              {SALES_PIPELINE_STATUSES.map((stage) => (
                 <PipelineStage
                   stage={stage}
                   leads={grouped[stage]}
                   projectsByLead={projectsByLead}
                   onMove={(leadId, nextStatus) => void moveLead(leadId, nextStatus)}
+                  collapsed={grouped[stage].length === 0 && (collapsedStages[stage] ?? true)}
+                  onToggle={() => grouped[stage].length === 0 && toggleStage(stage, collapsedStages[stage] ?? true)}
                   key={stage}
                 />
               ))}
             </div>
+            <DragOverlay dropAnimation={null}>
+              {activeDragId?.startsWith('lead:') && (() => {
+                const lead = boardLeads.find((item) => `lead:${item.id}` === activeDragId);
+                return lead ? <LeadCard lead={lead} projects={projectsByLead.get(lead.id) ?? []} onMove={() => undefined} /> : null;
+              })()}
+            </DragOverlay>
           </DndContext>
-        ) : (
+          </div>
+          <div className="crm-mobile-board">
+            <div className="crm-mobile-stage-tabs" role="tablist" aria-label="Sales pipeline stages">
+              {SALES_PIPELINE_STATUSES.map((stage) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mobileSalesStage === stage}
+                  className={mobileSalesStage === stage ? 'is-active' : ''}
+                  onClick={() => setMobileSalesStage(stage)}
+                  key={stage}
+                >
+                  <span className={`crm-status-dot crm-status-dot--${stage}`} />
+                  <span>{STATUS_META[stage].short}</span>
+                  <strong>{grouped[stage].length}</strong>
+                </button>
+              ))}
+            </div>
+            <div className="crm-mobile-stage-summary">
+              <div>
+                <span>Current stage</span>
+                <strong>{STATUS_META[mobileSalesStage].label}</strong>
+              </div>
+              <span>{grouped[mobileSalesStage].length} {grouped[mobileSalesStage].length === 1 ? 'client' : 'clients'}</span>
+            </div>
+            <div className="crm-mobile-stack">
+              {grouped[mobileSalesStage].map((lead) => (
+                <LeadCard
+                  lead={lead}
+                  projects={projectsByLead.get(lead.id) ?? []}
+                  onMove={(leadId, nextStatus) => void moveLead(leadId, nextStatus)}
+                  moving={movingLeadId === lead.id}
+                  key={lead.id}
+                />
+              ))}
+              {grouped[mobileSalesStage].length === 0 && (
+                <div className="crm-mobile-empty">No clients are waiting in this stage.</div>
+              )}
+            </div>
+          </div>
+          </>
+        )}
+
+        {board === 'sales' && view === 'list' && (
           <div className="crm-client-list">
-            {filtered.map((lead) => (
-              <LeadCard
-                lead={lead}
-                projects={projectsByLead.get(lead.id) ?? []}
-                onMove={(leadId, nextStatus) => void moveLead(leadId, nextStatus)}
-                key={lead.id}
-              />
-            ))}
+            {filtered.map((lead) => <LeadCard lead={lead} projects={projectsByLead.get(lead.id) ?? []} onMove={(leadId, nextStatus) => void moveLead(leadId, nextStatus)} key={lead.id} />)}
             {filtered.length === 0 && <div className="crm-empty-state">No clients match these filters.</div>}
           </div>
         )}
+
+        {board === 'delivery' && (
+          <>
+          <div className="crm-desktop-board">
+          <DndContext id="crm-delivery-pipeline" sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragCancel={handleDragCancel} onDragEnd={handleProjectDragEnd}>
+            <div className="crm-pipeline crm-pipeline--delivery">
+              {DELIVERY_STATUSES.map((stage) => (
+                <DeliveryStage
+                  stage={stage}
+                  projects={groupedDelivery[stage]}
+                  onMove={(projectId, nextStatus) => void moveProject(projectId, nextStatus)}
+                  collapsed={groupedDelivery[stage].length === 0 && (collapsedStages[stage] ?? true)}
+                  onToggle={() => groupedDelivery[stage].length === 0 && toggleStage(stage, collapsedStages[stage] ?? true)}
+                  key={stage}
+                />
+              ))}
+            </div>
+            <DragOverlay dropAnimation={null}>
+              {activeDragId?.startsWith('project:') && (() => {
+                const project = boardProjects.find((item) => `project:${item.id}` === activeDragId);
+                return project ? <ProjectCard project={project} onMove={() => undefined} dragOverlay /> : null;
+              })()}
+            </DragOverlay>
+          </DndContext>
+          </div>
+          <div className="crm-mobile-board">
+            <div className="crm-mobile-stage-tabs" role="tablist" aria-label="Website delivery stages">
+              {DELIVERY_STATUSES.map((stage) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mobileDeliveryStage === stage}
+                  className={mobileDeliveryStage === stage ? 'is-active' : ''}
+                  onClick={() => setMobileDeliveryStage(stage)}
+                  key={stage}
+                >
+                  <span className={`crm-status-dot crm-status-dot--${stage}`} />
+                  <span>{DELIVERY_META[stage].short}</span>
+                  <strong>{groupedDelivery[stage].length}</strong>
+                </button>
+              ))}
+            </div>
+            <div className="crm-mobile-stage-summary">
+              <div>
+                <span>Current stage</span>
+                <strong>{DELIVERY_META[mobileDeliveryStage].label}</strong>
+              </div>
+              <span>{groupedDelivery[mobileDeliveryStage].length} {groupedDelivery[mobileDeliveryStage].length === 1 ? 'project' : 'projects'}</span>
+            </div>
+            <div className="crm-mobile-stack">
+              {groupedDelivery[mobileDeliveryStage].map((project) => (
+                <ProjectCard
+                  project={project}
+                  onMove={(projectId, nextStatus) => void moveProject(projectId, nextStatus)}
+                  draggable={false}
+                  moving={movingProjectId === project.id}
+                  key={project.id}
+                />
+              ))}
+              {groupedDelivery[mobileDeliveryStage].length === 0 && (
+                <div className="crm-mobile-empty">No projects are waiting in this stage.</div>
+              )}
+            </div>
+          </div>
+          </>
+        )}
+
+        {board === 'closed' && (
+          <DndContext id="crm-closed-projects" sensors={sensors}>
+            <div className="crm-client-list crm-closed-projects">
+              {filteredClosedProjects.map((project) => (
+                <ProjectCard project={project} onMove={() => undefined} readOnly key={project.id} />
+              ))}
+              {filteredClosedProjects.length === 0 && <div className="crm-empty-state">No completed projects match this search.</div>}
+            </div>
+          </DndContext>
+        )}
+
+        {board === 'lost' && (
+          <div className="crm-client-list crm-lost-clients">
+            {lostLeads.map((lead) => (
+              <LeadCard
+                lead={lead}
+                projects={projectsByLead.get(lead.id) ?? []}
+                onMove={() => undefined}
+                showStageSelect={false}
+                key={lead.id}
+              />
+            ))}
+            {lostLeads.length === 0 && <div className="crm-empty-state">No lost clients match this search.</div>}
+          </div>
+        )}
       </section>
+      <ManualLeadDrawer open={showNewClient} onClose={() => setShowNewClient(false)} />
     </main>
   );
 }
