@@ -10,7 +10,19 @@ import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { createLeadTransactionId, getStoredAttribution, trackContactIntent, trackLead, trackWhatsAppLead } from '@/lib/analytics';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
-import { getContactFieldErrors, isRequiredContactField, type ContactField, type ContactFieldErrors } from '@/lib/contact';
+import {
+  BUDGET_RANGES,
+  PROJECT_TYPES,
+  TIMELINES,
+  getContactFieldErrors,
+  isRequiredContactField,
+  type BudgetRange,
+  type ContactField,
+  type ContactFieldErrors,
+  type ProjectTimeline,
+  type ProjectType,
+} from '@/lib/contact';
+import { getAllowedSourcePage } from '@/lib/leads';
 
 const wrap = { hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
 const fade = {
@@ -20,6 +32,32 @@ const fade = {
 const maskUp = {
   hidden: { y: '112%' },
   visible: { y: '0%', transition: { duration: 0.92, ease: smoothEasing } },
+};
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  company: string;
+  projectType: ProjectType | '';
+  budget: BudgetRange | '';
+  timeline: ProjectTimeline | '';
+  message: string;
+  website: string;
+};
+
+const EMPTY_CONTACT_FORM: ContactFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  whatsapp: '',
+  company: '',
+  projectType: '',
+  budget: '',
+  timeline: '',
+  message: '',
+  website: '',
 };
 
 export default function ContactPage() {
@@ -33,7 +71,7 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
+  const [formData, setFormData] = useState<ContactFormData>(EMPTY_CONTACT_FORM);
 
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ['start start', 'end start'] });
   const visualY = useTransform(scrollYProgress, [0, 1], [0, -42]);
@@ -59,13 +97,19 @@ export default function ContactPage() {
     const transactionId = createLeadTransactionId();
 
     try {
+      const sourcePage = getAllowedSourcePage(new URLSearchParams(window.location.search).get('from'));
+      const storedAttribution = getStoredAttribution() ?? {};
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           locale,
-          attribution: { ...(getStoredAttribution() ?? {}), transaction_id: transactionId },
+          attribution: {
+            ...storedAttribution,
+            ...(sourcePage ? { source_page: sourcePage } : {}),
+            transaction_id: transactionId,
+          },
         }),
       });
       const result = (await response.json()) as { error?: string };
@@ -80,13 +124,16 @@ export default function ContactPage() {
           has_phone: Boolean(formData.phone),
           has_whatsapp: Boolean(formData.whatsapp),
           has_message: Boolean(formData.message),
+          project_type: formData.projectType || undefined,
+          budget_range: formData.budget || undefined,
+          timeline: formData.timeline || undefined,
         },
         { email: formData.email, phone: formData.whatsapp || formData.phone },
         transactionId
       );
       setSubmittedWithWhatsApp(Boolean(formData.whatsapp.trim()));
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', whatsapp: '', company: '', message: '', website: '' });
+      setFormData(EMPTY_CONTACT_FORM);
     } catch (error) {
       setFormError(error instanceof Error ? error.message : t('sendFailed'));
     } finally {
@@ -94,7 +141,7 @@ export default function ContactPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const field = e.target.name as ContactField;
     setFormData((current) => ({ ...current, [field]: e.target.value }));
     setFieldErrors((current) => {
@@ -293,6 +340,30 @@ export default function ContactPage() {
                     <label htmlFor="company" className={labelClass}>{t('companyLabel')}{renderFieldStatus('company')}</label>
                     <input id="company" name="company" type="text" autoComplete="organization" value={formData.company} onChange={handleChange} placeholder={t('companyPlaceholder')} aria-invalid={Boolean(fieldErrors.company)} aria-describedby={fieldErrors.company ? 'company-error' : undefined} className={fieldClass('company')} />
                     {fieldErrors.company && <p id="company-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.company}</p>}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="projectType" className={labelClass}>{t('projectTypeLabel')}{renderFieldStatus('projectType')}</label>
+                    <select id="projectType" name="projectType" value={formData.projectType} onChange={handleChange} aria-invalid={Boolean(fieldErrors.projectType)} aria-describedby={fieldErrors.projectType ? 'projectType-error' : undefined} className={fieldClass('projectType')}>
+                      <option value="">{t('projectTypePlaceholder')}</option>
+                      {PROJECT_TYPES.map((value) => <option key={value} value={value}>{t(`projectTypeOptions.${value}`)}</option>)}
+                    </select>
+                    {fieldErrors.projectType && <p id="projectType-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.projectType}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="budget" className={labelClass}>{t('budgetLabel')}{renderFieldStatus('budget')}</label>
+                    <select id="budget" name="budget" value={formData.budget} onChange={handleChange} aria-invalid={Boolean(fieldErrors.budget)} aria-describedby={fieldErrors.budget ? 'budget-error' : undefined} className={fieldClass('budget')}>
+                      <option value="">{t('budgetPlaceholder')}</option>
+                      {BUDGET_RANGES.map((value) => <option key={value} value={value}>{t(`budgetOptions.${value}`)}</option>)}
+                    </select>
+                    {fieldErrors.budget && <p id="budget-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.budget}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="timeline" className={labelClass}>{t('timelineLabel')}{renderFieldStatus('timeline')}</label>
+                    <select id="timeline" name="timeline" value={formData.timeline} onChange={handleChange} aria-invalid={Boolean(fieldErrors.timeline)} aria-describedby={fieldErrors.timeline ? 'timeline-error' : undefined} className={fieldClass('timeline')}>
+                      <option value="">{t('timelinePlaceholder')}</option>
+                      {TIMELINES.map((value) => <option key={value} value={value}>{t(`timelineOptions.${value}`)}</option>)}
+                    </select>
+                    {fieldErrors.timeline && <p id="timeline-error" className="mt-1.5 text-xs text-[#a94442]">{fieldErrors.timeline}</p>}
                   </div>
                   <div className="sm:col-span-2">
                     <label htmlFor="message" className={labelClass}>{t('messageLabel')}{renderFieldStatus('message')}</label>
