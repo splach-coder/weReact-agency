@@ -108,3 +108,15 @@ test('internal route and database claim are private, bounded, and replay-safe', 
   assert.match(migration, /revoke all on function public\.automation_claim_events\(integer\) from public, anon, authenticated/i);
   assert.match(migration, /grant execute on function public\.automation_claim_events\(integer\) to service_role/i);
 });
+test('service automation uses the current Supabase JWT role claim', () => {
+  const migrationUrl = new URL(
+    '../../supabase/migrations/20260723221000_fix_automation_service_role.sql',
+    import.meta.url,
+  );
+  assert.equal(existsSync(migrationUrl), true);
+  const migration = readFileSync(migrationUrl, 'utf8');
+
+  assert.match(migration, /auth\.jwt\(\)\s*->>\s*'role'/i);
+  assert.doesNotMatch(migration, /request\.jwt\.claim\.role/i);
+  assert.match(migration, /grant execute on function public\.automation_claim_events\(integer\) to service_role/i);
+});
