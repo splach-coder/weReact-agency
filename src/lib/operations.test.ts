@@ -98,6 +98,22 @@ test('calculates invoice totals as two-decimal MAD amounts', () => {
   ]), { subtotal: 1000, total: 1000 });
 });
 
+test('bounds extreme invoice quantities before totals can overflow', () => {
+  const draft = parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000',
+    projectId: '123e4567-e89b-42d3-a456-426614174001',
+    issuedOn: '2026-07-23',
+    dueOn: '2026-08-06',
+    lines: [{ description: 'Website', quantity: 1e308, unitPrice: 1 }],
+  });
+  assert.deepEqual(draft, { valid: false, error: 'Invoice line quantities cannot exceed 1,000,000.' });
+
+  const totals = calculateInvoiceTotals([{ quantity: 1e308, unit_price: 1 }]);
+  assert.deepEqual(totals, { subtotal: 1000000, total: 1000000 });
+  assert.ok(Number.isFinite(totals.subtotal));
+  assert.ok(Number.isFinite(totals.total));
+});
+
 test('rejects incomplete invoices and invalid line amounts', () => {
   assert.deepEqual(parseInvoiceDraft({
     clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [],

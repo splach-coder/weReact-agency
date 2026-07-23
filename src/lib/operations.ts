@@ -1,6 +1,10 @@
 export const FINANCE_TYPES = ['income', 'expense'] as const;
 export const FINANCE_STATUSES = ['pending', 'paid'] as const;
 
+export const MAX_INVOICE_QUANTITY = 1_000_000;
+export const MAX_INVOICE_TOTAL = 99_999_999_999.99;
+const MAX_INVOICE_TOTAL_CENTS = 9_999_999_999_999;
+
 export type FinanceType = (typeof FINANCE_TYPES)[number];
 export type FinanceStatus = (typeof FINANCE_STATUSES)[number];
 export type FinanceSource = 'manual' | 'project_close' | 'adjustment';
@@ -208,9 +212,20 @@ function invoiceNumber(value: unknown) {
   return Number(value.trim().replace(/,/g, ''));
 }
 
+function invoiceLineCents(quantity: number, unitPrice: number) {
+  if (!Number.isFinite(quantity) || quantity <= 0 || !Number.isFinite(unitPrice) || unitPrice < 0) return 0;
+
+  const boundedQuantity = Math.min(quantity, MAX_INVOICE_QUANTITY);
+  const boundedUnitPrice = Math.min(unitPrice, MAX_INVOICE_TOTAL);
+  if (boundedUnitPrice === 0) return 0;
+  if (boundedQuantity > MAX_INVOICE_TOTAL / boundedUnitPrice) return MAX_INVOICE_TOTAL_CENTS;
+
+  return Math.min(Math.round(boundedQuantity * boundedUnitPrice * 100), MAX_INVOICE_TOTAL_CENTS);
+}
+
 export function calculateInvoiceTotals<T extends Pick<InvoiceLine, 'quantity' | 'unit_price'>>(lines: T[]) {
   const subtotalInCents = lines.reduce((sum, line) => (
-    sum + Math.round(Number(line.quantity) * Number(line.unit_price) * 100)
+    Math.min(sum + invoiceLineCents(Number(line.quantity), Number(line.unit_price)), MAX_INVOICE_TOTAL_CENTS)
   ), 0);
   const subtotal = subtotalInCents / 100;
 
@@ -245,11 +260,17 @@ export function parseInvoiceDraft(input: unknown): Valid<InvoiceDraft> | Invalid
     if (!Number.isFinite(quantity) || quantity <= 0) {
       return { valid: false, error: 'Invoice line quantities must be greater than zero.' };
     }
+    if (quantity > MAX_INVOICE_QUANTITY) {
+      return { valid: false, error: 'Invoice line quantities cannot exceed 1,000,000.' };
+    }
     if (!Number.isFinite(unitPrice) || unitPrice < 0) {
       return { valid: false, error: 'Invoice line prices cannot be negative.' };
     }
     if (!hasAtMostTwoFractionalDigits(line.unitPrice)) {
       return { valid: false, error: 'Invoice line prices must use at most two decimal places.' };
+    }
+    if (unitPrice > MAX_INVOICE_TOTAL || (unitPrice > 0 && quantity > MAX_INVOICE_TOTAL / unitPrice)) {
+      return { valid: false, error: 'Invoice totals cannot exceed 99,999,999,999.99 MAD.' };
     }
 
     lines.push({
