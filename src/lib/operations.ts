@@ -1,3 +1,5 @@
+export { calculateFunnelMetrics } from './automation';
+
 export const FINANCE_TYPES = ['income', 'expense'] as const;
 export const FINANCE_STATUSES = ['pending', 'paid'] as const;
 

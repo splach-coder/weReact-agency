@@ -310,3 +310,11 @@ export function getProjectLaunchProgress(items: ProjectWorkItem[]) {
     incomplete,
   };
 }
+
+export type {
+  AttentionItem,
+  AutomationEvent,
+  Communication,
+  CommunicationEvent,
+  IntegrationHealth,
+} from './automation';
