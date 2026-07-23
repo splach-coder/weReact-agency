@@ -242,3 +242,48 @@ test('pins every workspace security-definer function to an empty search path', (
     );
   }
 });
+
+test('secures the smart agency automation foundation', () => {
+  const migrationUrl = new URL(
+    '../../supabase/migrations/20260723190000_smart_agency_foundation.sql',
+    import.meta.url,
+  );
+  assert.equal(existsSync(migrationUrl), true, 'smart agency foundation migration must exist');
+  const automationMigration = existsSync(migrationUrl) ? readFileSync(migrationUrl, 'utf8') : '';
+
+  for (const table of [
+    'automation_events',
+    'attention_items',
+    'communications',
+    'communication_events',
+    'integration_health',
+  ]) {
+    assert.match(automationMigration, new RegExp(`create table if not exists public\\.${table}`, 'i'));
+    assert.match(automationMigration, new RegExp(`alter table public\\.${table} enable row level security`, 'i'));
+    assert.match(automationMigration, new RegExp(`revoke all on table public\\.${table} from anon, authenticated`, 'i'));
+    assert.match(automationMigration, new RegExp(`add table public\\.${table}`, 'i'));
+  }
+
+  assert.match(automationMigration, /idempotency_key text not null unique/i);
+  assert.match(automationMigration, /unique \(provider, provider_event_id\)/i);
+  assert.match(automationMigration, /for select to authenticated using \(public\.is_team_member\(\)\)/i);
+
+  for (const rpc of [
+    'crm_refresh_attention_items',
+    'crm_complete_attention_item',
+    'crm_snooze_attention_item',
+    'crm_retry_automation_event',
+    'crm_upsert_integration_health',
+  ]) {
+    const definition = automationMigration.match(
+      new RegExp(`create or replace function public\\.${rpc}[\\s\\S]*?\\n\\$\\$;`, 'i'),
+    );
+    assert.ok(definition, `${rpc} must exist`);
+    assert.match(definition[0], /security definer[\s\S]*set search_path = ''/i);
+    assert.match(definition[0], /public\.is_team_member\(\)/i);
+    assert.match(automationMigration, new RegExp(`grant execute on function public\\.${rpc}`, 'i'));
+  }
+
+  assert.match(automationMigration, /'new_lead'[\s\S]*'follow_up_overdue'[\s\S]*'invoice_overdue'/i);
+  assert.match(automationMigration, /'blocked_task'[\s\S]*'integration_failure'/i);
+});
