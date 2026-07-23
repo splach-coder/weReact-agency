@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { ArrowLeft, Mail, Phone } from 'lucide-react';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { getWhatsAppHref, type CrmLead, type CrmProject, type LeadEvent, type TeamMember } from '@/lib/crm';
+import { getWhatsAppHref, type CrmLead, type CrmProject, type LeadEvent, type ProjectWorkItem, type TeamMember } from '@/lib/crm';
+import type { Invoice, InvoiceLine } from '@/lib/operations';
 import { AdminShell } from '../../AdminShell';
 import { RealtimeRefresh } from '../../RealtimeRefresh';
 import { LeadWorkflowEditor, ProjectBriefEditor } from './LeadEditor';
@@ -86,7 +87,7 @@ export default async function LeadDetailPage({
   const { data: projects, error: projectsError } = client
     ? await supabase
         .from('crm_projects')
-        .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by')
+        .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by,assigned_developer_email')
         .eq('client_id', client.id)
         .order('updated_at', { ascending: false })
     : { data: [], error: null };
@@ -95,6 +96,50 @@ export default async function LeadDetailPage({
 
   const typedEvents = (events ?? []) as LeadEvent[];
   const typedProjects = (projects ?? []) as CrmProject[];
+  const selectedProject = typedProjects.find((project) => project.id === initialProjectId) ?? typedProjects[0] ?? null;
+  const [teamMembersResult, workItemsResult, invoicesResult, invoiceLinesResult] = selectedProject
+    ? await Promise.all([
+        supabase.from('team_members').select('email,name,role').order('name', { ascending: true }),
+        supabase
+          .from('project_work_items')
+          .select('id,project_id,kind,title,details,status,priority,due_on,assigned_to,required,position,completed_at,created_at,updated_at')
+          .eq('project_id', selectedProject.id)
+          .order('position', { ascending: true }),
+        supabase
+          .from('invoices')
+          .select('id,project_id,client_id,finance_transaction_id,number,status,issued_on,due_on,paid_on,currency,subtotal,total,notes,seller_snapshot,customer_snapshot,created_by,created_at,updated_at')
+          .eq('project_id', selectedProject.id)
+          .order('created_at', { ascending: false }),
+        supabase
+          .from('invoice_lines')
+          .select('id,invoice_id,description,quantity,unit_price,line_total,position,invoices!inner(project_id)')
+          .eq('invoices.project_id', selectedProject.id)
+          .order('position', { ascending: true }),
+      ])
+    : [
+        { data: [], error: null },
+        { data: [], error: null },
+        { data: [], error: null },
+        { data: [], error: null },
+      ];
+
+  if (workItemsResult.error || invoicesResult.error || invoiceLinesResult.error || teamMembersResult.error) {
+    console.error('CRM project workspace query failed.', {
+      workItemsError: workItemsResult.error,
+      invoicesError: invoicesResult.error,
+      invoiceLinesError: invoiceLinesResult.error,
+      teamMembersError: teamMembersResult.error,
+    });
+  }
+
+  // These remain scoped to the selected project for the workspace introduced in Task 4.
+  const projectWorkspace = {
+    teamMembers: (teamMembersResult.data ?? []) as TeamMember[],
+    workItems: (workItemsResult.data ?? []) as ProjectWorkItem[],
+    invoices: (invoicesResult.data ?? []) as Invoice[],
+    invoiceLines: (invoiceLinesResult.data ?? []) as InvoiceLine[],
+  };
+  void projectWorkspace;
   const attributionEntries = Object.entries(typedLead.attribution ?? {}).filter(([, value]) => value);
   const technicalKeys = new Set(['transaction_id', 'submission_id', 'message_id', 'request_id']);
   const acquisition = attributionEntries.filter(([key]) => !technicalKeys.has(key.toLowerCase()));
@@ -163,7 +208,7 @@ export default async function LeadDetailPage({
         </div>
 
         <div className="crm-mobile-contact" aria-label="Contact client">{contactActions}</div>
-        <RealtimeRefresh tables={['leads', 'lead_events', 'crm_projects']} />
+        <RealtimeRefresh tables={['leads', 'lead_events', 'crm_projects', 'project_work_items', 'invoices', 'invoice_lines']} />
       </main>
     </AdminShell>
   );

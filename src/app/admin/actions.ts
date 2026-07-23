@@ -2,12 +2,13 @@
 
 import { revalidatePath } from 'next/cache';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { parseLeadNote, parseLeadUpdate, parseManualLead, parseProjectBrief } from '@/lib/crm-actions';
+import { parseLeadNote, parseLeadUpdate, parseManualLead, parseProjectBrief, parseProjectWorkItem } from '@/lib/crm-actions';
 import { isLeadStatus, isProjectStatus } from '@/lib/crm';
 
 export type CrmActionResult = {
   ok: boolean;
   error?: string;
+  id?: string;
   leadId?: string;
   duplicate?: boolean;
   projectId?: string;
@@ -43,7 +44,20 @@ function refreshLeadRoutes(leadId: string) {
   revalidatePath('/crm');
   revalidatePath(`/admin/leads/${leadId}`);
 }
+function readMutationResult(data: unknown) {
+  if (typeof data === 'string') return { id: data, updatedAt: undefined };
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return { id: undefined, updatedAt: undefined };
 
+  const result = data as Record<string, unknown>;
+  const id = ['id', 'work_item_id', 'invoice_id']
+    .map((key) => result[key])
+    .find((value): value is string => typeof value === 'string');
+  const updatedAt = ['updated_at', 'updatedAt']
+    .map((key) => result[key])
+    .find((value): value is string => typeof value === 'string');
+
+  return { id, updatedAt };
+}
 export async function createManualLeadAction(input: unknown): Promise<CrmActionResult> {
   const parsed = parseManualLead(input);
   if (!parsed.valid) return { ok: false, error: parsed.error };
@@ -241,4 +255,72 @@ export async function addLeadNoteAction(leadId: string, note: unknown): Promise<
 
   refreshLeadRoutes(leadId);
   return { ok: true };
+}
+
+export async function saveProjectWorkItemAction(
+  leadId: string,
+  workItemId: string | null,
+  input: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
+  if (workItemId !== null && !UUID_PATTERN.test(workItemId)) {
+    return { ok: false, error: 'Invalid work item reference.' };
+  }
+
+  const parsed = parseProjectWorkItem(input);
+  if (!parsed.valid) return { ok: false, error: parsed.error };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_save_project_work_item', {
+    p_project_id: parsed.value.project_id,
+    p_work_item_id: workItemId,
+    p_item: parsed.value,
+  });
+
+  if (error) {
+    console.error('CRM work item save failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This work item changed in another session. Refresh and try again.'
+        : 'Could not save this work item. Please try again.',
+    };
+  }
+
+  const result = readMutationResult(data);
+  refreshLeadRoutes(leadId);
+  return { ok: true, id: result.id ?? workItemId ?? undefined, updatedAt: result.updatedAt };
+}
+
+export async function deleteProjectWorkItemAction(
+  leadId: string,
+  projectId: string,
+  workItemId: string,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
+  if (!UUID_PATTERN.test(projectId)) return { ok: false, error: 'Invalid project reference.' };
+  if (!UUID_PATTERN.test(workItemId)) return { ok: false, error: 'Invalid work item reference.' };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { error } = await context.supabase.rpc('crm_delete_project_work_item', {
+    p_project_id: projectId,
+    p_work_item_id: workItemId,
+  });
+
+  if (error) {
+    console.error('CRM work item delete failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This work item changed in another session. Refresh and try again.'
+        : 'Could not delete this work item. Please try again.',
+    };
+  }
+
+  refreshLeadRoutes(leadId);
+  return { ok: true, id: workItemId, updatedAt: undefined };
 }
