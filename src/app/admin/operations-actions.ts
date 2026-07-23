@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { requireAdminMember } from '@/lib/admin-auth';
 import { buildNewsletterEmail } from '@/lib/newsletter-email';
+import { buildInvoiceEmail } from '@/lib/invoice-email';
 import { parseFinanceEntry, parseInvoiceDraft, parseNewsletterCampaign } from '@/lib/operations';
 import { siteConfig } from '@/config/site';
 
@@ -185,4 +186,102 @@ export async function voidInvoiceAction(leadId: string, invoiceId: string): Prom
 
   refreshInvoiceRoutes(leadId);
   return { ok: true, id: invoiceId, updatedAt: undefined };
+
+}
+
+export async function sendInvoiceEmailAction(invoiceId: string): Promise<OperationsActionResult> {
+  if (!UUID_PATTERN.test(invoiceId)) return { ok: false, error: 'Invalid invoice reference.' };
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { ok: false, error: 'Resend is not configured on this deployment.' };
+
+  const { supabase, member } = await requireAdminMember();
+  const { data: rawInvoice, error: invoiceError } = await supabase
+    .from('invoices')
+    .select('id,project_id,client_id,number,status,issued_on,due_on,total,notes,customer_snapshot')
+    .eq('id', invoiceId)
+    .maybeSingle();
+
+  if (invoiceError || !rawInvoice) return { ok: false, error: 'Could not load this invoice.' };
+  if (!['issued', 'paid'].includes(rawInvoice.status) || !rawInvoice.number) {
+    return { ok: false, error: 'Issue the invoice before emailing it to the client.' };
+  }
+
+  const [linesResult, clientResult, projectResult] = await Promise.all([
+    supabase.from('invoice_lines').select('description,quantity,unit_price,line_total').eq('invoice_id', invoiceId).order('position'),
+    supabase.from('clients').select('name,email').eq('id', rawInvoice.client_id).maybeSingle(),
+    supabase.from('crm_projects').select('project_name,originating_lead_id').eq('id', rawInvoice.project_id).maybeSingle(),
+  ]);
+
+  if (linesResult.error || clientResult.error || projectResult.error) {
+    console.error('Invoice email details failed.', {
+      lines: linesResult.error,
+      client: clientResult.error,
+      project: projectResult.error,
+    });
+    return { ok: false, error: 'Could not prepare this invoice email.' };
+  }
+
+  const snapshot = rawInvoice.customer_snapshot && typeof rawInvoice.customer_snapshot === 'object'
+    ? rawInvoice.customer_snapshot as Record<string, unknown>
+    : null;
+  const currentEmail = clientResult.data?.email?.trim() ?? '';
+  const snapshotEmail = typeof snapshot?.email === 'string' ? snapshot.email.trim() : '';
+  const recipient = currentEmail || snapshotEmail;
+  if (!/^\S+@\S+\.\S+$/.test(recipient)) return { ok: false, error: 'Add a valid email to this client before sending the invoice.' };
+
+  const snapshotName = typeof snapshot?.name === 'string' ? snapshot.name.trim() : '';
+  const email = buildInvoiceEmail({
+    invoiceNumber: rawInvoice.number,
+    clientName: snapshotName || clientResult.data?.name?.trim() || 'Client',
+    projectName: projectResult.data?.project_name?.trim() || 'Website project',
+    issuedOn: rawInvoice.issued_on,
+    dueOn: rawInvoice.due_on,
+    status: rawInvoice.status as 'issued' | 'paid',
+    total: Number(rawInvoice.total),
+    notes: rawInvoice.notes ?? '',
+    lines: (linesResult.data ?? []).map((line) => ({
+      description: line.description,
+      quantity: Number(line.quantity),
+      unitPrice: Number(line.unit_price),
+      total: Number(line.line_total),
+    })),
+  });
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>',
+        to: [recipient],
+        reply_to: siteConfig.business.email,
+        subject: email.subject,
+        html: email.html,
+      }),
+      signal: AbortSignal.timeout(10000),
+    });
+
+    if (!response.ok) {
+      console.error('Invoice email delivery failed.', await response.text());
+      return { ok: false, error: 'Resend could not deliver this invoice. Please try again.' };
+    }
+  } catch (error) {
+    console.error('Invoice email delivery threw.', error);
+    return { ok: false, error: 'Could not send this invoice right now.' };
+  }
+
+  if (projectResult.data?.originating_lead_id) {
+    const { error: eventError } = await supabase.from('lead_events').insert({
+      lead_id: projectResult.data.originating_lead_id,
+      author: member.email.toLowerCase(),
+      kind: 'email_sent',
+      body: `Invoice ${rawInvoice.number} emailed to ${recipient}`,
+      meta: { invoice_id: invoiceId, invoice_number: rawInvoice.number, recipient },
+    });
+    if (eventError) console.error('Invoice email activity log failed.', eventError);
+  }
+
+  revalidatePath(`/admin/invoices/${invoiceId}`);
+  if (projectResult.data?.originating_lead_id) revalidatePath(`/admin/leads/${projectResult.data.originating_lead_id}`);
+  return { ok: true, id: invoiceId, sent: 1 };
 }

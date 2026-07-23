@@ -81,7 +81,7 @@ their site next to one of yours; send both images. The visual does the selling.
 
 **Rules:** personalize the first line ALWAYS · voice note after a reply
 (darija/français) · follow up exactly twice (day 3, day 8) then stop ·
-log every contact in HubSpot (Karim pipeline already exists).
+log every contact in the WeReact CRM (Karim pipeline already exists).
 
 ---
 
@@ -151,7 +151,7 @@ targets "agence web marrakech" or "création site web maroc" as primary**.
 
 ## 6. The referral loop — systematize what's accidental 🔁
 
-At delivery of EVERY project (add to Karim's HubSpot manual):
+At delivery of EVERY project (add this to Karim's delivery checklist):
 1. Ask for the Google review (link ready).
 2. Ask for the 2-sentence testimonial + permission to use name/photo.
 3. Offer the client 10% of any referred deal (or a free month of maintenance).

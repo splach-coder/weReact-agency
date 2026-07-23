@@ -29,7 +29,7 @@ test('normalizes a null attribution from direct visitors instead of crashing dow
   });
 
   assert.deepEqual(lead.attribution, {});
-  // The HubSpot formatter iterates entries — must never throw.
+  // Downstream formatters iterate entries, so this must never throw.
   assert.doesNotThrow(() => Object.entries(lead.attribution));
 });
 

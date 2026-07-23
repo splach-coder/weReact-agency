@@ -110,7 +110,12 @@ export default async function InvoicePage({ params }: { params: Promise<{ id: st
 
   return (
     <main className="invoice-page">
-      <InvoicePrintActions backHref={backHref} />
+      <InvoicePrintActions
+        backHref={backHref}
+        invoiceId={invoice.id}
+        recipientEmail={client?.email?.trim() || customer.email}
+        invoiceStatus={invoice.status}
+      />
       <article className="invoice-document">
         <header className="invoice-document__header">
           <div className="invoice-brand">

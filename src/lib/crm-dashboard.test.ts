@@ -249,6 +249,7 @@ test('protects and renders a printable immutable invoice document', () => {
     'utf8',
   );
   const css = readFileSync(new URL('../app/admin/invoice.css', import.meta.url), 'utf8');
+  const operationActions = readFileSync(new URL('../app/admin/operations-actions.ts', import.meta.url), 'utf8');
 
   assert.match(page, /requireAdminMember\(\)/);
   assert.match(page, /from\('invoices'\)/);
@@ -259,6 +260,13 @@ test('protects and renders a printable immutable invoice document', () => {
   assert.match(page, /WeReact agency/);
   assert.doesNotMatch(page, /\b(?:ICE|IF|RC|VAT)\b/);
   assert.match(actions, /window\.print\(\)/);
+  assert.match(page, /recipientEmail=\{client\?\.email\?\.trim\(\) \|\| customer\.email\}/);
+  assert.match(actions, /sendInvoiceEmailAction/);
+  assert.match(actions, /Email invoice/);
+  assert.match(operationActions, /export async function sendInvoiceEmailAction/);
+  assert.match(operationActions, /https:\/\/api\.resend\.com\/emails/);
+  assert.match(operationActions, /kind: 'email_sent'/);
+  assert.match(operationActions, /\['issued', 'paid'\]/);
   assert.match(css, /@media print/);
   assert.match(css, /\.invoice-document/);
   assert.match(css, /\.invoice-table tr,[\s\S]*break-inside: avoid/);

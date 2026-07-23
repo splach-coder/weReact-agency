@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { after } from 'next/server';
 import { buildContactConfirmationEmail, buildContactEmail, type ContactSubmission, validateContactSubmission } from '@/lib/contact';
-import { syncLeadToHubSpot } from '@/lib/hubspot';
 import { createLeadRecord, saveLead } from '@/lib/leads';
 
 export const runtime = 'nodejs';
@@ -123,12 +122,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: GENERIC_ERROR[locale] }, { status: 500 });
   }
 
-  // Non-critical sinks run after the response: CRM sync + visitor
-  // confirmation. Their results never gate the visitor's success state.
+  // Client confirmation runs after the response and never gates the visitor's success state.
   after(async () => {
-    const hubSpotResult = await syncLeadToHubSpot(lead);
-    if (!hubSpotResult.synced) console.error('HubSpot lead sync did not complete.', hubSpotResult);
-
     if (apiKey) {
       const confirmation = buildContactConfirmationEmail(submission);
       await sendEmail(

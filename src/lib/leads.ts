@@ -37,7 +37,7 @@ const ATTRIBUTION_KEYS: (keyof LeadAttribution)[] = [
 const ATTRIBUTION_VALUE_MAX_LENGTH = 512;
 
 // Single choke point for client-supplied attribution: only known keys, only
-// strings, bounded length. Protects Supabase, HubSpot, and email rendering,
+// strings, bounded length. Protects Supabase and email rendering,
 // and normalizes the `attribution: null` a direct visitor sends (a default
 // parameter would only cover undefined).
 export function sanitizeAttribution(attribution: unknown): LeadAttribution {

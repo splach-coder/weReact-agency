@@ -1,13 +1,13 @@
 # WeReact CRM — build plan (custom, on Supabase)
 
-_Replace HubSpot with an owned CRM: Supabase for storage + auth, a Next.js dashboard for the seller, and a reshaped lead pipeline. Decided 2026-07-20._
+_Owned CRM architecture: Supabase for storage + auth, a Next.js dashboard for the seller, and a focused lead pipeline. Decided 2026-07-20._
 
 ## Current flow (what we're replacing)
 Contact form → `/api/contact`:
 1. Store lead in Supabase `leads` (source of truth — keep).
 2. Email owner → **personal Gmail** (fix: route to a pro inbox).
-3. `after()`: sync to **HubSpot** (contact + deal) → **remove**.
-4. `after()`: client confirmation email (keep).
+3. Client confirmation email runs after the response (keep).
+
 
 ## Target architecture
 ```
@@ -44,13 +44,13 @@ Supabase **magic-link** (passwordless), public sign-up disabled. Only emails in 
 
 ## Notification reshape (`/api/contact`)
 - **Owner email → PRO inbox** (new `LEADS_INBOX` env), richer template with an **"Open in CRM"** button (`/admin/leads/{id}`) and **magic-link quick actions** ("Mark contacted", "Mark qualified") that update status from the inbox with no login — secured by an HMAC-signed token (`/api/leads/[id]/quick`).
-- **Remove HubSpot** sync (delete the `after()` call + `hubspot.ts`; drop `HUBSPOT_ACCESS_TOKEN`).
+- Keep lead storage and notifications inside the owned Supabase CRM.
 - Keep the client confirmation email.
 
 ## Phases
 1. **Foundation** — schema migration + `@supabase/ssr` client + auth + `team_members` allowlist + RLS. Exclude `/admin` from the i18n middleware matcher.
 2. **Dashboard** — login, leads list/board, lead detail, status + notes, realtime.
-3. **Notifications** — pro-inbox email + CRM link + signed quick-actions; retire HubSpot.
+3. **Notifications** — pro-inbox email + CRM link + signed quick-actions.
 4. **Polish** — follow-up reminders, saved filters, CSV export, WhatsApp-lead intake.
 
 ## Open items
