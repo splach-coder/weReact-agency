@@ -57,17 +57,17 @@ create table if not exists public.invoices (
   )
 );
 
-create unique index if not exists invoices_project_draft_unique
-  on public.invoices (project_id) where status = 'draft';
+create unique index if not exists invoices_project_unique
+  on public.invoices (project_id);
 create index if not exists invoices_project_idx on public.invoices (project_id, created_at desc);
 create index if not exists invoices_client_idx on public.invoices (client_id, created_at desc);
-create index if not exists invoices_finance_transaction_idx
+create unique index if not exists invoices_finance_transaction_unique
   on public.invoices (finance_transaction_id) where finance_transaction_id is not null;
 
 create table if not exists public.invoice_lines (
   id uuid primary key default gen_random_uuid(),
   invoice_id uuid not null references public.invoices(id) on delete cascade,
-  description text not null check (char_length(description) between 1 and 180),
+  description text not null check (char_length(description) between 1 and 500),
   quantity numeric(12,2) not null check (quantity > 0),
   unit_price numeric(14,2) not null check (unit_price >= 0),
   line_total numeric(14,2) not null check (line_total >= 0),
@@ -81,7 +81,7 @@ create index if not exists invoice_lines_invoice_idx on public.invoice_lines (in
 create or replace function public.project_work_items_set_updated_at()
 returns trigger
 language plpgsql
-set search_path = public
+set search_path = ''
 as $$
 begin
   new.updated_at := now();
@@ -97,7 +97,7 @@ create trigger project_work_items_set_updated_at
 create or replace function public.invoices_set_updated_at()
 returns trigger
 language plpgsql
-set search_path = public
+set search_path = ''
 as $$
 begin
   new.updated_at := now();
@@ -114,7 +114,7 @@ create or replace function public.crm_seed_project_launch_checks()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 begin
   if new.status <> 'launched' then
@@ -160,21 +160,31 @@ create or replace function public.crm_block_incomplete_launch()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
+  v_check_count integer;
   v_remaining text;
 begin
-  if old.status = 'review' and new.status = 'launched' then
-    select string_agg(title, ', ' order by position, title)
-    into v_remaining
-    from public.project_work_items
-    where project_id = new.id
-      and required = true
-      and status not in ('done', 'skipped');
+  if new.status = 'launched' then
+    if tg_op = 'INSERT' or old.status is distinct from 'launched' then
+      select
+        count(*) filter (where title in (
+          'Client approved the final website', 'Responsive layouts checked',
+          'Forms and conversion actions tested', 'Domain connected',
+          'Production hosting verified', 'Analytics and conversion tracking verified',
+          'SEO titles, descriptions, sitemap, and robots checked',
+          'Final backup and handover completed'
+        )),
+        string_agg(title, ', ' order by position, title) filter (where status not in ('done', 'skipped'))
+      into v_check_count, v_remaining
+      from public.project_work_items
+      where project_id = new.id and required = true;
 
-    if v_remaining is not null then
-      raise exception 'Required launch checks are incomplete: %', v_remaining using errcode = '22023';
+      if v_check_count < 8 or v_remaining is not null then
+        raise exception 'Required launch checks are incomplete: %',
+          coalesce(v_remaining, 'launch checklist is missing') using errcode = '22023';
+      end if;
     end if;
   end if;
   return new;
@@ -183,7 +193,7 @@ $$;
 
 drop trigger if exists crm_block_incomplete_launch on public.crm_projects;
 create trigger crm_block_incomplete_launch
-  before update of status on public.crm_projects
+  before insert or update of status on public.crm_projects
   for each row execute function public.crm_block_incomplete_launch();
 
 alter table public.project_work_items enable row level security;
@@ -209,6 +219,46 @@ grant select on table public.project_work_items to authenticated;
 grant select on table public.invoices to authenticated;
 grant select on table public.invoice_lines to authenticated;
 
+create or replace function public.crm_assign_project_developer(
+  p_project_id uuid,
+  p_developer_email text
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  v_developer_email text;
+begin
+  if not public.is_team_member() then
+    raise exception 'CRM access denied' using errcode = '42501';
+  end if;
+
+  if nullif(trim(coalesce(p_developer_email, '')), '') is not null then
+    select email into v_developer_email
+    from public.team_members
+    where lower(email) = lower(trim(p_developer_email));
+
+    if v_developer_email is null then
+      raise exception 'Developer must be a team member' using errcode = '22023';
+    end if;
+  end if;
+
+  update public.crm_projects
+  set assigned_developer_email = v_developer_email,
+      updated_at = now()
+  where id = p_project_id;
+
+  if not found then
+    raise exception 'Project not found' using errcode = 'P0002';
+  end if;
+end;
+$$;
+
+revoke all on function public.crm_assign_project_developer(uuid, text) from public, anon;
+grant execute on function public.crm_assign_project_developer(uuid, text) to authenticated;
+
 create or replace function public.crm_save_project_work_item(
   p_project_id uuid,
   p_work_item_id uuid,
@@ -217,7 +267,7 @@ create or replace function public.crm_save_project_work_item(
 returns uuid
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_item_id uuid;
@@ -293,7 +343,7 @@ create or replace function public.crm_delete_project_work_item(
 returns void
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 begin
   if not public.is_team_member() then
@@ -311,9 +361,26 @@ create or replace function public.invoices_prevent_immutable_changes()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 begin
+  if tg_op <> 'DELETE' and new.status = 'paid' then
+    if new.finance_transaction_id is null or not exists (
+      select 1
+      from public.finance_transactions
+      where id = new.finance_transaction_id
+        and project_id = new.project_id
+        and source = 'project_close'
+        and amount = new.total
+    ) then
+      raise exception 'Paid invoice total must match its project close transaction' using errcode = '22023';
+    end if;
+  end if;
+
+  if tg_op = 'INSERT' then
+    return new;
+  end if;
+
   if tg_op = 'DELETE' then
     if old.status in ('issued', 'paid', 'void') then
       raise exception 'Issued invoices are immutable' using errcode = '22023';
@@ -346,7 +413,7 @@ $$;
 
 drop trigger if exists invoices_prevent_immutable_changes on public.invoices;
 create trigger invoices_prevent_immutable_changes
-  before update or delete on public.invoices
+  before insert or update or delete on public.invoices
   for each row execute function public.invoices_prevent_immutable_changes();
 
 drop trigger if exists invoices_set_updated_at on public.invoices;
@@ -358,7 +425,7 @@ create or replace function public.invoice_lines_require_draft()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_invoice_id uuid := coalesce(new.invoice_id, old.invoice_id);
@@ -385,7 +452,7 @@ create or replace function public.crm_create_invoice_draft(
 returns uuid
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_project public.crm_projects%rowtype;
@@ -432,7 +499,7 @@ create or replace function public.crm_update_invoice_draft(
 returns uuid
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_invoice public.invoices%rowtype;
@@ -467,7 +534,7 @@ begin
   delete from public.invoice_lines where invoice_id = p_invoice_id;
   for v_line in select value from jsonb_array_elements(p_draft -> 'lines') loop
     v_description := trim(coalesce(v_line ->> 'description', ''));
-    if v_description = '' or char_length(v_description) > 180
+    if v_description = '' or char_length(v_description) > 500
        or coalesce(v_line ->> 'quantity', '') !~ '^\d+(\.\d{1,2})?$'
        or coalesce(v_line ->> 'unit_price', '') !~ '^\d+(\.\d{1,2})?$' then
       raise exception 'Invalid invoice line' using errcode = '22023';
@@ -493,7 +560,7 @@ create or replace function public.crm_issue_invoice(p_invoice_id uuid)
 returns text
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_invoice public.invoices%rowtype;
@@ -502,6 +569,7 @@ declare
   v_sequence integer;
   v_year integer;
   v_finance_transaction_id uuid;
+  v_finance_amount public.finance_transactions.amount%type;
   v_paid_on date;
 begin
   if not public.is_team_member() then
@@ -529,11 +597,20 @@ begin
   set last_number = public.invoice_sequences.last_number + 1
   returning last_number into v_sequence;
 
-  select id, occurred_on into v_finance_transaction_id, v_paid_on
+  if v_sequence > 9999 then
+    raise exception 'Invoice sequence exhausted for year %', v_year using errcode = '22023';
+  end if;
+
+  select id, occurred_on, amount
+  into v_finance_transaction_id, v_paid_on, v_finance_amount
   from public.finance_transactions
   where project_id = v_invoice.project_id and source = 'project_close'
   order by created_at desc
   limit 1;
+
+  if v_finance_transaction_id is not null and v_finance_amount is distinct from v_invoice.total then
+    raise exception 'Invoice total must match project close amount' using errcode = '22023';
+  end if;
 
   update public.invoices
   set number = 'WR-' || v_year::text || '-' || lpad(v_sequence::text, 4, '0'),
@@ -553,7 +630,7 @@ create or replace function public.crm_void_invoice(p_invoice_id uuid)
 returns void
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 begin
   if not public.is_team_member() then
@@ -584,11 +661,14 @@ create or replace function public.crm_record_project_close_revenue()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   v_actor text;
   v_finance_transaction_id uuid;
+  v_finance_amount public.finance_transactions.amount%type;
+  v_invoice_id uuid;
+  v_invoice_total public.invoices.total%type;
 begin
   if tg_op = 'UPDATE' and old.status = 'launched' and new.budget is distinct from old.budget then
     raise exception 'Closed project amount is locked' using errcode = '22023';
@@ -603,17 +683,33 @@ begin
     ) values (
       current_date, 'income', 'paid', new.budget, 'Website project', new.project_name || ' - final payment', new.client_id, new.id, 'project_close', v_actor
     ) on conflict (project_id) where source = 'project_close' do nothing
-    returning id into v_finance_transaction_id;
+    returning id, amount into v_finance_transaction_id, v_finance_amount;
     if v_finance_transaction_id is null then
-      select id into v_finance_transaction_id
+      select id, amount into v_finance_transaction_id, v_finance_amount
       from public.finance_transactions
       where project_id = new.id and source = 'project_close';
     end if;
-    update public.invoices
-    set finance_transaction_id = v_finance_transaction_id,
-        status = 'paid',
-        paid_on = current_date
-    where project_id = new.id and status = 'issued';
+
+    if v_finance_amount is distinct from new.budget then
+      raise exception 'Project close transaction amount does not match confirmed project amount' using errcode = '22023';
+    end if;
+
+    select id, total into v_invoice_id, v_invoice_total
+    from public.invoices
+    where project_id = new.id and status = 'issued'
+    for update;
+
+    if v_invoice_id is not null then
+      if v_invoice_total is distinct from v_finance_amount then
+        raise exception 'Invoice total must match project close amount' using errcode = '22023';
+      end if;
+
+      update public.invoices
+      set finance_transaction_id = v_finance_transaction_id,
+          status = 'paid',
+          paid_on = current_date
+      where id = v_invoice_id;
+    end if;
   end if;
   return new;
 end;

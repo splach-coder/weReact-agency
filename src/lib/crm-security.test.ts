@@ -152,11 +152,85 @@ test('secures project work items, default launch checks, and realtime publicatio
   assert.match(workspaceMigration, /after insert on public\.crm_projects/i);
   assert.match(workspaceMigration, /where project\.status <> 'launched'/i);
   assert.match(workspaceMigration, /create or replace function public\.crm_block_incomplete_launch/i);
-  assert.match(workspaceMigration, /old\.status = 'review'[\s\S]*new\.status = 'launched'/i);
+  assert.match(workspaceMigration, /new\.status = 'launched'[\s\S]*old\.status is distinct from 'launched'/i);
   assert.match(workspaceMigration, /required = true[\s\S]*status not in \('done', 'skipped'\)/i);
   assert.match(workspaceMigration, /required launch checks are incomplete/i);
   assert.match(workspaceMigration, /pg_publication_tables/i);
   assert.match(workspaceMigration, /add table public\.project_work_items/i);
   assert.match(workspaceMigration, /add table public\.invoices/i);
   assert.match(workspaceMigration, /add table public\.invoice_lines/i);
+});
+
+test('guards every transition into launched and secures developer assignment', () => {
+  const workspaceMigration = readFileSync(
+    new URL('../../supabase/migrations/20260723120000_project_workspace_invoices.sql', import.meta.url),
+    'utf8',
+  );
+  const launchGuard = workspaceMigration.slice(
+    workspaceMigration.indexOf('create or replace function public.crm_block_incomplete_launch'),
+    workspaceMigration.indexOf('drop trigger if exists crm_block_incomplete_launch'),
+  );
+
+  assert.match(
+    launchGuard,
+    /new\.status = 'launched'[\s\S]*tg_op = 'INSERT'[\s\S]*old\.status is distinct from 'launched'/i,
+  );
+  assert.match(
+    workspaceMigration,
+    /create trigger crm_block_incomplete_launch[\s\S]*before insert or update of status on public\.crm_projects/i,
+  );
+  assert.match(workspaceMigration, /v_check_count < 8/i);
+
+  const assignmentFunction = workspaceMigration.slice(
+    workspaceMigration.indexOf('create or replace function public.crm_assign_project_developer'),
+    workspaceMigration.indexOf('revoke all on function public.crm_assign_project_developer'),
+  );
+  assert.match(
+    assignmentFunction,
+    /crm_assign_project_developer\(\s*p_project_id uuid,\s*p_developer_email text\s*\)/i,
+  );
+  assert.match(assignmentFunction, /security definer[\s\S]*set search_path = ''/i);
+  assert.match(assignmentFunction, /if not public\.is_team_member\(\)/i);
+  assert.match(
+    assignmentFunction,
+    /from public\.team_members[\s\S]*lower\(email\) = lower\(trim\(p_developer_email\)\)/i,
+  );
+  assert.match(
+    assignmentFunction,
+    /nullif\(trim\(coalesce\(p_developer_email, ''\)\), ''\)/i,
+  );
+  assert.match(
+    assignmentFunction,
+    /update public\.crm_projects[\s\S]*assigned_developer_email = v_developer_email[\s\S]*where id = p_project_id/i,
+  );
+  assert.match(
+    workspaceMigration,
+    /revoke all on function public\.crm_assign_project_developer\(uuid, text\) from public, anon/i,
+  );
+  assert.match(
+    workspaceMigration,
+    /grant execute on function public\.crm_assign_project_developer\(uuid, text\) to authenticated/i,
+  );
+});
+
+test('pins every workspace security-definer function to an empty search path', () => {
+  const workspaceMigration = readFileSync(
+    new URL('../../supabase/migrations/20260723120000_project_workspace_invoices.sql', import.meta.url),
+    'utf8',
+  );
+  const functions = [
+    ...workspaceMigration.matchAll(
+      /create or replace function public\.(\w+)[\s\S]*?\n\$\$;/gi,
+    ),
+  ];
+  const securityDefiners = functions.filter((match) => /security definer/i.test(match[0]));
+
+  assert.ok(securityDefiners.length > 0, 'workspace migration must define security-definer functions');
+  for (const definition of securityDefiners) {
+    assert.match(
+      definition[0],
+      /security definer[\s\S]*set search_path = ''/i,
+      `${definition[1]} must set an empty search path`,
+    );
+  }
 });

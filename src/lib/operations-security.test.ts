@@ -68,3 +68,61 @@ test('stores secure immutable numbered invoices and links project-close finance 
   assert.match(migration, /from public\.finance_transactions[\s\S]*source = 'project_close'/i);
   assert.match(migration, /status = case when v_finance_transaction_id is not null then 'paid' else 'issued' end/i);
 });
+
+test('enforces a one-to-one project invoice and exact project-close payment linkage', () => {
+  const migration = readFileSync(
+    new URL('../../supabase/migrations/20260723120000_project_workspace_invoices.sql', import.meta.url),
+    'utf8',
+  );
+  const immutableFunction = migration.slice(
+    migration.indexOf('create or replace function public.invoices_prevent_immutable_changes'),
+    migration.indexOf('drop trigger if exists invoices_prevent_immutable_changes'),
+  );
+  const closeFunction = migration.slice(
+    migration.indexOf('create or replace function public.crm_record_project_close_revenue'),
+    migration.indexOf('drop trigger if exists crm_project_close_revenue'),
+  );
+  const issueFunction = migration.slice(
+    migration.indexOf('create or replace function public.crm_issue_invoice'),
+    migration.indexOf('create or replace function public.crm_void_invoice'),
+  );
+
+  assert.match(
+    migration,
+    /create unique index if not exists invoices_project_unique\s+on public\.invoices \(project_id\);/i,
+  );
+  assert.match(
+    migration,
+    /create unique index if not exists invoices_finance_transaction_unique\s+on public\.invoices \(finance_transaction_id\) where finance_transaction_id is not null;/i,
+  );
+  assert.match(
+    immutableFunction,
+    /new\.status = 'paid'[\s\S]*from public\.finance_transactions[\s\S]*id = new\.finance_transaction_id[\s\S]*project_id = new\.project_id[\s\S]*source = 'project_close'[\s\S]*amount = new\.total/i,
+  );
+  assert.match(closeFunction, /select id[\s\S]*into v_invoice_id[\s\S]*from public\.invoices/i);
+  assert.match(
+    closeFunction,
+    /update public\.invoices[\s\S]*where id = v_invoice_id/i,
+  );
+  assert.match(
+    issueFunction,
+    /v_finance_amount[\s\S]*v_finance_amount is distinct from v_invoice\.total[\s\S]*Invoice total must match project close amount/i,
+  );
+});
+
+test('caps annual invoice numbering and accepts 500-character line descriptions', () => {
+  const migration = readFileSync(
+    new URL('../../supabase/migrations/20260723120000_project_workspace_invoices.sql', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(
+    migration,
+    /description text not null check \(char_length\(description\) between 1 and 500\)/i,
+  );
+  assert.match(migration, /char_length\(v_description\) > 500/i);
+  assert.match(
+    migration,
+    /if v_sequence > 9999 then[\s\S]*Invoice sequence exhausted for year/i,
+  );
+});
