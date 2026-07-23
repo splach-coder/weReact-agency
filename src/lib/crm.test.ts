@@ -11,9 +11,15 @@ import {
   getLeadLifecycleAction,
   getProjectLifecycleAction,
   getProjectBriefProgress,
+  getProjectLaunchProgress,
+  getProjectWorkProgress,
   groupLeadsByStatus,
+  PROJECT_WORK_ITEM_KINDS,
+  PROJECT_WORK_ITEM_PRIORITIES,
+  PROJECT_WORK_ITEM_STATUSES,
   type CrmLead,
   type CrmProject,
+  type ProjectWorkItem,
 } from './crm';
 
 function lead(overrides: Partial<CrmLead> = {}): CrmLead {
@@ -185,4 +191,31 @@ test('provides one connected next action for every active sales stage', () => {
   assert.deepEqual(getLeadLifecycleAction('negotiation'), { nextStatus: 'won', label: 'Mark as won' });
   assert.equal(getLeadLifecycleAction('won'), null);
   assert.equal(getLeadLifecycleAction('lost'), null);
+});
+
+function workItem(overrides: Partial<ProjectWorkItem> = {}): ProjectWorkItem {
+  return {
+    id: 'work-1', project_id: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Set up hosting', details: '',
+    status: 'todo', priority: 'normal', due_on: null, assigned_to: null, required: false, position: 0, completed_at: null,
+    created_at: '2026-07-23T10:00:00.000Z', updated_at: '2026-07-23T10:00:00.000Z', ...overrides,
+  };
+}
+
+test('exposes stable work-item enums and workspace progress', () => {
+  assert.deepEqual(PROJECT_WORK_ITEM_KINDS, ['milestone', 'task', 'delivery_check']);
+  assert.deepEqual(PROJECT_WORK_ITEM_STATUSES, ['todo', 'in_progress', 'blocked', 'done', 'skipped']);
+  assert.deepEqual(PROJECT_WORK_ITEM_PRIORITIES, ['low', 'normal', 'high', 'urgent']);
+  assert.deepEqual(getProjectWorkProgress([
+    workItem({ id: 'milestone-1', kind: 'milestone', status: 'done' }),
+    workItem({ id: 'milestone-2', kind: 'milestone', status: 'in_progress' }),
+    workItem({ id: 'task-1', kind: 'task', status: 'done' }),
+  ]), { completed: 1, total: 2, percentage: 50, next: 'milestone-2' });
+});
+
+test('measures launch readiness from required delivery checks only', () => {
+  assert.deepEqual(getProjectLaunchProgress([
+    workItem({ id: 'check-1', kind: 'delivery_check', required: true, status: 'done' }),
+    workItem({ id: 'check-2', kind: 'delivery_check', required: true, status: 'todo', title: 'Connect domain' }),
+    workItem({ id: 'check-3', kind: 'delivery_check', required: false, status: 'todo' }),
+  ]), { completed: 1, total: 2, percentage: 50, ready: false, incomplete: ['Connect domain'] });
 });

@@ -3,9 +3,12 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import {
   buildCashflowSeries,
+  calculateInvoiceTotals,
   calculateAgencyMetrics,
   parseFinanceEntry,
+  parseInvoiceDraft,
   parseNewsletterCampaign,
+  INVOICE_STATUSES,
   type FinanceTransaction,
 } from './operations';
 
@@ -56,4 +59,69 @@ test('exposes automatic project-close revenue throughout Finance', () => {
   assert.match(workspace, /item\.source === 'project_close'/);
   assert.match(overviewPage, /project_id,source,created_by/);
   assert.match(financePage, /project_id,source,created_by/);
+});
+
+test('normalizes an MAD invoice draft without trusting issued snapshots', () => {
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000',
+    projectId: '123e4567-e89b-42d3-a456-426614174001',
+    issuedOn: '2026-07-23',
+    dueOn: '2026-08-06',
+    notes: '  Payment is due within 14 days.  ',
+    number: 'WR-2026-0001',
+    sellerSnapshot: { name: 'Untrusted seller' },
+    lines: [
+      { description: '  Atlas Riad website  ', quantity: '3', unitPrice: '333.33' },
+      { description: 'Domain migration', quantity: 1, unitPrice: 0.01 },
+    ],
+  }), {
+    valid: true,
+    value: {
+      client_id: '123e4567-e89b-42d3-a456-426614174000',
+      project_id: '123e4567-e89b-42d3-a456-426614174001',
+      issued_on: '2026-07-23',
+      due_on: '2026-08-06',
+      currency: 'MAD',
+      notes: 'Payment is due within 14 days.',
+      lines: [
+        { description: 'Atlas Riad website', quantity: 3, unit_price: 333.33, position: 0 },
+        { description: 'Domain migration', quantity: 1, unit_price: 0.01, position: 1 },
+      ],
+    },
+  });
+});
+
+test('calculates invoice totals as two-decimal MAD amounts', () => {
+  assert.deepEqual(calculateInvoiceTotals([
+    { description: 'Website', quantity: 3, unit_price: 333.33, position: 0 },
+    { description: 'Migration', quantity: 1, unit_price: 0.01, position: 1 },
+  ]), { subtotal: 1000, total: 1000 });
+});
+
+test('rejects incomplete invoices and invalid line amounts', () => {
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [],
+  }), { valid: false, error: 'Add at least one invoice line.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: 'bad-client', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Invalid client reference.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: 'bad-date', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Choose a valid issue date.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-07-22', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Choose a due date on or after the issue date.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: '   ', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Add a description for every invoice line.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 0, unitPrice: 1 }],
+  }), { valid: false, error: 'Invoice line quantities must be greater than zero.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: -1 }],
+  }), { valid: false, error: 'Invoice line prices cannot be negative.' });
+});
+
+test('exposes the four immutable invoice statuses', () => {
+  assert.deepEqual(INVOICE_STATUSES, ['draft', 'issued', 'paid', 'void']);
 });

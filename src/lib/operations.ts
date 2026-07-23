@@ -5,6 +5,50 @@ export type FinanceType = (typeof FINANCE_TYPES)[number];
 export type FinanceStatus = (typeof FINANCE_STATUSES)[number];
 export type FinanceSource = 'manual' | 'project_close' | 'adjustment';
 
+export const INVOICE_STATUSES = ['draft', 'issued', 'paid', 'void'] as const;
+export type InvoiceStatus = (typeof INVOICE_STATUSES)[number];
+
+export type Invoice = {
+  id: string;
+  project_id: string;
+  client_id: string;
+  finance_transaction_id: string | null;
+  number: string | null;
+  status: InvoiceStatus;
+  issued_on: string | null;
+  due_on: string | null;
+  paid_on: string | null;
+  currency: 'MAD';
+  subtotal: number;
+  total: number;
+  notes: string;
+  seller_snapshot: Record<string, unknown> | null;
+  customer_snapshot: Record<string, unknown> | null;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type InvoiceLine = {
+  id: string;
+  invoice_id: string;
+  description: string;
+  quantity: number;
+  unit_price: number;
+  line_total: number;
+  position: number;
+};
+
+export type InvoiceDraft = {
+  client_id: string;
+  project_id: string;
+  issued_on: string;
+  due_on: string;
+  currency: 'MAD';
+  notes: string;
+  lines: Array<Pick<InvoiceLine, 'description' | 'quantity' | 'unit_price' | 'position'>>;
+};
+
 export type FinanceTransaction = {
   id: string;
   created_at: string;
@@ -145,4 +189,79 @@ export function buildCashflowSeries(transactions: FinanceTransaction[], now = ne
 
 export function formatMad(value: number) {
   return `${new Intl.NumberFormat('en-MA', { maximumFractionDigits: 0 }).format(value)} MAD`;
+}
+
+function isInvoiceDate(value: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+function invoiceNumber(value: unknown) {
+  if (typeof value === 'number') return value;
+  if (typeof value !== 'string') return Number.NaN;
+  return Number(value.trim().replace(/,/g, ''));
+}
+
+export function calculateInvoiceTotals<T extends Pick<InvoiceLine, 'quantity' | 'unit_price'>>(lines: T[]) {
+  const subtotalInCents = lines.reduce((sum, line) => (
+    sum + Math.round(Number(line.quantity) * Number(line.unit_price) * 100)
+  ), 0);
+  const subtotal = subtotalInCents / 100;
+
+  return { subtotal, total: subtotal };
+}
+
+export function parseInvoiceDraft(input: unknown): Valid<InvoiceDraft> | Invalid {
+  if (!input || typeof input !== 'object') return { valid: false, error: 'Complete the invoice details.' };
+
+  const value = input as Record<string, unknown>;
+  const clientId = nullableUuid(value.clientId);
+  const projectId = nullableUuid(value.projectId);
+  const issuedOn = text(value.issuedOn, 10);
+  const dueOn = text(value.dueOn, 10);
+  const rawLines = Array.isArray(value.lines) ? value.lines : [];
+
+  if (!clientId) return { valid: false, error: 'Invalid client reference.' };
+  if (!projectId) return { valid: false, error: 'Invalid project reference.' };
+  if (!isInvoiceDate(issuedOn)) return { valid: false, error: 'Choose a valid issue date.' };
+  if (!isInvoiceDate(dueOn)) return { valid: false, error: 'Choose a valid due date.' };
+  if (dueOn < issuedOn) return { valid: false, error: 'Choose a due date on or after the issue date.' };
+  if (rawLines.length === 0) return { valid: false, error: 'Add at least one invoice line.' };
+
+  const lines: InvoiceDraft['lines'] = [];
+  for (const [position, item] of rawLines.entries()) {
+    const line = item && typeof item === 'object' ? item as Record<string, unknown> : {};
+    const description = text(line.description, 500);
+    const quantity = invoiceNumber(line.quantity);
+    const unitPrice = invoiceNumber(line.unitPrice);
+
+    if (!description) return { valid: false, error: 'Add a description for every invoice line.' };
+    if (!Number.isFinite(quantity) || quantity <= 0) {
+      return { valid: false, error: 'Invoice line quantities must be greater than zero.' };
+    }
+    if (!Number.isFinite(unitPrice) || unitPrice < 0) {
+      return { valid: false, error: 'Invoice line prices cannot be negative.' };
+    }
+
+    lines.push({
+      description,
+      quantity,
+      unit_price: Math.round(unitPrice * 100) / 100,
+      position,
+    });
+  }
+
+  return {
+    valid: true,
+    value: {
+      client_id: clientId,
+      project_id: projectId,
+      issued_on: issuedOn,
+      due_on: dueOn,
+      currency: 'MAD',
+      notes: text(value.notes, 2000),
+      lines,
+    },
+  };
 }

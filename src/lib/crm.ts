@@ -27,6 +27,31 @@ export const PROJECT_STATUSES = [
 export type LeadStatus = (typeof CRM_STATUSES)[number];
 export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
 
+export const PROJECT_WORK_ITEM_KINDS = ['milestone', 'task', 'delivery_check'] as const;
+export const PROJECT_WORK_ITEM_STATUSES = ['todo', 'in_progress', 'blocked', 'done', 'skipped'] as const;
+export const PROJECT_WORK_ITEM_PRIORITIES = ['low', 'normal', 'high', 'urgent'] as const;
+
+export type ProjectWorkItemKind = (typeof PROJECT_WORK_ITEM_KINDS)[number];
+export type ProjectWorkItemStatus = (typeof PROJECT_WORK_ITEM_STATUSES)[number];
+export type ProjectWorkItemPriority = (typeof PROJECT_WORK_ITEM_PRIORITIES)[number];
+
+export type ProjectWorkItem = {
+  id: string;
+  project_id: string;
+  kind: ProjectWorkItemKind;
+  title: string;
+  details: string;
+  status: ProjectWorkItemStatus;
+  priority: ProjectWorkItemPriority;
+  due_on: string | null;
+  assigned_to: string | null;
+  required: boolean;
+  position: number;
+  completed_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type CrmClient = {
   id: string;
   created_at: string;
@@ -61,6 +86,7 @@ export type CrmProject = {
   target_launch: string | null;
   developer_notes: string;
   created_by: string | null;
+  assigned_developer_email?: string | null;
 };
 
 export type CrmLead = {
@@ -247,5 +273,40 @@ export function getLeadContactRoute(lead: Pick<CrmLead, 'email' | 'phone' | 'wha
   return {
     kind: 'email' as const,
     href: `mailto:${lead.email.trim()}`,
+  };
+}
+
+function isProjectWorkComplete(status: ProjectWorkItemStatus) {
+  return status === 'done' || status === 'skipped';
+}
+
+export function getProjectWorkProgress(items: ProjectWorkItem[]) {
+  const milestones = items
+    .filter((item) => item.kind === 'milestone')
+    .sort((left, right) => left.position - right.position);
+  const completed = milestones.filter((item) => isProjectWorkComplete(item.status)).length;
+  const next = milestones.find((item) => !isProjectWorkComplete(item.status))?.id ?? null;
+
+  return {
+    completed,
+    total: milestones.length,
+    percentage: milestones.length ? Math.round((completed / milestones.length) * 100) : 0,
+    next,
+  };
+}
+
+export function getProjectLaunchProgress(items: ProjectWorkItem[]) {
+  const requiredChecks = items.filter((item) => item.kind === 'delivery_check' && item.required);
+  const incomplete = requiredChecks
+    .filter((item) => !isProjectWorkComplete(item.status))
+    .map((item) => item.title);
+  const completed = requiredChecks.length - incomplete.length;
+
+  return {
+    completed,
+    total: requiredChecks.length,
+    percentage: requiredChecks.length ? Math.round((completed / requiredChecks.length) * 100) : 100,
+    ready: incomplete.length === 0,
+    incomplete,
   };
 }

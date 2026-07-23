@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseLeadNote, parseLeadUpdate, parseManualLead, parseProjectBrief } from './crm-actions';
+import {
+  parseLeadNote,
+  parseLeadUpdate,
+  parseManualLead,
+  parseProjectBrief,
+  parseProjectWorkItem,
+} from './crm-actions';
 
 test('normalizes a complete lead workflow update', () => {
   const result = parseLeadUpdate({
@@ -217,4 +223,59 @@ test('rejects malformed manual emails and unsupported lead sources', () => {
     valid: false,
     error: 'Choose a valid enquiry source.',
   });
+});
+
+test('normalizes a project work item with its delivery details', () => {
+  assert.deepEqual(parseProjectWorkItem({
+    projectId: '123e4567-e89b-42d3-a456-426614174000',
+    kind: 'task',
+    title: '  Connect the booking form  ',
+    details: '  Send confirmations to the client team.  ',
+    status: 'in_progress',
+    priority: 'high',
+    dueOn: '2026-08-01',
+    assignedTo: '  developer@wereact.agency ',
+    required: true,
+    position: '3',
+    completedAt: '2026-07-23T10:15:00.000Z',
+  }), {
+    valid: true,
+    value: {
+      project_id: '123e4567-e89b-42d3-a456-426614174000',
+      kind: 'task', title: 'Connect the booking form', details: 'Send confirmations to the client team.',
+      status: 'in_progress', priority: 'high', due_on: '2026-08-01', assigned_to: 'developer@wereact.agency',
+      required: true, position: 3, completed_at: '2026-07-23T10:15:00.000Z',
+    },
+  });
+});
+
+test('defaults optional project work fields without widening enum values', () => {
+  assert.deepEqual(parseProjectWorkItem({
+    projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'milestone', title: 'Design approved',
+  }), {
+    valid: true,
+    value: {
+      project_id: '123e4567-e89b-42d3-a456-426614174000', kind: 'milestone', title: 'Design approved', details: '',
+      status: 'todo', priority: 'normal', due_on: null, assigned_to: null, required: false, position: 0, completed_at: null,
+    },
+  });
+});
+
+test('rejects malformed work-item project references and unusable work titles', () => {
+  assert.deepEqual(parseProjectWorkItem({ projectId: 'project-1', kind: 'task', title: 'Build it' }), {
+    valid: false, error: 'Invalid project reference.',
+  });
+  assert.deepEqual(parseProjectWorkItem({
+    projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: '   ',
+  }), { valid: false, error: 'Add a work item title.' });
+});
+
+test('rejects unsupported work item fields and malformed dates', () => {
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'reminder', title: 'Call client' }), { valid: false, error: 'Choose a valid work item type.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', status: 'waiting' }), { valid: false, error: 'Choose a valid work item status.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', priority: 'critical' }), { valid: false, error: 'Choose a valid work item priority.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', dueOn: '2026-02-30' }), { valid: false, error: 'Choose a valid due date.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', assignedTo: 'x'.repeat(255) }), { valid: false, error: 'Choose a valid team member.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', position: '-1' }), { valid: false, error: 'Choose a valid work item position.' });
+  assert.deepEqual(parseProjectWorkItem({ projectId: '123e4567-e89b-42d3-a456-426614174000', kind: 'task', title: 'Call client', completedAt: '2026-07-23T10:15' }), { valid: false, error: 'Choose a valid completion time.' });
 });

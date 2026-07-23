@@ -1,4 +1,15 @@
-import { isLeadStatus, isProjectStatus, type LeadStatus, type ProjectStatus } from './crm';
+import {
+  isLeadStatus,
+  isProjectStatus,
+  PROJECT_WORK_ITEM_KINDS,
+  PROJECT_WORK_ITEM_PRIORITIES,
+  PROJECT_WORK_ITEM_STATUSES,
+  type LeadStatus,
+  type ProjectStatus,
+  type ProjectWorkItemKind,
+  type ProjectWorkItemPriority,
+  type ProjectWorkItemStatus,
+} from './crm';
 
 export type LeadUpdate = {
   status: LeadStatus;
@@ -230,4 +241,90 @@ export function parseLeadNote(input: unknown): ParseResult<string> {
   if (note.length > 2000) return { valid: false, error: 'Keep notes under 2,000 characters.' };
 
   return { valid: true, value: note };
+}
+
+export type ProjectWorkItemInput = {
+  project_id: string;
+  kind: ProjectWorkItemKind;
+  title: string;
+  details: string;
+  status: ProjectWorkItemStatus;
+  priority: ProjectWorkItemPriority;
+  due_on: string | null;
+  assigned_to: string | null;
+  required: boolean;
+  position: number;
+  completed_at: string | null;
+};
+
+function isUuid(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+}
+
+function isIsoDate(value: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+function parseIsoTimestamp(value: unknown) {
+  const raw = cleanText(value, 40);
+  const date = new Date(raw);
+  if (!raw) return { valid: true as const, value: null };
+  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(raw) || Number.isNaN(date.getTime())) {
+    return { valid: false as const };
+  }
+  return { valid: true as const, value: date.toISOString() };
+}
+
+export function parseProjectWorkItem(input: unknown): ParseResult<ProjectWorkItemInput> {
+  if (!input || typeof input !== 'object') return { valid: false, error: 'Work item details are missing.' };
+
+  const value = input as Record<string, unknown>;
+  const projectId = cleanText(value.projectId, 36);
+  const kind = cleanText(value.kind, 24);
+  const title = cleanText(value.title, 180);
+  const status = cleanText(value.status, 24) || 'todo';
+  const priority = cleanText(value.priority, 24) || 'normal';
+  const dueOn = cleanText(value.dueOn, 10);
+  const assignedTo = cleanText(value.assignedTo, 254).toLowerCase();
+  const completedAt = parseIsoTimestamp(value.completedAt);
+  const position = value.position == null || value.position === '' ? 0 : Number(value.position);
+
+  if (!isUuid(projectId)) return { valid: false, error: 'Invalid project reference.' };
+  if (!PROJECT_WORK_ITEM_KINDS.includes(kind as ProjectWorkItemKind)) {
+    return { valid: false, error: 'Choose a valid work item type.' };
+  }
+  if (!title) return { valid: false, error: 'Add a work item title.' };
+  if (!PROJECT_WORK_ITEM_STATUSES.includes(status as ProjectWorkItemStatus)) {
+    return { valid: false, error: 'Choose a valid work item status.' };
+  }
+  if (!PROJECT_WORK_ITEM_PRIORITIES.includes(priority as ProjectWorkItemPriority)) {
+    return { valid: false, error: 'Choose a valid work item priority.' };
+  }
+  if (dueOn && !isIsoDate(dueOn)) return { valid: false, error: 'Choose a valid due date.' };
+  if (typeof value.assignedTo === 'string' && value.assignedTo.trim().length > 254) {
+    return { valid: false, error: 'Choose a valid team member.' };
+  }
+  if (!Number.isInteger(position) || position < 0) {
+    return { valid: false, error: 'Choose a valid work item position.' };
+  }
+  if (!completedAt.valid) return { valid: false, error: 'Choose a valid completion time.' };
+
+  return {
+    valid: true,
+    value: {
+      project_id: projectId,
+      kind: kind as ProjectWorkItemKind,
+      title,
+      details: cleanText(value.details, 2000),
+      status: status as ProjectWorkItemStatus,
+      priority: priority as ProjectWorkItemPriority,
+      due_on: dueOn || null,
+      assigned_to: assignedTo || null,
+      required: value.required === true || value.required === 'true',
+      position,
+      completed_at: completedAt.value,
+    },
+  };
 }
