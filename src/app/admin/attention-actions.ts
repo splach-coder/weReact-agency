@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireAdminMember } from '@/lib/admin-auth';
-import { parseAttentionMutation } from '@/lib/automation';
+import { parseAttentionMutation, parseAutomationRetry } from '@/lib/automation';
 
 export type AttentionActionResult = {
   ok: boolean;
@@ -29,5 +29,22 @@ export async function attentionMutationAction(input: unknown): Promise<Attention
   }
 
   revalidatePath('/admin');
+  return { ok: true };
+}
+export async function retryAutomationEventAction(input: unknown): Promise<AttentionActionResult> {
+  const parsed = parseAutomationRetry(input);
+  if (!parsed.valid) return { ok: false, error: parsed.error };
+
+  const { supabase } = await requireAdminMember();
+  const { error } = await supabase.rpc('crm_retry_automation_event', {
+    p_event_id: parsed.value.id,
+  });
+  if (error) {
+    console.error('Automation retry failed.', error.message);
+    return { ok: false, error: 'Could not retry this automation. Please try again.' };
+  }
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/automation');
   return { ok: true };
 }

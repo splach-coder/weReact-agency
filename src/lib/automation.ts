@@ -154,6 +154,15 @@ export function parseAttentionMutation(input: unknown, now = new Date()): ParseR
   return { valid: true, value: { id, action, snoozeUntil: until.toISOString() } };
 }
 
+export function parseAutomationRetry(input: unknown): ParseResult<{ id: string }> {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) {
+    return { valid: false, error: 'Automation event is missing.' };
+  }
+  const value = input as Record<string, unknown>;
+  const id = typeof value.id === 'string' ? value.id.trim() : '';
+  if (!UUID_PATTERN.test(id)) return { valid: false, error: 'Invalid automation event.' };
+  return { valid: true, value: { id } };
+}
 const PROVIDER_EVENT_STATES: Record<string, CommunicationState> = {
   'email.sent': 'sent',
   'email.delivered': 'delivered',

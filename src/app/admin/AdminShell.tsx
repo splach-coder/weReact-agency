@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Mail, PanelsTopLeft, WalletCards } from 'lucide-react';
+import { LayoutDashboard, Mail, PanelsTopLeft, WalletCards, Workflow } from 'lucide-react';
 import type { TeamMember } from '@/lib/crm';
 import { SignOutButton } from './SignOutButton';
 
@@ -11,6 +11,7 @@ const navigation = [
   { href: '/admin/pipeline', label: 'Pipeline', icon: PanelsTopLeft },
   { href: '/admin/newsletter', label: 'Newsletter', icon: Mail },
   { href: '/admin/finance', label: 'Finance', icon: WalletCards },
+  { href: '/admin/automation', label: 'Automation', icon: Workflow },
 ] as const;
 
 function isActive(pathname: string, href: string) {
