@@ -201,6 +201,7 @@ as $$
 declare
   v_check_count integer;
   v_remaining text;
+  v_custom_remaining text;
 begin
   if new.status = 'launched' then
     if tg_op = 'INSERT' or old.status is distinct from 'launched' then
@@ -226,6 +227,22 @@ begin
        and item.kind = 'delivery_check'
        and item.required = true
        and item.title = checklist.title;
+
+      select string_agg(title, ', ' order by position, title)
+      into v_custom_remaining
+      from public.project_work_items
+      where project_id = new.id
+        and kind = 'delivery_check'
+        and required = true
+        and status not in ('done', 'skipped')
+        and title not in (
+          'Client approved the final website', 'Responsive layouts checked',
+          'Forms and conversion actions tested', 'Domain connected',
+          'Production hosting verified', 'Analytics and conversion tracking verified',
+          'SEO titles, descriptions, sitemap, and robots checked',
+          'Final backup and handover completed'
+        );
+      v_remaining := nullif(concat_ws(', ', v_remaining, v_custom_remaining), '');
 
       if v_check_count < 8 or v_remaining is not null then
         raise exception 'Required launch checks are incomplete: %',
@@ -292,8 +309,7 @@ begin
   end if;
 
   update public.crm_projects
-  set assigned_developer_email = v_developer_email,
-      updated_at = now()
+  set assigned_developer_email = v_developer_email
   where id = p_project_id;
 
   if not found then
@@ -479,12 +495,14 @@ begin
     if tg_op = 'DELETE' then
       raise exception 'Paid invoice transactions cannot be deleted' using errcode = '22023';
     end if;
-    if new.amount is distinct from old.amount
+    if new.client_id is distinct from old.client_id
+       or new.occurred_on is distinct from old.occurred_on
+       or new.amount is distinct from old.amount
        or new.project_id is distinct from old.project_id
        or new.source is distinct from old.source
        or new.type is distinct from old.type
        or new.status is distinct from old.status then
-      raise exception 'Paid invoice transaction amount, project, source, type, and status are locked' using errcode = '22023';
+      raise exception 'Paid invoice transaction amount, client, project, payment date, source, type, and status are locked' using errcode = '22023';
     end if;
   end if;
   if tg_op = 'DELETE' then return old; end if;
@@ -688,7 +706,8 @@ begin
   from public.finance_transactions
   where project_id = v_invoice.project_id and source = 'project_close'
   order by created_at desc
-  limit 1;
+  limit 1
+  for update;
 
   if v_finance_transaction_id is not null and v_finance_amount is distinct from v_invoice.total then
     raise exception 'Invoice total must match project close amount' using errcode = '22023';

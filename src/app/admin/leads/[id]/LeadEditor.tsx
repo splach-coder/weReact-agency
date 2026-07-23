@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight, CircleCheckBig, Globe2, Plus, RotateCcw, Save, Send, XCircle } from 'lucide-react';
 import { addLeadNoteAction, saveProjectBriefAction, updateLeadAction } from '../../actions';
 import { ProjectWorkspace } from './ProjectWorkspace';
+import { InvoiceWorkspace } from './InvoiceWorkspace';
 import {
   SALES_PIPELINE_STATUSES,
   getLeadLifecycleAction,
@@ -330,6 +331,8 @@ export function ProjectBriefEditor({
   initialProjectId,
   teamMembers = [],
   workItems = [],
+  invoices = [],
+  invoiceLines = [],
   invoiceSlot,
 }: ProjectBriefEditorProps) {
   const router = useRouter();
@@ -506,7 +509,16 @@ export function ProjectBriefEditor({
         project={workspaceProject}
         teamMembers={teamMembers}
         workItems={workItems}
-        invoiceSlot={invoiceSlot}
+        invoiceSlot={invoiceSlot ?? (workspaceProject ? (
+          <InvoiceWorkspace
+            key={`${workspaceProject.id}:${invoices[0]?.id ?? 'new'}:${invoices[0]?.updated_at ?? ''}`}
+            leadId={lead.id}
+            lead={lead}
+            project={workspaceProject}
+            invoices={invoices}
+            invoiceLines={invoiceLines}
+          />
+        ) : undefined)}
         brief={
       <form onSubmit={saveProject} className="crm-brief-form">
         <div className="crm-brief-nav" role="tablist" aria-label="Project brief sections">

@@ -182,6 +182,9 @@ test('guards every transition into launched and secures developer assignment', (
     /create trigger crm_block_incomplete_launch[\s\S]*before insert or update of status on public\.crm_projects/i,
   );
   assert.match(workspaceMigration, /v_check_count < 8/i);
+  assert.match(launchGuard, /v_custom_remaining/i);
+  assert.match(launchGuard, /kind = 'delivery_check'[\s\S]*required = true[\s\S]*title not in/i);
+  assert.match(launchGuard, /v_remaining := nullif\(concat_ws\(', ', v_remaining, v_custom_remaining\), ''\)/i);
   assert.match(workspaceMigration, /Default launch checks cannot be renamed, retyped, made optional, or reordered/i);
   assert.match(workspaceMigration, /Default launch checks cannot be deleted/i);
 
@@ -207,6 +210,7 @@ test('guards every transition into launched and secures developer assignment', (
     assignmentFunction,
     /update public\.crm_projects[\s\S]*assigned_developer_email = v_developer_email[\s\S]*where id = p_project_id/i,
   );
+  assert.doesNotMatch(assignmentFunction, /updated_at\s*=/i);
   assert.match(
     workspaceMigration,
     /revoke all on function public\.crm_assign_project_developer\(uuid, text\) from public, anon/i,

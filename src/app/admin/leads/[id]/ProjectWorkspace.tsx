@@ -155,7 +155,6 @@ export function ProjectWorkspace({
   const [itemDraft, setItemDraft] = useState<WorkItemDraft>(EMPTY_WORK_ITEM);
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
-  const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [saving, startSaving] = useTransition();
 
   const projectItems = useMemo(
@@ -181,18 +180,16 @@ export function ProjectWorkspace({
   }
 
   function assignDeveloper(value: string) {
-    if (!project) return;
-    setPendingItemId('developer');
+    if (saving || !project) return;
     startSaving(async () => {
       const result = await assignProjectDeveloperAction(leadId, project.id, value || null);
       showResult(result.ok, result.ok ? 'Developer assignment updated.' : (result.error ?? 'Could not update assignment.'));
-      setPendingItemId(null);
       if (result.ok) refreshAfterAction();
     });
   }
 
   function updateItem(item: ProjectWorkItem, changes: Partial<ProjectWorkItem>, successMessage: string) {
-    setPendingItemId(item.id);
+    if (saving) return;
     startSaving(async () => {
       const result = await saveProjectWorkItemAction(
         leadId,
@@ -200,7 +197,6 @@ export function ProjectWorkspace({
         workItemPayload(item, changes),
       );
       showResult(result.ok, result.ok ? successMessage : (result.error ?? 'Could not update this work item.'));
-      setPendingItemId(null);
       if (result.ok) refreshAfterAction();
     });
   }
@@ -213,6 +209,7 @@ export function ProjectWorkspace({
   }
 
   function beginAdd() {
+    if (saving) return;
     setEditingItem(null);
     setItemDraft(EMPTY_WORK_ITEM);
     setEditorOpen(true);
@@ -221,7 +218,7 @@ export function ProjectWorkspace({
   }
 
   function beginEdit(item: ProjectWorkItem) {
-    if (item.kind === 'delivery_check') return;
+    if (saving || item.kind === 'delivery_check') return;
     setEditingItem(item);
     setItemDraft({
       kind: item.kind,
@@ -245,7 +242,7 @@ export function ProjectWorkspace({
 
   function saveItem(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!project) return;
+    if (saving || !project) return;
 
     const position = editingItem?.position
       ?? (projectItems.reduce((highest, item) => Math.max(highest, item.position), -1) + 1);
@@ -253,7 +250,6 @@ export function ProjectWorkspace({
       ? (editingItem?.completed_at ?? new Date().toISOString())
       : null;
 
-    setPendingItemId(editingItem?.id ?? 'new');
     startSaving(async () => {
       const result = await saveProjectWorkItemAction(leadId, editingItem?.id ?? null, {
         projectId: project.id,
@@ -269,7 +265,6 @@ export function ProjectWorkspace({
         completedAt,
       });
       showResult(result.ok, result.ok ? (editingItem ? 'Work item updated.' : 'Work item added.') : (result.error ?? 'Could not save this work item.'));
-      setPendingItemId(null);
       if (result.ok) {
         closeEditor();
         refreshAfterAction();
@@ -278,18 +273,15 @@ export function ProjectWorkspace({
   }
 
   function deleteItem(item: ProjectWorkItem) {
-    if (!project || !window.confirm(`Delete "${item.title}"?`)) return;
-    setPendingItemId(item.id);
+    if (saving || !project || !window.confirm(`Delete "${item.title}"?`)) return;
     startSaving(async () => {
       const result = await deleteProjectWorkItemAction(leadId, project.id, item.id);
       showResult(result.ok, result.ok ? 'Work item deleted.' : (result.error ?? 'Could not delete this work item.'));
-      setPendingItemId(null);
       if (result.ok) refreshAfterAction();
     });
   }
 
   function renderWorkItemRow(item: ProjectWorkItem) {
-    const pending = saving && pendingItemId === item.id;
     return (
       <article className={`crm-work-item-row crm-work-item-row--${item.status}`} key={item.id}>
         <div className="crm-work-item__identity">
@@ -305,7 +297,7 @@ export function ProjectWorkspace({
             className="crm-work-item__control"
             value={item.status}
             aria-label={`Status for ${item.title}`}
-            disabled={pending}
+            disabled={saving}
             onChange={(event) => updateStatus(item, event.target.value as ProjectWorkItemStatus)}
           >
             {PROJECT_WORK_ITEM_STATUSES.map((status) => (
@@ -319,7 +311,7 @@ export function ProjectWorkspace({
             className="crm-work-item__control"
             value={item.priority}
             aria-label={`Priority for ${item.title}`}
-            disabled={pending}
+            disabled={saving}
             onChange={(event) => updateItem(
               item,
               { priority: event.target.value as ProjectWorkItemPriority },
@@ -338,10 +330,10 @@ export function ProjectWorkspace({
           </span>
         </div>
         <div className="crm-work-item__actions">
-          <button type="button" className="crm-work-icon-button" onClick={() => beginEdit(item)} aria-label={`Edit ${item.title}`} title="Edit work item">
+          <button type="button" className="crm-work-icon-button" disabled={saving} onClick={() => beginEdit(item)} aria-label={`Edit ${item.title}`} title="Edit work item">
             <Pencil size={15} />
           </button>
-          <button type="button" className="crm-work-icon-button is-danger" onClick={() => deleteItem(item)} aria-label={`Delete ${item.title}`} title="Delete work item">
+          <button type="button" className="crm-work-icon-button is-danger" disabled={saving} onClick={() => deleteItem(item)} aria-label={`Delete ${item.title}`} title="Delete work item">
             <Trash2 size={15} />
           </button>
         </div>
@@ -396,7 +388,7 @@ export function ProjectWorkspace({
                 <span><UserRound size={14} /> Assigned developer</span>
                 <select
                   value={project.assigned_developer_email ?? ''}
-                  disabled={saving && pendingItemId === 'developer'}
+                  disabled={saving}
                   onChange={(event) => assignDeveloper(event.target.value)}
                 >
                   <option value="">Unassigned</option>
@@ -495,7 +487,7 @@ export function ProjectWorkspace({
                 </div>
                 <footer>
                   <button type="button" className="crm-text-button" onClick={closeEditor}>Cancel</button>
-                  <button type="submit" className="crm-primary-button" disabled={saving && (pendingItemId === 'new' || pendingItemId === editingItem?.id)}>
+                  <button type="submit" className="crm-primary-button" disabled={saving}>
                     <Save size={15} />{saving ? 'Saving...' : 'Save work item'}
                   </button>
                 </footer>
@@ -568,7 +560,7 @@ export function ProjectWorkspace({
                     className="crm-work-item__control"
                     value={item.status}
                     aria-label={`Checklist status for ${item.title}`}
-                    disabled={saving && pendingItemId === item.id}
+                    disabled={saving}
                     onChange={(event) => updateStatus(item, event.target.value as ProjectWorkItemStatus)}
                   >
                     {PROJECT_WORK_ITEM_STATUSES.map((status) => (

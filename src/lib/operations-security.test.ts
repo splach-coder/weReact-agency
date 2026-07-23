@@ -101,7 +101,9 @@ test('enforces a one-to-one project invoice and exact project-close payment link
   );
   assert.match(migration, /create or replace function public\.finance_transactions_protect_paid_invoice_link/i);
   assert.match(migration, /Paid invoice transactions cannot be deleted/i);
-  assert.match(migration, /Paid invoice transaction amount, project, source, type, and status are locked/i);
+  assert.match(migration, /Paid invoice transaction amount, client, project, payment date, source, type, and status are locked/i);
+  assert.match(migration, /new\.client_id is distinct from old\.client_id/i);
+  assert.match(migration, /new\.occurred_on is distinct from old\.occurred_on/i);
   assert.match(migration, /before update or delete on public\.finance_transactions/i);
   assert.match(closeFunction, /select id[\s\S]*into v_invoice_id[\s\S]*from public\.invoices/i);
   assert.match(
@@ -112,6 +114,7 @@ test('enforces a one-to-one project invoice and exact project-close payment link
     issueFunction,
     /v_finance_amount[\s\S]*v_finance_amount is distinct from v_invoice\.total[\s\S]*Invoice total must match project close amount/i,
   );
+  assert.match(issueFunction, /from public\.finance_transactions[\s\S]*for update/i);
 });
 
 test('caps annual invoice numbering and accepts 500-character line descriptions', () => {

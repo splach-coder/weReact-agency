@@ -176,6 +176,9 @@ test('project work view exposes assignment progress and explicit task controls',
   assert.match(workspace, /aria-label=\{`Priority for \$\{item\.title\}`\}/);
   assert.match(workspace, /type="date"/);
   assert.match(workspace, /assignedTo/);
+  assert.match(workspace, /if \(saving\) return;/);
+  assert.match(workspace, /disabled=\{saving\}/);
+  assert.doesNotMatch(workspace, /disabled=\{pending\}/);
   assert.doesNotMatch(workspace, /DndContext|useDraggable|useSortable/);
 });
 
@@ -209,4 +212,53 @@ test('project workspace remains dense on desktop and touch-safe without mobile o
   assert.match(adminCss, /@media \(max-width: 700px\)[\s\S]*\.crm-work-item-row[\s\S]*grid-template-columns:\s*1fr/);
   assert.match(adminCss, /@media \(max-width: 700px\)[\s\S]*\.crm-project-selector[\s\S]*overflow:\s*hidden/);
   assert.match(operationsCss, /\.crm-mobile-contact[\s\S]*bottom:\s*calc\(64px/);
+});
+
+test('invoice workspace supports the complete draft-to-issued project flow', () => {
+  const invoice = readFileSync(
+    new URL('../app/admin/leads/[id]/InvoiceWorkspace.tsx', import.meta.url),
+    'utf8',
+  );
+  const editor = readFileSync(
+    new URL('../app/admin/leads/[id]/LeadEditor.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(invoice, /createInvoiceDraftAction/);
+  assert.match(invoice, /updateInvoiceDraftAction/);
+  assert.match(invoice, /issueInvoiceAction/);
+  assert.match(invoice, /voidInvoiceAction/);
+  assert.match(invoice, /Create invoice draft/);
+  assert.match(invoice, /Save draft/);
+  assert.match(invoice, /Issue invoice/);
+  assert.match(invoice, /Add line/);
+  assert.match(invoice, /Open printable invoice/);
+  assert.match(invoice, /window\.confirm/);
+  assert.match(editor, /<InvoiceWorkspace/);
+  assert.match(editor, /invoices=\{invoices\}/);
+  assert.match(editor, /invoiceLines=\{invoiceLines\}/);
+});
+
+test('protects and renders a printable immutable invoice document', () => {
+  const page = readFileSync(
+    new URL('../app/admin/invoices/[id]/page.tsx', import.meta.url),
+    'utf8',
+  );
+  const actions = readFileSync(
+    new URL('../app/admin/invoices/[id]/InvoicePrintActions.tsx', import.meta.url),
+    'utf8',
+  );
+  const css = readFileSync(new URL('../app/admin/invoice.css', import.meta.url), 'utf8');
+
+  assert.match(page, /requireAdminMember\(\)/);
+  assert.match(page, /from\('invoices'\)/);
+  assert.match(page, /from\('invoice_lines'\)/);
+  assert.match(page, /InvoicePrintActions/);
+  assert.match(page, /WR-/);
+  assert.match(page, /Amount due/);
+  assert.match(page, /WeReact agency/);
+  assert.doesNotMatch(page, /\b(?:ICE|IF|RC|VAT)\b/);
+  assert.match(actions, /window\.print\(\)/);
+  assert.match(css, /@media print/);
+  assert.match(css, /\.invoice-document/);
 });

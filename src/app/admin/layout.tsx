@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '../globals.css';
 import './admin.css';
 import './operations.css';
+import './invoice.css';
 import { nohemi } from '@/app/fonts';
 
 export const metadata: Metadata = {
