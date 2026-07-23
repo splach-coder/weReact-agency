@@ -28,11 +28,19 @@ import {
   LayoutGrid,
   List,
   Mail,
+  MoreVertical,
   Phone,
+  RotateCcw,
   Search,
+  Trash2,
   UserPlus,
 } from 'lucide-react';
-import { moveLeadStageAction, moveProjectStageAction } from './actions';
+import {
+  archiveProjectAction,
+  moveLeadStageAction,
+  moveProjectStageAction,
+  reopenProjectAction,
+} from './actions';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ManualLeadDrawer } from './ManualLeadDrawer';
 import {
@@ -235,13 +243,16 @@ function PipelineStage({
   );
 }
 
-function ProjectCard({ project, onMove, dragOverlay = false, readOnly = false, draggable = true, moving = false }: {
+function ProjectCard({ project, onMove, onReopen, onArchive, dragOverlay = false, readOnly = false, draggable = true, moving = false, lifecycleBusy = false }: {
   project: CrmProject;
   onMove: (projectId: string, status: DeliveryStatus) => void;
+  onReopen?: (project: CrmProject) => void;
+  onArchive?: (project: CrmProject) => void;
   dragOverlay?: boolean;
   readOnly?: boolean;
   draggable?: boolean;
   moving?: boolean;
+  lifecycleBusy?: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: `project:${project.id}`,
@@ -265,6 +276,21 @@ function ProjectCard({ project, onMove, dragOverlay = false, readOnly = false, d
         <strong className="crm-project-card__name">{project.project_name}</strong>
       )}
       <p className="crm-project-card__domain">{project.domain_name || project.project_type}</p>
+      {readOnly && onReopen && onArchive && (
+        <details className="crm-project-actions">
+          <summary aria-label={`Manage ${project.project_name}`} aria-haspopup="menu">
+            <MoreVertical size={17} />
+          </summary>
+          <div className="crm-project-actions__menu" role="menu">
+            <button type="button" role="menuitem" disabled={lifecycleBusy} onClick={() => onReopen(project)}>
+              <RotateCcw size={15} /> Reopen in Review
+            </button>
+            <button type="button" role="menuitem" className="is-danger" disabled={lifecycleBusy} onClick={() => onArchive(project)}>
+              <Trash2 size={15} /> Delete project
+            </button>
+          </div>
+        </details>
+      )}
       {!readOnly && <label className="crm-mobile-stage-select">
         <span>{moving ? 'Moving project...' : 'Move project'}</span>
         <select
@@ -332,6 +358,8 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
   const [moveError, setMoveError] = useState('');
   const [movingLeadId, setMovingLeadId] = useState<string | null>(null);
   const [movingProjectId, setMovingProjectId] = useState<string | null>(null);
+  const [projectActionId, setProjectActionId] = useState<string | null>(null);
+  const [lifecycleMessage, setLifecycleMessage] = useState('');
   const [activeDragId, setActiveDragId] = useState<string | null>(null);
   const [collapsedStages, setCollapsedStages] = useState<Record<string, boolean>>({});
   const sensors = useSensors(
@@ -437,6 +465,54 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
     }
   }
 
+  async function reopenClosedProject(project: CrmProject) {
+    if (projectActionId) return;
+    if (!window.confirm(`Reopen ${project.project_name} in Review? Its automatic close revenue will be removed from Finance.`)) return;
+
+    setMoveError('');
+    setLifecycleMessage('');
+    setProjectActionId(project.id);
+    try {
+      const result = await reopenProjectAction(project.id, project.updated_at);
+      if (!result.ok) {
+        setMoveError(result.error || 'Could not reopen this project.');
+        return;
+      }
+      setBoardProjects((current) => current.map((item) => item.id === project.id
+        ? { ...item, status: 'review', updated_at: result.updatedAt ?? item.updated_at }
+        : item));
+      setMobileDeliveryStage('review');
+      setBoard('delivery');
+      setLifecycleMessage(`${project.project_name} reopened in Review. Its automatic revenue was removed.`);
+    } catch {
+      setMoveError('Could not reopen this project. Check your connection and try again.');
+    } finally {
+      setProjectActionId(null);
+    }
+  }
+
+  async function archiveClosedProject(project: CrmProject) {
+    if (projectActionId) return;
+    if (!window.confirm(`Delete ${project.project_name}? This removes its automatic revenue from Finance and archives its invoice. The client and history stay available.`)) return;
+
+    setMoveError('');
+    setLifecycleMessage('');
+    setProjectActionId(project.id);
+    try {
+      const result = await archiveProjectAction(project.id, project.updated_at);
+      if (!result.ok) {
+        setMoveError(result.error || 'Could not delete this project.');
+        return;
+      }
+      setBoardProjects((current) => current.filter((item) => item.id !== project.id));
+      setLifecycleMessage(`${project.project_name} deleted. Its automatic revenue was removed from Finance.`);
+    } catch {
+      setMoveError('Could not delete this project. Check your connection and try again.');
+    } finally {
+      setProjectActionId(null);
+    }
+  }
+
   function handleDragStart(event: DragStartEvent) {
     setActiveDragId(String(event.active.id));
   }
@@ -512,6 +588,7 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
         </div>
 
         {moveError && <p className="crm-action-message is-error" role="alert">{moveError}</p>}
+        {lifecycleMessage && <p className="crm-action-message" role="status">{lifecycleMessage}</p>}
         <p className="sr-only" aria-live="polite">
           {movingLeadId || movingProjectId ? 'Moving work item' : moveError ? moveError : ''}
         </p>
@@ -660,7 +737,15 @@ export function DashboardClient({ leads, projects }: { leads: CrmLead[]; project
           <DndContext id="crm-closed-projects" sensors={sensors}>
             <div className="crm-client-list crm-closed-projects">
               {filteredClosedProjects.map((project) => (
-                <ProjectCard project={project} onMove={() => undefined} readOnly key={project.id} />
+                <ProjectCard
+                  project={project}
+                  onMove={() => undefined}
+                  onReopen={(item) => void reopenClosedProject(item)}
+                  onArchive={(item) => void archiveClosedProject(item)}
+                  lifecycleBusy={projectActionId === project.id}
+                  readOnly
+                  key={project.id}
+                />
               ))}
               {filteredClosedProjects.length === 0 && <div className="crm-empty-state">No completed projects match this search.</div>}
             </div>

@@ -45,6 +45,22 @@ function refreshLeadRoutes(leadId: string) {
   revalidatePath('/crm');
   revalidatePath(`/admin/leads/${leadId}`);
 }
+
+function refreshProjectRoutes() {
+  revalidatePath('/admin');
+  revalidatePath('/admin/pipeline');
+  revalidatePath('/admin/finance');
+  revalidatePath('/crm');
+}
+
+function parseExpectedVersion(value: unknown) {
+  const rawVersion = typeof value === 'string' ? value : '';
+  const version = new Date(rawVersion);
+  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(version.getTime())) {
+    return null;
+  }
+  return version;
+}
 function readMutationResult(data: unknown) {
   if (typeof data === 'string') return { id: data, updatedAt: undefined };
   if (!data || typeof data !== 'object' || Array.isArray(data)) return { id: undefined, updatedAt: undefined };
@@ -134,9 +150,8 @@ export async function moveProjectStageAction(
     return { ok: false, error: 'Choose a valid delivery stage.' };
   }
 
-  const rawVersion = typeof expectedUpdatedAt === 'string' ? expectedUpdatedAt : '';
-  const version = new Date(rawVersion);
-  if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(rawVersion) || Number.isNaN(version.getTime())) {
+  const version = parseExpectedVersion(expectedUpdatedAt);
+  if (!version) {
     return { ok: false, error: 'Refresh before moving this project.' };
   }
 
@@ -159,11 +174,72 @@ export async function moveProjectStageAction(
     };
   }
 
-  revalidatePath('/admin');
-  revalidatePath('/admin/pipeline');
-  revalidatePath('/crm');
+  refreshProjectRoutes();
   return { ok: true, updatedAt: typeof data === 'string' ? data : undefined };
 }
+
+export async function reopenProjectAction(
+  projectId: string,
+  expectedUpdatedAt: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(projectId)) return { ok: false, error: 'Invalid project reference.' };
+  const version = parseExpectedVersion(expectedUpdatedAt);
+  if (!version) return { ok: false, error: 'Refresh before reopening this project.' };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { data, error } = await context.supabase.rpc('crm_reopen_project', {
+    p_project_id: projectId,
+    p_expected_updated_at: version.toISOString(),
+  });
+
+  if (error) {
+    console.error('CRM project reopen failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This project changed in another session. Refresh and try again.'
+        : error.code === '22023'
+          ? 'Only a closed project can be reopened.'
+          : 'Could not reopen this project. Please try again.',
+    };
+  }
+
+  refreshProjectRoutes();
+  return { ok: true, projectId, updatedAt: typeof data === 'string' ? data : undefined };
+}
+
+export async function archiveProjectAction(
+  projectId: string,
+  expectedUpdatedAt: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(projectId)) return { ok: false, error: 'Invalid project reference.' };
+  const version = parseExpectedVersion(expectedUpdatedAt);
+  if (!version) return { ok: false, error: 'Refresh before deleting this project.' };
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { error } = await context.supabase.rpc('crm_archive_project', {
+    p_project_id: projectId,
+    p_expected_updated_at: version.toISOString(),
+  });
+
+  if (error) {
+    console.error('CRM project archive failed.', error);
+    return {
+      ok: false,
+      error: error.code === '40001'
+        ? 'This project changed in another session. Refresh and try again.'
+        : 'Could not delete this project. Please try again.',
+    };
+  }
+
+  refreshProjectRoutes();
+  return { ok: true, projectId };
+}
+
 export async function updateLeadAction(leadId: string, input: unknown): Promise<CrmActionResult> {
   if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
 

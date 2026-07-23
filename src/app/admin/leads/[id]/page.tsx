@@ -81,6 +81,7 @@ export default async function LeadDetailPage({
         .from('crm_projects')
         .select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by,assigned_developer_email')
         .eq('client_id', client.id)
+        .is('deleted_at', null)
         .order('updated_at', { ascending: false })
     : { data: [], error: null };
 

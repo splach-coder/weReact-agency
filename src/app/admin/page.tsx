@@ -17,7 +17,7 @@ export default async function AdminHome() {
 
   const [leadsResult, projectsResult, financeResult, subscriberResult, attentionResult] = await Promise.all([
     supabase.from('leads').select('id,created_at,updated_at,client_id,name,email,company,phone,whatsapp,message,status,source,attribution,notes,assigned_to,estimated_value,next_follow_up,last_contacted_at').order('created_at', { ascending: false }),
-    supabase.from('crm_projects').select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by,assigned_developer_email').order('updated_at', { ascending: false }),
+    supabase.from('crm_projects').select('id,created_at,updated_at,client_id,originating_lead_id,project_name,project_type,domain_name,status,goals,pages,features,languages,content_status,brand_status,domain_status,hosting_status,reference_sites,budget,target_launch,developer_notes,created_by,assigned_developer_email').is('deleted_at', null).order('updated_at', { ascending: false }),
     supabase.from('finance_transactions').select('id,created_at,occurred_on,type,status,amount,category,description,reference,client_id,project_id,source,created_by').order('occurred_on', { ascending: false }),
     supabase.from('newsletter_subscribers').select('email', { count: 'exact', head: true }).eq('status', 'subscribed'),
     supabase.from('attention_items').select('id,kind,priority,status,title,detail,owner_email,due_at,snoozed_until,source_type,source_id,source_href,action_label,idempotency_key,completed_at,created_at,updated_at').in('status', ['open', 'snoozed']),

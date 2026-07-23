@@ -273,3 +273,51 @@ test('protects and renders a printable immutable invoice document', () => {
   assert.match(css, /\.invoice-table tr,[\s\S]*break-inside: avoid/);
   assert.match(css, /\.invoice-totals,[\s\S]*page-break-inside: avoid/);
 });
+
+test('keeps archived projects out of every normal CRM project read', () => {
+  const files = [
+    '../app/admin/page.tsx',
+    '../app/admin/pipeline/page.tsx',
+    '../app/admin/leads/[id]/page.tsx',
+    '../app/admin/finance/page.tsx',
+  ];
+
+  for (const file of files) {
+    const source = readFileSync(new URL(file, import.meta.url), 'utf8');
+    assert.match(source, /\.is\('deleted_at', null\)/, `${file} must hide archived projects`);
+  }
+});
+
+test('validates and authorizes project reopen and archive actions', () => {
+  const actions = readFileSync(new URL('../app/admin/actions.ts', import.meta.url), 'utf8');
+
+  assert.match(actions, /export async function reopenProjectAction/);
+  assert.match(actions, /export async function archiveProjectAction/);
+  assert.match(actions, /if \(!UUID_PATTERN\.test\(projectId\)\)/);
+  assert.match(actions, /parseExpectedVersion/);
+  assert.match(actions, /getAuthorizedContext\(\)/);
+  assert.match(actions, /rpc\('crm_reopen_project'/);
+  assert.match(actions, /rpc\('crm_archive_project'/);
+  assert.match(actions, /p_expected_updated_at: version\.toISOString\(\)/);
+  assert.match(actions, /refreshProjectRoutes/);
+});
+
+test('closed project cards provide responsive reopen and destructive archive controls', () => {
+  const dashboard = readFileSync(
+    new URL('../app/admin/DashboardClient.tsx', import.meta.url),
+    'utf8',
+  );
+  const css = readFileSync(new URL('../app/admin/admin.css', import.meta.url), 'utf8');
+
+  assert.match(dashboard, /reopenProjectAction/);
+  assert.match(dashboard, /archiveProjectAction/);
+  assert.match(dashboard, /Reopen in Review/);
+  assert.match(dashboard, /Delete project/);
+  assert.match(dashboard, /This removes its automatic revenue from Finance/);
+  assert.match(dashboard, /aria-haspopup="menu"/);
+  assert.match(dashboard, /role="menu"/);
+  assert.match(dashboard, /setBoardProjects\(\(current\) => current\.filter/);
+  assert.match(css, /\.crm-project-actions/);
+  assert.match(css, /\.crm-project-actions__menu/);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.crm-project-actions__menu/);
+});

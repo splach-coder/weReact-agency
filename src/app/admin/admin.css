@@ -4549,3 +4549,100 @@ body {
   .crm-invoice-editor > footer > div { display: grid; grid-template-columns: 1fr 1fr; }
   .crm-invoice-editor > footer :is(a, button) { width: 100%; }
 }
+
+/* Closed project lifecycle controls */
+.crm-project-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.crm-project-card:has(.crm-project-actions) {
+  position: relative;
+  padding-right: 48px;
+}
+
+.crm-project-actions summary {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--crm-muted);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  place-items: center;
+}
+
+.crm-project-actions summary::-webkit-details-marker {
+  display: none;
+}
+
+.crm-project-actions summary:hover,
+.crm-project-actions[open] summary {
+  color: var(--crm-ink);
+  border-color: var(--crm-line);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.crm-project-actions__menu {
+  position: absolute;
+  z-index: 12;
+  top: 36px;
+  right: 0;
+  display: grid;
+  width: 190px;
+  padding: 6px;
+  border: 1px solid var(--crm-line);
+  border-radius: 4px;
+  background: rgba(252, 253, 249, 0.98);
+  box-shadow: 0 14px 34px rgba(27, 43, 31, 0.14);
+  gap: 2px;
+}
+
+.crm-project-actions__menu button {
+  display: flex;
+  min-height: 38px;
+  padding: 0 10px;
+  color: var(--crm-ink);
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  align-items: center;
+  gap: 9px;
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+}
+
+.crm-project-actions__menu button:hover {
+  background: rgba(58, 90, 64, 0.08);
+}
+
+.crm-project-actions__menu button.is-danger {
+  color: #9b3838;
+}
+
+.crm-project-actions__menu button.is-danger:hover {
+  background: rgba(155, 56, 56, 0.08);
+}
+
+.crm-project-actions__menu button:disabled {
+  cursor: wait;
+  opacity: 0.52;
+}
+
+@media (max-width: 700px) {
+  .crm-project-actions__menu {
+    position: fixed;
+    right: 16px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    top: auto;
+    width: min(260px, calc(100vw - 32px));
+  }
+
+  .crm-project-actions__menu button {
+    min-height: 48px;
+    font-size: 13px;
+  }
+}
