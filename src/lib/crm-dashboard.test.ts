@@ -138,3 +138,75 @@ test('includes the project developer assignment in every overview and pipeline p
   assert.match(overview, /assigned_developer_email/);
   assert.match(pipeline, /assigned_developer_email/);
 });
+
+test('provides four focused project workspace views with an invoice integration slot', () => {
+  const workspace = readFileSync(
+    new URL('../app/admin/leads/[id]/ProjectWorkspace.tsx', import.meta.url),
+    'utf8',
+  );
+  const editor = readFileSync(
+    new URL('../app/admin/leads/[id]/LeadEditor.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(workspace, /'brief', 'work', 'launch', 'invoice'/);
+  assert.match(workspace, /Brief/);
+  assert.match(workspace, /Work/);
+  assert.match(workspace, /Launch/);
+  assert.match(workspace, /Invoice/);
+  assert.match(workspace, /invoiceSlot\?: ReactNode/);
+  assert.match(editor, /<ProjectWorkspace/);
+  assert.match(editor, /brief=\{/);
+});
+
+test('project work view exposes assignment progress and explicit task controls', () => {
+  const workspace = readFileSync(
+    new URL('../app/admin/leads/[id]/ProjectWorkspace.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(workspace, /assignProjectDeveloperAction/);
+  assert.match(workspace, /saveProjectWorkItemAction/);
+  assert.match(workspace, /deleteProjectWorkItemAction/);
+  assert.match(workspace, /getProjectWorkProgress/);
+  assert.match(workspace, /Next milestone/);
+  assert.match(workspace, /Add work item/);
+  assert.match(workspace, /Edit work item/);
+  assert.match(workspace, /aria-label=\{`Status for \$\{item\.title\}`\}/);
+  assert.match(workspace, /aria-label=\{`Priority for \$\{item\.title\}`\}/);
+  assert.match(workspace, /type="date"/);
+  assert.match(workspace, /assignedTo/);
+  assert.doesNotMatch(workspace, /DndContext|useDraggable|useSortable/);
+});
+
+test('launch view names blocking checks and exposes explicit checklist controls', () => {
+  const workspace = readFileSync(
+    new URL('../app/admin/leads/[id]/ProjectWorkspace.tsx', import.meta.url),
+    'utf8',
+  );
+  const editor = readFileSync(
+    new URL('../app/admin/leads/[id]/LeadEditor.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(workspace, /getProjectLaunchProgress/);
+  assert.match(workspace, /Domain readiness/);
+  assert.match(workspace, /Hosting readiness/);
+  assert.match(workspace, /Launch blocked/);
+  assert.match(workspace, /launchProgress\.incomplete\.map/);
+  assert.match(workspace, /aria-label=\{`Checklist status for \$\{item\.title\}`\}/);
+  assert.match(editor, /closingWithIncompleteChecks/);
+  assert.match(editor, /Remaining launch checks:/);
+});
+
+test('project workspace remains dense on desktop and touch-safe without mobile overflow', () => {
+  const adminCss = readFileSync(new URL('../app/admin/admin.css', import.meta.url), 'utf8');
+  const operationsCss = readFileSync(new URL('../app/admin/operations.css', import.meta.url), 'utf8');
+
+  assert.match(adminCss, /\.crm-project-view-tabs[\s\S]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(adminCss, /\.crm-work-item__control[\s\S]*min-height:\s*44px/);
+  assert.match(adminCss, /@media \(max-width: 700px\)[\s\S]*\.crm-project-view-tabs[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(adminCss, /@media \(max-width: 700px\)[\s\S]*\.crm-work-item-row[\s\S]*grid-template-columns:\s*1fr/);
+  assert.match(adminCss, /@media \(max-width: 700px\)[\s\S]*\.crm-project-selector[\s\S]*overflow:\s*hidden/);
+  assert.match(operationsCss, /\.crm-mobile-contact[\s\S]*bottom:\s*calc\(64px/);
+});

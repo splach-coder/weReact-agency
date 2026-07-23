@@ -489,3 +489,14 @@
   .ops-audience-list article { grid-template-columns: auto minmax(0, 1fr); }
   .ops-audience-list article > button { grid-column: 2; width: fit-content; }
 }
+
+@media (max-width: 760px) {
+  .ops-app:has(.crm-mobile-contact) {
+    padding-bottom: 140px;
+  }
+
+  .ops-app .crm-mobile-contact {
+    z-index: 89;
+    bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}

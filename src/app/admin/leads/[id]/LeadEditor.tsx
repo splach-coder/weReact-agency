@@ -1,15 +1,17 @@
 'use client';
 
-import { FormEvent, useMemo, useState, useTransition } from 'react';
+import { useMemo, useState, useTransition, type FormEvent, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, CircleCheckBig, Globe2, Plus, RotateCcw, Save, Send, XCircle } from 'lucide-react';
 import { addLeadNoteAction, saveProjectBriefAction, updateLeadAction } from '../../actions';
+import { ProjectWorkspace } from './ProjectWorkspace';
 import {
   SALES_PIPELINE_STATUSES,
   getLeadLifecycleAction,
   getProjectLifecycleAction,
   getProjectBriefProgress,
+  getProjectLaunchProgress,
   type CrmLead,
   type CrmProject,
   type LeadEvent,
@@ -319,18 +321,23 @@ type ProjectBriefEditorProps = {
   workItems?: ProjectWorkItem[];
   invoices?: Invoice[];
   invoiceLines?: InvoiceLine[];
+  invoiceSlot?: ReactNode;
 };
 
 export function ProjectBriefEditor({
   lead,
   projects,
   initialProjectId,
+  teamMembers = [],
+  workItems = [],
+  invoiceSlot,
 }: ProjectBriefEditorProps) {
   const router = useRouter();
   const [draft, setDraft] = useState<ProjectDraft>(() => {
     const initialProject = projects.find((project) => project.id === initialProjectId) ?? projects[0];
     return projectToDraft(initialProject);
   });
+  const selectedProject = projects.find((project) => project.id === draft.projectId) ?? null;
   const [section, setSection] = useState<ProjectSection>('overview');
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
@@ -399,11 +406,18 @@ export function ProjectBriefEditor({
 
   const lifecycleAction = getProjectLifecycleAction(draft.status);
   const confirmedBudget = Number(draft.budget);
+  const launchProgress = useMemo(
+    () => getProjectLaunchProgress(workItems.filter((item) => item.project_id === draft.projectId)),
+    [draft.projectId, workItems],
+  );
   const closingWithoutAmount = lifecycleAction?.nextStatus === 'launched'
     && (!Number.isFinite(confirmedBudget) || confirmedBudget <= 0);
+  const closingWithIncompleteChecks = lifecycleAction?.nextStatus === 'launched'
+    && (launchProgress.total === 0 || !launchProgress.ready);
   const lifecycleDisabled = saving
     || !progress.ready
     || closingWithoutAmount
+    || closingWithIncompleteChecks
     || (draft.status !== 'briefing' && !draft.projectId);
 
   function advanceProject() {
@@ -414,6 +428,17 @@ export function ProjectBriefEditor({
     if (confirmation && !window.confirm(confirmation)) return;
     submitProject(lifecycleAction.nextStatus);
   }
+
+  const workspaceProject = selectedProject ? {
+    ...selectedProject,
+    project_name: draft.projectName,
+    project_type: draft.projectType,
+    domain_name: draft.domainName,
+    status: draft.status,
+    domain_status: draft.domainStatus,
+    hosting_status: draft.hostingStatus,
+    target_launch: draft.targetLaunch || null,
+  } : null;
 
   return (
     <section className="crm-section crm-project-brief">
@@ -429,7 +454,7 @@ export function ProjectBriefEditor({
         </div>
       </header>
 
-      <div className="crm-project-tabs" aria-label="Client websites">
+      <div className="crm-project-tabs crm-project-selector" aria-label="Client websites">
         {projects.map((project) => (
           <button
             type="button"
@@ -447,6 +472,25 @@ export function ProjectBriefEditor({
         </button>
       </div>
 
+      <label className="crm-project-selector-mobile">
+        <Globe2 size={16} />
+        <span>Selected project</span>
+        <select
+          value={draft.projectId || 'new'}
+          aria-label="Selected project"
+          onChange={(event) => chooseProject(
+            event.target.value === 'new'
+              ? undefined
+              : projects.find((project) => project.id === event.target.value),
+          )}
+        >
+          {projects.map((project) => (
+            <option value={project.id} key={project.id}>{project.project_name}</option>
+          ))}
+          <option value="new">Add another website</option>
+        </select>
+      </label>
+
       {!draft.projectId && (
         <div className="crm-project-new-note">
           <strong>{projects.length === 0 ? 'Start the first website brief' : 'Add a separate website'}</strong>
@@ -456,6 +500,14 @@ export function ProjectBriefEditor({
         </div>
       )}
 
+      <ProjectWorkspace
+        key={draft.projectId || 'new-project'}
+        leadId={lead.id}
+        project={workspaceProject}
+        teamMembers={teamMembers}
+        workItems={workItems}
+        invoiceSlot={invoiceSlot}
+        brief={
       <form onSubmit={saveProject} className="crm-brief-form">
         <div className="crm-brief-nav" role="tablist" aria-label="Project brief sections">
           {PROJECT_SECTIONS.map((item) => (
@@ -589,6 +641,14 @@ export function ProjectBriefEditor({
         {closingWithoutAmount && (
           <p className="crm-brief-hint is-payment">Add the confirmed project amount before closing and recording payment.</p>
         )}
+        {closingWithIncompleteChecks && (
+          <div className="crm-brief-hint is-launch-blocked" role="status">
+            <strong>Remaining launch checks:</strong>
+            <span>{launchProgress.total === 0
+              ? 'The required launch checklist is unavailable.'
+              : launchProgress.incomplete.join(', ') + '.'}</span>
+          </div>
+        )}
 
         <div className="crm-brief-actions">
           <button type="submit" className="crm-secondary-button" disabled={saving || !dirty}>
@@ -614,6 +674,8 @@ export function ProjectBriefEditor({
         </div>
         <p className={'crm-form-message ' + (isError ? 'is-error' : '')} aria-live="polite">{message}</p>
       </form>
+        }
+      />
     </section>
   );
 }
