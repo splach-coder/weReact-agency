@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { requireAdminMember } from '@/lib/admin-auth';
 import { siteConfig } from '@/config/site';
-import type { Invoice, InvoiceLine } from '@/lib/operations';
+import { resolveInvoiceSnapshot, type Invoice, type InvoiceLine } from '@/lib/operations';
 import { InvoicePrintActions } from './InvoicePrintActions';
 
 export const dynamic = 'force-dynamic';
@@ -23,11 +23,6 @@ type ClientRecord = {
   phone: string | null;
   whatsapp: string | null;
 };
-
-function snapshotValue(snapshot: Record<string, unknown> | null, key: string, fallback = '') {
-  const value = snapshot?.[key];
-  return typeof value === 'string' && value.trim() ? value : fallback;
-}
 
 function money(value: number) {
   return new Intl.NumberFormat('en-MA', {
@@ -94,19 +89,19 @@ export default async function InvoicePage({ params }: { params: Promise<{ id: st
   const lines = (linesResult.data ?? []) as InvoiceLine[];
   const project = projectResult.data as ProjectRecord | null;
   const client = clientResult.data as ClientRecord | null;
-  const seller = {
-    name: snapshotValue(invoice.seller_snapshot, 'name', siteConfig.business.legalName),
-    email: snapshotValue(invoice.seller_snapshot, 'email', siteConfig.business.email),
-    phone: snapshotValue(invoice.seller_snapshot, 'phone', siteConfig.business.phoneDisplay),
-    address: snapshotValue(invoice.seller_snapshot, 'address', siteConfig.business.addressDisplay),
-    website: snapshotValue(invoice.seller_snapshot, 'website', siteConfig.url),
-  };
-  const customer = {
-    name: snapshotValue(invoice.customer_snapshot, 'name', client?.name ?? 'Client'),
-    company: snapshotValue(invoice.customer_snapshot, 'company', client?.company ?? ''),
-    email: snapshotValue(invoice.customer_snapshot, 'email', client?.email ?? ''),
-    phone: snapshotValue(invoice.customer_snapshot, 'phone', client?.phone ?? ''),
-  };
+  const seller = resolveInvoiceSnapshot(invoice.seller_snapshot, {
+    name: siteConfig.business.legalName,
+    email: siteConfig.business.email,
+    phone: siteConfig.business.phoneDisplay,
+    address: siteConfig.business.addressDisplay,
+    website: siteConfig.url,
+  });
+  const customer = resolveInvoiceSnapshot(invoice.customer_snapshot, {
+    name: client?.name ?? 'Client',
+    company: client?.company ?? '',
+    email: client?.email ?? '',
+    phone: client?.phone ?? '',
+  });
   const backHref = project?.originating_lead_id
     ? `/admin/leads/${project.originating_lead_id}?project=${invoice.project_id}`
     : '/admin/pipeline';

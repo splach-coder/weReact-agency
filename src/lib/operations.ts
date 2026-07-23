@@ -12,6 +12,20 @@ export type FinanceSource = 'manual' | 'project_close' | 'adjustment';
 export const INVOICE_STATUSES = ['draft', 'issued', 'paid', 'void'] as const;
 export type InvoiceStatus = (typeof INVOICE_STATUSES)[number];
 
+export function resolveInvoiceSnapshot(
+  snapshot: Record<string, unknown> | null,
+  fallbacks: Record<string, string>,
+) {
+  if (!snapshot) return fallbacks;
+
+  return Object.fromEntries(
+    Object.keys(fallbacks).map((key) => [
+      key,
+      typeof snapshot[key] === 'string' ? snapshot[key] : '',
+    ]),
+  );
+}
+
 export type Invoice = {
   id: string;
   project_id: string;

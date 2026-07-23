@@ -150,4 +150,8 @@
   .invoice-document { width: 100%; min-height: 0; padding: 0; box-shadow: none; }
   .invoice-status { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .invoice-totals .invoice-amount-due { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .invoice-table tr,
+  .invoice-totals,
+  .invoice-document > footer { break-inside: avoid; page-break-inside: avoid; }
+
 }

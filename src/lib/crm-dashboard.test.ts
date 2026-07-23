@@ -261,4 +261,6 @@ test('protects and renders a printable immutable invoice document', () => {
   assert.match(actions, /window\.print\(\)/);
   assert.match(css, /@media print/);
   assert.match(css, /\.invoice-document/);
+  assert.match(css, /\.invoice-table tr,[\s\S]*break-inside: avoid/);
+  assert.match(css, /\.invoice-totals,[\s\S]*page-break-inside: avoid/);
 });

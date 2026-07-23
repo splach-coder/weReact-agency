@@ -9,6 +9,7 @@ import {
   parseInvoiceDraft,
   parseNewsletterCampaign,
   INVOICE_STATUSES,
+  resolveInvoiceSnapshot,
   type FinanceTransaction,
 } from './operations';
 
@@ -152,4 +153,18 @@ test('rejects incomplete invoices and invalid line amounts', () => {
 
 test('exposes the four immutable invoice statuses', () => {
   assert.deepEqual(INVOICE_STATUSES, ['draft', 'issued', 'paid', 'void']);
+});
+
+test('keeps issued invoice snapshots immutable when later client data changes', () => {
+  assert.deepEqual(
+    resolveInvoiceSnapshot(
+      { name: 'Atlas Riad', company: '', email: null, phone: '' },
+      { name: 'Updated client', company: 'New company', email: 'new@example.com', phone: '+212600000000' },
+    ),
+    { name: 'Atlas Riad', company: '', email: '', phone: '' },
+  );
+  assert.deepEqual(
+    resolveInvoiceSnapshot(null, { name: 'Draft client', company: '', email: '', phone: '' }),
+    { name: 'Draft client', company: '', email: '', phone: '' },
+  );
 });
