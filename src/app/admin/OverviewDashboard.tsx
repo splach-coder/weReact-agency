@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { ArrowRight, CalendarClock, CircleDollarSign, Mail, PanelsTopLeft, TrendingUp } from 'lucide-react';
+import type { AttentionItem } from '@/lib/automation';
 import type { CrmLead, CrmProject } from '@/lib/crm';
 import { buildCashflowSeries, calculateAgencyMetrics, formatMad, type FinanceTransaction } from '@/lib/operations';
+import { AttentionInbox } from './AttentionInbox';
 
 function isOverdue(value: string | null, now: Date) {
   return Boolean(value && new Date(value).getTime() < now.getTime());
@@ -11,7 +13,7 @@ function formatShortDate(value: string) {
   return new Intl.DateTimeFormat('en-MA', { day: '2-digit', month: 'short', timeZone: 'Africa/Casablanca' }).format(new Date(value));
 }
 
-export function OverviewDashboard({ leads, projects, finances, subscriberCount }: { leads: CrmLead[]; projects: CrmProject[]; finances: FinanceTransaction[]; subscriberCount: number }) {
+export function OverviewDashboard({ leads, projects, finances, subscriberCount, attentionItems }: { leads: CrmLead[]; projects: CrmProject[]; finances: FinanceTransaction[]; subscriberCount: number; attentionItems: AttentionItem[] }) {
   const now = new Date();
   const metrics = calculateAgencyMetrics(finances);
   const cashflow = buildCashflowSeries(finances, now);
@@ -21,11 +23,6 @@ export function OverviewDashboard({ leads, projects, finances, subscriberCount }
   const overdue = openLeads.filter((lead) => isOverdue(lead.next_follow_up, now));
   const newLeads = openLeads.filter((lead) => lead.status === 'new');
   const launchSoon = activeProjects.filter((project) => project.target_launch && new Date(project.target_launch).getTime() <= now.getTime() + 14 * 86400000);
-  const priorities = [
-    ...overdue.map((lead) => ({ id: `lead-${lead.id}`, label: lead.name, detail: 'Follow-up is overdue', href: `/admin/leads/${lead.id}`, tone: 'danger' })),
-    ...newLeads.map((lead) => ({ id: `new-${lead.id}`, label: lead.name, detail: 'New enquiry needs a first reply', href: `/admin/leads/${lead.id}`, tone: 'new' })),
-    ...launchSoon.filter((project) => project.originating_lead_id).map((project) => ({ id: `project-${project.id}`, label: project.project_name, detail: `Launch target ${formatShortDate(project.target_launch as string)}`, href: `/admin/leads/${project.originating_lead_id}?project=${project.id}`, tone: 'gold' })),
-  ].slice(0, 6);
   const salesStages = [
     ['New', leads.filter((lead) => lead.status === 'new').length],
     ['Discovery', leads.filter((lead) => lead.status === 'discovery').length],
@@ -48,12 +45,7 @@ export function OverviewDashboard({ leads, projects, finances, subscriberCount }
       </section>
 
       <div className="ops-dashboard-grid">
-        <section className="ops-panel ops-priorities">
-          <header><div><p>Today</p><h2>Priority queue</h2></div><Link href="/admin/pipeline">Open pipeline <ArrowRight size={15} /></Link></header>
-          {priorities.length ? <div className="ops-priority-list">{priorities.map((item) => (
-            <Link href={item.href} key={item.id}><span className={`ops-priority-dot is-${item.tone}`} /><span><strong>{item.label}</strong><small>{item.detail}</small></span><ArrowRight size={15} /></Link>
-          ))}</div> : <div className="ops-panel-empty">Nothing urgent. The queue is clear.</div>}
-        </section>
+        <AttentionInbox items={attentionItems} nowIso={now.toISOString()} />
 
         <section className="ops-panel ops-cashflow">
           <header><div><p>Last six months</p><h2>Cashflow</h2></div><Link href="/admin/finance">Finance <ArrowRight size={15} /></Link></header>

@@ -186,6 +186,57 @@ export function calculateCommunicationHealth(communications: Communication[]) {
   };
 }
 
+const ATTENTION_PRIORITY_RANK: Record<AttentionPriority, number> = {
+  urgent: 0,
+  high: 1,
+  normal: 2,
+  low: 3,
+};
+
+function moroccoDateKey(date: Date) {
+  return new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone: 'Africa/Casablanca',
+  }).format(date);
+}
+
+export function groupAttentionItems(items: AttentionItem[], now = new Date()) {
+  const visible = items
+    .filter((item) => {
+      if (item.status === 'completed') return false;
+      if (item.status !== 'snoozed' || !item.snoozed_until) return true;
+      return new Date(item.snoozed_until).getTime() <= now.getTime();
+    })
+    .sort((left, right) => {
+      const priority = ATTENTION_PRIORITY_RANK[left.priority] - ATTENTION_PRIORITY_RANK[right.priority];
+      if (priority !== 0) return priority;
+      const leftDue = left.due_at ? new Date(left.due_at).getTime() : Number.POSITIVE_INFINITY;
+      const rightDue = right.due_at ? new Date(right.due_at).getTime() : Number.POSITIVE_INFINITY;
+      return leftDue - rightDue || left.created_at.localeCompare(right.created_at);
+    });
+
+  const groups = {
+    overdue: [] as AttentionItem[],
+    today: [] as AttentionItem[],
+    upcoming: [] as AttentionItem[],
+  };
+  const todayKey = moroccoDateKey(now);
+
+  for (const item of visible) {
+    if (!item.due_at) {
+      groups.today.push(item);
+      continue;
+    }
+    const due = new Date(item.due_at);
+    if (due.getTime() < now.getTime()) groups.overdue.push(item);
+    else if (moroccoDateKey(due) === todayKey) groups.today.push(item);
+    else groups.upcoming.push(item);
+  }
+
+  return groups;
+}
 function rate(value: number, total: number) {
   return total ? Math.round((value / total) * 100) : 0;
 }
