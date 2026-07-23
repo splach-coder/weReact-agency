@@ -4,7 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { requireAdminMember } from '@/lib/admin-auth';
 import { buildNewsletterEmail } from '@/lib/newsletter-email';
 import { buildInvoiceEmail } from '@/lib/invoice-email';
+import { recordOutboundCommunication } from '@/lib/communications-store';
 import { parseFinanceEntry, parseInvoiceDraft, parseNewsletterCampaign } from '@/lib/operations';
+import { sendResendEmail } from '@/lib/resend';
 import { siteConfig } from '@/config/site';
 
 export type OperationsActionResult = { ok: boolean; error?: string; id?: string; updatedAt?: string; sent?: number; failed?: number };
@@ -63,26 +65,26 @@ export async function sendNewsletterAction(input: unknown): Promise<OperationsAc
   for (let index = 0; index < subscribers.length; index += 25) {
     const batch = subscribers.slice(index, index + 25);
     const results = await Promise.all(batch.map(async (subscriber) => {
-      try {
-        const unsubscribeUrl = `${siteConfig.url}/unsubscribe?token=${encodeURIComponent(subscriber.unsubscribe_token)}`;
-        const response = await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            from,
-            to: subscriber.email,
-            reply_to: siteConfig.business.email,
-            subject: parsed.value.subject,
-            html: buildNewsletterEmail({ ...parsed.value, unsubscribeToken: subscriber.unsubscribe_token }),
-            headers: { 'List-Unsubscribe': `<${unsubscribeUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
-          }),
-        });
-        if (!response.ok) console.error('Newsletter recipient failed.', subscriber.email, await response.text());
-        return response.ok;
-      } catch (error) {
-        console.error('Newsletter recipient threw.', subscriber.email, error);
-        return false;
-      }
+      const unsubscribeUrl = `${siteConfig.url}/unsubscribe?token=${encodeURIComponent(subscriber.unsubscribe_token)}`;
+      const delivery = await sendResendEmail({
+        from,
+        to: subscriber.email,
+        reply_to: siteConfig.business.email,
+        subject: parsed.value.subject,
+        html: buildNewsletterEmail({ ...parsed.value, unsubscribeToken: subscriber.unsubscribe_token }),
+        headers: { 'List-Unsubscribe': `<${unsubscribeUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
+      }, apiKey);
+
+      if (!delivery.sent) return false;
+      await recordOutboundCommunication({
+        providerMessageId: delivery.providerMessageId,
+        from,
+        to: subscriber.email,
+        subject: parsed.value.subject,
+        body_summary: parsed.value.preview,
+        approved_by: member.email.toLowerCase(),
+      });
+      return true;
     }));
     sent += results.filter(Boolean).length;
     failed += results.filter((result) => !result).length;
@@ -247,29 +249,31 @@ export async function sendInvoiceEmailAction(invoiceId: string): Promise<Operati
     })),
   });
 
-  try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from: process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>',
-        to: [recipient],
-        reply_to: siteConfig.business.email,
-        subject: email.subject,
-        html: email.html,
-      }),
-      signal: AbortSignal.timeout(10000),
-    });
+  const invoiceFrom = process.env.RESEND_FROM_EMAIL ?? 'WeReact <hello@wereact.agency>';
+  const delivery = await sendResendEmail({
+    from: invoiceFrom,
+    to: [recipient],
+    reply_to: siteConfig.business.email,
+    subject: email.subject,
+    html: email.html,
+  }, apiKey);
 
-    if (!response.ok) {
-      console.error('Invoice email delivery failed.', await response.text());
-      return { ok: false, error: 'Resend could not deliver this invoice. Please try again.' };
-    }
-  } catch (error) {
-    console.error('Invoice email delivery threw.', error);
-    return { ok: false, error: 'Could not send this invoice right now.' };
+  if (!delivery.sent) {
+    return { ok: false, error: 'Resend could not deliver this invoice. Please try again.' };
   }
 
+  await recordOutboundCommunication({
+    providerMessageId: delivery.providerMessageId,
+    from: invoiceFrom,
+    to: recipient,
+    subject: email.subject,
+    body_summary: `Invoice ${rawInvoice.number}`,
+    lead_id: projectResult.data?.originating_lead_id ?? null,
+    client_id: rawInvoice.client_id,
+    project_id: rawInvoice.project_id,
+    invoice_id: invoiceId,
+    approved_by: member.email.toLowerCase(),
+  });
   if (projectResult.data?.originating_lead_id) {
     const { error: eventError } = await supabase.from('lead_events').insert({
       lead_id: projectResult.data.originating_lead_id,

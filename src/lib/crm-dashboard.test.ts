@@ -264,7 +264,8 @@ test('protects and renders a printable immutable invoice document', () => {
   assert.match(actions, /sendInvoiceEmailAction/);
   assert.match(actions, /Email invoice/);
   assert.match(operationActions, /export async function sendInvoiceEmailAction/);
-  assert.match(operationActions, /https:\/\/api\.resend\.com\/emails/);
+  assert.match(operationActions, /sendResendEmail/);
+  assert.match(operationActions, /recordOutboundCommunication/);
   assert.match(operationActions, /kind: 'email_sent'/);
   assert.match(operationActions, /\['issued', 'paid'\]/);
   assert.match(css, /@media print/);

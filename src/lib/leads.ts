@@ -121,7 +121,7 @@ export async function saveLead(record: LeadRecord) {
         apikey: serviceRoleKey,
         Authorization: `Bearer ${serviceRoleKey}`,
         'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
+        Prefer: 'return=representation',
       },
       body: JSON.stringify(record),
       signal: AbortSignal.timeout(6000),
@@ -133,7 +133,9 @@ export async function saveLead(record: LeadRecord) {
       return { stored: false, reason: 'storage_failed' as const };
     }
 
-    return { stored: true as const };
+    const rows = await response.json() as Array<{ id?: unknown }>;
+    const id = typeof rows[0]?.id === 'string' ? rows[0].id : null;
+    return { stored: true as const, id };
   } catch (error) {
     // A network-level rejection must degrade, not crash the whole lead intake.
     console.error('Supabase lead storage threw.', error);
