@@ -286,7 +286,7 @@ export function parseProjectWorkItem(input: unknown): ParseResult<ProjectWorkIte
   const title = cleanText(value.title, 180);
   const status = cleanText(value.status, 24) || 'todo';
   const priority = cleanText(value.priority, 24) || 'normal';
-  const dueOn = cleanText(value.dueOn, 10);
+  const dueOn = typeof value.dueOn === 'string' ? value.dueOn.trim() : '';
   const assignedTo = cleanText(value.assignedTo, 254).toLowerCase();
   const completedAt = parseIsoTimestamp(value.completedAt);
   const position = value.position == null || value.position === '' ? 0 : Number(value.position);

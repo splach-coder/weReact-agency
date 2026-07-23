@@ -109,8 +109,14 @@ test('rejects incomplete invoices and invalid line amounts', () => {
     clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: 'bad-date', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
   }), { valid: false, error: 'Choose a valid issue date.' });
   assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: ' 2026-07-23junk ', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Choose a valid issue date.' });
+  assert.deepEqual(parseInvoiceDraft({
     clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-07-22', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
   }), { valid: false, error: 'Choose a due date on or after the issue date.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: ' 2026-08-06junk ', lines: [{ description: 'Website', quantity: 1, unitPrice: 1 }],
+  }), { valid: false, error: 'Choose a valid due date.' });
   assert.deepEqual(parseInvoiceDraft({
     clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: '   ', quantity: 1, unitPrice: 1 }],
   }), { valid: false, error: 'Add a description for every invoice line.' });
@@ -120,6 +126,12 @@ test('rejects incomplete invoices and invalid line amounts', () => {
   assert.deepEqual(parseInvoiceDraft({
     clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: -1 }],
   }), { valid: false, error: 'Invoice line prices cannot be negative.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: '1.005' }],
+  }), { valid: false, error: 'Invoice line prices must use at most two decimal places.' });
+  assert.deepEqual(parseInvoiceDraft({
+    clientId: '123e4567-e89b-42d3-a456-426614174000', projectId: '123e4567-e89b-42d3-a456-426614174001', issuedOn: '2026-07-23', dueOn: '2026-08-06', lines: [{ description: 'Website', quantity: 1, unitPrice: 1.005 }],
+  }), { valid: false, error: 'Invoice line prices must use at most two decimal places.' });
 });
 
 test('exposes the four immutable invoice statuses', () => {

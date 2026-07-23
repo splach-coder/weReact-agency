@@ -197,6 +197,11 @@ function isInvoiceDate(value: string) {
   return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }
 
+function hasAtMostTwoFractionalDigits(value: unknown) {
+  const normalized = typeof value === 'number' ? String(value) : typeof value === 'string' ? value.trim().replace(/,/g, '') : '';
+  return /^\d+(?:\.\d{1,2})?$/.test(normalized);
+}
+
 function invoiceNumber(value: unknown) {
   if (typeof value === 'number') return value;
   if (typeof value !== 'string') return Number.NaN;
@@ -218,8 +223,8 @@ export function parseInvoiceDraft(input: unknown): Valid<InvoiceDraft> | Invalid
   const value = input as Record<string, unknown>;
   const clientId = nullableUuid(value.clientId);
   const projectId = nullableUuid(value.projectId);
-  const issuedOn = text(value.issuedOn, 10);
-  const dueOn = text(value.dueOn, 10);
+  const issuedOn = typeof value.issuedOn === 'string' ? value.issuedOn.trim() : '';
+  const dueOn = typeof value.dueOn === 'string' ? value.dueOn.trim() : '';
   const rawLines = Array.isArray(value.lines) ? value.lines : [];
 
   if (!clientId) return { valid: false, error: 'Invalid client reference.' };
@@ -242,6 +247,9 @@ export function parseInvoiceDraft(input: unknown): Valid<InvoiceDraft> | Invalid
     }
     if (!Number.isFinite(unitPrice) || unitPrice < 0) {
       return { valid: false, error: 'Invoice line prices cannot be negative.' };
+    }
+    if (!hasAtMostTwoFractionalDigits(line.unitPrice)) {
+      return { valid: false, error: 'Invoice line prices must use at most two decimal places.' };
     }
 
     lines.push({
