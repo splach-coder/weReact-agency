@@ -14,9 +14,11 @@ import {
   type CrmProject,
   type LeadEvent,
   type LeadStatus,
+  type ProjectWorkItem,
   type ProjectStatus,
+  type TeamMember,
 } from '@/lib/crm';
-import { formatMad } from '@/lib/operations';
+import { formatMad, type Invoice, type InvoiceLine } from '@/lib/operations';
 
 const STATUS_LABELS: Record<LeadStatus, string> = {
   new: 'New enquiry',
@@ -309,15 +311,21 @@ function projectToDraft(project?: CrmProject): ProjectDraft {
   };
 }
 
+type ProjectBriefEditorProps = {
+  lead: CrmLead;
+  projects: CrmProject[];
+  initialProjectId?: string;
+  teamMembers?: TeamMember[];
+  workItems?: ProjectWorkItem[];
+  invoices?: Invoice[];
+  invoiceLines?: InvoiceLine[];
+};
+
 export function ProjectBriefEditor({
   lead,
   projects,
   initialProjectId,
-}: {
-  lead: CrmLead;
-  projects: CrmProject[];
-  initialProjectId?: string;
-}) {
+}: ProjectBriefEditorProps) {
   const router = useRouter();
   const [draft, setDraft] = useState<ProjectDraft>(() => {
     const initialProject = projects.find((project) => project.id === initialProjectId) ?? projects[0];

@@ -16,6 +16,7 @@ export type CrmActionResult = {
 };
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 async function getAuthorizedContext() {
   const supabase = await createSupabaseServerClient();
@@ -234,6 +235,39 @@ export async function saveProjectBriefAction(leadId: string, input: unknown): Pr
   return { ok: true, projectId, updatedAt };
 }
 
+export async function assignProjectDeveloperAction(
+  leadId: string,
+  projectId: string,
+  developerEmail: unknown,
+): Promise<CrmActionResult> {
+  if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
+  if (!UUID_PATTERN.test(projectId)) return { ok: false, error: 'Invalid project reference.' };
+
+  const normalizedDeveloperEmail = developerEmail === null
+    ? null
+    : typeof developerEmail === 'string'
+      ? developerEmail.trim().toLowerCase()
+      : '';
+  if (normalizedDeveloperEmail !== null && (!normalizedDeveloperEmail || !EMAIL_PATTERN.test(normalizedDeveloperEmail))) {
+    return { ok: false, error: 'Enter a valid developer email or clear the assignment.' };
+  }
+
+  const context = await getAuthorizedContext();
+  if ('error' in context) return { ok: false, error: context.error };
+
+  const { error } = await context.supabase.rpc('crm_assign_project_developer', {
+    p_project_id: projectId,
+    p_developer_email: normalizedDeveloperEmail,
+  });
+
+  if (error) {
+    console.error('CRM project developer assignment failed.', error);
+    return { ok: false, error: 'Could not update the project developer. Please try again.' };
+  }
+
+  refreshLeadRoutes(leadId);
+  return { ok: true, projectId };
+}
 export async function addLeadNoteAction(leadId: string, note: unknown): Promise<CrmActionResult> {
   if (!UUID_PATTERN.test(leadId)) return { ok: false, error: 'Invalid lead reference.' };
 

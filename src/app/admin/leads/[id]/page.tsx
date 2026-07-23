@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { ArrowLeft, Mail, Phone } from 'lucide-react';
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { requireAdminMember } from '@/lib/admin-auth';
 import { getWhatsAppHref, type CrmLead, type CrmProject, type LeadEvent, type ProjectWorkItem, type TeamMember } from '@/lib/crm';
 import type { Invoice, InvoiceLine } from '@/lib/operations';
 import { AdminShell } from '../../AdminShell';
@@ -39,16 +39,8 @@ export default async function LeadDetailPage({
   searchParams: Promise<{ project?: string }>;
 }) {
   const [{ id }, { project: initialProjectId }] = await Promise.all([params, searchParams]);
-  const supabase = await createSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user?.email) redirect('/crm/login');
+  const { supabase, member } = await requireAdminMember();
 
-  const { data: member } = await supabase
-    .from('team_members')
-    .select('email,name,role')
-    .eq('email', user.email)
-    .maybeSingle();
-  if (!member) redirect('/admin');
 
   const [{ data: lead, error: leadError }, { data: events, error: eventsError }] = await Promise.all([
     supabase
@@ -139,7 +131,6 @@ export default async function LeadDetailPage({
     invoices: (invoicesResult.data ?? []) as Invoice[],
     invoiceLines: (invoiceLinesResult.data ?? []) as InvoiceLine[],
   };
-  void projectWorkspace;
   const attributionEntries = Object.entries(typedLead.attribution ?? {}).filter(([, value]) => value);
   const technicalKeys = new Set(['transaction_id', 'submission_id', 'message_id', 'request_id']);
   const acquisition = attributionEntries.filter(([key]) => !technicalKeys.has(key.toLowerCase()));
@@ -204,6 +195,10 @@ export default async function LeadDetailPage({
             lead={typedLead}
             projects={typedProjects}
             initialProjectId={initialProjectId}
+            teamMembers={projectWorkspace.teamMembers}
+            workItems={projectWorkspace.workItems}
+            invoices={projectWorkspace.invoices}
+            invoiceLines={projectWorkspace.invoiceLines}
           />
         </div>
 

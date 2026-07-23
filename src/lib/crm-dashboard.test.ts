@@ -96,6 +96,41 @@ test('loads selected-project operations data and refreshes it in realtime', () =
   assert.match(detail, /'project_work_items', 'invoices', 'invoice_lines'/);
 });
 
+
+test('uses the shared admin membership gate for lead detail access', () => {
+  const detail = readFileSync(new URL('../app/admin/leads/[id]/page.tsx', import.meta.url), 'utf8');
+
+  assert.match(detail, /import \{ requireAdminMember \} from '@\/lib\/admin-auth';/);
+  assert.match(detail, /const \{ supabase, member \} = await requireAdminMember\(\);/);
+  assert.doesNotMatch(detail, /supabase\.auth\.getUser\(\)/);
+});
+
+test('passes selected project workspace data into the project brief editor', () => {
+  const detail = readFileSync(new URL('../app/admin/leads/[id]/page.tsx', import.meta.url), 'utf8');
+  const editor = readFileSync(new URL('../app/admin/leads/[id]/LeadEditor.tsx', import.meta.url), 'utf8');
+
+  assert.match(detail, /teamMembers=\{projectWorkspace\.teamMembers\}/);
+  assert.match(detail, /workItems=\{projectWorkspace\.workItems\}/);
+  assert.match(detail, /invoices=\{projectWorkspace\.invoices\}/);
+  assert.match(detail, /invoiceLines=\{projectWorkspace\.invoiceLines\}/);
+  assert.match(editor, /teamMembers\?: TeamMember\[\];/);
+  assert.match(editor, /workItems\?: ProjectWorkItem\[\];/);
+  assert.match(editor, /invoices\?: Invoice\[\];/);
+  assert.match(editor, /invoiceLines\?: InvoiceLine\[\];/);
+});
+
+test('assigns a validated project developer through the secure RPC and refreshes CRM routes', () => {
+  const actions = readFileSync(new URL('../app/admin/actions.ts', import.meta.url), 'utf8');
+
+  assert.match(actions, /export async function assignProjectDeveloperAction/);
+  assert.match(actions, /if \(!UUID_PATTERN\.test\(leadId\)\) return \{ ok: false, error: 'Invalid lead reference\.' \};/);
+  assert.match(actions, /if \(!UUID_PATTERN\.test\(projectId\)\) return \{ ok: false, error: 'Invalid project reference\.' \};/);
+  assert.match(actions, /developerEmail === null/);
+  assert.match(actions, /EMAIL_PATTERN\.test\(normalizedDeveloperEmail\)/);
+  assert.match(actions, /const context = await getAuthorizedContext\(\);/);
+  assert.match(actions, /rpc\('crm_assign_project_developer', \{[\s\S]*p_project_id: projectId,[\s\S]*p_developer_email: normalizedDeveloperEmail,/);
+  assert.match(actions, /refreshLeadRoutes\(leadId\);/);
+});
 test('includes the project developer assignment in every overview and pipeline project read', () => {
   const overview = readFileSync(new URL('../app/admin/page.tsx', import.meta.url), 'utf8');
   const pipeline = readFileSync(new URL('../app/admin/pipeline/page.tsx', import.meta.url), 'utf8');
