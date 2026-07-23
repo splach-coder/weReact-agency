@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const migration = [
@@ -124,4 +124,39 @@ test('secures manual lead creation and supports phone-only client identity', () 
   assert.match(manualMigration, /assigned_to[\s\S]*70karim\.hida@gmail\.com/i);
   assert.match(manualMigration, /grant execute on function public\.crm_create_manual_lead\(jsonb\) to authenticated/i);
   assert.doesNotMatch(manualMigration, /grant execute[\s\S]*crm_create_manual_lead[\s\S]*to anon/i);
+});
+
+test('secures project work items, default launch checks, and realtime publication', () => {
+  const migrationUrl = new URL('../../supabase/migrations/20260723120000_project_workspace_invoices.sql', import.meta.url);
+  assert.equal(existsSync(migrationUrl), true, 'workspace and invoice migration must exist');
+  const workspaceMigration = existsSync(migrationUrl) ? readFileSync(migrationUrl, 'utf8') : '';
+
+  assert.match(workspaceMigration, /add column if not exists assigned_developer_email text references public\.team_members\(email\)/i);
+  assert.match(workspaceMigration, /create table if not exists public\.project_work_items/i);
+  assert.match(workspaceMigration, /check \(kind in \('milestone', 'task', 'delivery_check'\)\)/i);
+  assert.match(workspaceMigration, /check \(status in \('todo', 'in_progress', 'blocked', 'done', 'skipped'\)\)/i);
+  assert.match(workspaceMigration, /check \(priority in \('low', 'normal', 'high', 'urgent'\)\)/i);
+  assert.match(workspaceMigration, /alter table public\.project_work_items enable row level security/i);
+  assert.match(workspaceMigration, /for select to authenticated using \(public\.is_team_member\(\)\)/i);
+  assert.match(workspaceMigration, /revoke all on table public\.project_work_items from anon, authenticated/i);
+  assert.match(workspaceMigration, /create or replace function public\.crm_save_project_work_item/i);
+  assert.match(workspaceMigration, /create or replace function public\.crm_delete_project_work_item/i);
+  assert.match(workspaceMigration, /crm_save_project_work_item[\s\S]*security definer/i);
+  assert.match(workspaceMigration, /grant execute on function public\.crm_save_project_work_item/i);
+  assert.match(workspaceMigration, /grant execute on function public\.crm_delete_project_work_item/i);
+
+  for (const title of ['Client approved the final website', 'Responsive layouts checked', 'Forms and conversion actions tested', 'Domain connected', 'Production hosting verified', 'Analytics and conversion tracking verified', 'SEO titles, descriptions, sitemap, and robots checked', 'Final backup and handover completed']) {
+    assert.match(workspaceMigration, new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
+  }
+  assert.match(workspaceMigration, /create or replace function public\.crm_seed_project_launch_checks/i);
+  assert.match(workspaceMigration, /after insert on public\.crm_projects/i);
+  assert.match(workspaceMigration, /where project\.status <> 'launched'/i);
+  assert.match(workspaceMigration, /create or replace function public\.crm_block_incomplete_launch/i);
+  assert.match(workspaceMigration, /old\.status = 'review'[\s\S]*new\.status = 'launched'/i);
+  assert.match(workspaceMigration, /required = true[\s\S]*status not in \('done', 'skipped'\)/i);
+  assert.match(workspaceMigration, /required launch checks are incomplete/i);
+  assert.match(workspaceMigration, /pg_publication_tables/i);
+  assert.match(workspaceMigration, /add table public\.project_work_items/i);
+  assert.match(workspaceMigration, /add table public\.invoices/i);
+  assert.match(workspaceMigration, /add table public\.invoice_lines/i);
 });
