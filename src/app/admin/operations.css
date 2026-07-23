@@ -492,7 +492,7 @@
 @media (max-width: 1080px) {
   .ops-sidebar { width: 82px; padding: 27px 12px 17px; }
   .ops-sidebar .ops-brand { overflow: hidden; width: 28px; font-size: 0; }
-  .ops-sidebar .ops-brand::after { content: 'Â·wÂ·'; font-size: 20px; }
+  .ops-sidebar .ops-brand::after { content: 'Ã‚Â·wÃ‚Â·'; font-size: 20px; }
   .ops-nav__label,
   .ops-nav a span,
   .ops-member > span:last-child,
@@ -535,6 +535,9 @@
   .ops-page-header h1 { font-size: 23px; }
   .ops-page-header > span { display: none; }
   .ops-kpis { overflow-x: auto; grid-template-columns: repeat(4, minmax(155px, 1fr)); }
+  .ops-kpis--automation { overflow-x: visible; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ops-kpis--automation article:nth-child(-n + 2) { border-bottom: 1px solid var(--crm-line); }
+  .ops-kpis--automation article:nth-child(2n) { border-right: 0; }
   .ops-kpis article { padding: 16px 13px; }
   .ops-kpis article:first-child { padding-left: 13px; }
   .ops-kpis strong { font-size: 21px; }

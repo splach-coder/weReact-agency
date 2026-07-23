@@ -56,4 +56,8 @@ test('automation workspace is dense on desktop and readable on phone', () => {
   assert.match(css, /\.ops-integration-row/);
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.ops-automation-grid/);
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.ops-automation-event/);
+  assert.match(
+    css,
+    /@media \(max-width: 760px\)[\s\S]*\.ops-kpis--automation\s*\{[^}]*overflow-x:\s*visible;[^}]*grid-template-columns:\s*repeat\(2/i,
+  );
 });
