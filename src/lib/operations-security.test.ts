@@ -99,6 +99,10 @@ test('enforces a one-to-one project invoice and exact project-close payment link
     immutableFunction,
     /new\.status = 'paid'[\s\S]*from public\.finance_transactions[\s\S]*id = new\.finance_transaction_id[\s\S]*project_id = new\.project_id[\s\S]*source = 'project_close'[\s\S]*amount = new\.total/i,
   );
+  assert.match(migration, /create or replace function public\.finance_transactions_protect_paid_invoice_link/i);
+  assert.match(migration, /Paid invoice transactions cannot be deleted/i);
+  assert.match(migration, /Paid invoice transaction amount, project, source, type, and status are locked/i);
+  assert.match(migration, /before update or delete on public\.finance_transactions/i);
   assert.match(closeFunction, /select id[\s\S]*into v_invoice_id[\s\S]*from public\.invoices/i);
   assert.match(
     closeFunction,

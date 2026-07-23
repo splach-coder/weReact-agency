@@ -153,7 +153,9 @@ test('secures project work items, default launch checks, and realtime publicatio
   assert.match(workspaceMigration, /where project\.status <> 'launched'/i);
   assert.match(workspaceMigration, /create or replace function public\.crm_block_incomplete_launch/i);
   assert.match(workspaceMigration, /new\.status = 'launched'[\s\S]*old\.status is distinct from 'launched'/i);
-  assert.match(workspaceMigration, /required = true[\s\S]*status not in \('done', 'skipped'\)/i);
+  assert.match(workspaceMigration, /kind = 'delivery_check'[\s\S]*required = true/i);
+  assert.match(workspaceMigration, /status not in \('done', 'skipped'\)/i);
+  assert.match(workspaceMigration, /count\(\*\) filter \(where item\.status in \('done', 'skipped'\)\)/i);
   assert.match(workspaceMigration, /required launch checks are incomplete/i);
   assert.match(workspaceMigration, /pg_publication_tables/i);
   assert.match(workspaceMigration, /add table public\.project_work_items/i);
@@ -180,6 +182,8 @@ test('guards every transition into launched and secures developer assignment', (
     /create trigger crm_block_incomplete_launch[\s\S]*before insert or update of status on public\.crm_projects/i,
   );
   assert.match(workspaceMigration, /v_check_count < 8/i);
+  assert.match(workspaceMigration, /Default launch checks cannot be renamed, retyped, made optional, or reordered/i);
+  assert.match(workspaceMigration, /Default launch checks cannot be deleted/i);
 
   const assignmentFunction = workspaceMigration.slice(
     workspaceMigration.indexOf('create or replace function public.crm_assign_project_developer'),

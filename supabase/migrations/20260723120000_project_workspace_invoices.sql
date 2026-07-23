@@ -110,6 +110,42 @@ create unique index if not exists project_work_items_default_check_unique
   on public.project_work_items (project_id, title)
   where kind = 'delivery_check' and required = true;
 
+create or replace function public.project_work_items_protect_default_checks()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if old.kind = 'delivery_check'
+     and old.required = true
+     and old.title in (
+       'Client approved the final website', 'Responsive layouts checked',
+       'Forms and conversion actions tested', 'Domain connected',
+       'Production hosting verified', 'Analytics and conversion tracking verified',
+       'SEO titles, descriptions, sitemap, and robots checked',
+       'Final backup and handover completed'
+     ) then
+    if tg_op = 'DELETE' then
+      raise exception 'Default launch checks cannot be deleted' using errcode = '22023';
+    end if;
+    if new.project_id is distinct from old.project_id
+       or new.kind is distinct from old.kind
+       or new.title is distinct from old.title
+       or new.required is distinct from old.required
+       or new.position is distinct from old.position then
+      raise exception 'Default launch checks cannot be renamed, retyped, made optional, or reordered' using errcode = '22023';
+    end if;
+  end if;
+  if tg_op = 'DELETE' then return old; end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists project_work_items_protect_default_checks on public.project_work_items;
+create trigger project_work_items_protect_default_checks
+  before update or delete on public.project_work_items
+  for each row execute function public.project_work_items_protect_default_checks();
 create or replace function public.crm_seed_project_launch_checks()
 returns trigger
 language plpgsql
@@ -168,18 +204,28 @@ declare
 begin
   if new.status = 'launched' then
     if tg_op = 'INSERT' or old.status is distinct from 'launched' then
+      with required_checks(title, position) as (
+        values
+          ('Client approved the final website', 10),
+          ('Responsive layouts checked', 20),
+          ('Forms and conversion actions tested', 30),
+          ('Domain connected', 40),
+          ('Production hosting verified', 50),
+          ('Analytics and conversion tracking verified', 60),
+          ('SEO titles, descriptions, sitemap, and robots checked', 70),
+          ('Final backup and handover completed', 80)
+      )
       select
-        count(*) filter (where title in (
-          'Client approved the final website', 'Responsive layouts checked',
-          'Forms and conversion actions tested', 'Domain connected',
-          'Production hosting verified', 'Analytics and conversion tracking verified',
-          'SEO titles, descriptions, sitemap, and robots checked',
-          'Final backup and handover completed'
-        )),
-        string_agg(title, ', ' order by position, title) filter (where status not in ('done', 'skipped'))
+        count(*) filter (where item.status in ('done', 'skipped')),
+        string_agg(checklist.title, ', ' order by checklist.position)
+          filter (where item.id is null or item.status not in ('done', 'skipped'))
       into v_check_count, v_remaining
-      from public.project_work_items
-      where project_id = new.id and required = true;
+      from required_checks checklist
+      left join public.project_work_items item
+        on item.project_id = new.id
+       and item.kind = 'delivery_check'
+       and item.required = true
+       and item.title = checklist.title;
 
       if v_check_count < 8 or v_remaining is not null then
         raise exception 'Required launch checks are incomplete: %',
@@ -371,6 +417,8 @@ begin
       where id = new.finance_transaction_id
         and project_id = new.project_id
         and source = 'project_close'
+        and type = 'income'
+        and status = 'paid'
         and amount = new.total
     ) then
       raise exception 'Paid invoice total must match its project close transaction' using errcode = '22023';
@@ -415,6 +463,40 @@ drop trigger if exists invoices_prevent_immutable_changes on public.invoices;
 create trigger invoices_prevent_immutable_changes
   before insert or update or delete on public.invoices
   for each row execute function public.invoices_prevent_immutable_changes();
+
+create or replace function public.finance_transactions_protect_paid_invoice_link()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if exists (
+    select 1
+    from public.invoices
+    where finance_transaction_id = old.id and status = 'paid'
+  ) then
+    if tg_op = 'DELETE' then
+      raise exception 'Paid invoice transactions cannot be deleted' using errcode = '22023';
+    end if;
+    if new.amount is distinct from old.amount
+       or new.project_id is distinct from old.project_id
+       or new.source is distinct from old.source
+       or new.type is distinct from old.type
+       or new.status is distinct from old.status then
+      raise exception 'Paid invoice transaction amount, project, source, type, and status are locked' using errcode = '22023';
+    end if;
+  end if;
+  if tg_op = 'DELETE' then return old; end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists finance_transactions_protect_paid_invoice_link on public.finance_transactions;
+create trigger finance_transactions_protect_paid_invoice_link
+  before update or delete on public.finance_transactions
+  for each row execute function public.finance_transactions_protect_paid_invoice_link();
+
 
 drop trigger if exists invoices_set_updated_at on public.invoices;
 create trigger invoices_set_updated_at
