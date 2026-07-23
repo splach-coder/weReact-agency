@@ -150,7 +150,8 @@ declare
   v_count integer := 0;
   v_step integer := 0;
 begin
-  if not public.is_team_member() then
+  if coalesce(current_setting('request.jwt.claim.role', true), '') <> 'service_role'
+     and not public.is_team_member() then
     raise exception 'CRM access denied' using errcode = '42501';
   end if;
 
@@ -439,6 +440,7 @@ revoke all on function public.crm_snooze_attention_item(uuid, timestamptz) from 
 revoke all on function public.crm_retry_automation_event(uuid) from public, anon;
 revoke all on function public.crm_upsert_integration_health(text, text, text) from public, anon;
 grant execute on function public.crm_refresh_attention_items() to authenticated;
+grant execute on function public.crm_refresh_attention_items() to service_role;
 grant execute on function public.crm_complete_attention_item(uuid) to authenticated;
 grant execute on function public.crm_snooze_attention_item(uuid, timestamptz) to authenticated;
 grant execute on function public.crm_retry_automation_event(uuid) to authenticated;

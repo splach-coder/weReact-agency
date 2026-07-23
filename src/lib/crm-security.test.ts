@@ -286,4 +286,6 @@ test('secures the smart agency automation foundation', () => {
 
   assert.match(automationMigration, /'new_lead'[\s\S]*'follow_up_overdue'[\s\S]*'invoice_overdue'/i);
   assert.match(automationMigration, /'blocked_task'[\s\S]*'integration_failure'/i);
+  assert.match(automationMigration, /request\.jwt\.claim\.role[\s\S]*service_role/i);
+  assert.match(automationMigration, /grant execute on function public\.crm_refresh_attention_items\(\) to service_role/i);
 });

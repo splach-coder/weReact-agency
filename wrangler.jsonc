@@ -20,5 +20,8 @@
   },
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "AUTOMATION_BATCH_SIZE": "10"
   }
 }
