@@ -99,7 +99,7 @@ test('streams filtered Gemini events without exposing provider metadata', async 
   assert.match(response.headers.get('content-type') ?? '', /application\/x-ndjson/);
   assert.equal(response.headers.get('cache-control'), 'no-store');
   assert.equal(upstreamHeaders?.get('x-goog-api-key'), 'server-test-key');
-  assert.match(upstreamBody, /gemini-3\.1-flash-lite/);
+  assert.match(upstreamBody, /gemini-3\.5-flash-lite/);
   assert.match(output, /We build fast websites/);
   assert.doesNotMatch(output, /v1_route_chat_123|secret-thought|thought_signature|server-test-key/);
 });

@@ -35,6 +35,7 @@
     "crons": ["*/10 * * * *"]
   },
   "vars": {
-    "AUTOMATION_BATCH_SIZE": "10"
+    "AUTOMATION_BATCH_SIZE": "10",
+    "GEMINI_MODEL": "gemini-3.5-flash-lite"
   }
 }

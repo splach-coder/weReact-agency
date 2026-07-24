@@ -5,7 +5,7 @@ import { serviceLandingPages } from '@/data/services';
 export const SALES_CHAT_MAX_MESSAGE_LENGTH = 1200;
 export const SALES_CHAT_MAX_HISTORY_MESSAGES = 8;
 export const SALES_CHAT_MAX_HISTORY_LENGTH = 6000;
-export const SALES_CHAT_DEFAULT_MODEL = 'gemini-3.1-flash-lite';
+export const SALES_CHAT_DEFAULT_MODEL = 'gemini-3.5-flash-lite';
 
 export type SalesChatLocale = 'en' | 'fr';
 export type SalesChatHistoryMessage = {

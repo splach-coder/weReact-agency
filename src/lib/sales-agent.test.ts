@@ -4,6 +4,7 @@ import {
   buildSalesAgentInstruction,
   createGeminiInteractionPayload,
   parseSalesChatRequest,
+  SALES_CHAT_DEFAULT_MODEL,
   transformGeminiSse,
 } from './sales-agent';
 import { tokenizeChatText } from './chat-links';
@@ -66,6 +67,16 @@ test('grounds the agent in approved prices, contact routes, and project relation
   assert.doesNotMatch(instruction, /AQ\./);
 });
 
+test('defaults public chat to the available free-tier Gemini model', () => {
+  const payload = createGeminiInteractionPayload({
+    message: 'Hello',
+    locale: 'en',
+    history: [],
+  });
+
+  assert.equal(SALES_CHAT_DEFAULT_MODEL, 'gemini-3.5-flash-lite');
+  assert.equal(payload.model, 'gemini-3.5-flash-lite');
+});
 test('creates a bounded privacy-safe Gemini interaction with app-owned history', () => {
   const payload = createGeminiInteractionPayload({
     message: 'Tell me about SEO.',
