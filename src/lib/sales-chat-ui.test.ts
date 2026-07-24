@@ -54,6 +54,8 @@ test('public layout mounts the localized accessible sales assistant', () => {
 
   assert.match(layout, /<SalesChat locale=\{locale\}/);
   assert.match(component, /aria-label=\{copy\.launcherLabel\}/);
+  assert.match(component, /&middot;ask wereact&middot;/);
+  assert.doesNotMatch(component, /MessageCircle|launcherMark/);
   assert.match(component, /role="dialog"/);
   assert.match(component, /aria-live="polite"[\s\S]*announcement/);
   assert.match(component, /querySelectorAll<HTMLElement>\('#site-header, main, footer'\)/);

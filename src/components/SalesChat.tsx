@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
   Mail,
-  MessageCircle,
   RefreshCw,
   RotateCcw,
   Send,
@@ -355,10 +354,10 @@ export default function SalesChat({ locale }: SalesChatProps) {
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className={styles.launcherMark} aria-hidden="true">
-              <MessageCircle size={15} strokeWidth={1.8} />
+            <span className={styles.launcherWordmark} aria-hidden="true">
+              &middot;ask wereact&middot;
             </span>
-            <span className={styles.launcherLabel}>{copy.launcherLabel}</span>
+            <span className="sr-only">{copy.launcherLabel}</span>
           </motion.button>
         ) : (
           <>
