@@ -13,6 +13,7 @@ export type GoogleConsentState = {
 
 export const CONSENT_STORAGE_KEY = 'wereact_cookie_consent_v1';
 export const OPEN_CONSENT_PREFERENCES_EVENT = 'wereact:open-consent-preferences';
+export const CONSENT_RESOLVED_EVENT = 'wereact:consent-resolved';
 
 export function parseConsentChoice(value: unknown): ConsentChoice | null {
   return value === 'accepted' || value === 'rejected' ? value : null;

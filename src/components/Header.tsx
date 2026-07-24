@@ -6,7 +6,8 @@ import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import Link from '@/components/transition/TransitionLink';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { getLenis } from '@/lib/lenis';
+import { SITE_MENU_STATE_EVENT } from '@/lib/events';
+import { acquireScrollLock, releaseScrollLock } from '@/lib/site-overlay';
 import { siteConfig } from '@/config/site';
 import { trackContactIntent } from '@/lib/analytics';
 
@@ -58,8 +59,7 @@ export default function Header() {
 
     const ctx = gsap.context(() => {
       if (open) {
-        getLenis()?.stop();
-        document.body.style.overflow = 'hidden';
+        acquireScrollLock('site-menu');
         if (reduce) {
           gsap.set(overlay, { scaleY: 1, pointerEvents: 'auto' });
           gsap.set(words, { yPercent: 0, y: 0, opacity: 1 });
@@ -85,8 +85,7 @@ export default function Header() {
             '-=0.5'
           );
       } else {
-        getLenis()?.start();
-        document.body.style.overflow = '';
+        releaseScrollLock('site-menu');
         if (reduce) {
           gsap.set(overlay, { scaleY: 0, pointerEvents: 'none' });
           return;
@@ -103,8 +102,12 @@ export default function Header() {
     return () => ctx.revert();
   }, [open]);
 
-  // Reset overflow if unmounted while open.
-  useEffect(() => () => { document.body.style.overflow = ''; }, []);
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(SITE_MENU_STATE_EVENT, { detail: { open } }));
+  }, [open]);
+
+  // Release the shared page lock if the header unmounts while open.
+  useEffect(() => () => releaseScrollLock('site-menu'), []);
 
   // Keep navigation out of the way while reading, then reveal it as soon as
   // the visitor reverses direction. Only transform and backdrop are animated.
@@ -146,6 +149,7 @@ export default function Header() {
     <>
       {/* Fixed top bar */}
       <header
+        id="site-header"
         className={[
           'pointer-events-none fixed inset-x-0 top-0 z-[105] transition-[transform,background-color,backdrop-filter,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
           open || headerVisible ? 'translate-y-0' : '-translate-y-full',
@@ -171,6 +175,7 @@ export default function Header() {
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
+              aria-controls="site-menu"
               className={`text-mono cursor-pointer text-sm font-semibold uppercase tracking-widest transition-opacity hover:opacity-70 ${open ? 'text-white' : 'text-[var(--color-primary)]'}`}
             >
               {open ? t('close') : t('menu')}
@@ -181,7 +186,10 @@ export default function Header() {
 
       {/* Full-screen split overlay */}
       <div
+        id="site-menu"
         ref={overlayRef}
+        aria-hidden={!open}
+        inert={!open}
         className="nav-panel-init pointer-events-none fixed inset-0 z-[100] origin-top overflow-hidden bg-[var(--color-primary-dark)]"
       >
         <div className="mx-auto flex h-full max-w-[1500px] flex-col items-center md:flex-row">

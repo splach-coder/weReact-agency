@@ -18,6 +18,16 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "ratelimits": [
+    {
+      "name": "SALES_CHAT_RATE_LIMITER",
+      "namespace_id": "20260724",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    }
+  ],
   "observability": {
     "enabled": true
   },

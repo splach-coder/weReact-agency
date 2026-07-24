@@ -32,6 +32,7 @@ test('automation workspace is protected and never renders deployment secrets', (
   assert.doesNotMatch(workspace, /last_error|payload/);
   assert.match(workspace, /Not active yet/);
   assert.match(workspace, /Retry/);
+  assert.match(workspace, /Gemini AI/);
 });
 
 test('automation retries use the validated team RPC and appear in navigation', () => {

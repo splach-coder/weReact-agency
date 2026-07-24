@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Settings2, X } from 'lucide-react';
 import { PRELOADER_COMPLETE_EVENT } from '@/lib/events';
 import {
+  CONSENT_RESOLVED_EVENT,
   CONSENT_STORAGE_KEY,
   getConsentState,
   OPEN_CONSENT_PREFERENCES_EVENT,
@@ -85,6 +86,7 @@ export default function CookieConsent({ locale }: CookieConsentProps) {
     }
 
     window.gtag?.('consent', 'update', getConsentState(choice));
+    window.dispatchEvent(new CustomEvent(CONSENT_RESOLVED_EVENT, { detail: { choice } }));
     setIsOpen(false);
   }
 

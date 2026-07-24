@@ -10,6 +10,8 @@ initOpenNextCloudflareForDev();
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  // Lets local tooling run a second instance without fighting over .next/dev/lock.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   images: {
     // On Cloudflare, sharp can't run — optimize via Cloudflare Image
     // Transformations through a custom loader (see image-loader.ts).

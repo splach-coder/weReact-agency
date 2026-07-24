@@ -43,7 +43,7 @@ export type AutomationEventSummary = {
 const PROVIDER_LABELS: Record<IntegrationHealth['provider'], { label: string; detail: string }> = {
   resend: { label: 'Email', detail: 'Delivery and engagement tracking' },
   whatsapp: { label: 'WhatsApp', detail: 'Official client messaging' },
-  openai: { label: 'AI copilots', detail: 'Structured drafts and summaries' },
+  openai: { label: 'Gemini AI', detail: 'Public sales assistant' },
   automation: { label: 'Automation', detail: 'Reliable event processing' },
   storage: { label: 'Client files', detail: 'Portal and delivery storage' },
   payments: { label: 'Payments', detail: 'Payment confirmation provider' },

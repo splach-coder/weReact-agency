@@ -12,6 +12,7 @@ import TransitionProvider from '@/components/transition/TransitionProvider';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults';
 import CookieConsent from '@/components/analytics/CookieConsent';
+import SalesChat from '@/components/SalesChat';
 import { siteConfig } from '@/config/site';
 import { nohemi } from '@/app/fonts';
 import { createLocalizedAlternates } from '@/lib/seo';
@@ -127,6 +128,7 @@ export default async function LocaleLayout({
               {children}
             </main>
             <Footer />
+            <SalesChat locale={locale} />
           </TransitionProvider>
         </NextIntlClientProvider>
       </body>
