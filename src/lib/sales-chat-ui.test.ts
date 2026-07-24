@@ -59,6 +59,14 @@ test('public layout mounts the localized accessible sales assistant', () => {
   assert.match(component, /querySelectorAll<HTMLElement>\('#site-header, main, footer'\)/);
   assert.match(component, /tokenizeChatText/);
   assert.match(component, /trackEvent\('sales_chat_/);
+  assert.match(component, /href=\{siteConfig\.business\.whatsapp\}/);
+  assert.match(component, /href=\{`mailto:\$\{siteConfig\.business\.email\}`\}/);
+  assert.match(component, /<WhatsAppIcon/);
+  assert.match(component, /<Mail/);
+  assert.doesNotMatch(component, /AI sales assistant|Assistant commercial IA/);
+  assert.doesNotMatch(component, /Built for useful answers|Des réponses vraiment utiles/);
+  assert.doesNotMatch(component, /Powered by Gemini|Propulsé par Gemini/);
+  assert.doesNotMatch(component, /statusDot|welcomeMark|copy\.privacy/);
   assert.doesNotMatch(component, /previousInteractionId|interactionId/);
   assert.doesNotMatch(component, /GEMINI_API_KEY|NEXT_PUBLIC_GEMINI|AQ\./);
 });

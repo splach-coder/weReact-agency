@@ -3,16 +3,15 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
+  Mail,
   MessageCircle,
   RefreshCw,
   RotateCcw,
   Send,
-  Sparkles,
   X,
 } from 'lucide-react';
 import { usePathname } from '@/i18n/navigation';
 import { FormEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
-import TransitionLink from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
 import { trackEvent, trackWhatsAppLead } from '@/lib/analytics';
 import { cleanChatText, tokenizeChatText } from '@/lib/chat-links';
@@ -37,9 +36,7 @@ type SalesChatProps = {
 const copyByLocale = {
   en: {
     launcherLabel: 'Ask WeReact',
-    status: 'AI sales assistant',
     title: 'Plan your website with us',
-    welcomeLabel: 'Built for useful answers',
     welcomeTitle: 'What would you like to build?',
     welcomeText: 'Ask about the right service, an estimated starting budget, timing, or a project in our portfolio.',
     prompts: [
@@ -52,16 +49,13 @@ const copyByLocale = {
     close: 'Close assistant',
     reset: 'Start a new conversation',
     retry: 'Try again',
-    contact: 'Contact the team',
-    privacy: 'Powered by Gemini. Do not share passwords or payment details.',
+    email: 'Email',
     thinking: 'WeReact is preparing a reply',
     unavailable: 'I could not complete that reply. Please try again or contact WeReact directly.',
   },
   fr: {
     launcherLabel: 'Demander à WeReact',
-    status: 'Assistant commercial IA',
     title: 'Planifiez votre site avec nous',
-    welcomeLabel: 'Des réponses vraiment utiles',
     welcomeTitle: 'Quel projet souhaitez-vous lancer ?',
     welcomeText: 'Demandez le service adapté, un budget de départ, le délai ou un projet de notre portfolio.',
     prompts: [
@@ -74,8 +68,7 @@ const copyByLocale = {
     close: 'Fermer l’assistant',
     reset: 'Nouvelle conversation',
     retry: 'Réessayer',
-    contact: 'Contacter l’équipe',
-    privacy: 'Propulsé par Gemini. Ne partagez aucun mot de passe ou moyen de paiement.',
+    email: 'Email',
     thinking: 'WeReact prépare une réponse',
     unavailable: 'Je n’ai pas pu terminer cette réponse. Réessayez ou contactez directement WeReact.',
   },
@@ -89,6 +82,17 @@ function messageId(prefix: string) {
 
 function isArabicText(text: string) {
   return /[\u0600-\u06ff]/.test(text);
+}
+
+function WhatsAppIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12.04 2a9.84 9.84 0 0 0-8.42 14.93L2.05 22l5.2-1.53A9.92 9.92 0 1 0 12.04 2Zm0 17.98a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.08.91.92-3-.2-.31a8.08 8.08 0 1 1 6.79 3.71Zm4.43-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.31-.75-1.8-.2-.47-.4-.41-.55-.42h-.46c-.16 0-.42.06-.65.3-.22.24-.85.83-.85 2.02s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28Z"
+      />
+    </svg>
+  );
 }
 
 export default function SalesChat({ locale }: SalesChatProps) {
@@ -383,10 +387,6 @@ export default function SalesChat({ locale }: SalesChatProps) {
             >
               <header className={styles.header}>
                 <div className={styles.identity}>
-                  <span className={styles.eyebrow}>
-                    <span className={styles.statusDot} aria-hidden="true" />
-                    {copy.status}
-                  </span>
                   <h2 id="sales-chat-title" className={styles.title}>{copy.title}</h2>
                 </div>
                 <div className={styles.headerActions}>
@@ -402,10 +402,6 @@ export default function SalesChat({ locale }: SalesChatProps) {
               <div ref={messagesRef} className={styles.messages} data-lenis-prevent>
                 {!messages.length ? (
                   <section className={styles.welcome}>
-                    <span className={styles.welcomeMark}>
-                      <Sparkles size={14} aria-hidden="true" />
-                      {copy.welcomeLabel}
-                    </span>
                     <h3 className={styles.welcomeTitle}>{copy.welcomeTitle}</h3>
                     <p className={styles.welcomeText}>{copy.welcomeText}</p>
                     <div className={styles.prompts}>
@@ -466,28 +462,24 @@ export default function SalesChat({ locale }: SalesChatProps) {
                   </button>
                 </div>
                 <div className={styles.composerMeta}>
-                  <span className={styles.privacy}>{copy.privacy}</span>
-                  <span className={styles.contactActions}>
-                    <a
-                      href={siteConfig.business.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.contactLink}
-                      onClick={() => trackWhatsAppLead('sales_chat_whatsapp', { page: 'chat', location: 'composer' })}
-                    >
-                      WhatsApp
-                    </a>
-                    <TransitionLink
-                      href="/contact"
-                      className={styles.contactLink}
-                      onClick={() => {
-                        trackEvent('sales_chat_contact', { method: 'form', locale: currentLocale });
-                        closeChat(false);
-                      }}
-                    >
-                      {copy.contact}
-                    </TransitionLink>
-                  </span>
+                  <a
+                    href={siteConfig.business.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.contactLink}
+                    onClick={() => trackWhatsAppLead('sales_chat_whatsapp', { page: 'chat', location: 'composer' })}
+                  >
+                    <WhatsAppIcon />
+                    <span>WhatsApp</span>
+                  </a>
+                  <a
+                    href={`mailto:${siteConfig.business.email}`}
+                    className={styles.contactLink}
+                    onClick={() => trackEvent('sales_chat_contact', { method: 'email', locale: currentLocale })}
+                  >
+                    <Mail size={15} strokeWidth={1.8} aria-hidden="true" />
+                    <span>{copy.email}</span>
+                  </a>
                 </div>
               </form>
             </motion.aside>

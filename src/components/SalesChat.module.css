@@ -89,38 +89,16 @@
 
 .header {
   display: flex;
-  min-height: 74px;
+  min-height: 66px;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   border-bottom: 1px solid rgba(58, 90, 64, 0.16);
-  padding: 15px 16px 14px 18px;
+  padding: 13px 16px 13px 18px;
 }
 
 .identity {
   min-width: 0;
-}
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 5px;
-  color: var(--chat-green);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.statusDot {
-  width: 6px;
-  height: 6px;
-  flex: none;
-  border-radius: 50%;
-  background: #4d965c;
-  box-shadow: 0 0 0 3px rgba(77, 150, 92, 0.13);
 }
 
 .title {
@@ -169,18 +147,6 @@
 
 .welcome {
   margin-bottom: 16px;
-}
-
-.welcomeMark {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  color: var(--chat-green);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .welcomeTitle {
@@ -373,32 +339,33 @@
 }
 
 .composerMeta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   margin-top: 8px;
 }
 
-.privacy {
-  color: #7a817a;
-  font-size: 9px;
-  line-height: 1.35;
-}
-
-.contactActions {
-  display: inline-flex;
-  flex: none;
-  gap: 10px;
-  align-items: center;
-}
-
 .contactLink {
-  flex: none;
+  display: inline-flex;
+  min-width: 0;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(58, 90, 64, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
   color: var(--chat-green);
   font-size: 10px;
   font-weight: 700;
   text-decoration: none;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.contactLink:hover {
+  border-color: rgba(58, 90, 64, 0.42);
+  background: rgba(58, 90, 64, 0.08);
+  color: var(--chat-green-dark);
 }
 
 @keyframes chatTyping {
@@ -464,20 +431,12 @@
     font-size: 16px;
   }
 
-  .privacy {
-    max-width: 24ch;
-  }
-
-  .contactActions {
-    gap: 8px;
-  }
 }
 
 @media (max-width: 370px) {
   .launcherLabel { display: none; }
   .launcher { width: 48px; padding: 0; justify-content: center; }
   .welcomeTitle { font-size: 23px; }
-  .composerMeta { align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
