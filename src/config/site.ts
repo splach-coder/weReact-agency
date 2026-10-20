@@ -6,7 +6,6 @@ export const siteConfig = {
     defaultLocale: 'en',
     locales: ['en', 'fr'],
     ogImage: '/og-image.jpg',
-    twitterHandle: '@wereact',
     creator: 'WeReact agency',
     seo: {
         primaryKeyword: 'website design Marrakech',
@@ -79,8 +78,9 @@ export const siteConfig = {
         ],
         sameAs: [
             'https://www.instagram.com/wereact.agency',
-            'https://twitter.com/wereact',
-            'https://www.facebook.com/share/14dgXYad7SB/'
+            'https://www.facebook.com/share/14dgXYad7SB/',
+            // Verified Google Business Profile — the strongest entity signal we have.
+            'https://maps.google.com/?cid=906947470338054436'
         ],
     },
 };

@@ -210,12 +210,12 @@
       }
     ],
     "pricingTitle": "Des forfaits simples et transparents",
-    "pricingSubtitle": "Sites vitrines à partir de 2000 DH, e-commerce à partir de 3500 DH. Chaque projet reçoit un devis sur mesure.",
+    "pricingSubtitle": "Sites vitrines à partir de 3500 DH, e-commerce à partir de 6000 DH. Chaque projet reçoit un devis sur mesure.",
     "popularLabel": "Le plus populaire",
     "packages": [
       {
         "name": "Site vitrine",
-        "price": "à partir de 2000 DH",
+        "price": "à partir de 3500 DH",
         "desc": "Pour une entreprise qui doit être trouvée et contactée.",
         "features": [
           "Site vitrine professionnel",
@@ -228,7 +228,7 @@
       },
       {
         "name": "E-commerce",
-        "price": "à partir de 3500 DH",
+        "price": "à partir de 6000 DH",
         "desc": "Vendez en ligne, front et back inclus.",
         "features": [
           "Boutique en ligne, front et back",

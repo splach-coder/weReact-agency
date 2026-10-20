@@ -210,12 +210,12 @@
       }
     ],
     "pricingTitle": "Simple, transparent packages",
-    "pricingSubtitle": "Showcase sites from 2000 DH, e-commerce from 3500 DH. Every project gets a tailored quote.",
+    "pricingSubtitle": "Showcase sites from 3500 DH, e-commerce from 6000 DH. Every project gets a tailored quote.",
     "popularLabel": "Most popular",
     "packages": [
       {
         "name": "Showcase site",
-        "price": "from 2000 DH",
+        "price": "from 3500 DH",
         "desc": "For a business that needs to be found and contacted.",
         "features": [
           "Professional showcase site",
@@ -228,7 +228,7 @@
       },
       {
         "name": "E-commerce",
-        "price": "from 3500 DH",
+        "price": "from 6000 DH",
         "desc": "Sell online, front-end and back-end included.",
         "features": [
           "Online store, front and back",

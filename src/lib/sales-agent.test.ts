@@ -55,8 +55,8 @@ test('rejects empty, oversized, and forged sales-chat turns', () => {
 test('grounds the agent in approved prices, contact routes, and project relationships', () => {
   const instruction = buildSalesAgentInstruction('en');
 
-  assert.match(instruction, /showcase websites?: from 2,000 MAD/i);
-  assert.match(instruction, /e-commerce websites?: from 3,500 MAD/i);
+  assert.match(instruction, /showcase websites?: from 3,500 MAD/i);
+  assert.match(instruction, /e-commerce websites?: from 6,000 MAD/i);
   assert.match(instruction, /hello@wereact\.agency/);
   assert.match(instruction, /\+212 602-258009/);
   assert.match(instruction, /https:\/\/www\.wereact\.agency\/en\/contact/);

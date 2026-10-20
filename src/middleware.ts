@@ -4,14 +4,40 @@ import { routing } from './i18n/routing';
 import { updateSession } from './lib/supabase/middleware';
 import { getEarlyRequestRedirect } from './lib/auth-callback';
 import {
+  getLocalizedPublicRedirect,
   getPermanentPublicRedirect,
   shouldApplyLocaleMiddleware,
 } from './lib/public-redirects';
+import { siteConfig } from './config/site';
 
 const intlMiddleware = createMiddleware(routing);
 
+const CANONICAL_HOST = new URL(siteConfig.url).host;
+const APEX_HOST = CANONICAL_HOST.replace(/^www\./, '');
+
 export default async function middleware(request: NextRequest) {
-  const publicRedirect = getPermanentPublicRedirect(request.nextUrl.pathname);
+  const { pathname, search } = request.nextUrl;
+  const host = request.headers.get('host')?.toLowerCase();
+
+  const localizedRedirect = getLocalizedPublicRedirect(pathname, {
+    acceptLanguage: request.headers.get('accept-language'),
+    country: request.headers.get('cf-ipcountry'),
+  });
+  if (localizedRedirect) {
+    // One hop: apex visitors go straight to the canonical host + their language.
+    const base = host === APEX_HOST ? siteConfig.url : request.url;
+    const response = NextResponse.redirect(new URL(localizedRedirect + search, base), 307);
+    response.headers.set('Vary', 'Accept-Language');
+    return response;
+  }
+
+  // wereact.agency/* → www.wereact.agency/* in a single permanent hop.
+  if (host === APEX_HOST) {
+    const target = getPermanentPublicRedirect(pathname) ?? pathname;
+    return NextResponse.redirect(new URL(target + search, siteConfig.url), 308);
+  }
+
+  const publicRedirect = getPermanentPublicRedirect(pathname);
   if (publicRedirect) {
     return NextResponse.redirect(new URL(publicRedirect, request.url), 308);
   }

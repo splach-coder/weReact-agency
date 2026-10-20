@@ -83,7 +83,6 @@ export async function generateMetadata({
       title: defaultTitle,
       description,
       images: [`${siteConfig.url}${siteConfig.ogImage}`],
-      creator: siteConfig.twitterHandle,
     },
     icons: {
       icon: '/logo_icon.ico',

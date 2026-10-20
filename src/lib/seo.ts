@@ -74,7 +74,6 @@ export function createPageMetadata({
       title,
       description,
       images: [imageUrl],
-      creator: siteConfig.twitterHandle,
     },
   };
 }

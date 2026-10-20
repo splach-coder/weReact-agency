@@ -1,0 +1,14 @@
+{
+  "name": "wereact-outreach",
+  "private": true,
+  "type": "module",
+  "description": "Cold-outreach autopilot (kept out of the site's own dependencies)",
+  "scripts": {
+    "send": "node send.mjs",
+    "dry": "node send.mjs --dry-run --any-day",
+    "report": "node report.mjs"
+  },
+  "dependencies": {
+    "imapflow": "^1.7.8"
+  }
+}

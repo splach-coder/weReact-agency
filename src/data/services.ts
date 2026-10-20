@@ -183,7 +183,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
-          { question: 'How much does a website cost in Morocco?', answer: 'As an honest starting point: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An e-commerce site starts from 3,500 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day based on your exact scope.' },
+          { question: 'How much does a website cost in Morocco?', answer: 'As an honest starting point: a showcase website starts from 3,500 MAD and scales with pages, languages, and features. An e-commerce site starts from 6,000 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day based on your exact scope.' },
           { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 3 days for most builds: a simple showcase site moves fastest, while booking or e-commerce features can take a little more preparation. We agree on a clear timeline with the quote.' },
           { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco (Casablanca, Rabat, Agadir) as well as remotely for international projects.' },
         ],
@@ -201,7 +201,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
-          { question: 'Combien coûte un site web au Maroc ?', answer: 'En clair : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré, selon votre périmètre exact.' },
+          { question: 'Combien coûte un site web au Maroc ?', answer: 'En clair : un site vitrine démarre à partir de 3 500 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 6 000 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré, selon votre périmètre exact.' },
           { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 3 jours pour la plupart des sites : un site vitrine simple avance plus vite, tandis qu’une réservation ou une boutique en ligne peut demander un peu plus de préparation. Nous fixons un calendrier clair dès le devis.' },
           { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc (Casablanca, Rabat, Agadir) ainsi qu’à distance pour les projets internationaux.' },
         ],

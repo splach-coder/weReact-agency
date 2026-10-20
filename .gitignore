@@ -53,3 +53,8 @@ next-env.d.ts
 
 /studio
 /.worktrees/
+
+# cold-outreach lead data (business contacts — never commit, repo is public)
+/outreach-data/
+/scripts/outreach/node_modules/
+/google-insights-report
