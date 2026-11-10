@@ -34,7 +34,7 @@ export function getAboutCopy(locale: string): AboutCopy {
           { label: 'Projets publiés', value: String(projectCount) },
           { label: 'Secteurs couverts', value: String(sectorCount) },
           { label: 'Langues de travail', value: 'Français, anglais' },
-          { label: 'Site vitrine', value: 'à partir de 3 500 MAD' },
+          { label: 'Site vitrine', value: 'à partir de 2 000 MAD' },
           { label: 'Délai de réponse', value: 'un jour ouvré' },
         ],
         sections: [
@@ -55,7 +55,7 @@ export function getAboutCopy(locale: string): AboutCopy {
           {
             heading: 'Notre transparence sur les prix',
             body: [
-              'Nos tarifs de départ sont publiés sur le site : à partir de 3 500 MAD pour un site vitrine, 6 000 MAD pour un e-commerce. Le marché web marocain est souvent opaque sur ce point ; nous préférons annoncer un point de départ honnête puis cadrer un devis précis.',
+              'Nos tarifs de départ sont publiés sur le site : à partir de 2 000 MAD pour un site vitrine, 3 500 MAD pour un e-commerce. Le marché web marocain est souvent opaque sur ce point ; nous préférons annoncer un point de départ honnête puis cadrer un devis précis.',
             ],
           },
         ],
@@ -81,7 +81,7 @@ export function getAboutCopy(locale: string): AboutCopy {
           { label: 'Published projects', value: String(projectCount) },
           { label: 'Sectors covered', value: String(sectorCount) },
           { label: 'Working languages', value: 'French, English' },
-          { label: 'Showcase website', value: 'from 3,500 MAD' },
+          { label: 'Showcase website', value: 'from 2,000 MAD' },
           { label: 'Reply time', value: 'one business day' },
         ],
         sections: [
@@ -102,7 +102,7 @@ export function getAboutCopy(locale: string): AboutCopy {
           {
             heading: 'Where we stand on pricing',
             body: [
-              'Our starting prices are published on the site: from 3,500 MAD for a showcase website, from 6,000 MAD for e-commerce. The Moroccan web market is often opaque about cost; we would rather state an honest starting point and then scope a precise quote.',
+              'Our starting prices are published on the site: from 2,000 MAD for a showcase website, from 3,500 MAD for e-commerce. The Moroccan web market is often opaque about cost; we would rather state an honest starting point and then scope a precise quote.',
             ],
           },
         ],

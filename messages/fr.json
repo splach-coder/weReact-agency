@@ -116,7 +116,7 @@
     "faqTitle": "Questions fréquentes avant de nous contacter",
     "faq": {
       "q1": "Combien coûte un site web ?",
-      "a1": "Un site vitrine démarre à 3 500 DH et une boutique e-commerce à 6 000 DH. Les sites de réservation pour riads et hôtels font l'objet d'un devis sur mesure, fixé avant le début du projet.",
+      "a1": "Un site vitrine démarre à partir de 2 000 DH et une boutique e-commerce à partir de 3 500 DH. Les sites de réservation pour riads et hôtels font l'objet d'un devis sur mesure, fixé avant le début du projet.",
       "q2": "Combien de temps dure un projet ?",
       "a2": "La plupart des sites business sont en ligne en deux à quatre semaines. Les projets plus complexes, avec réservation ou contenu multilingue, prennent généralement quatre à huit semaines.",
       "q3": "Travaillez-vous en dehors de Marrakech ?",
@@ -235,12 +235,12 @@
       }
     ],
     "pricingTitle": "Des forfaits simples et transparents",
-    "pricingSubtitle": "Sites vitrines à partir de 3500 DH, e-commerce à partir de 6000 DH. Chaque projet reçoit un devis sur mesure.",
+    "pricingSubtitle": "Sites vitrines à partir de 2000 DH, e-commerce à partir de 3500 DH. Chaque projet reçoit un devis sur mesure.",
     "popularLabel": "Le plus populaire",
     "packages": [
       {
         "name": "Site vitrine",
-        "price": "à partir de 3500 DH",
+        "price": "à partir de 2000 DH",
         "desc": "Pour une entreprise qui doit être trouvée et contactée.",
         "features": [
           "Site vitrine professionnel",
@@ -253,7 +253,7 @@
       },
       {
         "name": "E-commerce",
-        "price": "à partir de 6000 DH",
+        "price": "à partir de 3500 DH",
         "desc": "Vendez en ligne, front et back inclus.",
         "features": [
           "Boutique en ligne, front et back",

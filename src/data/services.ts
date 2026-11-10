@@ -61,8 +61,8 @@ export const servicePricing: Record<'en' | 'fr', ServicePricingCopy> = {
     title: 'What it costs',
     lead: 'Transparent starting points, not a quote. We scope your project first, then send a precise figure — free, within one business day.',
     tiers: [
-      { name: 'Showcase website', fromMad: 3500, note: 'Scales with pages, languages, and features.' },
-      { name: 'E-commerce website', fromMad: 6000, note: 'Front-end and back-end included.' },
+      { name: 'Showcase website', fromMad: 2000, note: 'Scales with pages, languages, and features.' },
+      { name: 'E-commerce website', fromMad: 3500, note: 'Front-end and back-end included.' },
       { name: 'Riad / hotel direct booking', fromMad: null, note: 'Custom quote based on scope.' },
     ],
     footnote: 'Delivery is 2-3 days for defined-scope showcase sites and landing pages. Booking, e-commerce, and complex integrations get a scoped timeline before work begins.',
@@ -71,8 +71,8 @@ export const servicePricing: Record<'en' | 'fr', ServicePricingCopy> = {
     title: 'Combien ça coûte',
     lead: 'Des points de départ transparents, pas un devis. Nous cadrons votre projet, puis nous envoyons un chiffre précis — gratuit, sous un jour ouvré.',
     tiers: [
-      { name: 'Site vitrine', fromMad: 3500, note: 'Évolue selon les pages, les langues et les fonctionnalités.' },
-      { name: 'Site e-commerce', fromMad: 6000, note: 'Front et back inclus.' },
+      { name: 'Site vitrine', fromMad: 2000, note: 'Évolue selon les pages, les langues et les fonctionnalités.' },
+      { name: 'Site e-commerce', fromMad: 3500, note: 'Front et back inclus.' },
       { name: 'Réservation directe riad / hôtel', fromMad: null, note: 'Sur devis, selon le périmètre.' },
     ],
     footnote: 'Comptez 2 à 3 jours pour les sites vitrines et landing pages à périmètre défini. Réservation, e-commerce et intégrations complexes reçoivent un calendrier cadré avant le démarrage.',
@@ -103,7 +103,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
-          { question: 'How much does a website cost in Marrakech?', answer: 'As an honest starting point: a showcase website starts from 3,500 MAD and scales with pages, languages, and features. An e-commerce site starts from 6,000 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day.' },
+          { question: 'How much does a website cost in Marrakech?', answer: 'As an honest starting point: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An e-commerce site starts from 3,500 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day.' },
           { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 3 days for most defined-scope builds: a simple showcase site moves fastest, while booking or e-commerce features need more preparation. We agree on a clear timeline with the quote.' },
           { question: 'What types of businesses do you work with in Marrakech?', answer: 'We work with hospitality, tourism, local services, restaurants, lifestyle brands, and teams that need a credible website with a clear route to enquiry.' },
           { question: 'Can you build a website in English and French?', answer: 'Yes. We plan language structure, navigation, metadata, and conversion paths for English and French audiences from the beginning.' },
@@ -124,7 +124,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
-          { question: 'Combien coûte un site web à Marrakech ?', answer: 'En clair : un site vitrine démarre à partir de 3 500 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 6 000 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré.' },
+          { question: 'Combien coûte un site web à Marrakech ?', answer: 'En clair : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré.' },
           { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 3 jours pour la plupart des sites à périmètre défini : un site vitrine simple avance plus vite, tandis qu’une réservation ou une boutique en ligne demande plus de préparation. Nous fixons un calendrier clair dès le devis.' },
           { question: 'Avec quelles entreprises travaillez-vous à Marrakech ?', answer: 'Nous accompagnons l’hôtellerie, le tourisme, les services locaux, les restaurants, les marques lifestyle et les équipes qui ont besoin d’un site crédible avec un parcours de contact simple.' },
           { question: 'Pouvez-vous créer un site en français et en anglais ?', answer: 'Oui. Nous prévoyons la structure des langues, la navigation, les métadonnées et les parcours de conversion pour les audiences françaises et anglaises dès le départ.' },
@@ -253,7 +253,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
           { question: 'Do you work with clients in Casablanca if you are based in Marrakech?', answer: 'Yes. Most of our project work runs remotely through calls, WhatsApp, and shared previews, so distance does not slow anything down. We can also travel to Casablanca for a kickoff meeting on larger projects.' },
-          { question: 'How much does a website cost in Casablanca?', answer: 'The same transparent pricing applies across Morocco: a showcase website starts from 3,500 MAD and scales with pages, languages, and features. An e-commerce site starts from 6,000 MAD with front-end and back-end included. You get a precise, free quote within one business day.' },
+          { question: 'How much does a website cost in Casablanca?', answer: 'The same transparent pricing applies across Morocco: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An e-commerce site starts from 3,500 MAD with front-end and back-end included. You get a precise, free quote within one business day.' },
           { question: 'Can you redesign our existing website?', answer: 'Yes. We start by reviewing your current structure, speed, content gaps, and contact paths, then recommend either a focused improvement or a full rebuild — whichever gets you results faster.' },
         ],
       },
@@ -271,7 +271,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
           { question: 'Travaillez-vous avec des clients à Casablanca depuis Marrakech ?', answer: 'Oui. La majorité de nos projets se pilotent à distance par appels, WhatsApp et aperçus partagés : la distance ne ralentit rien. Pour les projets importants, nous pouvons aussi nous déplacer à Casablanca pour une réunion de lancement.' },
-          { question: 'Combien coûte un site web à Casablanca ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : un site vitrine démarre à partir de 3 500 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 6 000 DH, front et back inclus. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
+          { question: 'Combien coûte un site web à Casablanca ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH, front et back inclus. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
           { question: 'Pouvez-vous refaire notre site existant ?', answer: 'Oui. Nous commençons par analyser votre structure actuelle, la vitesse, les manques de contenu et les parcours de contact, puis nous recommandons soit une amélioration ciblée, soit une refonte complète — selon ce qui donne des résultats le plus vite.' },
         ],
       },
@@ -348,7 +348,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
           { question: 'Do you work with clients in Rabat from Marrakech?', answer: 'Yes. Most projects run remotely through calls, WhatsApp, and shared previews, so distance changes nothing. For larger engagements we can travel to Rabat for a kickoff meeting.' },
-          { question: 'How much does a website cost in Rabat?', answer: 'The same transparent pricing applies across Morocco: a showcase website starts from 3,500 MAD and scales with pages, languages, and features. E-commerce starts from 6,000 MAD. You get a precise, free quote within one business day.' },
+          { question: 'How much does a website cost in Rabat?', answer: 'The same transparent pricing applies across Morocco: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. E-commerce starts from 3,500 MAD. You get a precise, free quote within one business day.' },
           { question: 'Can you build a bilingual or trilingual website?', answer: 'Yes. French and English are planned from the start — structure, navigation, metadata, and conversion paths. Arabic can be added when your audience needs it.' },
         ],
       },
@@ -366,7 +366,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
           { question: 'Travaillez-vous avec des clients à Rabat depuis Marrakech ?', answer: 'Oui. La plupart des projets se pilotent à distance par appels, WhatsApp et aperçus partagés : la distance ne change rien. Pour les projets importants, nous pouvons nous déplacer à Rabat pour une réunion de lancement.' },
-          { question: 'Combien coûte un site web à Rabat ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : un site vitrine démarre à partir de 3 500 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 6 000 DH. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
+          { question: 'Combien coûte un site web à Rabat ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
           { question: 'Pouvez-vous créer un site bilingue ou trilingue ?', answer: 'Oui. Le français et l’anglais sont prévus dès le départ — structure, navigation, métadonnées et parcours de conversion. L’arabe peut être ajouté si votre audience en a besoin.' },
         ],
       },
@@ -397,7 +397,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Do you work with clients in Agadir from Marrakech?', answer: 'Yes. Projects run remotely through calls, WhatsApp, and shared previews — the same way we already work with tourism clients across Morocco.' },
           { question: 'Can the website reduce OTA commissions?', answer: 'A website cannot replace platforms overnight, but clear direct-booking paths, trust signals, and WhatsApp contact reliably shift a share of bookings to commission-free channels.' },
-          { question: 'How much does a website cost in Agadir?', answer: 'The same transparent pricing applies across Morocco: showcase sites from 3,500 MAD, e-commerce from 6,000 MAD, and custom quotes for booking-focused hotel or activity websites — free and precise within one business day.' },
+          { question: 'How much does a website cost in Agadir?', answer: 'The same transparent pricing applies across Morocco: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom quotes for booking-focused hotel or activity websites — free and precise within one business day.' },
         ],
       },
       fr: {
@@ -415,7 +415,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Travaillez-vous avec des clients à Agadir depuis Marrakech ?', answer: 'Oui. Les projets se pilotent à distance par appels, WhatsApp et aperçus partagés — comme nous le faisons déjà avec des clients tourisme dans tout le Maroc.' },
           { question: 'Un site peut-il réduire les commissions des plateformes ?', answer: 'Un site ne remplace pas les plateformes du jour au lendemain, mais des parcours de réservation directe clairs, des signaux de confiance et un contact WhatsApp déplacent durablement une partie des réservations vers des canaux sans commission.' },
-          { question: 'Combien coûte un site web à Agadir ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : site vitrine dès 3 500 DH, e-commerce dès 6 000 DH, et devis sur mesure pour les sites hôteliers ou d’activités orientés réservation — gratuit et précis sous un jour ouvré.' },
+          { question: 'Combien coûte un site web à Agadir ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour les sites hôteliers ou d’activités orientés réservation — gratuit et précis sous un jour ouvré.' },
         ],
       },
     },
@@ -445,7 +445,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Can the website take direct bookings?', answer: 'Yes. Depending on your operation we integrate a booking engine, a request-to-book flow, or a WhatsApp-first enquiry path — whichever converts best for your property size and team.' },
           { question: 'Do you also do SEO for hotels?', answer: 'Yes. Hotel SEO is one of our core services: property and area pages, schema markup, review signals, and content that ranks for the searches travelers make before booking.' },
-          { question: 'How much does a hotel or riad website cost?', answer: 'Showcase property sites start from 3,500 MAD. Direct-booking builds are quoted on scope — engine integration, languages, and content volume — with a free, precise quote within one business day.' },
+          { question: 'How much does a hotel or riad website cost?', answer: 'Showcase property sites start from 2,000 MAD. Direct-booking builds are quoted on scope — engine integration, languages, and content volume — with a free, precise quote within one business day.' },
         ],
       },
       fr: {
@@ -463,7 +463,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Le site peut-il prendre des réservations directes ?', answer: 'Oui. Selon votre organisation, nous intégrons un moteur de réservation, un parcours de demande de réservation ou un contact WhatsApp prioritaire — ce qui convertit le mieux pour votre taille d’établissement et votre équipe.' },
           { question: 'Faites-vous aussi le SEO pour les hôtels ?', answer: 'Oui. Le SEO hôtelier est un de nos services clés : pages établissement et région, données structurées, signaux d’avis et contenu qui se positionne sur les recherches des voyageurs avant réservation.' },
-          { question: 'Combien coûte un site pour hôtel ou riad ?', answer: 'Un site vitrine d’établissement démarre à 3 500 DH. Les projets orientés réservation directe sont établis sur devis — moteur de réservation, langues et volume de contenu — avec un chiffrage gratuit et précis sous un jour ouvré.' },
+          { question: 'Combien coûte un site pour hôtel ou riad ?', answer: 'Un site vitrine d’établissement démarre à partir de 2 000 DH. Les projets orientés réservation directe sont établis sur devis — moteur de réservation, langues et volume de contenu — avec un chiffrage gratuit et précis sous un jour ouvré.' },
         ],
       },
     },

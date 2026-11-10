@@ -34,5 +34,5 @@ test('publishes the same starting prices in both languages', () => {
     servicePricing.en.tiers.map((tier) => tier.fromMad),
     servicePricing.fr.tiers.map((tier) => tier.fromMad),
   );
-  assert.deepEqual(servicePricing.en.tiers.map((tier) => tier.fromMad), [3500, 6000, null]);
+  assert.deepEqual(servicePricing.en.tiers.map((tier) => tier.fromMad), [2000, 3500, null]);
 });

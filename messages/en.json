@@ -116,7 +116,7 @@
     "faqTitle": "Common questions before contacting us",
     "faq": {
       "q1": "How much does a website cost?",
-      "a1": "Showcase websites start from 3,500 MAD and e-commerce from 6,000 MAD. Booking websites for riads and hotels are quoted individually. Every quote is fixed before work starts.",
+      "a1": "Showcase websites start from 2,000 MAD and e-commerce from 3,500 MAD. Booking websites for riads and hotels are quoted individually. Every quote is fixed before work starts.",
       "q2": "How long does a project take?",
       "a2": "Most business websites launch in two to four weeks. Larger projects with booking systems or multilingual content typically take four to eight weeks.",
       "q3": "Do you work with clients outside Marrakech?",
@@ -235,12 +235,12 @@
       }
     ],
     "pricingTitle": "Simple, transparent packages",
-    "pricingSubtitle": "Showcase sites from 3500 DH, e-commerce from 6000 DH. Every project gets a tailored quote.",
+    "pricingSubtitle": "Showcase sites from 2000 DH, e-commerce from 3500 DH. Every project gets a tailored quote.",
     "popularLabel": "Most popular",
     "packages": [
       {
         "name": "Showcase site",
-        "price": "from 3500 DH",
+        "price": "from 2000 DH",
         "desc": "For a business that needs to be found and contacted.",
         "features": [
           "Professional showcase site",
@@ -253,7 +253,7 @@
       },
       {
         "name": "E-commerce",
-        "price": "from 6000 DH",
+        "price": "from 3500 DH",
         "desc": "Sell online, front-end and back-end included.",
         "features": [
           "Online store, front and back",

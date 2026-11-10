@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
         title: "How Much Does a Website Cost in Morocco in 2026?",
         metaTitle: "Website Cost in Morocco in 2026",
         excerpt: "Honest starting prices for a showcase site, an e-commerce store, and a custom quote for riad or hotel booking websites in Morocco, and what actually moves a quote up or down.",
-        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 3,500 MAD, e-commerce from 6,000 MAD, and custom booking sites.",
+        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom booking sites.",
         date: "July 14, 2026",
         publishedAt: "2026-07-14",
         modifiedAt: "2026-10-20",
@@ -80,14 +80,14 @@ export const blogPosts: BlogPost[] = [
             <h2>Our starting prices in Morocco for 2026</h2><p>These are the same figures we publish on our <a href="/en/web-design-marrakech">web agency in Marrakech</a> page, where you can also request a scoped quote.</p>
             <p>Every project is quoted on its own scope, but publishing starting prices feels more honest than silence. This is the guidance we give businesses that contact us:</p>
 
-            <h3>Showcase website (site vitrine): from 3,500 MAD</h3>
-            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. Pricing starts from 3,500 MAD for a compact site where you already have your text and photos ready, and it rises from there with more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text.</p>
+            <h3>Showcase website (site vitrine): from 2,000 MAD</h3>
+            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. Pricing starts from 2,000 MAD for a compact site where you already have your text and photos ready, and it rises from there with more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text.</p>
 
             <h3>Direct booking website for a riad or hotel: custom quote based on scope</h3>
             <p>Hospitality websites carry more weight. They need room or suite pages, photo-led layouts, the practical details travelers check before committing, a multilingual structure, and a clear route to a direct booking or inquiry so the business depends a little less on commission platforms. Because scope varies so much here (number of rooms and languages, the booking flow you need, how much of the content has to be created from scratch), this type of project gets a custom quote based on scope rather than a fixed number.</p>
 
-            <h3>E-commerce website: from 6,000 MAD, front-end and back-end included</h3>
-            <p>Selling online adds product pages, payment and delivery logic, legal pages, order management, and the product content that makes a visitor comfortable paying a business they have never met. Pricing starts from 6,000 MAD with the front-end and back-end included, then rises with the number of products, payment integrations, and delivery logic you need. E-commerce is where cutting corners costs the most: slow pages, unclear delivery information, and thin product descriptions all show up directly as abandoned carts.</p>
+            <h3>E-commerce website: from 3,500 MAD, front-end and back-end included</h3>
+            <p>Selling online adds product pages, payment and delivery logic, legal pages, order management, and the product content that makes a visitor comfortable paying a business they have never met. Pricing starts from 3,500 MAD with the front-end and back-end included, then rises with the number of products, payment integrations, and delivery logic you need. E-commerce is where cutting corners costs the most: slow pages, unclear delivery information, and thin product descriptions all show up directly as abandoned carts.</p>
 
             <h3>Website redesign: it depends on what exists</h3>
             <p>A redesign can mean keeping your content and rebuilding the structure, or starting again from a cleaner base. A serious redesign quote begins with a look at your current site: what ranks, what loads slowly, which content deserves to stay, not with a flat number announced before anyone has opened your pages.</p>
@@ -124,7 +124,7 @@ export const blogPosts: BlogPost[] = [
             title: "Combien coûte un site web au Maroc en 2026 ?",
             metaTitle: "Combien coûte un site web au Maroc ?",
             excerpt: "Prix de départ honnêtes pour un site vitrine, une boutique e-commerce, et un devis sur mesure pour un site de réservation riad ou hôtel au Maroc, et ce qui fait vraiment varier un devis.",
-            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs honnêtes : site vitrine dès 3 500 DH, e-commerce dès 6 000 DH, et devis sur mesure pour riads et hôtels.",
+            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs honnêtes : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour riads et hôtels.",
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
@@ -138,14 +138,14 @@ export const blogPosts: BlogPost[] = [
                 <h2>Nos prix de départ au Maroc pour 2026</h2><p>Ce sont les mêmes tarifs que sur notre page <a href="/fr/web-design-marrakech">agence web à Marrakech</a>, où vous pouvez aussi demander un devis cadré.</p>
                 <p>Chaque projet est chiffré selon son propre périmètre, mais publier des prix de départ nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
 
-                <h3>Site vitrine : à partir de 3 500 DH</h3>
-                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le prix démarre à 3 500 DH pour un site compact pour lequel vous disposez déjà des textes et des photos, et il augmente ensuite avec davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage.</p>
+                <h3>Site vitrine : à partir de 2 000 DH</h3>
+                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le prix démarre à partir de 2 000 DH pour un site compact pour lequel vous disposez déjà des textes et des photos, et il augmente ensuite avec davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage.</p>
 
                 <h3>Site de réservation directe pour riad ou hôtel : sur devis selon le périmètre</h3>
                 <p>Les sites d'hôtellerie portent plus de responsabilités. Il leur faut des pages chambres ou suites, des mises en page portées par la photo, les informations pratiques que les voyageurs vérifient avant de s'engager, une structure multilingue et un chemin clair vers la réservation ou la demande directe, afin de dépendre un peu moins des plateformes à commission. Le périmètre variant beaucoup d'un projet à l'autre (nombre de chambres et de langues, parcours de réservation souhaité, part de contenu à créer de zéro), ce type de projet est établi sur devis selon le périmètre plutôt qu'avec un chiffre fixe.</p>
 
-                <h3>Site e-commerce : à partir de 6 000 DH, front et back inclus</h3>
-                <p>Vendre en ligne ajoute des fiches produits, la logique de paiement et de livraison, les pages légales, la gestion des commandes et le contenu produit qui met un visiteur en confiance pour payer une entreprise qu'il n'a jamais rencontrée. Le prix démarre à 6 000 DH, front et back inclus, puis augmente avec le nombre de produits, les intégrations de paiement et la logique de livraison nécessaires. C'est en e-commerce que les économies de façade coûtent le plus cher : pages lentes, informations de livraison floues et descriptions maigres se traduisent directement en paniers abandonnés.</p>
+                <h3>Site e-commerce : à partir de 3 500 DH, front et back inclus</h3>
+                <p>Vendre en ligne ajoute des fiches produits, la logique de paiement et de livraison, les pages légales, la gestion des commandes et le contenu produit qui met un visiteur en confiance pour payer une entreprise qu'il n'a jamais rencontrée. Le prix démarre à partir de 3 500 DH, front et back inclus, puis augmente avec le nombre de produits, les intégrations de paiement et la logique de livraison nécessaires. C'est en e-commerce que les économies de façade coûtent le plus cher : pages lentes, informations de livraison floues et descriptions maigres se traduisent directement en paniers abandonnés.</p>
 
                 <h3>Refonte de site : selon l'existant</h3>
                 <p>Une refonte peut consister à conserver vos contenus en reconstruisant la structure, ou à repartir d'une base plus saine. Un devis de refonte sérieux commence par un examen de votre site actuel : ce qui se positionne, ce qui se charge lentement, ce qui mérite d'être conservé, et non par un chiffre annoncé avant même d'avoir ouvert vos pages.</p>
