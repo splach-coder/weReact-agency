@@ -111,7 +111,9 @@ async function exchangeCodeForToken(code) {
 
 function openBrowser(url) {
   const commands = {
-    win32: ['cmd', ['/c', 'start', '', url]],
+    // Not `cmd /c start`: cmd treats every `&` in the URL as a command separator, so Google
+    // only received client_id ("Required parameter is missing: response_type").
+    win32: ['rundll32', ['url.dll,FileProtocolHandler', url]],
     darwin: ['open', [url]],
     linux: ['xdg-open', [url]],
   };
