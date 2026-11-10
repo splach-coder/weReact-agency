@@ -24,7 +24,7 @@ Everything below is decision-free: copy the value, paste it into the matching GB
 | **Appointment link** | `https://www.wereact.agency/en/contact` |
 
 ### Hours
-Set **"Open 24 hours"** on GBP — this matches the website schema (`Mo-Su 00:00-23:59`), so the two agree. If Google ever flags it or asks, switch both to Mon–Sat 09:00–19:00 and tell me to update `src/config/site.ts`.
+Set **Monday–Friday, 09:00–18:00** on GBP. That is what the website and its structured data say (`src/config/site.ts`: `Mo-Fr 09:00-18:00`), and the two must match. As of Nov 10, 2026 the profile still showed "Ouvert 24h/24", an older setting: change it. If your real hours differ, change both the profile and `src/config/site.ts`.
 
 ---
 
@@ -61,23 +61,24 @@ Rename files before upload (e.g. `wereact-web-design-marrakech-1.jpg`).
 ---
 
 ## Step 5 — Reviews (the single biggest local ranking lever)
-1. GBP dashboard → **"Ask for reviews"** → copy the short link. Save it in your phone.
+1. Use the short link **wereact.agency/avis**: it opens the Google review form for WeReact agency directly (set up Nov 10, 2026). Save it in your phone.
 2. Send to the 3 portfolio clients + anyone you've helped. **5 reviews puts you ahead of most Marrakech web shops.**
 3. **Reply to every review**, named, in the reviewer's language.
+4. **Never offer anything in exchange** (discount, free work, gift): Google calls that fake engagement, "strictly prohibited", and removes those reviews (https://support.google.com/business/answer/3474122). Ask every happy client; that is enough.
 
 **Ask (FR):**
-> Salam [Nom] ! Un petit service qui compte beaucoup pour nous : un avis Google de 2-3 phrases sur notre travail ensemble. Lien direct (30 secondes) : [lien]. Merci infiniment 🙏
+> Salam [Nom] ! Un petit service qui compte beaucoup pour nous : un avis Google de 2-3 phrases sur notre travail ensemble. Lien direct (30 secondes) : wereact.agency/avis. Merci infiniment.
 
 **Ask (EN):**
-> Hi [Name]! Small favor that means a lot: a 2–3 sentence Google review about our work together. Direct link (30 seconds): [link]. Thank you so much 🙏
+> Hi [Name]! Small favor that means a lot: a 2–3 sentence Google review about our work together. Direct link (30 seconds): wereact.agency/avis. Thank you so much.
 
 ---
 
 ## Step 6 — Posts (paste one/week; rotate)
 1. **Projet :** "Nouveau site en ligne 🚀 — [type de site] bilingue FR/EN, optimisé Google, livré en 3 jours. Devis gratuit → wereact.agency"
-2. **Conseil :** "💡 Chaque réservation via Booking coûte 15–25% de commission. Un site de réservation directe se rembourse en quelques mois. Parlons-en : +212 602-258009."
+2. **Conseil :** "Airbnb prend 15,5 % à la plupart des hôtes, GetYourGuide affichait 20 à 30 % jusqu'en 2025. Un site direct reçoit les voyageurs qui vous connaissent déjà, sans commission. Les sources : wereact.agency/fr/blog/commission-getyourguide-viator-booking-maroc"
 3. **Preuve :** screenshot d'un site livré + une phrase sur le problème résolu.
-4. **Offre :** "Site vitrine pro à partir de 2 000 MAD, livré en 2–3 jours. Devis gratuit le jour même sur WhatsApp."
+4. **Offre :** "Site vitrine pro à partir de 2 000 MAD, livré en 2–3 jours. Devis gratuit sous un jour ouvré, sur WhatsApp ou sur wereact.agency."
 
 ---
 
