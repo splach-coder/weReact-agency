@@ -17,7 +17,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     primaryKeyword: 'website design for Moroccan businesses',
     keywords: ['business website Morocco', 'website for small business Morocco', 'site web entreprise Maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'kasbah-angour'],
-    relatedServiceSlugs: ['web-design-marrakech', 'seo-landing-pages', 'agence-web-marrakech'],
+    relatedServiceSlugs: ['web-design-marrakech', 'seo-landing-pages', 'agence-seo-marrakech'],
     relatedPostSlugs: ['website-design-marrakech-business-guide', 'combien-coute-site-web-maroc'],
     modifiedAt: '2026-07-22',
     copy: {

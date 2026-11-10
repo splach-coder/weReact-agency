@@ -7,12 +7,23 @@ const CURRENT_PUBLIC_PATHS = new Set([
   '/web-design-marrakech',
   '/tourism-websites-morocco',
   '/seo-landing-pages',
-  '/agence-web-marrakech',
+  '/web-design-casablanca',
+  '/web-design-rabat',
+  '/web-design-agadir',
+  '/hotel-website-design',
+  '/agence-seo-marrakech',
+  '/agence-google-ads-maroc',
+  '/about',
+  '/book',
   '/website-design-moroccan-businesses',
   '/international-web-design-agency',
 ]);
 
 const LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
+  // Merged into the Marrakech web design page (same search intent, Nov 2026).
+  '/agence-web-marrakech': '/fr/web-design-marrakech',
+  '/fr/agence-web-marrakech': '/fr/web-design-marrakech',
+  '/en/agence-web-marrakech': '/en/web-design-marrakech',
   '/blog/minimalist-design-trends': '/en/blog/website-design-marrakech-business-guide',
 };
 

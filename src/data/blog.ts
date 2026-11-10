@@ -22,7 +22,7 @@ export interface BlogPost {
     modifiedAt: string;
     author: string;
     authorRole: string;
-    relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages' | 'agence-web-marrakech';
+    relatedServiceSlug: 'web-design-marrakech' | 'tourism-websites-morocco' | 'seo-landing-pages';
     relatedAudienceSlug: 'tourism-websites-morocco' | 'website-design-moroccan-businesses' | 'international-web-design-agency';
     category: string;
     categoryColor?: string;
@@ -64,11 +64,11 @@ export const blogPosts: BlogPost[] = [
         modifiedAt: "2026-10-20",
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
-        relatedServiceSlug: "agence-web-marrakech",
+        relatedServiceSlug: "web-design-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Pricing",
         categoryColor: "#588157",
-        image: "/images/blog/agence-web-maroc.png",
+        image: "/images/blog/agence-web-maroc.webp",
         readTime: "9 min read",
         tags: ["Morocco", "Website Cost", "Pricing", "Web Design"],
         content: `
@@ -77,7 +77,7 @@ export const blogPosts: BlogPost[] = [
             <h2>Why website prices vary so much</h2>
             <p>Two websites can look almost identical in a portfolio screenshot and still be completely different products. The visible design is only one layer. Underneath sit the decisions that change both the cost and the value of the project: whether the pages are structured so Google can understand your services, whether the site loads quickly on a mid-range phone with an average connection, whether the content is written around what your customers actually search for, and whether tracking is in place so you can see which pages generate calls and WhatsApp messages. A website built as a commercial tool takes more work than a website built as an online brochure, and the price follows the work.</p>
 
-            <h2>Our starting prices in Morocco for 2026</h2><p>These are the same figures we publish on our <a href="/en/agence-web-marrakech">web agency in Marrakech</a> page, where you can also request a scoped quote.</p>
+            <h2>Our starting prices in Morocco for 2026</h2><p>These are the same figures we publish on our <a href="/en/web-design-marrakech">web agency in Marrakech</a> page, where you can also request a scoped quote.</p>
             <p>Every project is quoted on its own scope, but publishing starting prices feels more honest than silence. This is the guidance we give businesses that contact us:</p>
 
             <h3>Showcase website (site vitrine): from 3,500 MAD</h3>
@@ -135,7 +135,7 @@ export const blogPosts: BlogPost[] = [
                 <h2>Pourquoi les prix varient autant</h2>
                 <p>Deux sites web peuvent sembler presque identiques sur une capture d'écran de portfolio et rester des produits complètement différents. Le design visible n'est qu'une couche. En dessous se trouvent les décisions qui changent à la fois le coût et la valeur du projet : la structure des pages permet-elle à Google de comprendre vos services, le site se charge-t-il rapidement sur un téléphone de milieu de gamme avec une connexion moyenne, le contenu est-il rédigé autour de ce que vos clients recherchent vraiment, et le suivi statistique est-il en place pour savoir quelles pages génèrent des appels et des messages WhatsApp. Un site conçu comme un outil commercial demande plus de travail qu'une simple brochure en ligne, et le prix suit le travail.</p>
 
-                <h2>Nos prix de départ au Maroc pour 2026</h2><p>Ce sont les mêmes tarifs que sur notre page <a href="/fr/agence-web-marrakech">agence web à Marrakech</a>, où vous pouvez aussi demander un devis cadré.</p>
+                <h2>Nos prix de départ au Maroc pour 2026</h2><p>Ce sont les mêmes tarifs que sur notre page <a href="/fr/web-design-marrakech">agence web à Marrakech</a>, où vous pouvez aussi demander un devis cadré.</p>
                 <p>Chaque projet est chiffré selon son propre périmètre, mais publier des prix de départ nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
 
                 <h3>Site vitrine : à partir de 3 500 DH</h3>
@@ -314,7 +314,7 @@ export const blogPosts: BlogPost[] = [
         metaDescription: "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
-        modifiedAt: "2026-07-14",
+        modifiedAt: "2026-11-10",
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
         relatedServiceSlug: "tourism-websites-morocco",
@@ -326,6 +326,7 @@ export const blogPosts: BlogPost[] = [
         tags: ["Morocco", "Tourism SEO", "Hospitality Websites", "Marrakech"],
         content: `
             <p>Tourism and hospitality websites in Morocco compete in a crowded search landscape. Travelers compare destinations, routes, hotels, tours, drivers, reviews, photos, and prices across many tabs. Your website has to be fast, clear, trustworthy, and organized around how people plan trips.</p>
+            <p>This guide is written from the travel sites we have built and run ourselves in Morocco. If you would rather see the structure we build from, start with our <a href="/en/tourism-websites-morocco">tourism and hospitality websites in Morocco</a> page.</p>
 
             <h2>Build pages around destination and service intent</h2>
             <p>A hotel near Marrakech, a tour company in the Atlas Mountains, and a private driver service do not need the same page structure. Create pages around real search intent: airport transfers, day trips, desert tours, riad stays, Atlas itineraries, family travel, or private transport in Morocco.</p>
@@ -345,9 +346,31 @@ export const blogPosts: BlogPost[] = [
             <h2>Design conversion paths for direct inquiries</h2>
             <p>Direct bookings and inquiries reduce dependence on third-party platforms. Place inquiry buttons near service descriptions, destination pages, photo sections, and pricing explanations. Make WhatsApp, email, phone, and forms easy to find without making the page feel aggressive.</p>
 
+            <h2>A checklist for tour and activity operators</h2>
+            <p>Tours and activities are searched differently from hotels. People type the activity and the place together, then compare three or four operators on their phone. These are the pages and details that decide who gets the message.</p>
+            <ul>
+                <li><strong>One page per activity and place.</strong> "Quad biking in the Palmeraie" and "Agafay desert dinner" are two searches, so they need two pages. A single "Our tours" page cannot rank for both.</li>
+                <li><strong>The facts a traveler checks before paying.</strong> Duration, start time, meeting point or hotel pickup, group size, what is included, what to bring, minimum age, and what happens if the weather turns.</li>
+                <li><strong>A price or a clear "from" price.</strong> A page with no price sends people back to the marketplace listing that has one.</li>
+                <li><strong>Safety and credentials in plain sight.</strong> Licences, insurance, guide or pilot experience, equipment. For adventure activities this is the main objection, so answer it before the booking button.</li>
+                <li><strong>WhatsApp first.</strong> Most enquiries in Morocco arrive there. Put the button beside the price and the itinerary, with a pre-filled message naming the activity.</li>
+                <li><strong>Your own reviews, linked to their source.</strong> Quote real reviews and link to the Google or Tripadvisor profile they came from. Do not copy them without the link.</li>
+                <li><strong>Seasonal pages published early.</strong> Travelers plan Easter, summer, and year-end trips weeks ahead. A page published the week before is too late to be found.</li>
+                <li><strong>A Google Business Profile that matches the site.</strong> Same name, phone, and activity categories. For "near me" and map searches, the profile is what appears, not the website.</li>
+            </ul>
+
+            <h2>What this looks like on sites we built</h2>
+            <p>We describe what was built here, not traffic figures. Results depend on the market and on how long a site has been live, and we would rather show the structure than promise a number.</p>
+            <h3>Flying Tandem: selling a high-adrenaline activity on trust</h3>
+            <p>For <a href="/en/work/flying-tandem">Flying Tandem</a>, a paragliding operator near Marrakech, the hard part was not describing the flight. It was answering "is this safe?" before the visitor left. The site puts safety content and the flight details ahead of the booking enquiry, and keeps the path from experience page to enquiry short on mobile, because many visitors are already in Morocco when they search.</p>
+            <h3>Kasbah Angour: letting people inspect the place</h3>
+            <p>For <a href="/en/work/kasbah-angour">Kasbah Angour</a>, a hotel in the Atlas foothills, travelers want to inspect rooms, location, and surroundings before they write. The site is organized around that inspection: room discovery, the place itself, and contact routes that stay close to the content, so a direct enquiry is easier than returning to a booking platform.</p>
+            <h3>Trust Drivers Tours and Morocco Atlas Guide: our own test sites</h3>
+            <p><a href="/en/work/trust-drivers">Trust Drivers Tours</a> and <a href="/en/work/morocco-atlas-guide">Morocco Atlas Guide</a> are studio-owned projects. We use them to test structure on real search results: service panels per route, guide-style destination pages, and WhatsApp as the main conversion path. What works there goes into client sites.</p>
+
             <blockquote>Tourism SEO works best when destination knowledge, trust, speed, and conversion design all point in the same direction.</blockquote>
 
-            <h2>How WeReact approaches travel websites</h2><p>Our <a href="/en/tourism-websites-morocco">tourism and hospitality websites in Morocco</a> page sets out the booking-journey structure we build from.</p>
+            <h2>How WeReact approaches travel websites</h2><p>Our <a href="/en/tourism-websites-morocco">tourism and hospitality websites in Morocco</a> page sets out the booking-journey structure we build from, and the <a href="/en/hotel-website-design">hotel and riad website design</a> page covers direct booking for accommodation.</p>
             <p>WeReact builds tourism and hospitality websites with fast mobile layouts, destination-led content structure, local SEO foundations, clear project visuals, and direct inquiry routes. The goal is to help travelers understand the offer quickly and contact the business with confidence.</p>
         `,
         fr: {
@@ -361,6 +384,7 @@ export const blogPosts: BlogPost[] = [
             authorRole: "Studio de création web et SEO",
             content: `
                 <p>Au Maroc, les sites de tourisme et d'hôtellerie évoluent dans un paysage de recherche très concurrentiel. Les voyageurs comparent destinations, itinéraires, hôtels, excursions, chauffeurs, avis, photos et prix dans de nombreux onglets. Votre site doit être rapide, clair, digne de confiance et organisé selon la façon dont les gens préparent leur voyage.</p>
+                <p>Ce guide s'appuie sur les sites de voyage que nous avons créés et que nous gérons nous-mêmes au Maroc. Pour voir directement la structure sur laquelle nous construisons, consultez notre page <a href="/fr/tourism-websites-morocco">sites web tourisme et hôtellerie au Maroc</a>.</p>
 
                 <h2>Construisez vos pages autour des destinations et des services recherchés</h2>
                 <p>Un hôtel près de Marrakech, une agence d'excursions dans l'Atlas et un service de chauffeur privé n'ont pas besoin de la même structure de pages. Créez des pages autour d'intentions de recherche réelles : transferts aéroport, excursions à la journée, circuits dans le désert, séjours en riad, itinéraires dans l'Atlas, voyages en famille ou transport privé au Maroc.</p>
@@ -380,9 +404,31 @@ export const blogPosts: BlogPost[] = [
                 <h2>Concevez des parcours de conversion pour les demandes directes</h2>
                 <p>Les réservations et demandes directes réduisent la dépendance aux plateformes tierces. Placez des boutons de demande près des descriptions de services, des pages destinations, des galeries photos et des explications de prix. Rendez WhatsApp, l'e-mail, le téléphone et les formulaires faciles à trouver, sans donner à la page un ton insistant.</p>
 
+                <h2>La liste de contrôle pour les excursions et activités</h2>
+                <p>On ne cherche pas une excursion comme on cherche un hôtel. Le voyageur tape l'activité et le lieu ensemble, puis compare trois ou quatre prestataires sur son téléphone. Voici les pages et les détails qui décident de qui reçoit le message.</p>
+                <ul>
+                    <li><strong>Une page par activité et par lieu.</strong> « Quad dans la Palmeraie » et « dîner dans le désert d'Agafay » sont deux recherches : il faut deux pages. Une seule page « Nos excursions » ne peut pas se positionner sur les deux.</li>
+                    <li><strong>Les informations que le voyageur vérifie avant de payer.</strong> Durée, heure de départ, point de rendez-vous ou prise en charge à l'hôtel, taille du groupe, ce qui est inclus, ce qu'il faut apporter, âge minimum, et ce qui se passe si la météo change.</li>
+                    <li><strong>Un prix, ou un prix « à partir de » clair.</strong> Une page sans prix renvoie le visiteur vers la fiche de la plateforme qui en affiche un.</li>
+                    <li><strong>La sécurité et les agréments bien visibles.</strong> Licences, assurance, expérience des guides ou des pilotes, matériel. Pour les activités d'aventure, c'est la première objection : répondez-y avant le bouton de réservation.</li>
+                    <li><strong>WhatsApp d'abord.</strong> Au Maroc, la plupart des demandes arrivent par là. Placez le bouton à côté du prix et de l'itinéraire, avec un message pré-rempli qui nomme l'activité.</li>
+                    <li><strong>Vos propres avis, reliés à leur source.</strong> Citez de vrais avis et faites un lien vers la fiche Google ou Tripadvisor d'où ils viennent. Ne les copiez pas sans ce lien.</li>
+                    <li><strong>Des pages saisonnières publiées tôt.</strong> Les voyageurs préparent Pâques, l'été et les fêtes de fin d'année plusieurs semaines à l'avance. Une page publiée la semaine précédente arrive trop tard.</li>
+                    <li><strong>Une fiche Google Business cohérente avec le site.</strong> Même nom, même téléphone, mêmes catégories d'activité. Pour les recherches « près de moi » et sur la carte, c'est la fiche qui apparaît, pas le site.</li>
+                </ul>
+
+                <h2>Ce que cela donne sur des sites que nous avons créés</h2>
+                <p>Nous décrivons ici ce qui a été construit, pas des chiffres de trafic. Les résultats dépendent du marché et de l'ancienneté du site, et nous préférons montrer la structure plutôt que promettre un chiffre.</p>
+                <h3>Flying Tandem : vendre une activité à sensations grâce à la confiance</h3>
+                <p>Pour <a href="/fr/work/flying-tandem">Flying Tandem</a>, un opérateur de parapente près de Marrakech, la difficulté n'était pas de décrire le vol. Il fallait répondre à la question « est-ce sûr ? » avant que le visiteur ne parte. Le site place le contenu sécurité et les détails du vol avant la demande de réservation, et garde un chemin court entre la page de l'expérience et la demande sur mobile, car beaucoup de visiteurs sont déjà au Maroc quand ils cherchent.</p>
+                <h3>Kasbah Angour : laisser le voyageur inspecter le lieu</h3>
+                <p>Pour <a href="/fr/work/kasbah-angour">Kasbah Angour</a>, un hôtel au pied de l'Atlas, les voyageurs veulent examiner les chambres, l'emplacement et les environs avant d'écrire. Le site est organisé autour de cette inspection : découverte des chambres, présentation du lieu, et moyens de contact proches du contenu, pour qu'une demande directe soit plus simple qu'un retour vers une plateforme de réservation.</p>
+                <h3>Trust Drivers Tours et Morocco Atlas Guide : nos propres sites d'essai</h3>
+                <p><a href="/fr/work/trust-drivers">Trust Drivers Tours</a> et <a href="/fr/work/morocco-atlas-guide">Morocco Atlas Guide</a> sont des projets du studio. Nous y testons nos structures sur de vrais résultats de recherche : panneaux de services par trajet, pages destinations au format guide, et WhatsApp comme principal chemin de conversion. Ce qui fonctionne là est repris sur les sites de nos clients.</p>
+
                 <blockquote>Le SEO touristique fonctionne le mieux lorsque la connaissance de la destination, la confiance, la vitesse et le design de conversion vont dans la même direction.</blockquote>
 
-                <h2>L'approche WeReact pour les sites de voyage</h2><p>Notre page <a href="/fr/tourism-websites-morocco">sites web tourisme et hôtellerie au Maroc</a> détaille la structure de parcours de réservation sur laquelle nous construisons.</p>
+                <h2>L'approche WeReact pour les sites de voyage</h2><p>Notre page <a href="/fr/tourism-websites-morocco">sites web tourisme et hôtellerie au Maroc</a> détaille la structure de parcours de réservation sur laquelle nous construisons, et la page <a href="/fr/hotel-website-design">site web pour hôtel et riad</a> couvre la réservation directe pour l'hébergement.</p>
                 <p>WeReact conçoit des sites de tourisme et d'hôtellerie avec des mises en page mobiles rapides, une structure de contenu orientée destinations, des fondations SEO locales, des visuels de projets clairs et des accès directs à la demande. L'objectif : aider les voyageurs à comprendre l'offre rapidement et à contacter l'entreprise en toute confiance.</p>
             `
         }
