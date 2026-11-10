@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { InstagramIcon, FacebookIcon, XIcon, WhatsAppIcon, EmailIcon } from '@/components/icons/SocialIcons';
+import { InstagramIcon, FacebookIcon, WhatsAppIcon, EmailIcon } from '@/components/icons/SocialIcons';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
 import { siteConfig } from '@/config/site';
@@ -75,19 +75,18 @@ export default function Footer() {
         { name: 'Création de site à Marrakech', href: '/web-design-marrakech' },
         { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
         { name: 'Landing pages SEO', href: '/seo-landing-pages' },
-        { name: 'Agence web à Marrakech', href: '/agence-web-marrakech' },
+        { name: 'Agence SEO à Marrakech', href: '/agence-seo-marrakech' },
       ]
     : [
         { name: 'Website design in Marrakech', href: '/web-design-marrakech' },
         { name: 'Tourism websites in Morocco', href: '/tourism-websites-morocco' },
         { name: 'SEO-ready landing pages', href: '/seo-landing-pages' },
-        { name: 'Web agency in Marrakech', href: '/agence-web-marrakech' },
+        { name: 'SEO agency in Marrakech', href: '/agence-seo-marrakech' },
       ];
 
   const socials = [
     { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: InstagramIcon },
     { label: 'Facebook', href: siteConfig.business.facebook, icon: FacebookIcon },
-    { label: 'X', href: siteConfig.business.sameAs[1], icon: XIcon },
     { label: 'WhatsApp', href: buildWhatsAppLink(locale), icon: WhatsAppIcon },
     { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: EmailIcon },
   ];

@@ -58,3 +58,6 @@ next-env.d.ts
 /outreach-data/
 /scripts/outreach/node_modules/
 /google-insights-report
+
+# scratch build dirs
+/.next-perf*/

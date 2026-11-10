@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import Preloader from '@/components/transition/Preloader';
+import PreloaderBoot from '@/components/transition/PreloaderBoot';
 import TransitionProvider from '@/components/transition/TransitionProvider';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import GoogleConsentDefaults from '@/components/analytics/GoogleConsentDefaults';
@@ -18,6 +19,14 @@ import { nohemi } from '@/app/fonts';
 import { createLocalizedAlternates } from '@/lib/seo';
 
 const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' };
+
+// Every public page is prerendered at build time for each locale. Nothing in
+// this tree may read request data (headers, cookies, searchParams) on the
+// server, or the pages silently fall back to per-request rendering.
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -116,11 +125,14 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Tells next-intl the locale without reading request headers (keeps the page static).
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${nohemi.variable} min-h-screen flex flex-col bg-[var(--color-background-main)] text-[var(--color-text-main)]`} suppressHydrationWarning>
+        <PreloaderBoot />
         <NextIntlClientProvider messages={messages}>
           <GoogleConsentDefaults />
           <GoogleTag />

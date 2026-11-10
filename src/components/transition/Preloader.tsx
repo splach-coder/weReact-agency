@@ -3,13 +3,32 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { CURTAIN, CURTAIN_VIEWBOX } from './curtain';
-import { PRELOADER_COMPLETE_EVENT } from '@/lib/events';
+import { PRELOADER_COMPLETE_EVENT, PRELOADER_LIFT_EVENT } from '@/lib/events';
+import {
+  PRELOADER_FAILSAFE_MS,
+  PRELOADER_PAID_CLICK_SOURCE,
+  PRELOADER_SESSION_KEY,
+} from './preloader-config';
 
-const SESSION_KEY = 'wereact_preloaded';
+const PAID_CLICK_PATTERN = new RegExp(PRELOADER_PAID_CLICK_SOURCE);
 
 function announcePreloaderComplete() {
   document.documentElement.dataset.wereactPreloaderComplete = 'true';
   window.dispatchEvent(new Event(PRELOADER_COMPLETE_EVENT));
+}
+
+/** The sheet is about to lift: whatever sits under it becomes visible now. */
+function announcePreloaderLift() {
+  document.documentElement.dataset.wereactPreloaderLift = 'true';
+  window.dispatchEvent(new Event(PRELOADER_LIFT_EVENT));
+}
+
+function markSessionPreloaded() {
+  try {
+    sessionStorage.setItem(PRELOADER_SESSION_KEY, '1');
+  } catch {
+    // Storage can be blocked; the curtain then simply replays next load.
+  }
 }
 /**
  * First-load curtain — port of the SOTD `Preloader.js`. An Atlas-Green panel
@@ -19,6 +38,11 @@ function announcePreloaderComplete() {
  *
  * Runs ONCE per browser session (sessionStorage flag) so in-site navigation
  * isn't gated behind it. Honors prefers-reduced-motion (renders nothing).
+ *
+ * The sheet is server-rendered and shown by CSS as soon as the inline boot
+ * script (PreloaderBoot) flags the load, so it covers the page from the very
+ * first paint instead of dropping in after hydration; this component then
+ * takes it over and plays the counter + lift-out.
  */
 export default function Preloader() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -30,16 +54,32 @@ export default function Preloader() {
   // Decide on mount whether to show at all (client-only checks).
   useEffect(() => {
     let frame = 0;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const seen = sessionStorage.getItem(SESSION_KEY);
+    const root = document.documentElement;
     // Paid ad clicks (gclid/gbraid/wbraid/utm_*) skip the curtain entirely —
     // paid visitors must reach the page instantly, not wait behind a ~3s
     // scroll-locked loader they already paid to bypass.
-    const paidClick = /(?:^|[?&])(gclid|gbraid|wbraid|utm_[a-z]+)=/.test(window.location.search);
+    const paidClick = PAID_CLICK_PATTERN.test(window.location.search);
 
-    if (reduce || seen || paidClick) {
+    // The boot script made this call before first paint; follow it so the
+    // server-rendered sheet and this component always agree.
+    let show = root.dataset.wereactPreloader === 'on';
+    if (root.dataset.wereactPreloader === undefined) {
+      let seen: string | null = '1';
+      try {
+        seen = sessionStorage.getItem(PRELOADER_SESSION_KEY);
+      } catch {
+        // Storage blocked: skip the curtain.
+      }
+      show = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !seen && !paidClick;
+    }
+    // CSS already faded the sheet out because this script took too long to
+    // arrive; do not bring it back over a page the visitor is already reading.
+    if (show && performance.now() > PRELOADER_FAILSAFE_MS) show = false;
+
+    if (!show) {
       // Still mark the session so later organic navigation doesn't replay it.
-      if (paidClick) sessionStorage.setItem(SESSION_KEY, '1');
+      if (paidClick || root.dataset.wereactPreloader === 'on') markSessionPreloaded();
+      if (root.dataset.wereactPreloader === 'on') root.dataset.wereactPreloader = 'skip';
       frame = window.requestAnimationFrame(() => {
         announcePreloaderComplete();
         setActive(false);
@@ -47,7 +87,8 @@ export default function Preloader() {
       return () => window.cancelAnimationFrame(frame);
     }
 
-    sessionStorage.setItem(SESSION_KEY, '1');
+    root.dataset.wereactPreloader = 'on';
+    markSessionPreloaded();
     // Lock scroll while the loader is up.
     document.documentElement.style.overflow = 'hidden';
     frame = window.requestAnimationFrame(() => setActive(true));
@@ -71,12 +112,14 @@ export default function Preloader() {
       });
 
       // Lift-out: number wipes up, then the green sheet arcs up and away.
+      tl.call(announcePreloaderLift);
       tl.to(numberRef.current, { yPercent: -120, opacity: 0, duration: 0.5, ease: 'power2.in' });
       tl.to(pathRef.current, { attr: { d: CURTAIN.REVEAL_CURVE }, duration: 0.5, ease: 'power2.in' }, '-=0.2');
       tl.to(pathRef.current, { attr: { d: CURTAIN.GONE }, duration: 0.4, ease: 'power2.out' });
       tl.to(rootRef.current, { autoAlpha: 0, duration: 0.2 }, '-=0.1');
       tl.call(() => {
         document.documentElement.style.overflow = '';
+        document.documentElement.dataset.wereactPreloader = 'done';
         setActive(false);
         window.requestAnimationFrame(announcePreloaderComplete);
       });
@@ -88,12 +131,15 @@ export default function Preloader() {
     };
   }, [active]);
 
-  if (!active) return null;
+  if (active === false) return null;
 
+  // `preloader-root` (globals.css) keeps this hidden unless the boot script
+  // flagged the load ("on") or the component has taken over (data-active).
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[120] flex items-center justify-center"
+      className="preloader-root fixed inset-0 z-[120] items-center justify-center"
+      data-active={active ? 'true' : undefined}
       aria-hidden="true"
     >
       {/* The green sheet IS the morphing SVG path so the curved lift-out reads. */}

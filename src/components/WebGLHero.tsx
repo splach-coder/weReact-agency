@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import Link from '@/components/transition/TransitionLink';
-import { smoothEasing } from '@/lib/animations';
-import { RevealLine } from '@/components/ui/RevealText';
 import { trackContactIntent } from '@/lib/analytics';
+import { PRELOADER_COMPLETE_EVENT, PRELOADER_LIFT_EVENT } from '@/lib/events';
+
+// If the first-load curtain never reports back, start drawing anyway.
+const CURTAIN_WAIT_LIMIT_MS = 6000;
 
 type Peep = {
   image: HTMLImageElement;
@@ -61,6 +63,12 @@ function CrowdCanvas({ src, rows = 15, cols = 7, reduceMotion = false }: CrowdCa
     const img = document.createElement('img');
     let destroyed = false;
     let isReady = false;
+    // Nothing is drawn while the canvas cannot be seen: scrolled out of view,
+    // or still under the first-load curtain. The walks keep their place.
+    let offscreen = false;
+    let covered =
+      document.documentElement.dataset.wereactPreloader === 'on' &&
+      document.documentElement.dataset.wereactPreloaderLift !== 'true';
     let pixelRatio = 1;
     let peepScale = 1;
 
@@ -188,18 +196,46 @@ function CrowdCanvas({ src, rows = 15, cols = 7, reduceMotion = false }: CrowdCa
         addPeepToCrowd().walk?.progress(reduceMotion ? 0.35 : Math.random());
       }
 
-      if (reduceMotion) {
+      if (reduceMotion || offscreen) {
         crowd.forEach((peep) => peep.walk?.pause());
       }
     };
 
-    const render = () => {
+    const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
       ctx.scale(pixelRatio, pixelRatio);
       crowd.forEach((peep) => peep.render(ctx));
       ctx.restore();
     };
+
+    // Per-frame ticker callback.
+    const render = () => {
+      if (offscreen || covered) return;
+      draw();
+    };
+
+    const uncover = () => {
+      if (!covered) return;
+      covered = false;
+      if (isReady) draw();
+    };
+    const curtainTimeout = covered ? window.setTimeout(uncover, CURTAIN_WAIT_LIMIT_MS) : 0;
+    window.addEventListener(PRELOADER_LIFT_EVENT, uncover);
+    window.addEventListener(PRELOADER_COMPLETE_EVENT, uncover);
+
+    // Stop the walk cycle entirely while the hero is scrolled out of view.
+    const visibility =
+      typeof IntersectionObserver === 'undefined'
+        ? null
+        : new IntersectionObserver((entries) => {
+            const entry = entries[entries.length - 1];
+            if (!entry || entry.isIntersecting === !offscreen) return;
+            offscreen = !entry.isIntersecting;
+            if (reduceMotion) return;
+            crowd.forEach((peep) => (offscreen ? peep.walk?.pause() : peep.walk?.resume()));
+          });
+    visibility?.observe(canvas);
 
     const resize = () => {
       if (!isReady) return;
@@ -221,7 +257,7 @@ function CrowdCanvas({ src, rows = 15, cols = 7, reduceMotion = false }: CrowdCa
       availablePeeps.push(...allPeeps);
 
       initCrowd();
-      render();
+      if (!covered) draw();
     };
 
     const init = () => {
@@ -239,6 +275,10 @@ function CrowdCanvas({ src, rows = 15, cols = 7, reduceMotion = false }: CrowdCa
 
     return () => {
       destroyed = true;
+      window.clearTimeout(curtainTimeout);
+      visibility?.disconnect();
+      window.removeEventListener(PRELOADER_LIFT_EVENT, uncover);
+      window.removeEventListener(PRELOADER_COMPLETE_EVENT, uncover);
       window.removeEventListener('resize', resize);
       gsap.ticker.remove(render);
       crowd.forEach((peep) => peep.walk?.kill());
@@ -261,27 +301,54 @@ function HeroCrowd({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
+/*
+ * The hero entrance (crowd rise, kicker / CTA fades, headline line-wipes) is
+ * plain CSS (`.hero-enter-*` in globals.css) rather than JS-driven, with the
+ * same timings and easings as before. That way the browser can start it, or
+ * paint the finished state under the first-load curtain, straight from the
+ * server HTML instead of waiting for the page to hydrate.
+ */
+const enterDelay = (seconds: number): CSSProperties => ({ animationDelay: `${seconds}s` });
+
+/** One headline line that wipes up from a clipped mask (the RevealLine idiom). */
+function HeroLine({ children, delay, className = '' }: { children: ReactNode; delay: number; className?: string }) {
+  return (
+    <span className="block overflow-hidden pb-[0.08em]">
+      <span style={enterDelay(delay)} className={`hero-enter hero-enter-line block ${className}`}>
+        {children}
+      </span>
+    </span>
+  );
+}
+
 export default function WebGLHero() {
   const t = useTranslations('Home.hero');
   const reduceMotion = useReducedMotion() ?? false;
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // On a first visit the hero is server-rendered in its final state under the
+  // curtain (see `.hero-enter` in globals.css). Pin that for this mount, so the
+  // entrance does not replay when the curtain state changes once it lifts.
+  useLayoutEffect(() => {
+    if (document.documentElement.dataset.wereactPreloader === 'on') {
+      sectionRef.current?.setAttribute('data-hero-static', '');
+    }
+  }, []);
 
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-x-clip overflow-y-visible bg-[var(--color-background-main)] text-[var(--color-primary)]">
+    <section ref={sectionRef} className="relative h-[100svh] min-h-[640px] w-full overflow-x-clip overflow-y-visible bg-[var(--color-background-main)] text-[var(--color-primary)]">
       <div
         data-depth="0"
         aria-hidden="true"
         className="absolute inset-0 z-0 bg-[linear-gradient(180deg,var(--color-background-main)_0%,var(--color-background-contrast)_100%)]"
       />
-      <motion.div
+      <div
         data-depth="3"
         aria-hidden="true"
-        initial={reduceMotion ? false : { opacity: 0, y: 34, scale: 0.985 }}
-        animate={{ opacity: 0.9, y: 0, scale: 1 }}
-        transition={{ delay: 0.25, duration: 1.35, ease: smoothEasing }}
-        className="absolute inset-0 z-[1] overflow-visible [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_100%)]"
+        className="hero-enter hero-enter-crowd absolute inset-0 z-[1] overflow-visible opacity-90 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_100%)]"
       >
         <HeroCrowd reduceMotion={reduceMotion} />
-      </motion.div>
+      </div>
       <div
         data-depth="4"
         aria-hidden="true"
@@ -293,32 +360,28 @@ export default function WebGLHero() {
         className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_44%,rgba(58,90,64,0.12)_100%)]"
       />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.25, duration: 0.8 }}
-        className="absolute inset-x-0 top-28 z-20 mx-auto hidden max-w-7xl items-center justify-between px-16 md:flex"
+      <div
+        style={enterDelay(0.25)}
+        className="hero-enter hero-enter-fade absolute inset-x-0 top-28 z-20 mx-auto hidden max-w-7xl items-center justify-between px-16 md:flex"
       >
         <span className="text-mono flex items-center gap-2.5 text-[var(--color-primary)]/62">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-sage)]" />
           {t('kicker')}
         </span>
         <span className="text-mono text-[var(--color-primary)]/40">(C) 2026</span>
-      </motion.div>
+      </div>
 
       <div data-depth="4" className="relative z-20 mx-auto flex h-full max-w-[42rem] flex-col items-center justify-start px-6 pt-[20svh] text-center md:pt-[22svh]">
         <h1 className="max-w-[16.5ch] text-balance font-display text-[clamp(2.05rem,4.5vw,4.45rem)] font-black leading-[0.94] text-[var(--color-primary)]">
-          <RevealLine delay={0.15}>{t('titleLine1')}</RevealLine>
-          <RevealLine delay={0.3} className="tracking-normal">
+          <HeroLine delay={0.15}>{t('titleLine1')}</HeroLine>
+          <HeroLine delay={0.3} className="tracking-normal">
             {t('titleLine2')} <span className="italic text-[var(--color-accent-clay-dark)]">{t('highlight')}</span>.
-          </RevealLine>
+          </HeroLine>
         </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.8, ease: smoothEasing }}
-          className="mt-7 hidden flex-col items-center gap-6 md:flex"
+        <div
+          style={enterDelay(0.85)}
+          className="hero-enter hero-enter-rise mt-7 hidden flex-col items-center gap-6 md:flex"
         >
           <p className="max-w-[34rem] text-base font-light leading-relaxed text-[var(--color-primary)]/68 md:text-lg">
             {t('subtitle')}
@@ -331,24 +394,20 @@ export default function WebGLHero() {
             {t('ctaPrimary')}
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </Link>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div
+      <div
         aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 0.8 }}
-        className="absolute inset-x-0 bottom-16 z-20 flex justify-center md:bottom-20"
+        style={enterDelay(1.3)}
+        className="hero-enter hero-enter-fade absolute inset-x-0 bottom-16 z-20 flex justify-center md:bottom-20"
       >
-        <motion.span
-          animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-[var(--color-primary)]/55"
+        <span
+          className="hero-bob flex flex-col items-center gap-2 text-[var(--color-primary)]/55"
         >
           <ArrowDown size={18} />
-        </motion.span>
-      </motion.div>
+        </span>
+      </div>
     </section>
   );
 }

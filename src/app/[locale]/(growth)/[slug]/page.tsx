@@ -170,7 +170,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
                     <p className="font-display text-4xl leading-none text-[var(--color-text-main)]">
                       {tier.fromMad === null
                         ? language === 'fr' ? 'Sur devis' : 'On quote'
-                        : `${language === 'fr' ? 'dès ' : 'from '}${tier.fromMad.toLocaleString(language === 'fr' ? 'fr-MA' : 'en-US')} MAD`}
+                        : `${language === 'fr' ? 'À partir de ' : 'From '}${tier.fromMad.toLocaleString(language === 'fr' ? 'fr-MA' : 'en-US')} MAD`}
                     </p>
                     <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">{tier.note}</p>
                   </dd>

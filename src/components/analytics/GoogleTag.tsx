@@ -11,6 +11,26 @@ const GA_MEASUREMENT_ID = (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '').trim
 const GOOGLE_ADS_ID = (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '').trim() || 'AW-18245192967';
 const TAG_IDS = [GA_MEASUREMENT_ID, GOOGLE_ADS_ID].filter(Boolean) as string[];
 
+// gtag.js (~350 KB with the Ads tag it pulls in) is not needed to render the
+// page, so it is fetched on the visitor's first interaction, or a few seconds
+// after the load event when nobody interacts. Every gtag() call made before
+// that (consent defaults, config, page_view, events) waits in window.dataLayer
+// and is replayed in order once the library arrives, so nothing is dropped.
+const GTAG_IDLE_DELAY_MS = 3500;
+const GTAG_INTERACTION_EVENTS = ['pointerdown', 'keydown', 'touchstart', 'wheel', 'scroll'] as const;
+// Paid clicks must reach the Ads conversion linker straight away.
+const PAID_CLICK_PATTERN = /(?:^|[?&])(gclid|gbraid|wbraid|gad_source|utm_[a-z]+)=/;
+
+function loadGoogleTagLibrary(tagId: string) {
+  const src = `https://www.googletagmanager.com/gtag/js?id=${tagId}`;
+  if (document.querySelector(`script[src="${src}"]`)) return;
+
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
 export default function GoogleTag() {
   const pathname = usePathname();
   const skippedInitialView = useRef(false);
@@ -26,9 +46,35 @@ export default function GoogleTag() {
     trackPageView(window.location.href);
   }, [pathname]);
 
+  useEffect(() => {
+    const tagId = TAG_IDS[0];
+    if (!tagId) return;
+
+    let timer = 0;
+    const listenerOptions = { passive: true, capture: true } as const;
+
+    const cleanup = () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('load', scheduleIdleLoad);
+      GTAG_INTERACTION_EVENTS.forEach((type) => window.removeEventListener(type, load, listenerOptions));
+    };
+    function load() {
+      cleanup();
+      loadGoogleTagLibrary(tagId);
+    }
+    function scheduleIdleLoad() {
+      timer = window.setTimeout(load, PAID_CLICK_PATTERN.test(window.location.search) ? 0 : GTAG_IDLE_DELAY_MS);
+    }
+
+    GTAG_INTERACTION_EVENTS.forEach((type) => window.addEventListener(type, load, listenerOptions));
+    if (document.readyState === 'complete') scheduleIdleLoad();
+    else window.addEventListener('load', scheduleIdleLoad);
+
+    return cleanup;
+  }, []);
+
   if (!TAG_IDS.length) return null;
 
-  const primaryTagId = TAG_IDS[0];
   const configLines = TAG_IDS.map((id) =>
     id.startsWith('AW-')
       ? `window.gtag('config', '${id}', { send_page_view: false, allow_enhanced_conversions: true });`
@@ -37,10 +83,6 @@ export default function GoogleTag() {
 
   return (
     <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${primaryTagId}`}
-        strategy="afterInteractive"
-      />
       <Script
         id="wereact-google-tag"
         strategy="afterInteractive"

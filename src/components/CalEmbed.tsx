@@ -6,6 +6,8 @@ import { buildCalBookingUrl, buildCalConfig, getCalCopy } from '@/lib/cal';
 import { getStoredAttribution, trackContactIntent, trackLead } from '@/lib/analytics';
 
 const CAL_EMBED_SRC = 'https://app.cal.com/embed/embed.js';
+// Start loading the inline calendar this far before it enters the viewport.
+const CAL_PRELOAD_MARGIN = '1000px 0px';
 
 // Cal's embed sizes its iframe from inline styles; without this the calendar
 // can render collapsed or hidden inside our grid.
@@ -75,12 +77,13 @@ function loadCal() {
 function useCalBookingTracking(cal: CalApi | null, source: string) {
   useEffect(() => {
     if (!cal) return;
-    cal('on', {
-      action: 'bookingSuccessful',
-      callback: () => {
-        trackLead('cal_booking', { page: source, location: 'cal_embed' });
-      },
-    });
+    const callback = () => {
+      trackLead('cal_booking', { page: source, location: 'cal_embed' });
+    };
+    cal('on', { action: 'bookingSuccessful', callback });
+    // `Cal` is a page-wide singleton: remove the listener on unmount so a later
+    // embed on another page cannot report the same booking twice.
+    return () => cal('off', { action: 'bookingSuccessful', callback });
   }, [cal, source]);
 }
 
@@ -94,13 +97,33 @@ export function CalInline({ source, locale }: CalProps) {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [cal, setCal] = useState<CalApi | null>(null);
   const [failed, setFailed] = useState(false);
+  // The embed (script + iframe, ~1 MB) only starts loading once the calendar is
+  // about to scroll into view, so it never competes with the first render.
+  const [nearViewport, setNearViewport] = useState(false);
   const copy = getCalCopy(locale);
   const calLink = siteConfig.business.calLink;
 
   useCalBookingTracking(cal, source);
 
   useEffect(() => {
-    if (!calLink || !container) return;
+    if (!container || nearViewport) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      const frame = window.requestAnimationFrame(() => setNearViewport(true));
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) setNearViewport(true);
+      },
+      { rootMargin: CAL_PRELOAD_MARGIN },
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, nearViewport]);
+
+  useEffect(() => {
+    if (!calLink || !container || !nearViewport) return;
     let cancelled = false;
 
     loadCal()
@@ -112,7 +135,8 @@ export function CalInline({ source, locale }: CalProps) {
           config: buildCalConfig(getStoredAttribution(), locale),
         });
         api('ui', { hideEventTypeDetails: true, layout: 'month_view' });
-        setCal(api);
+        // `api` is itself a function: pass an updater so React stores it instead of calling it.
+        setCal(() => api);
       })
       .catch(() => {
         if (!cancelled) setFailed(true);
@@ -126,7 +150,7 @@ export function CalInline({ source, locale }: CalProps) {
       cancelled = true;
       window.clearTimeout(timeout);
     };
-  }, [calLink, locale, container]);
+  }, [calLink, locale, container, nearViewport]);
 
   if (!calLink) return null;
 
@@ -165,7 +189,8 @@ export function CalButton({ source, locale, className }: CalProps & { className?
 
     try {
       const api = await loadCal();
-      setCal(api);
+      // `api` is itself a function: pass an updater so React stores it instead of calling it.
+      setCal(() => api);
       api('modal', { calLink, config: buildCalConfig(getStoredAttribution(), locale) });
     } catch {
       window.open(

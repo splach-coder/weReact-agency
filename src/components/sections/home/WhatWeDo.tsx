@@ -11,6 +11,8 @@ type ServiceItem = { title: string; text: string };
 
 type SceneMeta = {
   image: string;
+  /** 900px-wide variant for the stacked mobile cards. */
+  imageSmall: string;
   alt: string;
   signal: string;
 };
@@ -25,32 +27,38 @@ type SceneTiming = {
 
 const SCENES: SceneMeta[] = [
   {
-    image: '/images/services/business-websites-hd.png',
+    image: '/images/services/business-websites-hd.webp',
+    imageSmall: '/images/services/business-websites-sm.webp',
     alt: 'HD production website scene for a Moroccan business brand',
     signal: 'TRUST',
   },
   {
-    image: '/images/services/landing-pages-hd.png',
+    image: '/images/services/landing-pages-hd.webp',
+    imageSmall: '/images/services/landing-pages-sm.webp',
     alt: 'HD production landing page campaign scene',
     signal: 'CONVERT',
   },
   {
-    image: '/images/services/seo-foundations-hd.png',
+    image: '/images/services/seo-foundations-hd.webp',
+    imageSmall: '/images/services/seo-foundations-sm.webp',
     alt: 'HD production SEO and analytics scene',
     signal: 'DISCOVER',
   },
   {
-    image: '/images/services/commerce-flows-hd.png',
+    image: '/images/services/commerce-flows-hd.webp',
+    imageSmall: '/images/services/commerce-flows-sm.webp',
     alt: 'HD production e-commerce storefront scene',
     signal: 'SELL',
   },
   {
-    image: '/images/services/booking-systems-hd.png',
+    image: '/images/services/booking-systems-hd.webp',
+    imageSmall: '/images/services/booking-systems-sm.webp',
     alt: 'HD production booking and reservation flow scene',
     signal: 'BOOK',
   },
   {
-    image: '/images/services/care-maintenance-hd.png',
+    image: '/images/services/care-maintenance-hd.webp',
+    imageSmall: '/images/services/care-maintenance-sm.webp',
     alt: 'HD production website care and maintenance scene',
     signal: 'CARE',
   },
@@ -117,7 +125,6 @@ function ServiceImageLayer({
         alt={scene.alt}
         fill
         sizes="100vw"
-        priority={index < 2}
         className="object-cover"
       />
     </motion.div>
@@ -224,7 +231,7 @@ function MobileWhatWeDo({
             >
               <div data-depth="3" className="relative aspect-video overflow-hidden">
                 <Image
-                  src={scene.image}
+                  src={scene.imageSmall}
                   alt={scene.alt}
                   fill
                   sizes="100vw"

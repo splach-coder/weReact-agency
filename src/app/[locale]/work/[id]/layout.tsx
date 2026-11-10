@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { getProjectById } from '@/data/projects';
+import { getProjectById, projects } from '@/data/projects';
+import { routing } from '@/i18n/routing';
 import { siteConfig } from '@/config/site';
 import { createLocalizedAlternates, createProjectJsonLd } from '@/lib/seo';
 
@@ -7,6 +8,11 @@ type WorkDetailLayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string; id: string }>;
 };
+
+// Prerender every case study for each locale (the page itself is a client component).
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) => projects.map((project) => ({ locale, id: project.id })));
+}
 
 export async function generateMetadata({ params }: Omit<WorkDetailLayoutProps, 'children'>): Promise<Metadata> {
   const { locale, id } = await params;

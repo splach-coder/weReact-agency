@@ -282,3 +282,93 @@
     }
   }
 }
+
+/* ---------------------------------------------------------------------------
+   First-load curtain + hero entrance.
+   Unlayered on purpose: these must win over Tailwind's utility layer.
+
+   <html data-wereact-preloader> is set before first paint by PreloaderBoot:
+   "on" = the curtain is showing, "skip" = no curtain, "done" = it has lifted.
+   --------------------------------------------------------------------------- */
+
+/* The curtain is server-rendered; it only shows when the load is flagged or
+   once the Preloader component has taken it over. */
+.preloader-root {
+  display: none;
+}
+
+html[data-wereact-preloader='on'] .preloader-root,
+.preloader-root[data-active='true'] {
+  display: flex;
+}
+
+/* Safety net: if the page's JavaScript never takes over, lift the curtain
+   anyway (delay mirrors PRELOADER_FAILSAFE_MS). */
+html[data-wereact-preloader='on'] .preloader-root:not([data-active]) {
+  animation: preloader-failsafe 0.3s linear 12s forwards;
+}
+
+@keyframes preloader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Hero entrance - same timings/easings the framer-motion version used; each
+   element sets its own animation-delay inline. */
+.hero-enter-fade {
+  animation: hero-enter-fade 0.8s ease-in-out both;
+}
+
+.hero-enter-rise {
+  animation: hero-enter-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-enter-line {
+  animation: hero-enter-line 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-enter-crowd {
+  animation: hero-enter-crowd 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.hero-bob {
+  animation: hero-bob 2s ease-in-out infinite;
+}
+
+@keyframes hero-enter-fade {
+  from { opacity: 0; }
+}
+
+@keyframes hero-enter-rise {
+  from { opacity: 0; transform: translateY(22px); }
+}
+
+@keyframes hero-enter-line {
+  from { transform: translateY(110%); }
+}
+
+@keyframes hero-enter-crowd {
+  from { opacity: 0; transform: translateY(34px) scale(0.985); }
+}
+
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* Under the curtain nobody can see the entrance, so the hero is simply painted
+   in its final state (the headline is then part of the very first frame).
+   [data-hero-static] pins that for a hero that was mounted under the curtain. */
+html[data-wereact-preloader='on'] .hero-enter,
+[data-hero-static] .hero-enter {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-bob {
+    animation: none;
+  }
+}

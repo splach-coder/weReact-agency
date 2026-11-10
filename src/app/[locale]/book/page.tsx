@@ -42,7 +42,12 @@ export default async function BookPage({ params }: BookPageProps) {
   return (
     <div className="min-h-screen bg-[var(--color-background-main)] pt-28 text-[var(--color-text-main)] md:pt-36">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <CalBookingSection source="book" locale={locale} />
+      <CalBookingSection
+        source="book"
+        locale={locale}
+        headingLevel="h1"
+        heading={isFr ? 'Réservez un appel de 30 minutes' : 'Book a 30-minute call'}
+      />
       <p className="mx-auto max-w-2xl px-6 pb-24 text-center text-sm leading-relaxed text-[var(--color-text-muted)]">
         {isFr
           ? `Vous préférez écrire ? Écrivez-nous à ${siteConfig.business.email} ou sur WhatsApp au ${siteConfig.business.phoneDisplay}.`

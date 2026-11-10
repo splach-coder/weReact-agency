@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { setRequestLocale } from 'next-intl/server';
 import WebGLHero from '@/components/WebGLHero';
 import SectionErrorBoundary from '@/components/SectionErrorBoundary';
 import { createBusinessJsonLd, createServiceJsonLd, createWebsiteJsonLd } from '@/lib/seo';
@@ -25,7 +26,10 @@ const SECTIONS = [
   BookCall,
 ];
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const serviceJsonLd = createServiceJsonLd();
   const businessJsonLd = createBusinessJsonLd();
   const websiteJsonLd = createWebsiteJsonLd();
@@ -36,15 +40,16 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <WebGLHero />
-      <Suspense
-        fallback={<div className="h-screen bg-[var(--color-background-main)]" />}
-      >
-        {SECTIONS.map((Section, i) => (
-          <SectionErrorBoundary key={i}>
+      {/* One Suspense boundary per section: React then hydrates them one at a
+          time and yields to the browser in between, instead of hydrating the
+          whole page below the hero as a single long task. */}
+      {SECTIONS.map((Section, i) => (
+        <Suspense key={i} fallback={<div className="h-screen bg-[var(--color-background-main)]" />}>
+          <SectionErrorBoundary>
             <Section />
           </SectionErrorBoundary>
-        ))}
-      </Suspense>
+        </Suspense>
+      ))}
     </div>
   );
 }
