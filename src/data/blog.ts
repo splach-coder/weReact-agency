@@ -75,7 +75,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "9 min read",
         tags: ["Morocco", "Website Cost", "Pricing", "Web Design"],
         content: `
-            <p>Price is usually the first question a business owner asks about a new website, and the one most agencies in Morocco answer last. Quotes for what sounds like the same project can range from a few thousand dirhams to several months of salary, and without context those numbers are impossible to compare. This guide shares the starting prices we actually quote at WeReact, explains what moves a project up from there, and lists the questions worth asking before you accept any offer, including ours.</p>
+            <p>Price is usually the first question a business owner asks about a new website, and the one most agencies in Morocco answer last. Quotes for what sounds like the same project can range from a few thousand dirhams to several months of salary, and without context those numbers are impossible to compare. This guide shares the starting prices we actually quote at WeReact, explains what moves a project up from there, and lists the questions worth asking before you accept any offer, including ours. In our <a href="/en/blog/etude-sites-agences-web-marrakech">study of 66 agency websites ranking in Marrakech</a>, only 21 published a price for their own services.</p>
 
             <h2>Why website prices vary so much</h2>
             <p>Two websites can look almost identical in a portfolio screenshot and still be completely different products. The visible design is only one layer. Underneath sit the decisions that change both the cost and the value of the project: whether the pages are structured so Google can understand your services, whether the site loads quickly on a mid-range phone with an average connection, whether the content is written around what your customers actually search for, and whether tracking is in place so you can see which pages generate calls and WhatsApp messages. A website built as a commercial tool takes more work than a website built as an online brochure, and the price follows the work.</p>
@@ -133,7 +133,7 @@ export const blogPosts: BlogPost[] = [
             category: "Tarifs",
             authorRole: "Studio de création web et SEO",
             content: `
-                <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web, et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les prix de départ que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter un devis à partir de là, et nous listons les questions à poser avant d'accepter une offre, y compris la nôtre.</p>
+                <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web, et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les prix de départ que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter un devis à partir de là, et nous listons les questions à poser avant d'accepter une offre, y compris la nôtre. Dans notre <a href="/fr/blog/etude-sites-agences-web-marrakech">étude de 66 sites d’agences classés à Marrakech</a>, seuls 21 affichaient un prix pour leurs propres services.</p>
 
                 <h2>Pourquoi les prix varient autant</h2>
                 <p>Deux sites web peuvent sembler presque identiques sur une capture d'écran de portfolio et rester des produits complètement différents. Le design visible n'est qu'une couche. En dessous se trouvent les décisions qui changent à la fois le coût et la valeur du projet : la structure des pages permet-elle à Google de comprendre vos services, le site se charge-t-il rapidement sur un téléphone de milieu de gamme avec une connexion moyenne, le contenu est-il rédigé autour de ce que vos clients recherchent vraiment, et le suivi statistique est-il en place pour savoir quelles pages génèrent des appels et des messages WhatsApp. Un site conçu comme un outil commercial demande plus de travail qu'une simple brochure en ligne, et le prix suit le travail.</p>
@@ -347,7 +347,7 @@ export const blogPosts: BlogPost[] = [
             <p>Use clean metadata, sitemap entries, LocalBusiness or ProfessionalService schema, service information, and article content where useful. Schema will not replace good content, but it helps search engines interpret your business, location, and services more clearly.</p>
 
             <h2>Design conversion paths for direct inquiries</h2>
-            <p>Direct bookings and inquiries reduce dependence on third-party platforms. Place inquiry buttons near service descriptions, destination pages, photo sections, and pricing explanations. Make WhatsApp, email, phone, and forms easy to find without making the page feel aggressive.</p>
+            <p>Direct bookings and inquiries reduce dependence on third-party platforms. Place inquiry buttons near service descriptions, destination pages, photo sections, and pricing explanations. Make WhatsApp, email, phone, and forms easy to find without making the page feel aggressive. Our <a href="/en/blog/commission-getyourguide-viator-booking-maroc">comparison of platform commissions</a> shows what that dependence costs.</p>
 
             <h2>A checklist for tour and activity operators</h2>
             <p>Tours and activities are searched differently from hotels. People type the activity and the place together, then compare three or four operators on their phone. These are the pages and details that decide who gets the message. Our <a href="/en/site-web-agence-de-voyage">websites for travel agencies, tours and activities</a> are built around this list.</p>
@@ -405,7 +405,7 @@ export const blogPosts: BlogPost[] = [
                 <p>Utilisez des métadonnées propres, un sitemap à jour, un balisage LocalBusiness ou ProfessionalService, des informations de services et des contenus d'articles quand c'est pertinent. Le schema ne remplacera jamais un bon contenu, mais il aide les moteurs de recherche à interpréter plus clairement votre activité, votre localisation et vos services.</p>
 
                 <h2>Concevez des parcours de conversion pour les demandes directes</h2>
-                <p>Les réservations et demandes directes réduisent la dépendance aux plateformes tierces. Placez des boutons de demande près des descriptions de services, des pages destinations, des galeries photos et des explications de prix. Rendez WhatsApp, l'e-mail, le téléphone et les formulaires faciles à trouver, sans donner à la page un ton insistant.</p>
+                <p>Les réservations et demandes directes réduisent la dépendance aux plateformes tierces. Placez des boutons de demande près des descriptions de services, des pages destinations, des galeries photos et des explications de prix. Rendez WhatsApp, l'e-mail, le téléphone et les formulaires faciles à trouver, sans donner à la page un ton insistant. Notre <a href="/fr/blog/commission-getyourguide-viator-booking-maroc">comparatif des commissions des plateformes</a> montre ce que coûte cette dépendance.</p>
 
                 <h2>La liste de contrôle pour les excursions et activités</h2>
                 <p>On ne cherche pas une excursion comme on cherche un hôtel. Le voyageur tape l'activité et le lieu ensemble, puis compare trois ou quatre prestataires sur son téléphone. Voici les pages et les détails qui décident de qui reçoit le message. Nos <a href="/fr/site-web-agence-de-voyage">sites pour agences de voyage, excursions et activités</a> sont construits autour de cette liste.</p>
@@ -574,6 +574,282 @@ export const blogPosts: BlogPost[] = [
                     <li>Un bouton « Site Web » qui mène à la page correspondante.</li>
                 </ul>
                 <p>Vous préférez qu'on s'en occupe ? Nous créons et optimisons la fiche dans le cadre de notre <a href="/fr/agence-seo-marrakech">accompagnement SEO local</a>, et chaque site que nous créons commence par là. Voir nos <a href="/fr/blog/combien-coute-site-web-maroc">prix de création de site web au Maroc</a>.</p>
+            `
+        }
+    },
+    {
+        slug: "commission-getyourguide-viator-booking-maroc",
+        title: "GetYourGuide, Viator, Booking.com and Airbnb Commissions: What Operators and Riads in Morocco Pay (2026)",
+        metaTitle: "GetYourGuide, Viator and Booking Commissions in Morocco",
+        excerpt: "We read each platform’s own supplier and host pages. Only Airbnb publishes its rates on a live page; GetYourGuide removed its 20–30%. What that means for a tour operator or a riad, with sources.",
+        metaDescription: "GetYourGuide, Viator, Booking.com, Airbnb and Expedia commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages, with the direct-booking arithmetic.",
+        date: "November 10, 2026",
+        publishedAt: "2026-11-10",
+        modifiedAt: "2026-11-10",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "site-web-agence-de-voyage",
+        relatedAudienceSlug: "tourism-websites-morocco",
+        category: "Tourism",
+        categoryColor: "#A3B18A",
+        image: "/images/projects/flying-tandem.webp",
+        readTime: "9 min read",
+        tags: ["GetYourGuide", "Viator", "Booking.com", "Airbnb", "Commission", "Tour operators", "Riads", "Morocco"],
+        content: `
+            <p>Most tour operators, activity providers and riads in Morocco sell part of their capacity through platforms. The question we hear first is simple: how much do they take? On November 10, 2026 we read each platform’s own pages for suppliers and hosts. The short answer: <strong>only Airbnb publishes its rates on a live page.</strong> GetYourGuide published a range until 2025 and has since removed it. Viator, Booking.com and Expedia publish no percentage; you see your rate in your contract or during sign-up.</p>
+            <p>Below is what each platform says, with the link, then what it means for your margins and when a <a href="/en/site-web-agence-de-voyage">direct-booking website for your activities</a> or <a href="/en/hotel-website-design">for your riad</a> starts to pay for itself.</p>
+
+            <h2>What the platforms themselves say</h2>
+            <table>
+                <thead><tr><th>Platform</th><th>What it publishes</th><th>Source</th></tr></thead>
+                <tbody>
+                    <tr><td>GetYourGuide</td><td>No figure today: “Rates may vary depending on your country of operation”. Until 2025: 20–30% depending on the country of the activity.</td><td><a href="https://getyourguide.supply/" rel="noopener" target="_blank">live page</a>, <a href="https://web.archive.org/web/20250118094756/https://www.getyourguide.supply/join/how-much-does-getyourguide-charge" rel="noopener" target="_blank">January 2025 copy</a></td></tr>
+                    <tr><td>Viator / Tripadvisor</td><td>No percentage. A one-time US$29 listing fee per product; commission only on completed bookings.</td><td><a href="https://web.archive.org/web/20260608142229/http://operatorresources.viator.com/" rel="noopener" target="_blank">Viator operator site, June 2026 copy</a></td></tr>
+                    <tr><td>Booking.com</td><td>No percentage: it “depends on your country, property type and the accommodation agreement”.</td><td><a href="https://partner.booking.com/en-gb/help/payments-payouts-invoices/invoices/understanding-your-commission" rel="noopener" target="_blank">partner help centre</a></td></tr>
+                    <tr><td>Airbnb (homes)</td><td>Host-only fee: 15.5% for most hosts. Split fee: 3% for the host plus 14.1–16.5% for the guest.</td><td><a href="https://www.airbnb.com/help/article/1857" rel="noopener" target="_blank">Airbnb service fees</a></td></tr>
+                    <tr><td>Airbnb (experiences)</td><td>“Typically” 20%.</td><td><a href="https://www.airbnb.com/help/article/1857" rel="noopener" target="_blank">same page</a></td></tr>
+                    <tr><td>Expedia</td><td>No percentage. An older official page only said “an industry standard commission”.</td><td><a href="https://web.archive.org/web/20240319180719/https://welcome.expediagroup.com/en/how-it-works" rel="noopener" target="_blank">March 2024 copy</a></td></tr>
+                </tbody>
+            </table>
+
+            <h2>GetYourGuide: 20–30%, until the number disappeared</h2>
+            <p>GetYourGuide’s supplier page now says: “Rates may vary depending on your country of operation — the exact amount will be shared after you sign up.” Listing an activity costs nothing; the commission applies only to successful bookings.</p>
+            <p>The same page said something more precise in January 2025: “GetYourGuide applies a 20-30% commission fee to suppliers based on the country of activity. For example, if you set the price at €100 per ticket, your net earnings would be €80-70.” That figure is no longer on the live site. In mid-2025 the industry outlet <a href="https://arival.travel/article/getyourguide-commission-increasing-for-some-operators" rel="noopener" target="_blank">Arival</a> reported operators being moved from 20% to 30%, and quoted GetYourGuide describing it as a targeted adjustment affecting a small number of partners. Your own rate is the one in your account.</p>
+
+            <h2>Viator: no percentage, and Viator sets the retail price</h2>
+            <p>Viator, which also supplies Tripadvisor’s experiences, describes a pay-for-performance model: “You only pay when we bring you a completed booking”, plus a one-time listing fee of US$29 per product. It does not publish a commission percentage. Booking and channel-software vendors quote figures between 20% and 35%; those are their estimates, not Viator’s.</p>
+            <p>The supplier agreement updated for August 2026 adds an important detail: Viator and its partners “have autonomy over the final Retail Price displayed to consumers”, while your payout stays “anchored to the Net Rate” you set. In practice, the price a traveler sees on Viator may differ from the price you would show on your own site.</p>
+
+            <h2>Booking.com: the rate is in your contract</h2>
+            <p>Booking.com’s partner help centre says the exact percentage “depends on your country, property type and the accommodation agreement you signed”, and that marketing programmes such as Preferred Partner or Visibility Booster can raise it. It gives no figure for Morocco. In 2023, during a dispute with the national hotel federation, the Moroccan press reported 15–17% for classified hotels, rising for more visibility (<a href="https://fr.hespress.com/326262-le-bras-de-fer-continue-entre-la-fnih-et-booking.html" rel="noopener" target="_blank">Hespress</a>). That is press reporting, not a Booking.com statement.</p>
+
+            <h2>Airbnb: the only platform with published rates</h2>
+            <p>Airbnb’s help page states its fees plainly. With the single, host-only fee, “most hosts pay 15.5%”, and the page says this structure is mandatory for most hosts, “including traditional hospitality listings (e.g., hotels, serviced apartments, etc.)” and hosts who use property-management software. With the older split fee, the host pays 3% and the guest 14.1% to 16.5%, but Airbnb says it is moving all home hosts to the single fee. For experiences, Airbnb “typically” charges 20%.</p>
+
+            <h2>What it means for your margins</h2>
+            <p>These are illustrations with the published or reported rates. Your real rate is the one in your contract.</p>
+            <ul>
+                <li><strong>An activity at 500 MAD per person</strong> sold at 20–30% leaves 100 to 150 MAD per booking with the platform. A <a href="/en/blog/combien-coute-site-web-maroc">showcase website from 2,000 MAD</a> costs the same as the commission on 14 to 20 of those bookings.</li>
+                <li><strong>A riad night at 1,000 MAD</strong> on Airbnb’s 15.5% host-only fee leaves 155 MAD with the platform. 2,000 MAD is the fee on about 13 nights.</li>
+            </ul>
+            <p>A website does not replace what the platforms do best: bring travelers who have never heard of you. Its job is the travelers who already know you, such as repeat guests, recommendations, people who find your <a href="/en/blog/fiche-google-business-maroc">Google Business Profile</a> or your Instagram, and who would otherwise book you through a platform and pay its commission.</p>
+
+            <h2>How to win back part of your bookings, within the rules</h2>
+            <ul>
+                <li><strong>Never move a platform booking off the platform.</strong> A traveler who booked on Airbnb or GetYourGuide belongs to that booking; asking them to pay you outside it breaks the platform’s terms. Direct bookings are for travelers who come to you first.</li>
+                <li><strong>Check your contract before offering a lower price direct.</strong> Some agreements limit the prices you can show elsewhere.</li>
+                <li><strong>Make the direct path obvious where people already find you:</strong> the website button on your Google profile, your Instagram bio, the card in your rooms or vehicles.</li>
+                <li><strong>Put WhatsApp next to the price</strong> and answer fast. Most enquiries in Morocco arrive there.</li>
+                <li><strong>Give each activity or room its own page</strong> with the details travelers check before paying. Our <a href="/en/blog/tourism-hospitality-seo-morocco">tourism SEO guide</a> has the checklist.</li>
+            </ul>
+
+            <h2>Method</h2>
+            <p>Read on November 10, 2026. For each platform we looked for its own supplier or host pages first. When a live page gave no figure, we say so, and quote any earlier official version from the Internet Archive with its date. Viator’s operator site blocked automated reading, so we used archived copies from June and August 2026. Figures from the press or from software vendors are labelled as such. This article is about published rates; it is not legal or contractual advice.</p>
+        `,
+        fr: {
+            title: "Commission GetYourGuide, Viator, Booking et Airbnb : ce que paient les prestataires et les riads au Maroc (2026)",
+            metaTitle: "Commission GetYourGuide, Viator, Booking au Maroc",
+            excerpt: "Nous avons lu les pages fournisseurs et hôtes de chaque plateforme. Seul Airbnb publie ses taux sur une page en ligne ; GetYourGuide a retiré ses 20 à 30 %. Ce que cela change pour un prestataire d'activités ou un riad, sources à l'appui.",
+            metaDescription: "Commissions GetYourGuide, Viator, Booking.com, Airbnb et Expedia pour les prestataires d'activités et les riads au Maroc en 2026, d'après les pages des plateformes, avec le calcul de la réservation directe.",
+            date: "10 novembre 2026",
+            readTime: "9 min de lecture",
+            category: "Tourisme",
+            authorRole: "Studio de création web et SEO",
+            content: `
+                <p>La plupart des prestataires d'excursions et d'activités et des riads au Maroc vendent une partie de leurs places via des plateformes. La première question qu'on nous pose est simple : combien prennent-elles ? Le 10 novembre 2026, nous avons lu les pages fournisseurs et hôtes de chaque plateforme. Réponse courte : <strong>seul Airbnb publie ses taux sur une page en ligne.</strong> GetYourGuide affichait une fourchette jusqu'en 2025 et l'a retirée. Viator, Booking.com et Expedia ne publient aucun pourcentage : vous le découvrez dans votre contrat ou à l'inscription.</p>
+                <p>Voici ce que dit chaque plateforme, avec le lien, puis ce que cela représente pour vos marges et à partir de quand un <a href="/fr/site-web-agence-de-voyage">site de réservation directe pour vos activités</a> ou <a href="/fr/hotel-website-design">pour votre riad</a> se rembourse.</p>
+
+                <h2>Ce que disent les plateformes elles-mêmes</h2>
+                <table>
+                    <thead><tr><th>Plateforme</th><th>Ce qu'elle publie</th><th>Source</th></tr></thead>
+                    <tbody>
+                        <tr><td>GetYourGuide</td><td>Aucun chiffre aujourd'hui : le taux « peut varier selon votre pays d'activité ». Jusqu'en 2025 : 20 à 30 % selon le pays de l'activité.</td><td><a href="https://getyourguide.supply/" rel="noopener" target="_blank">page actuelle</a>, <a href="https://web.archive.org/web/20250118094756/https://www.getyourguide.supply/join/how-much-does-getyourguide-charge" rel="noopener" target="_blank">copie de janvier 2025</a></td></tr>
+                        <tr><td>Viator / Tripadvisor</td><td>Aucun pourcentage. Des frais d'inscription uniques de 29 $ par produit ; commission seulement sur les réservations réalisées.</td><td><a href="https://web.archive.org/web/20260608142229/http://operatorresources.viator.com/" rel="noopener" target="_blank">site opérateurs Viator, copie de juin 2026</a></td></tr>
+                        <tr><td>Booking.com</td><td>Aucun pourcentage : il « dépend de votre pays, du type d'établissement et du contrat ».</td><td><a href="https://partner.booking.com/en-gb/help/payments-payouts-invoices/invoices/understanding-your-commission" rel="noopener" target="_blank">centre d'aide partenaires</a></td></tr>
+                        <tr><td>Airbnb (logements)</td><td>Frais d'hôte uniques : 15,5 % pour la plupart des hôtes. Frais partagés : 3 % pour l'hôte et 14,1 à 16,5 % pour le voyageur.</td><td><a href="https://www.airbnb.com/help/article/1857" rel="noopener" target="_blank">frais de service Airbnb</a></td></tr>
+                        <tr><td>Airbnb (expériences)</td><td>20 % « en général ».</td><td><a href="https://www.airbnb.com/help/article/1857" rel="noopener" target="_blank">même page</a></td></tr>
+                        <tr><td>Expedia</td><td>Aucun pourcentage. Une ancienne page officielle parlait seulement d'une « commission standard du secteur ».</td><td><a href="https://web.archive.org/web/20240319180719/https://welcome.expediagroup.com/en/how-it-works" rel="noopener" target="_blank">copie de mars 2024</a></td></tr>
+                    </tbody>
+                </table>
+
+                <h2>GetYourGuide : 20 à 30 %, jusqu'à ce que le chiffre disparaisse</h2>
+                <p>La page fournisseurs de GetYourGuide indique aujourd'hui que le taux peut varier selon votre pays d'activité et que le montant exact est communiqué après l'inscription. Publier une activité est gratuit ; la commission ne s'applique qu'aux réservations réalisées.</p>
+                <p>En janvier 2025, la même page était plus précise : « GetYourGuide applies a 20-30% commission fee to suppliers based on the country of activity », avec l'exemple d'un billet à 100 € qui rapporte 70 à 80 € au prestataire. Ce chiffre n'est plus sur le site. Mi-2025, le média spécialisé <a href="https://arival.travel/article/getyourguide-commission-increasing-for-some-operators" rel="noopener" target="_blank">Arival</a> a rapporté des passages de 20 % à 30 % pour certains opérateurs, GetYourGuide parlant d'un ajustement ciblé touchant un petit nombre de partenaires. Votre taux est celui de votre compte.</p>
+
+                <h2>Viator : aucun pourcentage, et c'est Viator qui fixe le prix affiché</h2>
+                <p>Viator, qui alimente aussi les expériences de Tripadvisor, décrit un modèle à la performance : vous ne payez que lorsqu'une réservation est réalisée, plus 29 $ de frais d'inscription uniques par produit. Aucun pourcentage n'est publié. Des éditeurs de logiciels de réservation avancent 20 à 35 % : ce sont leurs estimations, pas celles de Viator.</p>
+                <p>Le contrat fournisseurs mis à jour pour août 2026 ajoute un point important : Viator et ses partenaires ont la main sur le prix final affiché aux voyageurs, tandis que votre paiement reste calé sur le prix net que vous fixez. Concrètement, le prix que voit un voyageur sur Viator peut différer de celui que vous afficheriez sur votre propre site.</p>
+
+                <h2>Booking.com : le taux est dans votre contrat</h2>
+                <p>Le centre d'aide partenaires de Booking.com indique que le pourcentage exact dépend du pays, du type d'établissement et du contrat signé, et que des programmes marketing comme Partenaire Préféré ou Visibility Booster peuvent l'augmenter. Aucun chiffre n'est donné pour le Maroc. En 2023, lors d'un conflit avec la fédération nationale de l'industrie hôtelière, la presse marocaine a rapporté 15 à 17 % pour les hôtels classés, davantage pour plus de visibilité (<a href="https://fr.hespress.com/326262-le-bras-de-fer-continue-entre-la-fnih-et-booking.html" rel="noopener" target="_blank">Hespress</a>). Il s'agit d'un chiffre de presse, pas d'une déclaration de Booking.com.</p>
+
+                <h2>Airbnb : la seule plateforme qui publie ses taux</h2>
+                <p>La page d'aide d'Airbnb détaille ses frais. Avec les frais d'hôte uniques, la plupart des hôtes paient 15,5 %, et Airbnb précise que cette structure est obligatoire pour la plupart des hôtes, notamment les établissements hôteliers traditionnels (hôtels, appartements avec services…) et les hôtes qui utilisent un logiciel de gestion. Avec l'ancienne structure partagée, l'hôte paie 3 % et le voyageur 14,1 à 16,5 %, mais Airbnb indique faire passer tous les hôtes de logements aux frais uniques. Pour les expériences, Airbnb prélève « en général » 20 %.</p>
+
+                <h2>Ce que cela représente pour vos marges</h2>
+                <p>Ce sont des illustrations avec les taux publiés ou rapportés. Votre taux réel est celui de votre contrat.</p>
+                <ul>
+                    <li><strong>Une activité à 500 MAD par personne</strong> vendue à 20–30 % laisse 100 à 150 MAD par réservation à la plateforme. Un <a href="/fr/blog/combien-coute-site-web-maroc">site vitrine à partir de 2 000 MAD</a> coûte autant que la commission de 14 à 20 de ces réservations.</li>
+                    <li><strong>Une nuit en riad à 1 000 MAD</strong> avec les frais d'hôte uniques d'Airbnb à 15,5 % laisse 155 MAD à la plateforme. 2 000 MAD, ce sont les frais d'environ 13 nuits.</li>
+                </ul>
+                <p>Un site ne remplace pas ce que les plateformes font le mieux : amener des voyageurs qui ne vous connaissent pas encore. Son rôle, ce sont les voyageurs qui vous connaissent déjà, clients qui reviennent, recommandations, personnes qui trouvent votre <a href="/fr/blog/fiche-google-business-maroc">fiche Google Business</a> ou votre Instagram, et qui sinon réserveraient via une plateforme et paieraient sa commission.</p>
+
+                <h2>Récupérer une partie de vos réservations, dans les règles</h2>
+                <ul>
+                    <li><strong>Ne déplacez jamais une réservation de plateforme en dehors de la plateforme.</strong> Un voyageur qui a réservé sur Airbnb ou GetYourGuide relève de cette réservation ; lui demander de vous payer à côté enfreint les conditions de la plateforme. La réservation directe concerne les voyageurs qui viennent d'abord à vous.</li>
+                    <li><strong>Vérifiez votre contrat avant d'afficher un prix plus bas en direct.</strong> Certains contrats encadrent les prix que vous pouvez afficher ailleurs.</li>
+                    <li><strong>Rendez le chemin direct évident là où l'on vous trouve déjà :</strong> le bouton « Site Web » de votre fiche Google, votre bio Instagram, la carte dans vos chambres ou vos véhicules.</li>
+                    <li><strong>Placez WhatsApp à côté du prix</strong> et répondez vite. C'est par là qu'arrivent la plupart des demandes au Maroc.</li>
+                    <li><strong>Donnez à chaque activité ou chambre sa propre page</strong> avec les informations que le voyageur vérifie avant de payer. Notre <a href="/fr/blog/tourism-hospitality-seo-morocco">guide SEO tourisme</a> donne la liste.</li>
+                </ul>
+
+                <h2>Méthode</h2>
+                <p>Lecture le 10 novembre 2026. Pour chaque plateforme, nous avons d'abord cherché ses propres pages fournisseurs ou hôtes. Quand une page en ligne ne donne aucun chiffre, nous le disons, et citons la version officielle antérieure conservée par l'Internet Archive, avec sa date. Le site opérateurs de Viator bloquait la lecture automatisée : nous avons utilisé ses copies archivées de juin et août 2026. Les chiffres issus de la presse ou d'éditeurs de logiciels sont signalés comme tels. Cet article porte sur les taux publiés ; il ne remplace pas un conseil juridique ou contractuel.</p>
+            `
+        }
+    },
+    {
+        slug: "etude-sites-agences-web-marrakech",
+        title: "Web Agencies in Marrakech: What 66 Ranking Websites Show Buyers (2026 Study)",
+        metaTitle: "Web Agencies in Marrakech: A Study of 66 Sites",
+        excerpt: "We checked every agency and freelancer site in Google’s top 20 for three Marrakech searches. Two in three publish no price, few give a delivery time, and half of the reviews shown cannot be traced.",
+        metaDescription: "Study of 66 web agency and freelancer websites ranking on Google for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp, with the method.",
+        date: "November 10, 2026",
+        publishedAt: "2026-11-10",
+        modifiedAt: "2026-11-10",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "web-design-marrakech",
+        relatedAudienceSlug: "website-design-moroccan-businesses",
+        category: "Research",
+        categoryColor: "#A3B18A",
+        image: "/images/blog/design.webp",
+        readTime: "7 min read",
+        tags: ["Web agency Marrakech", "Study", "Website prices", "Morocco"],
+        content: `
+            <p>Choosing a web agency in Marrakech usually starts on Google, with a dozen tabs and the same questions each time: how much, how long, and can I trust them? We wanted to know how many agencies actually answer those questions on their own website.</p>
+            <p>On November 10, 2026 we took every agency and freelancer website in Google’s top 20 results in Morocco, in French, for three searches: “agence web marrakech”, “création site web marrakech” and “agence seo marrakech”. That gave 67 sites, 66 of which we could analyse. We are a Marrakech agency ourselves, so we left our own site out and we name no one: the point is what a buyer sees, not who.</p>
+
+            <h2>The numbers</h2>
+            <table>
+                <thead><tr><th>What we checked</th><th>Sites</th></tr></thead>
+                <tbody>
+                    <tr><td>Publish a price for their own services</td><td>21 of 66</td></tr>
+                    <tr><td>Show no price at all</td><td>36 of 66</td></tr>
+                    <tr><td>Give a delivery time with a number</td><td>18 of 66</td></tr>
+                    <tr><td>Show testimonials or a rating</td><td>34 of 66</td></tr>
+                    <tr><td>…of which link to where the reviews come from</td><td>17 of 34</td></tr>
+                    <tr><td>Offer WhatsApp</td><td>46 of 66</td></tr>
+                    <tr><td>Have an English version</td><td>23 of 66</td></tr>
+                    <tr><td>Have an Arabic version</td><td>10 of 66</td></tr>
+                    <tr><td>French only</td><td>41 of 66</td></tr>
+                    <tr><td>Link to their Google Business listing</td><td>27 of 66</td></tr>
+                    <tr><td>Show a portfolio or case studies</td><td>52 of 66</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Two agencies in three do not show a price</h2>
+            <p>Only 21 of the 66 sites publish a price for their own services. Twelve give a “from” price for building a website in dirhams: the median is 3,045 MAD, and ten of the twelve sit between 900 and 4,000 MAD. Two premium agencies start at 35,000 MAD, which shows how wide the market is. Several of the lowest prices on the list are monthly SEO plans, not websites, so compare like with like.</p>
+            <p>A price on the page does not tell you everything, but its absence means every comparison starts with a phone call. Our <a href="/en/blog/combien-coute-site-web-maroc">guide to website prices in Morocco</a> explains what moves a quote up or down.</p>
+
+            <h2>Few say how long it takes</h2>
+            <p>18 sites give a delivery time with a number, from seven days to five to eight weeks. Thirteen mention “délais” without a figure, and 33 say nothing about time at all. If your launch date matters, for a season or an opening, ask for it in writing before you sign.</p>
+
+            <h2>Half of the reviews cannot be traced</h2>
+            <p>34 sites show testimonials or a rating. Only 17 link to where those reviews come from, mostly Google, sometimes Trustpilot. Fourteen show reviews with no source at all, and three had placeholder or empty review blocks live on the page. A review you can click through to a Google profile carries more weight than a quote anyone can type. Google’s own rules on reviews are summarised in our <a href="/en/blog/fiche-google-business-maroc">Google Business Profile guide</a>.</p>
+
+            <h2>Mostly French-only, in a tourist city</h2>
+            <p>41 of the 66 sites are only in French. 23 have English, 10 have Arabic, and 8 have all three. For an agency that will build your site, its own languages are a fair hint at how it will treat yours, especially if your customers are travelers.</p>
+
+            <h2>Ranking higher does not mean more transparent</h2>
+            <p>Sites in the top five for any of the three searches publish their own price no more often than those ranked sixth to twentieth: 11 of 30 against 10 of 33. It is the same for WhatsApp, delivery times and linked reviews. Position on Google tells you who invested in visibility, not who answers your questions.</p>
+
+            <h2>Two more things worth knowing</h2>
+            <ul>
+                <li><strong>Not every “Marrakech” page is in Marrakech.</strong> Of the 38 sites that declare an address in their page code, 18 give another city, such as Tangier, Agadir or Casablanca. That is not a problem in itself, as projects run remotely, but it is worth asking where the team works.</li>
+                <li><strong>Some “top agencies in Marrakech” lists are written by agencies,</strong> and a few businesses run several of the ranking sites, which share the same phone number. Read rankings of agencies with that in mind.</li>
+            </ul>
+
+            <h2>A checklist for choosing an agency</h2>
+            <ul>
+                <li>A starting price in writing, and what it includes.</li>
+                <li>A delivery date in writing.</li>
+                <li>Reviews you can click through to their source.</li>
+                <li>Examples of real projects, with links you can open.</li>
+                <li>The languages your customers need, planned from the start.</li>
+                <li>Who owns the domain, the hosting and the code at the end. Our pricing guide lists <a href="/en/blog/combien-coute-site-web-maroc">the questions to ask any agency</a>.</li>
+            </ul>
+            <p>That list applies to us as well. Our prices start from 2,000 MAD for a showcase website and from 3,500 MAD for e-commerce, with a delivery time on every quote: see <a href="/en/web-design-marrakech">our web agency page for Marrakech</a>.</p>
+
+            <h2>Method</h2>
+            <p>Searches: “agence web marrakech”, “création site web marrakech” and “agence seo marrakech”, Google Morocco in French on desktop, top 20 organic results plus the map pack, each read three times and merged, on November 10, 2026. We kept web agencies and freelancers and excluded directories, social networks, listing sites and our own site. For each site we read two pages, the page that ranked and the homepage, with one request each, following robots.txt, without running JavaScript. Prices, delivery times and reviews were checked by hand. Limits: content loaded only by JavaScript or shown inside images was not read; one site returned a server error and was not analysed; one measurement per site.</p>
+        `,
+        fr: {
+            title: "Agences web à Marrakech : ce que montrent 66 sites classés sur Google (étude 2026)",
+            metaTitle: "Agences web à Marrakech : étude de 66 sites",
+            excerpt: "Nous avons examiné tous les sites d'agences et de freelances du top 20 Google pour trois recherches à Marrakech. Deux sur trois n'affichent aucun prix, peu donnent un délai, et la moitié des avis affichés sont invérifiables.",
+            metaDescription: "Étude de 66 sites d'agences web et de freelances classés sur Google pour Marrakech en novembre 2026 : prix, délais, avis, langues et WhatsApp, avec la méthode.",
+            date: "10 novembre 2026",
+            readTime: "7 min de lecture",
+            category: "Étude",
+            authorRole: "Studio de création web et SEO",
+            content: `
+                <p>Choisir une agence web à Marrakech commence en général sur Google, avec une dizaine d'onglets ouverts et les mêmes questions à chaque fois : combien, en combien de temps, et peut-on leur faire confiance ? Nous voulions savoir combien d'agences répondent vraiment à ces questions sur leur propre site.</p>
+                <p>Le 10 novembre 2026, nous avons pris tous les sites d'agences et de freelances présents dans les 20 premiers résultats de Google au Maroc, en français, pour trois recherches : « agence web marrakech », « création site web marrakech » et « agence seo marrakech ». Cela donne 67 sites, dont 66 analysables. Nous sommes nous-mêmes une agence à Marrakech : nous avons donc exclu notre propre site et nous ne citons personne. Ce qui compte ici, c'est ce que voit un client, pas qui.</p>
+
+                <h2>Les chiffres</h2>
+                <table>
+                    <thead><tr><th>Ce que nous avons vérifié</th><th>Sites</th></tr></thead>
+                    <tbody>
+                        <tr><td>Affichent un prix pour leurs propres services</td><td>21 sur 66</td></tr>
+                        <tr><td>N'affichent aucun prix</td><td>36 sur 66</td></tr>
+                        <tr><td>Donnent un délai de livraison chiffré</td><td>18 sur 66</td></tr>
+                        <tr><td>Affichent des avis ou une note</td><td>34 sur 66</td></tr>
+                        <tr><td>…dont avec un lien vers la source des avis</td><td>17 sur 34</td></tr>
+                        <tr><td>Proposent WhatsApp</td><td>46 sur 66</td></tr>
+                        <tr><td>Ont une version anglaise</td><td>23 sur 66</td></tr>
+                        <tr><td>Ont une version arabe</td><td>10 sur 66</td></tr>
+                        <tr><td>Uniquement en français</td><td>41 sur 66</td></tr>
+                        <tr><td>Renvoient vers leur fiche Google Business</td><td>27 sur 66</td></tr>
+                        <tr><td>Montrent un portfolio ou des études de cas</td><td>52 sur 66</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Deux agences sur trois n'affichent pas de prix</h2>
+                <p>Seuls 21 des 66 sites affichent un prix pour leurs propres services. Douze donnent un prix « à partir de » pour la création d'un site, en dirhams : la médiane est de 3 045 MAD, et dix sur douze se situent entre 900 et 4 000 MAD. Deux agences haut de gamme démarrent à 35 000 MAD, ce qui montre l'étendue du marché. Plusieurs des prix les plus bas de la liste sont des forfaits SEO mensuels, pas des sites : comparez ce qui est comparable.</p>
+                <p>Un prix affiché ne dit pas tout, mais son absence oblige à commencer chaque comparaison par un appel. Notre <a href="/fr/blog/combien-coute-site-web-maroc">guide des prix d'un site web au Maroc</a> explique ce qui fait monter ou baisser un devis.</p>
+
+                <h2>Peu disent combien de temps cela prend</h2>
+                <p>18 sites donnent un délai chiffré, de sept jours à cinq à huit semaines. Treize parlent de « délais » sans chiffre, et 33 ne disent rien. Si votre date de lancement compte, pour une saison ou une ouverture, demandez-la par écrit avant de signer.</p>
+
+                <h2>La moitié des avis sont invérifiables</h2>
+                <p>34 sites affichent des avis ou une note. Seuls 17 renvoient vers leur source, le plus souvent Google, parfois Trustpilot. Quatorze affichent des avis sans aucune source, et trois avaient des blocs d'avis vides ou provisoires en ligne. Un avis sur lequel on peut cliquer pour arriver à une fiche Google pèse plus qu'une citation que n'importe qui peut taper. Les règles de Google sur les avis sont résumées dans notre <a href="/fr/blog/fiche-google-business-maroc">guide de la fiche Google Business</a>.</p>
+
+                <h2>Surtout en français, dans une ville touristique</h2>
+                <p>41 des 66 sites sont uniquement en français. 23 ont une version anglaise, 10 une version arabe, et 8 les trois. Pour une agence qui va créer votre site, ses propres langues disent quelque chose de la façon dont elle traitera les vôtres, surtout si vos clients sont des voyageurs.</p>
+
+                <h2>Mieux classé ne veut pas dire plus transparent</h2>
+                <p>Les sites du top 5 sur l'une des trois recherches n'affichent pas leur prix plus souvent que ceux classés de 6 à 20 : 11 sur 30 contre 10 sur 33. C'est la même chose pour WhatsApp, les délais et les avis sourcés. La position sur Google montre qui a investi dans sa visibilité, pas qui répond à vos questions.</p>
+
+                <h2>Deux autres choses à savoir</h2>
+                <ul>
+                    <li><strong>Toutes les pages « Marrakech » ne sont pas à Marrakech.</strong> Sur les 38 sites qui déclarent une adresse dans le code de leurs pages, 18 indiquent une autre ville, comme Tanger, Agadir ou Casablanca. Ce n'est pas un problème en soi, les projets se mènent à distance, mais il vaut la peine de demander où travaille l'équipe.</li>
+                    <li><strong>Certains classements des « meilleures agences à Marrakech » sont écrits par des agences,</strong> et quelques entreprises gèrent plusieurs des sites classés, qui partagent le même numéro de téléphone. Lisez ces classements en connaissance de cause.</li>
+                </ul>
+
+                <h2>La liste pour choisir une agence</h2>
+                <ul>
+                    <li>Un prix de départ écrit, et ce qu'il comprend.</li>
+                    <li>Une date de livraison écrite.</li>
+                    <li>Des avis sur lesquels on peut cliquer jusqu'à leur source.</li>
+                    <li>Des exemples de vrais projets, avec des liens qu'on peut ouvrir.</li>
+                    <li>Les langues dont vos clients ont besoin, prévues dès le départ.</li>
+                    <li>Qui possède le nom de domaine, l'hébergement et le code à la fin. Notre guide des prix liste <a href="/fr/blog/combien-coute-site-web-maroc">les questions à poser à toute agence</a>.</li>
+                </ul>
+                <p>Cette liste s'applique à nous aussi. Nos prix démarrent à partir de 2 000 MAD pour un site vitrine et à partir de 3 500 MAD pour un site e-commerce, avec un délai sur chaque devis : voir notre page <a href="/fr/web-design-marrakech">agence web à Marrakech</a>.</p>
+
+                <h2>Méthode</h2>
+                <p>Recherches : « agence web marrakech », « création site web marrakech » et « agence seo marrakech », Google Maroc en français sur ordinateur, 20 premiers résultats naturels plus le bloc carte, chacune lue trois fois puis fusionnée, le 10 novembre 2026. Nous avons gardé les agences web et les freelances et exclu les annuaires, réseaux sociaux, sites d'annonces et notre propre site. Pour chaque site, nous avons lu deux pages, celle qui était classée et l'accueil, avec une requête chacune, en respectant le robots.txt, sans exécuter de JavaScript. Les prix, délais et avis ont été vérifiés à la main. Limites : les contenus chargés uniquement en JavaScript ou affichés dans des images n'ont pas été lus ; un site renvoyait une erreur serveur et n'a pas été analysé ; une seule mesure par site.</p>
             `
         }
     }

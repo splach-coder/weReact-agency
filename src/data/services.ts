@@ -112,7 +112,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     keywords: ['agence web marrakech', 'création site web marrakech', 'création site internet marrakech', 'website design Marrakech', 'web agency Marrakech', 'agence création site web', 'refonte site web marrakech', 'site web professionnel Maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'flying-tandem'],
     relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'agence-seo-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
-    relatedPostSlugs: ['website-design-marrakech-business-guide', 'combien-coute-site-web-maroc'],
+    relatedPostSlugs: ['etude-sites-agences-web-marrakech', 'combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
@@ -128,6 +128,16 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         proof: 'Our work includes [a paragliding operator near Marrakech](/en/work/flying-tandem), [a city guide](/en/work/by-marrakech), and [a local brand concept](/en/work/yoo-marrakech) built by the studio. On each one, mobile discovery, trust, and direct enquiries decide whether the website pays for itself.',
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
+        insights: {
+          title: 'What we measured in Marrakech',
+          lead: 'In November 2026 we checked the 66 agency and freelancer websites ranking on Google for Marrakech. Here is what a buyer finds on them, and why we publish our prices below.',
+          items: [
+            { figure: '21 of 66', label: 'publish a price for their own services. Ours are on this page.', source: { label: 'WeReact study, Nov 2026', href: '/en/blog/etude-sites-agences-web-marrakech' } },
+            { figure: '18 of 66', label: 'give a delivery time with a number. Ours: 2 to 3 days for a defined-scope showcase site.', source: { label: 'WeReact study, Nov 2026', href: '/en/blog/etude-sites-agences-web-marrakech' } },
+            { figure: '17 of 34', label: 'of the sites showing reviews link to where those reviews come from.', source: { label: 'WeReact study, Nov 2026', href: '/en/blog/etude-sites-agences-web-marrakech' } },
+          ],
+          note: 'Agency and freelancer sites in Google’s top 20 (Morocco, French) for three Marrakech searches on November 10, 2026. [Full method and figures](/en/blog/etude-sites-agences-web-marrakech).',
+        },
         faqs: [
           { question: 'How much does a website cost in Marrakech?', answer: 'As an honest starting point: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An e-commerce site starts from 3,500 MAD, with front-end and back-end included. Larger projects, like a riad direct-booking site or an advanced multilingual build, get a custom quote based on scope. We send a precise, free quote within one business day. What moves a quote up or down is in our [website pricing guide for Morocco](/en/blog/combien-coute-site-web-maroc).' },
           { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 3 days for most defined-scope builds: a simple showcase site moves fastest, while booking or [e-commerce](/en/creation-site-e-commerce-maroc) features need more preparation. We agree on a clear timeline with the quote.' },
@@ -149,6 +159,16 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         proof: 'Notre portfolio comprend [un opérateur de parapente près de Marrakech](/fr/work/flying-tandem), [un guide de la ville](/fr/work/by-marrakech) et [un concept de marque locale](/fr/work/yoo-marrakech) créé par le studio. Sur chacun, la découverte sur mobile, la confiance et les demandes directes décident si le site est rentable.',
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
+        insights: {
+          title: 'Ce que nous avons mesuré à Marrakech',
+          lead: 'En novembre 2026, nous avons examiné les 66 sites d’agences et de freelances classés sur Google pour Marrakech. Voici ce qu’y trouve un client, et pourquoi nous affichons nos prix plus bas.',
+          items: [
+            { figure: '21 sur 66', label: 'affichent un prix pour leurs propres services. Les nôtres sont sur cette page.', source: { label: 'Étude WeReact, nov. 2026', href: '/fr/blog/etude-sites-agences-web-marrakech' } },
+            { figure: '18 sur 66', label: 'donnent un délai de livraison chiffré. Le nôtre : 2 à 3 jours pour un site vitrine à périmètre défini.', source: { label: 'Étude WeReact, nov. 2026', href: '/fr/blog/etude-sites-agences-web-marrakech' } },
+            { figure: '17 sur 34', label: 'des sites qui affichent des avis renvoient vers leur source.', source: { label: 'Étude WeReact, nov. 2026', href: '/fr/blog/etude-sites-agences-web-marrakech' } },
+          ],
+          note: 'Sites d’agences et de freelances du top 20 Google (Maroc, français) pour trois recherches à Marrakech, le 10 novembre 2026. [Méthode et chiffres complets](/fr/blog/etude-sites-agences-web-marrakech).',
+        },
         faqs: [
           { question: 'Combien coûte un site web à Marrakech ?', answer: 'En clair : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un site e-commerce démarre à partir de 3 500 DH, front et back inclus. Les projets plus importants, comme un site de réservation directe pour riad ou une structure multilingue avancée, sont établis sur devis selon le périmètre. Nous envoyons un devis gratuit et précis sous un jour ouvré. Ce qui fait varier un devis est détaillé dans notre [guide des prix d’un site web au Maroc](/fr/blog/combien-coute-site-web-maroc).' },
           { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 3 jours pour la plupart des sites à périmètre défini : un site vitrine simple avance plus vite, tandis qu’une réservation ou une [boutique en ligne](/fr/creation-site-e-commerce-maroc) demande plus de préparation. Nous fixons un calendrier clair dès le devis.' },
@@ -166,7 +186,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     keywords: ['tourism website design Morocco', 'hotel website Marrakech', 'travel website Morocco', 'site web tourisme Maroc'],
     relatedProjectIds: ['flying-tandem', 'kasbah-angour', 'morocco-atlas-guide', 'trust-drivers'],
     relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'web-design-marrakech', 'agence-seo-marrakech'],
-    relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
+    relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'commission-getyourguide-viator-booking-maroc', 'combien-coute-site-web-maroc'],
     showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
@@ -422,7 +442,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         faqs: [
           { question: 'Do you work with clients in Agadir from Marrakech?', answer: 'Yes. Projects run remotely through calls, WhatsApp, and shared previews — the same way we already work with tourism clients across Morocco.' },
-          { question: 'Can the website reduce OTA commissions?', answer: 'A website cannot replace platforms overnight, but clear direct-booking paths, trust signals, and WhatsApp contact can shift a share of bookings to commission-free channels. See how we build [websites for travel agencies, tours and activities](/en/site-web-agence-de-voyage).' },
+          { question: 'Can the website reduce OTA commissions?', answer: 'A website cannot replace platforms overnight, but clear direct-booking paths, trust signals, and WhatsApp contact can shift a share of bookings to commission-free channels. See how we build [websites for travel agencies, tours and activities](/en/site-web-agence-de-voyage), and [what each platform charges](/en/blog/commission-getyourguide-viator-booking-maroc).' },
           { question: 'How much does a website cost in Agadir?', answer: 'The same transparent pricing applies across Morocco: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom quotes for booking-focused [hotel](/en/hotel-website-design) or [activity](/en/site-web-agence-de-voyage) websites — free and precise within one business day.' },
         ],
       },
@@ -440,7 +460,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         faqs: [
           { question: 'Travaillez-vous avec des clients à Agadir depuis Marrakech ?', answer: 'Oui. Les projets se pilotent à distance par appels, WhatsApp et aperçus partagés — comme nous le faisons déjà avec des clients tourisme dans tout le Maroc.' },
-          { question: 'Un site peut-il réduire les commissions des plateformes ?', answer: 'Un site ne remplace pas les plateformes du jour au lendemain, mais des parcours de réservation directe clairs, des signaux de confiance et un contact WhatsApp peuvent déplacer une partie des réservations vers des canaux sans commission. Voir notre approche des [sites pour agences de voyage, excursions et activités](/fr/site-web-agence-de-voyage).' },
+          { question: 'Un site peut-il réduire les commissions des plateformes ?', answer: 'Un site ne remplace pas les plateformes du jour au lendemain, mais des parcours de réservation directe clairs, des signaux de confiance et un contact WhatsApp peuvent déplacer une partie des réservations vers des canaux sans commission. Voir notre approche des [sites pour agences de voyage, excursions et activités](/fr/site-web-agence-de-voyage), et [ce que prend chaque plateforme](/fr/blog/commission-getyourguide-viator-booking-maroc).' },
           { question: 'Combien coûte un site web à Agadir ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour les [sites hôteliers](/fr/hotel-website-design) ou [d’activités](/fr/site-web-agence-de-voyage) orientés réservation — gratuit et précis sous un jour ouvré.' },
         ],
       },
@@ -452,7 +472,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     keywords: ['hotel website design', 'riad website design', 'boutique hotel website design', 'hotel seo agency', 'travel agency website design', 'tour operator website design'],
     relatedProjectIds: ['kasbah-angour', 'flying-tandem', 'morocco-atlas-guide'],
     relatedPageSlugs: ['tourism-websites-morocco', 'site-web-agence-de-voyage', 'agence-seo-marrakech', 'web-design-marrakech'],
-    relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
+    relatedPostSlugs: ['commission-getyourguide-viator-booking-maroc', 'tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
     showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
@@ -461,13 +481,22 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         description: 'Website design for hotels, riads, and boutique stays: direct-booking focus, hotel SEO, and mobile-first pages that turn lookers into direct enquiries.',
         eyebrow: 'Hotels, riads & boutique stays',
         heading: 'Hotel and riad websites designed to win the direct booking.',
-        lead: 'Every guest who books direct instead of through an OTA saves you 15-25% commission. That is what your website is for: showing the property honestly, answering the questions guests actually have, and making direct contact the easy path.',
+        lead: 'Every guest who books direct instead of through a platform saves you its commission: 15.5% for most Airbnb hosts, and 15–17% reported for Moroccan hotels on Booking.com. That is what your website is for: showing the property honestly, answering the questions guests actually have, and making direct contact the easy path.',
         outcomesTitle: 'Designed around how guests decide',
         outcomes: ['Room and suite pages built for comparison: photos, details, and rates without a maze.', 'Trust answered up front: location, airport access, food, safety, and what is included.', 'Direct booking and WhatsApp enquiry paths placed where decision moments happen.', 'Hotel SEO foundations: schema, speed, and content that ranks for your property and area.'],
         proofTitle: 'We build for Moroccan hospitality',
         proof: 'From [an Atlas mountain hotel](/en/work/kasbah-angour) to adventure tourism and destination guides, our work is rooted in how travelers research Morocco — on a phone, between reviews, ready to message the property that feels clear and credible.',
         cta: 'Talk about your property',
         ctaNote: 'Tell us about your hotel, riad, or guesthouse. We reply within one business day.',
+        insights: {
+          title: 'What a platform booking costs',
+          items: [
+            { figure: '15.5%', label: 'Airbnb’s host-only fee for most hosts, mandatory for traditional hospitality listings such as hotels.', source: { label: 'Airbnb service fees', href: 'https://www.airbnb.com/help/article/1857' } },
+            { figure: '15–17%', label: 'Booking.com commission reported for classified hotels in Morocco (2023). Booking.com does not publish its rate.', source: { label: 'Hespress, August 2023', href: 'https://fr.hespress.com/326262-le-bras-de-fer-continue-entre-la-fnih-et-booking.html' } },
+            { figure: '13 nights', label: 'At 1,000 MAD a night and 15.5%, a showcase website from 2,000 MAD costs the same as the Airbnb fees on about 13 nights.' },
+          ],
+          note: 'Read on November 10, 2026. Your real rate is the one in your contract. [Sources for every platform](/en/blog/commission-getyourguide-viator-booking-maroc).',
+        },
         faqs: [
           { question: 'Can the website take direct bookings?', answer: 'Yes. Depending on your operation we integrate a booking engine, a request-to-book flow, or a WhatsApp-first enquiry path — whichever converts best for your property size and team.' },
           { question: 'Do you also do SEO for hotels?', answer: 'Yes. [Hotel SEO](/en/agence-seo-marrakech) is one of our core services: property and area pages, schema markup, review signals, and content that answers the searches travelers make before booking. Our [tourism SEO guide](/en/blog/tourism-hospitality-seo-morocco) shows the method.' },
@@ -479,13 +508,22 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         description: 'Création de site web pour hôtels, riads et maisons d’hôtes : réservation directe, SEO hôtelier et pages mobiles qui transforment les visites en demandes.',
         eyebrow: 'Hôtels, riads & maisons d’hôtes',
         heading: 'Des sites d’hôtels et de riads conçus pour gagner la réservation directe.',
-        lead: 'Chaque client qui réserve en direct plutôt que via une plateforme vous économise 15 à 25 % de commission. C’est le rôle de votre site : montrer le lieu honnêtement, répondre aux vraies questions des voyageurs et faire du contact direct le chemin le plus simple.',
+        lead: 'Chaque client qui réserve en direct plutôt que via une plateforme vous évite sa commission : 15,5 % pour la plupart des hôtes Airbnb, et 15 à 17 % rapportés pour les hôtels marocains sur Booking.com. C’est le rôle de votre site : montrer le lieu honnêtement, répondre aux vraies questions des voyageurs et faire du contact direct le chemin le plus simple.',
         outcomesTitle: 'Pensé selon la décision du voyageur',
         outcomes: ['Des pages chambres et suites faites pour comparer : photos, détails et tarifs sans labyrinthe.', 'La confiance traitée d’emblée : localisation, accès aéroport, restauration, sécurité et inclusions.', 'Réservation directe et WhatsApp placés aux moments de décision.', 'Des fondations SEO hôtelières : données structurées, vitesse et contenu qui positionne votre établissement et sa région.'],
         proofTitle: 'Nous construisons pour l’hôtellerie marocaine',
         proof: 'D’[un hôtel de l’Atlas](/fr/work/kasbah-angour) aux activités touristiques et guides de destination, notre travail suit la manière dont les voyageurs préparent le Maroc — sur mobile, entre deux avis, prêts à écrire à l’établissement qui paraît clair et crédible.',
         cta: 'Parler de votre établissement',
         ctaNote: 'Présentez votre hôtel, riad ou maison d’hôtes. Nous répondons sous un jour ouvré.',
+        insights: {
+          title: 'Ce que coûte une réservation via une plateforme',
+          items: [
+            { figure: '15,5 %', label: 'Frais d’hôte Airbnb pour la plupart des hôtes, obligatoires pour les établissements hôteliers traditionnels.', source: { label: 'Frais de service Airbnb', href: 'https://www.airbnb.com/help/article/1857' } },
+            { figure: '15–17 %', label: 'Commission Booking.com rapportée pour les hôtels classés au Maroc (2023). Booking.com ne publie pas son taux.', source: { label: 'Hespress, août 2023', href: 'https://fr.hespress.com/326262-le-bras-de-fer-continue-entre-la-fnih-et-booking.html' } },
+            { figure: '13 nuits', label: 'À 1 000 MAD la nuit et 15,5 %, un site vitrine à partir de 2 000 MAD coûte autant que les frais Airbnb d’environ 13 nuits.' },
+          ],
+          note: 'Lu le 10 novembre 2026. Votre taux réel est celui de votre contrat. [Les sources de chaque plateforme](/fr/blog/commission-getyourguide-viator-booking-maroc).',
+        },
         faqs: [
           { question: 'Le site peut-il prendre des réservations directes ?', answer: 'Oui. Selon votre organisation, nous intégrons un moteur de réservation, un parcours de demande de réservation ou un contact WhatsApp prioritaire — ce qui convertit le mieux pour votre taille d’établissement et votre équipe.' },
           { question: 'Faites-vous aussi le SEO pour les hôtels ?', answer: 'Oui. Le [SEO hôtelier](/fr/agence-seo-marrakech) est un de nos services clés : pages établissement et région, données structurées, signaux d’avis et contenu qui répond aux recherches des voyageurs avant réservation. Notre [guide SEO tourisme](/fr/blog/tourism-hospitality-seo-morocco) montre la méthode.' },
@@ -547,7 +585,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     keywords: ['site web agence de voyage', 'création site web agence de voyage', 'site web pour agence de voyage', 'site agence de voyage maroc', 'site de réservation excursion', 'tour operator website design', 'tour booking website Morocco'],
     relatedProjectIds: ['flying-tandem', 'your-morocco', 'trust-drivers'],
     relatedPageSlugs: ['tourism-websites-morocco', 'hotel-website-design', 'agence-seo-marrakech', 'web-design-marrakech'],
-    relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
+    relatedPostSlugs: ['commission-getyourguide-viator-booking-maroc', 'tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
     showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
@@ -569,11 +607,21 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         proof: 'We built the website for [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and for [Your Morocco](/en/work/your-morocco), a tour platform. We also run our own test sites such as [Trust Drivers Tours](/en/work/trust-drivers), where we try page structures on real searches before we offer them to clients.',
         cta: 'Plan my agency website',
         ctaNote: 'Tell us your activities and how you take bookings today. We reply within one business day.',
+        insights: {
+          title: 'What the platforms take',
+          lead: 'Figures from the platforms’ own supplier and host pages, read on November 10, 2026. Viator and Booking.com publish no percentage; your rate is in your contract.',
+          items: [
+            { figure: '20–30%', label: 'GetYourGuide’s commission by country of activity, as published until 2025. The live page no longer shows a figure.', source: { label: 'GetYourGuide, January 2025 copy', href: 'https://web.archive.org/web/20250118094756/https://www.getyourguide.supply/join/how-much-does-getyourguide-charge' } },
+            { figure: '20%', label: 'Airbnb’s typical service fee on experiences.', source: { label: 'Airbnb service fees', href: 'https://www.airbnb.com/help/article/1857' } },
+            { figure: 'US$29', label: 'Viator’s one-time listing fee per product. Its commission percentage is not published.', source: { label: 'Viator operator site, June 2026 copy', href: 'https://web.archive.org/web/20260608142229/http://operatorresources.viator.com/' } },
+          ],
+          note: 'At 20–30% on a 500 MAD activity, a showcase website from 2,000 MAD costs the same as the commission on 14 to 20 bookings. [All sources and the full calculation](/en/blog/commission-getyourguide-viator-booking-maroc).',
+        },
         sections: [
           {
             heading: 'Platforms and a direct website do different jobs',
             paragraphs: [
-              'Marketplaces such as GetYourGuide and Viator bring travelers who have never heard of you, and they take a commission on each booking they deliver. A direct website does not replace that discovery.',
+              'Marketplaces such as GetYourGuide and Viator bring travelers who have never heard of you, and they take a commission on each booking they deliver ([what each platform charges](/en/blog/commission-getyourguide-viator-booking-maroc)). A direct website does not replace that discovery.',
               'Its job is the travelers who already know you: repeat guests, recommendations, people who search your name or find your Google Business Profile, and visitors from Instagram. Each of them who books on your site instead of on a platform is a booking without commission.',
             ],
           },
@@ -618,11 +666,21 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         proof: 'Nous avons créé le site de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et celui de [Your Morocco](/fr/work/your-morocco), une plateforme de circuits. Nous gérons aussi nos propres sites d’essai comme [Trust Drivers Tours](/fr/work/trust-drivers), où nous testons les structures de pages sur de vraies recherches avant de les proposer à nos clients.',
         cta: 'Préparer le site de mon agence',
         ctaNote: 'Présentez vos activités et la façon dont vous prenez les réservations aujourd’hui. Nous répondons sous un jour ouvré.',
+        insights: {
+          title: 'Ce que prennent les plateformes',
+          lead: 'Chiffres tirés des pages fournisseurs et hôtes des plateformes elles-mêmes, lues le 10 novembre 2026. Viator et Booking.com ne publient aucun pourcentage : votre taux est dans votre contrat.',
+          items: [
+            { figure: '20–30 %', label: 'Commission GetYourGuide selon le pays de l’activité, publiée jusqu’en 2025. La page actuelle n’affiche plus de chiffre.', source: { label: 'GetYourGuide, copie de janvier 2025', href: 'https://web.archive.org/web/20250118094756/https://www.getyourguide.supply/join/how-much-does-getyourguide-charge' } },
+            { figure: '20 %', label: 'Frais de service habituels d’Airbnb sur les expériences.', source: { label: 'Frais de service Airbnb', href: 'https://www.airbnb.com/help/article/1857' } },
+            { figure: '29 $', label: 'Frais d’inscription uniques par produit sur Viator. Son pourcentage de commission n’est pas publié.', source: { label: 'Site opérateurs Viator, copie de juin 2026', href: 'https://web.archive.org/web/20260608142229/http://operatorresources.viator.com/' } },
+          ],
+          note: 'À 20–30 % sur une activité à 500 MAD, un site vitrine à partir de 2 000 MAD coûte autant que la commission de 14 à 20 réservations. [Toutes les sources et le calcul complet](/fr/blog/commission-getyourguide-viator-booking-maroc).',
+        },
         sections: [
           {
             heading: 'Plateformes et site direct ne font pas le même travail',
             paragraphs: [
-              'Les places de marché comme GetYourGuide et Viator amènent des voyageurs qui ne vous connaissent pas encore, et prennent une commission sur chaque réservation qu’elles apportent. Un site direct ne remplace pas cette visibilité.',
+              'Les places de marché comme GetYourGuide et Viator amènent des voyageurs qui ne vous connaissent pas encore, et prennent une commission sur chaque réservation qu’elles apportent ([ce que prend chaque plateforme](/fr/blog/commission-getyourguide-viator-booking-maroc)). Un site direct ne remplace pas cette visibilité.',
               'Son rôle, ce sont les voyageurs qui vous connaissent déjà : clients qui reviennent, recommandations, personnes qui cherchent votre nom ou trouvent votre fiche Google, visiteurs venus d’Instagram. Chacun d’eux qui réserve sur votre site plutôt que sur une plateforme, c’est une réservation sans commission.',
             ],
           },

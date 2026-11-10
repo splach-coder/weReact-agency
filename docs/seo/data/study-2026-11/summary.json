@@ -1,0 +1,182 @@
+{
+ "N_unique_agency_sites_in_SERPs": 67,
+ "N_analysable": 66,
+ "not_analysable": [
+  "itmarrakech.com (server error 500 on both pages)"
+ ],
+ "organic_only_sites": 64,
+ "local_pack_only_sites": 3,
+ "price_own_offer": 21,
+ "price_unattributed_only": 9,
+ "price_any_figure": 30,
+ "price_none": 36,
+ "site_build_price_own_MAD_n": 12,
+ "site_build_price_own_MAD_median": 3045.0,
+ "site_build_price_own_MAD_min_max": [
+  900,
+  35000
+ ],
+ "site_build_price_own_EUR": [
+  "vraivex.fr 500 EUR"
+ ],
+ "lowest_own_price_any_service_MAD_n": 18,
+ "lowest_own_price_any_service_MAD_median": 2100.0,
+ "lowest_own_price_EUR": [
+  "mogacode.ma 249 EUR per month (MisterGoo SEO subscription (Essentiel))",
+  "ranklymedia.com 350 EUR per month (SEO 'Essentiel')",
+  "vraivex.fr 500 EUR from, one-off (any service incl. WordPress/Shopify site)"
+ ],
+ "whatsapp_link_in_html": 36,
+ "whatsapp_js_widget": 8,
+ "whatsapp_text_only": 2,
+ "whatsapp_any": 46,
+ "phone_visible": 61,
+ "tel_link": 50,
+ "phone_visible_or_tel": 63,
+ "lang_fr": 66,
+ "lang_en": 23,
+ "lang_ar": 10,
+ "lang_fr_en_ar_all_three": 8,
+ "french_only": 41,
+ "machine_translation_widget": 2,
+ "delivery_explicit_site": 18,
+ "delivery_explicit_other_only": 2,
+ "delivery_vague_only": 13,
+ "delivery_none": 33,
+ "portfolio": 52,
+ "portfolio_demo_only": 1,
+ "reviews_shown_quotes_or_rating": 34,
+ "reviews_quotes": 28,
+ "reviews_rating_only": 6,
+ "reviews_widget_unverified": 3,
+ "reviews_placeholder_or_empty": 3,
+ "reviews_linked_to_source": 17,
+ "reviews_linked_google": 13,
+ "reviews_linked_trustpilot": 3,
+ "reviews_attributed_unlinked": 3,
+ "reviews_shown_without_any_source": 14,
+ "gbp_listing_link": 27,
+ "any_google_maps_link_or_embed": 35,
+ "jsonld_any": 61,
+ "jsonld_LocalBusiness_or_ProfessionalService": 37,
+ "jsonld_Organization": 48,
+ "jsonld_FAQPage": 28,
+ "jsonld_AggregateRating_or_Review": 13,
+ "jsonld_Offer": 11,
+ "https_rank_page": 66,
+ "ttfb_rank_page_median_s": 0.431,
+ "ttfb_rank_page_min_max_s": [
+  0.152,
+  7.017
+ ],
+ "ttfb_over_1s": 16,
+ "ttfb_n": 65,
+ "html_kb_rank_page_median": 139.3,
+ "html_kb_min_max": [
+  13.3,
+  538.8
+ ],
+ "jsonld_address_declared": 38,
+ "jsonld_address_not_marrakech": [
+  "baleez.net",
+  "developpeur-informatique.ma",
+  "digiseo.ma",
+  "hostino.ma",
+  "iker.ma",
+  "lawebfactory.com",
+  "pulsemarketing.ma",
+  "regex.ma",
+  "revolutmedia.ma",
+  "rhillane.com",
+  "rouguitech.com",
+  "sea.ma",
+  "seoyass.com",
+  "tourakdigital.ma",
+  "triplew.ma",
+  "void.ma",
+  "websuccess.ma",
+  "whitebrand.ma"
+ ],
+ "jsonld_localities_not_marrakech": {
+  "baleez.net": "Tanger",
+  "developpeur-informatique.ma": "Agadir",
+  "digiseo.ma": "Agadir",
+  "hostino.ma": "Tanger",
+  "iker.ma": "16 Av Ghorghiz - Centre Ville",
+  "lawebfactory.com": "Anglet",
+  "pulsemarketing.ma": "El Jadida",
+  "regex.ma": "Agadir;Casablanca",
+  "revolutmedia.ma": "Tanger",
+  "rhillane.com": "Tangier",
+  "rouguitech.com": "Tanger",
+  "sea.ma": "Casablanca",
+  "seoyass.com": "Lille",
+  "tourakdigital.ma": "Agadir;Albuquerque;Casablanca;Cotonou;Meknès;Tanger;Troyes",
+  "triplew.ma": "Agadir",
+  "void.ma": "Casablanca",
+  "websuccess.ma": "Casablanca",
+  "whitebrand.ma": "Tanger"
+ },
+ "phone_numbers_shared_between_domains": {
+  "660861010": [
+   "agencedemarketingdigital.ma",
+   "redwalls.ma"
+  ],
+  "600637404": [
+   "brandupdigital.ma",
+   "saadrachid.net"
+  ],
+  "663437770": [
+   "oneclick.ma",
+   "sitewebmarrakech.com"
+  ],
+  "668513685": [
+   "seocom.ma",
+   "smartinfluencer.ma"
+  ],
+  "524448489": [
+   "seocom.ma",
+   "smartinfluencer.ma"
+  ]
+ },
+ "by_best_position": {
+  "top5_in_any_query": {
+   "n": 30,
+   "own_price": 11,
+   "whatsapp_any": 19,
+   "explicit_site_delivery": 9,
+   "reviews_linked": 7,
+   "lang_ar": 5
+  },
+  "best_6_to_20": {
+   "n": 33,
+   "own_price": 10,
+   "whatsapp_any": 24,
+   "explicit_site_delivery": 9,
+   "reviews_linked": 8,
+   "lang_ar": 5
+  },
+  "local_pack_only": {
+   "n": 3,
+   "own_price": 0,
+   "whatsapp_any": 3,
+   "explicit_site_delivery": 0,
+   "reviews_linked": 2,
+   "lang_ar": 0
+  }
+ },
+ "serp_snippets_with_price": [
+  "agence web marrakech #5 redcityweb.com: 4 000 DH — Red City Web: Agence web à Marrakech | Création de site ...",
+  "agence web marrakech #10 tourakdigital.ma: 2 000 DH — Agence web Marrakech : création de site internet dès 2 000 DH",
+  "création site web marrakech #1 locmarrakech.com: 6000 Dh — Création site web Marrakech Maroc",
+  "création site web marrakech #6 tourakdigital.ma: 2 900 DH — Création de Site Internet Marrakech | Tourak Digital Maroc",
+  "création site web marrakech #4 ghalimejber.com: 2 000 DH — Création Site Web Marrakech : 7 Atouts pour Votre Projet",
+  "création site web marrakech #5 developpeur-informatique.ma: 7 000 MAD — Création de site web à Marrakech : devis gratuit en 2026",
+  "création site web marrakech #17 atlaswebmarrakech.com: 25 000 Dh — Prix création de site web à Marrakech : Guide complet 2025",
+  "création site web marrakech #10 baleez.net: 6 200 DH — Création de site web à Marrakech avec Baleez"
+ ],
+ "same_brand_domains": {
+  "agencedemarketingdigital.ma": "redwalls.ma (homepage title 'Agence de marketing digital à Marrakech | Redwalls', contact@redwalls.ma)",
+  "saadrachid.net": "brandupdigital.ma (homepage title: 'Rachid Saad — ... Fondateur Brand Up Digital')"
+ }
+}
