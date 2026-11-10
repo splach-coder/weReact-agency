@@ -21,7 +21,7 @@ function loadEnv() {
 }
 loadEnv();
 
-const V = process.env.GOOGLE_ADS_API_VERSION || 'v21';
+const V = process.env.GOOGLE_ADS_API_VERSION || 'v25';
 const DT = process.env.GOOGLE_ADS_DEVELOPER_TOKEN;
 const CID = (process.env.GOOGLE_ADS_CUSTOMER_ID || '').replace(/\D/g, '');
 // The conversion action that carries the website tag label C9w5CPvkkc4cEIea_vtD.

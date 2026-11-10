@@ -18,7 +18,7 @@ function loadEnv() {
 }
 loadEnv();
 
-const V = process.env.GOOGLE_ADS_API_VERSION || 'v21';
+const V = process.env.GOOGLE_ADS_API_VERSION || 'v25';
 const CID = (process.env.GOOGLE_ADS_CUSTOMER_ID || '').replace(/\D/g, '');
 const CAMPAIGN_NAME = 'WeReact — Search — Morocco';
 

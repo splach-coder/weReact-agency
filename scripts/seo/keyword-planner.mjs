@@ -14,7 +14,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 loadEnv();
 
-const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v21';
+const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v25';
 const CUSTOMER_ID = digits(process.env.GOOGLE_ADS_CUSTOMER_ID);
 const LOGIN_CUSTOMER_ID = digits(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID);
 const LANGUAGES = { en: 1000, fr: 1002, ar: 1019 };
