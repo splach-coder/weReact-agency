@@ -100,15 +100,19 @@ and the Google Business guide published; links woven through the landing pages a
 page, generated llms.txt and entity graph added; the commission article and the agency study added (see the commit log for
 anything that slipped).
 
-**Next, ranked by search demand** (Keyword Planner, Morocco, added November 10, 2026)
-- **Give the Casablanca page its own content** ("agence web casablanca" 880/month, "création site web casablanca" 210). It
-  currently shares much of its text with the Rabat page.
-- **Strengthen the national page** `/fr/website-design-moroccan-businesses` ("création site web maroc" 1,000/month): add depth
-  (process, what is included, cities served) and real proof, since it targets the largest commercial query.
-- **Add a Tangier page** ("création site web tanger" 260/month, "agence web tanger" 70) on the same model as Rabat and Agadir,
-  with Tangier-specific content rather than a city name swapped into shared text.
+**Done the same day, ranked by search demand** (Keyword Planner, Morocco)
+- Casablanca page rewritten with its own content ("agence web casablanca" 880/month, "création site web casablanca" 210);
+  text shared with the Rabat page went from 62% to 43%, most of the rest being common blocks (prices, booking, contact).
+- National page `/fr/website-design-moroccan-businesses` ("création site web maroc" 1,000/month) deepened: project steps, what
+  a showcase site includes, cities served, and the price block.
+- New Tangier page `/fr/web-design-tanger` ("création site web tanger" 260/month, "agence seo tanger" 170, "agence web tanger" 70),
+  covering website and SEO, languages for a northern clientele, and tourism in the North.
+
+**Next**
 - Request indexing in Search Console for every new or changed URL; follow positions of the A keywords every two weeks.
+- Rabat page: same treatment as Casablanca once Casablanca shows movement ("agence web rabat" 260/month).
 - Rewrite or merge `seo-strategies-for-agencies`, which is thin and generic.
+- Add real proof as it comes: client reviews on the Google profile, and a first project outside Marrakech for the city pages.
 
 **Not worth doing on search demand alone**
 - An Arabic version (Arabic website-creation phrases are around 20 searches a month).

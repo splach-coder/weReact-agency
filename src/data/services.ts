@@ -54,7 +54,8 @@ export type ServiceLandingPage = {
     | 'hotel-website-design'
     | 'agence-google-ads-maroc'
     | 'site-web-agence-de-voyage'
-    | 'creation-site-e-commerce-maroc';
+    | 'creation-site-e-commerce-maroc'
+    | 'web-design-tanger';
   primaryKeyword: string;
   keywords: readonly string[];
   relatedProjectIds: readonly string[];
@@ -144,7 +145,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'What types of businesses do you work with in Marrakech?', answer: 'We work with [hotels and riads](/en/hotel-website-design), [travel agencies and activity operators](/en/site-web-agence-de-voyage), local services, restaurants, lifestyle brands, and teams that need a credible website with a clear route to enquiry.' },
           { question: 'Can you build a website in English and French?', answer: 'Yes. We plan language structure, navigation, metadata, and conversion paths for English and French audiences from the beginning.' },
           { question: 'Is SEO included in a new website?', answer: 'Every build includes practical SEO foundations: clean page structure, metadata, performance-minded implementation, sitemap support, and conversion-ready content structure. For ongoing rankings and your Google Business Profile, see our [SEO agency in Marrakech](/en/agence-seo-marrakech).' },
-          { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco ([Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat), [Agadir](/en/web-design-agadir)) as well as remotely for [international projects](/en/international-web-design-agency).' },
+          { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco ([Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat), [Tangier](/en/web-design-tanger), [Agadir](/en/web-design-agadir)) as well as remotely for [international projects](/en/international-web-design-agency).' },
         ],
       },
       fr: {
@@ -175,7 +176,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Avec quelles entreprises travaillez-vous à Marrakech ?', answer: 'Nous accompagnons [les hôtels et riads](/fr/hotel-website-design), [les agences de voyage et les activités](/fr/site-web-agence-de-voyage), les services locaux, les restaurants, les marques lifestyle et les équipes qui ont besoin d’un site crédible avec un parcours de contact simple.' },
           { question: 'Pouvez-vous créer un site en français et en anglais ?', answer: 'Oui. Nous prévoyons la structure des langues, la navigation, les métadonnées et les parcours de conversion pour les audiences françaises et anglaises dès le départ.' },
           { question: 'Le SEO est-il inclus dans la création du site ?', answer: 'Chaque projet intègre des fondations SEO concrètes : structure de page propre, métadonnées, performance, sitemap et contenu pensé pour la conversion. Pour le positionnement dans la durée et la fiche Google, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
-          { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc ([Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat), [Agadir](/fr/web-design-agadir)) ainsi qu’à distance pour les [projets internationaux](/fr/international-web-design-agency).' },
+          { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc ([Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat), [Tanger](/fr/web-design-tanger), [Agadir](/fr/web-design-agadir)) ainsi qu’à distance pour les [projets internationaux](/fr/international-web-design-agency).' },
         ],
       },
     },
@@ -278,47 +279,109 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
   {
     slug: 'web-design-casablanca',
     primaryKeyword: 'agence web casablanca',
-    keywords: ['agence web casablanca', 'création site web casablanca', 'création site internet casablanca', 'agence création site web casablanca', 'site vitrine casablanca', 'refonte site web casablanca'],
-    relatedProjectIds: ['trust-drivers', 'by-marrakech', 'your-morocco'],
-    relatedPageSlugs: ['web-design-rabat', 'web-design-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
-    relatedPostSlugs: ['combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
+    keywords: ['agence web casablanca', 'création site web casablanca', 'creation site web casablanca', 'agence création site web casablanca', 'développeur web casablanca', 'agence seo casablanca', 'site vitrine casablanca'],
+    relatedProjectIds: ['kasbah-angour', 'yoo-marrakech', 'trust-drivers'],
+    relatedPageSlugs: ['website-design-moroccan-businesses', 'agence-seo-marrakech', 'creation-site-e-commerce-maroc', 'web-design-rabat'],
+    relatedPostSlugs: ['combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech', 'fiche-google-business-maroc'],
     showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
       en: {
-        title: 'Web Agency for Casablanca Businesses',
-        description: 'Web agency for Casablanca businesses: fast, bilingual, SEO-ready websites. Transparent pricing and a free quote within one business day.',
-        eyebrow: 'Websites for Casablanca',
-        heading: 'Websites for Casablanca businesses, built to win the enquiry.',
-        lead: 'Casablanca is Morocco’s most competitive market. Your website has to load fast, prove you are credible, and make contact effortless — before a visitor goes back to the search results.',
-        outcomesTitle: 'What a Casablanca business website needs',
-        outcomes: ['Fast mobile performance for buyers comparing several suppliers at once.', 'French and English planned together, for local clients and international partners.', 'Clear credibility signals for B2B, services, and professional firms.', 'Quote request, WhatsApp, and phone reachable from every page.'],
-        proofTitle: 'Built remotely, managed closely',
-        proof: 'We are based in Marrakech and work with clients across Casablanca and the Grand Casablanca region. Everything runs on calls, WhatsApp, and shared previews — you see the site take shape before it goes live.',
+        title: 'Web Agency in Casablanca: Website Design',
+        description: 'Web agency for Casablanca businesses: fast bilingual websites, Google search foundations, prices from 2,000 MAD and a free quote within one business day.',
+        eyebrow: 'Web agency for Casablanca',
+        heading: 'A web agency for Casablanca businesses that get compared before they get called.',
+        lead: 'In Casablanca, a potential client opens three or four websites before picking up the phone. Yours has to say in seconds what you do, for whom, from what price, and how to reach you. We build it in French and English, with its [Google search foundations](/en/agence-seo-marrakech) from day one.',
+        outcomesTitle: 'What a Casablanca business website has to do',
+        outcomes: [
+          'Say what you do and where from the first screen: the district or city you serve, not just “Morocco”.',
+          'Show proof a buyer can check: references, real projects, and reviews linked to their source.',
+          'Qualify the request: a short quote form that asks for the need, the timing and the budget, plus WhatsApp and phone.',
+          'Serve clients in French, and in English if you work with foreign partners or clients.',
+          'Load fast on a phone, where most comparisons start.',
+        ],
+        proofTitle: 'Our work',
+        proof: 'Our published sites are mostly in tourism and local brands in Morocco, such as [Kasbah Angour](/en/work/kasbah-angour) and the [Yoo Marrakech](/en/work/yoo-marrakech) studio concept. The method is the same for a Casablanca business: a clear offer, proof that can be checked, and a direct route to contact.',
         cta: 'Request a free quote',
-        ctaNote: 'Describe your project in a few lines. We reply within one business day.',
+        ctaNote: 'Describe your business and what the site should bring in. We reply within one business day.',
+        sections: [
+          {
+            heading: 'Two kinds of search in Casablanca',
+            paragraphs: [
+              'Local searches, for a practice, a clinic, a restaurant or a shop, are decided on Google’s map: your [Google Business Profile](/en/blog/fiche-google-business-maroc) counts as much as your website, and your address and district must read the same everywhere.',
+              'Supplier searches, in B2B or for a service sold on quote, are decided on the website: the buyer compares references, seriousness and how clear the offer is. For those, one page per service works better than a homepage that tries to say everything.',
+            ],
+          },
+          {
+            heading: 'A published price changes the conversation',
+            paragraphs: [
+              'When we studied the agency websites ranking in Marrakech, only 21 of 66 published a price ([the study](/en/blog/etude-sites-agences-web-marrakech)). We publish ours: a showcase website from 2,000 MAD, an [e-commerce website](/en/creation-site-e-commerce-maroc) from 3,500 MAD, and a precise quote within one business day.',
+              'For a Casablanca business, that removes a first meeting held only to find out whether the budget is realistic. Our [pricing guide](/en/blog/combien-coute-site-web-maroc) explains what moves a quote.',
+            ],
+          },
+          {
+            heading: 'Working with an agency based in Marrakech',
+            paragraphs: [
+              'We are based in Marrakech. A Casablanca project runs like our other projects: calls, WhatsApp and shared previews, so you see the site take shape and approve it before it goes live.',
+              'For a larger project, we can come to Casablanca for the kickoff meeting. The prices and the method are the same everywhere in [Morocco](/en/website-design-moroccan-businesses).',
+            ],
+          },
+        ],
         faqs: [
-          { question: 'Do you work with clients in Casablanca if you are based in Marrakech?', answer: 'Yes. Most of our project work runs remotely through calls, WhatsApp, and shared previews, so distance does not slow anything down. We can also travel to Casablanca for a kickoff meeting on larger projects.' },
-          { question: 'How much does a website cost in Casablanca?', answer: 'The same transparent pricing applies across Morocco: a showcase website starts from 2,000 MAD and scales with pages, languages, and features. An [e-commerce site](/en/creation-site-e-commerce-maroc) starts from 3,500 MAD with front-end and back-end included. You get a precise, free quote within one business day, and our [pricing guide](/en/blog/combien-coute-site-web-maroc) explains what changes it.' },
-          { question: 'Can you redesign our existing website?', answer: 'Yes. We start by reviewing your current structure, speed, content gaps, and contact paths, then recommend either a focused improvement or a full rebuild — whichever gets you results faster.' },
+          { question: 'Do you work with Casablanca businesses from Marrakech?', answer: 'Yes. Projects run remotely through calls, WhatsApp and shared previews, and we can come to Casablanca for the kickoff of a larger project.' },
+          { question: 'How much does a website cost in Casablanca?', answer: 'The same published prices apply across Morocco: a showcase website starts from 2,000 MAD and scales with pages, languages and features. An [e-commerce site](/en/creation-site-e-commerce-maroc) starts from 3,500 MAD with front-end and back-end included. You get a precise, free quote within one business day.' },
+          { question: 'Do you also do SEO in Casablanca?', answer: 'Yes. Every website includes its SEO foundations, and our [SEO work](/en/agence-seo-marrakech) then covers local search, your Google Business Profile and service pages, for Casablanca as for the rest of Morocco.' },
+          { question: 'How long does it take to build the website?', answer: 'Plan for 2 to 3 days for a defined-scope showcase website. Larger builds get a precise timeline with the quote.' },
+          { question: 'Can you redesign our existing website?', answer: 'Yes. We start by reviewing your current structure, speed, content gaps and contact paths, then recommend either a focused improvement or a full rebuild, whichever gets you results faster.' },
         ],
       },
       fr: {
-        title: 'Agence web à Casablanca - Sites internet',
-        description: 'Agence web à Casablanca : création de sites rapides, bilingues et prêts pour le SEO. Tarifs transparents, devis gratuit sous un jour ouvré.',
-        eyebrow: 'Sites web à Casablanca',
-        heading: 'Création de site web à Casablanca pour des entreprises qui veulent des clients.',
-        lead: 'Casablanca est le marché le plus concurrentiel du Maroc. Votre site doit charger vite, prouver votre sérieux et rendre le contact évident — avant que le visiteur ne retourne sur Google.',
-        outcomesTitle: 'Ce que votre site à Casablanca doit accomplir',
-        outcomes: ['Une vitesse mobile réelle, pour des acheteurs qui comparent plusieurs prestataires.', 'Le français et l’anglais pensés ensemble, pour vos clients locaux et vos partenaires étrangers.', 'Des signaux de crédibilité clairs pour le B2B, les services et les professions libérales.', 'Demande de devis, WhatsApp et téléphone accessibles depuis chaque page.'],
-        proofTitle: 'À distance, mais suivi de près',
-        proof: 'Nous sommes basés à Marrakech et travaillons avec des clients à Casablanca et dans tout le Grand Casablanca. Tout se pilote par appels, WhatsApp et aperçus partagés : vous voyez le site avancer avant sa mise en ligne.',
+        title: 'Agence web à Casablanca : création de site web',
+        description: 'Agence web pour les entreprises de Casablanca : sites rapides et bilingues, fondations SEO, prix à partir de 2 000 MAD et devis gratuit sous un jour ouvré.',
+        eyebrow: 'Agence web pour Casablanca',
+        heading: 'Une agence web pour les entreprises de Casablanca, comparées avant d’être appelées.',
+        lead: 'À Casablanca, un client potentiel ouvre trois ou quatre sites avant de décrocher son téléphone. Le vôtre doit dire en quelques secondes ce que vous faites, pour qui, à partir de quel prix et comment vous joindre. Nous le créons en français et en anglais, avec ses [fondations de référencement Google](/fr/agence-seo-marrakech) dès le départ.',
+        outcomesTitle: 'Ce qu’un site d’entreprise à Casablanca doit faire',
+        outcomes: [
+          'Dire votre métier et votre zone dès le premier écran : le quartier ou la ville que vous servez, pas seulement « Maroc ».',
+          'Montrer des preuves qu’un acheteur peut vérifier : références, vraies réalisations, avis reliés à leur source.',
+          'Qualifier la demande : un formulaire de devis court qui demande le besoin, le délai et le budget, plus WhatsApp et le téléphone.',
+          'Servir vos clients en français, et en anglais si vous travaillez avec des partenaires ou des clients étrangers.',
+          'Se charger vite sur un téléphone, là où commencent la plupart des comparaisons.',
+        ],
+        proofTitle: 'Nos réalisations',
+        proof: 'Nos sites publiés sont surtout dans le tourisme et les marques locales au Maroc, comme [Kasbah Angour](/fr/work/kasbah-angour) ou le concept studio [Yoo Marrakech](/fr/work/yoo-marrakech). La méthode est la même pour une entreprise de Casablanca : une offre claire, des preuves vérifiables et un contact sans détour.',
         cta: 'Demander un devis gratuit',
-        ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
+        ctaNote: 'Présentez votre activité et ce que le site doit vous apporter. Nous répondons sous un jour ouvré.',
+        sections: [
+          {
+            heading: 'Deux types de recherche à Casablanca',
+            paragraphs: [
+              'Les recherches de proximité, pour un cabinet, une clinique, un restaurant ou un commerce, se jouent sur la carte de Google : votre [fiche Google Business](/fr/blog/fiche-google-business-maroc) compte autant que votre site, et votre adresse et votre quartier doivent être écrits de la même façon partout.',
+              'Les recherches de prestataires, en B2B ou pour un service sur devis, se jouent sur le site : l’acheteur compare les références, le sérieux et la clarté de l’offre. Pour celles-ci, une page par service vaut mieux qu’une page d’accueil qui veut tout dire.',
+            ],
+          },
+          {
+            heading: 'Un prix affiché change la conversation',
+            paragraphs: [
+              'Quand nous avons étudié les sites d’agences classés à Marrakech, seuls 21 sur 66 affichaient un prix ([l’étude](/fr/blog/etude-sites-agences-web-marrakech)). Nous affichons les nôtres : un site vitrine à partir de 2 000 MAD, un [site e-commerce](/fr/creation-site-e-commerce-maroc) à partir de 3 500 MAD, et un devis précis sous un jour ouvré.',
+              'Pour une entreprise de Casablanca, cela évite un premier rendez-vous uniquement pour savoir si le budget est réaliste. Notre [guide des prix](/fr/blog/combien-coute-site-web-maroc) explique ce qui fait varier un devis.',
+            ],
+          },
+          {
+            heading: 'Travailler avec une agence basée à Marrakech',
+            paragraphs: [
+              'Nous sommes basés à Marrakech. Un projet à Casablanca se mène comme nos autres projets : appels, WhatsApp et aperçus partagés, pour que vous voyiez le site avancer et le validiez avant sa mise en ligne.',
+              'Pour un projet important, nous pouvons venir à Casablanca pour la réunion de lancement. Les prix et la méthode sont les mêmes partout au [Maroc](/fr/website-design-moroccan-businesses).',
+            ],
+          },
+        ],
         faqs: [
-          { question: 'Travaillez-vous avec des clients à Casablanca depuis Marrakech ?', answer: 'Oui. La majorité de nos projets se pilotent à distance par appels, WhatsApp et aperçus partagés : la distance ne ralentit rien. Pour les projets importants, nous pouvons aussi nous déplacer à Casablanca pour une réunion de lancement.' },
-          { question: 'Combien coûte un site web à Casablanca ?', answer: 'Les mêmes tarifs transparents s’appliquent partout au Maroc : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un [site e-commerce](/fr/creation-site-e-commerce-maroc) démarre à partir de 3 500 DH, front et back inclus. Vous recevez un devis gratuit et précis sous un jour ouvré, et notre [guide des prix](/fr/blog/combien-coute-site-web-maroc) explique ce qui le fait varier.' },
-          { question: 'Pouvez-vous refaire notre site existant ?', answer: 'Oui. Nous commençons par analyser votre structure actuelle, la vitesse, les manques de contenu et les parcours de contact, puis nous recommandons soit une amélioration ciblée, soit une refonte complète — selon ce qui donne des résultats le plus vite.' },
+          { question: 'Travaillez-vous avec des entreprises de Casablanca depuis Marrakech ?', answer: 'Oui. Le projet se mène à distance par appels, WhatsApp et aperçus partagés, et nous pouvons venir à Casablanca pour la réunion de lancement d’un projet important.' },
+          { question: 'Combien coûte un site web à Casablanca ?', answer: 'Les mêmes prix affichés s’appliquent partout au Maroc : un site vitrine démarre à partir de 2 000 DH et évolue selon les pages, les langues et les fonctionnalités. Un [site e-commerce](/fr/creation-site-e-commerce-maroc) démarre à partir de 3 500 DH, front et back inclus. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
+          { question: 'Faites-vous aussi le référencement (SEO) à Casablanca ?', answer: 'Oui. Chaque site inclut ses fondations SEO, et notre [accompagnement SEO](/fr/agence-seo-marrakech) couvre ensuite le référencement local, la fiche Google et les pages de services, pour Casablanca comme pour le reste du Maroc.' },
+          { question: 'Combien de temps pour créer le site ?', answer: 'Comptez 2 à 3 jours pour un site vitrine à périmètre défini. Les projets plus importants reçoivent un calendrier précis avec le devis.' },
+          { question: 'Pouvez-vous refaire notre site existant ?', answer: 'Oui. Nous commençons par analyser votre structure actuelle, la vitesse, les manques de contenu et les parcours de contact, puis nous recommandons soit une amélioration ciblée, soit une refonte complète, selon ce qui donne des résultats le plus vite.' },
         ],
       },
     },
@@ -375,7 +438,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence web rabat',
     keywords: ['agence web rabat', 'création site web rabat', 'agence de communication rabat', 'agence marketing digital rabat', 'site vitrine rabat'],
     relatedProjectIds: ['trust-drivers', 'your-morocco', 'yoo-marrakech'],
-    relatedPageSlugs: ['web-design-casablanca', 'web-design-marrakech', 'web-design-agadir', 'website-design-moroccan-businesses'],
+    relatedPageSlugs: ['web-design-casablanca', 'web-design-tanger', 'web-design-marrakech', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
     modifiedAt: '2026-11-10',
@@ -797,6 +860,108 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Puis-je proposer le paiement à la livraison ?', answer: 'Oui. C’est le mode le plus courant pour démarrer au Maroc, et nous prévoyons la confirmation des commandes dans le parcours.' },
           { question: 'Combien de temps pour créer une boutique en ligne ?', answer: 'Un calendrier précis est fixé avec le devis, selon le nombre de produits et le mode de paiement choisi.' },
           { question: 'La boutique sera-t-elle trouvée sur Google ?', answer: 'Chaque projet intègre des fondations SEO : pages catégories et produits propres, métadonnées et vitesse. Pour un travail suivi sur le positionnement, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
+        ],
+      },
+    },
+  },
+  {
+    slug: 'web-design-tanger',
+    primaryKeyword: 'création site web tanger',
+    keywords: ['création site web tanger', 'agence web tanger', 'agence seo tanger', 'site web tanger', 'création site internet tanger', 'website design Tangier'],
+    relatedProjectIds: ['kasbah-angour', 'flying-tandem', 'your-morocco'],
+    relatedPageSlugs: ['web-design-casablanca', 'web-design-rabat', 'agence-seo-marrakech', 'website-design-moroccan-businesses'],
+    relatedPostSlugs: ['combien-coute-site-web-maroc', 'fiche-google-business-maroc'],
+    showPricing: true,
+    modifiedAt: '2026-11-10',
+    copy: {
+      en: {
+        title: 'Website Design in Tangier: Web and SEO Agency',
+        description: 'Website design in Tangier for businesses, hotels and services: fast sites in French and English, Google search foundations, from 2,000 MAD, free quote within one business day.',
+        eyebrow: 'Websites for Tangier',
+        heading: 'Website design in Tangier, for a city that faces Europe as much as Morocco.',
+        lead: 'Between the port, the industrial zones, tourism and the city’s shops and services, a Tangier business does not serve customers who all speak the same language. Your website has to be clear to each of them, fast on mobile and easy to find on Google. We build it in French and English, with its [search foundations](/en/agence-seo-marrakech) from the start.',
+        outcomesTitle: 'What a Tangier website has to do',
+        outcomes: [
+          'Present your business clearly to Moroccan, European and international customers.',
+          'Plan the languages from the start: French and English, and a third language such as Spanish or Arabic when your customers need it.',
+          'Be found on Google in Tangier: one page per service, a consistent Google Business Profile, accurate local details.',
+          'Make the request simple: quote, WhatsApp and phone from every page.',
+        ],
+        proofTitle: 'Our work',
+        proof: 'Our published work is mostly in Marrakech and the Atlas, such as [Kasbah Angour](/en/work/kasbah-angour) and [Flying Tandem](/en/work/flying-tandem). It shows the method we bring to a Tangier business: a clear offer, fast pages and a direct route to contact.',
+        cta: 'Request a free quote',
+        ctaNote: 'Tell us about your business and your customers. We reply within one business day.',
+        sections: [
+          {
+            heading: 'Website and SEO in Tangier',
+            paragraphs: [
+              'In Tangier, businesses search for an SEO agency almost as often as for a web agency. A new website starts with its search foundations: one page per service, titles and descriptions written for search, speed, and a sitemap.',
+              'To go further, our [SEO work](/en/agence-seo-marrakech) covers local search and your [Google Business Profile](/en/blog/fiche-google-business-maroc), which decides whether you appear on the map when someone in Tangier searches for your service.',
+            ],
+          },
+          {
+            heading: 'Hotels, riads and tourism in the North',
+            paragraphs: [
+              'Tangier, Asilah, Chefchaouen and Tetouan welcome travelers who compare on their phone before they book. For a property or a tourist activity, see our pages on [hotel and riad websites](/en/hotel-website-design) and [websites for travel agencies and activities](/en/site-web-agence-de-voyage).',
+            ],
+          },
+          {
+            heading: 'Working remotely with an agency in Marrakech',
+            paragraphs: [
+              'We are based in Marrakech. A Tangier project runs on calls, WhatsApp and shared previews, so you see the site take shape and approve it before it goes live. The prices and the method are the same everywhere in [Morocco](/en/website-design-moroccan-businesses).',
+            ],
+          },
+        ],
+        faqs: [
+          { question: 'How much does a website cost in Tangier?', answer: 'The same published prices apply across Morocco: a showcase website starts from 2,000 MAD and an [e-commerce website](/en/creation-site-e-commerce-maroc) from 3,500 MAD, front-end and back-end included. You get a precise, free quote within one business day.' },
+          { question: 'Do you also do SEO in Tangier?', answer: 'Yes. Every website includes its SEO foundations, and our [SEO work](/en/agence-seo-marrakech) covers local search and the Google Business Profile for Tangier businesses.' },
+          { question: 'Can the website be in Spanish?', answer: 'French and English are planned from the start. A third language such as Spanish or Arabic can be added; we price it in the quote according to the amount of content.' },
+          { question: 'Do you work with Tangier businesses from Marrakech?', answer: 'Yes. Projects run remotely through calls, WhatsApp and shared previews.' },
+        ],
+      },
+      fr: {
+        title: 'Création de site web à Tanger : agence web et SEO',
+        description: 'Création de site web à Tanger pour entreprises, hôtels et services : sites rapides en français et en anglais, fondations SEO, à partir de 2 000 MAD, devis gratuit sous un jour ouvré.',
+        eyebrow: 'Sites web pour Tanger',
+        heading: 'Création de site web à Tanger, pour une ville tournée vers l’Europe autant que vers le Maroc.',
+        lead: 'Entre le port, les zones industrielles, le tourisme et les commerces et services de la ville, une entreprise de Tanger ne s’adresse pas à des clients qui parlent tous la même langue. Votre site doit être clair pour chacun d’eux, rapide sur mobile et facile à trouver sur Google. Nous le créons en français et en anglais, avec ses [fondations de référencement](/fr/agence-seo-marrakech) dès le départ.',
+        outcomesTitle: 'Ce qu’un site à Tanger doit faire',
+        outcomes: [
+          'Présenter clairement votre activité à des clients marocains, européens et internationaux.',
+          'Prévoir les langues dès le départ : français et anglais, et une troisième langue comme l’espagnol ou l’arabe si vos clients en ont besoin.',
+          'Être trouvé sur Google à Tanger : une page par service, une fiche Google Business cohérente, des informations locales exactes.',
+          'Rendre la demande simple : devis, WhatsApp et téléphone depuis chaque page.',
+        ],
+        proofTitle: 'Nos réalisations',
+        proof: 'Nos réalisations publiées sont surtout à Marrakech et dans l’Atlas, comme [Kasbah Angour](/fr/work/kasbah-angour) et [Flying Tandem](/fr/work/flying-tandem). Elles montrent la méthode que nous apportons à une entreprise de Tanger : une offre claire, des pages rapides et un contact direct.',
+        cta: 'Demander un devis gratuit',
+        ctaNote: 'Présentez votre activité et vos clients. Nous répondons sous un jour ouvré.',
+        sections: [
+          {
+            heading: 'Site web et SEO à Tanger',
+            paragraphs: [
+              'À Tanger, les entreprises cherchent une agence SEO presque aussi souvent qu’une agence web. Un nouveau site part avec ses fondations de référencement : une page par service, des titres et descriptions écrits pour la recherche, la vitesse et un plan du site.',
+              'Pour aller plus loin, notre [accompagnement SEO](/fr/agence-seo-marrakech) couvre le référencement local et votre [fiche Google Business](/fr/blog/fiche-google-business-maroc), qui décide si vous apparaissez sur la carte quand quelqu’un cherche votre service à Tanger.',
+            ],
+          },
+          {
+            heading: 'Hôtels, riads et tourisme dans le Nord',
+            paragraphs: [
+              'Tanger, Asilah, Chefchaouen et Tétouan accueillent des voyageurs qui comparent sur leur téléphone avant de réserver. Pour un établissement ou une activité touristique, voir nos pages [site web pour hôtel et riad](/fr/hotel-website-design) et [site web pour agence de voyage et activités](/fr/site-web-agence-de-voyage).',
+            ],
+          },
+          {
+            heading: 'Travailler à distance avec une agence de Marrakech',
+            paragraphs: [
+              'Nous sommes basés à Marrakech. Un projet à Tanger se mène par appels, WhatsApp et aperçus partagés : vous voyez le site avancer et le validez avant sa mise en ligne. Les prix et la méthode sont les mêmes partout au [Maroc](/fr/website-design-moroccan-businesses).',
+            ],
+          },
+        ],
+        faqs: [
+          { question: 'Combien coûte un site web à Tanger ?', answer: 'Les mêmes prix affichés s’appliquent partout au Maroc : un site vitrine démarre à partir de 2 000 DH et un [site e-commerce](/fr/creation-site-e-commerce-maroc) à partir de 3 500 DH, front et back inclus. Vous recevez un devis gratuit et précis sous un jour ouvré.' },
+          { question: 'Faites-vous aussi le référencement (SEO) à Tanger ?', answer: 'Oui. Chaque site inclut ses fondations SEO, et notre [accompagnement SEO](/fr/agence-seo-marrakech) couvre le référencement local et la fiche Google Business pour les entreprises de Tanger.' },
+          { question: 'Le site peut-il être en espagnol ?', answer: 'Le français et l’anglais sont prévus dès le départ. Une troisième langue comme l’espagnol ou l’arabe peut s’ajouter : nous la chiffrons au devis selon le volume de contenu.' },
+          { question: 'Travaillez-vous avec des entreprises de Tanger depuis Marrakech ?', answer: 'Oui. Les projets se mènent à distance par appels, WhatsApp et aperçus partagés.' },
         ],
       },
     },

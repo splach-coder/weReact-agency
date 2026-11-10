@@ -7,6 +7,8 @@ export type AudienceLandingPage = {
   relatedProjectIds: readonly string[];
   relatedServiceSlugs: readonly string[];
   relatedPostSlugs: readonly string[];
+  /** Shows the starting-price block (and its OfferCatalog schema) on the page. */
+  showPricing?: boolean;
   modifiedAt: string;
   copy: Record<'en' | 'fr', ServiceLocaleCopy>;
 };
@@ -17,8 +19,9 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     primaryKeyword: 'création site web maroc',
     keywords: ['création site web maroc', 'agence web maroc', 'website design Morocco', 'business website Morocco', 'site web entreprise Maroc', 'conception site web maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'kasbah-angour'],
-    relatedServiceSlugs: ['web-design-marrakech', 'web-design-casablanca', 'creation-site-e-commerce-maroc', 'agence-seo-marrakech'],
-    relatedPostSlugs: ['combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
+    relatedServiceSlugs: ['web-design-marrakech', 'web-design-casablanca', 'web-design-tanger', 'creation-site-e-commerce-maroc', 'agence-seo-marrakech'],
+    relatedPostSlugs: ['combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech', 'fiche-google-business-maroc'],
+    showPricing: true,
     modifiedAt: '2026-11-10',
     copy: {
       en: {
@@ -38,6 +41,30 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
         proof: 'Our Marrakech-based studio combines local market understanding with fast, measurable web delivery for businesses across Morocco, from [local brand concepts](/en/work/yoo-marrakech) to [an Atlas hotel](/en/work/kasbah-angour).',
         cta: 'Plan my business website',
         ctaNote: 'Share your business and goal. We reply within one business day.',
+        sections: [
+          {
+            heading: 'How a website project runs',
+            paragraphs: [
+              'A first conversation, by phone or WhatsApp, to understand your business, your customers, and what the website has to bring in: calls, quote requests, bookings or sales.',
+              'A precise quote within one business day, with the scope, the price and the timing. For a defined-scope showcase website, plan for 2 to 3 days.',
+              'The build with shared previews: you see the site take shape and approve it before it goes live.',
+              'Launch with the SEO foundations in place: titles, descriptions, speed, sitemap and structured data. The domain, the hosting and the code stay yours.',
+            ],
+          },
+          {
+            heading: 'What a showcase website includes',
+            paragraphs: [
+              'A focused website for a local business: home, services, about and contact, built with the local SEO foundations that help you appear when someone searches for what you do.',
+              'Extra pages, a second language, a booking flow or an [online store](/en/creation-site-e-commerce-maroc) change the price. Our [pricing guide](/en/blog/combien-coute-site-web-maroc) explains what moves a quote, and our [Google Business Profile guide](/en/blog/fiche-google-business-maroc) covers the map results.',
+            ],
+          },
+          {
+            heading: 'Across Morocco',
+            paragraphs: [
+              'We are based in Marrakech and work remotely with businesses in other cities: [Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat), [Tangier](/en/web-design-tanger) and [Agadir](/en/web-design-agadir). The prices and the method are the same everywhere.',
+            ],
+          },
+        ],
         faqs: [
           { question: 'What Moroccan businesses do you work with?', answer: 'We work with local services, hospitality, tourism, professional firms, retail, restaurants, and small teams that need a credible path from search to contact.' },
           { question: 'Can the website use WhatsApp as the main contact route?', answer: 'Yes. We can make WhatsApp prominent while still keeping forms, email, and phone available for customers who prefer another method.' },
@@ -62,6 +89,30 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
         proof: 'Notre studio basé à Marrakech associe connaissance du marché marocain et réalisation web rapide et mesurable, des [concepts de marques locales](/fr/work/yoo-marrakech) à [un hôtel de l’Atlas](/fr/work/kasbah-angour).',
         cta: 'Préparer mon site professionnel',
         ctaNote: 'Présentez votre entreprise et votre objectif. Nous répondons sous un jour ouvré.',
+        sections: [
+          {
+            heading: 'Comment se passe la création de votre site',
+            paragraphs: [
+              'Un premier échange, par téléphone ou WhatsApp, pour comprendre votre activité, vos clients et ce que le site doit vous apporter : des appels, des demandes de devis, des réservations ou des ventes.',
+              'Un devis précis sous un jour ouvré, avec le périmètre, le prix et le délai. Pour un site vitrine à périmètre défini, comptez 2 à 3 jours.',
+              'La réalisation avec des aperçus partagés : vous voyez le site avancer et vous le validez avant sa mise en ligne.',
+              'La mise en ligne avec les fondations SEO en place : titres, descriptions, vitesse, plan du site et données structurées. Le nom de domaine, l’hébergement et le code restent à vous.',
+            ],
+          },
+          {
+            heading: 'Ce que comprend un site vitrine',
+            paragraphs: [
+              'Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu’un cherche ce que vous faites.',
+              'Des pages supplémentaires, une deuxième langue, une réservation ou une [boutique en ligne](/fr/creation-site-e-commerce-maroc) font évoluer le prix. Notre [guide des prix](/fr/blog/combien-coute-site-web-maroc) explique ce qui fait varier un devis, et notre [guide de la fiche Google Business](/fr/blog/fiche-google-business-maroc) couvre les résultats sur la carte.',
+            ],
+          },
+          {
+            heading: 'Partout au Maroc',
+            paragraphs: [
+              'Nous sommes basés à Marrakech et travaillons à distance avec les entreprises des autres villes : [Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat), [Tanger](/fr/web-design-tanger) et [Agadir](/fr/web-design-agadir). Les prix et la méthode sont les mêmes partout.',
+            ],
+          },
+        ],
         faqs: [
           { question: 'Avec quelles entreprises marocaines travaillez-vous ?', answer: 'Nous travaillons avec les services locaux, l’hôtellerie, le tourisme, les cabinets, le commerce, la restauration et les petites équipes qui ont besoin d’un parcours crédible entre Google et le contact.' },
           { question: 'WhatsApp peut-il être le contact principal du site ?', answer: 'Oui. Nous pouvons mettre WhatsApp en avant tout en conservant formulaire, e-mail et téléphone pour les clients qui préfèrent un autre canal.' },

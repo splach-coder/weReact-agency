@@ -76,3 +76,11 @@ test('allows only known commercial pages as lead sources', () => {
   assert.equal(getAllowedSourcePage('international-web-design-agency'), 'international-web-design-agency');
   assert.equal(getAllowedSourcePage('forged-admin-page'), undefined);
 });
+
+test('attributes leads from every landing page (no page missing from the allow-list)', async () => {
+  const { serviceLandingPages } = await import('../data/services');
+  const { audienceLandingPages } = await import('../data/audiences');
+  for (const page of [...serviceLandingPages, ...audienceLandingPages]) {
+    assert.equal(getAllowedSourcePage(page.slug), page.slug, `${page.slug} is missing from ALLOWED_SOURCE_PAGES in src/lib/leads.ts`);
+  }
+});
