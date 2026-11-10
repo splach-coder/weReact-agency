@@ -24,7 +24,13 @@ const CURRENT_PUBLIC_PATHS = new Set([
   '/ai-info',
 ]);
 
+/** Google review form for the WeReact agency Business Profile (place ID ChIJUysQnRbvrw0RJFlwR-sflgw). */
+export const GOOGLE_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJUysQnRbvrw0RJFlwR-sflgw';
+
 const LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
+  // Short links to hand to clients (WhatsApp, cards, invoices): straight to the Google review form.
+  '/avis': GOOGLE_REVIEW_URL,
+  '/review': GOOGLE_REVIEW_URL,
   // Merged into the Marrakech web design page (same search intent, Nov 2026).
   '/agence-web-marrakech': '/fr/web-design-marrakech',
   '/fr/agence-web-marrakech': '/fr/web-design-marrakech',

@@ -8,8 +8,9 @@ import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react'
 import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
-import { createBlogPostingJsonLd, createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
+import { createBlogPostingJsonLd, createBreadcrumbJsonLd, createFaqJsonLd, createPageMetadata } from '@/lib/seo';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { renderInlineLinks } from '@/lib/inline-links';
 import { getServiceLandingPage } from '@/data/services';
 import { getBlogUi } from '@/data/blog-ui';
 
@@ -74,6 +75,8 @@ export default async function BlogPostPage({ params }: Props) {
     const relatedService = getServiceLandingPage(post.relatedServiceSlug);
 
     const jsonLd = createBlogPostingJsonLd(post, locale);
+    const faqJsonLd = post.faqs && post.faqs.length > 0 ? createFaqJsonLd(post.faqs) : null;
+    const isFr = locale === 'fr';
 
     const breadcrumbJsonLd = createBreadcrumbJsonLd([
         { name: locale === 'fr' ? 'Accueil' : 'Home', url: `/${locale}` },
@@ -85,6 +88,9 @@ export default async function BlogPostPage({ params }: Props) {
         <article className="min-h-screen bg-[var(--color-background-main)]">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            {faqJsonLd && (
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            )}
 
             <BlogShare url={postUrl} title={post.title} locale={locale} variant="floating" />
 
@@ -132,10 +138,31 @@ export default async function BlogPostPage({ params }: Props) {
                                 <Image src={post.image} alt={post.title} fill className="object-cover" priority />
                             </div>
 
+                            {post.summary && (
+                                <section aria-labelledby="article-summary" className="mb-10 border-l-2 border-[var(--color-primary)] bg-[var(--color-background-main)] px-6 py-5">
+                                    <h2 id="article-summary" className="text-mono text-[var(--color-primary)]">{isFr ? 'En bref' : 'In short'}</h2>
+                                    <p className="mt-3 text-lg leading-relaxed text-[var(--color-text-main)]">{post.summary}</p>
+                                </section>
+                            )}
+
                             <div
                                 className="prose prose-lg max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-[var(--color-text-main)] prose-h2:mt-14 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-[var(--color-text-secondary)] prose-a:font-normal prose-a:text-[var(--color-primary)] prose-a:underline prose-a:decoration-[rgba(58,90,64,0.35)] prose-a:underline-offset-4 hover:prose-a:decoration-[var(--color-primary)] prose-blockquote:border-l-2 prose-blockquote:border-[var(--color-primary)] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-[var(--color-text-main)] prose-strong:font-semibold prose-strong:text-[var(--color-text-main)] prose-li:text-[var(--color-text-secondary)] prose-li:marker:text-[var(--color-primary)] prose-img:rounded-sm"
                                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                             />
+
+                            {post.faqs && post.faqs.length > 0 && (
+                                <section aria-labelledby="article-faq" className="mt-14 border-t border-[rgba(58,90,64,0.15)] pt-10">
+                                    <h2 id="article-faq" className="text-3xl font-medium tracking-tight text-[var(--color-text-main)]">{isFr ? 'Questions fréquentes' : 'Common questions'}</h2>
+                                    <dl className="mt-6 divide-y divide-[rgba(58,90,64,0.12)]">
+                                        {post.faqs.map((faq) => (
+                                            <div key={faq.question} className="py-5">
+                                                <dt className="text-lg font-medium text-[var(--color-text-main)]">{faq.question}</dt>
+                                                <dd className="mt-2 leading-relaxed text-[var(--color-text-secondary)]">{renderInlineLinks(faq.answer)}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                </section>
+                            )}
 
                             {relatedService && (
                                 <aside className="mt-12 border-y border-[rgba(58,90,64,0.15)] py-8">

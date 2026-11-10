@@ -1,6 +1,6 @@
 # Internal link audit
 
-Generated 2026-11-10T22:15:06Z by `scripts/seo/link-audit.mjs` against `http://127.0.0.1:8807` (canonical host `https://www.wereact.agency`), from the 72 URLs in `/sitemap.xml`.
+Generated 2026-11-10T23:00:02Z by `scripts/seo/link-audit.mjs` against `http://127.0.0.1:8808` (canonical host `https://www.wereact.agency`), from the 72 URLs in `/sitemap.xml`.
 
 A contextual link is an `<a href>` inside `<main>`. Header, footer and navigation links are on every page and are ignored. Links from the HTML sitemap (`/[locale]/sitemap`) and AI info page (`/[locale]/ai-info`) list every page by design, so they are shown as "index in-links" and do not count. Query strings and `#fragments` are ignored when matching a link to a page, and a page linking to itself is ignored. In-links count linking pages, not repeated links from the same page.
 

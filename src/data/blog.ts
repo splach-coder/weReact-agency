@@ -1,8 +1,17 @@
 import type { ServiceLandingPage } from './services';
 import type { AudienceLandingPage } from './audiences';
 
+/** A question and its short, self-contained answer (rendered on the page and as FAQPage JSON-LD). */
+export interface BlogFaq {
+    question: string;
+    answer: string;
+}
+
 export interface BlogPostLocaleCopy {
     title: string;
+    /** Two or three sentences that answer the article's main question on their own. */
+    summary?: string;
+    faqs?: BlogFaq[];
     metaTitle?: string;
     excerpt: string;
     metaDescription?: string;
@@ -19,6 +28,9 @@ export interface BlogPost {
     /** Short <title> for search results. Falls back to the full title. */
     metaTitle?: string;
     excerpt: string;
+    /** Two or three sentences that answer the article's main question on their own (shown first, quotable by search and AI answers). */
+    summary?: string;
+    faqs?: BlogFaq[];
     metaDescription?: string;
     date: string;
     publishedAt: string;
@@ -46,6 +58,8 @@ export function getLocalizedPost(post: BlogPost, locale: string): BlogPost {
         title: post.fr.title,
         metaTitle: post.fr.metaTitle ?? post.metaTitle,
         excerpt: post.fr.excerpt,
+        summary: post.fr.summary ?? post.summary,
+        faqs: post.fr.faqs ?? post.faqs,
         metaDescription: post.fr.metaDescription ?? post.metaDescription,
         content: post.fr.content,
         date: post.fr.date ?? post.date,
@@ -61,6 +75,13 @@ export const blogPosts: BlogPost[] = [
         title: "How Much Does a Website Cost in Morocco in 2026?",
         metaTitle: "Website Cost in Morocco in 2026",
         excerpt: "Honest starting prices for a showcase site, an e-commerce store, and a custom quote for riad or hotel booking websites in Morocco, and what actually moves a quote up or down.",
+        summary: "At WeReact, a showcase website in Morocco starts from 2,000 MAD and an e-commerce website from 3,500 MAD, front-end and back-end included. Direct-booking websites for riads and hotels are quoted on scope. The number of pages, the languages, booking features, SEO work and the content you provide are what move a quote up or down.",
+        faqs: [
+            { question: "How much does a showcase website cost in Morocco?", answer: "At WeReact, from 2,000 MAD, scaling with pages, languages and features. Among the 12 agencies ranking in Marrakech that publish a website price, the median was 3,045 MAD in November 2026 ([our study](/en/blog/etude-sites-agences-web-marrakech))." },
+            { question: "How much does an e-commerce website cost in Morocco?", answer: "At WeReact, from 3,500 MAD with front-end and back-end included. The number of products, the languages and the payment method set the final quote ([e-commerce websites](/en/creation-site-e-commerce-maroc))." },
+            { question: "How long does it take to build a website?", answer: "Plan for 2 to 3 days for a defined-scope showcase website. Booking and e-commerce projects get a scoped timeline with the quote." },
+            { question: "What should a website quote include?", answer: "The number of pages, the languages, who writes the content and provides the photos, whether the SEO basics are included, and who owns the domain, hosting and code after delivery." },
+        ],
         metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom booking sites.",
         date: "July 14, 2026",
         publishedAt: "2026-07-14",
@@ -127,6 +148,13 @@ export const blogPosts: BlogPost[] = [
             title: "Combien coûte un site web au Maroc en 2026 ?",
             metaTitle: "Combien coûte un site web au Maroc ?",
             excerpt: "Prix de départ honnêtes pour un site vitrine, une boutique e-commerce, et un devis sur mesure pour un site de réservation riad ou hôtel au Maroc, et ce qui fait vraiment varier un devis.",
+            summary: "Chez WeReact, un site vitrine au Maroc démarre à partir de 2 000 MAD et un site e-commerce à partir de 3 500 MAD, front et back inclus. Les sites de réservation directe pour riads et hôtels sont établis sur devis. Le nombre de pages, les langues, la réservation, le travail SEO et le contenu que vous fournissez font monter ou baisser un devis.",
+            faqs: [
+                { question: "Combien coûte un site vitrine au Maroc ?", answer: "Chez WeReact, à partir de 2 000 MAD, selon les pages, les langues et les fonctionnalités. Parmi les 12 agences classées à Marrakech qui affichent un prix de site, la médiane était de 3 045 MAD en novembre 2026 ([notre étude](/fr/blog/etude-sites-agences-web-marrakech))." },
+                { question: "Combien coûte un site e-commerce au Maroc ?", answer: "Chez WeReact, à partir de 3 500 MAD, front et back inclus. Le nombre de produits, les langues et le mode de paiement fixent le devis final ([création de site e-commerce](/fr/creation-site-e-commerce-maroc))." },
+                { question: "Combien de temps faut-il pour créer un site ?", answer: "Comptez 2 à 3 jours pour un site vitrine à périmètre défini. Les projets avec réservation ou e-commerce reçoivent un calendrier précis avec le devis." },
+                { question: "Que doit contenir un devis de site web ?", answer: "Le nombre de pages, les langues, qui rédige les contenus et fournit les photos, si les bases SEO sont incluses, et qui possède le nom de domaine, l’hébergement et le code après la livraison." },
+            ],
             metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs honnêtes : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour riads et hôtels.",
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
@@ -239,6 +267,11 @@ export const blogPosts: BlogPost[] = [
         title: "Website Design in Marrakech: How Local Businesses Can Turn Search Traffic Into Clients",
         metaTitle: "Marrakech Web Design: Traffic Into Clients",
         excerpt: "A practical guide for Marrakech businesses that want a website built for local visibility, trust, speed, and real client inquiries.",
+        summary: "A local business website in Marrakech should answer the searcher fast: what you do, where, for whom and how to reach you. It needs visible location signals, quick mobile pages and an obvious WhatsApp, call or quote button on every page.",
+        faqs: [
+            { question: "What should a Marrakech business website include?", answer: "A page per service, your city and service area, contact details and hours, real project examples, and a clear call, WhatsApp or quote button on every page." },
+            { question: "How much does a business website cost in Marrakech?", answer: "At WeReact, a showcase website starts from 2,000 MAD. Our [pricing guide](/en/blog/combien-coute-site-web-maroc) explains what moves a quote." },
+        ],
         metaDescription: "Website design guide for Marrakech businesses: SEO, mobile UX, trust signals, and conversion paths that turn Google traffic into client inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
@@ -279,6 +312,11 @@ export const blogPosts: BlogPost[] = [
             title: "Création de site web à Marrakech : comment transformer le trafic Google en clients",
             metaTitle: "Site web Marrakech : du trafic aux clients",
             excerpt: "Un guide pratique pour les entreprises de Marrakech qui veulent un site pensé pour la visibilité locale, la confiance, la rapidité et de vraies demandes clients.",
+            summary: "Le site d’une entreprise locale à Marrakech doit répondre vite à celui qui cherche : ce que vous faites, où, pour qui et comment vous joindre. Il lui faut des signaux de localisation visibles, des pages rapides sur mobile et un bouton WhatsApp, appel ou devis évident sur chaque page.",
+            faqs: [
+                { question: "Que doit contenir le site d’une entreprise à Marrakech ?", answer: "Une page par service, votre ville et votre zone d’intervention, vos coordonnées et horaires, de vrais exemples de projets, et un bouton appel, WhatsApp ou devis sur chaque page." },
+                { question: "Combien coûte un site d’entreprise à Marrakech ?", answer: "Chez WeReact, un site vitrine démarre à partir de 2 000 MAD. Notre [guide des prix](/fr/blog/combien-coute-site-web-maroc) explique ce qui fait varier un devis." },
+            ],
             metaDescription: "Création de site web à Marrakech : SEO, UX mobile, confiance et parcours de conversion pour transformer le trafic Google en demandes clients.",
             date: "16 juin 2026",
             readTime: "9 min de lecture",
@@ -314,6 +352,12 @@ export const blogPosts: BlogPost[] = [
         title: "SEO for Tourism and Hospitality Websites in Morocco: A Practical Growth Guide",
         metaTitle: "Tourism & Hospitality SEO in Morocco",
         excerpt: "How hotels, tour operators, transport companies, and travel brands in Morocco can build websites that improve discovery and direct inquiries.",
+        summary: "Tourism SEO in Morocco works when each activity, room or destination has its own page answering what travelers check before booking (duration, price, meeting point, what is included), loads fast on mobile, shows trust signals with their source, and puts WhatsApp next to the price. Your Google Business Profile has to match the website.",
+        faqs: [
+            { question: "How do tour operators in Morocco get found on Google?", answer: "With one page per activity and place, real photos, the practical details and a price or “from” price, plus a Google Business Profile consistent with the site." },
+            { question: "Should a tour operator still use GetYourGuide or Viator?", answer: "Yes, for discovery. A direct website serves travelers who already know you, without the platform’s commission on that booking ([platform commissions compared](/en/blog/commission-getyourguide-viator-booking-maroc))." },
+            { question: "Does mobile speed matter for tourism websites?", answer: "Yes. Many travelers browse from their phone while already in Morocco: compress images, avoid heavy scripts and keep enquiry forms short." },
+        ],
         metaDescription: "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
@@ -380,6 +424,12 @@ export const blogPosts: BlogPost[] = [
             title: "SEO pour les sites de tourisme et d'hôtellerie au Maroc : guide pratique de croissance",
             metaTitle: "SEO tourisme et hôtellerie au Maroc",
             excerpt: "Comment les hôtels, agences d'excursions, sociétés de transport et marques de voyage au Maroc peuvent construire des sites qui améliorent leur visibilité et leurs demandes directes.",
+            summary: "Le SEO touristique au Maroc fonctionne quand chaque activité, chambre ou destination a sa propre page qui répond à ce que le voyageur vérifie avant de réserver (durée, prix, point de rendez-vous, ce qui est inclus), se charge vite sur mobile, montre des preuves sourcées et place WhatsApp à côté du prix. Votre fiche Google Business doit correspondre au site.",
+            faqs: [
+                { question: "Comment un prestataire d’excursions au Maroc est-il trouvé sur Google ?", answer: "Avec une page par activité et par lieu, de vraies photos, les informations pratiques et un prix ou un prix « à partir de », plus une fiche Google Business cohérente avec le site." },
+                { question: "Faut-il garder GetYourGuide ou Viator ?", answer: "Oui, pour être découvert. Un site direct sert les voyageurs qui vous connaissent déjà, sans la commission de la plateforme sur cette réservation ([comparatif des commissions](/fr/blog/commission-getyourguide-viator-booking-maroc))." },
+                { question: "La vitesse mobile compte-t-elle pour un site de tourisme ?", answer: "Oui. Beaucoup de voyageurs naviguent depuis leur téléphone alors qu’ils sont déjà au Maroc : compressez les images, évitez les scripts lourds et gardez les formulaires courts." },
+            ],
             metaDescription: "SEO pour sites de tourisme et d'hôtellerie au Maroc : pages destinations, vitesse mobile, confiance et UX de conversion pour plus de demandes directes.",
             date: "16 juin 2026",
             readTime: "10 min de lecture",
@@ -441,6 +491,13 @@ export const blogPosts: BlogPost[] = [
         title: "Google Business Profile in Morocco: Create It, Optimise It, and Show Up on Google Maps",
         metaTitle: "Google Business Profile in Morocco: The Guide",
         excerpt: "How a Moroccan business gets into the map results: creating and verifying the profile, name and categories, photos, reviews without breaking Google’s rules, and the link to your website.",
+        summary: "To appear on Google Maps in Morocco, claim and verify your Google Business Profile, use your real business name, choose the primary category that matches what you do, add real photos and correct hours, and ask every satisfied customer for a review with your review link. Google says local results are based mainly on relevance, distance and prominence, and it prohibits offering anything in exchange for reviews.",
+        faqs: [
+            { question: "Is a Google Business Profile free?", answer: "Yes. Creating and managing a Google Business Profile is free." },
+            { question: "Can I add keywords to my business name?", answer: "No. Google’s guidelines ask for your real-world business name; adding keywords breaks them and can get the profile suspended." },
+            { question: "Can I offer a discount in exchange for a Google review?", answer: "No. Google says offering incentives, like free or discounted goods or services, in exchange for reviews is strictly prohibited, and those reviews are removed." },
+            { question: "Do I need to show a street address?", answer: "No, if you serve customers at their location: you can set a service area and hide the street address." },
+        ],
         metaDescription: "Create, verify and optimise your Google Business Profile in Morocco to appear on Google Maps: name, categories, photos, honest reviews, and the mistakes that cost clients.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
@@ -514,6 +571,13 @@ export const blogPosts: BlogPost[] = [
             title: "Fiche Google Business au Maroc : la créer, l'optimiser et apparaître sur Google Maps",
             metaTitle: "Fiche Google Business au Maroc : le guide",
             excerpt: "Comment une entreprise marocaine entre dans les résultats sur la carte : créer et valider la fiche, nom et catégories, photos, avis sans enfreindre les règles de Google, et le lien avec votre site.",
+            summary: "Pour apparaître sur Google Maps au Maroc, revendiquez et validez votre fiche Google Business, utilisez le nom réel de votre établissement, choisissez la catégorie principale qui correspond à votre activité, ajoutez de vraies photos et des horaires exacts, et demandez un avis à chaque client satisfait avec votre lien d’avis. Google indique que les résultats locaux reposent principalement sur la pertinence, la distance et la popularité, et interdit toute contrepartie en échange d’un avis.",
+            faqs: [
+                { question: "La fiche Google Business est-elle gratuite ?", answer: "Oui. Créer et gérer une fiche Google Business est gratuit." },
+                { question: "Puis-je ajouter des mots-clés au nom de mon établissement ?", answer: "Non. Les consignes de Google demandent le nom réel de l’établissement ; ajouter des mots-clés les enfreint et peut entraîner la suspension de la fiche." },
+                { question: "Puis-je offrir une réduction en échange d’un avis Google ?", answer: "Non. Google qualifie de strictement interdit le fait de proposer des avantages, comme des produits ou services sans frais ou à prix réduit, en échange d’avis, et ces avis sont supprimés." },
+                { question: "Dois-je afficher une adresse ?", answer: "Non, si vous vous déplacez chez vos clients : vous pouvez définir une zone desservie et masquer l’adresse." },
+            ],
             metaDescription: "Créer, valider et optimiser votre fiche Google Business au Maroc pour apparaître sur Google Maps : nom, catégories, photos, avis honnêtes et les erreurs qui coûtent des clients.",
             date: "10 novembre 2026",
             readTime: "8 min de lecture",
@@ -582,6 +646,13 @@ export const blogPosts: BlogPost[] = [
         title: "GetYourGuide, Viator, Booking.com and Airbnb Commissions: What Operators and Riads in Morocco Pay (2026)",
         metaTitle: "GetYourGuide, Viator and Booking Commissions in Morocco",
         excerpt: "We read each platform’s own supplier and host pages. Only Airbnb publishes its rates on a live page; GetYourGuide removed its 20–30%. What that means for a tour operator or a riad, with sources.",
+        summary: "Only Airbnb publishes its rates on a live page: 15.5% for most hosts with its host-only fee, and typically 20% on experiences. GetYourGuide published 20–30% until 2025 and then removed the figure; Viator, Booking.com and Expedia publish no percentage, so your rate is the one in your contract. The Moroccan press reported 15–17% for classified hotels on Booking.com in 2023.",
+        faqs: [
+            { question: "What commission does GetYourGuide charge in Morocco?", answer: "GetYourGuide no longer publishes a figure: its supplier page says rates vary by country of operation and are shared after sign-up. Until 2025 the same page stated 20–30% depending on the country of the activity." },
+            { question: "What commission does Viator charge?", answer: "Viator publishes no percentage. It charges a one-time US$29 listing fee per product and takes its commission only on completed bookings; its August 2026 supplier agreement also lets it set the retail price shown to travelers." },
+            { question: "What commission does Booking.com take from hotels in Morocco?", answer: "Booking.com does not publish a rate: it depends on the country, the property type and the contract. In 2023 the Moroccan press reported 15–17% for classified hotels." },
+            { question: "What does Airbnb charge hosts?", answer: "15.5% for most hosts with the host-only fee, which is mandatory for traditional hospitality listings such as hotels; 3% with the older split fee, plus 14.1–16.5% paid by the guest. Experiences typically pay 20%." },
+        ],
         metaDescription: "GetYourGuide, Viator, Booking.com, Airbnb and Expedia commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages, with the direct-booking arithmetic.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
@@ -650,6 +721,13 @@ export const blogPosts: BlogPost[] = [
             title: "Commission GetYourGuide, Viator, Booking et Airbnb : ce que paient les prestataires et les riads au Maroc (2026)",
             metaTitle: "Commission GetYourGuide, Viator, Booking au Maroc",
             excerpt: "Nous avons lu les pages fournisseurs et hôtes de chaque plateforme. Seul Airbnb publie ses taux sur une page en ligne ; GetYourGuide a retiré ses 20 à 30 %. Ce que cela change pour un prestataire d'activités ou un riad, sources à l'appui.",
+            summary: "Seul Airbnb publie ses taux sur une page en ligne : 15,5 % pour la plupart des hôtes avec les frais d’hôte uniques, et 20 % en général sur les expériences. GetYourGuide affichait 20 à 30 % jusqu’en 2025 puis a retiré le chiffre ; Viator, Booking.com et Expedia ne publient aucun pourcentage, votre taux est donc celui de votre contrat. La presse marocaine a rapporté 15 à 17 % pour les hôtels classés sur Booking.com en 2023.",
+            faqs: [
+                { question: "Quelle commission prend GetYourGuide au Maroc ?", answer: "GetYourGuide ne publie plus de chiffre : sa page fournisseurs indique que le taux varie selon le pays d’activité et qu’il est communiqué après l’inscription. Jusqu’en 2025, la même page indiquait 20 à 30 % selon le pays de l’activité." },
+                { question: "Quelle commission prend Viator ?", answer: "Viator ne publie aucun pourcentage. Il facture 29 $ de frais d’inscription uniques par produit et ne prend sa commission que sur les réservations réalisées ; son contrat fournisseurs d’août 2026 lui permet aussi de fixer le prix affiché aux voyageurs." },
+                { question: "Quelle commission Booking.com prend-il aux hôtels au Maroc ?", answer: "Booking.com ne publie pas de taux : il dépend du pays, du type d’établissement et du contrat. En 2023, la presse marocaine a rapporté 15 à 17 % pour les hôtels classés." },
+                { question: "Combien Airbnb facture-t-il aux hôtes ?", answer: "15,5 % pour la plupart des hôtes avec les frais d’hôte uniques, obligatoires pour les établissements hôteliers traditionnels ; 3 % avec l’ancienne structure partagée, plus 14,1 à 16,5 % payés par le voyageur. Les expériences paient en général 20 %." },
+            ],
             metaDescription: "Commissions GetYourGuide, Viator, Booking.com, Airbnb et Expedia pour les prestataires d'activités et les riads au Maroc en 2026, d'après les pages des plateformes, avec le calcul de la réservation directe.",
             date: "10 novembre 2026",
             readTime: "9 min de lecture",
@@ -713,6 +791,12 @@ export const blogPosts: BlogPost[] = [
         title: "Web Agencies in Marrakech: What 66 Ranking Websites Show Buyers (2026 Study)",
         metaTitle: "Web Agencies in Marrakech: A Study of 66 Sites",
         excerpt: "We checked every agency and freelancer site in Google’s top 20 for three Marrakech searches. Two in three publish no price, few give a delivery time, and half of the reviews shown cannot be traced.",
+        summary: "In November 2026 we checked the 66 agency and freelancer websites ranking in Google’s top 20 for three Marrakech searches. Only 21 published a price for their own services, 18 gave a delivery time with a number, and 17 of the 34 sites showing reviews linked to their source. 41 were in French only.",
+        faqs: [
+            { question: "How much does a web agency in Marrakech charge for a website?", answer: "Among the 12 agencies ranking in Marrakech that publish a “from” price for a website in dirhams, the median was 3,045 MAD, and ten of the twelve were between 900 and 4,000 MAD (November 2026)." },
+            { question: "How do I choose a web agency in Marrakech?", answer: "Ask for a starting price and a delivery date in writing, reviews you can click through to their source, real projects you can open, the languages your customers need, and who will own the domain, hosting and code." },
+            { question: "Do the best-ranked agencies publish their prices more often?", answer: "No. 11 of the 30 sites in the top five published their own price, against 10 of the 33 ranked sixth to twentieth." },
+        ],
         metaDescription: "Study of 66 web agency and freelancer websites ranking on Google for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp, with the method.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
@@ -788,6 +872,12 @@ export const blogPosts: BlogPost[] = [
             title: "Agences web à Marrakech : ce que montrent 66 sites classés sur Google (étude 2026)",
             metaTitle: "Agences web à Marrakech : étude de 66 sites",
             excerpt: "Nous avons examiné tous les sites d'agences et de freelances du top 20 Google pour trois recherches à Marrakech. Deux sur trois n'affichent aucun prix, peu donnent un délai, et la moitié des avis affichés sont invérifiables.",
+            summary: "En novembre 2026, nous avons examiné les 66 sites d’agences et de freelances classés dans le top 20 Google pour trois recherches à Marrakech. Seuls 21 affichaient un prix pour leurs propres services, 18 donnaient un délai chiffré, et 17 des 34 sites qui montrent des avis renvoyaient vers leur source. 41 étaient uniquement en français.",
+            faqs: [
+                { question: "Combien coûte un site web chez une agence à Marrakech ?", answer: "Parmi les 12 agences classées à Marrakech qui affichent un prix « à partir de » pour un site en dirhams, la médiane était de 3 045 MAD, et dix sur douze se situaient entre 900 et 4 000 MAD (novembre 2026)." },
+                { question: "Comment choisir une agence web à Marrakech ?", answer: "Demandez un prix de départ et une date de livraison par écrit, des avis sur lesquels on peut cliquer jusqu’à leur source, de vrais projets qu’on peut ouvrir, les langues dont vos clients ont besoin, et qui possédera le nom de domaine, l’hébergement et le code." },
+                { question: "Les agences les mieux classées affichent-elles plus souvent leurs prix ?", answer: "Non. 11 des 30 sites du top 5 affichaient leur prix, contre 10 des 33 sites classés de 6 à 20." },
+            ],
             metaDescription: "Étude de 66 sites d'agences web et de freelances classés sur Google pour Marrakech en novembre 2026 : prix, délais, avis, langues et WhatsApp, avec la méthode.",
             date: "10 novembre 2026",
             readTime: "7 min de lecture",

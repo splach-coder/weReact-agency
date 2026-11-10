@@ -1,0 +1,322 @@
+{
+ "generatedAt": "2026-11-10T22:58:08.009Z",
+ "range": {
+  "start": "2026-10-11",
+  "end": "2026-11-07",
+  "days": 28
+ },
+ "totals": {
+  "clicks": 8,
+  "impressions": 876
+ },
+ "keywords": [
+  {
+   "keyword": "google business profile",
+   "volume": 4400,
+   "target": "/fr/blog/fiche-google-business-maroc",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création site web maroc",
+   "volume": 1000,
+   "target": "/fr/website-design-moroccan-businesses",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence web casablanca",
+   "volume": 880,
+   "target": "/fr/web-design-casablanca",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence seo maroc",
+   "volume": 720,
+   "target": "/fr/agence-seo-marrakech",
+   "impressions": 37,
+   "clicks": 0,
+   "position": 85
+  },
+  {
+   "keyword": "création site web marrakech",
+   "volume": 590,
+   "target": "/fr/web-design-marrakech",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence web au maroc",
+   "volume": 480,
+   "target": "/fr/website-design-moroccan-businesses",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence web maroc",
+   "volume": 480,
+   "target": "/fr/website-design-moroccan-businesses",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "seo maroc",
+   "volume": 390,
+   "target": "/fr/agence-seo-marrakech",
+   "impressions": 1,
+   "clicks": 0,
+   "position": 31
+  },
+  {
+   "keyword": "agence web marrakech",
+   "volume": 390,
+   "target": "/fr/web-design-marrakech",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence seo marrakech",
+   "volume": 320,
+   "target": "/fr/agence-seo-marrakech",
+   "impressions": 123,
+   "clicks": 0,
+   "position": 81.9
+  },
+  {
+   "keyword": "agence web rabat",
+   "volume": 260,
+   "target": "/fr/web-design-rabat",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création site web tanger",
+   "volume": 260,
+   "target": "/fr/web-design-tanger",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création site web casablanca",
+   "volume": 210,
+   "target": "/fr/web-design-casablanca",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création site internet marrakech",
+   "volume": 170,
+   "target": "/fr/web-design-marrakech",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "expert seo marrakech",
+   "volume": 140,
+   "target": "/fr/agence-seo-marrakech",
+   "impressions": 10,
+   "clicks": 0,
+   "position": 69.7
+  },
+  {
+   "keyword": "agence google ads maroc",
+   "volume": 140,
+   "target": "/fr/agence-google-ads-maroc",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "fiche google my business",
+   "volume": 140,
+   "target": "/fr/blog/fiche-google-business-maroc",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création de site web maroc",
+   "volume": 110,
+   "target": "/fr/website-design-moroccan-businesses",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "audit seo",
+   "volume": 110,
+   "target": "/fr/agence-seo-marrakech",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "agence web agadir",
+   "volume": 110,
+   "target": "/fr/web-design-agadir",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  },
+  {
+   "keyword": "création site web rabat",
+   "volume": 110,
+   "target": "/fr/web-design-rabat",
+   "impressions": 0,
+   "clicks": 0,
+   "position": null
+  }
+ ],
+ "pages": [
+  {
+   "page": "/fr/agence-seo-marrakech",
+   "impressions": 535,
+   "clicks": 0,
+   "position": 70.8
+  },
+  {
+   "page": "/fr/hotel-website-design",
+   "impressions": 48,
+   "clicks": 0,
+   "position": 42.8
+  },
+  {
+   "page": "/en",
+   "impressions": 42,
+   "clicks": 0,
+   "position": 9.7
+  },
+  {
+   "page": "/fr",
+   "impressions": 32,
+   "clicks": 6,
+   "position": 3.1
+  },
+  {
+   "page": "/en/work/trust-drivers",
+   "impressions": 28,
+   "clicks": 1,
+   "position": 7.1
+  },
+  {
+   "page": "/fr/international-web-design-agency",
+   "impressions": 23,
+   "clicks": 1,
+   "position": 7.3
+  },
+  {
+   "page": "/en/work",
+   "impressions": 23,
+   "clicks": 0,
+   "position": 3
+  },
+  {
+   "page": "/en/agence-seo-marrakech",
+   "impressions": 15,
+   "clicks": 0,
+   "position": 34.2
+  },
+  {
+   "page": "/en/international-web-design-agency",
+   "impressions": 13,
+   "clicks": 0,
+   "position": 19.5
+  },
+  {
+   "page": "/fr/web-design-casablanca",
+   "impressions": 10,
+   "clicks": 0,
+   "position": 23.6
+  },
+  {
+   "page": "/fr/work/by-marrakech",
+   "impressions": 10,
+   "clicks": 0,
+   "position": 11.4
+  },
+  {
+   "page": "/en/about",
+   "impressions": 9,
+   "clicks": 0,
+   "position": 5.3
+  },
+  {
+   "page": "/en/book",
+   "impressions": 9,
+   "clicks": 0,
+   "position": 7.3
+  },
+  {
+   "page": "/fr/book",
+   "impressions": 8,
+   "clicks": 0,
+   "position": 7
+  },
+  {
+   "page": "/fr/contact",
+   "impressions": 8,
+   "clicks": 0,
+   "position": 6
+  },
+  {
+   "page": "/fr/web-design-marrakech",
+   "impressions": 8,
+   "clicks": 0,
+   "position": 10
+  },
+  {
+   "page": "/fr/work",
+   "impressions": 8,
+   "clicks": 0,
+   "position": 4
+  },
+  {
+   "page": "/en/blog/tourism-hospitality-seo-morocco",
+   "impressions": 6,
+   "clicks": 0,
+   "position": 21.8
+  },
+  {
+   "page": "/en/tourism-websites-morocco",
+   "impressions": 4,
+   "clicks": 0,
+   "position": 18.8
+  },
+  {
+   "page": "/fr/web-design-rabat",
+   "impressions": 2,
+   "clicks": 0,
+   "position": 64
+  },
+  {
+   "page": "/en/blog/combien-coute-site-web-maroc",
+   "impressions": 1,
+   "clicks": 0,
+   "position": 9
+  },
+  {
+   "page": "/en/website-design-moroccan-businesses",
+   "impressions": 1,
+   "clicks": 0,
+   "position": 8
+  },
+  {
+   "page": "/fr/blog/tourism-hospitality-seo-morocco",
+   "impressions": 1,
+   "clicks": 0,
+   "position": 15
+  }
+ ]
+}

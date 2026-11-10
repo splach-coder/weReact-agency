@@ -25,6 +25,16 @@ function copyStrings(copy: ServiceLocaleCopy): string[] {
   ];
 }
 
+test('every inline link in article Q&As points at a page in the same language', () => {
+  for (const post of blogPosts) {
+    for (const [locale, faqs] of [['en', post.faqs ?? []], ['fr', post.fr?.faqs ?? []]] as const) {
+      for (const target of faqs.flatMap((faq) => inlineLinkTargets(faq.answer))) {
+        assert.ok(target.startsWith(`/${locale}/`), `${post.slug} (${locale}) Q&A links to another language: ${target}`);
+      }
+    }
+  }
+});
+
 test('every inline link in landing copy points at a real page in the same language', () => {
   const growthSlugs = new Set<string>([...serviceLandingPages, ...audienceLandingPages].map((page) => page.slug));
   const staticPaths = new Set(['', '/contact', '/work', '/about', '/book', '/blog', '/sitemap', '/ai-info']);
