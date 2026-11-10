@@ -7,7 +7,7 @@
 
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 const SCOPE = 'https://www.googleapis.com/auth/adwords';
 const PORT = 53682;
@@ -55,8 +55,18 @@ const server = createServer(async (req, res) => {
       '<h2>Done. You can close this tab and return to the terminal.</h2>'
     );
 
-    if (token.refresh_token) {
-      console.log('\n✅ Refresh token minted. Add this line to .env.local:\n');
+    if (token.refresh_token && process.argv.includes('--save')) {
+      // --save writes the token straight into .env.local (git-ignored) instead of printing it.
+      const file = '.env.local';
+      const current = existsSync(file) ? readFileSync(file, 'utf8') : '';
+      const line = `GOOGLE_ADS_REFRESH_TOKEN=${token.refresh_token}`;
+      const next = /^GOOGLE_ADS_REFRESH_TOKEN=.*$/m.test(current)
+        ? current.replace(/^GOOGLE_ADS_REFRESH_TOKEN=.*$/m, line)
+        : current.replace(/\s*$/, '\n') + line + '\n';
+      writeFileSync(file, next);
+      console.log('\n✅ Refresh token minted and saved to .env.local.\n');
+    } else if (token.refresh_token) {
+      console.log('\n✅ Refresh token minted. Add this line to .env.local (or rerun with --save):\n');
       console.log(`GOOGLE_ADS_REFRESH_TOKEN=${token.refresh_token}\n`);
     } else {
       console.error(
