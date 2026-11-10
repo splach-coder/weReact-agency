@@ -127,7 +127,7 @@ export default function Footer() {
         <div className="grid gap-14 py-16 md:grid-cols-12">
           {/* Explore â€” oversized nav links */}
           <nav className="md:col-span-6">
-            <p className="text-mono mb-7 text-white/40">{t('explore')}</p>
+            <p className="text-mono mb-7 text-white/60">{t('explore')}</p>
             <ul className="flex flex-col gap-1.5">
               {navLinks.map((l) => (
                 <li key={l.href}>
@@ -156,7 +156,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div className="md:col-span-3">
-            <p className="text-mono mb-7 text-white/40">{t('connect')}</p>
+            <p className="text-mono mb-7 text-white/60">{t('connect')}</p>
             <ul className="flex flex-col gap-3">
               {socials.map((s) => (
                 <li key={s.label}>
@@ -180,7 +180,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="md:col-span-3">
-            <p className="text-mono mb-7 text-white/40">{t('newsletterTitle')}</p>
+            <p className="text-mono mb-7 text-white/60">{t('newsletterTitle')}</p>
             <p className="mb-6 text-sm text-white/55">{t('newsletterText')}</p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-4">
               <label htmlFor="footer-email" className="sr-only">

@@ -21,12 +21,14 @@ const copy = {
   en: {
     title: 'Your privacy, your choice',
     description: 'We use analytics and advertising cookies to understand what brings clients to WeReact. You can allow them or continue with essential site features only.',
+    short: 'Analytics and advertising cookies: allow them or keep essentials only.',
     essential: 'Essential only',
     accept: 'Accept analytics & ads',
   },
   fr: {
     title: 'Votre vie privée, votre choix',
     description: 'Nous utilisons des cookies d’analyse et de publicité pour comprendre ce qui amène des clients vers WeReact. Vous pouvez les accepter ou continuer avec les fonctions essentielles uniquement.',
+    short: 'Cookies d’analyse et de publicité : acceptez-les ou gardez l’essentiel.',
     essential: 'Fonctions essentielles',
     accept: 'Accepter analyse et publicité',
   },
@@ -104,19 +106,21 @@ export default function CookieConsent({ locale }: CookieConsentProps) {
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mb-4 flex items-start justify-between gap-6">
+          <div className="mb-3 flex items-start justify-between gap-6 sm:mb-4">
             <div>
-              <span className="text-mono block text-[10px] text-[var(--color-primary-light)]">01 / PRIVACY</span>
-              <h2 id="cookie-consent-title" className="mt-2 font-display text-2xl leading-none text-[var(--color-primary-dark)]">
+              <span className="text-mono block text-[10px] text-[var(--color-primary)]">01 / PRIVACY</span>
+              <h2 id="cookie-consent-title" className="mt-2 font-display text-lg leading-none text-[var(--color-primary-dark)] sm:text-2xl">
                 {content.title}
               </h2>
             </div>
             <Settings2 aria-hidden="true" size={19} className="mt-1 shrink-0 text-[var(--color-primary)]" />
           </div>
 
-          <p className="max-w-[38ch] text-sm leading-6 text-[var(--color-text-secondary)]">{content.description}</p>
+          {/* Phones get the one-line version: the full paragraph covered half the screen and the hero action. */}
+          <p className="text-xs leading-5 text-[var(--color-text-secondary)] sm:hidden">{content.short}</p>
+          <p className="hidden max-w-[38ch] text-sm leading-6 text-[var(--color-text-secondary)] sm:block">{content.description}</p>
 
-          <div className="mt-5 grid grid-cols-2 gap-2">
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5">
             <button
               type="button"
               onClick={() => saveConsent('rejected')}

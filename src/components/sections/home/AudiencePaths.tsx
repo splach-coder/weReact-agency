@@ -42,7 +42,7 @@ export default function AudiencePaths() {
               className="group border-b border-[rgba(58,90,64,0.16)] py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
             >
               <div className="flex items-center justify-between gap-4">
-                <span className="text-mono text-[var(--color-accent-sage)]">
+                <span className="text-mono text-[var(--color-primary-light)]">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <ArrowUpRight

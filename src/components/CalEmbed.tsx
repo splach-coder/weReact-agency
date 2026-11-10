@@ -168,7 +168,7 @@ export function CalInline({ source, locale }: CalProps) {
     );
   }
 
-  return <div ref={setContainer} className="min-h-[760px] w-full md:min-h-[680px]" aria-label={copy.heading} />;
+  return <div ref={setContainer} className="min-h-[760px] w-full md:min-h-[680px]" role="region" aria-label={copy.heading} />;
 }
 
 /** Button that opens the Cal.com booking modal; opens the hosted page in a new tab if the embed fails. */
