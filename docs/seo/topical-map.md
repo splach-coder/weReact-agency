@@ -103,12 +103,12 @@ anything that slipped).
 **Next, ranked by search demand** (Keyword Planner, Morocco, added November 10, 2026)
 - **Give the Casablanca page its own content** ("agence web casablanca" 880/month, "création site web casablanca" 210). It
   currently shares much of its text with the Rabat page.
-- **Strengthen the national page**  ("création site web maroc" 1,000/month): add depth
+- **Strengthen the national page** `/fr/website-design-moroccan-businesses` ("création site web maroc" 1,000/month): add depth
   (process, what is included, cities served) and real proof, since it targets the largest commercial query.
 - **Add a Tangier page** ("création site web tanger" 260/month, "agence web tanger" 70) on the same model as Rabat and Agadir,
   with Tangier-specific content rather than a city name swapped into shared text.
 - Request indexing in Search Console for every new or changed URL; follow positions of the A keywords every two weeks.
-- Rewrite or merge , which is thin and generic.
+- Rewrite or merge `seo-strategies-for-agencies`, which is thin and generic.
 
 **Not worth doing on search demand alone**
 - An Arabic version (Arabic website-creation phrases are around 20 searches a month).
