@@ -10,6 +10,10 @@ import { audienceLandingPages, getAudienceLandingPage } from '@/data/audiences';
 import { GrowthCtas, GrowthContactCta } from '@/components/GrowthCtas';
 import { CalBookingSection } from '@/components/CalBookingSection';
 import { createBreadcrumbJsonLd, createFaqJsonLd, createPageMetadata, createPricingJsonLd, createServicePageJsonLd } from '@/lib/seo';
+import { renderInlineLinks, stripInlineLinks } from '@/lib/inline-links';
+
+const DARK_INLINE_LINK_CLASS =
+  'text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white';
 import { siteConfig } from '@/config/site';
 import { blogPosts, getLocalizedPost } from '@/data/blog';
 
@@ -97,7 +101,9 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
       ? { pages: 'À explorer aussi', posts: 'Guides à lire' }
       : { pages: 'Explore next', posts: 'Guides to read' };
   const serviceJsonLd = createServicePageJsonLd(page, locale);
-  const faqJsonLd = createFaqJsonLd(copy.faqs);
+  const faqJsonLd = createFaqJsonLd(copy.faqs.map((faq) => ({ ...faq, answer: stripInlineLinks(faq.answer) })));
+  const insights = copy.insights;
+  const sections = copy.sections ?? [];
   const pricingJsonLd = pricing
     ? createPricingJsonLd(pricing.tiers, locale, `${siteConfig.url}/${locale}/${page.slug}`)
     : null;
@@ -126,7 +132,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
               {copy.heading}
             </h1>
             <p className="mt-7 max-w-2xl text-lg font-light leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
-              {copy.lead}
+              {renderInlineLinks(copy.lead)}
             </p>
             <GrowthCtas cta={copy.cta} contactHref={contactHref} locale={locale} slug={page.slug} />
             <p className="mt-4 text-sm text-[var(--color-text-muted)]">{copy.ctaNote}</p>
@@ -147,13 +153,55 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
               <li key={outcome} className="border-t border-[rgba(58,90,64,0.16)] pt-5">
                 <div className="flex items-start gap-4">
                   <span className="text-mono text-[var(--color-accent-sage)]">0{index + 1}</span>
-                  <p className="text-lg leading-snug text-[var(--color-text-main)]">{outcome}</p>
+                  <p className="text-lg leading-snug text-[var(--color-text-main)]">{renderInlineLinks(outcome)}</p>
                 </div>
               </li>
             ))}
           </ul>
         </div>
       </section>
+
+      {insights && insights.items.length > 0 && (
+        <section className="px-6 py-20 md:px-16 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <h2 className="text-mono text-[var(--color-primary)]">{insights.title}</h2>
+              {insights.lead && (
+                <p className="mt-5 text-xl font-light leading-relaxed text-[var(--color-text-secondary)] md:text-2xl">
+                  {renderInlineLinks(insights.lead)}
+                </p>
+              )}
+            </div>
+            <dl className="mt-12 grid gap-px overflow-hidden bg-[rgba(58,90,64,0.16)] md:grid-cols-3">
+              {insights.items.map((item) => (
+                <div key={item.label} className="bg-white p-6 md:p-8">
+                  <dt className="font-display text-4xl leading-none text-[var(--color-text-main)] tabular-nums">{item.figure}</dt>
+                  <dd className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                    {renderInlineLinks(item.label)}
+                    {item.source && (
+                      <span className="mt-3 block text-xs text-[var(--color-text-muted)]">
+                        {language === 'fr' ? 'Source : ' : 'Source: '}
+                        {item.source.href.startsWith('/') ? (
+                          <Link href={item.source.href} className="underline underline-offset-2">
+                            {item.source.label}
+                          </Link>
+                        ) : (
+                          <a href={item.source.href} className="underline underline-offset-2" rel="noopener" target="_blank">
+                            {item.source.label}
+                          </a>
+                        )}
+                      </span>
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {insights.note && (
+              <p className="mt-8 max-w-3xl text-sm leading-relaxed text-[var(--color-text-muted)]">{renderInlineLinks(insights.note)}</p>
+            )}
+          </div>
+        </section>
+      )}
 
       {pricing && (
         <section className="px-6 py-20 md:px-16 md:py-28">
@@ -186,7 +234,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <p className="text-mono text-[var(--color-primary)]">{copy.proofTitle}</p>
-            <p className="mt-5 text-xl font-light leading-relaxed text-[var(--color-text-secondary)] md:text-2xl">{copy.proof}</p>
+            <p className="mt-5 text-xl font-light leading-relaxed text-[var(--color-text-secondary)] md:text-2xl">{renderInlineLinks(copy.proof)}</p>
           </div>
           <div className="mt-12 grid gap-px overflow-hidden bg-[rgba(58,90,64,0.16)] md:grid-cols-3">
             {projectCards.map((project) => (
@@ -203,6 +251,27 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
         </div>
       </section>
 
+      {sections.length > 0 && (
+        <section className="border-t border-[rgba(58,90,64,0.16)] px-6 py-20 md:px-16 md:py-28">
+          <div className="mx-auto max-w-7xl space-y-16 md:space-y-20">
+            {sections.map((section) => (
+              <article key={section.heading} className="grid gap-6 lg:grid-cols-[0.32fr_0.68fr] lg:gap-16">
+                <h2 className="max-w-sm font-display text-3xl leading-[1.02] text-[var(--color-text-main)] md:text-4xl">
+                  {section.heading}
+                </h2>
+                <div className="max-w-3xl space-y-5">
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="text-lg leading-relaxed text-[var(--color-text-secondary)]">
+                      {renderInlineLinks(paragraph)}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="bg-[var(--color-primary-dark)] px-6 py-20 text-white md:px-16 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.36fr_0.64fr] lg:gap-16">
           <div>
@@ -218,7 +287,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
                   {faq.question}
                   <Check size={18} className="shrink-0 text-[var(--color-accent-sage)] transition-transform group-open:rotate-45" aria-hidden="true" />
                 </summary>
-                <p className="max-w-2xl pt-4 leading-relaxed text-white/72">{faq.answer}</p>
+                <p className="max-w-2xl pt-4 leading-relaxed text-white/72">{renderInlineLinks(faq.answer, DARK_INLINE_LINK_CLASS)}</p>
               </details>
             ))}
           </div>

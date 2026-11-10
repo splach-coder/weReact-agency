@@ -63,9 +63,12 @@ honest scarcity, and removes risk. **The offer (locked in):**
   time / it'll drag on forever" objection before it's even raised. Lead with it.
 - **Who:** the **first 5 businesses in Marrakech** this month. Real scarcity —
   you *do* want a few strong local references. Never fake it.
-- **The clever trade:** in exchange, **an honest Google review at delivery.**
-  This fixes *your* biggest weakness (zero reviews) and feeds social proof for
-  the next prospect. Every client makes the next sale easier.
+- **Reviews: ask, never trade.** After delivery, ask every client for an honest
+  Google review with the profile's review link. Do **not** tie the launch price
+  (or anything else) to leaving a review: Google calls offering a discount or a
+  free service in exchange for a review "strictly prohibited" fake engagement and
+  removes those reviews (https://support.google.com/business/answer/3474122).
+  Happy clients who are simply asked are what builds the profile.
 - **Riads / booking sites:** bigger, custom projects — offer the launch *rate*
   + the same free SEO/GBP, **not** the flat 2000 DH (a riad booking site is a
   different tier; see the pricing article ranges).
@@ -74,8 +77,8 @@ honest scarcity, and removes risk. **The offer (locked in):**
 
 Why it works: **irresistible math** — fast (2–3 days) + cheap (2000 DH) + free
 SEO + a launch discount leaves almost no reason to say no. Plus **reciprocity**
-(you give first), **scarcity** (5 spots), and it manufactures your **review
-engine** at the same time.
+(you give first) and **scarcity** (5 spots). Reviews come from asking every
+happy client after delivery, separately from the offer.
 
 ## 4. Objection handling (short, confident)
 

@@ -149,13 +149,7 @@ export default async function BlogPostPage({ params }: Props) {
                             </div>
 
                             <div
-                                className="prose prose-lg max-w-none 
-                                prose-headings:font-bold prose-headings:tracking-tighter prose-headings:text-[var(--color-primary)] prose-headings:uppercase
-                                prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-p:mb-6 prose-p:text-sm md:prose-p:text-base
-                                prose-blockquote:border-l-4 prose-blockquote:border-[var(--color-primary)] prose-blockquote:bg-gray-50 prose-blockquote:p-8 prose-blockquote:rounded-sm prose-blockquote:italic prose-blockquote:text-lg md:prose-blockquote:text-xl
-                                prose-strong:text-[var(--color-primary)] prose-strong:font-black
-                                prose-li:text-[var(--color-text-secondary)] prose-li:mb-1 prose-li:text-sm
-                                prose-img:rounded-sm"
+                                className="prose prose-lg max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-[var(--color-text-main)] prose-h2:mt-14 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-[var(--color-text-secondary)] prose-a:font-normal prose-a:text-[var(--color-primary)] prose-a:underline prose-a:decoration-[rgba(58,90,64,0.35)] prose-a:underline-offset-4 hover:prose-a:decoration-[var(--color-primary)] prose-blockquote:border-l-2 prose-blockquote:border-[var(--color-primary)] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-[var(--color-text-main)] prose-strong:font-semibold prose-strong:text-[var(--color-text-main)] prose-li:text-[var(--color-text-secondary)] prose-li:marker:text-[var(--color-primary)] prose-img:rounded-sm"
                                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                             />
 

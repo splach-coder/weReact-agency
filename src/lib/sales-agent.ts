@@ -1,6 +1,7 @@
 import { siteConfig } from '@/config/site';
 import { projects } from '@/data/projects';
 import { serviceLandingPages } from '@/data/services';
+import { stripInlineLinks } from '@/lib/inline-links';
 
 export const SALES_CHAT_MAX_MESSAGE_LENGTH = 1200;
 export const SALES_CHAT_MAX_HISTORY_MESSAGES = 8;
@@ -84,9 +85,9 @@ function serviceKnowledge(locale: SalesChatLocale) {
       return [
         `- ${copy.title}`,
         `  URL: ${siteConfig.url}/${locale}/${service.slug}`,
-        `  Summary: ${copy.lead}`,
+        `  Summary: ${stripInlineLinks(copy.lead)}`,
         `  Outcomes: ${copy.outcomes.join(' | ')}`,
-        `  FAQs: ${copy.faqs.map((faq) => `${faq.question} ${faq.answer}`).join(' | ')}`,
+        `  FAQs: ${copy.faqs.map((faq) => `${faq.question} ${stripInlineLinks(faq.answer)}`).join(' | ')}`,
       ].join('\n');
     })
     .join('\n');

@@ -13,7 +13,7 @@ test('provides complete English and French conversion copy', () => {
   for (const page of audienceLandingPages) {
     for (const locale of ['en', 'fr'] as const) {
       assert.ok(page.copy[locale].heading.length > 30);
-      assert.equal(page.copy[locale].faqs.length, 3);
+      assert.ok(page.copy[locale].faqs.length >= 3);
       assert.ok(page.relatedServiceSlugs.length >= 2);
     }
   }
