@@ -10,6 +10,14 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ['/api/', '/_next/'],
             },
             {
+                userAgent: 'bingbot',
+                allow: '/',
+            },
+            {
+                userAgent: 'msnbot',
+                allow: '/',
+            },
+            {
                 userAgent: 'GPTBot',
                 allow: '/',
             },
@@ -27,6 +35,22 @@ export default function robots(): MetadataRoute.Robots {
             },
             {
                 userAgent: 'Google-Extended',
+                allow: '/',
+            },
+            {
+                userAgent: 'Claude-SearchBot',
+                allow: '/',
+            },
+            {
+                userAgent: 'Applebot',
+                allow: '/',
+            },
+            {
+                userAgent: 'Applebot-Extended',
+                allow: '/',
+            },
+            {
+                userAgent: 'CCBot',
                 allow: '/',
             },
         ],

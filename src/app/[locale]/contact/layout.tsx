@@ -12,10 +12,10 @@ export async function generateMetadata({
   return createPageMetadata({
     title: isFr
       ? 'Contact – Agence web à Marrakech'
-      : 'Contact - Website Design Agency in Marrakech',
+      : 'Contact a Web Agency in Marrakech',
     description: isFr
-      ? "Contactez WeReact pour un site web rapide, crédible et optimisé SEO à Marrakech. Demandez un devis pour votre site business, tourisme, landing page ou projet web au Maroc."
-      : 'Contact WeReact for fast, SEO-ready website design in Marrakech. Request a quote for business websites, tourism websites, landing pages, and web projects in Morocco.',
+      ? 'Contactez WeReact pour un site web rapide et optimisé SEO à Marrakech. Demandez un devis pour votre site business, tourisme ou landing page au Maroc.'
+      : 'Contact WeReact for fast, SEO-ready website design in Marrakech. Request a quote for business websites, tourism sites, and landing pages in Morocco.',
     path: `/${locale}/contact`,
     locale,
     keywords: isFr

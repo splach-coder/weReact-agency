@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/icons/SocialIcons';
+import { CalButton } from '@/components/CalEmbed';
 import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
 
@@ -39,6 +40,7 @@ export function GrowthCtas({ cta, contactHref, locale, slug }: GrowthCtasProps) 
         <WhatsAppIcon size={17} aria-hidden="true" />
         WhatsApp
       </a>
+      <CalButton source={slug} locale={locale} />
     </div>
   );
 }

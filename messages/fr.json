@@ -96,7 +96,32 @@
     "successBodyWhatsApp": "Nous vous répondrons sur WhatsApp au plus vite. Une confirmation arrive aussi dans votre boîte mail.",
     "successWhatsApp": "Continuer sur WhatsApp",
     "successBack": "Retour au contact",
-    "closeConfirmation": "Fermer la confirmation"
+    "closeConfirmation": "Fermer la confirmation",
+    "seoTitle": "Ce qui se passe après votre message",
+    "seoIntro": "WeReact est un studio de création de sites web basé à Marrakech qui accompagne des entreprises au Maroc et à l'international. Site vitrine, site tourisme ou hôtellerie, boutique e-commerce ou landing page : tout commence par une courte conversation sur vos objectifs.",
+    "steps": {
+      "one": {
+        "title": "1. Réponse sous un jour ouvré",
+        "body": "Vous recevez une réponse personnelle par email ou WhatsApp, pas un message automatique. Nous posons quelques questions sur votre activité, votre audience et ce que le site doit accomplir."
+      },
+      "two": {
+        "title": "2. Un devis gratuit et clair",
+        "body": "Nous envoyons une proposition écrite avec un prix fixe, un délai réaliste et le détail de ce qui est inclus : design, développement, fondations SEO et accompagnement au lancement. Sans frais cachés."
+      },
+      "three": {
+        "title": "3. Design, développement et mise en ligne",
+        "body": "Vous validez le design avant le développement, suivez l'avancement du site, et nous vous formons à la mise à jour de vos contenus au lancement."
+      }
+    },
+    "faqTitle": "Questions fréquentes avant de nous contacter",
+    "faq": {
+      "q1": "Combien coûte un site web ?",
+      "a1": "Un site vitrine démarre à 3 500 DH et une boutique e-commerce à 6 000 DH. Les sites de réservation pour riads et hôtels font l'objet d'un devis sur mesure, fixé avant le début du projet.",
+      "q2": "Combien de temps dure un projet ?",
+      "a2": "La plupart des sites business sont en ligne en deux à quatre semaines. Les projets plus complexes, avec réservation ou contenu multilingue, prennent généralement quatre à huit semaines.",
+      "q3": "Travaillez-vous en dehors de Marrakech ?",
+      "a3": "Oui. Nous travaillons à distance avec des clients partout au Maroc — Casablanca, Rabat, Agadir — et à l'international, en français comme en anglais."
+    }
   },
   "Work": {
     "eyebrow": "Réalisations choisies",

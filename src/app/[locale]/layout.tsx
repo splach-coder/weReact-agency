@@ -29,8 +29,8 @@ export async function generateMetadata({
     ? `${siteConfig.name} | Création de sites web à Marrakech`
     : `${siteConfig.name} | Website Design in Marrakech`;
   const description = isFr
-    ? `WeReact agency est une agence web basée à Marrakech qui crée des sites business rapides, des landing pages, des fondations SEO et des expériences web sur mesure pour des clients au Maroc et à l'international. WeReact agency aide les entreprises de Marrakech, du Maroc et des marchés internationaux à lancer des sites web rapides, optimisés pour le SEO, avec des parcours de conversion clairs.`
-    : `${siteConfig.description} WeReact agency helps businesses in Marrakech, Morocco, and international markets launch fast, SEO-friendly websites with clear conversion paths.`;
+    ? "WeReact, agence web à Marrakech : sites business rapides, landing pages et fondations SEO pour des clients au Maroc et à l'international."
+    : 'WeReact is a Marrakech web agency building fast, SEO-ready business websites, landing pages, and custom web experiences for clients in Morocco and beyond.';
   const keywords = [...siteConfig.seo.keywords, ...siteConfig.seo.geoKeywords];
 
   return {
@@ -49,6 +49,12 @@ export async function generateMetadata({
     alternates: {
       canonical: `/${locale}`,
       languages: createLocalizedAlternates('/'),
+    },
+    verification: {
+      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+        ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+        : {}),
+      other: { 'msvalidate.01': '9FDECA5DF1D21C7ED48087BF4BDDF560' },
     },
     robots: {
       index: true,

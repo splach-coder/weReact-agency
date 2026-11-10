@@ -16,14 +16,19 @@ export async function generateMetadata({ params }: Omit<WorkDetailLayoutProps, '
     return { title: 'Case study' };
   }
 
-  const title = `${project.title} - ${project.category}`;
+  const isFr = locale === 'fr';
+  const category = isFr ? project.categoryFr : project.category.replace(/^Studio Project: /, '');
+  const title = `${project.title} - ${category}`;
+  const description = isFr ? project.summaryFr : project.summary;
   const image = `${siteConfig.url}${project.imageFull ?? project.image}`;
   const path = `/${locale}/work/${id}`;
 
   return {
     title,
-    description: project.summary,
-    keywords: [project.title, project.category, 'website design Morocco', 'web agency Marrakech', 'case study'],
+    description,
+    keywords: isFr
+      ? [project.title, category, 'création site web Maroc', 'agence web Marrakech', 'étude de cas']
+      : [project.title, category, 'website design Morocco', 'web agency Marrakech', 'case study'],
     alternates: {
       canonical: `${siteConfig.url}${path}`,
       languages: createLocalizedAlternates(`/work/${id}`),
@@ -32,13 +37,13 @@ export async function generateMetadata({ params }: Omit<WorkDetailLayoutProps, '
       type: 'article',
       url: `${siteConfig.url}${path}`,
       title,
-      description: project.summary,
+      description,
       images: [{ url: image, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description: project.summary,
+      description,
       images: [image],
     },
   };

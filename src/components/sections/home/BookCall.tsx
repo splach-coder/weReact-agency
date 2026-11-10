@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import { CalendarClock, Mail } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/icons/SocialIcons';
+import { CalInline } from '@/components/CalEmbed';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { trackContactIntent, trackWhatsAppLead } from '@/lib/analytics';
@@ -20,9 +21,8 @@ const mask = {
   visible: { y: '0%', transition: { duration: 0.9, ease: smoothEasing } },
 };
 
-// Configure via NEXT_PUBLIC_CALCOM_LINK, e.g. "wereact/30min".
-// Until set, the section shows the fallback contact options.
-const CAL_LINK = process.env.NEXT_PUBLIC_CALCOM_LINK;
+// Until a Cal.com link is configured, the section shows the fallback contact options.
+const CAL_LINK = siteConfig.business.calLink;
 
 export default function BookCall() {
   const t = useTranslations('Home.booking');
@@ -62,13 +62,8 @@ export default function BookCall() {
         </motion.div>
 
         {CAL_LINK ? (
-          <div className="overflow-hidden rounded-2xl border border-[rgba(58,90,64,0.15)] shadow-[var(--shadow-md)]">
-            <iframe
-              src={`https://cal.com/${CAL_LINK}?embed=true&theme=light`}
-              title={t('title')}
-              loading="lazy"
-              className="h-[640px] w-full border-0"
-            />
+          <div className="overflow-hidden rounded-2xl border border-[rgba(58,90,64,0.15)] bg-white p-2 shadow-[var(--shadow-md)] md:p-4">
+            <CalInline source="home" locale={locale} />
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-[rgba(58,90,64,0.3)] bg-[var(--color-background-main)] p-10 text-center">

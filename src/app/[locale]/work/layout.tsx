@@ -10,7 +10,7 @@ export async function generateMetadata({
   const isFr = locale === 'fr';
 
   return createPageMetadata({
-    title: isFr ? 'Réalisations - Sites web au Maroc' : 'Work - Website Design Case Studies in Morocco',
+    title: isFr ? 'Réalisations - Sites web au Maroc' : 'Website Design Case Studies in Morocco',
     description: isFr
       ? 'Découvrez les sites web créés par WeReact pour des marques locales, tourisme, transport et hôtellerie au Maroc avec SEO, confiance et conversion.'
       : 'Explore WeReact website design case studies for Moroccan local brands, tourism, transport, and hospitality businesses built for trust, SEO, and conversion.',

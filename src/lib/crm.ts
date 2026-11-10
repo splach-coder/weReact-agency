@@ -31,6 +31,19 @@ export const PROJECT_WORK_ITEM_KINDS = ['milestone', 'task', 'delivery_check'] a
 export const PROJECT_WORK_ITEM_STATUSES = ['todo', 'in_progress', 'blocked', 'done', 'skipped'] as const;
 export const PROJECT_WORK_ITEM_PRIORITIES = ['low', 'normal', 'high', 'urgent'] as const;
 
+const LEAD_SOURCE_LABELS: Record<string, string> = {
+  website_contact_form: 'Website contact form',
+  cal_booking: 'Cal.com booking',
+  manual: 'Added manually',
+};
+
+/** Human label for a lead's stored source; unknown values are de-snake-cased. */
+export function formatLeadSource(source: string | null | undefined) {
+  const value = source?.trim();
+  if (!value) return 'Unknown';
+  return LEAD_SOURCE_LABELS[value] ?? value.replace(/_/g, ' ').replace(/^./, (letter) => letter.toUpperCase());
+}
+
 export type ProjectWorkItemKind = (typeof PROJECT_WORK_ITEM_KINDS)[number];
 export type ProjectWorkItemStatus = (typeof PROJECT_WORK_ITEM_STATUSES)[number];
 export type ProjectWorkItemPriority = (typeof PROJECT_WORK_ITEM_PRIORITIES)[number];

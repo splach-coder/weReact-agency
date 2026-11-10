@@ -1,12 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { getSupabaseServerCredentials } from './env';
 
 /** Server Supabase client bound to the request cookies (RSC + route handlers). */
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
+  const { url, key } = getSupabaseServerCredentials();
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       cookies: {
         getAll() {

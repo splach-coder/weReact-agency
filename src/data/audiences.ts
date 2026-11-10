@@ -6,6 +6,7 @@ export type AudienceLandingPage = {
   keywords: readonly string[];
   relatedProjectIds: readonly string[];
   relatedServiceSlugs: readonly string[];
+  relatedPostSlugs: readonly string[];
   modifiedAt: string;
   copy: Record<'en' | 'fr', ServiceLocaleCopy>;
 };
@@ -17,6 +18,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     keywords: ['business website Morocco', 'website for small business Morocco', 'site web entreprise Maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'kasbah-angour'],
     relatedServiceSlugs: ['web-design-marrakech', 'seo-landing-pages', 'agence-web-marrakech'],
+    relatedPostSlugs: ['website-design-marrakech-business-guide', 'combien-coute-site-web-maroc'],
     modifiedAt: '2026-07-22',
     copy: {
       en: {
@@ -43,8 +45,8 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
         ],
       },
       fr: {
-        title: 'Création de site web pour entreprises marocaines',
-        description: 'Des sites bilingues et rapides pour les entreprises marocaines qui veulent plus de visibilité locale, de confiance, d’appels, de messages WhatsApp et de demandes de devis.',
+        title: 'Sites web pour entreprises marocaines',
+        description: 'Des sites bilingues et rapides pour les entreprises marocaines : plus de visibilité locale, de confiance et de demandes de devis.',
         eyebrow: 'Pour les entreprises marocaines',
         heading: 'Un site plus clair pour les clients qui cherchent déjà votre entreprise.',
         lead: 'WeReact aide les services locaux, commerces, restaurants, cabinets et équipes marocaines en croissance à présenter leur offre et transformer les visites en vraies conversations.',
@@ -73,6 +75,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     keywords: ['web development agency Morocco', 'bilingual web agency', 'nearshore web development Morocco'],
     relatedProjectIds: ['your-morocco', 'kasbah-angour', 'flying-tandem'],
     relatedServiceSlugs: ['web-design-marrakech', 'seo-landing-pages'],
+    relatedPostSlugs: ['seo-strategies-for-agencies', 'website-design-marrakech-business-guide'],
     modifiedAt: '2026-07-22',
     copy: {
       en: {
@@ -100,7 +103,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
       },
       fr: {
         title: 'Agence web internationale basée au Maroc',
-        description: 'Un partenaire web basé au Maroc pour les fondateurs, agences et équipes internationales qui recherchent une livraison claire, une capacité bilingue et un développement moderne.',
+        description: 'Un partenaire web basé au Maroc pour fondateurs, agences et équipes internationales : livraison claire, bilingue, développement moderne.',
         eyebrow: 'De Marrakech vers le monde',
         heading: 'Un partenaire web réactif au Maroc pour les équipes internationales.',
         lead: 'WeReact travaille à distance en français et en anglais, des landing pages ciblées aux sites multilingues et expériences digitales sur mesure, avec un périmètre et une livraison clairs.',

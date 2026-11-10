@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import { getSupabaseServerCredentials } from './env';
 
 function redirectWithCookies(request: NextRequest, response: NextResponse, pathname: string, search = '') {
   const url = request.nextUrl.clone();
@@ -16,10 +17,11 @@ function redirectWithCookies(request: NextRequest, response: NextResponse, pathn
  */
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+  const { url, key } = getSupabaseServerCredentials();
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       cookies: {
         getAll() {

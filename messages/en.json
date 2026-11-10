@@ -96,7 +96,32 @@
     "successBodyWhatsApp": "We will reach you on WhatsApp as soon as possible. A confirmation is also on its way to your inbox.",
     "successWhatsApp": "Continue on WhatsApp",
     "successBack": "Back to contact",
-    "closeConfirmation": "Close confirmation"
+    "closeConfirmation": "Close confirmation",
+    "seoTitle": "What happens after you reach out",
+    "seoIntro": "WeReact is a website design studio based in Marrakech working with businesses across Morocco and abroad. Whether you need a business website, a tourism or hospitality site, an e-commerce store, or a focused landing page, the process starts the same way: a short conversation about your goals.",
+    "steps": {
+      "one": {
+        "title": "1. We reply within one business day",
+        "body": "You get a personal reply by email or WhatsApp, not an automated message. We ask a few questions about your business, your audience, and what the website needs to achieve."
+      },
+      "two": {
+        "title": "2. You receive a clear, free quote",
+        "body": "We send a written proposal with a fixed price, a realistic timeline, and exactly what is included: design, development, SEO foundations, and launch support. No hidden fees."
+      },
+      "three": {
+        "title": "3. We design, build, and launch together",
+        "body": "You review the design before we build, follow progress as the site takes shape, and launch with training so you can update content yourself."
+      }
+    },
+    "faqTitle": "Common questions before contacting us",
+    "faq": {
+      "q1": "How much does a website cost?",
+      "a1": "Showcase websites start from 3,500 MAD and e-commerce from 6,000 MAD. Booking websites for riads and hotels are quoted individually. Every quote is fixed before work starts.",
+      "q2": "How long does a project take?",
+      "a2": "Most business websites launch in two to four weeks. Larger projects with booking systems or multilingual content typically take four to eight weeks.",
+      "q3": "Do you work with clients outside Marrakech?",
+      "a3": "Yes. We work remotely with clients across Morocco — Casablanca, Rabat, Agadir — and internationally, in English and French."
+    }
   },
   "Work": {
     "eyebrow": "Selected work",

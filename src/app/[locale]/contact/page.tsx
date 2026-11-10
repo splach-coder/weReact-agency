@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { useLocale, useTranslations } from 'next-intl';
 import { CheckCircle, Mail, MapPin, Phone, Send, X } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/icons/SocialIcons';
+import { CalButton } from '@/components/CalEmbed';
 import { siteConfig } from '@/config/site';
 import { smoothEasing } from '@/lib/animations';
 import { createLeadTransactionId, getStoredAttribution, trackContactIntent, trackLead, trackWhatsAppLead } from '@/lib/analytics';
@@ -299,16 +300,23 @@ export default function ContactPage() {
               {/* WhatsApp-first CTA: the dominant contact channel in Morocco
                   deserves more than a small icon below the fold. */}
               <motion.div variants={fade} className="mt-6">
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppLead('contact_primary_whatsapp', { page: 'contact', location: 'above_form' })}
-                  className="inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#25D366] bg-[#25D366]/10 px-6 py-3 text-[11px] font-black uppercase tracking-[0.12em] text-[var(--color-primary-dark)] transition-colors hover:bg-[#25D366]/20 sm:w-auto"
-                >
-                  <WhatsAppIcon size={16} aria-hidden="true" className="text-[#128C7E]" />
-                  {t('whatsappCta')}
-                </a>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppLead('contact_primary_whatsapp', { page: 'contact', location: 'above_form' })}
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#25D366] bg-[#25D366]/10 px-6 py-3 text-[11px] font-black uppercase tracking-[0.12em] text-[var(--color-primary-dark)] transition-colors hover:bg-[#25D366]/20 sm:w-auto"
+                  >
+                    <WhatsAppIcon size={16} aria-hidden="true" className="text-[#128C7E]" />
+                    {t('whatsappCta')}
+                  </a>
+                  <CalButton
+                    source="contact"
+                    locale={locale}
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[rgba(58,90,64,0.28)] px-6 py-3 text-[11px] font-black uppercase tracking-[0.12em] text-[var(--color-primary-dark)] transition-colors hover:border-[var(--color-primary)] hover:bg-white disabled:opacity-60 sm:w-auto"
+                  />
+                </div>
                 <p className="mt-4 text-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
                   {t('orSendNote')}
                 </p>
@@ -404,6 +412,31 @@ export default function ContactPage() {
               </p>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Crawlable context below the form: what happens next, plus the questions people ask first. */}
+      <section className="border-t border-[rgba(58,90,64,0.14)] bg-white px-6 py-16 sm:px-8 lg:px-14 lg:py-24 xl:px-16">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 className="max-w-2xl font-serif text-3xl leading-tight text-[var(--color-text-main)] md:text-4xl">{t('seoTitle')}</h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-[var(--color-text-secondary)] md:text-base">{t('seoIntro')}</p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {(['one', 'two', 'three'] as const).map((step) => (
+              <div key={step} className="border-t-2 border-[var(--color-primary)] pt-5">
+                <h3 className="text-sm font-black uppercase tracking-[0.08em] text-[var(--color-primary)]">{t(`steps.${step}.title`)}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-[var(--color-text-secondary)]">{t(`steps.${step}.body`)}</p>
+              </div>
+            ))}
+          </div>
+          <h2 className="mt-16 font-serif text-2xl leading-tight text-[var(--color-text-main)] md:text-3xl">{t('faqTitle')}</h2>
+          <dl className="mt-6 grid gap-8 md:grid-cols-3">
+            {(['1', '2', '3'] as const).map((item) => (
+              <div key={item}>
+                <dt className="text-[15px] font-bold text-[var(--color-text-main)]">{t(`faq.q${item}`)}</dt>
+                <dd className="mt-2 text-[14px] leading-relaxed text-[var(--color-text-secondary)]">{t(`faq.a${item}`)}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

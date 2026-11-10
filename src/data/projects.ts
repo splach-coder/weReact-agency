@@ -11,7 +11,9 @@ export type Project = {
   externalUrl: string;
   relationship: 'client-work' | 'studio-owned' | 'independent-project';
   category: string;
+  categoryFr: string;
   summary: string;
+  summaryFr: string;
   year: string;
   modifiedAt: string;
   status: 'live' | 'featured' | 'indexed';
@@ -34,7 +36,9 @@ export const projects: Project[] = [
     externalUrl: 'https://www.flyingtandem.com/',
     relationship: 'client-work',
     category: 'Adventure Tourism Website',
+    categoryFr: 'Site tourisme d\'aventure',
     summary: 'A high-trust adventure tourism website for paragliding bookings, safety content, and mobile-first discovery.',
+    summaryFr: 'Un site de tourisme d\'aventure fiable pour les réservations de parapente, le contenu sécurité et une découverte pensée mobile d\'abord.',
     year: '2025',
     modifiedAt: '2026-07-22',
     status: 'featured',
@@ -58,7 +62,9 @@ export const projects: Project[] = [
     externalUrl: 'https://www.kasbahangour.com/en',
     relationship: 'client-work',
     category: 'Hospitality Website',
+    categoryFr: 'Site hôtellerie',
     summary: 'A hospitality website built to communicate Moroccan character, direct booking confidence, and premium place discovery.',
+    summaryFr: 'Un site d\'hôtellerie conçu pour transmettre le caractère marocain, la confiance en réservation directe et une découverte haut de gamme du lieu.',
     year: '2025',
     modifiedAt: '2026-07-22',
     status: 'featured',
@@ -82,7 +88,9 @@ export const projects: Project[] = [
     externalUrl: 'https://your-morocco.com/en',
     relationship: 'client-work',
     category: 'Travel Platform',
+    categoryFr: 'Plateforme de voyage',
     summary: 'A Morocco travel platform for curated tours, local experiences, and multilingual destination discovery.',
+    summaryFr: 'Une plateforme de voyage au Maroc : circuits sélectionnés, expériences locales et découverte multilingue des destinations.',
     year: '2025',
     modifiedAt: '2026-07-22',
     status: 'featured',
@@ -106,7 +114,9 @@ export const projects: Project[] = [
     externalUrl: 'https://by-marrakech.vercel.app/en',
     relationship: 'independent-project',
     category: 'City Guide',
+    categoryFr: 'Guide urbain',
     summary: 'A modern Marrakech guide experience for places, culture, and destination content.',
+    summaryFr: 'Un guide moderne de Marrakech pour découvrir les lieux, la culture et le contenu de destination.',
     year: '2025',
     modifiedAt: '2026-07-22',
     status: 'featured',
@@ -130,7 +140,9 @@ export const projects: Project[] = [
     externalUrl: 'https://www.trustdrivers.tours/',
     relationship: 'studio-owned',
     category: 'Studio Project: Transport & Tours',
+    categoryFr: 'Transport touristique',
     summary: 'A studio-built tour and driver website concept, owned by WeReact, for visitors comparing transport options in Morocco.',
+    summaryFr: 'Un concept de site chauffeurs et circuits créé par le studio WeReact pour les voyageurs qui comparent les options de transport au Maroc.',
     year: '2026',
     modifiedAt: '2026-07-22',
     status: 'indexed',
@@ -154,7 +166,9 @@ export const projects: Project[] = [
     externalUrl: 'https://www.yoomarrakech.com/',
     relationship: 'studio-owned',
     category: 'Studio Project: Local Brand',
+    categoryFr: 'Marque locale',
     summary: 'A studio-built Marrakech brand concept, owned by WeReact, designed for city visibility, service discovery, and polished mobile browsing.',
+    summaryFr: 'Un concept de marque à Marrakech créé par le studio WeReact pour la visibilité locale, la découverte de services et une navigation mobile soignée.',
     year: '2026',
     modifiedAt: '2026-07-22',
     status: 'indexed',
@@ -178,7 +192,9 @@ export const projects: Project[] = [
     externalUrl: 'https://www.moroccoatlasguide.com/',
     relationship: 'studio-owned',
     category: 'Studio Project: Travel Guide',
+    categoryFr: 'Guide de voyage Atlas',
     summary: 'A studio-built destination guide, owned by WeReact, for Atlas mountain trips, tours, and Moroccan itinerary discovery.',
+    summaryFr: 'Un guide de destination créé par le studio WeReact pour les excursions dans l\'Atlas, les circuits et les itinéraires au Maroc.',
     year: '2026',
     modifiedAt: '2026-07-22',
     status: 'indexed',

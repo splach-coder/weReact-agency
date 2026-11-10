@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
-import type { ServiceFaq, ServiceLocaleCopy } from '@/data/services';
+import type { ServiceFaq, ServiceLocaleCopy, ServicePricingTier } from '@/data/services';
 import type { Project } from '@/data/projects';
 
 export function createLocalizedAlternates(path: string) {
@@ -213,6 +213,33 @@ export function createServicePageJsonLd(page: ServiceSchemaPage, locale: string)
   };
 }
 
+export function createPricingJsonLd(tiers: readonly ServicePricingTier[], locale: string, pageUrl: string) {
+  const pricedTiers = tiers.filter((tier) => tier.fromMad !== null);
+  if (!pricedTiers.length) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    '@id': `${pageUrl}#pricing`,
+    name: locale === 'fr' ? 'Tarifs de création de site web' : 'Website build pricing',
+    inLanguage: locale === 'fr' ? 'fr' : 'en',
+    provider: { '@id': `${siteConfig.url}/#business` },
+    itemListElement: pricedTiers.map((tier) => ({
+      '@type': 'Offer',
+      name: tier.name,
+      description: tier.note,
+      url: pageUrl,
+      availability: 'https://schema.org/InStock',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        minPrice: tier.fromMad,
+        priceCurrency: 'MAD',
+        valueAddedTaxIncluded: false,
+      },
+    })),
+  };
+}
+
 export function createFaqJsonLd(faqs: readonly ServiceFaq[]) {
   return {
     '@context': 'https://schema.org',
@@ -222,6 +249,23 @@ export function createFaqJsonLd(faqs: readonly ServiceFaq[]) {
       name: faq.question,
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
+  };
+}
+
+export function createAboutPageJsonLd(locale: string, name: string, description: string) {
+  const url = `${siteConfig.url}/${locale}/about`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${url}#about`,
+    url,
+    name,
+    description,
+    inLanguage: locale === 'fr' ? 'fr' : 'en',
+    isPartOf: { '@id': `${siteConfig.url}/#website` },
+    mainEntity: { '@id': `${siteConfig.url}/#business` },
+    publisher: { '@id': `${siteConfig.url}/#business` },
   };
 }
 
@@ -248,7 +292,7 @@ export function createProjectJsonLd(project: Project, locale: string) {
     '@type': 'CreativeWork',
     '@id': `${url}#project`,
     name: project.title,
-    description: project.summary,
+    description: language === 'fr' ? project.summaryFr : project.summary,
     url,
     image: image.startsWith('http') ? image : `${siteConfig.url}${image}`,
     dateCreated: project.year,

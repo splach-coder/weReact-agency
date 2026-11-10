@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { History, UserRound, X } from 'lucide-react';
-import { getWhatsAppHref, type CrmLead, type LeadEvent } from '@/lib/crm';
+import { formatLeadSource, getWhatsAppHref, type CrmLead, type LeadEvent } from '@/lib/crm';
 import { CopyButton, WhatsAppIcon } from './CopyButton';
 import { LeadActivity } from './LeadEditor';
 
@@ -93,7 +93,7 @@ export function ClientDetailPanels({
                       </div>
                       <div><dt>Company</dt><dd><strong>{lead.company || 'Not provided'}</strong></dd></div>
                       <div><dt>Received</dt><dd><strong>{received}</strong></dd></div>
-                      <div><dt>Source</dt><dd><strong>{lead.source || 'Unknown'}</strong></dd></div>
+                      <div><dt>Source</dt><dd><strong>{formatLeadSource(lead.source)}</strong></dd></div>
                     </dl>
                   </section>
 

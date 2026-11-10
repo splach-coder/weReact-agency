@@ -63,7 +63,9 @@ export default function Footer() {
   };
 
   const navLinks = [
+    { name: locale === 'fr' ? 'Réserver un appel' : 'Book a call', href: '/book' },
     { name: tNav('work'), href: '/work' },
+    { name: tNav('about'), href: '/about' },
     { name: tNav('blog'), href: '/blog' },
     { name: tNav('contact'), href: '/contact' },
   ];

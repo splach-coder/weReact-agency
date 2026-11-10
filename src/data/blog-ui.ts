@@ -1,6 +1,6 @@
 const BLOG_UI = {
   en: {
-    indexTitle: 'WeReact Journal - Web Design, SEO, and Growth in Morocco',
+    indexTitle: 'Journal - Web Design & SEO in Morocco',
     indexDescription: 'Practical guidance on web design, local SEO, tourism websites, performance, and conversion from WeReact in Marrakech.',
     journal: 'WeReact Journal',
     hero: 'Ideas for brands that need to be found.',
@@ -29,7 +29,7 @@ const BLOG_UI = {
     linkCopied: 'Link copied to clipboard!',
   },
   fr: {
-    indexTitle: 'Journal WeReact - Création web, SEO et croissance au Maroc',
+    indexTitle: 'Journal - Création web et SEO au Maroc',
     indexDescription: 'Conseils pratiques sur la création web, le SEO local, les sites tourisme, la performance et la conversion par WeReact à Marrakech.',
     journal: 'Journal WeReact',
     hero: 'Des idées pour les marques qui doivent être trouvées.',

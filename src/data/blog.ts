@@ -1,5 +1,6 @@
 export interface BlogPostLocaleCopy {
     title: string;
+    metaTitle?: string;
     excerpt: string;
     metaDescription?: string;
     content: string;
@@ -12,6 +13,8 @@ export interface BlogPostLocaleCopy {
 export interface BlogPost {
     slug: string;
     title: string;
+    /** Short <title> for search results. Falls back to the full title. */
+    metaTitle?: string;
     excerpt: string;
     metaDescription?: string;
     date: string;
@@ -38,6 +41,7 @@ export function getLocalizedPost(post: BlogPost, locale: string): BlogPost {
     return {
         ...post,
         title: post.fr.title,
+        metaTitle: post.fr.metaTitle ?? post.metaTitle,
         excerpt: post.fr.excerpt,
         metaDescription: post.fr.metaDescription ?? post.metaDescription,
         content: post.fr.content,
@@ -52,8 +56,9 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "combien-coute-site-web-maroc",
         title: "How Much Does a Website Cost in Morocco in 2026?",
+        metaTitle: "Website Cost in Morocco in 2026",
         excerpt: "Honest starting prices for a showcase site, an e-commerce store, and a custom quote for riad or hotel booking websites in Morocco, and what actually moves a quote up or down.",
-        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing for showcase sites from 3,500 MAD, e-commerce from 6,000 MAD, and custom-quoted riad and hotel booking websites, plus what drives the cost.",
+        metaDescription: "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 3,500 MAD, e-commerce from 6,000 MAD, and custom booking sites.",
         date: "July 14, 2026",
         publishedAt: "2026-07-14",
         modifiedAt: "2026-10-20",
@@ -72,7 +77,7 @@ export const blogPosts: BlogPost[] = [
             <h2>Why website prices vary so much</h2>
             <p>Two websites can look almost identical in a portfolio screenshot and still be completely different products. The visible design is only one layer. Underneath sit the decisions that change both the cost and the value of the project: whether the pages are structured so Google can understand your services, whether the site loads quickly on a mid-range phone with an average connection, whether the content is written around what your customers actually search for, and whether tracking is in place so you can see which pages generate calls and WhatsApp messages. A website built as a commercial tool takes more work than a website built as an online brochure, and the price follows the work.</p>
 
-            <h2>Our starting prices in Morocco for 2026</h2>
+            <h2>Our starting prices in Morocco for 2026</h2><p>These are the same figures we publish on our <a href="/en/agence-web-marrakech">web agency in Marrakech</a> page, where you can also request a scoped quote.</p>
             <p>Every project is quoted on its own scope, but publishing starting prices feels more honest than silence. This is the guidance we give businesses that contact us:</p>
 
             <h3>Showcase website (site vitrine): from 3,500 MAD</h3>
@@ -117,8 +122,9 @@ export const blogPosts: BlogPost[] = [
         `,
         fr: {
             title: "Combien coûte un site web au Maroc en 2026 ?",
+            metaTitle: "Combien coûte un site web au Maroc ?",
             excerpt: "Prix de départ honnêtes pour un site vitrine, une boutique e-commerce, et un devis sur mesure pour un site de réservation riad ou hôtel au Maroc, et ce qui fait vraiment varier un devis.",
-            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs d'agence honnêtes : site vitrine à partir de 3 500 DH, e-commerce à partir de 6 000 DH, et devis sur mesure pour les sites de réservation riad ou hôtel, plus ce qui fait varier le prix.",
+            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs honnêtes : site vitrine dès 3 500 DH, e-commerce dès 6 000 DH, et devis sur mesure pour riads et hôtels.",
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
@@ -129,7 +135,7 @@ export const blogPosts: BlogPost[] = [
                 <h2>Pourquoi les prix varient autant</h2>
                 <p>Deux sites web peuvent sembler presque identiques sur une capture d'écran de portfolio et rester des produits complètement différents. Le design visible n'est qu'une couche. En dessous se trouvent les décisions qui changent à la fois le coût et la valeur du projet : la structure des pages permet-elle à Google de comprendre vos services, le site se charge-t-il rapidement sur un téléphone de milieu de gamme avec une connexion moyenne, le contenu est-il rédigé autour de ce que vos clients recherchent vraiment, et le suivi statistique est-il en place pour savoir quelles pages génèrent des appels et des messages WhatsApp. Un site conçu comme un outil commercial demande plus de travail qu'une simple brochure en ligne, et le prix suit le travail.</p>
 
-                <h2>Nos prix de départ au Maroc pour 2026</h2>
+                <h2>Nos prix de départ au Maroc pour 2026</h2><p>Ce sont les mêmes tarifs que sur notre page <a href="/fr/agence-web-marrakech">agence web à Marrakech</a>, où vous pouvez aussi demander un devis cadré.</p>
                 <p>Chaque projet est chiffré selon son propre périmètre, mais publier des prix de départ nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
 
                 <h3>Site vitrine : à partir de 3 500 DH</h3>
@@ -177,6 +183,7 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "seo-strategies-for-agencies",
         title: "SEO in the Age of AI: How to Rank Your Agency in 2026",
+        metaTitle: "SEO for Agencies in the AI Era (2026)",
         excerpt: "Moving beyond keywords: focusing on E-E-A-T and technical excellence to dominate search results.",
         metaDescription: "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
         date: "June 14, 2026",
@@ -197,13 +204,14 @@ export const blogPosts: BlogPost[] = [
             <h2>E-E-A-T: Experience, Expertise, Authoritativeness, and Trustworthiness</h2>
             <p>Google wants to show content from real humans with real experience. Case studies, deep-dive blog posts, and transparent team profiles are the best ways to build this trust with both users and algorithms.</p>
 
-            <h2>Technical SEO Foundation</h2>
+            <h2>Technical SEO Foundation</h2><p>For campaign traffic specifically, this is the groundwork behind our <a href="/en/seo-landing-pages">SEO-ready landing pages</a>.</p>
             <p>A fast, mobile-friendly website with a clean DOM structure is the entry ticket. Without a solid technical foundation, even the best content will struggle to rank. Ensure your site uses semantic HTML5 elements like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;aside&gt;</code> properly.</p>
 
             <p>Building a blog is the first step. Creating value-driven content consistently is the marathon that wins the SEO race.</p>
         `,
         fr: {
             title: "Le SEO à l'ère de l'IA : comment positionner votre agence en 2026",
+            metaTitle: "SEO à l'ère de l'IA pour agences (2026)",
             excerpt: "Au-delà des mots-clés : miser sur l'E-E-A-T et l'excellence technique pour dominer les résultats de recherche.",
             metaDescription: "Découvrez comment positionner votre agence en 2026 en misant sur l'E-E-A-T et le SEO technique, à l'ère de l'IA générative et des nouveaux moteurs de recherche.",
             date: "14 juin 2026",
@@ -216,7 +224,7 @@ export const blogPosts: BlogPost[] = [
                 <h2>E-E-A-T : expérience, expertise, autorité et fiabilité</h2>
                 <p>Google veut mettre en avant des contenus produits par de vraies personnes, avec une vraie expérience. Études de cas, articles de fond et profils d'équipe transparents restent les meilleurs moyens de bâtir cette confiance, auprès des utilisateurs comme des algorithmes.</p>
 
-                <h2>Des fondations techniques solides</h2>
+                <h2>Des fondations techniques solides</h2><p>Pour le trafic de campagne, c'est le socle de nos <a href="/fr/seo-landing-pages">landing pages SEO</a>.</p>
                 <p>Un site rapide, adapté au mobile et doté d'une structure DOM propre constitue le ticket d'entrée. Sans base technique solide, même le meilleur contenu peinera à se positionner. Veillez à utiliser correctement les balises HTML5 sémantiques comme <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> et <code>&lt;aside&gt;</code>.</p>
 
                 <p>Créer un blog n'est que la première étape. Publier régulièrement du contenu utile, c'est le marathon qui fait gagner la course du SEO.</p>
@@ -226,8 +234,9 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "website-design-marrakech-business-guide",
         title: "Website Design in Marrakech: How Local Businesses Can Turn Search Traffic Into Clients",
+        metaTitle: "Marrakech Web Design: Traffic Into Clients",
         excerpt: "A practical guide for Marrakech businesses that want a website built for local visibility, trust, speed, and real client inquiries.",
-        metaDescription: "Website design in Marrakech guide for local businesses. Learn how SEO, mobile UX, trust signals, speed, and conversion paths turn Google traffic into client inquiries.",
+        metaDescription: "Website design guide for Marrakech businesses: SEO, mobile UX, trust signals, and conversion paths that turn Google traffic into client inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
         modifiedAt: "2026-07-14",
@@ -260,13 +269,14 @@ export const blogPosts: BlogPost[] = [
 
             <blockquote>A local website becomes powerful when it combines clear design, real place signals, useful content, and a direct route to contact.</blockquote>
 
-            <h2>What WeReact builds into a local business website</h2>
+            <h2>What WeReact builds into a local business website</h2><p>You can see how this applies to a specific build on our <a href="/en/web-design-marrakech">website design in Marrakech</a> page, and for hotels or riads on <a href="/en/tourism-websites-morocco">tourism websites in Morocco</a>.</p>
             <p>At WeReact, we design business websites with structured sections, fast performance, responsive layouts, metadata, schema foundations, and clear WhatsApp or contact routes. The goal is simple: help visitors trust you faster and take action sooner.</p>
         `,
         fr: {
             title: "Création de site web à Marrakech : comment transformer le trafic Google en clients",
+            metaTitle: "Site web Marrakech : du trafic aux clients",
             excerpt: "Un guide pratique pour les entreprises de Marrakech qui veulent un site pensé pour la visibilité locale, la confiance, la rapidité et de vraies demandes clients.",
-            metaDescription: "Création de site web à Marrakech : guide pour les entreprises locales. SEO, UX mobile, signaux de confiance, rapidité et parcours de conversion pour transformer le trafic Google en demandes clients.",
+            metaDescription: "Création de site web à Marrakech : SEO, UX mobile, confiance et parcours de conversion pour transformer le trafic Google en demandes clients.",
             date: "16 juin 2026",
             readTime: "9 min de lecture",
             category: "SEO local",
@@ -291,7 +301,7 @@ export const blogPosts: BlogPost[] = [
 
                 <blockquote>Un site local devient puissant lorsqu'il combine un design clair, de vrais signaux de proximité, un contenu utile et un chemin direct vers le contact.</blockquote>
 
-                <h2>Ce que WeReact intègre dans un site d'entreprise locale</h2>
+                <h2>Ce que WeReact intègre dans un site d'entreprise locale</h2><p>Vous pouvez voir comment cela s'applique sur notre page <a href="/fr/web-design-marrakech">création de site internet à Marrakech</a>, et pour les riads ou hôtels sur <a href="/fr/tourism-websites-morocco">sites web tourisme au Maroc</a>.</p>
                 <p>Chez WeReact, nous concevons des sites d'entreprise avec des sections structurées, des performances rapides, des mises en page responsives, des métadonnées, des fondations schema et des accès clairs vers WhatsApp ou le contact. L'objectif est simple : aider vos visiteurs à vous faire confiance plus vite et à passer à l'action plus tôt.</p>
             `
         }
@@ -299,8 +309,9 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "tourism-hospitality-seo-morocco",
         title: "SEO for Tourism and Hospitality Websites in Morocco: A Practical Growth Guide",
+        metaTitle: "Tourism & Hospitality SEO in Morocco",
         excerpt: "How hotels, tour operators, transport companies, and travel brands in Morocco can build websites that improve discovery and direct inquiries.",
-        metaDescription: "SEO guide for tourism and hospitality websites in Morocco. Learn how destination pages, mobile speed, trust signals, schema, and conversion UX improve direct inquiries.",
+        metaDescription: "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
         modifiedAt: "2026-07-14",
@@ -336,13 +347,14 @@ export const blogPosts: BlogPost[] = [
 
             <blockquote>Tourism SEO works best when destination knowledge, trust, speed, and conversion design all point in the same direction.</blockquote>
 
-            <h2>How WeReact approaches travel websites</h2>
+            <h2>How WeReact approaches travel websites</h2><p>Our <a href="/en/tourism-websites-morocco">tourism and hospitality websites in Morocco</a> page sets out the booking-journey structure we build from.</p>
             <p>WeReact builds tourism and hospitality websites with fast mobile layouts, destination-led content structure, local SEO foundations, clear project visuals, and direct inquiry routes. The goal is to help travelers understand the offer quickly and contact the business with confidence.</p>
         `,
         fr: {
             title: "SEO pour les sites de tourisme et d'hôtellerie au Maroc : guide pratique de croissance",
+            metaTitle: "SEO tourisme et hôtellerie au Maroc",
             excerpt: "Comment les hôtels, agences d'excursions, sociétés de transport et marques de voyage au Maroc peuvent construire des sites qui améliorent leur visibilité et leurs demandes directes.",
-            metaDescription: "Guide SEO pour les sites de tourisme et d'hôtellerie au Maroc : pages destinations, vitesse mobile, signaux de confiance, données structurées et UX de conversion pour plus de demandes directes.",
+            metaDescription: "SEO pour sites de tourisme et d'hôtellerie au Maroc : pages destinations, vitesse mobile, confiance et UX de conversion pour plus de demandes directes.",
             date: "16 juin 2026",
             readTime: "10 min de lecture",
             category: "SEO tourisme",
@@ -370,7 +382,7 @@ export const blogPosts: BlogPost[] = [
 
                 <blockquote>Le SEO touristique fonctionne le mieux lorsque la connaissance de la destination, la confiance, la vitesse et le design de conversion vont dans la même direction.</blockquote>
 
-                <h2>L'approche WeReact pour les sites de voyage</h2>
+                <h2>L'approche WeReact pour les sites de voyage</h2><p>Notre page <a href="/fr/tourism-websites-morocco">sites web tourisme et hôtellerie au Maroc</a> détaille la structure de parcours de réservation sur laquelle nous construisons.</p>
                 <p>WeReact conçoit des sites de tourisme et d'hôtellerie avec des mises en page mobiles rapides, une structure de contenu orientée destinations, des fondations SEO locales, des visuels de projets clairs et des accès directs à la demande. L'objectif : aider les voyageurs à comprendre l'offre rapidement et à contacter l'entreprise en toute confiance.</p>
             `
         }

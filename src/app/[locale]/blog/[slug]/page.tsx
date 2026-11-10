@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const ui = getBlogUi(locale);
 
     const metadata = createPageMetadata({
-        title: `${post.title} | ${ui.journal}`,
+        title: post.metaTitle ?? post.title,
         description: post.metaDescription || post.excerpt,
         path: `/${locale}/blog/${post.slug}`,
         image: post.image,

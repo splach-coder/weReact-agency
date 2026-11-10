@@ -60,11 +60,18 @@ export function sanitizeAttribution(attribution: unknown): LeadAttribution {
 
 const ALLOWED_SOURCE_PAGES = new Set([
   'web-design-marrakech',
+  'web-design-casablanca',
+  'web-design-rabat',
+  'web-design-agadir',
   'tourism-websites-morocco',
+  'hotel-website-design',
   'seo-landing-pages',
   'agence-web-marrakech',
+  'agence-seo-marrakech',
+  'agence-google-ads-maroc',
   'website-design-moroccan-businesses',
   'international-web-design-agency',
+  'about',
 ]);
 
 export function getAllowedSourcePage(value: unknown) {
@@ -90,7 +97,7 @@ export type LeadRecord = {
   whatsapp: string | null;
   message: string;
   status: 'new';
-  source: 'website_contact_form';
+  source: 'website_contact_form' | 'cal_booking';
   attribution: LeadAttribution;
 };
 

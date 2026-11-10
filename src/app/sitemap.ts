@@ -9,12 +9,14 @@ const STATIC_ROUTE_PRIORITY: Record<string, number> = {
   '': 1,
   '/contact': 0.95,
   '/work': 0.9,
+  '/about': 0.8,
+  '/book': 0.9,
   '/blog': 0.72,
 };
 
 export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  const routes = ['', '/contact', '/work', '/blog'];
+  const routes = ['', '/contact', '/work', '/about', '/book', '/blog'];
 
   const staticRoutes = routes.flatMap((route) =>
     siteConfig.locales.map((locale) => ({
