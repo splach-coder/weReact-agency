@@ -455,7 +455,7 @@ export default function CaseStudyPage() {
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-sm text-sm md:text-base font-bold hover:bg-[#2e4833] transition-all duration-300 hover:scale-105 group"
+                                    className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-sm text-sm md:text-base font-bold hover:bg-[#2e4833] transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105 group"
                                 >
                                     Visit Live Site
                                     <ExternalLink className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -481,7 +481,7 @@ export default function CaseStudyPage() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute -top-10 -left-10 w-32 h-32 bg-[var(--color-primary)]/10 rounded-sm blur-2xl"
+                                className="absolute -top-10 -left-10 w-32 h-32 bg-[var(--color-primary)]/10 rounded-sm blur-2xl hidden"
                             />
                             <motion.div
                                 animate={{
@@ -493,7 +493,7 @@ export default function CaseStudyPage() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-primary)]/10 rounded-sm blur-2xl"
+                                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-primary)]/10 rounded-sm blur-2xl hidden"
                             />
 
                             {/* Browser Mockup */}
@@ -584,8 +584,8 @@ export default function CaseStudyPage() {
                 </div>
 
                 {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/5 rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-primary)]/5 rounded-sm blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/5 hidden rounded-sm blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-primary)]/5 hidden rounded-sm blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             </motion.section>
 
             {/* Project Image/Screenshot Section */}
@@ -616,7 +616,7 @@ export default function CaseStudyPage() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={isVisualsInView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-sm font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
+                            className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-sm font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
                         >
                             <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
                             <span>View Live Site</span>
@@ -718,7 +718,7 @@ export default function CaseStudyPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isFeaturesInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="text-center p-8 bg-[var(--color-background-main)] rounded-sm border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300"
+                                className="text-center p-8 bg-[var(--color-background-main)] rounded-sm border-2 border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                             >
                                 <div className="w-16 h-16 mx-auto mb-6 rounded-sm bg-[var(--color-primary)]/10 flex items-center justify-center">
                                     <feature.icon size={32} className="text-[var(--color-primary)]" />
@@ -809,14 +809,14 @@ export default function CaseStudyPage() {
                             <Link
                                 href={`/${locale}/contact`}
                                 onClick={() => trackContactIntent('case_study_cta', { destination: 'contact' })}
-                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-all duration-300 hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105"
                             >
                                 Start Your Project
                                 <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
                             </Link>
                             <Link
                                 href={`/${locale}/work`}
-                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-sm font-bold text-sm md:text-lg hover:bg-white/10 transition-all duration-300"
+                                className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-sm font-bold text-sm md:text-lg hover:bg-white/10 transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
                                 View More Projects

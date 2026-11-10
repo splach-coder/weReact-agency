@@ -34,7 +34,7 @@ export function CalBookingSection({ source, locale, heading, headingLevel = 'h2'
     <section className="border-t border-[rgba(58,90,64,0.16)] px-6 py-20 md:px-16 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Heading className="text-center font-display text-[clamp(2.4rem,5.4vw,4.6rem)] leading-[0.96] text-[var(--color-text-main)]">
-          {heading ?? (isFr ? 'Parlons-en !' : 'Let’s talk!')}
+          {heading ?? (isFr ? 'Parlons de votre projet' : 'Let’s talk about your project')}
         </Heading>
         <div className="mt-12 overflow-hidden border border-[rgba(58,90,64,0.18)] bg-white lg:grid lg:grid-cols-[minmax(260px,0.32fr)_0.68fr]">
           <div className="border-b border-[rgba(58,90,64,0.16)] p-7 md:p-9 lg:border-b-0 lg:border-r">

@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <div className="max-w-[1000px] mx-auto relative z-10">
                     <Link
                         href={`/${locale}/blog`}
-                        className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-all mb-8 text-mono group"
+                        className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-[color,background-color,border-color,opacity,transform,box-shadow] mb-8 text-mono group"
                     >
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
                         {ui.back}
@@ -193,13 +193,13 @@ export default async function BlogPostPage({ params }: Props) {
                                 {otherPosts.map(p => (
                                     <Link key={p.slug} href={`/${locale}/blog/${p.slug}`} className="group block">
                                         <div className="relative aspect-video rounded-sm overflow-hidden mb-3 bg-gray-100">
-                                            <Image src={p.image} alt={p.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                                            <Image src={p.image} alt={p.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-500" />
                                         </div>
                                         <p className="text-[8px] font-black uppercase tracking-widest text-[var(--color-primary)] opacity-40 mb-1">{p.category}</p>
                                         <h4 className="font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-primary)] transition-colors mb-2 leading-tight text-sm">
                                             {p.title}
                                         </h4>
-                                        <div className="flex items-center gap-1.5 text-[var(--color-primary)] text-[9px] font-black uppercase lg:opacity-0 group-hover:opacity-100 transition-all">
+                                        <div className="flex items-center gap-1.5 text-[var(--color-primary)] text-[9px] font-black uppercase lg:opacity-0 group-hover:opacity-100 transition-[color,background-color,border-color,opacity,transform,box-shadow]">
                                             {ui.readArticle} <ArrowRight size={12} />
                                         </div>
                                     </Link>
@@ -212,7 +212,7 @@ export default async function BlogPostPage({ params }: Props) {
                             <p className="text-white/50 mb-8 text-sm leading-relaxed">{ui.contactCopy}</p>
                             <Link
                                 href={`/${locale}/contact`}
-                                className="inline-flex items-center justify-between w-full p-1.5 pl-6 bg-white text-[var(--color-primary)] rounded-sm group/btn transition-all font-black uppercase text-[9px] tracking-widest"
+                                className="inline-flex items-center justify-between w-full p-1.5 pl-6 bg-white text-[var(--color-primary)] rounded-sm group/btn transition-[color,background-color,border-color,opacity,transform,box-shadow] font-black uppercase text-[9px] tracking-widest"
                             >
                                 {ui.contact}
                                 <div className="w-8 h-8 rounded-sm bg-[var(--color-primary)] text-white flex items-center justify-center group-hover:scale-110 transition-transform">

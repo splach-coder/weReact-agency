@@ -25,10 +25,10 @@ const copy = {
     accept: 'Accept analytics & ads',
   },
   fr: {
-    title: 'Votre vie privee, votre choix',
-    description: 'Nous utilisons des cookies d analyse et de publicite pour comprendre ce qui amene des clients vers WeReact. Vous pouvez les accepter ou continuer avec les fonctions essentielles uniquement.',
+    title: 'Votre vie privée, votre choix',
+    description: 'Nous utilisons des cookies d’analyse et de publicité pour comprendre ce qui amène des clients vers WeReact. Vous pouvez les accepter ou continuer avec les fonctions essentielles uniquement.',
     essential: 'Fonctions essentielles',
-    accept: 'Accepter analyse et pub',
+    accept: 'Accepter analyse et publicité',
   },
 } as const;
 

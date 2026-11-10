@@ -142,7 +142,7 @@ function IntroCopy({ t }: { t: ReturnType<typeof useTranslations<'Home.services'
     >
       <p className="text-mono mb-5 flex items-center gap-3 text-[var(--color-primary)]">
         <span className="text-2xl font-black leading-none text-[var(--color-accent-sage)]">01</span>
-        <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)] shadow-[0_0_18px_rgba(181,192,158,0.75)]" />
+        <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)]" />
         {t('eyebrow')}
       </p>
       <h2 className="font-display text-[clamp(2.6rem,6vw,6.6rem)] leading-[0.92] text-[var(--color-text-main)]">
@@ -304,7 +304,7 @@ function ServiceCopyLayer({
     >
       <div className="mb-5 flex flex-wrap items-center gap-3 text-mono text-white/82">
         <span>{String(index + 1).padStart(2, '0')}</span>
-        <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)] shadow-[0_0_18px_rgba(181,192,158,0.75)]" />
+        <span className="h-1.5 w-1.5 bg-[var(--color-accent-sage)]" />
         <span>{scene.signal}</span>
       </div>
       <h3 className="font-display text-[clamp(2rem,4vw,5.1rem)] leading-[0.9] text-white">

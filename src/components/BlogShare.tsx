@@ -55,7 +55,7 @@ export default function BlogShare({ url, title, locale = 'en', variant = 'floati
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={ui.shareTwitter}
-                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition-all duration-300"
+                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                     >
                         <Twitter size={16} aria-hidden="true" />
                     </a>
@@ -64,14 +64,14 @@ export default function BlogShare({ url, title, locale = 'en', variant = 'floati
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={ui.shareLinkedIn}
-                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#0077B5] hover:text-white transition-all duration-300"
+                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[#0077B5] hover:text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                     >
                         <Linkedin size={16} aria-hidden="true" />
                     </a>
                     <button
                         onClick={copyToClipboard}
                         aria-label={ui.copyLink}
-                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300"
+                        className="w-10 h-10 rounded-sm border border-gray-100 flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                     >
                         <LinkIcon size={16} aria-hidden="true" />
                     </button>
