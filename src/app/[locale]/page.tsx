@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import WebGLHero from '@/components/WebGLHero';
 import SectionErrorBoundary from '@/components/SectionErrorBoundary';
 import { createBusinessJsonLd, createServiceJsonLd, createWebsiteJsonLd } from '@/lib/seo';
+import { serviceLandingPages } from '@/data/services';
 
 // Below-the-fold sections are code-split.
 const Manifesto = dynamic(() => import('@/components/sections/home/Manifesto'));
@@ -30,8 +31,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const serviceJsonLd = createServiceJsonLd();
-  const businessJsonLd = createBusinessJsonLd();
+  const serviceJsonLd = createServiceJsonLd(locale);
+  const businessJsonLd = createBusinessJsonLd({ locale, servicePages: serviceLandingPages });
   const websiteJsonLd = createWebsiteJsonLd();
 
   return (

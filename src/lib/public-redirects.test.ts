@@ -11,6 +11,8 @@ test('sends unprefixed public routes to the visitor language', () => {
   assert.equal(getLocalizedPublicRedirect('/', { acceptLanguage: 'fr-FR,fr;q=0.9' }), '/fr');
   assert.equal(getLocalizedPublicRedirect('/contact', { acceptLanguage: 'en-US,en;q=0.9' }), '/en/contact');
   assert.equal(getLocalizedPublicRedirect('/web-design-marrakech', {}), '/en/web-design-marrakech');
+  assert.equal(getLocalizedPublicRedirect('/ai-info', { acceptLanguage: 'fr' }), '/fr/ai-info');
+  assert.equal(getLocalizedPublicRedirect('/sitemap', {}), '/en/sitemap');
 });
 
 test('crawlers without Accept-Language get the English x-default', () => {

@@ -331,13 +331,13 @@ function ServiceCopyLayer({
 function ServiceLinksRow({ locale }: { locale: string }) {
   const links = locale === 'fr'
     ? [
-        { name: 'Agence web à Marrakech', href: '/agence-web-marrakech' },
+        { name: 'Sites pour agences de voyage', href: '/site-web-agence-de-voyage' },
         { name: 'Création de site web', href: '/web-design-marrakech' },
         { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
         { name: 'Landing pages SEO', href: '/seo-landing-pages' },
       ]
     : [
-        { name: 'Web agency in Marrakech', href: '/agence-web-marrakech' },
+        { name: 'Travel agency websites', href: '/site-web-agence-de-voyage' },
         { name: 'Website design', href: '/web-design-marrakech' },
         { name: 'Tourism websites', href: '/tourism-websites-morocco' },
         { name: 'SEO landing pages', href: '/seo-landing-pages' },

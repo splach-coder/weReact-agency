@@ -17,6 +17,8 @@ const CURRENT_PUBLIC_PATHS = new Set([
   '/book',
   '/website-design-moroccan-businesses',
   '/international-web-design-agency',
+  '/sitemap',
+  '/ai-info',
 ]);
 
 const LEGACY_REDIRECTS: Readonly<Record<string, string>> = {

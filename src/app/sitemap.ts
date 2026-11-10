@@ -4,6 +4,7 @@ import { blogPosts } from '@/data/blog';
 import { projects } from '@/data/projects';
 import { serviceLandingPages } from '@/data/services';
 import { audienceLandingPages } from '@/data/audiences';
+import { getContentLastModified } from '@/lib/site-index';
 
 const STATIC_ROUTE_PRIORITY: Record<string, number> = {
   '': 1,
@@ -12,6 +13,12 @@ const STATIC_ROUTE_PRIORITY: Record<string, number> = {
   '/about': 0.8,
   '/book': 0.9,
   '/blog': 0.72,
+};
+
+// Generated from the same data as the content pages: they change when it does.
+const INDEX_ROUTE_PRIORITY: Record<string, number> = {
+  '/ai-info': 0.6,
+  '/sitemap': 0.3,
 };
 
 export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
@@ -24,6 +31,16 @@ export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
       lastModified: buildDate,
       changeFrequency: route === '/blog' ? ('weekly' as const) : ('monthly' as const),
       priority: STATIC_ROUTE_PRIORITY[route] ?? 0.7,
+    }))
+  );
+
+  const contentLastModified = new Date(getContentLastModified());
+  const indexRoutes = Object.entries(INDEX_ROUTE_PRIORITY).flatMap(([route, priority]) =>
+    siteConfig.locales.map((locale) => ({
+      url: `${baseUrl}/${locale}${route}`,
+      lastModified: contentLastModified,
+      changeFrequency: 'monthly' as const,
+      priority,
     }))
   );
 
@@ -64,5 +81,5 @@ export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes, ...workRoutes, ...postRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes, ...workRoutes, ...postRoutes, ...indexRoutes];
 }

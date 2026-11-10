@@ -8,7 +8,7 @@ import { ArrowLeft, Clock, Calendar, User, ArrowRight, Tag } from 'lucide-react'
 import { routing } from '@/i18n/routing';
 import BlogShare from '@/components/BlogShare';
 import { siteConfig } from '@/config/site';
-import { createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
+import { createBlogPostingJsonLd, createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { getServiceLandingPage } from '@/data/services';
 import { getBlogUi } from '@/data/blog-ui';
@@ -73,23 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
     const postUrl = `${siteConfig.url}/${locale}/blog/${post.slug}`;
     const relatedService = getServiceLandingPage(post.relatedServiceSlug);
 
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.metaDescription || post.excerpt,
-        image: `${siteConfig.url}${post.image}`,
-        datePublished: post.publishedAt,
-        dateModified: post.modifiedAt,
-        author: { '@type': 'Organization', name: post.author, url: siteConfig.url },
-        publisher: {
-            '@type': 'Organization',
-            name: 'WeReact',
-            logo: { '@type': 'ImageObject', url: `${siteConfig.url}/images/logo.webp` },
-        },
-        mainEntityOfPage: { '@context': 'https://schema.org', '@type': 'WebPage', '@id': postUrl },
-        inLanguage: locale,
-    };
+    const jsonLd = createBlogPostingJsonLd(post, locale);
 
     const breadcrumbJsonLd = createBreadcrumbJsonLd([
         { name: locale === 'fr' ? 'Accueil' : 'Home', url: `/${locale}` },

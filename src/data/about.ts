@@ -42,7 +42,7 @@ export function getAboutCopy(locale: string): AboutCopy {
             heading: 'Ce que nous faisons',
             body: [
               'Nous créons des sites vitrines, des boutiques en ligne, des landing pages et des sites de réservation pour le tourisme. Chaque projet inclut des fondations SEO concrètes : structure de page propre, métadonnées, données structurées, sitemap et performance mobile.',
-              'Nous ne vendons pas de retainer marketing ni de gestion de réseaux sociaux. Nous construisons le site, nous le rendons rapide et trouvable, et nous vous en laissons la propriété complète.',
+              'Nous ne vendons pas de gestion de réseaux sociaux ni d’abonnement marketing sans livrables précis. Nous construisons le site, nous le rendons rapide et trouvable, et nous vous en laissons la propriété complète.',
             ],
           },
           {
@@ -89,7 +89,7 @@ export function getAboutCopy(locale: string): AboutCopy {
             heading: 'What we do',
             body: [
               'We build showcase websites, online stores, landing pages, and tourism booking sites. Every project includes practical SEO foundations: clean page structure, metadata, structured data, sitemap support, and mobile performance.',
-              'We do not sell marketing retainers or social media management. We build the site, make it fast and findable, and hand you full ownership.',
+              'We do not sell social media management or marketing retainers without clear deliverables. We build the site, make it fast and findable, and hand you full ownership.',
             ],
           },
           {

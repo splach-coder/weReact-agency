@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeReact entity map</title>
+<style>
+  :root {
+    --bg: #f6f6f2;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --ink-2: #4f4f4f;
+    --muted: #6b6b6b;
+    --green: #3a5a40;
+    --green-soft: #e7ece3;
+    --line: rgba(58, 90, 64, 0.18);
+    --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 40px 16px 80px; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.1; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01em; }
+  h2 { font-size: 1.45rem; line-height: 1.25; margin: 56px 0 12px; font-weight: 600; }
+  h3 { font-size: 1.05rem; margin: 0 0 6px; font-weight: 600; }
+  p { margin: 0 0 12px; color: var(--ink-2); max-width: 70ch; }
+  a { color: var(--green); text-underline-offset: 3px; overflow-wrap: anywhere; }
+  code { font-family: var(--mono); font-size: 0.86em; background: var(--green-soft); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+  .lead { font-size: 1.1rem; }
+  .meta { font-size: 0.9rem; color: var(--muted); }
+
+  /* Graph: the business in the middle, relations around it. */
+  .graph { display: grid; gap: 12px; margin-top: 20px; grid-template-columns: 1fr; }
+  .node {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-width: 0;
+  }
+  .node .rel { font-family: var(--mono); font-size: 12px; color: var(--green); margin-bottom: 4px; }
+  .node ul { margin: 6px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 0.93rem; }
+  .node li { margin: 2px 0; }
+  .hub {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hub h3 { font-size: 1.35rem; }
+  .hub code { background: rgba(255, 255, 255, 0.16); color: #fff; }
+  .hub p { color: rgba(255, 255, 255, 0.82); margin: 6px auto 0; font-size: 0.93rem; }
+  @media (min-width: 860px) {
+    .graph { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .hub { grid-column: 2; grid-row: 2; }
+    .graph .node:not(.hub) { position: relative; }
+  }
+  @media (max-width: 859px) {
+    .hub { order: -1; }
+    .graph .node:not(.hub) { margin-left: 18px; position: relative; }
+    .graph .node:not(.hub)::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      top: 22px;
+      width: 10px;
+      border-top: 1px solid var(--green);
+    }
+    .graph { border-left: 1px solid var(--green); padding-left: 0; }
+    .graph .hub { margin-left: 0; }
+  }
+
+  /* Tables become stacked cards on narrow screens. */
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 0.92rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--green); background: var(--green-soft); }
+  tr:last-child td { border-bottom: 0; }
+  td ul { margin: 0; padding-left: 16px; }
+  @media (max-width: 720px) {
+    table, thead, tbody, tr, td { display: block; width: 100%; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+    tr:last-child { border-bottom: 0; }
+    td { border: 0; padding: 4px 12px; }
+    td::before { content: attr(data-label); display: block; font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); }
+  }
+
+  .rules { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 16px; }
+  @media (min-width: 760px) { .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .rule { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .rule p { font-size: 0.95rem; margin-bottom: 8px; }
+  .rule p:last-child { margin-bottom: 0; }
+  .note { border-left: 3px solid var(--green); padding: 8px 14px; background: var(--card); border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .note p { margin: 0; }
+  footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">WeReact agency · structured data</p>
+  <h1>Entity map</h1>
+  <p class="lead">How the JSON-LD on www.wereact.agency describes one business and connects everything else to it. Every node points at the business by <code>@id</code> instead of repeating its name, address and phone.</p>
+  <p class="meta">State as of 10 November 2026. The source of truth is the code: <code>src/lib/seo.ts</code> (builders), <code>src/lib/entities.ts</code> (Wikidata / Wikipedia IDs), <code>src/config/site.ts</code> (NAP, profiles) and <code>src/data/*</code> (pages). <code>src/lib/seo.test.ts</code> fails if a node stops referencing the business or starts repeating its address.</p>
+
+  <h2>The graph</h2>
+  <p>The business sits at the centre. Arrows read “node → property → business” unless noted.</p>
+  <div class="graph">
+    <div class="node">
+      <div class="rel">publisher / about → business</div>
+      <h3>Website</h3>
+      <p class="meta"><code>/#website</code> · WebSite</p>
+    </div>
+    <div class="node">
+      <div class="rel">business → logo</div>
+      <h3>Logo</h3>
+      <p class="meta"><code>/#logo</code> · ImageObject · <code>/images/logo.webp</code></p>
+    </div>
+    <div class="node">
+      <div class="rel">business → sameAs / hasMap</div>
+      <h3>Official profiles</h3>
+      <ul>
+        <li>Google Business Profile (verified): <code>maps.google.com/?cid=906947470338054436</code></li>
+        <li>Instagram: <code>instagram.com/wereact.agency</code></li>
+        <li>Facebook page share link</li>
+        <li>hasMap: the Google Maps place URL (same place: hex <code>0xc961feb47705924</code> = CID 906947470338054436)</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="rel">provider → business · business → hasOfferCatalog</div>
+      <h3>Services → pages</h3>
+      <ul>
+        <li>11 service pages, each <code>/{locale}/{slug}#service</code></li>
+        <li>2 audience pages, same pattern</li>
+        <li>Pricing <code>#pricing</code> (OfferCatalog, offeredBy business) on the 8 pages that show prices, linked from the Service by <code>hasOfferCatalog</code></li>
+        <li>Home: <code>/#website-design-service</code></li>
+      </ul>
+    </div>
+    <div class="node hub">
+      <h3>WeReact agency</h3>
+      <p><code>https://www.wereact.agency/#business</code></p>
+      <p>LocalBusiness + ProfessionalService · Marrakech 40000, Marrakech-Safi, MA · +212 602-258009 · hello@wereact.agency</p>
+    </div>
+    <div class="node">
+      <div class="rel">business → areaServed</div>
+      <h3>Areas served → Wikidata</h3>
+      <ul>
+        <li>City: Marrakech, Casablanca, Rabat, Agadir, Fes, Tangier</li>
+        <li>Country: Morocco</li>
+        <li>“International” stays plain text (not a place)</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="rel">business → knowsAbout</div>
+      <h3>Topics</h3>
+      <ul>
+        <li>13 topics as <code>Thing</code> with Wikidata (and Wikipedia where an article exists)</li>
+        <li>“Tourism and hospitality websites” as plain text</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="rel">creator → business (studio-owned: also copyrightHolder, publisher)</div>
+      <h3>Case studies</h3>
+      <ul>
+        <li>7 projects, each <code>/{locale}/work/{id}#project</code> (CreativeWork)</li>
+        <li>3 client work, 3 studio-owned, 1 independent project</li>
+        <li><code>sameAs</code> = the live site</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="rel">author / publisher → business</div>
+      <h3>Guides and pages</h3>
+      <ul>
+        <li>Guides: BlogPosting <code>/{locale}/blog/{slug}#article</code> (see the note below)</li>
+        <li>About: AboutPage <code>/{locale}/about#about</code> (mainEntity → business)</li>
+        <li>AI info: AboutPage <code>/{locale}/ai-info#webpage</code> (mainEntity → business)</li>
+        <li>HTML sitemap: CollectionPage <code>/{locale}/sitemap#webpage</code> (about → website)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>Pending:</strong> the blog post page (<code>src/app/[locale]/blog/[slug]/page.tsx</code>) still builds its BlogPosting inline, with the author as “WeReact Editorial Team” and the publisher as “WeReact”, and no <code>@id</code>. Replace that object with <code>createBlogPostingJsonLd(post, locale)</code> from <code>src/lib/seo.ts</code>, which references the business as author and publisher. It was left untouched because that file was being edited in parallel.</p>
+  </div>
+
+  <h2>Entities and where they are declared</h2>
+  <p>IDs are shown relative to <code>https://www.wereact.agency</code>. “Declared” means the page that outputs the full node; every other page only references it.</p>
+  <table>
+    <thead>
+      <tr><th>Entity</th><th>@id</th><th>Type</th><th>Declared in (file · page)</th><th>sameAs / links</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Entity">WeReact agency (the business)</td>
+        <td data-label="@id"><code>/#business</code></td>
+        <td data-label="Type">LocalBusiness, ProfessionalService</td>
+        <td data-label="Declared in"><code>createBusinessJsonLd()</code> in <code>src/lib/seo.ts</code> · home <code>/en</code>, <code>/fr</code>; AI info <code>/en/ai-info</code>, <code>/fr/ai-info</code></td>
+        <td data-label="sameAs"><ul><li><a href="https://maps.google.com/?cid=906947470338054436">Google Business Profile</a></li><li><a href="https://www.instagram.com/wereact.agency">Instagram</a></li><li><a href="https://www.facebook.com/share/14dgXYad7SB/">Facebook</a></li><li>hasMap: Google Maps place URL</li></ul></td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Website</td>
+        <td data-label="@id"><code>/#website</code></td>
+        <td data-label="Type">WebSite</td>
+        <td data-label="Declared in"><code>createWebsiteJsonLd()</code> · home</td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Logo</td>
+        <td data-label="@id"><code>/#logo</code></td>
+        <td data-label="Type">ImageObject</td>
+        <td data-label="Declared in"><code>createLogoJsonLd()</code>, inside the business node</td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Website design service (general)</td>
+        <td data-label="@id"><code>/#website-design-service</code></td>
+        <td data-label="Type">Service</td>
+        <td data-label="Declared in"><code>createServiceJsonLd(locale)</code> · home</td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Service pages (11): web-design-marrakech, tourism-websites-morocco, seo-landing-pages, web-design-casablanca, agence-seo-marrakech, web-design-rabat, web-design-agadir, hotel-website-design, agence-google-ads-maroc, site-web-agence-de-voyage, creation-site-e-commerce-maroc</td>
+        <td data-label="@id"><code>/{en|fr}/{slug}#service</code></td>
+        <td data-label="Type">Service</td>
+        <td data-label="Declared in"><code>createServicePageJsonLd()</code> · <code>src/app/[locale]/(growth)/[slug]/page.tsx</code>; also listed by @id in the business <code>hasOfferCatalog</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Audience pages (2): website-design-moroccan-businesses, international-web-design-agency</td>
+        <td data-label="@id"><code>/{en|fr}/{slug}#service</code></td>
+        <td data-label="Type">Service</td>
+        <td data-label="Declared in">same as service pages</td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Pricing (pages with <code>showPricing</code>)</td>
+        <td data-label="@id"><code>/{en|fr}/{slug}#pricing</code></td>
+        <td data-label="Type">OfferCatalog</td>
+        <td data-label="Declared in"><code>createPricingJsonLd()</code> · growth pages; prices from <code>servicePricing</code> (showcase from 2,000 MAD, e-commerce from 3,500 MAD)</td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Case studies (7): flying-tandem, kasbah-angour, your-morocco (client work); by-marrakech (independent); trust-drivers, yoo-marrakech, morocco-atlas-guide (studio-owned)</td>
+        <td data-label="@id"><code>/{en|fr}/work/{id}#project</code></td>
+        <td data-label="Type">CreativeWork</td>
+        <td data-label="Declared in"><code>createProjectJsonLd()</code> · <code>src/app/[locale]/work/[id]/layout.tsx</code></td>
+        <td data-label="sameAs">the project’s live URL (<code>externalUrl</code>)</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Guides (5 posts in <code>src/data/blog.ts</code>)</td>
+        <td data-label="@id"><code>/{en|fr}/blog/{slug}#article</code> (once the helper is used)</td>
+        <td data-label="Type">BlogPosting</td>
+        <td data-label="Declared in"><code>createBlogPostingJsonLd()</code> (ready) · today inline in <code>src/app/[locale]/blog/[slug]/page.tsx</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">About page</td>
+        <td data-label="@id"><code>/{en|fr}/about#about</code></td>
+        <td data-label="Type">AboutPage</td>
+        <td data-label="Declared in"><code>createAboutPageJsonLd()</code> · <code>src/app/[locale]/about/page.tsx</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">Information for AI assistants</td>
+        <td data-label="@id"><code>/{en|fr}/ai-info#webpage</code></td>
+        <td data-label="Type">AboutPage</td>
+        <td data-label="Declared in"><code>createWebPageJsonLd()</code> · <code>src/app/[locale]/ai-info/page.tsx</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">HTML sitemap</td>
+        <td data-label="@id"><code>/{en|fr}/sitemap#webpage</code></td>
+        <td data-label="Type">CollectionPage</td>
+        <td data-label="Declared in"><code>createWebPageJsonLd()</code> · <code>src/app/[locale]/sitemap/page.tsx</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+      <tr>
+        <td data-label="Entity">FAQ and breadcrumbs</td>
+        <td data-label="@id">none (page-level)</td>
+        <td data-label="Type">FAQPage, BreadcrumbList</td>
+        <td data-label="Declared in"><code>createFaqJsonLd()</code> (strips inline link markup), <code>createBreadcrumbJsonLd()</code></td>
+        <td data-label="sameAs">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Places and topics linked to Wikidata</h2>
+  <p>Each ID was looked up on 10 November 2026 with the Wikidata API: <code>wbsearchentities</code> to find candidates, then <code>wbgetentities</code> to confirm the “instance of” (P31) claim, the country (P17) and the English / French Wikipedia sitelinks. They live in <code>src/lib/entities.ts</code>.</p>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Type</th><th>Wikidata</th><th>Checked</th><th>Wikipedia</th></tr>
+    </thead>
+    <tbody>
+      <tr><td data-label="Name">Marrakech</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q101625">Q101625</a></td><td data-label="Checked">big city, Morocco</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Marrakesh">en</a> · <a href="https://fr.wikipedia.org/wiki/Marrakech">fr</a></td></tr>
+      <tr><td data-label="Name">Casablanca</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q7903">Q7903</a></td><td data-label="Checked">city, Morocco (not the 1942 film Q132689)</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Casablanca">en</a> · <a href="https://fr.wikipedia.org/wiki/Casablanca">fr</a></td></tr>
+      <tr><td data-label="Name">Rabat</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q3551">Q3551</a></td><td data-label="Checked">city, national capital, Morocco (not Rabat, Malta)</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Rabat">en</a> · <a href="https://fr.wikipedia.org/wiki/Rabat">fr</a></td></tr>
+      <tr><td data-label="Name">Agadir</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q170525">Q170525</a></td><td data-label="Checked">city, urban commune of Morocco</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Agadir">en</a> · <a href="https://fr.wikipedia.org/wiki/Agadir">fr</a></td></tr>
+      <tr><td data-label="Name">Fes</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q80985">Q80985</a></td><td data-label="Checked">city, Morocco</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Fez,_Morocco">en</a> · <a href="https://fr.wikipedia.org/wiki/F%C3%A8s">fr</a></td></tr>
+      <tr><td data-label="Name">Tangier</td><td data-label="Type">City</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q126148">Q126148</a></td><td data-label="Checked">city, Morocco (not Q817275, the rural commune Bni Chiker also labelled “Tangier”)</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Tangier">en</a> · <a href="https://fr.wikipedia.org/wiki/Tanger">fr</a></td></tr>
+      <tr><td data-label="Name">Morocco</td><td data-label="Type">Country</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q1028">Q1028</a></td><td data-label="Checked">country, sovereign state</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Morocco">en</a> · <a href="https://fr.wikipedia.org/wiki/Maroc">fr</a></td></tr>
+      <tr><td data-label="Name">Web design</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q190637">Q190637</a></td><td data-label="Checked">field of study, industry</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Web_design">en</a> · <a href="https://fr.wikipedia.org/wiki/Conception_de_site_web">fr</a></td></tr>
+      <tr><td data-label="Name">Web development</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q386275">Q386275</a></td><td data-label="Checked">industry</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Web_development">en</a> · <a href="https://fr.wikipedia.org/wiki/Programmation_web">fr</a></td></tr>
+      <tr><td data-label="Name">Responsive web design</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q420295">Q420295</a></td><td data-label="Checked">label and description match</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Responsive_web_design">en</a> · <a href="https://fr.wikipedia.org/wiki/Site_web_r%C3%A9actif">fr</a></td></tr>
+      <tr><td data-label="Name">Search engine optimization</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q180711">Q180711</a></td><td data-label="Checked">field of study, professional skill</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Search_engine_optimization">en</a> · <a href="https://fr.wikipedia.org/wiki/Optimisation_pour_les_moteurs_de_recherche">fr</a></td></tr>
+      <tr><td data-label="Name">Local search engine optimization</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q30324357">Q30324357</a></td><td data-label="Checked">label matches; English article only</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Local_search_engine_optimisation">en</a></td></tr>
+      <tr><td data-label="Name">Landing page</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q1494741">Q1494741</a></td><td data-label="Checked">label and description match</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Landing_page">en</a> · <a href="https://fr.wikipedia.org/wiki/Page_de_renvoi">fr</a></td></tr>
+      <tr><td data-label="Name">E-commerce</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q484847">Q484847</a></td><td data-label="Checked">type of business</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/E-commerce">en</a> · <a href="https://fr.wikipedia.org/wiki/Commerce_en_ligne">fr</a></td></tr>
+      <tr><td data-label="Name">Search engine marketing</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q846132">Q846132</a></td><td data-label="Checked">label and description match</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Search_engine_marketing">en</a> · <a href="https://fr.wikipedia.org/wiki/Search_engine_marketing">fr</a></td></tr>
+      <tr><td data-label="Name">Google Ads</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q271982">Q271982</a></td><td data-label="Checked">online advertising service (not AdSense Q183480)</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Google_Ads">en</a> · <a href="https://fr.wikipedia.org/wiki/Google_Ads">fr</a></td></tr>
+      <tr><td data-label="Name">Conversion rate optimization</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q52083677">Q52083677</a></td><td data-label="Checked">label matches; English article only</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Conversion_rate_optimization">en</a></td></tr>
+      <tr><td data-label="Name">Web analytics</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q10719477">Q10719477</a></td><td data-label="Checked">label and description match</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Web_analytics">en</a> · <a href="https://fr.wikipedia.org/wiki/Audience_d%27un_site_web">fr</a></td></tr>
+      <tr><td data-label="Name">Website localization</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q7978836">Q7978836</a></td><td data-label="Checked">label matches; English article only</td><td data-label="Wikipedia"><a href="https://en.wikipedia.org/wiki/Website_localization">en</a></td></tr>
+      <tr><td data-label="Name">Website maintenance</td><td data-label="Type">Thing</td><td data-label="Wikidata"><a href="https://www.wikidata.org/wiki/Q17634596">Q17634596</a></td><td data-label="Checked">activity; no Wikipedia article</td><td data-label="Wikipedia">—</td></tr>
+      <tr><td data-label="Name">Tourism and hospitality websites</td><td data-label="Type">text</td><td data-label="Wikidata">—</td><td data-label="Checked">no matching item, kept as plain text</td><td data-label="Wikipedia">—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How to keep it consistent</h2>
+  <div class="rules">
+    <div class="rule">
+      <h3>NAP must match the Google Business Profile exactly</h3>
+      <p>Name, address and phone in <code>src/config/site.ts</code> must be the same, character for character, as the verified profile (CID 906947470338054436): <code>WeReact agency</code>, <code>Marrakech 40000</code> (region Marrakech-Safi, MA), <code>+212 602-258009</code>, hours Mon–Fri 9:00–18:00.</p>
+      <p>If one changes, change it on the profile and in <code>site.ts</code> on the same day, then bump <code>FACT_SHEET_REVIEWED_AT</code> in <code>src/lib/site-index.ts</code> so the AI info page shows the new date.</p>
+    </div>
+    <div class="rule">
+      <h3>One name everywhere: “WeReact agency”</h3>
+      <p>Use <code>siteConfig.name</code> / <code>business.legalName</code> in markup, profiles and directories. “WeReact” is only the short name (<code>alternateName</code>).</p>
+      <p>Known exception to fix: the inline BlogPosting on post pages names the publisher “WeReact” and the author “WeReact Editorial Team”. Switching to <code>createBlogPostingJsonLd()</code> fixes both.</p>
+    </div>
+    <div class="rule">
+      <h3>Reference, never repeat</h3>
+      <p>New nodes point at the business with <code>{ "@id": "https://www.wereact.agency/#business" }</code> (export <code>ENTITY_IDS</code>). Never copy the address, phone or name into another node. Never change an existing <code>@id</code>: other pages and search engines already point at it.</p>
+    </div>
+    <div class="rule">
+      <h3>Adding a city, topic or profile</h3>
+      <p>Look the item up on Wikidata (<code>wbsearchentities</code>, then <code>wbgetentities</code> to check “instance of” and the Wikipedia sitelinks), add it to <code>src/lib/entities.ts</code> with a one-line note, and add the city name to <code>business.areaServed</code>. Never add an ID from memory.</p>
+      <p>Add a profile to <code>business.sameAs</code> only if WeReact owns it and it shows the same NAP.</p>
+    </div>
+    <div class="rule">
+      <h3>What to add later, and only then</h3>
+      <p><strong>Founder:</strong> a <code>Person</code> with its own <code>@id</code> (e.g. <code>/#founder</code>) linked by <code>founder</code>, only if the owner chooses to be named publicly on the site.</p>
+      <p><strong>Reviews and ratings:</strong> only real reviews, shown on the page with a link to their source (e.g. the Google profile). Do not mark up self-collected or invented ratings.</p>
+      <p><strong>Other facts</strong> (founding date, legal registration, price range): only once they are published on the site.</p>
+    </div>
+    <div class="rule">
+      <h3>Check after every change</h3>
+      <p>Run <code>npm test</code> (<code>src/lib/seo.test.ts</code> checks the references), then paste a home, service and case-study URL into the Schema Markup Validator and Google’s Rich Results Test.</p>
+      <p>Run <code>node scripts/seo/link-audit.mjs &lt;base-url&gt;</code> against a build to catch links to redirects and pages with no contextual links.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p class="meta">Related: <code>/llms.txt</code> and <code>/{locale}/ai-info</code> are generated from the same data (<code>src/lib/site-index.ts</code>, <code>src/lib/llms-txt.ts</code>), so the facts there cannot drift from the markup.</p>
+  </footer>
+</main>
+</body>
+</html>

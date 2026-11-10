@@ -84,6 +84,17 @@ export default function Footer() {
         { name: 'SEO agency in Marrakech', href: '/agence-seo-marrakech' },
       ];
 
+  // Small links in the bottom row: the HTML sitemap and the fact sheet for AI assistants.
+  const indexLinks = locale === 'fr'
+    ? [
+        { name: 'Plan du site', href: '/sitemap' },
+        { name: 'Infos pour les assistants IA', href: '/ai-info' },
+      ]
+    : [
+        { name: 'Sitemap', href: '/sitemap' },
+        { name: 'Info for AI assistants', href: '/ai-info' },
+      ];
+
   const socials = [
     { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: InstagramIcon },
     { label: 'Facebook', href: siteConfig.business.facebook, icon: FacebookIcon },
@@ -221,6 +232,15 @@ export default function Footer() {
             >
               Privacy choices
             </button>
+            {indexLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+              >
+                {link.name}
+              </Link>
+            ))}
           </span>
           <span>Marrakech &middot; Morocco</span>
         </div>
