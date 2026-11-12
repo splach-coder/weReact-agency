@@ -89,7 +89,7 @@ Source: Google Ads Keyword Planner, Morocco, [`data/volumes-adjacent-2026-11-12.
 |---|---|---|---|
 | `/fr/agence-marketing-digital-marrakech` | Money page (pillar 3) | agence marketing marrakech 260 · agence marketing digital marrakech 210 · agence digitale maroc 320 · agence digitale marrakech 140 | **Live Nov 12** — honest scope: no social media management |
 | `/fr/outils/generateur-lien-whatsapp` | Free tool | lien whatsapp 480 · wa me 260 · lien whatsapp numéro 70 | **Live Nov 12** — wa.me link, pre-filled message, QR code, button code |
-| `/fr/blog/auto-entrepreneur-maroc` | Guide (hub of this pillar) | auto entrepreneur maroc 12,100 · statut 480 · carte 390 · facture 390 · déclaration 140 | Next — sourced from official texts |
+| `/fr/blog/auto-entrepreneur-maroc` | Guide (hub of this pillar) | auto entrepreneur maroc 12,100 · statut 480 · carte 390 · facture 390 · déclaration 140 | **Live Nov 12** — from the DGI 2026 guide, law 114-13 and CGI 2026, with the official CNSS scale and cost examples |
 | Arabic version of the auto-entrepreneur guide | Guide | المقاول الذاتي 18,100 · مقاول ذاتي 14,800 · بطاقة المقاول الذاتي 1,900 | Needs an Arabic route (decision pending) |
 | Invoice generator for auto-entrepreneurs | Free tool | facture auto entrepreneur maroc 390 · facture maroc 390 · modèle facture maroc 170 · facture proforma 1,000 | Next — after the guide fixes the mandatory mentions |
 | TVA calculator (20/14/10/7 %) | Free tool | calcul tva 1,000 · tva maroc 1,000 · calcul tva maroc 480 · الضريبة على القيمة المضافة 880 | Planned |
@@ -152,7 +152,7 @@ anything that slipped).
 
 **Next**
 - Request indexing in Search Console for every new or changed URL; follow positions of the A keywords every two weeks.
-- Rabat page: same treatment as Casablanca once Casablanca shows movement ("agence web rabat" 260/month).
+- Rabat page: done Nov 12 (own sections, sector search data from Keyword Planner, honest "not a communication agency" answer).
 - Rewrite or merge `seo-strategies-for-agencies`, which is thin and generic.
 - Add real proof as it comes: client reviews on the Google profile, and a first project outside Marrakech for the city pages.
 

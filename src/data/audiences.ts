@@ -20,9 +20,9 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     keywords: ['création site web maroc', 'agence web maroc', 'website design Morocco', 'business website Morocco', 'site web entreprise Maroc', 'conception site web maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'kasbah-angour'],
     relatedServiceSlugs: ['web-design-marrakech', 'web-design-casablanca', 'web-design-tanger', 'creation-site-e-commerce-maroc', 'agence-seo-marrakech'],
-    relatedPostSlugs: ['combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech', 'fiche-google-business-maroc'],
+    relatedPostSlugs: ['combien-coute-site-web-maroc', 'auto-entrepreneur-maroc', 'fiche-google-business-maroc', 'etude-sites-agences-web-marrakech'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-12',
     copy: {
       en: {
         title: 'Website Design in Morocco for Local Businesses',
@@ -67,6 +67,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
         ],
         faqs: [
           { question: 'What Moroccan businesses do you work with?', answer: 'We work with local services, hospitality, tourism, professional firms, retail, restaurants, and small teams that need a credible path from search to contact.' },
+          { question: 'I have just registered as an auto-entrepreneur. Is a showcase site enough?', answer: 'Often, yes: a few pages with your services, prices, area and WhatsApp, from 2,000 MAD, plus a free Google Business Profile. Our [auto-entrepreneur guide for 2026](/en/blog/auto-entrepreneur-maroc) covers the status itself: registration, tax and invoicing.' },
           { question: 'Can the website use WhatsApp as the main contact route?', answer: 'Yes. We can make WhatsApp prominent while still keeping forms, email, and phone available for customers who prefer another method.' },
           { question: 'Can you improve an existing business website?', answer: 'Yes. We can review its content, mobile usability, speed, local search signals, and contact journey before proposing the smallest useful improvement or rebuild.' },
           { question: 'How much does a website cost in Morocco?', answer: 'A showcase website starts from 2,000 MAD and an [e-commerce website](/en/creation-site-e-commerce-maroc) from 3,500 MAD, front-end and back-end included. What moves a quote is in our [website pricing guide for Morocco](/en/blog/combien-coute-site-web-maroc).' },
@@ -115,6 +116,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
         ],
         faqs: [
           { question: 'Avec quelles entreprises marocaines travaillez-vous ?', answer: 'Nous travaillons avec les services locaux, l’hôtellerie, le tourisme, les cabinets, le commerce, la restauration et les petites équipes qui ont besoin d’un parcours crédible entre Google et le contact.' },
+          { question: 'Je viens de m’inscrire comme auto-entrepreneur. Un site vitrine suffit-il ?', answer: 'Souvent, oui : quelques pages avec vos services, vos prix, votre zone et WhatsApp, à partir de 2 000 DH, plus une fiche Google Business gratuite. Notre [guide de l’auto-entrepreneur en 2026](/fr/blog/auto-entrepreneur-maroc) couvre le statut lui-même : inscription, impôt et facturation.' },
           { question: 'WhatsApp peut-il être le contact principal du site ?', answer: 'Oui. Nous pouvons mettre WhatsApp en avant tout en conservant formulaire, e-mail et téléphone pour les clients qui préfèrent un autre canal.' },
           { question: 'Pouvez-vous améliorer un site professionnel existant ?', answer: 'Oui. Nous pouvons analyser son contenu, son expérience mobile, sa vitesse, ses signaux locaux et son parcours de contact avant de proposer une amélioration ciblée ou une refonte.' },
           { question: 'Combien coûte un site web au Maroc ?', answer: 'Un site vitrine démarre à partir de 2 000 DH et un [site e-commerce](/fr/creation-site-e-commerce-maroc) à partir de 3 500 DH, front et back inclus. Ce qui fait varier un devis est détaillé dans notre [guide des prix d’un site web au Maroc](/fr/blog/combien-coute-site-web-maroc).' },

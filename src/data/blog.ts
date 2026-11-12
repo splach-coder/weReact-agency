@@ -105,7 +105,7 @@ export const blogPosts: BlogPost[] = [
             <p>Every project is quoted on its own scope, but publishing starting prices feels more honest than silence. This is the guidance we give businesses that contact us:</p>
 
             <h3>Showcase website (site vitrine): from 2,000 MAD</h3>
-            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. Pricing starts from 2,000 MAD for a compact site where you already have your text and photos ready, and it rises from there with more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text.</p>
+            <p>A focused website for a local business: home, services, about, and contact, built with the local SEO foundations that help you appear when someone searches for your service in your city. Pricing starts from 2,000 MAD for a compact site where you already have your text and photos ready, and it rises from there with more pages, a bilingual structure, custom sections, and content shaped around real search intent rather than filler text. If you are just starting out as an auto-entrepreneur, our <a href="/en/blog/auto-entrepreneur-maroc">guide to the status in 2026</a> covers registration, tax and invoicing.</p>
 
             <h3>Direct booking website for a riad or hotel: custom quote based on scope</h3>
             <p>Hospitality websites carry more weight. They need room or suite pages, photo-led layouts, the practical details travelers check before committing, a multilingual structure, and a clear route to a direct booking or inquiry so the business depends a little less on commission platforms. Because scope varies so much here (number of rooms and languages, the booking flow you need, how much of the content has to be created from scratch), this type of project gets a custom quote based on scope rather than a fixed number. Our <a href="/en/hotel-website-design">hotel and riad website design</a> page shows what that build includes.</p>
@@ -170,7 +170,7 @@ export const blogPosts: BlogPost[] = [
                 <p>Chaque projet est chiffré selon son propre périmètre, mais publier des prix de départ nous semble plus honnête que le silence. Voici les repères que nous donnons aux entreprises qui nous contactent :</p>
 
                 <h3>Site vitrine : à partir de 2 000 DH</h3>
-                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le prix démarre à partir de 2 000 DH pour un site compact pour lequel vous disposez déjà des textes et des photos, et il augmente ensuite avec davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage.</p>
+                <p>Un site ciblé pour une entreprise locale : accueil, services, à propos et contact, construit avec les fondations SEO locales qui vous aident à apparaître quand quelqu'un recherche votre service dans votre ville. Le prix démarre à partir de 2 000 DH pour un site compact pour lequel vous disposez déjà des textes et des photos, et il augmente ensuite avec davantage de pages, une structure bilingue, des sections sur mesure et un contenu pensé autour de vraies intentions de recherche plutôt que du texte de remplissage. Si vous démarrez comme auto-entrepreneur, notre <a href="/fr/blog/auto-entrepreneur-maroc">guide du statut en 2026</a> couvre l’inscription, l’impôt et la facturation.</p>
 
                 <h3>Site de réservation directe pour riad ou hôtel : sur devis selon le périmètre</h3>
                 <p>Les sites d'hôtellerie portent plus de responsabilités. Il leur faut des pages chambres ou suites, des mises en page portées par la photo, les informations pratiques que les voyageurs vérifient avant de s'engager, une structure multilingue et un chemin clair vers la réservation ou la demande directe, afin de dépendre un peu moins des plateformes à commission. Le périmètre variant beaucoup d'un projet à l'autre (nombre de chambres et de langues, parcours de réservation souhaité, part de contenu à créer de zéro), ce type de projet est établi sur devis selon le périmètre plutôt qu'avec un chiffre fixe. Notre page <a href="/fr/hotel-website-design">site web pour hôtel et riad</a> détaille ce que comprend ce type de projet.</p>
@@ -525,7 +525,7 @@ export const blogPosts: BlogPost[] = [
 
             <h2>2. Name, address and phone: exactly as in real life</h2>
             <p>Google’s guidelines ask for your real-world business name, as it appears on your sign and documents (<a href="https://support.google.com/business/answer/3038177?hl=en" rel="noopener" target="_blank">guidelines for representing your business</a>). Adding keywords such as “best web agency Marrakech” to the name breaks those guidelines and can get the profile suspended.</p>
-            <p>Use the same name, address and phone number everywhere: your website, Facebook, Instagram, directories. If you travel to your customers, like a driver or an activity operator who picks guests up at their riad, you can set a service area and hide the street address.</p>
+            <p>Use the same name, address and phone number everywhere: your website, Facebook, Instagram, directories. If you travel to your customers, like a driver or an activity operator who picks guests up at their riad, you can set a service area and hide the street address. If you have just registered as an auto-entrepreneur, our <a href="/en/blog/auto-entrepreneur-maroc">guide to the status</a> lists the identifiers you receive and what goes on your invoices.</p>
 
             <h2>3. Categories: what you are, not what you want to rank for</h2>
             <p>The primary category has the strongest effect on which searches you appear for. Pick the one that describes your actual business, such as “Hotel” or “Travel agency”, then add a few secondary categories for real activities you also offer. Categories you do not deliver attract the wrong searches and the wrong calls.</p>
@@ -597,7 +597,7 @@ export const blogPosts: BlogPost[] = [
 
                 <h2>2. Nom, adresse et téléphone : exactement comme dans la réalité</h2>
                 <p>Les consignes de Google demandent le nom réel de votre établissement, tel qu'il figure sur votre enseigne et vos documents (<a href="https://support.google.com/business/answer/3038177?hl=fr" rel="noopener" target="_blank">consignes de représentation de votre établissement</a>). Ajouter des mots-clés comme « meilleure agence web Marrakech » au nom enfreint ces consignes et peut entraîner la suspension de la fiche.</p>
-                <p>Utilisez le même nom, la même adresse et le même téléphone partout : site web, Facebook, Instagram, annuaires. Si vous vous déplacez chez vos clients, comme un chauffeur ou un prestataire d'activités qui prend les voyageurs à leur riad, vous pouvez définir une zone desservie et masquer l'adresse.</p>
+                <p>Utilisez le même nom, la même adresse et le même téléphone partout : site web, Facebook, Instagram, annuaires. Si vous vous déplacez chez vos clients, comme un chauffeur ou un prestataire d'activités qui prend les voyageurs à leur riad, vous pouvez définir une zone desservie et masquer l'adresse. Si vous venez de vous inscrire comme auto-entrepreneur, notre <a href="/fr/blog/auto-entrepreneur-maroc">guide du statut</a> détaille les identifiants reçus et les mentions de vos factures.</p>
 
                 <h2>3. Les catégories : ce que vous êtes, pas ce sur quoi vous voulez apparaître</h2>
                 <p>La catégorie principale a le plus d'effet sur les recherches où vous apparaissez. Choisissez celle qui décrit votre activité réelle, comme « Hôtel » ou « Agence de voyages », puis ajoutez quelques catégories secondaires pour les activités que vous proposez vraiment. Des catégories que vous n'assurez pas attirent les mauvaises recherches et les mauvais appels.</p>
@@ -942,5 +942,264 @@ export const blogPosts: BlogPost[] = [
                 <p>Recherches : « agence web marrakech », « création site web marrakech » et « agence seo marrakech », Google Maroc en français sur ordinateur, 20 premiers résultats naturels plus le bloc carte, chacune lue trois fois puis fusionnée, le 10 novembre 2026. Nous avons gardé les agences web et les freelances et exclu les annuaires, réseaux sociaux, sites d'annonces et notre propre site. Pour chaque site, nous avons lu deux pages, celle qui était classée et l'accueil, avec une requête chacune, en respectant le robots.txt, sans exécuter de JavaScript. Les prix, délais et avis ont été vérifiés à la main. Limites : les contenus chargés uniquement en JavaScript ou affichés dans des images n'ont pas été lus ; un site renvoyait une erreur serveur et n'a pas été analysé ; une seule mesure par site.</p>
             `
         }
-    }
+    },
+    {
+        slug: "auto-entrepreneur-maroc",
+        title: "Auto-Entrepreneur Status in Morocco (2026): Registration, Tax, Social Security and Invoices",
+        metaTitle: "Auto-Entrepreneur in Morocco 2026: The Guide",
+        excerpt: "Who can register, how to sign up on rn.ae.gov.ma, the 0.5% and 1% tax, the 80,000 MAD rule, VAT, the social security contribution scale and what goes on an invoice, from the official 2026 texts.",
+        summary: "In Morocco, an auto-entrepreneur registers online on rn.ae.gov.ma, then files the signed form with Barid Al-Maghrib within 30 days. The tax is 0.5% of turnover received for trade, industry and crafts (ceiling 500,000 MAD a year) or 1% for services (ceiling 200,000 MAD), plus a social security contribution that in practice is 300 to 570 MAD a quarter. There is no VAT; above 80,000 MAD of services billed to the same client in a year, that client withholds 30% on the excess.",
+        faqs: [
+            { question: "What is the turnover ceiling for an auto-entrepreneur in Morocco?", answer: "500,000 MAD of turnover received per year for trade, industry and crafts, and 200,000 MAD for services. You lose the status only if you exceed the ceiling two years in a row." },
+            { question: "How much tax does an auto-entrepreneur pay?", answer: "0.5% of turnover received for trade, industry and crafts, and 1% for services. These rates settle the income tax in full." },
+            { question: "Does an auto-entrepreneur charge VAT?", answer: "No. The tax administration says the auto-entrepreneur is outside the scope of VAT because the turnover stays under the 500,000 MAD threshold. Invoices are issued without VAT." },
+            { question: "What happens above 80,000 MAD with the same client?", answer: "For services, when the turnover with one client exceeds 80,000 MAD in a year, the client withholds income tax at 30% on the excess, if that client is a company or a professional taxed on its real or simplified profit. Private individuals do not withhold." },
+            { question: "How much is the CNSS contribution?", answer: "It depends on the annual tax, from 300 MAD a quarter when the tax is under 500 MAD a year. Within the ceilings, the tax of an auto-entrepreneur never exceeds 2,500 MAD a year, so the contribution is 300, 390 or 570 MAD a quarter." },
+            { question: "Do I need a commercial register number?", answer: "No. The auto-entrepreneur is exempt from the commercial register and from formal bookkeeping. After registration you receive an ICE, a tax identifier and a business tax number." },
+        ],
+        metaDescription: "Auto-entrepreneur in Morocco in 2026: registration on rn.ae.gov.ma, 0.5% and 1% tax, ceilings, the 80,000 MAD rule, VAT, CNSS scale and invoices.",
+        date: "November 12, 2026",
+        publishedAt: "2026-11-12",
+        modifiedAt: "2026-11-12",
+        author: "WeReact Editorial Team",
+        authorRole: "Web design and SEO studio",
+        relatedServiceSlug: "web-design-marrakech",
+        relatedAudienceSlug: "website-design-moroccan-businesses",
+        category: "Starting a business",
+        categoryColor: "#A3B18A",
+        image: "/images/craft-production.webp",
+        readTime: "11 min read",
+        tags: ["Auto-entrepreneur", "Morocco", "Tax", "CNSS", "Invoicing", "Small business"],
+        content: `
+            <p>Morocco counted 463,383 registered auto-entrepreneurs at the end of 2025, according to the tax administration’s 2025 activity report as <a href="https://telquel.ma/instant-t/2026/06/29/le-nombre-dauto-entrepreneurs-au-maroc-depasse-les-460-000_1996444/" rel="noopener" target="_blank">reported by TelQuel</a>. Many of them are the people we build websites for: guides, drivers, craftspeople, designers, trainers, small shops. This guide gathers what the status requires in 2026, from the official texts: the <a href="https://tax.gov.ma/wps/wcm/connect/631b0232-3f9d-4d12-a8c9-053ccc921bce/Guide__AE+_FR+_2026.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE-631b0232-3f9d-4d12-a8c9-053ccc921bce-q0pxu4M" rel="noopener" target="_blank">DGI’s 2026 guide to the auto-entrepreneur tax regime</a>, <a href="https://adala.justice.gov.ma/api/uploads/2024/05/07/Loi%20Relative%20au%20statut%20de%20l%E2%80%99auto-entrepreneur-1715071318209.pdf" rel="noopener" target="_blank">law 114-13</a> and the 2026 General Tax Code (CGI).</p>
+            <p>We are a web agency, not an accounting firm. For a specific case, check with the DGI, Barid Al-Maghrib or an accountant.</p>
+
+            <h2>The status in figures</h2>
+            <table>
+                <thead><tr><th></th><th>Trade, industry, crafts</th><th>Services</th></tr></thead>
+                <tbody>
+                    <tr><td>Annual turnover ceiling (received)</td><td>500,000 MAD</td><td>200,000 MAD</td></tr>
+                    <tr><td>Income tax on turnover received</td><td>0.5%</td><td>1%</td></tr>
+                    <tr><td>VAT</td><td colspan="2">None: outside the scope of VAT</td></tr>
+                    <tr><td>Social security contribution</td><td colspan="2">From 300 MAD a quarter, by scale (see below)</td></tr>
+                    <tr><td>Declaration and payment</td><td colspan="2">Monthly or quarterly, before the end of the following month, at Barid Al-Maghrib</td></tr>
+                    <tr><td>Business tax (taxe professionnelle)</td><td colspan="2">Exempt for 5 years from the start of activity</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Who can become an auto-entrepreneur</h2>
+            <p>Any individual who carries on a commercial, industrial, craft or service activity on their own account, under the ceilings above. A partner or shareholder in a company who does not work in it remains eligible. The status is refused to anyone who already runs an activity subject to the business tax: that activity must be closed first. Foreign residents register with their residence card.</p>
+            <p>About forty professions are excluded, among them doctors, dentists, lawyers, notaries, architects, pharmacists, opticians, accountants and chartered accountants, hotel operators, printers, booksellers and publishers, importers and exporters, real estate developers, customs brokers, driving schools, private schools, clinics and party and reception organisers. The full list is on pages 3 and 4 of the DGI guide.</p>
+
+            <h2>Registering, step by step</h2>
+            <ol>
+                <li><strong>Have an email address.</strong> It is required for registration, and since 2026 for receiving tax notices (see below).</li>
+                <li><strong>Fill in the application online</strong> on the national register portal, <a href="https://rn.ae.gov.ma" rel="noopener" target="_blank">rn.ae.gov.ma</a>. The application counts as your declaration of existence.</li>
+                <li><strong>Print and sign it, then file it within 30 days</strong> at a Barid Al-Maghrib counter or a partner bank, with a photo and a copy of your national ID card (residence card for foreigners).</li>
+                <li><strong>Receive your identifiers:</strong> the ICE (your register number), a tax identifier and a business tax number, then the auto-entrepreneur card. Registration with the CNSS follows automatically.</li>
+            </ol>
+            <p>You do not need a commercial register entry or formal bookkeeping. You can register the activity at your home or in shared premises, and your main residence cannot be seized for business debts.</p>
+
+            <h2>Tax: 0.5% or 1%, and the 80,000 MAD rule</h2>
+            <p>The tax is a percentage of the turnover you actually received: 0.5% for trade, industry and crafts, 1% for services. It settles your income tax in full; there is no other income tax return to file for this activity.</p>
+            <p>One rule matters for freelancers who work for companies. For services, when the turnover billed to the same client exceeds 80,000 MAD in a year, the excess is taxed at 30%, withheld by that client. Only companies and professionals taxed on their real or simplified profit withhold; private individuals do not. Example: 120,000 MAD billed to one company in a year means 40,000 MAD above the threshold, and 12,000 MAD withheld by the client.</p>
+            <p>The rule comes from the 2023 finance law and applies to payments made since January 1, 2023. An amendment to raise the threshold was rejected during the 2025 budget debate (<a href="https://fr.hespress.com/396046-plf-2025-le-gouvernement-retoque-un-amendement-visant-les-auto-entrepreneurs.html" rel="noopener" target="_blank">Hespress</a>), and the 2026 finance law leaves it unchanged.</p>
+
+            <h2>VAT: none</h2>
+            <p>The DGI’s guide says the auto-entrepreneur is outside the scope of VAT, because the turnover stays under the 500,000 MAD threshold. The General Tax Code expresses it as an exemption for manufacturers and service providers with a turnover up to 500,000 MAD (article 91-II-3°). In practice: no VAT on your invoices, and no VAT to recover on your purchases.</p>
+
+            <h2>Social security: the contribution scale</h2>
+            <p>Auto-entrepreneurs get social coverage from the date they are entered in the national register. The contribution is added to the tax, according to a scale based on the annual tax amount (General Tax Code, article 73):</p>
+            <table>
+                <thead><tr><th>Annual tax (MAD)</th><th>Per quarter (MAD)</th><th>Per year (MAD)</th></tr></thead>
+                <tbody>
+                    <tr><td>Under 500</td><td>300</td><td>1,200</td></tr>
+                    <tr><td>500 to 1,000</td><td>390</td><td>1,560</td></tr>
+                    <tr><td>1,001 to 2,500</td><td>570</td><td>2,280</td></tr>
+                    <tr><td>2,501 to 5,000</td><td>720</td><td>2,880</td></tr>
+                    <tr><td>5,001 to 10,000</td><td>1,050</td><td>4,200</td></tr>
+                    <tr><td>10,001 to 25,000</td><td>1,500</td><td>6,000</td></tr>
+                    <tr><td>25,001 to 50,000</td><td>2,250</td><td>9,000</td></tr>
+                    <tr><td>Over 50,000</td><td>3,600</td><td>14,400</td></tr>
+                </tbody>
+            </table>
+            <p>Within the ceilings, the tax of an auto-entrepreneur cannot exceed 2,500 MAD a year (0.5% of 500,000 or 1% of 200,000), so in practice you pay 300, 390 or 570 MAD a quarter.</p>
+
+            <h2>What it costs in a year: four examples</h2>
+            <p>Our calculation from the rates and the scale above, for turnover received in a year, without any withholding.</p>
+            <table>
+                <thead><tr><th>Activity and turnover</th><th>Tax</th><th>Social contribution</th><th>Total a year</th></tr></thead>
+                <tbody>
+                    <tr><td>Shop or crafts, 60,000 MAD</td><td>300 MAD</td><td>1,200 MAD</td><td>1,500 MAD</td></tr>
+                    <tr><td>Shop or crafts, 300,000 MAD</td><td>1,500 MAD</td><td>2,280 MAD</td><td>3,780 MAD</td></tr>
+                    <tr><td>Services, 80,000 MAD</td><td>800 MAD</td><td>1,560 MAD</td><td>2,360 MAD</td></tr>
+                    <tr><td>Services, 150,000 MAD</td><td>1,500 MAD</td><td>2,280 MAD</td><td>3,780 MAD</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Declaring and paying</h2>
+            <p>You declare the turnover received and pay the tax and the contribution together, monthly or quarterly depending on your choice, before the end of the month that follows: the first quarter is declared in April. Both are done with Barid Al-Maghrib, at an agency or online.</p>
+            <ul>
+                <li><strong>Late declaration:</strong> 5% surcharge up to 30 days late, 15% beyond, 20% when the tax is assessed automatically, with a minimum of 100 MAD for an auto-entrepreneur.</li>
+                <li><strong>Late payment:</strong> a 10% penalty (5% if paid within 30 days), plus 5% for the first month and 0.5% per additional month.</li>
+                <li><strong>Removal from the register:</strong> no declaration or a zero turnover from the second year after registration, no payment of tax and contributions for a year, or turnover above the ceiling two years in a row.</li>
+            </ul>
+
+            <h2>Invoicing as an auto-entrepreneur</h2>
+            <p>The General Tax Code article that lists invoice requirements does not apply to auto-entrepreneurs, except for the email obligation (article 145-XI). But a business client can only deduct your invoice if it carries those requirements (article 146). If you work for companies, put them on every invoice:</p>
+            <ul>
+                <li>a continuous invoice number and the date;</li>
+                <li>your name, address, tax identifier, business tax number and ICE;</li>
+                <li>the client’s name, address and ICE;</li>
+                <li>the description, quantity and price of what you sold;</li>
+                <li>instead of VAT, a mention of the exemption, for example “VAT exempt, article 91-II-3° of the General Tax Code”;</li>
+                <li>the payment method.</li>
+            </ul>
+
+            <h2>What changes in 2026</h2>
+            <p>The 2026 finance law changes neither the ceilings, nor the rates, nor the 80,000 MAD rule. One new obligation applies to all taxpayers, auto-entrepreneurs included: give the DGI an email address of your choice, through the SIMPL platform with form ADC450. Electronic notices sent to it then have the same legal value as letters.</p>
+
+            <h2>Next step: being found by your first customers</h2>
+            <p>Once registered, your first customers will look for your service and your city on Google and Google Maps, then write to you on WhatsApp. Three things cost little and work:</p>
+            <ul>
+                <li><strong>A Google Business Profile,</strong> free, so you appear on the map. Our <a href="/en/blog/fiche-google-business-maroc">Google Business Profile guide for Morocco</a> has the steps.</li>
+                <li><strong>A WhatsApp link and QR code</strong> for your cards and your Instagram bio, made in a minute with our <a href="/en/outils/generateur-lien-whatsapp">free WhatsApp link generator</a>.</li>
+                <li><strong>A simple website</strong> that shows your services, your prices and your area. We build them <a href="/en/website-design-moroccan-businesses">for small businesses across Morocco</a> from 2,000 MAD; our <a href="/en/blog/combien-coute-site-web-maroc">website pricing guide</a> explains what changes the price.</li>
+            </ul>
+
+            <h2>Sources</h2>
+            <ul>
+                <li>DGI, <a href="https://tax.gov.ma/wps/wcm/connect/631b0232-3f9d-4d12-a8c9-053ccc921bce/Guide__AE+_FR+_2026.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE-631b0232-3f9d-4d12-a8c9-053ccc921bce-q0pxu4M" rel="noopener" target="_blank">Régime fiscal de l’auto-entrepreneur, 2026 guide</a> (August 2026).</li>
+                <li>General Tax Code, 2026 edition: articles 42 bis, 42 ter, 43, 73, 82 bis, 91, 145, 146, 184 and 208.</li>
+                <li><a href="https://adala.justice.gov.ma/api/uploads/2024/05/07/Loi%20Relative%20au%20statut%20de%20l%E2%80%99auto-entrepreneur-1715071318209.pdf" rel="noopener" target="_blank">Law 114-13 on the auto-entrepreneur status</a> (2015).</li>
+                <li>National auto-entrepreneur register, <a href="https://rn.ae.gov.ma/faq/index" rel="noopener" target="_blank">questions and answers</a>, read on November 12, 2026.</li>
+                <li>TelQuel, <a href="https://telquel.ma/instant-t/2026/06/29/le-nombre-dauto-entrepreneurs-au-maroc-depasse-les-460-000_1996444/" rel="noopener" target="_blank">number of auto-entrepreneurs</a>, June 29, 2026.</li>
+            </ul>
+        `,
+        fr: {
+            title: "Auto-entrepreneur au Maroc en 2026 : inscription, impôts, CNSS et factures",
+            metaTitle: "Auto-entrepreneur au Maroc 2026 : le guide",
+            excerpt: "Qui peut s’inscrire, la démarche sur rn.ae.gov.ma, l’impôt de 0,5 % et 1 %, la règle des 80 000 DH, la TVA, le barème des cotisations sociales et les mentions de facture, d’après les textes officiels 2026.",
+            summary: "Au Maroc, l’auto-entrepreneur s’inscrit en ligne sur rn.ae.gov.ma, puis dépose sa demande signée chez Barid Al-Maghrib dans les 30 jours. Il paie un impôt de 0,5 % du chiffre d’affaires encaissé pour le commerce, l’industrie et l’artisanat (plafond 500 000 DH par an) ou de 1 % pour les services (plafond 200 000 DH), plus une cotisation sociale qui, en pratique, va de 300 à 570 DH par trimestre. Il n’est pas soumis à la TVA ; au-delà de 80 000 DH de services facturés à un même client dans l’année, ce client retient 30 % sur le surplus.",
+            faqs: [
+                { question: "Quel est le plafond de chiffre d’affaires d’un auto-entrepreneur au Maroc ?", answer: "500 000 DH de chiffre d’affaires encaissé par an pour le commerce, l’industrie et l’artisanat, et 200 000 DH pour les services. Le statut n’est perdu qu’en cas de dépassement deux années consécutives." },
+                { question: "Combien d’impôt paie un auto-entrepreneur ?", answer: "0,5 % du chiffre d’affaires encaissé pour le commerce, l’industrie et l’artisanat, et 1 % pour les services. Ces taux sont libératoires de l’impôt sur le revenu." },
+                { question: "L’auto-entrepreneur facture-t-il la TVA ?", answer: "Non. La DGI indique que l’auto-entrepreneur est hors champ de la TVA, son chiffre d’affaires restant sous le seuil de 500 000 DH. Les factures sont émises sans TVA." },
+                { question: "Que se passe-t-il au-delà de 80 000 DH avec un même client ?", answer: "Pour les services, quand le chiffre d’affaires réalisé avec un même client dépasse 80 000 DH dans l’année, ce client retient l’impôt à 30 % sur le surplus, s’il s’agit d’une société ou d’un professionnel imposé au résultat net réel ou simplifié. Les particuliers ne retiennent rien." },
+                { question: "Combien coûte la CNSS pour un auto-entrepreneur ?", answer: "Elle dépend de l’impôt annuel, à partir de 300 DH par trimestre quand l’impôt est inférieur à 500 DH par an. Sous les plafonds, l’impôt d’un auto-entrepreneur ne dépasse jamais 2 500 DH par an : la cotisation est donc de 300, 390 ou 570 DH par trimestre." },
+                { question: "Faut-il un registre de commerce ?", answer: "Non. L’auto-entrepreneur est dispensé du registre de commerce et de la tenue d’une comptabilité. Après l’inscription, il reçoit un ICE, un identifiant fiscal et un numéro de taxe professionnelle." },
+            ],
+            metaDescription: "Auto-entrepreneur au Maroc en 2026 : inscription sur rn.ae.gov.ma, impôt de 0,5 % et 1 %, plafonds, règle des 80 000 DH, TVA, barème CNSS et factures.",
+            date: "12 novembre 2026",
+            readTime: "11 min de lecture",
+            category: "Créer son activité",
+            authorRole: "Studio web et SEO",
+            content: `
+                <p>Le Maroc comptait 463 383 auto-entrepreneurs inscrits fin 2025, selon le rapport d’activité 2025 de la DGI <a href="https://telquel.ma/instant-t/2026/06/29/le-nombre-dauto-entrepreneurs-au-maroc-depasse-les-460-000_1996444/" rel="noopener" target="_blank">cité par TelQuel</a>. Beaucoup sont les personnes pour qui nous créons des sites : guides, chauffeurs, artisans, graphistes, formateurs, petits commerces. Ce guide rassemble ce que le statut impose en 2026, d’après les textes officiels : le <a href="https://tax.gov.ma/wps/wcm/connect/631b0232-3f9d-4d12-a8c9-053ccc921bce/Guide__AE+_FR+_2026.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE-631b0232-3f9d-4d12-a8c9-053ccc921bce-q0pxu4M" rel="noopener" target="_blank">guide 2026 de la DGI sur le régime fiscal de l’auto-entrepreneur</a>, la <a href="https://adala.justice.gov.ma/api/uploads/2024/05/07/Loi%20Relative%20au%20statut%20de%20l%E2%80%99auto-entrepreneur-1715071318209.pdf" rel="noopener" target="_blank">loi 114-13</a> et le Code général des impôts (CGI) 2026.</p>
+                <p>Nous sommes une agence web, pas un cabinet comptable. Pour un cas particulier, vérifiez auprès de la DGI, de Barid Al-Maghrib ou d’un comptable.</p>
+
+                <h2>Le statut en chiffres</h2>
+                <table>
+                    <thead><tr><th></th><th>Commerce, industrie, artisanat</th><th>Services</th></tr></thead>
+                    <tbody>
+                        <tr><td>Plafond de chiffre d’affaires annuel encaissé</td><td>500 000 DH</td><td>200 000 DH</td></tr>
+                        <tr><td>Impôt sur le revenu, sur le CA encaissé</td><td>0,5 %</td><td>1 %</td></tr>
+                        <tr><td>TVA</td><td colspan="2">Aucune : hors champ de la TVA</td></tr>
+                        <tr><td>Cotisation sociale</td><td colspan="2">À partir de 300 DH par trimestre, selon un barème (voir plus bas)</td></tr>
+                        <tr><td>Déclaration et paiement</td><td colspan="2">Mensuels ou trimestriels, avant la fin du mois suivant, chez Barid Al-Maghrib</td></tr>
+                        <tr><td>Taxe professionnelle</td><td colspan="2">Exonération pendant 5 ans à partir du début d’activité</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Qui peut devenir auto-entrepreneur</h2>
+                <p>Toute personne physique qui exerce à titre individuel une activité commerciale, industrielle, artisanale ou de services, sous les plafonds ci-dessus. Un associé ou actionnaire d’une société qui n’y exerce pas reste éligible. Le statut est refusé à celui qui exerce déjà une activité soumise à la taxe professionnelle : il doit d’abord déclarer sa cessation. Les étrangers résidents s’inscrivent avec leur carte de séjour.</p>
+                <p>Une quarantaine de professions sont exclues, parmi lesquelles médecins, chirurgiens-dentistes, avocats, notaires, architectes, pharmaciens, opticiens, comptables et experts-comptables, hôteliers, imprimeurs, libraires et éditeurs, importateurs et exportateurs, promoteurs immobiliers, transitaires en douane, auto-écoles, écoles privées, cliniques et prestataires de fêtes et réceptions. La liste complète figure aux pages 3 et 4 du guide de la DGI.</p>
+
+                <h2>S’inscrire, étape par étape</h2>
+                <ol>
+                    <li><strong>Avoir une adresse e-mail.</strong> Elle est obligatoire pour l’inscription, et depuis 2026 pour recevoir les notifications fiscales (voir plus bas).</li>
+                    <li><strong>Remplir la demande en ligne</strong> sur le portail du registre national, <a href="https://rn.ae.gov.ma" rel="noopener" target="_blank">rn.ae.gov.ma</a>. La demande vaut déclaration d’existence.</li>
+                    <li><strong>L’imprimer, la signer et la déposer dans les 30 jours</strong> à un guichet de Barid Al-Maghrib ou d’une banque partenaire, avec une photo et une copie de la CIN (carte de séjour pour les étrangers).</li>
+                    <li><strong>Recevoir vos identifiants :</strong> l’ICE (votre numéro au registre), l’identifiant fiscal et le numéro de taxe professionnelle, puis la carte d’auto-entrepreneur. L’immatriculation à la CNSS suit automatiquement.</li>
+                </ol>
+                <p>Pas de registre de commerce ni de comptabilité à tenir. Vous pouvez domicilier l’activité chez vous ou dans des locaux partagés, et votre résidence principale ne peut pas être saisie pour les dettes de l’activité.</p>
+
+                <h2>L’impôt : 0,5 % ou 1 %, et la règle des 80 000 DH</h2>
+                <p>L’impôt est un pourcentage du chiffre d’affaires réellement encaissé : 0,5 % pour le commerce, l’industrie et l’artisanat, 1 % pour les services. Il est libératoire : aucune autre déclaration d’impôt sur le revenu pour cette activité.</p>
+                <p>Une règle compte pour les freelances qui travaillent avec des entreprises. Pour les services, quand le chiffre d’affaires facturé à un même client dépasse 80 000 DH dans l’année, le surplus est imposé à 30 %, par une retenue à la source faite par ce client. Seules les sociétés et les professionnels imposés au résultat net réel ou simplifié retiennent ; les particuliers, non. Exemple : 120 000 DH facturés à une même société dans l’année, c’est 40 000 DH au-delà du seuil, et 12 000 DH retenus par le client.</p>
+                <p>La règle vient de la loi de finances 2023 et s’applique aux paiements faits depuis le 1er janvier 2023. Un amendement qui relevait le seuil a été rejeté lors du budget 2025 (<a href="https://fr.hespress.com/396046-plf-2025-le-gouvernement-retoque-un-amendement-visant-les-auto-entrepreneurs.html" rel="noopener" target="_blank">Hespress</a>), et la loi de finances 2026 ne la modifie pas.</p>
+
+                <h2>La TVA : aucune</h2>
+                <p>Le guide de la DGI indique que l’auto-entrepreneur est hors champ de la TVA, son chiffre d’affaires restant sous le seuil de 500 000 DH. Le Code général des impôts le formule comme une exonération pour les fabricants et prestataires dont le chiffre d’affaires ne dépasse pas 500 000 DH (article 91-II-3°). En pratique : pas de TVA sur vos factures, et pas de TVA à récupérer sur vos achats.</p>
+
+                <h2>La protection sociale : le barème des cotisations</h2>
+                <p>L’auto-entrepreneur bénéficie de la couverture sociale dès son inscription au registre national. La cotisation s’ajoute à l’impôt, selon un barème fondé sur le montant annuel de l’impôt (CGI, article 73) :</p>
+                <table>
+                    <thead><tr><th>Impôt annuel (DH)</th><th>Par trimestre (DH)</th><th>Par an (DH)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Moins de 500</td><td>300</td><td>1 200</td></tr>
+                        <tr><td>De 500 à 1 000</td><td>390</td><td>1 560</td></tr>
+                        <tr><td>De 1 001 à 2 500</td><td>570</td><td>2 280</td></tr>
+                        <tr><td>De 2 501 à 5 000</td><td>720</td><td>2 880</td></tr>
+                        <tr><td>De 5 001 à 10 000</td><td>1 050</td><td>4 200</td></tr>
+                        <tr><td>De 10 001 à 25 000</td><td>1 500</td><td>6 000</td></tr>
+                        <tr><td>De 25 001 à 50 000</td><td>2 250</td><td>9 000</td></tr>
+                        <tr><td>Plus de 50 000</td><td>3 600</td><td>14 400</td></tr>
+                    </tbody>
+                </table>
+                <p>Sous les plafonds, l’impôt d’un auto-entrepreneur ne peut pas dépasser 2 500 DH par an (0,5 % de 500 000 ou 1 % de 200 000) : en pratique, vous payez 300, 390 ou 570 DH par trimestre.</p>
+
+                <h2>Ce que cela coûte sur un an : quatre exemples</h2>
+                <p>Notre calcul à partir des taux et du barème ci-dessus, pour un chiffre d’affaires encaissé sur un an, sans retenue à la source.</p>
+                <table>
+                    <thead><tr><th>Activité et chiffre d’affaires</th><th>Impôt</th><th>Cotisation sociale</th><th>Total par an</th></tr></thead>
+                    <tbody>
+                        <tr><td>Commerce ou artisanat, 60 000 DH</td><td>300 DH</td><td>1 200 DH</td><td>1 500 DH</td></tr>
+                        <tr><td>Commerce ou artisanat, 300 000 DH</td><td>1 500 DH</td><td>2 280 DH</td><td>3 780 DH</td></tr>
+                        <tr><td>Services, 80 000 DH</td><td>800 DH</td><td>1 560 DH</td><td>2 360 DH</td></tr>
+                        <tr><td>Services, 150 000 DH</td><td>1 500 DH</td><td>2 280 DH</td><td>3 780 DH</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Déclarer et payer</h2>
+                <p>Vous déclarez le chiffre d’affaires encaissé et payez l’impôt et la cotisation ensemble, chaque mois ou chaque trimestre selon votre option, avant la fin du mois qui suit : le premier trimestre se déclare en avril. Tout se fait auprès de Barid Al-Maghrib, en agence ou en ligne.</p>
+                <ul>
+                    <li><strong>Déclaration en retard :</strong> majoration de 5 % jusqu’à 30 jours, 15 % au-delà, 20 % en cas d’imposition d’office, avec un minimum de 100 DH pour l’auto-entrepreneur.</li>
+                    <li><strong>Paiement en retard :</strong> pénalité de 10 % (5 % si le retard ne dépasse pas 30 jours), plus 5 % pour le premier mois et 0,5 % par mois supplémentaire.</li>
+                    <li><strong>Radiation du registre :</strong> aucune déclaration ou un chiffre d’affaires nul à partir de la deuxième année après l’inscription, aucun paiement de l’impôt et des cotisations pendant un an, ou un dépassement du plafond deux années consécutives.</li>
+                </ul>
+
+                <h2>Facturer en tant qu’auto-entrepreneur</h2>
+                <p>L’article du CGI qui fixe les mentions des factures ne s’applique pas à l’auto-entrepreneur, sauf pour l’obligation d’e-mail (article 145-XI). Mais un client professionnel ne peut déduire votre facture que si elle porte ces mentions (article 146). Si vous travaillez avec des entreprises, mettez-les sur chaque facture :</p>
+                <ul>
+                    <li>un numéro de facture continu et la date ;</li>
+                    <li>vos nom et adresse, votre identifiant fiscal, votre numéro de taxe professionnelle et votre ICE ;</li>
+                    <li>le nom, l’adresse et l’ICE du client ;</li>
+                    <li>la nature, la quantité et le prix de ce que vous vendez ;</li>
+                    <li>à la place de la TVA, la mention de l’exonération, par exemple « TVA : exonération, article 91-II-3° du CGI » ;</li>
+                    <li>le mode de paiement.</li>
+                </ul>
+
+                <h2>Ce qui change en 2026</h2>
+                <p>La loi de finances 2026 ne change ni les plafonds, ni les taux, ni la règle des 80 000 DH. Une obligation nouvelle concerne tous les contribuables, auto-entrepreneurs compris : communiquer à la DGI une adresse e-mail de leur choix, sur la plateforme SIMPL avec le formulaire ADC450. Les notifications électroniques envoyées à cette adresse ont alors la même valeur légale qu’un courrier.</p>
+
+                <h2>Étape suivante : être trouvé par vos premiers clients</h2>
+                <p>Une fois inscrit, vos premiers clients chercheront votre service et votre ville sur Google et Google Maps, puis vous écriront sur WhatsApp. Trois choses coûtent peu et fonctionnent :</p>
+                <ul>
+                    <li><strong>Une fiche Google Business,</strong> gratuite, pour apparaître sur la carte. Notre <a href="/fr/blog/fiche-google-business-maroc">guide de la fiche Google Business au Maroc</a> donne les étapes.</li>
+                    <li><strong>Un lien WhatsApp et son QR code</strong> pour vos cartes et votre bio Instagram, créés en une minute avec notre <a href="/fr/outils/generateur-lien-whatsapp">générateur de lien WhatsApp gratuit</a>.</li>
+                    <li><strong>Un site simple</strong> qui montre vos services, vos prix et votre zone. Nous en créons <a href="/fr/website-design-moroccan-businesses">pour les petites entreprises partout au Maroc</a> à partir de 2 000 DH ; notre <a href="/fr/blog/combien-coute-site-web-maroc">guide des prix d’un site web</a> explique ce qui fait varier le prix.</li>
+                </ul>
+
+                <h2>Sources</h2>
+                <ul>
+                    <li>DGI, <a href="https://tax.gov.ma/wps/wcm/connect/631b0232-3f9d-4d12-a8c9-053ccc921bce/Guide__AE+_FR+_2026.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE-631b0232-3f9d-4d12-a8c9-053ccc921bce-q0pxu4M" rel="noopener" target="_blank">Régime fiscal de l’auto-entrepreneur, guide 2026</a> (août 2026).</li>
+                    <li>Code général des impôts, édition 2026 : articles 42 bis, 42 ter, 43, 73, 82 bis, 91, 145, 146, 184 et 208.</li>
+                    <li><a href="https://adala.justice.gov.ma/api/uploads/2024/05/07/Loi%20Relative%20au%20statut%20de%20l%E2%80%99auto-entrepreneur-1715071318209.pdf" rel="noopener" target="_blank">Loi 114-13 relative au statut de l’auto-entrepreneur</a> (2015).</li>
+                    <li>Registre national de l’auto-entrepreneur, <a href="https://rn.ae.gov.ma/faq/index" rel="noopener" target="_blank">questions fréquentes</a>, lues le 12 novembre 2026.</li>
+                    <li>TelQuel, <a href="https://telquel.ma/instant-t/2026/06/29/le-nombre-dauto-entrepreneurs-au-maroc-depasse-les-460-000_1996444/" rel="noopener" target="_blank">nombre d’auto-entrepreneurs</a>, 29 juin 2026.</li>
+                </ul>
+            `,
+        },
+    },
 ];
