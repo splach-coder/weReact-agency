@@ -334,13 +334,13 @@ function ServiceLinksRow({ locale }: { locale: string }) {
         { name: 'Sites pour agences de voyage', href: '/site-web-agence-de-voyage' },
         { name: 'Création de site web', href: '/web-design-marrakech' },
         { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
-        { name: 'Landing pages SEO', href: '/seo-landing-pages' },
+        { name: 'Création de site e-commerce', href: '/creation-site-e-commerce-maroc' },
       ]
     : [
         { name: 'Travel agency websites', href: '/site-web-agence-de-voyage' },
         { name: 'Website design', href: '/web-design-marrakech' },
         { name: 'Tourism websites', href: '/tourism-websites-morocco' },
-        { name: 'SEO landing pages', href: '/seo-landing-pages' },
+        { name: 'E-commerce websites', href: '/creation-site-e-commerce-maroc' },
       ];
 
   return (

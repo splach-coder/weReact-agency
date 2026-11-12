@@ -155,7 +155,7 @@ export const blogPosts: BlogPost[] = [
                 { question: "Combien de temps faut-il pour créer un site ?", answer: "Comptez 2 à 3 jours pour un site vitrine à périmètre défini. Les projets avec réservation ou e-commerce reçoivent un calendrier précis avec le devis." },
                 { question: "Que doit contenir un devis de site web ?", answer: "Le nombre de pages, les langues, qui rédige les contenus et fournit les photos, si les bases SEO sont incluses, et qui possède le nom de domaine, l’hébergement et le code après la livraison." },
             ],
-            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Tarifs honnêtes : site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, et devis sur mesure pour riads et hôtels.",
+            metaDescription: "Combien coûte un site web au Maroc en 2026 ? Site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, devis sur mesure pour riads et hôtels.",
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
@@ -222,7 +222,7 @@ export const blogPosts: BlogPost[] = [
         modifiedAt: "2026-11-10",
         author: "WeReact Editorial Team",
         authorRole: "Web design and SEO studio",
-        relatedServiceSlug: "seo-landing-pages",
+        relatedServiceSlug: "agence-seo-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "SEO",
         categoryColor: "#10B981", // Green like 'Art' in image
@@ -235,7 +235,7 @@ export const blogPosts: BlogPost[] = [
             <h2>E-E-A-T: Experience, Expertise, Authoritativeness, and Trustworthiness</h2>
             <p>Google wants to show content from real humans with real experience. Case studies, deep-dive blog posts, and transparent team profiles are the best ways to build this trust with both users and algorithms. For a local business, the first proof is often a complete <a href="/en/blog/fiche-google-business-maroc">Google Business Profile</a> with real reviews.</p>
 
-            <h2>Technical SEO Foundation</h2><p>For campaign traffic specifically, this is the groundwork behind our <a href="/en/seo-landing-pages">SEO-ready landing pages</a>.</p>
+            <h2>Technical SEO Foundation</h2><p>For campaign traffic specifically, this is the groundwork behind the landing pages we build for <a href="/en/agence-google-ads-maroc">Google Ads campaigns</a>.</p>
             <p>A fast, mobile-friendly website with a clean DOM structure is the entry ticket. Without a solid technical foundation, even the best content will struggle to rank. Ensure your site uses semantic HTML5 elements like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;aside&gt;</code> properly.</p>
 
             <p>Building a blog is the first step. Creating value-driven content consistently is the marathon that wins the SEO race.</p>
@@ -255,7 +255,7 @@ export const blogPosts: BlogPost[] = [
                 <h2>E-E-A-T : expérience, expertise, autorité et fiabilité</h2>
                 <p>Google veut mettre en avant des contenus produits par de vraies personnes, avec une vraie expérience. Études de cas, articles de fond et profils d'équipe transparents restent les meilleurs moyens de bâtir cette confiance, auprès des utilisateurs comme des algorithmes. Pour une entreprise locale, la première preuve est souvent une <a href="/fr/blog/fiche-google-business-maroc">fiche Google Business</a> complète avec de vrais avis.</p>
 
-                <h2>Des fondations techniques solides</h2><p>Pour le trafic de campagne, c'est le socle de nos <a href="/fr/seo-landing-pages">landing pages SEO</a>.</p>
+                <h2>Des fondations techniques solides</h2><p>Pour le trafic de campagne, c'est le socle des landing pages que nous créons pour les <a href="/fr/agence-google-ads-maroc">campagnes Google Ads</a>.</p>
                 <p>Un site rapide, adapté au mobile et doté d'une structure DOM propre constitue le ticket d'entrée. Sans base technique solide, même le meilleur contenu peinera à se positionner. Veillez à utiliser correctement les balises HTML5 sémantiques comme <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> et <code>&lt;aside&gt;</code>.</p>
 
                 <p>Créer un blog n'est que la première étape. Publier régulièrement du contenu utile, c'est le marathon qui fait gagner la course du SEO.</p>
@@ -498,7 +498,7 @@ export const blogPosts: BlogPost[] = [
             { question: "Can I offer a discount in exchange for a Google review?", answer: "No. Google says offering incentives, like free or discounted goods or services, in exchange for reviews is strictly prohibited, and those reviews are removed." },
             { question: "Do I need to show a street address?", answer: "No, if you serve customers at their location: you can set a service area and hide the street address." },
         ],
-        metaDescription: "Create, verify and optimise your Google Business Profile in Morocco to appear on Google Maps: name, categories, photos, honest reviews, and the mistakes that cost clients.",
+        metaDescription: "Create, verify and optimise your Google Business Profile in Morocco to appear on Google Maps: name, categories, photos and honest reviews.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",
@@ -578,7 +578,7 @@ export const blogPosts: BlogPost[] = [
                 { question: "Puis-je offrir une réduction en échange d’un avis Google ?", answer: "Non. Google qualifie de strictement interdit le fait de proposer des avantages, comme des produits ou services sans frais ou à prix réduit, en échange d’avis, et ces avis sont supprimés." },
                 { question: "Dois-je afficher une adresse ?", answer: "Non, si vous vous déplacez chez vos clients : vous pouvez définir une zone desservie et masquer l’adresse." },
             ],
-            metaDescription: "Créer, valider et optimiser votre fiche Google Business au Maroc pour apparaître sur Google Maps : nom, catégories, photos, avis honnêtes et les erreurs qui coûtent des clients.",
+            metaDescription: "Créer, valider et optimiser votre fiche Google Business au Maroc pour apparaître sur Google Maps : nom, catégories, photos et avis honnêtes.",
             date: "10 novembre 2026",
             readTime: "8 min de lecture",
             category: "SEO local",
@@ -644,7 +644,7 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "commission-getyourguide-viator-booking-maroc",
         title: "GetYourGuide, Viator, Booking.com and Airbnb Commissions: What Operators and Riads in Morocco Pay (2026)",
-        metaTitle: "GetYourGuide, Viator and Booking Commissions in Morocco",
+        metaTitle: "GetYourGuide & Viator Commissions in Morocco",
         excerpt: "We read each platform’s own supplier and host pages. Only Airbnb publishes its rates on a live page; GetYourGuide removed its 20–30%. What that means for a tour operator or a riad, with sources.",
         summary: "Only Airbnb publishes its rates on a live page: 15.5% for most hosts with its host-only fee, and typically 20% on experiences. GetYourGuide published 20–30% until 2025 and then removed the figure; Viator, Booking.com and Expedia publish no percentage, so your rate is the one in your contract. The Moroccan press reported 15–17% for classified hotels on Booking.com in 2023.",
         faqs: [
@@ -653,7 +653,7 @@ export const blogPosts: BlogPost[] = [
             { question: "What commission does Booking.com take from hotels in Morocco?", answer: "Booking.com does not publish a rate: it depends on the country, the property type and the contract. In 2023 the Moroccan press reported 15–17% for classified hotels." },
             { question: "What does Airbnb charge hosts?", answer: "15.5% for most hosts with the host-only fee, which is mandatory for traditional hospitality listings such as hotels; 3% with the older split fee, plus 14.1–16.5% paid by the guest. Experiences typically pay 20%." },
         ],
-        metaDescription: "GetYourGuide, Viator, Booking.com, Airbnb and Expedia commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages, with the direct-booking arithmetic.",
+        metaDescription: "GetYourGuide, Viator, Booking.com and Airbnb commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",
@@ -719,7 +719,7 @@ export const blogPosts: BlogPost[] = [
         `,
         fr: {
             title: "Commission GetYourGuide, Viator, Booking et Airbnb : ce que paient les prestataires et les riads au Maroc (2026)",
-            metaTitle: "Commission GetYourGuide, Viator, Booking au Maroc",
+            metaTitle: "Commission GetYourGuide et Viator au Maroc",
             excerpt: "Nous avons lu les pages fournisseurs et hôtes de chaque plateforme. Seul Airbnb publie ses taux sur une page en ligne ; GetYourGuide a retiré ses 20 à 30 %. Ce que cela change pour un prestataire d'activités ou un riad, sources à l'appui.",
             summary: "Seul Airbnb publie ses taux sur une page en ligne : 15,5 % pour la plupart des hôtes avec les frais d’hôte uniques, et 20 % en général sur les expériences. GetYourGuide affichait 20 à 30 % jusqu’en 2025 puis a retiré le chiffre ; Viator, Booking.com et Expedia ne publient aucun pourcentage, votre taux est donc celui de votre contrat. La presse marocaine a rapporté 15 à 17 % pour les hôtels classés sur Booking.com en 2023.",
             faqs: [
@@ -728,7 +728,7 @@ export const blogPosts: BlogPost[] = [
                 { question: "Quelle commission Booking.com prend-il aux hôtels au Maroc ?", answer: "Booking.com ne publie pas de taux : il dépend du pays, du type d’établissement et du contrat. En 2023, la presse marocaine a rapporté 15 à 17 % pour les hôtels classés." },
                 { question: "Combien Airbnb facture-t-il aux hôtes ?", answer: "15,5 % pour la plupart des hôtes avec les frais d’hôte uniques, obligatoires pour les établissements hôteliers traditionnels ; 3 % avec l’ancienne structure partagée, plus 14,1 à 16,5 % payés par le voyageur. Les expériences paient en général 20 %." },
             ],
-            metaDescription: "Commissions GetYourGuide, Viator, Booking.com, Airbnb et Expedia pour les prestataires d'activités et les riads au Maroc en 2026, d'après les pages des plateformes, avec le calcul de la réservation directe.",
+            metaDescription: "Commissions GetYourGuide, Viator, Booking.com et Airbnb pour les prestataires et riads au Maroc en 2026, d'après les plateformes, avec le calcul du direct.",
             date: "10 novembre 2026",
             readTime: "9 min de lecture",
             category: "Tourisme",
@@ -797,7 +797,7 @@ export const blogPosts: BlogPost[] = [
             { question: "How do I choose a web agency in Marrakech?", answer: "Ask for a starting price and a delivery date in writing, reviews you can click through to their source, real projects you can open, the languages your customers need, and who will own the domain, hosting and code." },
             { question: "Do the best-ranked agencies publish their prices more often?", answer: "No. 11 of the 30 sites in the top five published their own price, against 10 of the 33 ranked sixth to twentieth." },
         ],
-        metaDescription: "Study of 66 web agency and freelancer websites ranking on Google for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp, with the method.",
+        metaDescription: "Study of 66 web agency and freelancer websites ranking for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp.",
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",

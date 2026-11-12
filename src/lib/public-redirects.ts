@@ -6,7 +6,6 @@ const CURRENT_PUBLIC_PATHS = new Set([
   '/blog',
   '/web-design-marrakech',
   '/tourism-websites-morocco',
-  '/seo-landing-pages',
   '/web-design-casablanca',
   '/web-design-rabat',
   '/web-design-agadir',
@@ -33,6 +32,10 @@ const LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
   '/review': GOOGLE_REVIEW_URL,
   // Merged into the Marrakech web design page (same search intent, Nov 2026).
   '/agence-web-marrakech': '/fr/web-design-marrakech',
+  // Never indexed by Google; merged into the Google Ads page (Nov 2026).
+  '/seo-landing-pages': '/fr/agence-google-ads-maroc',
+  '/fr/seo-landing-pages': '/fr/agence-google-ads-maroc',
+  '/en/seo-landing-pages': '/en/agence-google-ads-maroc',
   '/fr/agence-web-marrakech': '/fr/web-design-marrakech',
   '/en/agence-web-marrakech': '/en/web-design-marrakech',
   '/blog/minimalist-design-trends': '/en/blog/website-design-marrakech-business-guide',

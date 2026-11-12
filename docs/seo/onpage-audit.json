@@ -1,0 +1,2683 @@
+{
+ "base": "http://127.0.0.1:8809",
+ "generatedAt": "2026-11-12T20:05:56.072Z",
+ "pages": [
+  {
+   "url": "https://www.wereact.agency/en",
+   "status": 200,
+   "title": "WeReact agency | Website Design in Marrakech",
+   "titleLen": 44,
+   "description": "WeReact is a Marrakech web agency building fast, SEO-ready business websites, landing pages, and custom web experiences for clients in Morocco and beyond.",
+   "descLen": 154,
+   "canonical": "https://www.wereact.agency/en",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en",
+    "fr": "https://www.wereact.agency/fr",
+    "x-default": "https://www.wereact.agency/en"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "WeReact agency | Website Design in Marrakech",
+   "ogDescription": "WeReact is a Marrakech web agency building fast, SEO-ready business websites, landing pages, and custom web experiences for clients in Morocco and beyond.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 37,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": [
+      "LocalBusiness",
+      "ProfessionalService"
+     ]
+    },
+    {
+     "ok": true,
+     "type": "WebSite"
+    },
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr",
+   "status": 200,
+   "title": "WeReact agency | Création de sites web à Marrakech",
+   "titleLen": 50,
+   "description": "WeReact, agence web à Marrakech : sites business rapides, landing pages et fondations SEO pour des clients au Maroc et à l'international.",
+   "descLen": 137,
+   "canonical": "https://www.wereact.agency/fr",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en",
+    "fr": "https://www.wereact.agency/fr",
+    "x-default": "https://www.wereact.agency/en"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "WeReact agency | Création de sites web à Marrakech",
+   "ogDescription": "WeReact, agence web à Marrakech : sites business rapides, landing pages et fondations SEO pour des clients au Maroc et à l'international.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 41,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": [
+      "LocalBusiness",
+      "ProfessionalService"
+     ]
+    },
+    {
+     "ok": true,
+     "type": "WebSite"
+    },
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/contact",
+   "status": 200,
+   "title": "Contact a Web Agency in Marrakech | WeReact agency",
+   "titleLen": 50,
+   "description": "Contact WeReact for fast, SEO-ready website design in Marrakech. Request a quote for business websites, tourism sites, and landing pages in Morocco.",
+   "descLen": 148,
+   "canonical": "https://www.wereact.agency/en/contact",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/contact",
+    "fr": "https://www.wereact.agency/fr/contact",
+    "x-default": "https://www.wereact.agency/en/contact"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Contact a Web Agency in Marrakech",
+   "ogDescription": "Contact WeReact for fast, SEO-ready website design in Marrakech. Request a quote for business websites, tourism sites, and landing pages in Morocco.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 392,
+   "images": 1,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/fr/contact",
+   "status": 200,
+   "title": "Contact – Agence web à Marrakech | WeReact agency",
+   "titleLen": 49,
+   "description": "Contactez WeReact pour un site web rapide et optimisé SEO à Marrakech. Demandez un devis pour votre site business, tourisme ou landing page au Maroc.",
+   "descLen": 149,
+   "canonical": "https://www.wereact.agency/fr/contact",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/contact",
+    "fr": "https://www.wereact.agency/fr/contact",
+    "x-default": "https://www.wereact.agency/en/contact"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Contact – Agence web à Marrakech",
+   "ogDescription": "Contactez WeReact pour un site web rapide et optimisé SEO à Marrakech. Demandez un devis pour votre site business, tourisme ou landing page au Maroc.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 426,
+   "images": 1,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/en/work",
+   "status": 200,
+   "title": "Website Design Case Studies in Morocco | WeReact agency",
+   "titleLen": 55,
+   "description": "Explore WeReact website design case studies for Moroccan local brands, tourism, transport, and hospitality businesses built for trust, SEO, and conversion.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/en/work",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work",
+    "fr": "https://www.wereact.agency/fr/work",
+    "x-default": "https://www.wereact.agency/en/work"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Website Design Case Studies in Morocco",
+   "ogDescription": "Explore WeReact website design case studies for Moroccan local brands, tourism, transport, and hospitality businesses built for trust, SEO, and conversion.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 338,
+   "images": 7,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work",
+   "status": 200,
+   "title": "Réalisations - Sites web au Maroc | WeReact agency",
+   "titleLen": 50,
+   "description": "Découvrez les sites web créés par WeReact pour des marques locales, tourisme, transport et hôtellerie au Maroc avec SEO, confiance et conversion.",
+   "descLen": 145,
+   "canonical": "https://www.wereact.agency/fr/work",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work",
+    "fr": "https://www.wereact.agency/fr/work",
+    "x-default": "https://www.wereact.agency/en/work"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Réalisations - Sites web au Maroc",
+   "ogDescription": "Découvrez les sites web créés par WeReact pour des marques locales, tourisme, transport et hôtellerie au Maroc avec SEO, confiance et conversion.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 350,
+   "images": 7,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/en/about",
+   "status": 200,
+   "title": "About WeReact | WeReact agency",
+   "titleLen": 30,
+   "description": "Marrakech-based web studio. 7 projects delivered for tourism, hospitality, and local businesses across Morocco.",
+   "descLen": 111,
+   "canonical": "https://www.wereact.agency/en/about",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/about",
+    "fr": "https://www.wereact.agency/fr/about",
+    "x-default": "https://www.wereact.agency/en/about"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "About WeReact",
+   "ogDescription": "Marrakech-based web studio. 7 projects delivered for tourism, hospitality, and local businesses across Morocco.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 459,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "AboutPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/about",
+   "status": 200,
+   "title": "À propos de WeReact | WeReact agency",
+   "titleLen": 36,
+   "description": "Studio web basé à Marrakech. 7 projets livrés pour le tourisme, l'hôtellerie et les entreprises locales au Maroc.",
+   "descLen": 113,
+   "canonical": "https://www.wereact.agency/fr/about",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/about",
+    "fr": "https://www.wereact.agency/fr/about",
+    "x-default": "https://www.wereact.agency/en/about"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "À propos de WeReact",
+   "ogDescription": "Studio web basé à Marrakech. 7 projets livrés pour le tourisme, l'hôtellerie et les entreprises locales au Maroc.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 523,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "AboutPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/book",
+   "status": 200,
+   "title": "Book a call | WeReact agency",
+   "titleLen": 28,
+   "description": "Book a 30-minute call with WeReact to talk through your website, your budget, and the next steps.",
+   "descLen": 97,
+   "canonical": "https://www.wereact.agency/en/book",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/book",
+    "fr": "https://www.wereact.agency/fr/book",
+    "x-default": "https://www.wereact.agency/en/book"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Book a call",
+   "ogDescription": "Book a 30-minute call with WeReact to talk through your website, your budget, and the next steps.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 60,
+   "images": 1,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/book",
+   "status": 200,
+   "title": "Réserver un appel | WeReact agency",
+   "titleLen": 34,
+   "description": "Réservez un appel de 30 minutes avec WeReact pour parler de votre site web, de votre budget et des prochaines étapes.",
+   "descLen": 117,
+   "canonical": "https://www.wereact.agency/fr/book",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/book",
+    "fr": "https://www.wereact.agency/fr/book",
+    "x-default": "https://www.wereact.agency/en/book"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Réserver un appel",
+   "ogDescription": "Réservez un appel de 30 minutes avec WeReact pour parler de votre site web, de votre budget et des prochaines étapes.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 69,
+   "images": 1,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog",
+   "status": 200,
+   "title": "Journal - Web Design & SEO in Morocco | WeReact agency",
+   "titleLen": 54,
+   "description": "Practical guidance on web design, local SEO, tourism websites, performance, and conversion from WeReact in Marrakech.",
+   "descLen": 117,
+   "canonical": "https://www.wereact.agency/en/blog",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog",
+    "fr": "https://www.wereact.agency/fr/blog",
+    "x-default": "https://www.wereact.agency/en/blog"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Journal - Web Design & SEO in Morocco",
+   "ogDescription": "Practical guidance on web design, local SEO, tourism websites, performance, and conversion from WeReact in Marrakech.",
+   "ogImage": "https://www.wereact.agency/images/blog/marrakech-web-design-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 433,
+   "images": 10,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog",
+   "status": 200,
+   "title": "Journal - Création web et SEO au Maroc | WeReact agency",
+   "titleLen": 55,
+   "description": "Conseils pratiques sur la création web, le SEO local, les sites tourisme, la performance et la conversion par WeReact à Marrakech.",
+   "descLen": 130,
+   "canonical": "https://www.wereact.agency/fr/blog",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog",
+    "fr": "https://www.wereact.agency/fr/blog",
+    "x-default": "https://www.wereact.agency/en/blog"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Journal - Création web et SEO au Maroc",
+   "ogDescription": "Conseils pratiques sur la création web, le SEO local, les sites tourisme, la performance et la conversion par WeReact à Marrakech.",
+   "ogImage": "https://www.wereact.agency/images/blog/marrakech-web-design-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 517,
+   "images": 10,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": []
+  },
+  {
+   "url": "https://www.wereact.agency/en/web-design-marrakech",
+   "status": 200,
+   "title": "Web Agency in Marrakech: Website Design | WeReact agency",
+   "titleLen": 56,
+   "description": "Web agency in Marrakech designing fast, bilingual, SEO-ready websites for riads, tourism brands, and local businesses. Clear starting prices, free quote in one day.",
+   "descLen": 164,
+   "canonical": "https://www.wereact.agency/en/web-design-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-marrakech",
+    "fr": "https://www.wereact.agency/fr/web-design-marrakech",
+    "x-default": "https://www.wereact.agency/en/web-design-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Web Agency in Marrakech: Website Design",
+   "ogDescription": "Web agency in Marrakech designing fast, bilingual, SEO-ready websites for riads, tourism brands, and local businesses. Clear starting prices, free quote in one day.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1052,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/web-design-marrakech",
+   "status": 200,
+   "title": "Agence web à Marrakech : création de site web | WeReact agency",
+   "titleLen": 62,
+   "description": "Agence web à Marrakech : sites rapides, bilingues et prêts pour le SEO pour riads, tourisme et entreprises locales. Prix affichés, devis gratuit sous un jour.",
+   "descLen": 158,
+   "canonical": "https://www.wereact.agency/fr/web-design-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-marrakech",
+    "fr": "https://www.wereact.agency/fr/web-design-marrakech",
+    "x-default": "https://www.wereact.agency/en/web-design-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence web à Marrakech : création de site web",
+   "ogDescription": "Agence web à Marrakech : sites rapides, bilingues et prêts pour le SEO pour riads, tourisme et entreprises locales. Prix affichés, devis gratuit sous un jour.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1188,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/tourism-websites-morocco",
+   "status": 200,
+   "title": "Tourism and Hospitality Websites in Morocco | WeReact agency",
+   "titleLen": 60,
+   "description": "Websites for hotels, riads, tour operators, transport brands, and travel businesses in Morocco that need clearer discovery and direct enquiries.",
+   "descLen": 144,
+   "canonical": "https://www.wereact.agency/en/tourism-websites-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/tourism-websites-morocco",
+    "fr": "https://www.wereact.agency/fr/tourism-websites-morocco",
+    "x-default": "https://www.wereact.agency/en/tourism-websites-morocco"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Tourism and Hospitality Websites in Morocco",
+   "ogDescription": "Websites for hotels, riads, tour operators, transport brands, and travel businesses in Morocco that need clearer discovery and direct enquiries.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 725,
+   "images": 5,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/tourism-websites-morocco",
+   "status": 200,
+   "title": "Sites web tourisme et hôtellerie au Maroc | WeReact agency",
+   "titleLen": 58,
+   "description": "Des sites web pour hôtels, riads, agences de voyage, transport privé et acteurs du tourisme au Maroc qui veulent plus de demandes directes.",
+   "descLen": 139,
+   "canonical": "https://www.wereact.agency/fr/tourism-websites-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/tourism-websites-morocco",
+    "fr": "https://www.wereact.agency/fr/tourism-websites-morocco",
+    "x-default": "https://www.wereact.agency/en/tourism-websites-morocco"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Sites web tourisme et hôtellerie au Maroc",
+   "ogDescription": "Des sites web pour hôtels, riads, agences de voyage, transport privé et acteurs du tourisme au Maroc qui veulent plus de demandes directes.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 819,
+   "images": 5,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/web-design-casablanca",
+   "status": 200,
+   "title": "Web Agency in Casablanca: Website Design | WeReact agency",
+   "titleLen": 57,
+   "description": "Web agency for Casablanca businesses: fast bilingual websites, Google search foundations, prices from 2,000 MAD and a free quote within one business day.",
+   "descLen": 153,
+   "canonical": "https://www.wereact.agency/en/web-design-casablanca",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-casablanca",
+    "fr": "https://www.wereact.agency/fr/web-design-casablanca",
+    "x-default": "https://www.wereact.agency/en/web-design-casablanca"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Web Agency in Casablanca: Website Design",
+   "ogDescription": "Web agency for Casablanca businesses: fast bilingual websites, Google search foundations, prices from 2,000 MAD and a free quote within one business day.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1111,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/web-design-casablanca",
+   "status": 200,
+   "title": "Agence web à Casablanca : création de site web | WeReact agency",
+   "titleLen": 63,
+   "description": "Agence web pour les entreprises de Casablanca : sites rapides et bilingues, fondations SEO, prix à partir de 2 000 MAD et devis gratuit sous un jour ouvré.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/fr/web-design-casablanca",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-casablanca",
+    "fr": "https://www.wereact.agency/fr/web-design-casablanca",
+    "x-default": "https://www.wereact.agency/en/web-design-casablanca"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence web à Casablanca : création de site web",
+   "ogDescription": "Agence web pour les entreprises de Casablanca : sites rapides et bilingues, fondations SEO, prix à partir de 2 000 MAD et devis gratuit sous un jour ouvré.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1239,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/agence-seo-marrakech",
+   "status": 200,
+   "title": "SEO Agency in Marrakech, Morocco | WeReact agency",
+   "titleLen": 49,
+   "description": "SEO agency in Marrakech helping Moroccan businesses rank on Google: technical SEO, local SEO, content structure, and measurable organic growth.",
+   "descLen": 143,
+   "canonical": "https://www.wereact.agency/en/agence-seo-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-seo-marrakech",
+    "fr": "https://www.wereact.agency/fr/agence-seo-marrakech",
+    "x-default": "https://www.wereact.agency/en/agence-seo-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "SEO Agency in Marrakech, Morocco",
+   "ogDescription": "SEO agency in Marrakech helping Moroccan businesses rank on Google: technical SEO, local SEO, content structure, and measurable organic growth.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 647,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/agence-seo-marrakech",
+   "status": 200,
+   "title": "Agence SEO à Marrakech et au Maroc | WeReact agency",
+   "titleLen": 51,
+   "description": "Agence SEO à Marrakech : référencement naturel pour les entreprises marocaines — SEO technique, SEO local, contenu et croissance organique mesurable.",
+   "descLen": 149,
+   "canonical": "https://www.wereact.agency/fr/agence-seo-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-seo-marrakech",
+    "fr": "https://www.wereact.agency/fr/agence-seo-marrakech",
+    "x-default": "https://www.wereact.agency/en/agence-seo-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence SEO à Marrakech et au Maroc",
+   "ogDescription": "Agence SEO à Marrakech : référencement naturel pour les entreprises marocaines — SEO technique, SEO local, contenu et croissance organique mesurable.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 735,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/web-design-rabat",
+   "status": 200,
+   "title": "Web Agency for Rabat Businesses | WeReact agency",
+   "titleLen": 48,
+   "description": "Web agency for Rabat businesses: fast, bilingual, SEO-ready websites for institutions, services, and firms. Free quote within one business day.",
+   "descLen": 143,
+   "canonical": "https://www.wereact.agency/en/web-design-rabat",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-rabat",
+    "fr": "https://www.wereact.agency/fr/web-design-rabat",
+    "x-default": "https://www.wereact.agency/en/web-design-rabat"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Web Agency for Rabat Businesses",
+   "ogDescription": "Web agency for Rabat businesses: fast, bilingual, SEO-ready websites for institutions, services, and firms. Free quote within one business day.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 694,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/web-design-rabat",
+   "status": 200,
+   "title": "Agence web à Rabat - Création de site | WeReact agency",
+   "titleLen": 54,
+   "description": "Agence web pour les entreprises de Rabat : création de sites rapides, bilingues et prêts pour le SEO. Devis gratuit sous un jour ouvré.",
+   "descLen": 135,
+   "canonical": "https://www.wereact.agency/fr/web-design-rabat",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-rabat",
+    "fr": "https://www.wereact.agency/fr/web-design-rabat",
+    "x-default": "https://www.wereact.agency/en/web-design-rabat"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence web à Rabat - Création de site",
+   "ogDescription": "Agence web pour les entreprises de Rabat : création de sites rapides, bilingues et prêts pour le SEO. Devis gratuit sous un jour ouvré.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 791,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/web-design-agadir",
+   "status": 200,
+   "title": "Web Agency for Agadir Businesses | WeReact agency",
+   "titleLen": 49,
+   "description": "Web agency for Agadir businesses: websites for hotels, surf camps, tours, and local services — fast, bilingual, SEO-ready, with a free quote.",
+   "descLen": 141,
+   "canonical": "https://www.wereact.agency/en/web-design-agadir",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-agadir",
+    "fr": "https://www.wereact.agency/fr/web-design-agadir",
+    "x-default": "https://www.wereact.agency/en/web-design-agadir"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Web Agency for Agadir Businesses",
+   "ogDescription": "Web agency for Agadir businesses: websites for hotels, surf camps, tours, and local services — fast, bilingual, SEO-ready, with a free quote.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 672,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/web-design-agadir",
+   "status": 200,
+   "title": "Agence web à Agadir - Création de site | WeReact agency",
+   "titleLen": 55,
+   "description": "Agence web pour les entreprises d’Agadir : sites pour hôtels, surf camps, excursions et services locaux — rapides, bilingues et prêts pour le SEO.",
+   "descLen": 146,
+   "canonical": "https://www.wereact.agency/fr/web-design-agadir",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-agadir",
+    "fr": "https://www.wereact.agency/fr/web-design-agadir",
+    "x-default": "https://www.wereact.agency/en/web-design-agadir"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence web à Agadir - Création de site",
+   "ogDescription": "Agence web pour les entreprises d’Agadir : sites pour hôtels, surf camps, excursions et services locaux — rapides, bilingues et prêts pour le SEO.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 778,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/hotel-website-design",
+   "status": 200,
+   "title": "Hotel & Riad Website Design | WeReact agency",
+   "titleLen": 44,
+   "description": "Website design for hotels, riads, and boutique stays: direct-booking focus, hotel SEO, and mobile-first pages that turn lookers into direct enquiries.",
+   "descLen": 150,
+   "canonical": "https://www.wereact.agency/en/hotel-website-design",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/hotel-website-design",
+    "fr": "https://www.wereact.agency/fr/hotel-website-design",
+    "x-default": "https://www.wereact.agency/en/hotel-website-design"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Hotel & Riad Website Design",
+   "ogDescription": "Website design for hotels, riads, and boutique stays: direct-booking focus, hotel SEO, and mobile-first pages that turn lookers into direct enquiries.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 847,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/hotel-website-design",
+   "status": 200,
+   "title": "Site web pour hôtel et riad | WeReact agency",
+   "titleLen": 44,
+   "description": "Création de site web pour hôtels, riads et maisons d’hôtes : réservation directe, SEO hôtelier et pages mobiles qui transforment les visites en demandes.",
+   "descLen": 153,
+   "canonical": "https://www.wereact.agency/fr/hotel-website-design",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/hotel-website-design",
+    "fr": "https://www.wereact.agency/fr/hotel-website-design",
+    "x-default": "https://www.wereact.agency/en/hotel-website-design"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Site web pour hôtel et riad",
+   "ogDescription": "Création de site web pour hôtels, riads et maisons d’hôtes : réservation directe, SEO hôtelier et pages mobiles qui transforment les visites en demandes.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 961,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/agence-google-ads-maroc",
+   "status": 200,
+   "title": "Google Ads Agency in Morocco | WeReact agency",
+   "titleLen": 45,
+   "description": "Google Ads agency in Morocco: campaigns, landing pages, and conversion tracking built together, so every dirham of ad spend can be measured.",
+   "descLen": 140,
+   "canonical": "https://www.wereact.agency/en/agence-google-ads-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-google-ads-maroc",
+    "fr": "https://www.wereact.agency/fr/agence-google-ads-maroc",
+    "x-default": "https://www.wereact.agency/en/agence-google-ads-maroc"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Google Ads Agency in Morocco",
+   "ogDescription": "Google Ads agency in Morocco: campaigns, landing pages, and conversion tracking built together, so every dirham of ad spend can be measured.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 642,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/agence-google-ads-maroc",
+   "status": 200,
+   "title": "Agence Google Ads au Maroc | WeReact agency",
+   "titleLen": 43,
+   "description": "Agence Google Ads au Maroc : campagnes, landing pages et suivi des conversions construits ensemble, pour mesurer chaque dirham investi.",
+   "descLen": 135,
+   "canonical": "https://www.wereact.agency/fr/agence-google-ads-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-google-ads-maroc",
+    "fr": "https://www.wereact.agency/fr/agence-google-ads-maroc",
+    "x-default": "https://www.wereact.agency/en/agence-google-ads-maroc"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence Google Ads au Maroc",
+   "ogDescription": "Agence Google Ads au Maroc : campagnes, landing pages et suivi des conversions construits ensemble, pour mesurer chaque dirham investi.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 719,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/site-web-agence-de-voyage",
+   "status": 200,
+   "title": "Websites for Tour Operators in Morocco | WeReact agency",
+   "titleLen": 55,
+   "description": "Website design for travel agencies, tours and activity operators in Morocco: one page per activity, visible prices, booking requests and WhatsApp. From 2,000 MAD.",
+   "descLen": 162,
+   "canonical": "https://www.wereact.agency/en/site-web-agence-de-voyage",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/site-web-agence-de-voyage",
+    "fr": "https://www.wereact.agency/fr/site-web-agence-de-voyage",
+    "x-default": "https://www.wereact.agency/en/site-web-agence-de-voyage"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Websites for Tour Operators in Morocco",
+   "ogDescription": "Website design for travel agencies, tours and activity operators in Morocco: one page per activity, visible prices, booking requests and WhatsApp. From 2,000 MAD.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1252,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/site-web-agence-de-voyage",
+   "status": 200,
+   "title": "Site web agence de voyage et excursions au Maroc | WeReact agency",
+   "titleLen": 65,
+   "description": "Site web pour agences de voyage, excursions et activités au Maroc : une page par activité, prix affichés, réservation et WhatsApp. À partir de 2 000 MAD.",
+   "descLen": 153,
+   "canonical": "https://www.wereact.agency/fr/site-web-agence-de-voyage",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/site-web-agence-de-voyage",
+    "fr": "https://www.wereact.agency/fr/site-web-agence-de-voyage",
+    "x-default": "https://www.wereact.agency/en/site-web-agence-de-voyage"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Site web agence de voyage et excursions au Maroc",
+   "ogDescription": "Site web pour agences de voyage, excursions et activités au Maroc : une page par activité, prix affichés, réservation et WhatsApp. À partir de 2 000 MAD.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1442,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/creation-site-e-commerce-maroc",
+   "status": 200,
+   "title": "E-commerce Website Design in Morocco | WeReact agency",
+   "titleLen": 53,
+   "description": "E-commerce website design in Morocco from 3,500 MAD, front-end and back-end included: product catalogue, cart and checkout built for mobile, in French and English.",
+   "descLen": 163,
+   "canonical": "https://www.wereact.agency/en/creation-site-e-commerce-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/creation-site-e-commerce-maroc",
+    "fr": "https://www.wereact.agency/fr/creation-site-e-commerce-maroc",
+    "x-default": "https://www.wereact.agency/en/creation-site-e-commerce-maroc"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "E-commerce Website Design in Morocco",
+   "ogDescription": "E-commerce website design in Morocco from 3,500 MAD, front-end and back-end included: product catalogue, cart and checkout built for mobile, in French and English.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 885,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/creation-site-e-commerce-maroc",
+   "status": 200,
+   "title": "Création de site e-commerce au Maroc | WeReact agency",
+   "titleLen": 53,
+   "description": "Création de site e-commerce au Maroc à partir de 3 500 MAD, front et back inclus : catalogue, panier et commande pensés pour le mobile, en français et en anglais.",
+   "descLen": 162,
+   "canonical": "https://www.wereact.agency/fr/creation-site-e-commerce-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/creation-site-e-commerce-maroc",
+    "fr": "https://www.wereact.agency/fr/creation-site-e-commerce-maroc",
+    "x-default": "https://www.wereact.agency/en/creation-site-e-commerce-maroc"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Création de site e-commerce au Maroc",
+   "ogDescription": "Création de site e-commerce au Maroc à partir de 3 500 MAD, front et back inclus : catalogue, panier et commande pensés pour le mobile, en français et en anglais.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 984,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/web-design-tanger",
+   "status": 200,
+   "title": "Website Design in Tangier: Web and SEO Agency | WeReact agency",
+   "titleLen": 62,
+   "description": "Website design in Tangier for businesses, hotels and services: fast French and English sites, Google search foundations, from 2,000 MAD, quote within a day.",
+   "descLen": 156,
+   "canonical": "https://www.wereact.agency/en/web-design-tanger",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-tanger",
+    "fr": "https://www.wereact.agency/fr/web-design-tanger",
+    "x-default": "https://www.wereact.agency/en/web-design-tanger"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Website Design in Tangier: Web and SEO Agency",
+   "ogDescription": "Website design in Tangier for businesses, hotels and services: fast French and English sites, Google search foundations, from 2,000 MAD, quote within a day.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 917,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/web-design-tanger",
+   "status": 200,
+   "title": "Création de site web à Tanger, agence SEO | WeReact agency",
+   "titleLen": 58,
+   "description": "Création de site web à Tanger pour entreprises, hôtels et services : sites rapides FR/EN, référencement Google, à partir de 2 000 MAD, devis sous un jour.",
+   "descLen": 154,
+   "canonical": "https://www.wereact.agency/fr/web-design-tanger",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/web-design-tanger",
+    "fr": "https://www.wereact.agency/fr/web-design-tanger",
+    "x-default": "https://www.wereact.agency/en/web-design-tanger"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Création de site web à Tanger, agence SEO",
+   "ogDescription": "Création de site web à Tanger pour entreprises, hôtels et services : sites rapides FR/EN, référencement Google, à partir de 2 000 MAD, devis sous un jour.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1009,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/website-design-moroccan-businesses",
+   "status": 200,
+   "title": "Website Design in Morocco for Local Businesses | WeReact agency",
+   "titleLen": 63,
+   "description": "Website design in Morocco for local businesses: fast bilingual websites, published starting prices from 2,000 MAD, and a free quote within one business day.",
+   "descLen": 156,
+   "canonical": "https://www.wereact.agency/en/website-design-moroccan-businesses",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/website-design-moroccan-businesses",
+    "fr": "https://www.wereact.agency/fr/website-design-moroccan-businesses",
+    "x-default": "https://www.wereact.agency/en/website-design-moroccan-businesses"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Website Design in Morocco for Local Businesses",
+   "ogDescription": "Website design in Morocco for local businesses: fast bilingual websites, published starting prices from 2,000 MAD, and a free quote within one business day.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 957,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/website-design-moroccan-businesses",
+   "status": 200,
+   "title": "Création de site web au Maroc | WeReact agency",
+   "titleLen": 46,
+   "description": "Création de site web au Maroc pour les entreprises locales : sites rapides et bilingues, tarifs affichés à partir de 2 000 MAD, devis gratuit sous un jour ouvré.",
+   "descLen": 161,
+   "canonical": "https://www.wereact.agency/fr/website-design-moroccan-businesses",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/website-design-moroccan-businesses",
+    "fr": "https://www.wereact.agency/fr/website-design-moroccan-businesses",
+    "x-default": "https://www.wereact.agency/en/website-design-moroccan-businesses"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Création de site web au Maroc",
+   "ogDescription": "Création de site web au Maroc pour les entreprises locales : sites rapides et bilingues, tarifs affichés à partir de 2 000 MAD, devis gratuit sous un jour ouvré.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1086,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/international-web-design-agency",
+   "status": 200,
+   "title": "International Web Design Agency in Morocco | WeReact agency",
+   "titleLen": 59,
+   "description": "A Morocco-based web design partner for international founders, agencies, and teams needing clear delivery, bilingual capability, and modern development.",
+   "descLen": 152,
+   "canonical": "https://www.wereact.agency/en/international-web-design-agency",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/international-web-design-agency",
+    "fr": "https://www.wereact.agency/fr/international-web-design-agency",
+    "x-default": "https://www.wereact.agency/en/international-web-design-agency"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "International Web Design Agency in Morocco",
+   "ogDescription": "A Morocco-based web design partner for international founders, agencies, and teams needing clear delivery, bilingual capability, and modern development.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 465,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/international-web-design-agency",
+   "status": 200,
+   "title": "Agence web internationale basée au Maroc | WeReact agency",
+   "titleLen": 57,
+   "description": "Un partenaire web basé au Maroc pour fondateurs, agences et équipes internationales : livraison claire, bilingue, développement moderne.",
+   "descLen": 136,
+   "canonical": "https://www.wereact.agency/fr/international-web-design-agency",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/international-web-design-agency",
+    "fr": "https://www.wereact.agency/fr/international-web-design-agency",
+    "x-default": "https://www.wereact.agency/en/international-web-design-agency"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence web internationale basée au Maroc",
+   "ogDescription": "Un partenaire web basé au Maroc pour fondateurs, agences et équipes internationales : livraison claire, bilingue, développement moderne.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 527,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/flying-tandem",
+   "status": 200,
+   "title": "Flying Tandem - Adventure Tourism Website",
+   "titleLen": 41,
+   "description": "A high-trust adventure tourism website for paragliding bookings, safety content, and mobile-first discovery.",
+   "descLen": 108,
+   "canonical": "https://www.wereact.agency/en/work/flying-tandem",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/flying-tandem",
+    "fr": "https://www.wereact.agency/fr/work/flying-tandem",
+    "x-default": "https://www.wereact.agency/en/work/flying-tandem"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Flying Tandem - Adventure Tourism Website",
+   "ogDescription": "A high-trust adventure tourism website for paragliding bookings, safety content, and mobile-first discovery.",
+   "ogImage": "https://www.wereact.agency/images/projects/flying-tandem-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 270,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/flying-tandem",
+   "status": 200,
+   "title": "Flying Tandem - Site tourisme d'aventure",
+   "titleLen": 40,
+   "description": "Un site de tourisme d'aventure fiable pour les réservations de parapente, le contenu sécurité et une découverte pensée mobile d'abord.",
+   "descLen": 134,
+   "canonical": "https://www.wereact.agency/fr/work/flying-tandem",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/flying-tandem",
+    "fr": "https://www.wereact.agency/fr/work/flying-tandem",
+    "x-default": "https://www.wereact.agency/en/work/flying-tandem"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Flying Tandem - Site tourisme d'aventure",
+   "ogDescription": "Un site de tourisme d'aventure fiable pour les réservations de parapente, le contenu sécurité et une découverte pensée mobile d'abord.",
+   "ogImage": "https://www.wereact.agency/images/projects/flying-tandem-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 270,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/kasbah-angour",
+   "status": 200,
+   "title": "Kasbah Angour - Hospitality Website",
+   "titleLen": 35,
+   "description": "A hospitality website built to communicate Moroccan character, direct booking confidence, and premium place discovery.",
+   "descLen": 118,
+   "canonical": "https://www.wereact.agency/en/work/kasbah-angour",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/kasbah-angour",
+    "fr": "https://www.wereact.agency/fr/work/kasbah-angour",
+    "x-default": "https://www.wereact.agency/en/work/kasbah-angour"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Kasbah Angour - Hospitality Website",
+   "ogDescription": "A hospitality website built to communicate Moroccan character, direct booking confidence, and premium place discovery.",
+   "ogImage": "https://www.wereact.agency/images/projects/kasbah-angour-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 246,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/kasbah-angour",
+   "status": 200,
+   "title": "Kasbah Angour - Site hôtellerie",
+   "titleLen": 31,
+   "description": "Un site d'hôtellerie conçu pour transmettre le caractère marocain, la confiance en réservation directe et une découverte haut de gamme du lieu.",
+   "descLen": 143,
+   "canonical": "https://www.wereact.agency/fr/work/kasbah-angour",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/kasbah-angour",
+    "fr": "https://www.wereact.agency/fr/work/kasbah-angour",
+    "x-default": "https://www.wereact.agency/en/work/kasbah-angour"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Kasbah Angour - Site hôtellerie",
+   "ogDescription": "Un site d'hôtellerie conçu pour transmettre le caractère marocain, la confiance en réservation directe et une découverte haut de gamme du lieu.",
+   "ogImage": "https://www.wereact.agency/images/projects/kasbah-angour-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 246,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/your-morocco",
+   "status": 200,
+   "title": "Your Morocco - Travel Platform",
+   "titleLen": 30,
+   "description": "A Morocco travel platform for curated tours, local experiences, and multilingual destination discovery.",
+   "descLen": 103,
+   "canonical": "https://www.wereact.agency/en/work/your-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/your-morocco",
+    "fr": "https://www.wereact.agency/fr/work/your-morocco",
+    "x-default": "https://www.wereact.agency/en/work/your-morocco"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Your Morocco - Travel Platform",
+   "ogDescription": "A Morocco travel platform for curated tours, local experiences, and multilingual destination discovery.",
+   "ogImage": "https://www.wereact.agency/images/projects/your-morocco-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 242,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/your-morocco",
+   "status": 200,
+   "title": "Your Morocco - Plateforme de voyage",
+   "titleLen": 35,
+   "description": "Une plateforme de voyage au Maroc : circuits sélectionnés, expériences locales et découverte multilingue des destinations.",
+   "descLen": 122,
+   "canonical": "https://www.wereact.agency/fr/work/your-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/your-morocco",
+    "fr": "https://www.wereact.agency/fr/work/your-morocco",
+    "x-default": "https://www.wereact.agency/en/work/your-morocco"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Your Morocco - Plateforme de voyage",
+   "ogDescription": "Une plateforme de voyage au Maroc : circuits sélectionnés, expériences locales et découverte multilingue des destinations.",
+   "ogImage": "https://www.wereact.agency/images/projects/your-morocco-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 242,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/by-marrakech",
+   "status": 200,
+   "title": "By Marrakech - City Guide",
+   "titleLen": 25,
+   "description": "A modern Marrakech guide experience for places, culture, and destination content.",
+   "descLen": 81,
+   "canonical": "https://www.wereact.agency/en/work/by-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/by-marrakech",
+    "fr": "https://www.wereact.agency/fr/work/by-marrakech",
+    "x-default": "https://www.wereact.agency/en/work/by-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "By Marrakech - City Guide",
+   "ogDescription": "A modern Marrakech guide experience for places, culture, and destination content.",
+   "ogImage": "https://www.wereact.agency/images/projects/by-marrakech-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 238,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/by-marrakech",
+   "status": 200,
+   "title": "By Marrakech - Guide urbain",
+   "titleLen": 27,
+   "description": "Un guide moderne de Marrakech pour découvrir les lieux, la culture et le contenu de destination.",
+   "descLen": 96,
+   "canonical": "https://www.wereact.agency/fr/work/by-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/by-marrakech",
+    "fr": "https://www.wereact.agency/fr/work/by-marrakech",
+    "x-default": "https://www.wereact.agency/en/work/by-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "By Marrakech - Guide urbain",
+   "ogDescription": "Un guide moderne de Marrakech pour découvrir les lieux, la culture et le contenu de destination.",
+   "ogImage": "https://www.wereact.agency/images/projects/by-marrakech-full.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 238,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/trust-drivers",
+   "status": 200,
+   "title": "Trust Drivers Tours - Transport & Tours",
+   "titleLen": 39,
+   "description": "A studio-built tour and driver website concept, owned by WeReact, for visitors comparing transport options in Morocco.",
+   "descLen": 118,
+   "canonical": "https://www.wereact.agency/en/work/trust-drivers",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/trust-drivers",
+    "fr": "https://www.wereact.agency/fr/work/trust-drivers",
+    "x-default": "https://www.wereact.agency/en/work/trust-drivers"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Trust Drivers Tours - Transport & Tours",
+   "ogDescription": "A studio-built tour and driver website concept, owned by WeReact, for visitors comparing transport options in Morocco.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/trust-drivers-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 239,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/trust-drivers",
+   "status": 200,
+   "title": "Trust Drivers Tours - Transport touristique",
+   "titleLen": 43,
+   "description": "Un concept de site chauffeurs et circuits créé par le studio WeReact pour les voyageurs qui comparent les options de transport au Maroc.",
+   "descLen": 136,
+   "canonical": "https://www.wereact.agency/fr/work/trust-drivers",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/trust-drivers",
+    "fr": "https://www.wereact.agency/fr/work/trust-drivers",
+    "x-default": "https://www.wereact.agency/en/work/trust-drivers"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Trust Drivers Tours - Transport touristique",
+   "ogDescription": "Un concept de site chauffeurs et circuits créé par le studio WeReact pour les voyageurs qui comparent les options de transport au Maroc.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/trust-drivers-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 240,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/yoo-marrakech",
+   "status": 200,
+   "title": "Yoo Marrakech - Local Brand",
+   "titleLen": 27,
+   "description": "A studio-built Marrakech brand concept, owned by WeReact, designed for city visibility, service discovery, and polished mobile browsing.",
+   "descLen": 136,
+   "canonical": "https://www.wereact.agency/en/work/yoo-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/yoo-marrakech",
+    "fr": "https://www.wereact.agency/fr/work/yoo-marrakech",
+    "x-default": "https://www.wereact.agency/en/work/yoo-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Yoo Marrakech - Local Brand",
+   "ogDescription": "A studio-built Marrakech brand concept, owned by WeReact, designed for city visibility, service discovery, and polished mobile browsing.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/yoo-marrakech-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 215,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/yoo-marrakech",
+   "status": 200,
+   "title": "Yoo Marrakech - Marque locale",
+   "titleLen": 29,
+   "description": "Un concept de marque à Marrakech créé par le studio WeReact pour la visibilité locale, la découverte de services et une navigation mobile soignée.",
+   "descLen": 146,
+   "canonical": "https://www.wereact.agency/fr/work/yoo-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/yoo-marrakech",
+    "fr": "https://www.wereact.agency/fr/work/yoo-marrakech",
+    "x-default": "https://www.wereact.agency/en/work/yoo-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Yoo Marrakech - Marque locale",
+   "ogDescription": "Un concept de marque à Marrakech créé par le studio WeReact pour la visibilité locale, la découverte de services et une navigation mobile soignée.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/yoo-marrakech-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 216,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/work/morocco-atlas-guide",
+   "status": 200,
+   "title": "Morocco Atlas Guide - Travel Guide",
+   "titleLen": 34,
+   "description": "A studio-built destination guide, owned by WeReact, for Atlas mountain trips, tours, and Moroccan itinerary discovery.",
+   "descLen": 118,
+   "canonical": "https://www.wereact.agency/en/work/morocco-atlas-guide",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/morocco-atlas-guide",
+    "fr": "https://www.wereact.agency/fr/work/morocco-atlas-guide",
+    "x-default": "https://www.wereact.agency/en/work/morocco-atlas-guide"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Morocco Atlas Guide - Travel Guide",
+   "ogDescription": "A studio-built destination guide, owned by WeReact, for Atlas mountain trips, tours, and Moroccan itinerary discovery.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/morocco-atlas-guide-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 202,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/work/morocco-atlas-guide",
+   "status": 200,
+   "title": "Morocco Atlas Guide - Guide de voyage Atlas",
+   "titleLen": 43,
+   "description": "Un guide de destination créé par le studio WeReact pour les excursions dans l'Atlas, les circuits et les itinéraires au Maroc.",
+   "descLen": 126,
+   "canonical": "https://www.wereact.agency/fr/work/morocco-atlas-guide",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/work/morocco-atlas-guide",
+    "fr": "https://www.wereact.agency/fr/work/morocco-atlas-guide",
+    "x-default": "https://www.wereact.agency/en/work/morocco-atlas-guide"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Morocco Atlas Guide - Guide de voyage Atlas",
+   "ogDescription": "Un guide de destination créé par le studio WeReact pour les excursions dans l'Atlas, les circuits et les itinéraires au Maroc.",
+   "ogImage": "https://www.wereact.agency/images/projects/live/morocco-atlas-guide-full-settled.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 203,
+   "images": 2,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CreativeWork"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc",
+   "status": 200,
+   "title": "Website Cost in Morocco in 2026 | WeReact agency",
+   "titleLen": 48,
+   "description": "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom booking sites.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/combien-coute-site-web-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Website Cost in Morocco in 2026",
+   "ogDescription": "How much does a website cost in Morocco in 2026? Honest agency pricing: showcase sites from 2,000 MAD, e-commerce from 3,500 MAD, and custom booking sites.",
+   "ogImage": "https://www.wereact.agency/images/blog/agence-web-maroc.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1519,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/combien-coute-site-web-maroc",
+   "status": 200,
+   "title": "Combien coûte un site web au Maroc ? | WeReact agency",
+   "titleLen": 53,
+   "description": "Combien coûte un site web au Maroc en 2026 ? Site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, devis sur mesure pour riads et hôtels.",
+   "descLen": 151,
+   "canonical": "https://www.wereact.agency/fr/blog/combien-coute-site-web-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/combien-coute-site-web-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/combien-coute-site-web-maroc"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Combien coûte un site web au Maroc ?",
+   "ogDescription": "Combien coûte un site web au Maroc en 2026 ? Site vitrine à partir de 2 000 DH, e-commerce à partir de 3 500 DH, devis sur mesure pour riads et hôtels.",
+   "ogImage": "https://www.wereact.agency/images/blog/agence-web-maroc.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1724,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies",
+   "status": 200,
+   "title": "SEO for Agencies in the AI Era (2026) | WeReact agency",
+   "titleLen": 54,
+   "description": "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
+   "descLen": 131,
+   "canonical": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies",
+    "fr": "https://www.wereact.agency/fr/blog/seo-strategies-for-agencies",
+    "x-default": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "SEO for Agencies in the AI Era (2026)",
+   "ogDescription": "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
+   "ogImage": "https://www.wereact.agency/images/blog/seo-2026-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 330,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/seo-strategies-for-agencies",
+   "status": 200,
+   "title": "SEO à l'ère de l'IA pour agences (2026) | WeReact agency",
+   "titleLen": 56,
+   "description": "Découvrez comment positionner votre agence en 2026 en misant sur l'E-E-A-T et le SEO technique, à l'ère de l'IA générative et des nouveaux moteurs de recherche.",
+   "descLen": 160,
+   "canonical": "https://www.wereact.agency/fr/blog/seo-strategies-for-agencies",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies",
+    "fr": "https://www.wereact.agency/fr/blog/seo-strategies-for-agencies",
+    "x-default": "https://www.wereact.agency/en/blog/seo-strategies-for-agencies"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "SEO à l'ère de l'IA pour agences (2026)",
+   "ogDescription": "Découvrez comment positionner votre agence en 2026 en misant sur l'E-E-A-T et le SEO technique, à l'ère de l'IA générative et des nouveaux moteurs de recherche.",
+   "ogImage": "https://www.wereact.agency/images/blog/seo-2026-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 363,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide",
+   "status": 200,
+   "title": "Marrakech Web Design: Traffic Into Clients | WeReact agency",
+   "titleLen": 59,
+   "description": "Website design guide for Marrakech businesses: SEO, mobile UX, trust signals, and conversion paths that turn Google traffic into client inquiries.",
+   "descLen": 146,
+   "canonical": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide",
+    "fr": "https://www.wereact.agency/fr/blog/website-design-marrakech-business-guide",
+    "x-default": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Marrakech Web Design: Traffic Into Clients",
+   "ogDescription": "Website design guide for Marrakech businesses: SEO, mobile UX, trust signals, and conversion paths that turn Google traffic into client inquiries.",
+   "ogImage": "https://www.wereact.agency/images/blog/marrakech-web-design-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 669,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/website-design-marrakech-business-guide",
+   "status": 200,
+   "title": "Site web Marrakech : du trafic aux clients | WeReact agency",
+   "titleLen": 59,
+   "description": "Création de site web à Marrakech : SEO, UX mobile, confiance et parcours de conversion pour transformer le trafic Google en demandes clients.",
+   "descLen": 141,
+   "canonical": "https://www.wereact.agency/fr/blog/website-design-marrakech-business-guide",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide",
+    "fr": "https://www.wereact.agency/fr/blog/website-design-marrakech-business-guide",
+    "x-default": "https://www.wereact.agency/en/blog/website-design-marrakech-business-guide"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Site web Marrakech : du trafic aux clients",
+   "ogDescription": "Création de site web à Marrakech : SEO, UX mobile, confiance et parcours de conversion pour transformer le trafic Google en demandes clients.",
+   "ogImage": "https://www.wereact.agency/images/blog/marrakech-web-design-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 802,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco",
+   "status": 200,
+   "title": "Tourism & Hospitality SEO in Morocco | WeReact agency",
+   "titleLen": 53,
+   "description": "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco",
+    "fr": "https://www.wereact.agency/fr/blog/tourism-hospitality-seo-morocco",
+    "x-default": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Tourism & Hospitality SEO in Morocco",
+   "ogDescription": "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
+   "ogImage": "https://www.wereact.agency/images/blog/morocco-tourism-seo-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1264,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/tourism-hospitality-seo-morocco",
+   "status": 200,
+   "title": "SEO tourisme et hôtellerie au Maroc | WeReact agency",
+   "titleLen": 52,
+   "description": "SEO pour sites de tourisme et d'hôtellerie au Maroc : pages destinations, vitesse mobile, confiance et UX de conversion pour plus de demandes directes.",
+   "descLen": 151,
+   "canonical": "https://www.wereact.agency/fr/blog/tourism-hospitality-seo-morocco",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco",
+    "fr": "https://www.wereact.agency/fr/blog/tourism-hospitality-seo-morocco",
+    "x-default": "https://www.wereact.agency/en/blog/tourism-hospitality-seo-morocco"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "SEO tourisme et hôtellerie au Maroc",
+   "ogDescription": "SEO pour sites de tourisme et d'hôtellerie au Maroc : pages destinations, vitesse mobile, confiance et UX de conversion pour plus de demandes directes.",
+   "ogImage": "https://www.wereact.agency/images/blog/morocco-tourism-seo-real.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1550,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/fiche-google-business-maroc",
+   "status": 200,
+   "title": "Google Business Profile in Morocco: The Guide | WeReact agency",
+   "titleLen": 62,
+   "description": "Create, verify and optimise your Google Business Profile in Morocco to appear on Google Maps: name, categories, photos and honest reviews.",
+   "descLen": 138,
+   "canonical": "https://www.wereact.agency/en/blog/fiche-google-business-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/fiche-google-business-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/fiche-google-business-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/fiche-google-business-maroc"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Google Business Profile in Morocco: The Guide",
+   "ogDescription": "Create, verify and optimise your Google Business Profile in Morocco to appear on Google Maps: name, categories, photos and honest reviews.",
+   "ogImage": "https://www.wereact.agency/images/blog/fiche-google-business-maroc.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1315,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/fiche-google-business-maroc",
+   "status": 200,
+   "title": "Fiche Google Business au Maroc : le guide | WeReact agency",
+   "titleLen": 58,
+   "description": "Créer, valider et optimiser votre fiche Google Business au Maroc pour apparaître sur Google Maps : nom, catégories, photos et avis honnêtes.",
+   "descLen": 140,
+   "canonical": "https://www.wereact.agency/fr/blog/fiche-google-business-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/fiche-google-business-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/fiche-google-business-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/fiche-google-business-maroc"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Fiche Google Business au Maroc : le guide",
+   "ogDescription": "Créer, valider et optimiser votre fiche Google Business au Maroc pour apparaître sur Google Maps : nom, catégories, photos et avis honnêtes.",
+   "ogImage": "https://www.wereact.agency/images/blog/fiche-google-business-maroc.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1460,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc",
+   "status": 200,
+   "title": "GetYourGuide & Viator Commissions in Morocco | WeReact agency",
+   "titleLen": 61,
+   "description": "GetYourGuide, Viator, Booking.com and Airbnb commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages.",
+   "descLen": 136,
+   "canonical": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/commission-getyourguide-viator-booking-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "GetYourGuide & Viator Commissions in Morocco",
+   "ogDescription": "GetYourGuide, Viator, Booking.com and Airbnb commissions for tour operators and riads in Morocco in 2026, from the platforms’ own pages.",
+   "ogImage": "https://www.wereact.agency/images/projects/flying-tandem.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1393,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/commission-getyourguide-viator-booking-maroc",
+   "status": 200,
+   "title": "Commission GetYourGuide et Viator au Maroc | WeReact agency",
+   "titleLen": 59,
+   "description": "Commissions GetYourGuide, Viator, Booking.com et Airbnb pour les prestataires et riads au Maroc en 2026, d'après les plateformes, avec le calcul du direct.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/fr/blog/commission-getyourguide-viator-booking-maroc",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc",
+    "fr": "https://www.wereact.agency/fr/blog/commission-getyourguide-viator-booking-maroc",
+    "x-default": "https://www.wereact.agency/en/blog/commission-getyourguide-viator-booking-maroc"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Commission GetYourGuide et Viator au Maroc",
+   "ogDescription": "Commissions GetYourGuide, Viator, Booking.com et Airbnb pour les prestataires et riads au Maroc en 2026, d'après les plateformes, avec le calcul du direct.",
+   "ogImage": "https://www.wereact.agency/images/projects/flying-tandem.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1586,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech",
+   "status": 200,
+   "title": "Web Agencies in Marrakech: A Study of 66 Sites | WeReact agency",
+   "titleLen": 63,
+   "description": "Study of 66 web agency and freelancer websites ranking for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp.",
+   "descLen": 143,
+   "canonical": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech",
+    "fr": "https://www.wereact.agency/fr/blog/etude-sites-agences-web-marrakech",
+    "x-default": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Web Agencies in Marrakech: A Study of 66 Sites",
+   "ogDescription": "Study of 66 web agency and freelancer websites ranking for Marrakech in November 2026: prices, delivery times, reviews, languages and WhatsApp.",
+   "ogImage": "https://www.wereact.agency/images/blog/design.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1225,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/blog/etude-sites-agences-web-marrakech",
+   "status": 200,
+   "title": "Agences web à Marrakech : étude de 66 sites | WeReact agency",
+   "titleLen": 60,
+   "description": "Étude de 66 sites d'agences web et de freelances classés sur Google pour Marrakech en novembre 2026 : prix, délais, avis, langues et WhatsApp, avec la méthode.",
+   "descLen": 159,
+   "canonical": "https://www.wereact.agency/fr/blog/etude-sites-agences-web-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech",
+    "fr": "https://www.wereact.agency/fr/blog/etude-sites-agences-web-marrakech",
+    "x-default": "https://www.wereact.agency/en/blog/etude-sites-agences-web-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agences web à Marrakech : étude de 66 sites",
+   "ogDescription": "Étude de 66 sites d'agences web et de freelances classés sur Google pour Marrakech en novembre 2026 : prix, délais, avis, langues et WhatsApp, avec la méthode.",
+   "ogImage": "https://www.wereact.agency/images/blog/design.webp",
+   "ogImageStatus": "200 image/webp ?B",
+   "h1": 1,
+   "words": 1353,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "BlogPosting"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/ai-info",
+   "status": 200,
+   "title": "Information for AI assistants | WeReact agency",
+   "titleLen": 46,
+   "description": "Fact sheet about WeReact agency for AI assistants: what it does, location, languages, areas served, starting prices, contact and case studies.",
+   "descLen": 142,
+   "canonical": "https://www.wereact.agency/en/ai-info",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/ai-info",
+    "fr": "https://www.wereact.agency/fr/ai-info",
+    "x-default": "https://www.wereact.agency/en/ai-info"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Information for AI assistants",
+   "ogDescription": "Fact sheet about WeReact agency for AI assistants: what it does, location, languages, areas served, starting prices, contact and case studies.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 564,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "AboutPage"
+    },
+    {
+     "ok": true,
+     "type": [
+      "LocalBusiness",
+      "ProfessionalService"
+     ]
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/ai-info",
+   "status": 200,
+   "title": "Informations pour les assistants IA | WeReact agency",
+   "titleLen": 52,
+   "description": "Fiche factuelle sur WeReact agency pour les assistants IA : activité, localisation, langues, zones desservies, tarifs, contact et études de cas.",
+   "descLen": 144,
+   "canonical": "https://www.wereact.agency/fr/ai-info",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/ai-info",
+    "fr": "https://www.wereact.agency/fr/ai-info",
+    "x-default": "https://www.wereact.agency/en/ai-info"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Informations pour les assistants IA",
+   "ogDescription": "Fiche factuelle sur WeReact agency pour les assistants IA : activité, localisation, langues, zones desservies, tarifs, contact et études de cas.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 654,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "AboutPage"
+    },
+    {
+     "ok": true,
+     "type": [
+      "LocalBusiness",
+      "ProfessionalService"
+     ]
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/sitemap",
+   "status": 200,
+   "title": "Sitemap | WeReact agency",
+   "titleLen": 24,
+   "description": "WeReact sitemap: every service page, audience path, case study, guide, and company page on the site.",
+   "descLen": 100,
+   "canonical": "https://www.wereact.agency/en/sitemap",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/sitemap",
+    "fr": "https://www.wereact.agency/fr/sitemap",
+    "x-default": "https://www.wereact.agency/en/sitemap"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Sitemap",
+   "ogDescription": "WeReact sitemap: every service page, audience path, case study, guide, and company page on the site.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 277,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CollectionPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/sitemap",
+   "status": 200,
+   "title": "Plan du site | WeReact agency",
+   "titleLen": 29,
+   "description": "Plan du site WeReact : toutes les pages services, les parcours par audience, les études de cas, les guides et les pages de l’agence.",
+   "descLen": 132,
+   "canonical": "https://www.wereact.agency/fr/sitemap",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/sitemap",
+    "fr": "https://www.wereact.agency/fr/sitemap",
+    "x-default": "https://www.wereact.agency/en/sitemap"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Plan du site",
+   "ogDescription": "Plan du site WeReact : toutes les pages services, les parcours par audience, les études de cas, les guides et les pages de l’agence.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 318,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "CollectionPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  }
+ ],
+ "issues": [
+  {
+   "severity": "info",
+   "url": "/en",
+   "issue": "thin main content (37 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr",
+   "issue": "thin main content (41 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/kasbah-angour",
+   "issue": "thin main content (246 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/kasbah-angour",
+   "issue": "thin main content (246 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/your-morocco",
+   "issue": "thin main content (242 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/your-morocco",
+   "issue": "thin main content (242 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/by-marrakech",
+   "issue": "thin main content (238 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/by-marrakech",
+   "issue": "thin main content (238 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/trust-drivers",
+   "issue": "thin main content (239 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/trust-drivers",
+   "issue": "thin main content (240 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/yoo-marrakech",
+   "issue": "thin main content (215 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/yoo-marrakech",
+   "issue": "thin main content (216 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/work/morocco-atlas-guide",
+   "issue": "thin main content (202 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/fr/work/morocco-atlas-guide",
+   "issue": "thin main content (203 words)"
+  },
+  {
+   "severity": "info",
+   "url": "/en/sitemap",
+   "issue": "short title (24): \"Sitemap | WeReact agency\""
+  }
+ ]
+}

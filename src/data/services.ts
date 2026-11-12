@@ -46,7 +46,6 @@ export type ServiceLandingPage = {
   slug:
     | 'web-design-marrakech'
     | 'tourism-websites-morocco'
-    | 'seo-landing-pages'
     | 'web-design-casablanca'
     | 'agence-seo-marrakech'
     | 'web-design-rabat'
@@ -150,7 +149,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
       },
       fr: {
         title: 'Agence web à Marrakech : création de site web',
-        description: 'Agence web à Marrakech : création de sites web rapides, bilingues et prêts pour le SEO pour riads, tourisme et entreprises locales. Tarifs affichés, devis gratuit sous un jour.',
+        description: 'Agence web à Marrakech : sites rapides, bilingues et prêts pour le SEO pour riads, tourisme et entreprises locales. Prix affichés, devis gratuit sous un jour.',
         eyebrow: 'Agence web à Marrakech',
         heading: 'Agence web à Marrakech : des sites qui inspirent confiance et amènent des demandes.',
         lead: 'Création de site web pour les riads, les hôtels, les excursions et activités, et les entreprises locales : rapide sur mobile, pensé en français et en anglais, prêt pour Google, avec des tarifs de départ affichés et un devis gratuit.',
@@ -225,53 +224,6 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Créez-vous des sites pour riads, hôtels et excursions ?', answer: 'Oui, avec une approche dédiée aux [hôtels et riads](/fr/hotel-website-design) et aux [agences de voyage, excursions et activités](/fr/site-web-agence-de-voyage). Nous organisons les pages selon la manière dont les voyageurs comparent les chambres, expériences, itinéraires, inclusions, informations de sécurité et options de contact.' },
           { question: 'Le site peut-il s’adresser aux voyageurs internationaux ?', answer: 'Oui. Nous concevons pour le mobile, les publics français et anglais, les questions de voyage pratiques et des parcours de demande clairs.' },
           { question: 'Pouvez-vous améliorer un site tourisme existant ?', answer: 'Oui. Nous pouvons analyser la structure actuelle, le parcours de réservation, les manques de contenu, la vitesse et les chemins de conversion avant de proposer une amélioration ciblée. Notre [guide SEO pour le tourisme au Maroc](/fr/blog/tourism-hospitality-seo-morocco) détaille ce que nous vérifions.' },
-        ],
-      },
-    },
-  },
-  {
-    slug: 'seo-landing-pages',
-    primaryKeyword: 'SEO landing pages Morocco',
-    keywords: ['SEO landing pages Morocco', 'Google Ads landing page Marrakech', 'landing page design Morocco', 'page d’atterrissage SEO Maroc'],
-    relatedProjectIds: ['trust-drivers', 'yoo-marrakech', 'morocco-atlas-guide'],
-    relatedPageSlugs: ['agence-google-ads-maroc', 'agence-seo-marrakech', 'web-design-marrakech'],
-    relatedPostSlugs: ['seo-strategies-for-agencies', 'website-design-marrakech-business-guide'],
-    modifiedAt: '2026-11-10',
-    copy: {
-      en: {
-        title: 'SEO-Ready Landing Pages in Morocco',
-        description: 'Focused landing pages for Moroccan businesses running Google Ads, launching offers, or improving a single conversion journey.',
-        eyebrow: 'Landing pages & conversion',
-        heading: 'Landing pages that give paid traffic a clear place to convert.',
-        lead: 'A campaign does not need more decoration. It needs one clear promise, useful proof, fast mobile performance, and a contact path that makes sense for the visitor.',
-        outcomesTitle: 'Built for one important action',
-        outcomes: ['One focused offer and message hierarchy.', 'Fast mobile layout designed for paid and organic traffic.', 'Trust, FAQ, and proof placed before the lead action.', 'Conversion events ready for Google Ads and analytics measurement.'],
-        proofTitle: 'Where strategy meets the click',
-        proof: 'We pair web design, content structure, and technical tracking so a campaign landing page can be measured and improved instead of treated like a static brochure.',
-        cta: 'Plan a conversion page',
-        ctaNote: 'Tell us your offer, audience, and campaign. We reply within one business day.',
-        faqs: [
-          { question: 'Do you build landing pages for Google Ads?', answer: 'Yes. We can build a focused campaign page with clear message matching, conversion paths, event tracking, and a mobile-first experience. We can also [run the Google Ads campaign](/en/agence-google-ads-maroc) itself.' },
-          { question: 'Can a landing page rank in Google too?', answer: 'It can support organic visibility when it answers a real search need and has enough useful content, but paid-campaign pages should not be overloaded with irrelevant keywords. For organic rankings, see our [SEO agency in Marrakech](/en/agence-seo-marrakech).' },
-          { question: 'Will you help measure leads?', answer: 'We can implement the technical events needed to measure qualified form submissions and key contact actions in Google Ads and Google Analytics.' },
-        ],
-      },
-      fr: {
-        title: 'Landing pages SEO et Google Ads au Maroc',
-        description: 'Des landing pages ciblées pour les entreprises marocaines qui lancent une offre, utilisent Google Ads ou améliorent un parcours de conversion.',
-        eyebrow: 'Landing pages & conversion',
-        heading: 'Des landing pages qui donnent à votre trafic une raison claire de convertir.',
-        lead: 'Une campagne n’a pas besoin de plus de décoration. Elle a besoin d’une promesse claire, de preuves utiles, de vitesse sur mobile et d’un contact évident.',
-        outcomesTitle: 'Conçue pour une action importante',
-        outcomes: ['Une offre claire et une hiérarchie de message simple.', 'Une expérience mobile rapide pour le trafic payant et organique.', 'Preuves, FAQ et réassurance placées avant l’action.', 'Événements de conversion prêts pour Google Ads et Analytics.'],
-        proofTitle: 'Quand la stratégie rencontre le clic',
-        proof: 'Nous associons design, structure de contenu et mesure technique pour qu’une landing page puisse être analysée et améliorée, au lieu de rester une brochure statique.',
-        cta: 'Préparer ma page de conversion',
-        ctaNote: 'Présentez votre offre, votre audience et votre campagne. Nous répondons sous un jour ouvré.',
-        faqs: [
-          { question: 'Créez-vous des landing pages pour Google Ads ?', answer: 'Oui. Nous pouvons créer une page de campagne claire avec cohérence de message, parcours de conversion, suivi des événements et expérience mobile. Nous pouvons aussi [gérer la campagne Google Ads](/fr/agence-google-ads-maroc) elle-même.' },
-          { question: 'Une landing page peut-elle aussi se positionner sur Google ?', answer: 'Oui, lorsqu’elle répond à une vraie intention de recherche et contient assez de contenu utile. Une page de campagne ne doit toutefois pas être surchargée de mots-clés inutiles. Pour le référencement naturel, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
-          { question: 'Pouvez-vous aider à mesurer les leads ?', answer: 'Nous pouvons intégrer les événements nécessaires pour mesurer les formulaires qualifiés et les actions de contact importantes dans Google Ads et Google Analytics.' },
         ],
       },
     },
@@ -391,7 +343,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence seo marrakech',
     keywords: ['agence seo marrakech', 'agence seo maroc', 'référencement naturel maroc', 'consultant seo maroc', 'seo prix maroc', 'référencement naturel marrakech'],
     relatedProjectIds: ['trust-drivers', 'morocco-atlas-guide', 'kasbah-angour'],
-    relatedPageSlugs: ['web-design-marrakech', 'seo-landing-pages', 'agence-google-ads-maroc'],
+    relatedPageSlugs: ['web-design-marrakech', 'agence-google-ads-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['fiche-google-business-maroc', 'tourism-hospitality-seo-morocco', 'seo-strategies-for-agencies'],
     modifiedAt: '2026-11-10',
     copy: {
@@ -598,11 +550,11 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
   {
     slug: 'agence-google-ads-maroc',
     primaryKeyword: 'agence google ads maroc',
-    keywords: ['agence google ads maroc', 'agence google ads marrakech', 'campagne google ads maroc', 'agence sea maroc', 'publicité google maroc'],
+    keywords: ['agence google ads maroc', 'landing page maroc', 'landing page google ads', 'agence google ads marrakech', 'campagne google ads maroc', 'agence sea maroc', 'publicité google maroc'],
     relatedProjectIds: ['trust-drivers', 'yoo-marrakech', 'by-marrakech'],
-    relatedPageSlugs: ['seo-landing-pages', 'agence-seo-marrakech', 'web-design-marrakech'],
+    relatedPageSlugs: ['agence-seo-marrakech', 'web-design-marrakech', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['seo-strategies-for-agencies', 'combien-coute-site-web-maroc'],
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-12',
     copy: {
       en: {
         title: 'Google Ads Agency in Morocco',
@@ -613,13 +565,15 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'How we run paid search',
         outcomes: ['Campaign structure matched to real Moroccan search demand, in French and English.', 'Landing pages whose message matches the ad — no generic homepage traffic.', 'Conversion tracking wired to real actions: forms, WhatsApp, calls, and bookings.', 'Weekly signal checks: search terms, quality scores, and cost per enquiry — not just clicks.'],
         proofTitle: 'We run our own campaigns too',
-        proof: 'We built the conversion tracking on our own Google Ads account: form leads, WhatsApp clicks, and attribution of every enquiry. That method, with the [landing pages](/en/seo-landing-pages) that go with it, is what we apply to your campaigns.',
+        proof: 'We built the conversion tracking on our own Google Ads account: form leads, WhatsApp clicks, and attribution of every enquiry. That method, with the landing pages that go with it, is what we apply to your campaigns.',
         cta: 'Plan a campaign review',
         ctaNote: 'Tell us your offer and budget. We reply within one business day.',
         faqs: [
           { question: 'What budget do I need for Google Ads in Morocco?', answer: 'Meaningful data usually starts around 3,000-5,000 MAD per month in ad spend for local services, more in competitive niches. We size the recommendation to your market before you commit.' },
-          { question: 'Do you build the landing pages too?', answer: 'Yes, and we recommend it. A message-matched landing page with proper conversion events stops you paying for clicks that land on a generic page that does not answer the search. See our [SEO-ready landing pages](/en/seo-landing-pages).' },
+          { question: 'Do you build the landing pages too?', answer: 'Yes, and we recommend it. A message-matched landing page with proper conversion events stops you paying for clicks that land on a generic page that does not answer the search.' },
           { question: 'How do you report performance?', answer: 'You see cost per enquiry, not just clicks: qualified form submissions, WhatsApp conversations, and calls tracked as conversions, reported in plain language every month.' },
+          { question: 'Can a landing page rank in Google too?', answer: 'It can support organic visibility when it answers a real search need and has enough useful content, but paid-campaign pages should not be overloaded with irrelevant keywords. For organic rankings, see our [SEO agency in Marrakech](/en/agence-seo-marrakech).' },
+          { question: 'Will you help measure leads?', answer: 'Yes. We set up the events that measure qualified form submissions, WhatsApp clicks and calls in Google Ads and Google Analytics.' },
         ],
       },
       fr: {
@@ -631,13 +585,15 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'Notre façon de gérer le paid search',
         outcomes: ['Une structure de campagne alignée sur la vraie demande marocaine, en français et en anglais.', 'Des landing pages dont le message correspond à l’annonce — pas de trafic vers une page d’accueil générique.', 'Un suivi des conversions branché sur de vraies actions : formulaires, WhatsApp, appels et réservations.', 'Des contrôles hebdomadaires : termes de recherche, niveaux de qualité et coût par demande — pas seulement des clics.'],
         proofTitle: 'Nous gérons aussi nos propres campagnes',
-        proof: 'Nous avons construit le suivi des conversions de notre propre compte Google Ads : formulaires, clics WhatsApp et attribution de chaque demande. C’est cette méthode, avec les [landing pages](/fr/seo-landing-pages) qui vont avec, que nous appliquons à vos campagnes.',
+        proof: 'Nous avons construit le suivi des conversions de notre propre compte Google Ads : formulaires, clics WhatsApp et attribution de chaque demande. C’est cette méthode, avec les landing pages qui vont avec, que nous appliquons à vos campagnes.',
         cta: 'Planifier une revue de campagne',
         ctaNote: 'Présentez votre offre et votre budget. Nous répondons sous un jour ouvré.',
         faqs: [
           { question: 'Quel budget faut-il pour Google Ads au Maroc ?', answer: 'Des données significatives commencent généralement autour de 3 000 à 5 000 DH par mois de budget publicitaire pour des services locaux, davantage dans les niches concurrentielles. Nous dimensionnons la recommandation à votre marché avant tout engagement.' },
-          { question: 'Créez-vous aussi les landing pages ?', answer: 'Oui, et nous le recommandons. Une landing page alignée sur le message de l’annonce, avec de vrais événements de conversion, évite de payer des clics envoyés vers une page générique qui ne répond pas à la recherche. Voir nos [landing pages SEO et Google Ads](/fr/seo-landing-pages).' },
+          { question: 'Créez-vous aussi les landing pages ?', answer: 'Oui, et nous le recommandons. Une landing page alignée sur le message de l’annonce, avec de vrais événements de conversion, évite de payer des clics envoyés vers une page générique qui ne répond pas à la recherche.' },
           { question: 'Comment présentez-vous les résultats ?', answer: 'Vous voyez le coût par demande, pas seulement les clics : formulaires qualifiés, conversations WhatsApp et appels suivis comme conversions, présentés en langage clair chaque mois.' },
+          { question: 'Une landing page peut-elle aussi se positionner sur Google ?', answer: 'Oui, lorsqu’elle répond à une vraie intention de recherche et contient assez de contenu utile. Une page de campagne ne doit toutefois pas être surchargée de mots-clés inutiles. Pour le référencement naturel, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
+          { question: 'Pouvez-vous aider à mesurer les demandes ?', answer: 'Oui. Nous mettons en place les événements qui mesurent les formulaires qualifiés, les clics WhatsApp et les appels dans Google Ads et Google Analytics.' },
         ],
       },
     },
@@ -653,7 +609,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     modifiedAt: '2026-11-10',
     copy: {
       en: {
-        title: 'Websites for Travel Agencies, Tours and Activities in Morocco',
+        title: 'Websites for Tour Operators in Morocco',
         description: 'Website design for travel agencies, tours and activity operators in Morocco: one page per activity, visible prices, booking requests and WhatsApp. From 2,000 MAD.',
         eyebrow: 'Travel agencies, tours and activities',
         heading: 'A travel agency website that takes bookings directly, not only through the platforms.',
@@ -712,8 +668,8 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ],
       },
       fr: {
-        title: 'Site web pour agence de voyage, excursions et activités au Maroc',
-        description: 'Création de site web pour agences de voyage, excursions et activités au Maroc : une page par activité, prix affichés, demande de réservation et WhatsApp. À partir de 2 000 MAD.',
+        title: 'Site web agence de voyage et excursions au Maroc',
+        description: 'Site web pour agences de voyage, excursions et activités au Maroc : une page par activité, prix affichés, réservation et WhatsApp. À partir de 2 000 MAD.',
         eyebrow: 'Agences de voyage, excursions et activités',
         heading: 'Un site d’agence de voyage qui reçoit les réservations en direct, pas seulement via les plateformes.',
         lead: 'Pour les agences réceptives, les prestataires d’excursions et d’activités et le transport touristique au Maroc : une page par activité et par lieu, les informations que le voyageur vérifie avant de payer, et WhatsApp à côté du prix. C’est le volet réservation de nos [sites tourisme et hôtellerie](/fr/tourism-websites-morocco).',
@@ -777,7 +733,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'création site e-commerce maroc',
     keywords: ['création site e-commerce maroc', 'creation site web e commerce maroc', 'création boutique en ligne maroc', 'prix site e-commerce maroc', 'e-commerce website Morocco'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'kasbah-angour'],
-    relatedPageSlugs: ['web-design-marrakech', 'website-design-moroccan-businesses', 'seo-landing-pages', 'agence-seo-marrakech'],
+    relatedPageSlugs: ['web-design-marrakech', 'website-design-moroccan-businesses', 'agence-google-ads-maroc', 'agence-seo-marrakech'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
     modifiedAt: '2026-11-10',
@@ -876,7 +832,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     copy: {
       en: {
         title: 'Website Design in Tangier: Web and SEO Agency',
-        description: 'Website design in Tangier for businesses, hotels and services: fast sites in French and English, Google search foundations, from 2,000 MAD, free quote within one business day.',
+        description: 'Website design in Tangier for businesses, hotels and services: fast French and English sites, Google search foundations, from 2,000 MAD, quote within a day.',
         eyebrow: 'Websites for Tangier',
         heading: 'Website design in Tangier, for a city that faces Europe as much as Morocco.',
         lead: 'Between the port, the industrial zones, tourism and the city’s shops and services, a Tangier business does not serve customers who all speak the same language. Your website has to be clear to each of them, fast on mobile and easy to find on Google. We build it in French and English, with its [search foundations](/en/agence-seo-marrakech) from the start.',
@@ -920,8 +876,8 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         ],
       },
       fr: {
-        title: 'Création de site web à Tanger : agence web et SEO',
-        description: 'Création de site web à Tanger pour entreprises, hôtels et services : sites rapides en français et en anglais, fondations SEO, à partir de 2 000 MAD, devis gratuit sous un jour ouvré.',
+        title: 'Création de site web à Tanger, agence SEO',
+        description: 'Création de site web à Tanger pour entreprises, hôtels et services : sites rapides FR/EN, référencement Google, à partir de 2 000 MAD, devis sous un jour.',
         eyebrow: 'Sites web pour Tanger',
         heading: 'Création de site web à Tanger, pour une ville tournée vers l’Europe autant que vers le Maroc.',
         lead: 'Entre le port, les zones industrielles, le tourisme et les commerces et services de la ville, une entreprise de Tanger ne s’adresse pas à des clients qui parlent tous la même langue. Votre site doit être clair pour chacun d’eux, rapide sur mobile et facile à trouver sur Google. Nous le créons en français et en anglais, avec ses [fondations de référencement](/fr/agence-seo-marrakech) dès le départ.',

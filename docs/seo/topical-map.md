@@ -25,14 +25,13 @@ graph LR
     SEO[/agence-seo-marrakech/]
     GBP[/blog/fiche-google-business-maroc/]
     ADS[/agence-google-ads-maroc/]
-    LP[/seo-landing-pages/]
     SEOS[/blog/seo-strategies-for-agencies/]
   end
   WDM --- MA & CITIES & ECOM & COST & GUIDE & STUDY
   TOUR --- TRAVEL & HOTEL & TSEO
   TRAVEL --- COMM
   HOTEL --- COMM
-  SEO --- GBP & ADS & LP & SEOS
+  SEO --- GBP & ADS & SEOS
   TRAVEL -.-> GBP
   HOTEL -.-> SEO
   COST -.-> ECOM & HOTEL & TRAVEL
@@ -69,7 +68,7 @@ graph LR
 | `/fr/agence-seo-marrakech` | **Hub** | agence seo marrakech · seo maroc | Live |
 | `/fr/blog/fiche-google-business-maroc` | Spoke (guide) | fiche google my business · google maps | **New** |
 | `/fr/agence-google-ads-maroc` | Spoke (money) | agence google ads maroc | Live |
-| `/fr/seo-landing-pages` | Spoke (money) | landing page maroc | Live |
+| `/fr/seo-landing-pages` | — | landing page maroc | Merged into the Google Ads page on Nov 12, 2026 (never indexed by Google) |
 | `/fr/blog/seo-strategies-for-agencies` | Spoke (guide) | — | Live but thin; rewrite or merge later |
 
 ## Pillar 4 — The company (entity and trust)

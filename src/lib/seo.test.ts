@@ -31,7 +31,7 @@ test('creates a localized Service schema for a landing page', () => {
 });
 
 test('creates FAQPage schema from factual page answers', () => {
-  const page = getServiceLandingPage('seo-landing-pages');
+  const page = getServiceLandingPage('agence-google-ads-maroc');
   assert.ok(page);
   const schema = createFaqJsonLd(page.copy.en.faqs);
   assert.equal(schema['@type'], 'FAQPage');
@@ -165,7 +165,7 @@ test('every other node references the business by @id instead of repeating it', 
 
 test('links a priced service page to its pricing catalog', () => {
   const priced = getServiceLandingPage('web-design-marrakech');
-  const unpriced = getServiceLandingPage('seo-landing-pages');
+  const unpriced = getServiceLandingPage('agence-google-ads-maroc');
   assert.ok(priced && unpriced);
   const pricedSchema = createServicePageJsonLd(priced, 'en');
   assert.deepEqual('hasOfferCatalog' in pricedSchema && pricedSchema.hasOfferCatalog, { '@id': 'https://www.wereact.agency/en/web-design-marrakech#pricing' });

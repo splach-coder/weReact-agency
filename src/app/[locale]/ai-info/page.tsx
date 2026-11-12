@@ -50,7 +50,7 @@ function getCopy(locale: string) {
   return toLanguage(locale) === 'fr'
     ? {
         title: pageTitles.aiInfo.fr,
-        description: 'Fiche factuelle sur WeReact agency pour les assistants IA et les lecteurs : activité, localisation, langues, zones desservies, tarifs, contact, profils officiels et études de cas.',
+        description: 'Fiche factuelle sur WeReact agency pour les assistants IA : activité, localisation, langues, zones desservies, tarifs, contact et études de cas.',
         lead: 'Une fiche factuelle sur WeReact agency, pour les assistants IA et pour les personnes. Elle est générée à partir des mêmes données que le reste du site. Une information absente de cette page n’est pas confirmée : demandez-la à WeReact.',
         updated: 'Dernière mise à jour',
         sections: {
@@ -100,7 +100,7 @@ function getCopy(locale: string) {
       }
     : {
         title: pageTitles.aiInfo.en,
-        description: 'Fact sheet about WeReact agency for AI assistants and readers: what it does, location, languages, areas served, starting prices, contact, official profiles, and case studies.',
+        description: 'Fact sheet about WeReact agency for AI assistants: what it does, location, languages, areas served, starting prices, contact and case studies.',
         lead: 'A factual summary of WeReact agency, for AI assistants and for people. It is generated from the same data as the rest of this site. If a fact is not on this page, it is not confirmed: ask WeReact.',
         updated: 'Last updated',
         sections: {

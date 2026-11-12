@@ -74,13 +74,13 @@ export default function Footer() {
     ? [
         { name: 'Création de site à Marrakech', href: '/web-design-marrakech' },
         { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
-        { name: 'Landing pages SEO', href: '/seo-landing-pages' },
+        { name: 'Création de site web au Maroc', href: '/website-design-moroccan-businesses' },
         { name: 'Agence SEO à Marrakech', href: '/agence-seo-marrakech' },
       ]
     : [
         { name: 'Website design in Marrakech', href: '/web-design-marrakech' },
         { name: 'Tourism websites in Morocco', href: '/tourism-websites-morocco' },
-        { name: 'SEO-ready landing pages', href: '/seo-landing-pages' },
+        { name: 'Website design in Morocco', href: '/website-design-moroccan-businesses' },
         { name: 'SEO agency in Marrakech', href: '/agence-seo-marrakech' },
       ];
 
