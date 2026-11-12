@@ -54,7 +54,8 @@ export type ServiceLandingPage = {
     | 'agence-google-ads-maroc'
     | 'site-web-agence-de-voyage'
     | 'creation-site-e-commerce-maroc'
-    | 'web-design-tanger';
+    | 'web-design-tanger'
+    | 'agence-marketing-digital-marrakech';
   primaryKeyword: string;
   keywords: readonly string[];
   relatedProjectIds: readonly string[];
@@ -111,7 +112,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence web marrakech',
     keywords: ['agence web marrakech', 'création site web marrakech', 'création site internet marrakech', 'website design Marrakech', 'web agency Marrakech', 'agence création site web', 'refonte site web marrakech', 'site web professionnel Maroc'],
     relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'flying-tandem'],
-    relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'agence-seo-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
+    relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'agence-seo-marrakech', 'agence-marketing-digital-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['etude-sites-agences-web-marrakech', 'combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
     modifiedAt: '2026-11-10',
@@ -143,7 +144,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'How long does it take to build a website?', answer: 'Plan for 2 to 3 days for most defined-scope builds: a simple showcase site moves fastest, while booking or [e-commerce](/en/creation-site-e-commerce-maroc) features need more preparation. We agree on a clear timeline with the quote.' },
           { question: 'What types of businesses do you work with in Marrakech?', answer: 'We work with [hotels and riads](/en/hotel-website-design), [travel agencies and activity operators](/en/site-web-agence-de-voyage), local services, restaurants, lifestyle brands, and teams that need a credible website with a clear route to enquiry.' },
           { question: 'Can you build a website in English and French?', answer: 'Yes. We plan language structure, navigation, metadata, and conversion paths for English and French audiences from the beginning.' },
-          { question: 'Is SEO included in a new website?', answer: 'Every build includes practical SEO foundations: clean page structure, metadata, performance-minded implementation, sitemap support, and conversion-ready content structure. For ongoing rankings and your Google Business Profile, see our [SEO agency in Marrakech](/en/agence-seo-marrakech).' },
+          { question: 'Is SEO included in a new website?', answer: 'Every build includes practical SEO foundations: clean page structure, metadata, performance-minded implementation, sitemap support, and conversion-ready content structure. For ongoing rankings and your Google Business Profile, see our [SEO agency in Marrakech](/en/agence-seo-marrakech); to run the website, Google search, Maps and Ads together, our [digital marketing agency in Marrakech](/en/agence-marketing-digital-marrakech).' },
           { question: 'Do you work outside Marrakech?', answer: 'Yes. We are based in Marrakech and work with clients across Morocco ([Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat), [Tangier](/en/web-design-tanger), [Agadir](/en/web-design-agadir)) as well as remotely for [international projects](/en/international-web-design-agency).' },
         ],
       },
@@ -174,7 +175,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Combien de temps pour créer un site ?', answer: 'Comptez 2 à 3 jours pour la plupart des sites à périmètre défini : un site vitrine simple avance plus vite, tandis qu’une réservation ou une [boutique en ligne](/fr/creation-site-e-commerce-maroc) demande plus de préparation. Nous fixons un calendrier clair dès le devis.' },
           { question: 'Avec quelles entreprises travaillez-vous à Marrakech ?', answer: 'Nous accompagnons [les hôtels et riads](/fr/hotel-website-design), [les agences de voyage et les activités](/fr/site-web-agence-de-voyage), les services locaux, les restaurants, les marques lifestyle et les équipes qui ont besoin d’un site crédible avec un parcours de contact simple.' },
           { question: 'Pouvez-vous créer un site en français et en anglais ?', answer: 'Oui. Nous prévoyons la structure des langues, la navigation, les métadonnées et les parcours de conversion pour les audiences françaises et anglaises dès le départ.' },
-          { question: 'Le SEO est-il inclus dans la création du site ?', answer: 'Chaque projet intègre des fondations SEO concrètes : structure de page propre, métadonnées, performance, sitemap et contenu pensé pour la conversion. Pour le positionnement dans la durée et la fiche Google, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
+          { question: 'Le SEO est-il inclus dans la création du site ?', answer: 'Chaque projet intègre des fondations SEO concrètes : structure de page propre, métadonnées, performance, sitemap et contenu pensé pour la conversion. Pour le positionnement dans la durée et la fiche Google, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech) ; pour piloter ensemble le site, la recherche Google, Maps et Ads, notre [agence marketing digital à Marrakech](/fr/agence-marketing-digital-marrakech).' },
           { question: 'Travaillez-vous ailleurs qu’à Marrakech ?', answer: 'Oui. Nous sommes basés à Marrakech et accompagnons des clients dans tout le Maroc ([Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat), [Tanger](/fr/web-design-tanger), [Agadir](/fr/web-design-agadir)) ainsi qu’à distance pour les [projets internationaux](/fr/international-web-design-agency).' },
         ],
       },
@@ -343,7 +344,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence seo marrakech',
     keywords: ['agence seo marrakech', 'agence seo maroc', 'référencement naturel maroc', 'consultant seo maroc', 'seo prix maroc', 'référencement naturel marrakech'],
     relatedProjectIds: ['trust-drivers', 'morocco-atlas-guide', 'kasbah-angour'],
-    relatedPageSlugs: ['web-design-marrakech', 'agence-google-ads-maroc', 'website-design-moroccan-businesses'],
+    relatedPageSlugs: ['web-design-marrakech', 'agence-google-ads-maroc', 'agence-marketing-digital-marrakech', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['fiche-google-business-maroc', 'tourism-hospitality-seo-morocco', 'seo-strategies-for-agencies'],
     modifiedAt: '2026-11-10',
     copy: {
@@ -360,7 +361,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Request an SEO review',
         ctaNote: 'Share your website and goals. We reply within one business day.',
         faqs: [
-          { question: 'How much does SEO cost in Morocco?', answer: 'It depends on your market and starting point. After a free review of your site we propose a scoped monthly plan or a one-off technical fix, each with clear deliverables — no vague retainers. If you need enquiries while SEO builds up, [Google Ads](/en/agence-google-ads-maroc) can run alongside it.' },
+          { question: 'How much does SEO cost in Morocco?', answer: 'It depends on your market and starting point. After a free review of your site we propose a scoped monthly plan or a one-off technical fix, each with clear deliverables — no vague retainers. If you need enquiries while SEO builds up, [Google Ads](/en/agence-google-ads-maroc) can run alongside it, and our [digital marketing offer](/en/agence-marketing-digital-marrakech) runs both with the website and the Google listing.' },
           { question: 'How long until SEO shows results?', answer: 'Technical fixes and local SEO often move within weeks. Competitive commercial keywords typically take three to six months of consistent work. We set expectations from the first review.' },
           { question: 'Do you also handle Google Business Profile?', answer: 'Yes. For local businesses in Marrakech and across Morocco, the map pack is often the fastest win, so we optimize your profile, categories, photos, and reviews alongside the website. Our [Google Business Profile guide for Morocco](/en/blog/fiche-google-business-maroc) explains the method.' },
         ],
@@ -378,7 +379,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         cta: 'Demander un audit SEO',
         ctaNote: 'Partagez votre site et vos objectifs. Nous répondons sous un jour ouvré.',
         faqs: [
-          { question: 'Combien coûte le SEO au Maroc ?', answer: 'Cela dépend de votre marché et de votre point de départ. Après une revue gratuite de votre site, nous proposons un plan mensuel cadré ou une intervention technique ponctuelle, avec des livrables clairs — pas de forfait flou. Si vous avez besoin de demandes pendant que le SEO progresse, [Google Ads](/fr/agence-google-ads-maroc) peut tourner en parallèle.' },
+          { question: 'Combien coûte le SEO au Maroc ?', answer: 'Cela dépend de votre marché et de votre point de départ. Après une revue gratuite de votre site, nous proposons un plan mensuel cadré ou une intervention technique ponctuelle, avec des livrables clairs — pas de forfait flou. Si vous avez besoin de demandes pendant que le SEO progresse, [Google Ads](/fr/agence-google-ads-maroc) peut tourner en parallèle, et notre [offre de marketing digital](/fr/agence-marketing-digital-marrakech) pilote les deux avec le site et la fiche Google.' },
           { question: 'En combien de temps le SEO donne-t-il des résultats ?', answer: 'Les corrections techniques et le SEO local bougent souvent en quelques semaines. Les mots-clés commerciaux concurrentiels demandent en général trois à six mois de travail régulier. Nous fixons les attentes dès la première revue.' },
           { question: 'Gérez-vous aussi la fiche Google Business ?', answer: 'Oui. Pour les entreprises locales à Marrakech et partout au Maroc, le pack local est souvent le gain le plus rapide : nous optimisons la fiche, les catégories, les photos et les avis en parallèle du site. Notre [guide de la fiche Google Business au Maroc](/fr/blog/fiche-google-business-maroc) explique la méthode.' },
         ],
@@ -552,7 +553,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     primaryKeyword: 'agence google ads maroc',
     keywords: ['agence google ads maroc', 'landing page maroc', 'landing page google ads', 'agence google ads marrakech', 'campagne google ads maroc', 'agence sea maroc', 'publicité google maroc'],
     relatedProjectIds: ['trust-drivers', 'yoo-marrakech', 'by-marrakech'],
-    relatedPageSlugs: ['agence-seo-marrakech', 'web-design-marrakech', 'website-design-moroccan-businesses'],
+    relatedPageSlugs: ['agence-seo-marrakech', 'agence-marketing-digital-marrakech', 'web-design-marrakech', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['seo-strategies-for-agencies', 'combien-coute-site-web-maroc'],
     modifiedAt: '2026-11-12',
     copy: {
@@ -571,7 +572,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'What budget do I need for Google Ads in Morocco?', answer: 'Meaningful data usually starts around 3,000-5,000 MAD per month in ad spend for local services, more in competitive niches. We size the recommendation to your market before you commit.' },
           { question: 'Do you build the landing pages too?', answer: 'Yes, and we recommend it. A message-matched landing page with proper conversion events stops you paying for clicks that land on a generic page that does not answer the search.' },
-          { question: 'How do you report performance?', answer: 'You see cost per enquiry, not just clicks: qualified form submissions, WhatsApp conversations, and calls tracked as conversions, reported in plain language every month.' },
+          { question: 'How do you report performance?', answer: 'You see cost per enquiry, not just clicks: qualified form submissions, WhatsApp conversations, and calls tracked as conversions, reported in plain language every month. When Ads runs alongside SEO and your Google listing, one report covers all three: see our [digital marketing agency in Marrakech](/en/agence-marketing-digital-marrakech).' },
           { question: 'Can a landing page rank in Google too?', answer: 'It can support organic visibility when it answers a real search need and has enough useful content, but paid-campaign pages should not be overloaded with irrelevant keywords. For organic rankings, see our [SEO agency in Marrakech](/en/agence-seo-marrakech).' },
           { question: 'Will you help measure leads?', answer: 'Yes. We set up the events that measure qualified form submissions, WhatsApp clicks and calls in Google Ads and Google Analytics.' },
         ],
@@ -591,7 +592,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Quel budget faut-il pour Google Ads au Maroc ?', answer: 'Des données significatives commencent généralement autour de 3 000 à 5 000 DH par mois de budget publicitaire pour des services locaux, davantage dans les niches concurrentielles. Nous dimensionnons la recommandation à votre marché avant tout engagement.' },
           { question: 'Créez-vous aussi les landing pages ?', answer: 'Oui, et nous le recommandons. Une landing page alignée sur le message de l’annonce, avec de vrais événements de conversion, évite de payer des clics envoyés vers une page générique qui ne répond pas à la recherche.' },
-          { question: 'Comment présentez-vous les résultats ?', answer: 'Vous voyez le coût par demande, pas seulement les clics : formulaires qualifiés, conversations WhatsApp et appels suivis comme conversions, présentés en langage clair chaque mois.' },
+          { question: 'Comment présentez-vous les résultats ?', answer: 'Vous voyez le coût par demande, pas seulement les clics : formulaires qualifiés, conversations WhatsApp et appels suivis comme conversions, présentés en langage clair chaque mois. Quand Ads tourne avec le SEO et votre fiche Google, un seul rapport couvre les trois : voir notre [agence marketing digital à Marrakech](/fr/agence-marketing-digital-marrakech).' },
           { question: 'Une landing page peut-elle aussi se positionner sur Google ?', answer: 'Oui, lorsqu’elle répond à une vraie intention de recherche et contient assez de contenu utile. Une page de campagne ne doit toutefois pas être surchargée de mots-clés inutiles. Pour le référencement naturel, voir notre [agence SEO à Marrakech](/fr/agence-seo-marrakech).' },
           { question: 'Pouvez-vous aider à mesurer les demandes ?', answer: 'Oui. Nous mettons en place les événements qui mesurent les formulaires qualifiés, les clics WhatsApp et les appels dans Google Ads et Google Analytics.' },
         ],
@@ -648,7 +649,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             heading: 'Three ways to take bookings',
             paragraphs: [
               'A booking request form with manual confirmation suits most small operators: the traveler picks a date and group size, you confirm availability and price.',
-              'WhatsApp first is how most enquiries arrive in Morocco. The button sits next to the price and the itinerary, and the message is pre-filled with the activity and date so you can answer fast.',
+              'WhatsApp first is how most enquiries arrive in Morocco. The button sits next to the price and the itinerary, and the message is pre-filled with the activity and date so you can answer fast. You can make such a link yourself, with its QR code, in our free [WhatsApp link generator](/en/outils/generateur-lien-whatsapp).',
               'An online booking engine with payment makes sense when you have many departures a day. If you already use one, we place it on your activity pages; if not, we decide together at scoping whether the volume justifies it.',
             ],
           },
@@ -707,7 +708,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             heading: 'Trois façons de prendre les réservations',
             paragraphs: [
               'Un formulaire de demande avec confirmation manuelle convient à la plupart des petits prestataires : le voyageur choisit une date et le nombre de personnes, vous confirmez la disponibilité et le prix.',
-              'WhatsApp d’abord, parce que c’est par là qu’arrivent la plupart des demandes au Maroc. Le bouton est placé à côté du prix et de l’itinéraire, et le message est pré-rempli avec l’activité et la date pour que vous répondiez vite.',
+              'WhatsApp d’abord, parce que c’est par là qu’arrivent la plupart des demandes au Maroc. Le bouton est placé à côté du prix et de l’itinéraire, et le message est pré-rempli avec l’activité et la date pour que vous répondiez vite. Vous pouvez créer ce lien vous-même, avec son QR code, dans notre [générateur de lien WhatsApp](/fr/outils/generateur-lien-whatsapp) gratuit.',
               'Un moteur de réservation en ligne avec paiement se justifie quand vous avez plusieurs départs par jour. Si vous en utilisez déjà un, nous l’intégrons à vos pages d’activités ; sinon, nous décidons ensemble au cadrage si votre volume le justifie.',
             ],
           },
@@ -918,6 +919,140 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           { question: 'Faites-vous aussi le référencement (SEO) à Tanger ?', answer: 'Oui. Chaque site inclut ses fondations SEO, et notre [accompagnement SEO](/fr/agence-seo-marrakech) couvre le référencement local et la fiche Google Business pour les entreprises de Tanger.' },
           { question: 'Le site peut-il être en espagnol ?', answer: 'Le français et l’anglais sont prévus dès le départ. Une troisième langue comme l’espagnol ou l’arabe peut s’ajouter : nous la chiffrons au devis selon le volume de contenu.' },
           { question: 'Travaillez-vous avec des entreprises de Tanger depuis Marrakech ?', answer: 'Oui. Les projets se mènent à distance par appels, WhatsApp et aperçus partagés.' },
+        ],
+      },
+    },
+  },
+  {
+    slug: 'agence-marketing-digital-marrakech',
+    primaryKeyword: 'agence marketing digital marrakech',
+    keywords: ['agence marketing digital marrakech', 'agence marketing marrakech', 'agence digitale marrakech', 'agence de marketing digital marrakech', 'agence marketing digital maroc', 'agence digitale maroc', 'marketing digital marrakech', 'digital marketing agency Marrakech'],
+    relatedProjectIds: ['flying-tandem', 'trust-drivers', 'kasbah-angour'],
+    relatedPageSlugs: ['agence-seo-marrakech', 'agence-google-ads-maroc', 'web-design-marrakech', 'website-design-moroccan-businesses'],
+    relatedPostSlugs: ['fiche-google-business-maroc', 'combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech'],
+    showPricing: true,
+    modifiedAt: '2026-11-12',
+    copy: {
+      en: {
+        title: 'Digital Marketing Agency in Marrakech',
+        description: 'Digital marketing agency in Marrakech: website, Google search, Google Maps listing and Google Ads run together and measured in customer enquiries.',
+        eyebrow: 'Measurable digital marketing',
+        heading: 'A digital marketing agency in Marrakech that counts enquiries, not likes.',
+        lead: 'For a local business, digital marketing comes down to four channels: a [fast website](/en/web-design-marrakech), [Google search rankings](/en/agence-seo-marrakech), the Google Maps listing and [Google Ads](/en/agence-google-ads-maroc). We build and run them together, with one number in mind: how many enquiries each channel brings you.',
+        outcomesTitle: 'What we take care of',
+        outcomes: [
+          'The website, the base for everything else: fast on mobile, in French and English, with WhatsApp and a short form.',
+          'Search engine optimisation: pages that answer what your customers actually type, measured in Search Console.',
+          'The Google Business Profile: categories, services, photos, reviews and posts, so you show on the map.',
+          'Google Ads when you need enquiries fast, with conversion tracking on forms, WhatsApp and calls.',
+          'A plain-language monthly report: enquiries received, cost per enquiry, rankings. No impressions or likes.',
+        ],
+        proofTitle: 'Tested on our own sites first',
+        proof: 'We built the websites of [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and [Kasbah Angour](/en/work/kasbah-angour), a hotel in the Atlas. We also run test sites such as [Trust Drivers Tours](/en/work/trust-drivers), where we try page structures, local signals and tracking on real searches before we use them for clients.',
+        cta: 'Ask for a free review',
+        ctaNote: 'Share your website or your Google listing. We reply within one business day.',
+        insights: {
+          title: 'What your customers search in Marrakech, and what a click costs',
+          lead: 'Average monthly searches in Morocco, in French, and the bid range to appear at the top of the page, from the Google Ads Keyword Planner on November 12, 2026. Searches made from abroad, such as tourists planning a trip, are not counted.',
+          items: [
+            { figure: '27,100', label: '“restaurant marrakech” searches a month. A top-of-page click costs 0.43 to 6.11 MAD.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '12,100', label: '“hammam marrakech”. A click costs 2.26 to 8.76 MAD, and competition is rated high.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '6,600', label: '“location voiture marrakech” (car rental). A click costs 3.44 to 14.35 MAD.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '4,400', label: '“dentiste marrakech”. A click costs 4.06 to 8.39 MAD.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '2,400', label: '“montgolfière marrakech” (hot-air balloon). Up to 25.30 MAD a click, the most expensive in our list.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '1,600', label: '“avocat marrakech” (lawyer). A click costs 2.01 to 10.92 MAD, with almost no advertisers.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+          ],
+          note: 'Example: a dentist paying 8 MAD a click, with one visitor in ten asking for an appointment, pays about 80 MAD per request. Organic rankings and the Google listing lower that cost over time; Google Ads brings requests from the first week. [How we run campaigns](/en/agence-google-ads-maroc).',
+        },
+        sections: [
+          {
+            heading: 'Where to start, depending on where you are',
+            paragraphs: [
+              'No website and no Google listing yet: we start with both. The Google Business Profile is free and shows on the map once it is verified; the website gives Google and your customers a page to read. Our [Google Business Profile guide](/en/blog/fiche-google-business-maroc) has the steps.',
+              'A website that brings nothing: we measure first. Search Console shows which searches you appear for and at what position. Most often the site is slow, has one page for every service, or never names the city.',
+              'You need enquiries this month: Google Ads on a dedicated landing page, while organic rankings build up. The budget is sized from the price of a click in your sector, as in the figures above.',
+            ],
+          },
+          {
+            heading: 'Social media, and what we do not do',
+            paragraphs: [
+              'Instagram and Facebook are useful to show your work and stay in touch. We do not sell their management. We connect your profiles to the website, to the right WhatsApp link and to your Google listing, so people who discover you there can contact you or book.',
+              'If you are looking for a communication agency for posts, videos or brand campaigns, we are not the right fit. If you want Google to send you customers, we are.',
+            ],
+          },
+          {
+            heading: 'What you see every month',
+            paragraphs: [
+              'A short report: enquiries by channel (form, WhatsApp, call), cost per enquiry on Google Ads, searches and rankings moving in Search Console, what was done and what comes next. The Google accounts (Search Console, Analytics, Ads, the Business Profile) are in your name, so you keep everything if you stop working with us.',
+            ],
+          },
+        ],
+        faqs: [
+          { question: 'How much does a digital marketing agency in Marrakech cost?', answer: 'Websites start from 2,000 MAD for a showcase site and from 3,500 MAD for an e-commerce site. SEO and Google Ads management are proposed after a free review, as a scoped monthly plan or a one-off job, with written deliverables. The Google Ads ad budget comes on top of our fees. Our [website pricing guide](/en/blog/combien-coute-site-web-maroc) explains what moves a quote.' },
+          { question: 'Do you manage Instagram and Facebook?', answer: 'No. We focus on the channels that can be measured in enquiries: the website, Google search, Google Maps and Google Ads. We link your social profiles to them so no contact is lost.' },
+          { question: 'How fast will I see results?', answer: 'Google Ads: from the first week of running. The Google listing: a few weeks after verification and the first reviews. Organic rankings: usually three to six months on competitive commercial searches.' },
+          { question: 'Do you work outside Marrakech?', answer: 'Yes, across Morocco, remotely and in French or English. See our pages for [Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat) and [Tangier](/en/web-design-tanger), or [website design across Morocco](/en/website-design-moroccan-businesses).' },
+        ],
+      },
+      fr: {
+        title: 'Agence marketing digital à Marrakech',
+        description: 'Agence marketing digital à Marrakech : site web, référencement Google, fiche Google Maps et Google Ads pilotés ensemble, mesurés en demandes clients.',
+        eyebrow: 'Marketing digital mesurable',
+        heading: 'Une agence marketing digital à Marrakech qui compte les demandes clients, pas les likes.',
+        lead: 'Pour une entreprise locale, le marketing digital tient en quatre canaux : un [site web rapide](/fr/web-design-marrakech), le [référencement sur Google](/fr/agence-seo-marrakech), la fiche Google Maps et [Google Ads](/fr/agence-google-ads-maroc). Nous les construisons et les pilotons ensemble, avec un seul chiffre en tête : combien de demandes chaque canal vous apporte.',
+        outcomesTitle: 'Ce que nous prenons en charge',
+        outcomes: [
+          'Le site, la base de tout le reste : rapide sur mobile, en français et en anglais, avec WhatsApp et un formulaire court.',
+          'Le référencement naturel : des pages qui répondent à ce que vos clients tapent vraiment, mesurées dans Search Console.',
+          'La fiche Google Business : catégories, services, photos, avis et publications, pour apparaître sur la carte.',
+          'Google Ads quand il faut des demandes vite, avec le suivi des conversions sur les formulaires, WhatsApp et les appels.',
+          'Un rapport mensuel en langage clair : demandes reçues, coût par demande, positions. Pas d’impressions ni de likes.',
+        ],
+        proofTitle: 'Testé d’abord sur nos propres sites',
+        proof: 'Nous avons créé les sites de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et de [Kasbah Angour](/fr/work/kasbah-angour), un hôtel dans l’Atlas. Nous gérons aussi des sites d’essai comme [Trust Drivers Tours](/fr/work/trust-drivers), où nous testons structures de pages, signaux locaux et suivi des conversions sur de vraies recherches avant de les utiliser pour nos clients.',
+        cta: 'Demander une revue gratuite',
+        ctaNote: 'Partagez votre site ou votre fiche Google. Nous répondons sous un jour ouvré.',
+        insights: {
+          title: 'Ce que vos clients cherchent à Marrakech, et le prix d’un clic',
+          lead: 'Recherches mensuelles moyennes au Maroc, en français, et fourchette d’enchère pour apparaître en haut de page, d’après le Planificateur de mots-clés Google Ads, relevé le 12 novembre 2026. Les recherches faites depuis l’étranger, comme celles des touristes qui préparent leur voyage, ne sont pas comptées.',
+          items: [
+            { figure: '27 100', label: 'recherches « restaurant marrakech » par mois. Le clic en haut de page coûte de 0,43 à 6,11 DH.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '12 100', label: '« hammam marrakech ». Le clic coûte de 2,26 à 8,76 DH, et la concurrence est jugée forte.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '6 600', label: '« location voiture marrakech ». Le clic coûte de 3,44 à 14,35 DH.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '4 400', label: '« dentiste marrakech ». Le clic coûte de 4,06 à 8,39 DH.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '2 400', label: '« montgolfière marrakech ». Jusqu’à 25,30 DH le clic, le plus cher de notre liste.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+            { figure: '1 600', label: '« avocat marrakech ». Le clic coûte de 2,01 à 10,92 DH, avec presque aucun annonceur.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
+          ],
+          note: 'Exemple : un dentiste qui paie 8 DH le clic, avec un visiteur sur dix qui demande un rendez-vous, paie environ 80 DH par demande. Le référencement naturel et la fiche Google font baisser ce coût avec le temps ; Google Ads apporte des demandes dès la première semaine. [Comment nous gérons les campagnes](/fr/agence-google-ads-maroc).',
+        },
+        sections: [
+          {
+            heading: 'Par quoi commencer, selon votre situation',
+            paragraphs: [
+              'Pas encore de site ni de fiche Google : on commence par les deux. La fiche Google Business est gratuite et apparaît sur la carte une fois validée ; le site donne à Google et à vos clients une page à lire. Notre [guide de la fiche Google Business](/fr/blog/fiche-google-business-maroc) détaille les étapes.',
+              'Un site existe mais n’apporte rien : on mesure d’abord. Search Console montre sur quelles recherches vous apparaissez et à quelle position. Le plus souvent, le site est lent, n’a qu’une page pour tous les services, ou ne cite jamais la ville.',
+              'Il vous faut des demandes ce mois-ci : Google Ads sur une landing page dédiée, pendant que le référencement progresse. Le budget se dimensionne à partir du prix du clic dans votre secteur, comme dans les chiffres ci-dessus.',
+            ],
+          },
+          {
+            heading: 'Les réseaux sociaux, et ce que nous n’en faisons pas',
+            paragraphs: [
+              'Instagram et Facebook restent utiles pour montrer votre travail et garder le contact. Nous ne vendons pas leur gestion. Nous relions vos profils au site, au bon lien WhatsApp et à votre fiche Google, pour que les personnes qui vous découvrent là-bas puissent vous contacter ou réserver.',
+              'Si vous cherchez une agence de communication pour des publications, des vidéos ou des campagnes de marque, nous ne sommes pas la bonne adresse. Si vous voulez que Google vous envoie des clients, si.',
+            ],
+          },
+          {
+            heading: 'Ce que vous voyez chaque mois',
+            paragraphs: [
+              'Un rapport court : demandes par canal (formulaire, WhatsApp, appel), coût par demande sur Google Ads, recherches et positions qui progressent dans Search Console, ce qui a été fait et ce qui vient ensuite. Les comptes Google (Search Console, Analytics, Ads, fiche Business) sont à votre nom : vous gardez tout si vous arrêtez de travailler avec nous.',
+            ],
+          },
+        ],
+        faqs: [
+          { question: 'Combien coûte une agence marketing digital à Marrakech ?', answer: 'Les sites démarrent à partir de 2 000 DH pour un site vitrine et de 3 500 DH pour un site e-commerce. Le référencement et la gestion Google Ads sont proposés après une revue gratuite, en plan mensuel cadré ou en intervention ponctuelle, avec des livrables écrits. Le budget publicitaire Google Ads s’ajoute à nos honoraires. Notre [guide des prix d’un site web au Maroc](/fr/blog/combien-coute-site-web-maroc) explique ce qui fait varier un devis.' },
+          { question: 'Gérez-vous Instagram et Facebook ?', answer: 'Non. Nous nous concentrons sur les canaux qui se mesurent en demandes : le site, la recherche Google, Google Maps et Google Ads. Nous y relions vos profils sociaux pour qu’aucun contact ne se perde.' },
+          { question: 'En combien de temps voit-on des résultats ?', answer: 'Google Ads : dès la première semaine de diffusion. La fiche Google : quelques semaines après la validation et les premiers avis. Le référencement naturel : en général trois à six mois sur les recherches commerciales concurrentielles.' },
+          { question: 'Travaillez-vous hors de Marrakech ?', answer: 'Oui, partout au Maroc, à distance, en français ou en anglais. Voir nos pages [Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat) et [Tanger](/fr/web-design-tanger), ou la [création de site web au Maroc](/fr/website-design-moroccan-businesses).' },
         ],
       },
     },

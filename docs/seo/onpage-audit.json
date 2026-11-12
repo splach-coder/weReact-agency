@@ -1,6 +1,6 @@
 {
- "base": "http://127.0.0.1:8809",
- "generatedAt": "2026-11-12T20:05:56.072Z",
+ "base": "https://www.wereact.agency",
+ "generatedAt": "2026-11-12T22:21:33.273Z",
  "pages": [
   {
    "url": "https://www.wereact.agency/en",
@@ -402,7 +402,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 1052,
+   "words": 1095,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -445,7 +445,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 1188,
+   "words": 1233,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -660,7 +660,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 647,
+   "words": 687,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -699,7 +699,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 735,
+   "words": 778,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -996,7 +996,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 642,
+   "words": 690,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -1035,7 +1035,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 719,
+   "words": 771,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -1074,7 +1074,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 1252,
+   "words": 1270,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -1117,7 +1117,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 1442,
+   "words": 1459,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -1290,6 +1290,92 @@
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
    "words": 1009,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/en/agence-marketing-digital-marrakech",
+   "status": 200,
+   "title": "Digital Marketing Agency in Marrakech | WeReact agency",
+   "titleLen": 54,
+   "description": "Digital marketing agency in Marrakech: website, Google search, Google Maps listing and Google Ads run together and measured in customer enquiries.",
+   "descLen": 146,
+   "canonical": "https://www.wereact.agency/en/agence-marketing-digital-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-marketing-digital-marrakech",
+    "fr": "https://www.wereact.agency/fr/agence-marketing-digital-marrakech",
+    "x-default": "https://www.wereact.agency/en/agence-marketing-digital-marrakech"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "Digital Marketing Agency in Marrakech",
+   "ogDescription": "Digital marketing agency in Marrakech: website, Google search, Google Maps listing and Google Ads run together and measured in customer enquiries.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1357,
+   "images": 4,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "Service"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    },
+    {
+     "ok": true,
+     "type": "OfferCatalog"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/agence-marketing-digital-marrakech",
+   "status": 200,
+   "title": "Agence marketing digital à Marrakech | WeReact agency",
+   "titleLen": 53,
+   "description": "Agence marketing digital à Marrakech : site web, référencement Google, fiche Google Maps et Google Ads pilotés ensemble, mesurés en demandes clients.",
+   "descLen": 149,
+   "canonical": "https://www.wereact.agency/fr/agence-marketing-digital-marrakech",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/agence-marketing-digital-marrakech",
+    "fr": "https://www.wereact.agency/fr/agence-marketing-digital-marrakech",
+    "x-default": "https://www.wereact.agency/en/agence-marketing-digital-marrakech"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Agence marketing digital à Marrakech",
+   "ogDescription": "Agence marketing digital à Marrakech : site web, référencement Google, fiche Google Maps et Google Ads pilotés ensemble, mesurés en demandes clients.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 1524,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -2312,7 +2398,7 @@
    "ogImage": "https://www.wereact.agency/images/projects/flying-tandem.webp",
    "ogImageStatus": "200 image/webp ?B",
    "h1": 1,
-   "words": 1393,
+   "words": 1405,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -2351,7 +2437,7 @@
    "ogImage": "https://www.wereact.agency/images/projects/flying-tandem.webp",
    "ogImageStatus": "200 image/webp ?B",
    "h1": 1,
-   "words": 1586,
+   "words": 1596,
    "images": 4,
    "noAlt": 0,
    "noSize": 0,
@@ -2449,6 +2535,92 @@
    ]
   },
   {
+   "url": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp",
+   "status": 200,
+   "title": "WhatsApp Link Generator (wa.me) with QR Code | WeReact agency",
+   "titleLen": 61,
+   "description": "Free WhatsApp link generator: turn your number into a wa.me link with a pre-filled message and a QR code, for your website, Instagram bio or printed cards.",
+   "descLen": 155,
+   "canonical": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp",
+    "fr": "https://www.wereact.agency/fr/outils/generateur-lien-whatsapp",
+    "x-default": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp"
+   },
+   "lang": "en",
+   "robots": "index, follow",
+   "ogTitle": "WhatsApp Link Generator (wa.me) with QR Code",
+   "ogDescription": "Free WhatsApp link generator: turn your number into a wa.me link with a pre-filled message and a QR code, for your website, Instagram bio or printed cards.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 811,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "WebPage"
+    },
+    {
+     "ok": true,
+     "type": "WebApplication"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
+   "url": "https://www.wereact.agency/fr/outils/generateur-lien-whatsapp",
+   "status": 200,
+   "title": "Générateur de lien WhatsApp (wa.me) et QR code | WeReact agency",
+   "titleLen": 63,
+   "description": "Générateur de lien WhatsApp gratuit : votre numéro en lien wa.me avec message pré-rempli et QR code, pour votre site, votre bio Instagram ou vos cartes.",
+   "descLen": 152,
+   "canonical": "https://www.wereact.agency/fr/outils/generateur-lien-whatsapp",
+   "hreflang": {
+    "en": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp",
+    "fr": "https://www.wereact.agency/fr/outils/generateur-lien-whatsapp",
+    "x-default": "https://www.wereact.agency/en/outils/generateur-lien-whatsapp"
+   },
+   "lang": "fr",
+   "robots": "index, follow",
+   "ogTitle": "Générateur de lien WhatsApp (wa.me) et QR code",
+   "ogDescription": "Générateur de lien WhatsApp gratuit : votre numéro en lien wa.me avec message pré-rempli et QR code, pour votre site, votre bio Instagram ou vos cartes.",
+   "ogImage": "https://www.wereact.agency/og-image.jpg",
+   "ogImageStatus": "200 image/jpeg ?B",
+   "h1": 1,
+   "words": 864,
+   "images": 0,
+   "noAlt": 0,
+   "noSize": 0,
+   "ld": [
+    {
+     "ok": true,
+     "type": "WebPage"
+    },
+    {
+     "ok": true,
+     "type": "WebApplication"
+    },
+    {
+     "ok": true,
+     "type": "FAQPage"
+    },
+    {
+     "ok": true,
+     "type": "BreadcrumbList"
+    }
+   ]
+  },
+  {
    "url": "https://www.wereact.agency/en/ai-info",
    "status": 200,
    "title": "Information for AI assistants | WeReact agency",
@@ -2468,7 +2640,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 564,
+   "words": 570,
    "images": 0,
    "noAlt": 0,
    "noSize": 0,
@@ -2510,7 +2682,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 654,
+   "words": 660,
    "images": 0,
    "noAlt": 0,
    "noSize": 0,
@@ -2552,7 +2724,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 277,
+   "words": 293,
    "images": 0,
    "noAlt": 0,
    "noSize": 0,
@@ -2587,7 +2759,7 @@
    "ogImage": "https://www.wereact.agency/og-image.jpg",
    "ogImageStatus": "200 image/jpeg ?B",
    "h1": 1,
-   "words": 318,
+   "words": 335,
    "images": 0,
    "noAlt": 0,
    "noSize": 0,

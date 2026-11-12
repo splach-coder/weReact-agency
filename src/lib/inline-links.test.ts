@@ -5,6 +5,7 @@ import { serviceLandingPages, type ServiceLocaleCopy } from '../data/services';
 import { audienceLandingPages } from '../data/audiences';
 import { blogPosts } from '../data/blog';
 import { projects } from '../data/projects';
+import { freeTools } from '../data/tools';
 
 test('strips inline link markup to its anchor text', () => {
   assert.equal(
@@ -37,7 +38,7 @@ test('every inline link in article Q&As points at a page in the same language', 
 
 test('every inline link in landing copy points at a real page in the same language', () => {
   const growthSlugs = new Set<string>([...serviceLandingPages, ...audienceLandingPages].map((page) => page.slug));
-  const staticPaths = new Set(['', '/contact', '/work', '/about', '/book', '/blog', '/sitemap', '/ai-info']);
+  const staticPaths = new Set(['', '/contact', '/work', '/about', '/book', '/blog', '/sitemap', '/ai-info', ...freeTools.map((tool) => `/outils/${tool.slug}`)]);
   const postSlugs = new Set(blogPosts.map((post) => post.slug));
   const projectIds = new Set(projects.map((project) => project.id));
 

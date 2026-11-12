@@ -709,7 +709,7 @@ export const blogPosts: BlogPost[] = [
             <ul>
                 <li><strong>Never move a platform booking off the platform.</strong> A traveler who booked on Airbnb or GetYourGuide belongs to that booking; asking them to pay you outside it breaks the platform’s terms. Direct bookings are for travelers who come to you first.</li>
                 <li><strong>Check your contract before offering a lower price direct.</strong> Some agreements limit the prices you can show elsewhere.</li>
-                <li><strong>Make the direct path obvious where people already find you:</strong> the website button on your Google profile, your Instagram bio, the card in your rooms or vehicles.</li>
+                <li><strong>Make the direct path obvious where people already find you:</strong> the website button on your Google profile, your Instagram bio, the card in your rooms or vehicles. A <a href="/en/outils/generateur-lien-whatsapp">WhatsApp link with a QR code</a> works in all three places.</li>
                 <li><strong>Put WhatsApp next to the price</strong> and answer fast. Most enquiries in Morocco arrive there.</li>
                 <li><strong>Give each activity or room its own page</strong> with the details travelers check before paying. Our <a href="/en/blog/tourism-hospitality-seo-morocco">tourism SEO guide</a> has the checklist.</li>
             </ul>
@@ -776,7 +776,7 @@ export const blogPosts: BlogPost[] = [
                 <ul>
                     <li><strong>Ne déplacez jamais une réservation de plateforme en dehors de la plateforme.</strong> Un voyageur qui a réservé sur Airbnb ou GetYourGuide relève de cette réservation ; lui demander de vous payer à côté enfreint les conditions de la plateforme. La réservation directe concerne les voyageurs qui viennent d'abord à vous.</li>
                     <li><strong>Vérifiez votre contrat avant d'afficher un prix plus bas en direct.</strong> Certains contrats encadrent les prix que vous pouvez afficher ailleurs.</li>
-                    <li><strong>Rendez le chemin direct évident là où l'on vous trouve déjà :</strong> le bouton « Site Web » de votre fiche Google, votre bio Instagram, la carte dans vos chambres ou vos véhicules.</li>
+                    <li><strong>Rendez le chemin direct évident là où l'on vous trouve déjà :</strong> le bouton « Site Web » de votre fiche Google, votre bio Instagram, la carte dans vos chambres ou vos véhicules. Un <a href="/fr/outils/generateur-lien-whatsapp">lien WhatsApp avec QR code</a> fonctionne aux trois endroits.</li>
                     <li><strong>Placez WhatsApp à côté du prix</strong> et répondez vite. C'est par là qu'arrivent la plupart des demandes au Maroc.</li>
                     <li><strong>Donnez à chaque activité ou chambre sa propre page</strong> avec les informations que le voyageur vérifie avant de payer. Notre <a href="/fr/blog/tourism-hospitality-seo-morocco">guide SEO tourisme</a> donne la liste.</li>
                 </ul>

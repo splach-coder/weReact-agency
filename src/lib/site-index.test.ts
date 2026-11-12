@@ -20,7 +20,7 @@ test('the HTML sitemap lists every page from the data, in both languages', () =>
 });
 
 test('groups the sitemap under services, audiences, case studies, guides and company', () => {
-  assert.deepEqual(getSitemapSections('en').map((section) => section.id), ['services', 'audiences', 'work', 'guides', 'company']);
+  assert.deepEqual(getSitemapSections('en').map((section) => section.id), ['services', 'audiences', 'work', 'guides', 'tools', 'company']);
 });
 
 test('uses localized titles on the French sitemap', () => {

@@ -68,6 +68,7 @@ graph LR
 | `/fr/agence-seo-marrakech` | **Hub** | agence seo marrakech · seo maroc | Live |
 | `/fr/blog/fiche-google-business-maroc` | Spoke (guide) | fiche google my business · google maps | **New** |
 | `/fr/agence-google-ads-maroc` | Spoke (money) | agence google ads maroc | Live |
+| `/fr/agence-marketing-digital-marrakech` | Spoke (money) | agence marketing digital marrakech · agence digitale maroc | **New** Nov 12, 2026 — the four channels together, with sector click prices from Keyword Planner |
 | `/fr/seo-landing-pages` | — | landing page maroc | Merged into the Google Ads page on Nov 12, 2026 (never indexed by Google) |
 | `/fr/blog/seo-strategies-for-agencies` | Spoke (guide) | — | Live but thin; rewrite or merge later |
 
@@ -76,6 +77,48 @@ graph LR
 `/fr/about`, `/fr/work` and the case studies, `/fr/book`, `/fr/contact`, and two new pages for machines and people who want
 everything in one place: `/fr/sitemap` (HTML sitemap) and `/fr/ai-info` (fact sheet for AI assistants), plus `/llms.txt`.
 The entity graph behind them is documented in [`entity-map.html`](entity-map.html).
+
+## Pillar 5 — Starting and running a small business online in Morocco (traffic engine)
+
+Added on November 12, 2026, when the target became **1,000 organic visits a day**. The commercial queries of pillars 1–3 add up
+to roughly 7,000 searches a month in Morocco: even first place on all of them is about 50 visits a day. The volume is in the
+questions people ask while they set up a business, the moment they also need a website, a Google listing and WhatsApp.
+Source: Google Ads Keyword Planner, Morocco, [`data/volumes-adjacent-2026-11-12.csv`](data/volumes-adjacent-2026-11-12.csv).
+
+| Page | Type | Main queries (searches/month, Morocco) | Status |
+|---|---|---|---|
+| `/fr/agence-marketing-digital-marrakech` | Money page (pillar 3) | agence marketing marrakech 260 · agence marketing digital marrakech 210 · agence digitale maroc 320 · agence digitale marrakech 140 | **Live Nov 12** — honest scope: no social media management |
+| `/fr/outils/generateur-lien-whatsapp` | Free tool | lien whatsapp 480 · wa me 260 · lien whatsapp numéro 70 | **Live Nov 12** — wa.me link, pre-filled message, QR code, button code |
+| `/fr/blog/auto-entrepreneur-maroc` | Guide (hub of this pillar) | auto entrepreneur maroc 12,100 · statut 480 · carte 390 · facture 390 · déclaration 140 | Next — sourced from official texts |
+| Arabic version of the auto-entrepreneur guide | Guide | المقاول الذاتي 18,100 · مقاول ذاتي 14,800 · بطاقة المقاول الذاتي 1,900 | Needs an Arabic route (decision pending) |
+| Invoice generator for auto-entrepreneurs | Free tool | facture auto entrepreneur maroc 390 · facture maroc 390 · modèle facture maroc 170 · facture proforma 1,000 | Next — after the guide fixes the mandatory mentions |
+| TVA calculator (20/14/10/7 %) | Free tool | calcul tva 1,000 · tva maroc 1,000 · calcul tva maroc 480 · الضريبة على القيمة المضافة 880 | Planned |
+| ICE, certificat négatif, registre de commerce guides | Guides | ice maroc 27,100 · السجل التجاري 8,100 · certificat négatif 6,600 · registre de commerce maroc 1,900 | Planned; mostly portal look-ups, so only the "how to" share is winnable |
+| Domain name and hosting in Morocco | Guide | nom de domaine maroc 1,000 · domaine maroc 720 · hébergement web maroc 320 | Planned |
+| E-commerce in Morocco: YouCan, Shopify, WooCommerce, payment (CMI) | Guide | e commerce maroc 480 · shopify maroc 260 · dropshipping maroc 210 · cmi paiement en ligne 140 | Planned; links to the e-commerce money page |
+
+Every page in this pillar links to the matching money page (website, e-commerce, Google listing, SEO) in its first screen and
+ends with the same offer. Navigational searches (ae.gov.ma login, damancom, simpl, youcan, whatsapp business download) are not
+targets: the searcher wants the portal or the app.
+
+### What 1,000 a day takes
+
+Estimated visits a month **if** each page reaches the top three for its main queries (15–25 % of searches become visits; overlaps
+removed). These are scenarios, not forecasts.
+
+| Lane | Searches/month | Visits/month at top 3 |
+|---|---|---|
+| Commercial pages (pillars 1–3, incl. digital marketing) | ~10,000 | ~1,700 |
+| Auto-entrepreneur, French | ~13,500 | ~2,000 |
+| Auto-entrepreneur, Arabic | ~40,000 | ~6,000 |
+| Business admin (ICE, RC, certificat négatif, TVA, invoices) | ~45,000, mostly portal look-ups | ~4,000 |
+| Google listing, domains, hosting, e-commerce, WhatsApp | ~12,000 | ~1,500 |
+| **Total** | | **~15,000 (≈ 500 a day)** |
+
+So 1,000 a day needs more than Morocco-French pages ranking well: the Arabic versions, every tool, a steady rhythm of new pages
+(two to three a week) and links from Moroccan sites and directories. Milestones to check against (targets, not
+forecasts): 30 a day by February 2027, 150 a day by mid-2027, 500 a day by the end of 2027, 1,000 a day as the stretch target. Clients still come from the
+commercial lane; the rest feeds it through internal links and the offer at the end of each page.
 
 ## Internal link rules
 

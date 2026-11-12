@@ -4,6 +4,7 @@ import { blogPosts } from '@/data/blog';
 import { projects } from '@/data/projects';
 import { serviceLandingPages } from '@/data/services';
 import { audienceLandingPages } from '@/data/audiences';
+import { freeTools } from '@/data/tools';
 import { getContentLastModified } from '@/lib/site-index';
 
 const STATIC_ROUTE_PRIORITY: Record<string, number> = {
@@ -81,5 +82,14 @@ export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes, ...workRoutes, ...postRoutes, ...indexRoutes];
+  const toolRoutes = freeTools.flatMap((tool) =>
+    siteConfig.locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/outils/${tool.slug}`,
+      lastModified: new Date(tool.modifiedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  );
+
+  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes, ...workRoutes, ...postRoutes, ...toolRoutes, ...indexRoutes];
 }

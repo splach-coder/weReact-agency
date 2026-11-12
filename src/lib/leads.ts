@@ -72,6 +72,8 @@ const ALLOWED_SOURCE_PAGES = new Set([
   'site-web-agence-de-voyage',
   'creation-site-e-commerce-maroc',
   'web-design-tanger',
+  'agence-marketing-digital-marrakech',
+  'generateur-lien-whatsapp',
   'book',
   'website-design-moroccan-businesses',
   'international-web-design-agency',

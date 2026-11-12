@@ -76,12 +76,14 @@ export default function Footer() {
         { name: 'Sites tourisme au Maroc', href: '/tourism-websites-morocco' },
         { name: 'Création de site web au Maroc', href: '/website-design-moroccan-businesses' },
         { name: 'Agence SEO à Marrakech', href: '/agence-seo-marrakech' },
+        { name: 'Agence marketing digital', href: '/agence-marketing-digital-marrakech' },
       ]
     : [
         { name: 'Website design in Marrakech', href: '/web-design-marrakech' },
         { name: 'Tourism websites in Morocco', href: '/tourism-websites-morocco' },
         { name: 'Website design in Morocco', href: '/website-design-moroccan-businesses' },
         { name: 'SEO agency in Marrakech', href: '/agence-seo-marrakech' },
+        { name: 'Digital marketing agency', href: '/agence-marketing-digital-marrakech' },
       ];
 
   // Small links in the bottom row: the HTML sitemap and the fact sheet for AI assistants.
@@ -89,10 +91,12 @@ export default function Footer() {
     ? [
         { name: 'Plan du site', href: '/sitemap' },
         { name: 'Infos pour les assistants IA', href: '/ai-info' },
+        { name: 'Générateur de lien WhatsApp', href: '/outils/generateur-lien-whatsapp' },
       ]
     : [
         { name: 'Sitemap', href: '/sitemap' },
         { name: 'Info for AI assistants', href: '/ai-info' },
+        { name: 'WhatsApp link generator', href: '/outils/generateur-lien-whatsapp' },
       ];
 
   const socials = [

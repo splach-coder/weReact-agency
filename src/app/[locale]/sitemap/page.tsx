@@ -20,14 +20,14 @@ function getCopy(locale: string) {
         title: pageTitles.sitemap.fr,
         description: 'Plan du site WeReact : toutes les pages services, les parcours par audience, les études de cas, les guides et les pages de l’agence.',
         lead: 'Toutes les pages du site, regroupées par sujet. La liste est générée à partir des données du site : une nouvelle page y apparaît automatiquement.',
-        pages: (count: number) => `${count} pages`,
+        pages: (count: number) => `${count} page${count === 1 ? "" : "s"}`,
         xml: 'Version XML pour les moteurs de recherche',
       }
     : {
         title: pageTitles.sitemap.en,
         description: 'WeReact sitemap: every service page, audience path, case study, guide, and company page on the site.',
         lead: 'Every page on the site, grouped by topic. The list is generated from the site data, so a new page shows up here on its own.',
-        pages: (count: number) => `${count} pages`,
+        pages: (count: number) => `${count} page${count === 1 ? "" : "s"}`,
         xml: 'XML version for search engines',
       };
 }

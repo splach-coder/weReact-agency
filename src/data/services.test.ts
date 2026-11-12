@@ -5,7 +5,7 @@ import { blogPosts } from './blog';
 import { getServiceLandingPage, serviceLandingPages, servicePricing } from './services';
 
 test('provides the approved commercial service pages', () => {
-  assert.equal(serviceLandingPages.length, 11);
+  assert.equal(serviceLandingPages.length, 12);
   assert.equal(getServiceLandingPage('web-design-marrakech')?.primaryKeyword, 'agence web marrakech');
   assert.equal(getServiceLandingPage('agence-web-marrakech'), undefined);
   assert.equal(getServiceLandingPage('missing'), undefined);

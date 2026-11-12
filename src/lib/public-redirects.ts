@@ -15,6 +15,8 @@ const CURRENT_PUBLIC_PATHS = new Set([
   '/site-web-agence-de-voyage',
   '/creation-site-e-commerce-maroc',
   '/web-design-tanger',
+  '/agence-marketing-digital-marrakech',
+  '/outils/generateur-lien-whatsapp',
   '/about',
   '/book',
   '/website-design-moroccan-businesses',

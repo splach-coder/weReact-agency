@@ -3,6 +3,7 @@ import { serviceLandingPages, servicePricing, type ServicePricingTier } from '@/
 import { audienceLandingPages } from '@/data/audiences';
 import { projects, type Project } from '@/data/projects';
 import { blogPosts, getLocalizedPost } from '@/data/blog';
+import { freeTools } from '@/data/tools';
 import { getAboutCopy } from '@/data/about';
 import { getBlogUi } from '@/data/blog-ui';
 import { stripInlineLinks } from '@/lib/inline-links';
@@ -32,6 +33,7 @@ export function getContentLastModified(): string {
     ...audienceLandingPages.map((page) => page.modifiedAt),
     ...projects.map((project) => project.modifiedAt),
     ...blogPosts.map((post) => post.modifiedAt),
+    ...freeTools.map((tool) => tool.modifiedAt),
   ];
   return dates.reduce((latest, date) => (date > latest ? date : latest));
 }
@@ -104,7 +106,7 @@ export type SiteLink = {
   meta?: string;
 };
 
-export type SiteSectionId = 'services' | 'audiences' | 'work' | 'guides' | 'company';
+export type SiteSectionId = 'services' | 'audiences' | 'work' | 'guides' | 'tools' | 'company';
 
 export type SiteSection = {
   id: SiteSectionId;
@@ -117,6 +119,7 @@ const sectionTitles: Record<SiteSectionId, Record<Language, string>> = {
   audiences: { en: 'Who we work with', fr: 'Pour qui nous travaillons' },
   work: { en: 'Case studies', fr: 'Études de cas' },
   guides: { en: 'Guides', fr: 'Guides' },
+  tools: { en: 'Free tools', fr: 'Outils gratuits' },
   company: { en: 'Company', fr: 'L’agence' },
 };
 
@@ -161,6 +164,15 @@ export function getGuideLinks(locale: string): SiteLink[] {
   });
 }
 
+export function getToolLinks(locale: string): SiteLink[] {
+  const language = toLanguage(locale);
+  return freeTools.map((tool) => ({
+    href: `/${language}/outils/${tool.slug}`,
+    title: tool.copy[language].title,
+    description: tool.copy[language].summary,
+  }));
+}
+
 export function getCompanyLinks(locale: string): SiteLink[] {
   const language = toLanguage(locale);
   const isFr = language === 'fr';
@@ -198,6 +210,7 @@ export function getSitemapSections(locale: string): SiteSection[] {
         ...getGuideLinks(language),
       ],
     },
+    { id: 'tools', title: title('tools'), links: getToolLinks(language) },
     { id: 'company', title: title('company'), links: getCompanyLinks(language) },
   ];
 }

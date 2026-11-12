@@ -1,6 +1,6 @@
 # On-page SEO audit
 
-Generated 2026-11-12 20:05Z by `scripts/seo/onpage-audit.mjs` against `http://127.0.0.1:8809`, 70 URLs from the sitemap.
+Generated 2026-11-12 22:21Z by `scripts/seo/onpage-audit.mjs` against `https://www.wereact.agency`, 74 URLs from the sitemap.
 
 **Critical:** 0 · **Warnings:** 0 · **Info:** 15
 
@@ -38,28 +38,30 @@ Generated 2026-11-12 20:05Z by `scripts/seo/onpage-audit.mjs` against `http://12
 | /fr/book | 34 | 117 | 1 | 69 | 1 (0) | BreadcrumbList |
 | /en/blog | 54 | 117 | 1 | 433 | 10 (0) |  |
 | /fr/blog | 55 | 130 | 1 | 517 | 10 (0) |  |
-| /en/web-design-marrakech | 56 | 164 | 1 | 1052 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
-| /fr/web-design-marrakech | 62 | 158 | 1 | 1188 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /en/web-design-marrakech | 56 | 164 | 1 | 1095 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /fr/web-design-marrakech | 62 | 158 | 1 | 1233 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/tourism-websites-morocco | 60 | 144 | 1 | 725 | 5 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/tourism-websites-morocco | 58 | 139 | 1 | 819 | 5 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/web-design-casablanca | 57 | 153 | 1 | 1111 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/web-design-casablanca | 63 | 155 | 1 | 1239 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
-| /en/agence-seo-marrakech | 49 | 143 | 1 | 647 | 4 (0) | Service, FAQPage, BreadcrumbList |
-| /fr/agence-seo-marrakech | 51 | 149 | 1 | 735 | 4 (0) | Service, FAQPage, BreadcrumbList |
+| /en/agence-seo-marrakech | 49 | 143 | 1 | 687 | 4 (0) | Service, FAQPage, BreadcrumbList |
+| /fr/agence-seo-marrakech | 51 | 149 | 1 | 778 | 4 (0) | Service, FAQPage, BreadcrumbList |
 | /en/web-design-rabat | 48 | 143 | 1 | 694 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/web-design-rabat | 54 | 135 | 1 | 791 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/web-design-agadir | 49 | 141 | 1 | 672 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/web-design-agadir | 55 | 146 | 1 | 778 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/hotel-website-design | 44 | 150 | 1 | 847 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/hotel-website-design | 44 | 153 | 1 | 961 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
-| /en/agence-google-ads-maroc | 45 | 140 | 1 | 642 | 4 (0) | Service, FAQPage, BreadcrumbList |
-| /fr/agence-google-ads-maroc | 43 | 135 | 1 | 719 | 4 (0) | Service, FAQPage, BreadcrumbList |
-| /en/site-web-agence-de-voyage | 55 | 162 | 1 | 1252 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
-| /fr/site-web-agence-de-voyage | 65 | 153 | 1 | 1442 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /en/agence-google-ads-maroc | 45 | 140 | 1 | 690 | 4 (0) | Service, FAQPage, BreadcrumbList |
+| /fr/agence-google-ads-maroc | 43 | 135 | 1 | 771 | 4 (0) | Service, FAQPage, BreadcrumbList |
+| /en/site-web-agence-de-voyage | 55 | 162 | 1 | 1270 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /fr/site-web-agence-de-voyage | 65 | 153 | 1 | 1459 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/creation-site-e-commerce-maroc | 53 | 163 | 1 | 885 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/creation-site-e-commerce-maroc | 53 | 162 | 1 | 984 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/web-design-tanger | 62 | 156 | 1 | 917 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/web-design-tanger | 58 | 154 | 1 | 1009 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /en/agence-marketing-digital-marrakech | 54 | 146 | 1 | 1357 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
+| /fr/agence-marketing-digital-marrakech | 53 | 149 | 1 | 1524 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/website-design-moroccan-businesses | 63 | 156 | 1 | 957 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /fr/website-design-moroccan-businesses | 46 | 161 | 1 | 1086 | 4 (0) | Service, FAQPage, BreadcrumbList, OfferCatalog |
 | /en/international-web-design-agency | 59 | 152 | 1 | 465 | 4 (0) | Service, FAQPage, BreadcrumbList |
@@ -88,11 +90,13 @@ Generated 2026-11-12 20:05Z by `scripts/seo/onpage-audit.mjs` against `http://12
 | /fr/blog/tourism-hospitality-seo-morocco | 52 | 151 | 1 | 1550 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
 | /en/blog/fiche-google-business-maroc | 62 | 138 | 1 | 1315 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
 | /fr/blog/fiche-google-business-maroc | 58 | 140 | 1 | 1460 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
-| /en/blog/commission-getyourguide-viator-booking-maroc | 61 | 136 | 1 | 1393 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
-| /fr/blog/commission-getyourguide-viator-booking-maroc | 59 | 155 | 1 | 1586 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
+| /en/blog/commission-getyourguide-viator-booking-maroc | 61 | 136 | 1 | 1405 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
+| /fr/blog/commission-getyourguide-viator-booking-maroc | 59 | 155 | 1 | 1596 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
 | /en/blog/etude-sites-agences-web-marrakech | 63 | 143 | 1 | 1225 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
 | /fr/blog/etude-sites-agences-web-marrakech | 60 | 159 | 1 | 1353 | 4 (0) | BlogPosting, BreadcrumbList, FAQPage |
-| /en/ai-info | 46 | 142 | 1 | 564 | 0 (0) | AboutPage, LocalBusiness,ProfessionalService, BreadcrumbList |
-| /fr/ai-info | 52 | 144 | 1 | 654 | 0 (0) | AboutPage, LocalBusiness,ProfessionalService, BreadcrumbList |
-| /en/sitemap | 24 | 100 | 1 | 277 | 0 (0) | CollectionPage, BreadcrumbList |
-| /fr/sitemap | 29 | 132 | 1 | 318 | 0 (0) | CollectionPage, BreadcrumbList |
+| /en/outils/generateur-lien-whatsapp | 61 | 155 | 1 | 811 | 0 (0) | WebPage, WebApplication, FAQPage, BreadcrumbList |
+| /fr/outils/generateur-lien-whatsapp | 63 | 152 | 1 | 864 | 0 (0) | WebPage, WebApplication, FAQPage, BreadcrumbList |
+| /en/ai-info | 46 | 142 | 1 | 570 | 0 (0) | AboutPage, LocalBusiness,ProfessionalService, BreadcrumbList |
+| /fr/ai-info | 52 | 144 | 1 | 660 | 0 (0) | AboutPage, LocalBusiness,ProfessionalService, BreadcrumbList |
+| /en/sitemap | 24 | 100 | 1 | 293 | 0 (0) | CollectionPage, BreadcrumbList |
+| /fr/sitemap | 29 | 132 | 1 | 335 | 0 (0) | CollectionPage, BreadcrumbList |
