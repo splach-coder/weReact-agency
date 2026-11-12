@@ -1,7 +1,7 @@
 tier,target,url,category,status,date_submitted,live_url,notes
-0,Bing Places,https://www.bingplaces.com,maps,todo,,,import from GBP
+0,Bing Places,https://www.bingplaces.com,maps,submitted,2026-11-12,,imported from GBP with weekly sync; verified; publishing ETA 7-12 days
 0,Apple Business Connect,https://businessconnect.apple.com,maps,todo,,,
-0,LinkedIn Company Page,https://www.linkedin.com/company/setup/new,social,todo,,,post weekly after
+0,LinkedIn Company Page,https://www.linkedin.com/company/setup/new,social,blocked,,,personal account lacks connections; /company/wereact belongs to a Tunis agency; /company/wereact-agency still free
 0,Crunchbase,https://www.crunchbase.com/register,data,todo,,,
 0,Trustpilot business,https://business.trustpilot.com,reviews,todo,,,send review-ask after
 1,Behance,https://www.behance.net,portfolio,todo,,,3 case studies
@@ -11,11 +11,12 @@ tier,target,url,category,status,date_submitted,live_url,notes
 2,Kerix,https://www.kerix.net,MA-directory,todo,,,B2B annuaire
 2,MarocAnnonces,https://www.marocannonces.com,MA-directory,todo,,,
 2,Europages,https://www.europages.fr,B2B,todo,,,
-3,Sortlist,https://www.sortlist.com,agency-dir,todo,,,
-3,Clutch,https://clutch.co,agency-dir,todo,,,needs 1 client review
-3,GoodFirms,https://www.goodfirms.co,agency-dir,todo,,,
+3,Sortlist,https://www.sortlist.com,agency-dir,live,2026-11-12,https://www.sortlist.com/agency/wereact-agency,profile live (Website Creation from ~EUR185; E-commerce from ~EUR325); add portfolio
+3,Clutch,https://clutch.co,agency-dir,in review,2026-11-12,,free profile created; unpublished until a client review
+3,GoodFirms,https://www.goodfirms.co,agency-dir,draft,2026-11-12,,step 1 saved; step 2 needs a real street address
 3,DesignRush,https://www.designrush.com,agency-dir,todo,,,
 3,The Manifest,https://www.themanifest.com,agency-dir,todo,,,
 4,Client footer - Flying Tandem,https://flyingtandem.com,client-credit,todo,,,ask owner / self-add
 4,Client footer - Kasbah Angour,https://kasbahangour.com,client-credit,todo,,,ask owner / self-add
 4,Client footer - Your Morocco,https://your-morocco.com,client-credit,todo,,,ask owner / self-add
+2,Maroc Annuaire,https://www.marocannuaire.org,MA-directory,live,2026-11-12,https://www.marocannuaire.org/Annuaire/Details_infos.php?e=WeReact%20agency&activite=Cr%C3%A9ation%20site%20web&ville=MARRAKECH&p=wereact-agency&id=337503,category Création site web; followed links to wereact.agency
