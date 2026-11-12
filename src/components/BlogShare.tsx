@@ -48,7 +48,7 @@ export default function BlogShare({ url, title, locale = 'en', variant = 'floati
     if (variant === 'inline') {
         return (
             <div className="flex items-center gap-4">
-                <span className="text-[9px] font-black uppercase tracking-widest opacity-30">{ui.shareArticle}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--color-text-muted)]">{ui.shareArticle}</span>
                 <div className="flex gap-2">
                     <a
                         href={shareLinks.twitter}
@@ -85,7 +85,7 @@ export default function BlogShare({ url, title, locale = 'en', variant = 'floati
     return (
         <div className="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-40 animate-in fade-in duration-300">
             <div className="p-3 bg-white rounded-sm shadow-xl border border-gray-100 flex flex-col gap-5 items-center">
-                <span className="text-[9px] font-black uppercase tracking-widest vertical-text opacity-30 mb-2">{ui.share}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest vertical-text text-[var(--color-text-muted)] mb-2">{ui.share}</span>
                 <a
                     href={shareLinks.twitter}
                     target="_blank"

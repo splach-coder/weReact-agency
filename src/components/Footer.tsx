@@ -129,7 +129,7 @@ export default function Footer() {
               {t('statement')}
             </motion.h2>
           </span>
-          <motion.p variants={fade} className="mt-8 max-w-md text-white/55">
+          <motion.p variants={fade} className="mt-8 max-w-md text-white/75">
             {t('tagline')}
           </motion.p>
         </motion.div>
@@ -152,7 +152,7 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-10 border-t border-white/15 pt-7">
-              <p className="text-mono mb-4 text-white/40">Services</p>
+              <p className="text-mono mb-4 text-white/70">Services</p>
               <ul className="flex flex-col gap-2">
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
@@ -192,7 +192,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div className="md:col-span-3">
             <p className="text-mono mb-7 text-white/60">{t('newsletterTitle')}</p>
-            <p className="mb-6 text-sm text-white/55">{t('newsletterText')}</p>
+            <p className="mb-6 text-sm text-white/75">{t('newsletterText')}</p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-4">
               <label htmlFor="footer-email" className="sr-only">
                 {t('emailPlaceholder')}
@@ -222,7 +222,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/45 md:flex-row md:items-center md:justify-between">
+        <div className="text-mono flex flex-col gap-2 border-t border-white/15 py-8 text-white/70 md:flex-row md:items-center md:justify-between">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <span>&copy; WeReact {year} &middot; {t('copyright')}</span>
             <button

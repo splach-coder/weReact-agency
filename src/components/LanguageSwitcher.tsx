@@ -48,7 +48,7 @@ export default function LanguageSwitcher({ className = '', variant = 'bar' }: La
               href={pathname}
               locale={code}
               aria-current={active ? 'true' : undefined}
-              className={`transition-opacity hover:opacity-100 ${active ? 'opacity-100' : 'opacity-45'}`}
+              className={`transition-opacity hover:opacity-100 ${active ? 'opacity-100 underline underline-offset-4' : 'opacity-90'}`}
             >
               {label}
             </Link>

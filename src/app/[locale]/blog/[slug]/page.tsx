@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </Link>
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-[9px] font-black uppercase tracking-[0.2em] mb-6">
-                        <span className="px-2 py-0.5 text-white rounded-sm" style={{ backgroundColor: post.categoryColor || 'var(--color-primary)' }}>{post.category}</span>
+                        <span className="px-2 py-0.5 text-white rounded-sm" style={{ backgroundColor: 'var(--color-primary)' }}>{post.category}</span>
                         <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Calendar size={12} aria-hidden="true" /> {post.date}</span>
                         <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Clock size={12} aria-hidden="true" /> {post.readTime}</span>
                     </div>
@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
                                         <div className="relative aspect-video rounded-sm overflow-hidden mb-3 bg-gray-100">
                                             <Image src={p.image} alt={p.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-500" />
                                         </div>
-                                        <p className="text-[8px] font-black uppercase tracking-widest text-[var(--color-primary)] opacity-40 mb-1">{p.category}</p>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary-light)] mb-1">{p.category}</p>
                                         <h4 className="font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-primary)] transition-colors mb-2 leading-tight text-sm">
                                             {p.title}
                                         </h4>
@@ -214,7 +214,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                         <div className="bg-[var(--color-primary)] p-8 rounded-sm text-white relative overflow-hidden group shadow-lg">
                             <h3 className="text-2xl font-bold mb-4 tracking-tighter uppercase leading-[0.9]">{ui.contactTitle}</h3>
-                            <p className="text-white/50 mb-8 text-sm leading-relaxed">{ui.contactCopy}</p>
+                            <p className="text-white/80 mb-8 text-sm leading-relaxed">{ui.contactCopy}</p>
                             <Link
                                 href={`/${locale}/contact`}
                                 className="inline-flex items-center justify-between w-full p-1.5 pl-6 bg-white text-[var(--color-primary)] rounded-sm group/btn transition-[color,background-color,border-color,opacity,transform,box-shadow] font-black uppercase text-[9px] tracking-widest"

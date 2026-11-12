@@ -152,7 +152,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
             {copy.outcomes.map((outcome, index) => (
               <li key={outcome} className="border-t border-[rgba(58,90,64,0.16)] pt-5">
                 <div className="flex items-start gap-4">
-                  <span className="text-mono text-[var(--color-accent-sage)]">0{index + 1}</span>
+                  <span className="text-mono text-[var(--color-primary-light)]">0{index + 1}</span>
                   <p className="text-lg leading-snug text-[var(--color-text-main)]">{renderInlineLinks(outcome)}</p>
                 </div>
               </li>
@@ -275,7 +275,7 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
       <section className="bg-[var(--color-primary-dark)] px-6 py-20 text-white md:px-16 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.36fr_0.64fr] lg:gap-16">
           <div>
-            <p className="text-mono text-[var(--color-accent-sage)]">FAQ</p>
+            <p className="text-mono text-white/80">FAQ</p>
             <h2 className="mt-5 max-w-sm font-display text-4xl leading-[0.96] md:text-5xl">
               {locale === 'fr' ? 'Les questions avant de démarrer.' : 'Questions before we start.'}
             </h2>
