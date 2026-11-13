@@ -12,7 +12,7 @@ tier,target,url,category,status,date_submitted,live_url,notes
 2,MarocAnnonces,https://www.marocannonces.com,MA-directory,todo,,,
 2,Europages,https://www.europages.fr,B2B,todo,,,
 3,Sortlist,https://www.sortlist.com,agency-dir,live,2026-11-12,https://www.sortlist.com/agency/wereact-agency,office = Google Business Profile (Marrakesh); 3 portfolio works; profile quality 52%; free plan gives no backlink
-3,Clutch,https://clutch.co,agency-dir,in review,2026-11-12,https://clutch.co/profile/wereact-agency,HQ Guéliz Marrakech; unpublished until a Clutch client review; social links need paid plan
+3,Clutch,https://clutch.co,agency-dir,live,2026-11-12,https://clutch.co/profile/wereact-agency,HQ Guéliz Marrakech; dashboard shows Published on 2026-11-13; service lines Web Design 40 / Web Dev 20 / SEO 25 / E-commerce 15 (PPC removed 2026-11-13); a client review still helps ranking; social links need paid plan
 3,GoodFirms,https://www.goodfirms.co,agency-dir,skipped,2026-11-12,,validator rejects any address without a street number (Guéliz refused); step 1 saved as draft
 3,DesignRush,https://www.designrush.com,agency-dir,todo,,,
 3,The Manifest,https://www.themanifest.com,agency-dir,todo,,,
