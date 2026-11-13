@@ -130,8 +130,8 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     keywords: ['web development agency Morocco', 'bilingual web agency', 'nearshore web development Morocco'],
     relatedProjectIds: ['your-morocco', 'kasbah-angour', 'flying-tandem'],
     relatedServiceSlugs: ['web-design-marrakech', 'tourism-websites-morocco', 'agence-seo-marrakech'],
-    relatedPostSlugs: ['seo-strategies-for-agencies', 'website-design-marrakech-business-guide'],
-    modifiedAt: '2026-07-22',
+    relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'website-design-marrakech-business-guide'],
+    modifiedAt: '2026-11-13',
     copy: {
       en: {
         title: 'International Web Design Agency in Morocco',

@@ -212,57 +212,6 @@ export const blogPosts: BlogPost[] = [
         }
     },
     {
-        slug: "seo-strategies-for-agencies",
-        title: "SEO in the Age of AI: How to Rank Your Agency in 2026",
-        metaTitle: "SEO for Agencies in the AI Era (2026)",
-        excerpt: "Moving beyond keywords: focusing on E-E-A-T and technical excellence to dominate search results.",
-        metaDescription: "Learn how to rank your agency in 2026 by focusing on E-E-A-T and technical SEO in the age of generative AI and search optimization.",
-        date: "June 14, 2026",
-        publishedAt: "2026-06-14",
-        modifiedAt: "2026-11-10",
-        author: "WeReact Editorial Team",
-        authorRole: "Web design and SEO studio",
-        relatedServiceSlug: "agence-seo-marrakech",
-        relatedAudienceSlug: "website-design-moroccan-businesses",
-        category: "SEO",
-        categoryColor: "#10B981", // Green like 'Art' in image
-        image: "/images/blog/seo-2026-real.webp",
-        readTime: "10 min read",
-        tags: ["SEO", "Marketing", "AI"],
-        content: `
-            <p>Search Engine Optimization is evolving. With the rise of AI-powered search, the old playbook of keyword stuffing is long dead. Today, successful SEO is built on two pillars: technical excellence and authentic authority. If you would rather have it done for you, see our <a href="/en/agence-seo-marrakech">SEO agency in Marrakech</a>.</p>
-
-            <h2>E-E-A-T: Experience, Expertise, Authoritativeness, and Trustworthiness</h2>
-            <p>Google wants to show content from real humans with real experience. Case studies, deep-dive blog posts, and transparent team profiles are the best ways to build this trust with both users and algorithms. For a local business, the first proof is often a complete <a href="/en/blog/fiche-google-business-maroc">Google Business Profile</a> with real reviews.</p>
-
-            <h2>Technical SEO Foundation</h2><p>For campaign traffic specifically, this is the groundwork behind the landing pages we build for <a href="/en/agence-google-ads-maroc">Google Ads campaigns</a>.</p>
-            <p>A fast, mobile-friendly website with a clean DOM structure is the entry ticket. Without a solid technical foundation, even the best content will struggle to rank. Ensure your site uses semantic HTML5 elements like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;aside&gt;</code> properly.</p>
-
-            <p>Building a blog is the first step. Creating value-driven content consistently is the marathon that wins the SEO race.</p>
-        `,
-        fr: {
-            title: "Le SEO à l'ère de l'IA : comment positionner votre agence en 2026",
-            metaTitle: "SEO à l'ère de l'IA pour agences (2026)",
-            excerpt: "Au-delà des mots-clés : miser sur l'E-E-A-T et l'excellence technique pour dominer les résultats de recherche.",
-            metaDescription: "Découvrez comment positionner votre agence en 2026 en misant sur l'E-E-A-T et le SEO technique, à l'ère de l'IA générative et des nouveaux moteurs de recherche.",
-            date: "14 juin 2026",
-            readTime: "10 min de lecture",
-            category: "Stratégie SEO",
-            authorRole: "Studio de création web et SEO",
-            content: `
-                <p>Le référencement naturel évolue. Avec l'essor de la recherche assistée par l'IA, l'ancienne recette du bourrage de mots-clés est morte et enterrée. Aujourd'hui, un SEO efficace repose sur deux piliers : l'excellence technique et une autorité authentique. Si vous préférez qu’on s’en charge, voir notre <a href="/fr/agence-seo-marrakech">agence SEO à Marrakech</a>.</p>
-
-                <h2>E-E-A-T : expérience, expertise, autorité et fiabilité</h2>
-                <p>Google veut mettre en avant des contenus produits par de vraies personnes, avec une vraie expérience. Études de cas, articles de fond et profils d'équipe transparents restent les meilleurs moyens de bâtir cette confiance, auprès des utilisateurs comme des algorithmes. Pour une entreprise locale, la première preuve est souvent une <a href="/fr/blog/fiche-google-business-maroc">fiche Google Business</a> complète avec de vrais avis.</p>
-
-                <h2>Des fondations techniques solides</h2><p>Pour le trafic de campagne, c'est le socle des landing pages que nous créons pour les <a href="/fr/agence-google-ads-maroc">campagnes Google Ads</a>.</p>
-                <p>Un site rapide, adapté au mobile et doté d'une structure DOM propre constitue le ticket d'entrée. Sans base technique solide, même le meilleur contenu peinera à se positionner. Veillez à utiliser correctement les balises HTML5 sémantiques comme <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> et <code>&lt;aside&gt;</code>.</p>
-
-                <p>Créer un blog n'est que la première étape. Publier régulièrement du contenu utile, c'est le marathon qui fait gagner la course du SEO.</p>
-            `
-        }
-    },
-    {
         slug: "website-design-marrakech-business-guide",
         title: "Website Design in Marrakech: How Local Businesses Can Turn Search Traffic Into Clients",
         metaTitle: "Marrakech Web Design: Traffic Into Clients",

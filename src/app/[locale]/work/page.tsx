@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ArrowUpRight } from 'lucide-react';
 import Link from '@/components/transition/TransitionLink';
 import { projects, featuredProjects } from '@/data/projects';
@@ -15,14 +15,46 @@ const reveal = {
 
 export default function WorkPage() {
   const t = useTranslations('Work');
+  const isFr = useLocale() === 'fr';
+  const ui = isFr
+    ? {
+        caseStudies: 'études de cas',
+        heading: ['Nos', 'Réalisations'],
+        scroll: 'Défiler / Index',
+        tagline: 'Des sites pour des lieux, des voyages et des marques locales',
+        index: 'Index des projets',
+        indexLead: 'Des sites construits pour être trouvés, inspirer confiance, parler plusieurs langues et transformer une visite en demande.',
+        filters: ['À la une', 'Tourisme', 'Hôtellerie', 'SEO local'],
+        featured: 'À la une',
+        studio: 'Projet du studio',
+        live: 'En ligne',
+        domain: 'Domaine',
+        category: 'Catégorie',
+        morocco: 'Maroc',
+      }
+    : {
+        caseStudies: 'case studies',
+        heading: ['Selected', 'Work'],
+        scroll: 'Scroll / Index',
+        tagline: 'Digital systems for places, travel and local brands',
+        index: 'Project index',
+        indexLead: 'Featured builds shaped around discovery, trust, multilingual content and high-intent conversion paths.',
+        filters: ['Featured', 'Tourism', 'Hospitality', 'Local SEO'],
+        featured: 'Featured',
+        studio: 'Studio project',
+        live: 'Live',
+        domain: 'Domain',
+        category: 'Category',
+        morocco: 'Morocco',
+      };
 
   const stats = [
     { value: `${projects.length}+`, label: t('statProjects') },
     { value: 'EN / FR', label: t('statLanguages') },
-    { value: 'Morocco', label: t('statBased') },
+    { value: ui.morocco, label: t('statBased') },
   ];
 
-  const filters = ['Featured', 'Tourism', 'Hospitality', 'Local SEO'];
+  const filters = ui.filters;
 
   return (
     <main className="bg-[var(--color-background-main)] text-[var(--color-text-main)]">
@@ -45,7 +77,7 @@ export default function WorkPage() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-mono text-[var(--color-primary)]"
             >
-              {t('eyebrow')} / {projects.length.toString().padStart(2, '0')} case studies
+              {t('eyebrow')} / {projects.length.toString().padStart(2, '0')} {ui.caseStudies}
             </motion.p>
             <motion.h1
               variants={reveal}
@@ -54,7 +86,7 @@ export default function WorkPage() {
               transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 max-w-5xl text-[clamp(4.2rem,15vw,14rem)] font-black uppercase leading-[0.78] tracking-tight text-[var(--color-primary)]"
             >
-              Selected<br />Work
+              {ui.heading[0]}<br />{ui.heading[1]}
             </motion.h1>
           </div>
 
@@ -82,17 +114,17 @@ export default function WorkPage() {
         </div>
 
         <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between text-mono text-[var(--color-primary)]/70 sm:left-8 sm:right-8 md:left-12 md:right-12 lg:left-16 lg:right-16">
-          <span className="hidden md:inline">Scroll / Index</span>
-          <span className="ml-auto max-w-[12rem] text-right">Digital systems for places, travel and local brands</span>
+          <span className="hidden md:inline">{ui.scroll}</span>
+          <span className="ml-auto max-w-[12rem] text-right">{ui.tagline}</span>
         </div>
       </section>
 
       <section className="relative border-t border-[rgba(58,90,64,0.16)] bg-[var(--color-background-contrast)] px-5 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28">
         <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[260px_minmax(0,1fr)]">
           <aside className="lg:sticky lg:top-28 lg:h-fit">
-            <div className="text-mono text-[var(--color-primary)]">Project index</div>
+            <div className="text-mono text-[var(--color-primary)]">{ui.index}</div>
             <p className="mt-5 max-w-[18rem] text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              Featured builds shaped around discovery, trust, multilingual content and high-intent conversion paths.
+              {ui.indexLead}
             </p>
             <div className="mt-8 flex flex-wrap gap-2 lg:flex-col lg:items-start">
               {filters.map((filter) => (
@@ -110,6 +142,7 @@ export default function WorkPage() {
             {projects.map((project, index) => {
               const isEven = index % 2 === 0;
               const isFeatured = featuredProjects.some((featured) => featured.id === project.id);
+              const category = isFr ? project.categoryFr : project.category.replace(/^Studio Project: /, '');
 
               return (
                 <motion.article
@@ -129,7 +162,7 @@ export default function WorkPage() {
                       <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-accent-warm)] md:aspect-[16/9]">
                         <Image
                           src={project.image}
-                          alt={`${project.title} - ${project.category}`}
+                          alt={`${project.title} - ${category}`}
                           fill
                           sizes="(max-width: 1024px) 100vw, 58vw"
                           className="object-cover object-top transition duration-[900ms] ease-out group-hover:scale-[1.06] group-hover:rotate-[0.4deg]"
@@ -141,7 +174,7 @@ export default function WorkPage() {
                           <ArrowUpRight size={18} aria-hidden="true" />
                         </div>
                         <span className="absolute left-4 top-4 rounded-full bg-[var(--color-background-main)]/90 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--color-primary)] shadow-sm backdrop-blur-md">
-                          {isFeatured ? 'Featured' : project.status}
+                          {isFeatured ? ui.featured : project.relationship === 'studio-owned' ? ui.studio : ui.live}
                         </span>
                       </div>
                     </div>
@@ -156,16 +189,16 @@ export default function WorkPage() {
                           {project.title}
                         </h2>
                         <p className="mt-5 text-lg leading-snug text-[var(--color-text-secondary)] md:text-xl">
-                          {project.summary}
+                          {isFr ? project.summaryFr : project.summary}
                         </p>
                       </div>
 
                       <div className="mt-8 space-y-6">
                         <div className="grid grid-cols-[92px_minmax(0,1fr)] gap-4 text-sm">
-                          <span className="text-mono text-[var(--color-text-muted)]">Domain</span>
+                          <span className="text-mono text-[var(--color-text-muted)]">{ui.domain}</span>
                           <span className="truncate text-[var(--color-text-main)]">{project.domain}</span>
-                          <span className="text-mono text-[var(--color-text-muted)]">Category</span>
-                          <span className="text-[var(--color-text-main)]">{project.category}</span>
+                          <span className="text-mono text-[var(--color-text-muted)]">{ui.category}</span>
+                          <span className="text-[var(--color-text-main)]">{category}</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {project.services.map((service) => (

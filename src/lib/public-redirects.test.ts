@@ -32,6 +32,27 @@ test('recovers the confirmed indexed legacy article', () => {
   );
 });
 
+test('sends unprefixed case studies, articles and tools to the visitor language', () => {
+  assert.equal(getLocalizedPublicRedirect('/work/kasbah-angour', { acceptLanguage: 'fr' }), '/fr/work/kasbah-angour');
+  assert.equal(getLocalizedPublicRedirect('/blog/combien-coute-site-web-maroc', {}), '/en/blog/combien-coute-site-web-maroc');
+  assert.equal(getLocalizedPublicRedirect('/outils/generateur-lien-whatsapp', { country: 'MA' }), '/fr/outils/generateur-lien-whatsapp');
+  assert.equal(getLocalizedPublicRedirect('/work/kasbah-angour/extra', {}), undefined);
+});
+
+test('moves the retired Google Ads page to the digital marketing page in one hop', () => {
+  for (const locale of ['fr', 'en']) {
+    assert.equal(getPermanentPublicRedirect(`/${locale}/agence-google-ads-maroc`), `/${locale}/agence-marketing-digital-marrakech`);
+    assert.equal(getPermanentPublicRedirect(`/${locale}/seo-landing-pages`), `/${locale}/agence-marketing-digital-marrakech`);
+  }
+  assert.equal(getLocalizedPublicRedirect('/agence-google-ads-maroc', { acceptLanguage: 'en' }), undefined);
+});
+
+test('legacy articles skip the language hop and go straight to their replacement', () => {
+  assert.equal(getLocalizedPublicRedirect('/blog/minimalist-design-trends', { acceptLanguage: 'fr' }), undefined);
+  assert.equal(getPermanentPublicRedirect('/fr/blog/choisir-agence-web-maroc-2024'), '/fr/blog/combien-coute-site-web-maroc');
+  assert.equal(getPermanentPublicRedirect('/en/blog/seo-strategies-for-agencies'), '/en/agence-seo-marrakech');
+});
+
 test('does not turn unknown paths into soft 404s', () => {
   assert.equal(getPermanentPublicRedirect('/not-a-real-page'), undefined);
   assert.equal(getLocalizedPublicRedirect('/not-a-real-page', { acceptLanguage: 'fr' }), undefined);

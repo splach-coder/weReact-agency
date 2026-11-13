@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import sitemap from './sitemap';
+import { getProjectById } from '@/data/projects';
 
 test('includes localized commercial service pages and article modification dates', () => {
   const routes = sitemap();
@@ -23,7 +24,7 @@ test('uses stable project modification dates instead of the build time', () => {
   const home = routes.find((entry) => entry.url.endsWith('/en'));
   const project = routes.find((entry) => entry.url.endsWith('/en/work/flying-tandem'));
   assert.equal(new Date(home?.lastModified ?? '').toISOString().slice(0, 10), '2030-01-02');
-  assert.equal(new Date(project?.lastModified ?? '').toISOString().slice(0, 10), '2026-07-22');
+  assert.equal(new Date(project?.lastModified ?? '').toISOString().slice(0, 10), getProjectById('flying-tandem')?.modifiedAt);
 });
 
 test('includes the HTML sitemap and the AI info page, dated by the content they list', () => {

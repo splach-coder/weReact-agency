@@ -8,38 +8,60 @@ import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import { trackContactIntent } from '@/lib/analytics';
 import { getProjectById } from '@/data/projects';
+import { getCaseStudy } from '@/data/case-studies';
 
-interface CaseStudyMetric {
-    value: string;
-    label: string;
-    description: string;
-}
+const FEATURE_ICONS: readonly LucideIcon[] = [Monitor, Globe, Smartphone];
 
-interface CaseStudyFeature {
-    icon: LucideIcon;
-    title: string;
-    description: string;
-}
-
-interface CaseStudy {
-    title: string;
-    year: string;
-    category: string;
-    tagline: string;
-    description: string;
-    challenge: string;
-    solution: string;
-    results: string[];
-    tags: string[];
-    link: string;
-    image: string;
-    imageFull: string;
-    imageFullHeight?: number;
-    gradient: string;
-    color: string;
-    features: CaseStudyFeature[];
-    metrics: CaseStudyMetric[];
-}
+const UI = {
+    en: {
+        back: 'Back to projects',
+        relationship: 'Relationship',
+        year: 'Year',
+        type: 'Type',
+        visit: 'Visit the live site',
+        viewLive: 'View live site',
+        screenshot: 'screenshot',
+        fullScreenshot: 'full page screenshot',
+        overview: 'Project overview',
+        challenge: 'The challenge',
+        solution: 'Our solution',
+        glance: 'At a glance',
+        service: 'Related service',
+        features: 'Key features',
+        featuresLead: 'What this site does for its visitors',
+        built: 'What we built',
+        builtLead: 'The work behind this project',
+        stack: 'Technology and focus',
+        ctaTitle: 'A similar project in mind?',
+        ctaText: 'Tell us about your business and what the site must do. We reply within one business day.',
+        ctaStart: 'Start your project',
+        ctaMore: 'More projects',
+    },
+    fr: {
+        back: 'Retour aux réalisations',
+        relationship: 'Relation',
+        year: 'Année',
+        type: 'Type',
+        visit: 'Voir le site en ligne',
+        viewLive: 'Voir le site',
+        screenshot: 'capture d’écran',
+        fullScreenshot: 'capture de la page complète',
+        overview: 'Présentation du projet',
+        challenge: 'Le défi',
+        solution: 'Notre réponse',
+        glance: 'En bref',
+        service: 'Service lié',
+        features: 'Points clés',
+        featuresLead: 'Ce que le site apporte à ses visiteurs',
+        built: 'Ce que nous avons construit',
+        builtLead: 'Le travail derrière ce projet',
+        stack: 'Technologies et axes',
+        ctaTitle: 'Un projet similaire en tête ?',
+        ctaText: 'Présentez votre activité et ce que le site doit faire. Nous répondons sous un jour ouvré.',
+        ctaStart: 'Démarrer votre projet',
+        ctaMore: 'Autres réalisations',
+    },
+} as const;
 
 export default function CaseStudyPage() {
     const params = useParams();
@@ -62,292 +84,20 @@ export default function CaseStudyPage() {
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.98]);
 
-    // Project data
-    const projects: Record<string, CaseStudy> = {
-        "flying-tandem": {
-            title: "Flying Tandem",
-            year: "2025",
-            category: "Tourism Website",
-            tagline: "Bringing the thrill of paragliding to life online",
-            description: "A professional paragliding and tandem flight website showcasing aerial experiences, safety information, and booking details for adventure tourism enthusiasts. Built with modern web technologies for optimal performance.",
-            challenge: "Create an engaging platform that captures the thrill of paragliding while maintaining a professional, trustworthy image. The site needed to handle bookings, showcase safety credentials, and work flawlessly on mobile devices for tourists on the go.",
-            solution: "We developed a dynamic, visually stunning website with a clear booking enquiry flow and comprehensive safety information. The design emphasizes the adventure while building trust through clear communication of safety protocols and certifications.",
-            results: [
-                "Clear experience pages with a direct booking enquiry flow",
-                "Mobile-responsive design optimized for on-the-go browsing",
-                "Multilingual support for international tourists",
-                "Safety and certification content built for trust",
-                "Photo gallery showcasing flight experiences",
-                "Performance-minded build for travelers on slow connections"
-            ],
-            tags: ["Next.js", "React", "Booking Flow", "Responsive", "Mobile UX", "i18n"],
-            link: "https://www.flyingtandem.com/",
-            image: "/images/projects/flying-tandem.webp",
-            imageFull: "/images/projects/flying-tandem-full.webp",
-            gradient: "from-[#3A5A40] to-[#2e4833]",
-            color: "#3A5A40",
-            features: [
-                {
-                    icon: Monitor,
-                    title: "Booking Enquiry Flow",
-                    description: "Direct enquiry paths from experience pages"
-                },
-                {
-                    icon: Globe,
-                    title: "Multi-language",
-                    description: "Content structured for international visitors"
-                },
-                {
-                    icon: Smartphone,
-                    title: "Mobile First",
-                    description: "Optimized for tourists browsing on mobile devices"
-                }
-            ],
-            metrics: [
-                { label: "Experience", value: "Mobile-first", description: "Built for travelers booking on the go" },
-                { label: "Content", value: "Multilingual", description: "Structured for international visitors" },
-                { label: "Launched", value: "2025", description: "Live adventure tourism website" }
-            ]
-        },
-        "kasbah-angour": {
-            title: "Kasbah Angour",
-            year: "2025",
-            category: "Hotel Website",
-            tagline: "Showcasing authentic Moroccan hospitality",
-            description: "A hotel and guesthouse website presenting Kasbah Angour, including accommodation details, services, location information, and direct contact options. Features stunning imagery and intuitive navigation.",
-            challenge: "Showcase the unique character and authentic Moroccan experience of Kasbah Angour while providing all necessary booking and contact information in an elegant, user-friendly interface that reflects the property's premium positioning.",
-            solution: "We created a visually rich website that highlights the property's unique features through high-quality imagery and compelling content. The design balances aesthetics with functionality, making it easy for guests to explore rooms, amenities, and make reservations directly.",
-            results: [
-                "Professional branding and place-led storytelling",
-                "Direct enquiry routes for reservations",
-                "Beautiful visual showcase of property and amenities",
-                "Search-ready content structure",
-                "Integrated contact forms and inquiry paths",
-                "Room and amenity presentation with photo galleries"
-            ],
-            tags: ["Next.js", "CMS", "Hospitality", "SEO", "Direct Enquiries", "Photography"],
-            link: "https://www.kasbahangour.com/en",
-            image: "/images/projects/kasbah-angour.webp",
-            imageFull: "/images/projects/kasbah-angour-full.webp",
-            gradient: "from-[#2e4833] to-[#1f3322]",
-            color: "#2e4833",
-            features: [
-                {
-                    icon: Monitor,
-                    title: "Room Showcase",
-                    description: "Detailed room presentations with photo galleries"
-                },
-                {
-                    icon: Globe,
-                    title: "SEO Structure",
-                    description: "Search-ready content and page structure"
-                },
-                {
-                    icon: Smartphone,
-                    title: "Direct Enquiries",
-                    description: "Clear contact routes for reservations"
-                }
-            ],
-            metrics: [
-                { label: "Focus", value: "Direct", description: "Enquiry-first reservation paths" },
-                { label: "Experience", value: "Visual", description: "Photography-led room discovery" },
-                { label: "Launched", value: "2025", description: "Live hospitality website" }
-            ]
-        },
-        "your-morocco": {
-            title: "Your Morocco",
-            year: "2025",
-            category: "Travel Platform",
-            tagline: "Curating authentic Moroccan experiences",
-            description: "A travel platform dedicated to Moroccan experiences, tours, and cultural discovery, designed to help visitors explore Morocco in a curated way. Features comprehensive tour listings and clear inquiry routes.",
-            challenge: "Create a comprehensive travel platform that showcases the diversity of Moroccan experiences while making it easy for travelers to discover, compare, and inquire about tours and activities.",
-            solution: "We built a content-rich platform with tour filtering, detailed tour descriptions, and clear inquiry routes. The design emphasizes visual storytelling while maintaining excellent usability and performance across all devices.",
-            results: [
-                "Curated travel experiences with detailed itineraries",
-                "Interactive tour discovery with smart filtering",
-                "Cultural immersion focus with local insights",
-                "Destination-led SEO content structure",
-                "Clear inquiry routes for travelers",
-                "Mobile-friendly browsing across devices"
-            ],
-            tags: ["Next.js", "Travel", "Tour Discovery", "Multilingual", "CMS", "SEO"],
-            link: "https://your-morocco.com/en",
-            image: "/images/projects/your-morocco.webp",
-            imageFull: "/images/projects/your-morocco-full.webp",
-            gradient: "from-[#3A5A40] to-[#2e4833]",
-            color: "#3A5A40",
-            features: [
-                {
-                    icon: Monitor,
-                    title: "Tour Catalog",
-                    description: "Comprehensive tour listings with filtering"
-                },
-                {
-                    icon: Globe,
-                    title: "Multi-language",
-                    description: "Multilingual structure for travel audiences"
-                },
-                {
-                    icon: Smartphone,
-                    title: "Inquiry Flow",
-                    description: "Clear routes from tour pages to contact"
-                }
-            ],
-            metrics: [
-                { label: "Content", value: "Tour-led", description: "Experience pages designed for comparison" },
-                { label: "Reach", value: "Global", description: "Built for Morocco travel audiences" },
-                { label: "Launched", value: "2025", description: "Live travel platform" }
-            ]
-        },
-        "by-marrakech": {
-            title: "By Marrakech",
-            year: "2025",
-            category: "Digital Guide",
-            tagline: "Your digital companion to Marrakech",
-            description: "A modern city guide for Marrakech highlighting places, culture, and experiences, built with a clean interface and multilingual support. Helps visitors discover the best of Marrakech.",
-            challenge: "Design a modern, intuitive city guide that helps visitors navigate Marrakech's rich cultural landscape while presenting places, culture, and experiences clearly. The platform needed to be fast, accessible, and easy to browse on the move.",
-            solution: "We developed a clean, content-focused platform with excellent categorization and multilingual support, built mobile-first for travelers exploring the city.",
-            results: [
-                "Clean, modern interface for easy navigation",
-                "Categorized places, culture, and experience content",
-                "Multilingual content structure",
-                "Mobile-optimized for travelers on the go",
-                "Marrakech-first location signals",
-                "Reusable content sections built for growth"
-            ],
-            tags: ["Next.js", "City Guide", "i18n", "Content Management", "Mobile UX", "SEO"],
-            link: "https://by-marrakech.vercel.app/en",
-            image: "/images/projects/by-marrakech.webp",
-            imageFull: "/images/projects/by-marrakech-full.webp",
-            gradient: "from-[#2e4833] to-[#1f3322]",
-            color: "#2e4833",
-            features: [
-                {
-                    icon: Monitor,
-                    title: "Place Directory",
-                    description: "Categorized listings of places and experiences"
-                },
-                {
-                    icon: Globe,
-                    title: "Multilingual",
-                    description: "Content structured for international visitors"
-                },
-                {
-                    icon: Smartphone,
-                    title: "Mobile First",
-                    description: "Designed for browsing on the move"
-                }
-            ],
-            metrics: [
-                { label: "Location", value: "Marrakech", description: "Built around city discovery" },
-                { label: "Format", value: "Guide", description: "Designed for browsing and exploration" },
-                { label: "Launched", value: "2025", description: "Live city guide" }
-            ]
-        },
-        "trust-drivers": {
-            title: "Trust Drivers Tours",
-            year: "2026",
-            category: "Studio Project · Transport & Tours",
-            tagline: "Trust-first private transport and Morocco tour discovery",
-            description: "A studio-built tour and driver website concept, owned and operated by WeReact, built around clear services, credibility, local search visibility, and fast inquiry paths for travelers comparing transport options in Morocco.",
-            challenge: "Help visitors understand routes, driver credibility, and booking options quickly while keeping the experience professional and easy to trust.",
-            solution: "We structured the content around tour services, local SEO signals, direct WhatsApp-style conversion paths, and reassuring service details for international travelers.",
-            results: [
-                "Tour-service hierarchy for clearer browsing",
-                "Local SEO signals for Morocco travel search",
-                "Fast contact path for high-intent visitors",
-                "Mobile-first discovery for travelers on the move"
-            ],
-            tags: ["Tour SEO", "Conversion Flow", "Trust Signals", "Mobile UX"],
-            link: "https://www.trustdrivers.tours/",
-            image: "/images/projects/live/trust-drivers-hero-settled.webp",
-            imageFull: "/images/projects/live/trust-drivers-full-settled.webp",
-            imageFullHeight: 6671,
-            gradient: "from-[#3A5A40] to-[#2e4833]",
-            color: "#3A5A40",
-            features: [
-                { icon: Monitor, title: "Service Structure", description: "Clear transport and tour categories" },
-                { icon: Globe, title: "Local Search", description: "Morocco travel intent and route signals" },
-                { icon: Smartphone, title: "Fast Inquiry", description: "Mobile-first contact and quote paths" }
-            ],
-            metrics: [
-                { label: "Search Intent", value: "Tours", description: "Private driver and tour discovery" },
-                { label: "Priority", value: "Trust", description: "Credibility and service clarity first" },
-                { label: "Market", value: "Travel", description: "Built for Morocco visitors" }
-            ]
-        },
-        "yoo-marrakech": {
-            title: "Yoo Marrakech",
-            year: "2026",
-            category: "Studio Project · Local Brand",
-            tagline: "A polished local Marrakech brand presence",
-            description: "A studio-built Marrakech brand website concept, owned and operated by WeReact, designed for city visibility, professional service discovery, and smooth mobile browsing for local and visitor audiences.",
-            challenge: "Create a professional local web presence that can compete in Marrakech search results while making services easy to understand.",
-            solution: "We organized service messaging, location signals, and clear calls to action inside a premium but familiar website structure.",
-            results: [
-                "Local brand positioning for Marrakech",
-                "Search-friendly service pages",
-                "Clear action paths for visitors",
-                "Responsive browsing across devices"
-            ],
-            tags: ["Local SEO", "Brand Website", "Mobile UX", "Marrakech"],
-            link: "https://www.yoomarrakech.com/",
-            image: "/images/projects/live/yoo-marrakech-hero-settled.webp",
-            imageFull: "/images/projects/live/yoo-marrakech-full-settled.webp",
-            imageFullHeight: 8195,
-            gradient: "from-[#2e4833] to-[#1f3322]",
-            color: "#2e4833",
-            features: [
-                { icon: Monitor, title: "Brand Presence", description: "Professional positioning and service clarity" },
-                { icon: Globe, title: "Geo Signals", description: "Marrakech-first content structure" },
-                { icon: Smartphone, title: "Mobile UX", description: "Quick local discovery on small screens" }
-            ],
-            metrics: [
-                { label: "Geo Target", value: "Marrakech", description: "Location-first content structure" },
-                { label: "Experience", value: "Mobile", description: "Designed for quick local browsing" },
-                { label: "Format", value: "Brand", description: "Clear, professional web presence" }
-            ]
-        },
-        "morocco-atlas-guide": {
-            title: "Morocco Atlas Guide",
-            year: "2026",
-            category: "Studio Project · Travel Guide",
-            tagline: "Destination content for Atlas mountain travel intent",
-            description: "A studio-built destination guide, owned and operated by WeReact, covering Atlas mountain trips, Moroccan itinerary planning, and guide-led discovery.",
-            challenge: "Turn destination knowledge into an organized web experience travelers can scan, trust, and use while planning Atlas trips.",
-            solution: "We shaped the content around guide-style sections, route discovery, itinerary clarity, and local expertise signals.",
-            results: [
-                "Destination content model for Atlas travel",
-                "Travel inquiry UX for itinerary planning",
-                "Geo-rich page structure",
-                "Guide-style service storytelling"
-            ],
-            tags: ["Destination SEO", "Guide Content", "Travel UX", "Atlas"],
-            link: "https://www.moroccoatlasguide.com/",
-            image: "/images/projects/live/morocco-atlas-guide-hero-settled.webp",
-            imageFull: "/images/projects/live/morocco-atlas-guide-full-settled.webp",
-            imageFullHeight: 14145,
-            gradient: "from-[#3A5A40] to-[#2e4833]",
-            color: "#3A5A40",
-            features: [
-                { icon: Monitor, title: "Guide Content", description: "Readable destination and route sections" },
-                { icon: Globe, title: "Destination SEO", description: "Atlas and Morocco travel signals" },
-                { icon: Smartphone, title: "Trip Planning", description: "Mobile-friendly itinerary discovery" }
-            ],
-            metrics: [
-                { label: "Destination", value: "Atlas", description: "Built around itinerary intent" },
-                { label: "Market", value: "Travel", description: "Supports international trip planning" },
-                { label: "Content", value: "Guide", description: "Local expertise-led structure" }
-            ]
-        }
-    };
-
-    const project = projects[projectId];
+    const study = getCaseStudy(projectId);
     const projectRecord = getProjectById(projectId);
 
-    if (!project || !projectRecord) {
+    if (!study || !projectRecord) {
         notFound();
     }
+
+    const ui = UI[locale];
+    const copy = study.copy[locale];
+    const project = {
+        ...study,
+        ...copy,
+        features: copy.features.map((feature, idx) => ({ ...feature, icon: FEATURE_ICONS[idx] ?? Monitor })),
+    };
 
     const relationshipLabel = {
         'client-work': locale === 'fr' ? 'Projet client' : 'Client work',
@@ -376,7 +126,7 @@ export default function CaseStudyPage() {
                                 className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors mb-4 md:mb-8 group"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:-translate-x-1" />
-                                <span className="text-sm md:text-base font-medium">Back to Projects</span>
+                                <span className="text-sm md:text-base font-medium">{ui.back}</span>
                             </Link>
 
                             {/* Category Badge */}
@@ -421,7 +171,7 @@ export default function CaseStudyPage() {
                                         <Users className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">{locale === 'fr' ? 'Relation' : 'Relationship'}</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">{ui.relationship}</div>
                                         <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{relationshipLabel}</div>
                                     </div>
                                 </div>
@@ -430,7 +180,7 @@ export default function CaseStudyPage() {
                                         <Calendar className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Year</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">{ui.year}</div>
                                         <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.year}</div>
                                     </div>
                                 </div>
@@ -439,7 +189,7 @@ export default function CaseStudyPage() {
                                         <Tag className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary)]" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">Type</div>
+                                        <div className="text-[10px] md:text-xs font-medium text-[var(--color-text-secondary)]">{ui.type}</div>
                                         <div className="text-xs md:text-sm font-bold text-[var(--color-text-main)]">{project.category}</div>
                                     </div>
                                 </div>
@@ -457,7 +207,7 @@ export default function CaseStudyPage() {
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[var(--color-primary)] text-white rounded-sm text-sm md:text-base font-bold hover:bg-[#2e4833] transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105 group"
                                 >
-                                    Visit Live Site
+                                    {ui.visit}
                                     <ExternalLink className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </a>
                             </motion.div>
@@ -516,7 +266,7 @@ export default function CaseStudyPage() {
                                     {/* Project Screenshot */}
                                     <Image
                                         src={project.image}
-                                        alt={`${project.title} screenshot`}
+                                        alt={`${project.title}, ${ui.screenshot}`}
                                         fill
                                         className="object-cover object-top"
                                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -601,7 +351,7 @@ export default function CaseStudyPage() {
                         <div className="w-full">
                             <Image
                                 src={project.imageFull}
-                                alt={`${project.title} full screenshot`}
+                                alt={`${project.title}, ${ui.fullScreenshot}`}
                                 width={1920}
                                 height={project.imageFullHeight ?? 1000}
                                 className="h-auto w-full"
@@ -619,7 +369,7 @@ export default function CaseStudyPage() {
                             className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-[var(--color-primary)] rounded-sm font-bold text-xs md:text-sm border-2 border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105 shadow-lg hover:shadow-xl z-10"
                         >
                             <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                            <span>View Live Site</span>
+                            <span>{ui.viewLive}</span>
                             <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </motion.a>
                     </motion.div>
@@ -638,7 +388,7 @@ export default function CaseStudyPage() {
                             className="lg:col-span-2"
                         >
                             <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-6">
-                                Project Overview
+                                {ui.overview}
                             </h2>
                             <p className="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
                                 {project.description}
@@ -648,7 +398,7 @@ export default function CaseStudyPage() {
                             <div className="space-y-8">
                                 <div>
                                     <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-3">
-                                        The Challenge
+                                        {ui.challenge}
                                     </h3>
                                     <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">
                                         {project.challenge}
@@ -656,12 +406,21 @@ export default function CaseStudyPage() {
                                 </div>
                                 <div>
                                     <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-3">
-                                        Our Solution
+                                        {ui.solution}
                                     </h3>
                                     <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">
                                         {project.solution}
                                     </p>
                                 </div>
+                                <p className="text-lg text-[var(--color-text-secondary)]">
+                                    {ui.service}{locale === 'fr' ? ' : ' : ': '}
+                                    <Link
+                                        href={`/${locale}/${project.serviceSlug}`}
+                                        className="font-bold text-[var(--color-primary)] underline underline-offset-4 hover:no-underline"
+                                    >
+                                        {project.serviceLabel[locale]}
+                                    </Link>
+                                </p>
                             </div>
                         </motion.div>
 
@@ -673,7 +432,7 @@ export default function CaseStudyPage() {
                         >
                             <div className="sticky top-24 space-y-6">
                                 <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-4">
-                                    At A Glance
+                                    {ui.glance}
                                 </h3>
                                 {project.metrics.map((metric, idx) => (
                                     <div key={idx} className="p-6 bg-white rounded-sm border-2 border-[var(--color-primary)]/10">
@@ -704,10 +463,10 @@ export default function CaseStudyPage() {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                            Key Features
+                            {ui.features}
                         </h2>
                         <p className="text-xl text-[var(--color-text-secondary)]">
-                            What makes this project special
+                            {ui.featuresLead}
                         </p>
                     </motion.div>
 
@@ -745,10 +504,10 @@ export default function CaseStudyPage() {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                            What We Built
+                            {ui.built}
                         </h2>
                         <p className="text-xl text-[var(--color-text-secondary)]">
-                            The work behind this project
+                            {ui.builtLead}
                         </p>
                     </motion.div>
 
@@ -779,7 +538,7 @@ export default function CaseStudyPage() {
                         className="mt-16 text-center"
                     >
                         <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-6">
-                            Technology Stack
+                            {ui.stack}
                         </h3>
                         <div className="flex flex-wrap gap-3 justify-center">
                             {project.tags.map((tag: string, idx: number) => (
@@ -800,10 +559,10 @@ export default function CaseStudyPage() {
                 <div className="max-w-[1200px] mx-auto">
                     <div className={`bg-gradient-to-br ${project.gradient} text-white p-6 md:p-12 lg:p-16 rounded-sm text-center`}>
                         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
-                            Interested in a Similar Project?
+                            {ui.ctaTitle}
                         </h2>
                         <p className="text-base md:text-xl text-white/80 mb-6 md:mb-10 max-w-2xl mx-auto">
-                            Let's discuss how we can create something amazing for your business.
+                            {ui.ctaText}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                             <Link
@@ -811,7 +570,7 @@ export default function CaseStudyPage() {
                                 onClick={() => trackContactIntent('case_study_cta', { destination: 'contact' })}
                                 className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-white text-[var(--color-primary)] rounded-sm font-bold text-sm md:text-lg hover:bg-[var(--color-background-main)] transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300 hover:scale-105"
                             >
-                                Start Your Project
+                                {ui.ctaStart}
                                 <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
                             </Link>
                             <Link
@@ -819,7 +578,7 @@ export default function CaseStudyPage() {
                                 className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-transparent border-2 border-white text-white rounded-sm font-bold text-sm md:text-lg hover:bg-white/10 transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-300"
                             >
                                 <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
-                                View More Projects
+                                {ui.ctaMore}
                             </Link>
                         </div>
                     </div>
