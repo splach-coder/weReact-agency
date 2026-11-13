@@ -1034,7 +1034,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             { figure: '2,400', label: '“montgolfière marrakech” (hot-air balloon). Up to 25.30 MAD a click, the most expensive in our list.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
             { figure: '1,600', label: '“avocat marrakech” (lawyer). A click costs 2.01 to 10.92 MAD, with almost no advertisers.', source: { label: 'Google Ads Keyword Planner', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
           ],
-          note: 'Example: a dentist paying 8 MAD a click, with one visitor in ten asking for an appointment, pays about 80 MAD per request. Organic rankings and the Google listing lower that cost over time; Google Ads brings requests from the first week. [How we run campaigns](/en/agence-google-ads-maroc).',
+          note: 'Example: a dentist paying 8 MAD a click, with one visitor in ten asking for an appointment, pays about 80 MAD per request. Google Ads buys visits from the first day, but turning them into requests depends on the offer, the landing page and the budget; organic rankings and the Google listing bring visits without paying for each click. [How we run campaigns](/en/agence-google-ads-maroc).',
         },
         sections: [
           {
@@ -1042,7 +1042,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             paragraphs: [
               'No website and no Google listing yet: we start with both. The Google Business Profile is free and shows on the map once it is verified; the website gives Google and your customers a page to read. Our [Google Business Profile guide](/en/blog/fiche-google-business-maroc) has the steps.',
               'A website that brings nothing: we measure first. Search Console shows which searches you appear for and at what position. Most often the site is slow, has one page for every service, or never names the city.',
-              'You need enquiries this month: Google Ads on a dedicated landing page, while organic rankings build up. The budget is sized from the price of a click in your sector, as in the figures above.',
+              'You need visits quickly: a small, capped Google Ads test on a dedicated landing page while organic rankings build up, sized from the price of a click in your sector as in the figures above. If it brings no requests after the test, we stop it rather than raise the budget.',
             ],
           },
           {
@@ -1062,7 +1062,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'How much does a digital marketing agency in Marrakech cost?', answer: 'Websites start from 2,000 MAD for a showcase site and from 3,500 MAD for an e-commerce site. SEO and Google Ads management are proposed after a free review, as a scoped monthly plan or a one-off job, with written deliverables. The Google Ads ad budget comes on top of our fees. Our [website pricing guide](/en/blog/combien-coute-site-web-maroc) explains what moves a quote.' },
           { question: 'Do you manage Instagram and Facebook?', answer: 'No. We focus on the channels that can be measured in enquiries: the website, Google search, Google Maps and Google Ads. We link your social profiles to them so no contact is lost.' },
-          { question: 'How fast will I see results?', answer: 'Google Ads: from the first week of running. The Google listing: a few weeks after verification and the first reviews. Organic rankings: usually three to six months on competitive commercial searches.' },
+          { question: 'How fast will I see results?', answer: 'The Google listing: a few weeks after verification and the first reviews. Organic rankings: usually three to six months on competitive commercial searches. Google Ads brings visits as soon as it runs, but it only pays off when the offer and the landing page convert; we test that before raising a budget.' },
           { question: 'Do you work outside Marrakech?', answer: 'Yes, across Morocco, remotely and in French or English. See our pages for [Casablanca](/en/web-design-casablanca), [Rabat](/en/web-design-rabat) and [Tangier](/en/web-design-tanger), or [website design across Morocco](/en/website-design-moroccan-businesses).' },
         ],
       },
@@ -1095,7 +1095,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             { figure: '2 400', label: '« montgolfière marrakech ». Jusqu’à 25,30 DH le clic, le plus cher de notre liste.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
             { figure: '1 600', label: '« avocat marrakech ». Le clic coûte de 2,01 à 10,92 DH, avec presque aucun annonceur.', source: { label: 'Planificateur de mots-clés Google Ads', href: 'https://ads.google.com/home/tools/keyword-planner/' } },
           ],
-          note: 'Exemple : un dentiste qui paie 8 DH le clic, avec un visiteur sur dix qui demande un rendez-vous, paie environ 80 DH par demande. Le référencement naturel et la fiche Google font baisser ce coût avec le temps ; Google Ads apporte des demandes dès la première semaine. [Comment nous gérons les campagnes](/fr/agence-google-ads-maroc).',
+          note: 'Exemple : un dentiste qui paie 8 DH le clic, avec un visiteur sur dix qui demande un rendez-vous, paie environ 80 DH par demande. Google Ads achète des visites dès le premier jour, mais les transformer en demandes dépend de l’offre, de la landing page et du budget ; le référencement naturel et la fiche Google apportent des visites sans payer chaque clic. [Comment nous gérons les campagnes](/fr/agence-google-ads-maroc).',
         },
         sections: [
           {
@@ -1103,7 +1103,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
             paragraphs: [
               'Pas encore de site ni de fiche Google : on commence par les deux. La fiche Google Business est gratuite et apparaît sur la carte une fois validée ; le site donne à Google et à vos clients une page à lire. Notre [guide de la fiche Google Business](/fr/blog/fiche-google-business-maroc) détaille les étapes.',
               'Un site existe mais n’apporte rien : on mesure d’abord. Search Console montre sur quelles recherches vous apparaissez et à quelle position. Le plus souvent, le site est lent, n’a qu’une page pour tous les services, ou ne cite jamais la ville.',
-              'Il vous faut des demandes ce mois-ci : Google Ads sur une landing page dédiée, pendant que le référencement progresse. Le budget se dimensionne à partir du prix du clic dans votre secteur, comme dans les chiffres ci-dessus.',
+              'Il vous faut des visites rapidement : un petit test Google Ads plafonné, sur une landing page dédiée, pendant que le référencement progresse, dimensionné à partir du prix du clic dans votre secteur comme dans les chiffres ci-dessus. S’il n’apporte aucune demande à la fin du test, nous l’arrêtons au lieu d’augmenter le budget.',
             ],
           },
           {
@@ -1123,7 +1123,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         faqs: [
           { question: 'Combien coûte une agence marketing digital à Marrakech ?', answer: 'Les sites démarrent à partir de 2 000 DH pour un site vitrine et de 3 500 DH pour un site e-commerce. Le référencement et la gestion Google Ads sont proposés après une revue gratuite, en plan mensuel cadré ou en intervention ponctuelle, avec des livrables écrits. Le budget publicitaire Google Ads s’ajoute à nos honoraires. Notre [guide des prix d’un site web au Maroc](/fr/blog/combien-coute-site-web-maroc) explique ce qui fait varier un devis.' },
           { question: 'Gérez-vous Instagram et Facebook ?', answer: 'Non. Nous nous concentrons sur les canaux qui se mesurent en demandes : le site, la recherche Google, Google Maps et Google Ads. Nous y relions vos profils sociaux pour qu’aucun contact ne se perde.' },
-          { question: 'En combien de temps voit-on des résultats ?', answer: 'Google Ads : dès la première semaine de diffusion. La fiche Google : quelques semaines après la validation et les premiers avis. Le référencement naturel : en général trois à six mois sur les recherches commerciales concurrentielles.' },
+          { question: 'En combien de temps voit-on des résultats ?', answer: 'La fiche Google : quelques semaines après la validation et les premiers avis. Le référencement naturel : en général trois à six mois sur les recherches commerciales concurrentielles. Google Ads amène des visites dès sa mise en ligne, mais n’est rentable que si l’offre et la landing page convertissent ; nous le vérifions avant d’augmenter un budget.' },
           { question: 'Travaillez-vous hors de Marrakech ?', answer: 'Oui, partout au Maroc, à distance, en français ou en anglais. Voir nos pages [Casablanca](/fr/web-design-casablanca), [Rabat](/fr/web-design-rabat) et [Tanger](/fr/web-design-tanger), ou la [création de site web au Maroc](/fr/website-design-moroccan-businesses).' },
         ],
       },
