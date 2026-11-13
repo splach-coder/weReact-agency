@@ -229,6 +229,8 @@ export default async function AiInfoPage({ params }: AiInfoPageProps) {
   const profiles = [
     { label: 'Instagram', href: business.sameAs.find((url) => url.includes('instagram.com')) },
     { label: 'Facebook', href: business.sameAs.find((url) => url.includes('facebook.com')) },
+    { label: 'LinkedIn', href: business.sameAs.find((url) => url.includes('linkedin.com')) },
+    { label: 'Sortlist', href: business.sameAs.find((url) => url.includes('sortlist.com')) },
     { label: copy.labels.gbp, href: business.sameAs.find((url) => url.includes('maps.google.com')) },
   ].filter((profile): profile is { label: string; href: string } => Boolean(profile.href));
 

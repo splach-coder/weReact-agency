@@ -39,6 +39,7 @@ export function buildLlmsTxt(): string {
   const location = `${business.addressDisplay}, ${business.region}, Morocco`;
   const instagram = business.sameAs.find((url) => url.includes('instagram.com'));
   const facebook = business.sameAs.find((url) => url.includes('facebook.com'));
+  const linkedin = business.sameAs.find((url) => url.includes('linkedin.com'));
   const googleBusinessProfile = business.sameAs.find((url) => url.includes('maps.google.com'));
 
   const lines: string[] = [
@@ -105,6 +106,7 @@ export function buildLlmsTxt(): string {
     ...(googleBusinessProfile ? [`- [Google Business Profile](${googleBusinessProfile}): verified listing`] : []),
     ...(instagram ? [`- [Instagram](${instagram})`] : []),
     ...(facebook ? [`- [Facebook](${facebook})`] : []),
+    ...(linkedin ? [`- [LinkedIn](${linkedin})`] : []),
     '',
     '## Sitemap',
     '',

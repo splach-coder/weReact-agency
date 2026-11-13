@@ -1,7 +1,7 @@
 tier,target,url,category,status,date_submitted,live_url,notes
 0,Bing Places,https://www.bingplaces.com,maps,submitted,2026-11-12,,imported from GBP with weekly sync; verified; publishing ETA 7-12 days
 0,Apple Business Connect,https://businessconnect.apple.com,maps,todo,,,
-0,LinkedIn Company Page,https://www.linkedin.com/company/setup/new,social,blocked,,,personal account lacks connections; /company/wereact belongs to a Tunis agency; /company/wereact-agency still free
+0,LinkedIn Company Page,https://www.linkedin.com/company/setup/new,social,live,2026-11-13,https://www.linkedin.com/company/wereact-agency,created from Anas Benabbou account; HQ Marrakech; old HPM page deactivated on request
 0,Crunchbase,https://www.crunchbase.com/register,data,todo,,,
 0,Trustpilot business,https://business.trustpilot.com,reviews,todo,,,send review-ask after
 1,Behance,https://www.behance.net,portfolio,todo,,,3 case studies
@@ -11,12 +11,12 @@ tier,target,url,category,status,date_submitted,live_url,notes
 2,Kerix,https://www.kerix.net,MA-directory,todo,,,B2B annuaire
 2,MarocAnnonces,https://www.marocannonces.com,MA-directory,todo,,,
 2,Europages,https://www.europages.fr,B2B,todo,,,
-3,Sortlist,https://www.sortlist.com,agency-dir,live,2026-11-12,https://www.sortlist.com/agency/wereact-agency,office = Google Business Profile (city only) + remote-work badge; free plan gives no backlink; add portfolio
-3,Clutch,https://clutch.co,agency-dir,in review,2026-11-12,https://clutch.co/profile/wereact-agency,HQ Marrakech marked remote team / no public office; unpublished until a Clutch client review
-3,GoodFirms,https://www.goodfirms.co,agency-dir,skipped,2026-11-12,,requires a street address; WeReact is a remote team with no office (step 1 saved as draft only)
+3,Sortlist,https://www.sortlist.com,agency-dir,live,2026-11-12,https://www.sortlist.com/agency/wereact-agency,office = Google Business Profile (Marrakesh); 3 portfolio works; profile quality 52%; free plan gives no backlink
+3,Clutch,https://clutch.co,agency-dir,in review,2026-11-12,https://clutch.co/profile/wereact-agency,HQ Guéliz Marrakech; unpublished until a Clutch client review; social links need paid plan
+3,GoodFirms,https://www.goodfirms.co,agency-dir,skipped,2026-11-12,,validator rejects any address without a street number (Guéliz refused); step 1 saved as draft
 3,DesignRush,https://www.designrush.com,agency-dir,todo,,,
 3,The Manifest,https://www.themanifest.com,agency-dir,todo,,,
 4,Client footer - Flying Tandem,https://flyingtandem.com,client-credit,todo,,,ask owner / self-add
 4,Client footer - Kasbah Angour,https://kasbahangour.com,client-credit,todo,,,ask owner / self-add
 4,Client footer - Your Morocco,https://your-morocco.com,client-credit,todo,,,ask owner / self-add
-2,Maroc Annuaire,https://www.marocannuaire.org,MA-directory,live,2026-11-12,https://www.marocannuaire.org/Annuaire/Details_infos.php?e=WeReact%20agency&activite=Cr%C3%A9ation%20site%20web&ville=MARRAKECH&p=wereact-agency&id=337503,category Création site web; followed links to wereact.agency; address set to Marrakech 40000 (remote team, no office)
+2,Maroc Annuaire,https://www.marocannuaire.org,MA-directory,live,2026-11-12,https://www.marocannuaire.org/Annuaire/Details_infos.php?e=WeReact%20agency&activite=Cr%C3%A9ation%20site%20web&ville=MARRAKECH&p=wereact-agency&id=337503,category Création site web; followed links to wereact.agency; address Guéliz, Marrakech 40000

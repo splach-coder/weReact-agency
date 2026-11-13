@@ -66,7 +66,7 @@ export const siteConfig = {
         whatsapp: 'https://api.whatsapp.com/send/?phone=212602258009&text=Hello%20WeReact%20agency%2C%20I%20am%20interested%20in%20your%20web%20development%20services.%20I%20would%20like%20to%20discuss%20my%20project%20and%20get%20a%20quote.&type=phone_number&app_absent=0',
         calLink: 'nba-pac-s-9h7w71/30min',
         calBookingUrl: 'https://cal.com/nba-pac-s-9h7w71/30min',
-        facebook: 'https://www.facebook.com/share/14dgXYad7SB/',
+        facebook: 'https://www.facebook.com/profile.php?id=61575182501903',
         googleMapsUrl: 'https://www.google.com/maps/preview/place/WeReact+agency,+Marrakech+40000/@31.6336545,-8.008899,13z/data=!4m2!3m1!1s0xdafef169d102b53:0xc961feb47705924',
         areaServed: ['Marrakech', 'Casablanca', 'Rabat', 'Agadir', 'Fes', 'Tangier', 'Morocco', 'International'],
         services: [
@@ -80,7 +80,9 @@ export const siteConfig = {
         ],
         sameAs: [
             'https://www.instagram.com/wereact.agency',
-            'https://www.facebook.com/share/14dgXYad7SB/',
+            'https://www.facebook.com/profile.php?id=61575182501903',
+            'https://www.linkedin.com/company/wereact-agency',
+            'https://www.sortlist.com/agency/wereact-agency',
             // Verified Google Business Profile — the strongest entity signal we have.
             'https://maps.google.com/?cid=906947470338054436'
         ],
