@@ -373,7 +373,7 @@ export default function WebGLHero() {
 
       <div data-depth="4" className="relative z-20 mx-auto flex h-full max-w-[42rem] flex-col items-center justify-start px-6 pt-[20svh] text-center md:pt-[22svh]">
         <h1 className="max-w-[16.5ch] text-balance font-display text-[clamp(2.05rem,4.5vw,4.45rem)] font-black leading-[0.94] text-[var(--color-primary)]">
-          <HeroLine delay={0.15}>{t('titleLine1')}</HeroLine>
+          <HeroLine delay={0.15}>{t('titleLine1')}</HeroLine>{' '}
           <HeroLine delay={0.3} className="tracking-normal">
             {t('titleLine2')} <span className="italic text-[var(--color-accent-clay-dark)]">{t('highlight')}</span>.
           </HeroLine>

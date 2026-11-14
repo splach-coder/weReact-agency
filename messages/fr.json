@@ -24,7 +24,8 @@
     "newsletterTitle": "RESTEZ INFORMÉ",
     "newsletterText": "QUELQUES NOTES SUR LE WEB, LE SEO ET LE MÉTIER.",
     "emailPlaceholder": "Votre e-mail",
-    "subscribe": "S'ABONNER"
+    "subscribe": "S'ABONNER",
+    "privacyChoices": "Gérer les cookies"
   },
   "Contact": {
     "eyebrow": "Discutons",
@@ -337,8 +338,8 @@
   "Home": {
     "hero": {
       "eyebrow": "Marrakech, l'agence web moderne du Maroc",
-      "titleLine1": "Nous créons des",
-      "titleLine2": "expériences qui",
+      "titleLine1": "Agence web à Marrakech,",
+      "titleLine2": "des sites qui",
       "highlight": "convertissent",
       "subtitle": "Des sites rapides et élégants qui relient les entreprises marocaines au monde, conçus pour inspirer confiance et générer des réservations, en français et en anglais.",
       "ctaPrimary": "Démarrer un projet",
@@ -407,7 +408,7 @@
         },
         {
           "title": "Landing pages",
-          "text": "Des pages ciblées pour campagnes, lancements, trafic payant et génération de prospects."
+          "text": "Une page ciblée par service, lancement ou offre, pensée pour transformer les visites en demandes."
         },
         {
           "title": "Fondations SEO",

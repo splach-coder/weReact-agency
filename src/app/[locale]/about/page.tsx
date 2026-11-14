@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { routing } from '@/i18n/routing';
-import { projects } from '@/data/projects';
+import { getProjectCopy, projects } from '@/data/projects';
 import { siteConfig } from '@/config/site';
 import { getAboutCopy } from '@/data/about';
 import { serviceLandingPages } from '@/data/services';
@@ -132,11 +132,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
             {recentProjects.map((project) => (
               <li key={project.id} className="bg-[var(--color-background-main)] p-6 md:p-8">
                 <Link href={`/${locale}/work/${project.id}`} className="group block">
-                  <p className="text-mono text-[var(--color-primary)]">{project.category}</p>
+                  <p className="text-mono text-[var(--color-primary)]">{getProjectCopy(project, isFr ? 'fr' : 'en').category}</p>
                   <h2 className="mt-2 text-xl font-bold leading-tight underline decoration-[rgba(58,90,64,0.3)] underline-offset-4 transition-colors group-hover:text-[var(--color-primary)]">
                     {project.title}
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{project.summary}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{getProjectCopy(project, isFr ? 'fr' : 'en').summary}</p>
                 </Link>
               </li>
             ))}

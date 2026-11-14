@@ -24,7 +24,8 @@
     "newsletterTitle": "STAY IN THE LOOP",
     "newsletterText": "OCCASIONAL NOTES ON WEB, SEO, AND CRAFT.",
     "emailPlaceholder": "Your email",
-    "subscribe": "SUBSCRIBE"
+    "subscribe": "SUBSCRIBE",
+    "privacyChoices": "Privacy choices"
   },
   "Contact": {
     "eyebrow": "Let's talk",
@@ -337,8 +338,8 @@
   "Home": {
     "hero": {
       "eyebrow": "Marrakech, Morocco's modern web agency",
-      "titleLine1": "We build digital",
-      "titleLine2": "experiences that",
+      "titleLine1": "Web agency in Marrakech,",
+      "titleLine2": "websites that",
       "highlight": "convert",
       "subtitle": "Fast, beautiful websites that bridge Moroccan businesses to the world, designed to earn trust and win bookings, in English and French.",
       "ctaPrimary": "Start a project",
@@ -407,7 +408,7 @@
         },
         {
           "title": "Landing pages",
-          "text": "Single-purpose pages for campaigns, launches, paid traffic, and lead capture."
+          "text": "One focused page per service, launch or offer, built to turn visits into enquiries."
         },
         {
           "title": "SEO foundations",

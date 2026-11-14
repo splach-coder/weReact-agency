@@ -19,6 +19,15 @@ export default async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const host = request.headers.get('host')?.toLowerCase();
 
+  // Plain HTTP on our own hosts → HTTPS canonical in one permanent hop. Without
+  // this, http://www… served every page with a 200 and Google kept those URLs.
+  const forwardedProto = request.headers.get('x-forwarded-proto');
+  const isHttp = forwardedProto ? forwardedProto === 'http' : request.nextUrl.protocol === 'http:';
+  if (isHttp && (host === CANONICAL_HOST || host === APEX_HOST)) {
+    const target = getPermanentPublicRedirect(pathname) ?? pathname;
+    return NextResponse.redirect(new URL(target + search, siteConfig.url), 308);
+  }
+
   const localizedRedirect = getLocalizedPublicRedirect(pathname, {
     acceptLanguage: request.headers.get('accept-language'),
     country: request.headers.get('cf-ipcountry'),

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { getProjectById } from '@/data/projects';
+import { getProjectById, getProjectCopy } from '@/data/projects';
 import { getServiceLandingPage, serviceLandingPages, servicePricing } from '@/data/services';
 import { audienceLandingPages, getAudienceLandingPage } from '@/data/audiences';
 import { GrowthCtas, GrowthContactCta } from '@/components/GrowthCtas';
@@ -240,11 +240,11 @@ export default async function ServiceLandingPage({ params }: ServicePageProps) {
             {projectCards.map((project) => (
               <Link key={project.id} href={`/${locale}/work/${project.id}`} className="group bg-[var(--color-background-main)] p-5 transition-colors hover:bg-white md:p-6">
                 <div className="relative aspect-[5/3] overflow-hidden bg-[var(--color-accent-warm)]">
-                  <Image src={project.image} alt={`${project.title} web design case study`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                  <Image src={project.image} alt={locale === 'fr' ? `Site web ${project.title}, étude de cas` : `${project.title} website, case study`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
-                <p className="mt-5 text-mono text-[var(--color-primary)]">{project.category}</p>
+                <p className="mt-5 text-mono text-[var(--color-primary)]">{getProjectCopy(project, locale === 'fr' ? 'fr' : 'en').category}</p>
                 <h2 className="mt-2 text-2xl font-bold leading-tight text-[var(--color-text-main)]">{project.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{project.summary}</p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{getProjectCopy(project, locale === 'fr' ? 'fr' : 'en').summary}</p>
               </Link>
             ))}
           </div>

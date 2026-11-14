@@ -84,7 +84,7 @@ test('declares the logo once, as an ImageObject with its own @id', () => {
   const business = createBusinessJsonLd();
   assert.equal(business.logo['@type'], 'ImageObject');
   assert.equal(business.logo['@id'], 'https://www.wereact.agency/#logo');
-  assert.equal(business.logo.url, 'https://www.wereact.agency/images/logo.webp');
+  assert.equal(business.logo.url, 'https://www.wereact.agency/wereact-avatar.png');
 });
 
 test('describes served areas as cities and a country linked to Wikidata', () => {

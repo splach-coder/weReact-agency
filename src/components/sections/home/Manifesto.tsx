@@ -34,16 +34,18 @@ function ManifestoWord({ text, index, total, progress, reduceMotion }: Manifesto
   const fillOpacity = useTransform(progress, [start, end], reduceMotion ? [1, 1] : [0.72, 1]);
   const wordContent = text;
 
+  // The coloured fill is drawn from a data attribute with ::before, so each word
+  // exists once in the HTML. Two text copies read as "Nous Nous créons créons"
+  // to crawlers and to anyone copying the text.
   return (
     <span className="relative inline-block overflow-hidden align-bottom text-[rgba(58,90,64,0.22)]">
       <span>{wordContent}</span>
       <motion.span
         aria-hidden="true"
+        data-text={wordContent}
         style={{ clipPath, opacity: fillOpacity }}
-        className="absolute inset-0 text-[var(--color-primary)]"
-      >
-        {wordContent}
-      </motion.span>
+        className="absolute inset-0 text-[var(--color-primary)] before:content-[attr(data-text)]"
+      />
     </span>
   );
 }

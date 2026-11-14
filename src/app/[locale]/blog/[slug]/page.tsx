@@ -107,7 +107,17 @@ export default async function BlogPostPage({ params }: Props) {
 
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-[9px] font-black uppercase tracking-[0.2em] mb-6">
                         <span className="px-2 py-0.5 text-white rounded-sm" style={{ backgroundColor: 'var(--color-primary)' }}>{post.category}</span>
-                        <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Calendar size={12} aria-hidden="true" /> {post.date}</span>
+                        <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]">
+                            <Calendar size={12} aria-hidden="true" />
+                            <time dateTime={post.publishedAt}>{ui.published} {post.date}</time>
+                        </span>
+                        {post.modifiedAt && post.modifiedAt !== post.publishedAt ? (
+                            <span className="text-[var(--color-text-muted)]">
+                                <time dateTime={post.modifiedAt}>
+                                    {ui.updated} {new Intl.DateTimeFormat(locale === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(post.modifiedAt))}
+                                </time>
+                            </span>
+                        ) : null}
                         <span className="flex items-center gap-1.5 text-[var(--color-text-muted)]"><Clock size={12} aria-hidden="true" /> {post.readTime}</span>
                     </div>
 
@@ -120,7 +130,11 @@ export default async function BlogPostPage({ params }: Props) {
                             <User size={20} className="text-[var(--color-primary)]" aria-hidden="true" />
                         </div>
                         <div className="text-left">
-                            <p className="text-xs font-black uppercase tracking-widest text-[var(--color-text-main)]">{post.author}</p>
+                            <p className="text-xs font-black uppercase tracking-widest text-[var(--color-text-main)]">
+                                <Link href={`/${locale}/about`} title={ui.aboutAuthor} className="underline decoration-[rgba(58,90,64,0.3)] underline-offset-4 hover:text-[var(--color-primary)]">
+                                    {post.author}
+                                </Link>
+                            </p>
                             <p className="text-[9px] text-[var(--color-text-muted)] uppercase tracking-[0.1em] font-bold">{post.authorRole}</p>
                         </div>
                     </div>

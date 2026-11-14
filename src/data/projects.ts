@@ -218,3 +218,10 @@ export const featuredProjects = projects.filter((project) => project.status === 
 export function getProjectById(id: string) {
   return projects.find((project) => project.id === id);
 }
+
+/** Category and summary in the page language (French pages must not show the English copy). */
+export function getProjectCopy(project: Project, language: 'en' | 'fr') {
+  return language === 'fr'
+    ? { category: project.categoryFr, summary: project.summaryFr }
+    : { category: project.category.replace(/^Studio Project: /, ''), summary: project.summary };
+}

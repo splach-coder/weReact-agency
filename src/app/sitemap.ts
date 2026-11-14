@@ -22,20 +22,47 @@ const INDEX_ROUTE_PRIORITY: Record<string, number> = {
   '/sitemap': 0.3,
 };
 
-export default function sitemap(buildDate = new Date()): MetadataRoute.Sitemap {
+/**
+ * Last real change of pages whose text is not generated from the data files.
+ * Google only trusts lastmod when it is "consistently and verifiably accurate",
+ * so bump these by hand when the page copy changes, never on every build.
+ */
+const STATIC_PAGE_MODIFIED: Record<string, string> = {
+  // Home: new main heading and the manifesto text fixed.
+  '': '2026-11-14',
+  '/contact': '2026-11-10',
+  '/book': '2026-11-10',
+};
+
+const latest = (dates: readonly string[]) => dates.reduce((a, b) => (b > a ? b : a));
+
+// The build date is accepted for backwards compatibility but no longer used:
+// a lastmod that moves on every deploy makes Google ignore all of them.
+export default function sitemap(_buildDate?: Date): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const routes = ['', '/contact', '/work', '/about', '/book', '/blog'];
+  const contentLastModified = new Date(getContentLastModified());
+  const projectsModified = latest(projects.map((project) => project.modifiedAt));
+  const postsModified = latest(blogPosts.map((post) => post.modifiedAt));
+  const routeModified: Record<string, Date> = {
+    // The home page lists services, work, articles and the tool.
+    '': new Date(latest([getContentLastModified(), STATIC_PAGE_MODIFIED['']])),
+    '/work': new Date(projectsModified),
+    // The about page shows recent work.
+    '/about': new Date(latest([projectsModified, '2026-11-13'])),
+    '/blog': new Date(postsModified),
+    '/contact': new Date(STATIC_PAGE_MODIFIED['/contact']),
+    '/book': new Date(STATIC_PAGE_MODIFIED['/book']),
+  };
 
   const staticRoutes = routes.flatMap((route) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}${route}`,
-      lastModified: buildDate,
+      lastModified: routeModified[route],
       changeFrequency: route === '/blog' ? ('weekly' as const) : ('monthly' as const),
       priority: STATIC_ROUTE_PRIORITY[route] ?? 0.7,
     }))
   );
-
-  const contentLastModified = new Date(getContentLastModified());
   const indexRoutes = Object.entries(INDEX_ROUTE_PRIORITY).flatMap(([route, priority]) =>
     siteConfig.locales.map((locale) => ({
       url: `${baseUrl}/${locale}${route}`,

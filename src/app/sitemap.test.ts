@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import sitemap from './sitemap';
 import { getProjectById } from '@/data/projects';
+import { getContentLastModified } from '@/lib/site-index';
 
 test('includes localized commercial service pages and article modification dates', () => {
   const routes = sitemap();
@@ -18,12 +19,15 @@ test('includes both new audience paths in English and French', () => {
   assert.ok(routes.some((entry) => entry.url.endsWith('/fr/international-web-design-agency')));
 });
 
-test('uses stable project modification dates instead of the build time', () => {
+test('never dates a page by the build time (Google ignores lastmod that moves on every deploy)', () => {
   const createSitemap = sitemap as (buildDate?: Date) => ReturnType<typeof sitemap>;
   const routes = createSitemap(new Date('2030-01-02T00:00:00.000Z'));
+  for (const entry of routes) {
+    assert.notEqual(new Date(entry.lastModified ?? '').toISOString().slice(0, 10), '2030-01-02', entry.url);
+  }
   const home = routes.find((entry) => entry.url.endsWith('/en'));
   const project = routes.find((entry) => entry.url.endsWith('/en/work/flying-tandem'));
-  assert.equal(new Date(home?.lastModified ?? '').toISOString().slice(0, 10), '2030-01-02');
+  assert.ok(new Date(home?.lastModified ?? '').toISOString().slice(0, 10) >= getContentLastModified());
   assert.equal(new Date(project?.lastModified ?? '').toISOString().slice(0, 10), getProjectById('flying-tandem')?.modifiedAt);
 });
 

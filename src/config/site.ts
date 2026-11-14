@@ -63,6 +63,10 @@ export const siteConfig = {
         longitude: -8.008899,
         hoursDisplay: 'Mon-Fri 9:00-18:00',
         openingHours: 'Mo-Fr 09:00-18:00',
+        /** Same hours as the Google Business Profile, in the structured form Google's LocalBusiness docs recommend. */
+        openingHoursSpecification: [
+          { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00:00', closes: '18:00:00' },
+        ],
         whatsapp: 'https://api.whatsapp.com/send/?phone=212602258009&text=Hello%20WeReact%20agency%2C%20I%20am%20interested%20in%20your%20web%20development%20services.%20I%20would%20like%20to%20discuss%20my%20project%20and%20get%20a%20quote.&type=phone_number&app_absent=0',
         calLink: 'nba-pac-s-9h7w71/30min',
         calBookingUrl: 'https://cal.com/nba-pac-s-9h7w71/30min',

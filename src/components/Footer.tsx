@@ -234,7 +234,7 @@ export default function Footer() {
               onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_PREFERENCES_EVENT))}
               className="text-left underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
             >
-              Privacy choices
+              {t('privacyChoices')}
             </button>
             {indexLinks.map((link) => (
               <Link

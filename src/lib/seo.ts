@@ -129,12 +129,17 @@ export function createKnowsAboutJsonLd() {
 }
 
 export function createLogoJsonLd() {
-  const url = `${siteConfig.url}/images/logo.webp`;
+  // The "-WR-" mark used on the Business Profile and LinkedIn: square, 512 px,
+  // readable on white (Google: at least 112 px). /images/logo.webp is a client's
+  // logo (Your Morocco) and must never represent WeReact.
+  const url = `${siteConfig.url}/wereact-avatar.png`;
   return {
     '@type': 'ImageObject',
     '@id': ENTITY_IDS.logo,
     url,
     contentUrl: url,
+    width: 512,
+    height: 512,
     caption: siteConfig.name,
   };
 }
@@ -189,7 +194,10 @@ export function createBusinessJsonLd({ locale, servicePages = [] }: BusinessJson
       longitude: siteConfig.business.longitude,
     },
     hasMap: siteConfig.business.googleMapsUrl,
-    openingHours: siteConfig.business.openingHours,
+    openingHoursSpecification: siteConfig.business.openingHoursSpecification.map((hours) => ({
+      '@type': 'OpeningHoursSpecification',
+      ...hours,
+    })),
     areaServed: createAreaServedJsonLd(),
     knowsAbout: createKnowsAboutJsonLd(),
     audience: siteConfig.seo.audience.map((audienceType) => ({ '@type': 'Audience', audienceType })),
