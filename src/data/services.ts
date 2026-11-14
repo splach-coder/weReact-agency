@@ -114,7 +114,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'agence-seo-marrakech', 'agence-marketing-digital-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['etude-sites-agences-web-marrakech', 'combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Web Agency in Marrakech: Website Design',
@@ -236,7 +236,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['website-design-moroccan-businesses', 'agence-seo-marrakech', 'creation-site-e-commerce-maroc', 'web-design-rabat'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech', 'fiche-google-business-maroc'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Web Agency in Casablanca: Website Design',
@@ -345,7 +345,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedProjectIds: ['trust-drivers', 'morocco-atlas-guide', 'kasbah-angour'],
     relatedPageSlugs: ['web-design-marrakech', 'agence-marketing-digital-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['fiche-google-business-maroc', 'tourism-hospitality-seo-morocco', 'etude-sites-agences-web-marrakech'],
-    modifiedAt: '2026-11-13',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'SEO Agency in Marrakech, Morocco',
@@ -393,7 +393,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['web-design-casablanca', 'web-design-tanger', 'agence-seo-marrakech', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'fiche-google-business-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
-    modifiedAt: '2026-11-12',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Web Agency in Rabat: Website Design',
@@ -627,7 +627,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['tourism-websites-morocco', 'hotel-website-design', 'agence-seo-marrakech', 'web-design-marrakech'],
     relatedPostSlugs: ['commission-getyourguide-viator-booking-maroc', 'tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Websites for Tour Operators in Morocco',
@@ -757,7 +757,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['web-design-marrakech', 'website-design-moroccan-businesses', 'agence-marketing-digital-marrakech', 'agence-seo-marrakech'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'E-commerce Website Design in Morocco',
@@ -951,7 +951,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     relatedPageSlugs: ['agence-seo-marrakech', 'web-design-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['fiche-google-business-maroc', 'combien-coute-site-web-maroc', 'etude-sites-agences-web-marrakech'],
     showPricing: true,
-    modifiedAt: '2026-11-13',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Digital Marketing Agency in Marrakech',

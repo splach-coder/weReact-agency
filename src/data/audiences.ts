@@ -22,7 +22,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
     relatedServiceSlugs: ['web-design-marrakech', 'web-design-casablanca', 'web-design-tanger', 'creation-site-e-commerce-maroc', 'agence-seo-marrakech'],
     relatedPostSlugs: ['combien-coute-site-web-maroc', 'auto-entrepreneur-maroc', 'fiche-google-business-maroc', 'etude-sites-agences-web-marrakech'],
     showPricing: true,
-    modifiedAt: '2026-11-12',
+    modifiedAt: '2026-11-14',
     copy: {
       en: {
         title: 'Website Design in Morocco for Local Businesses',

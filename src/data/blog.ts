@@ -310,7 +310,7 @@ export const blogPosts: BlogPost[] = [
         metaDescription: "SEO guide for tourism and hospitality websites in Morocco: destination pages, mobile speed, trust signals, and conversion UX that improve direct inquiries.",
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
-        modifiedAt: "2026-11-10",
+        modifiedAt: "2026-11-14",
         author: "Anas Benabbou",
         authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "tourism-websites-morocco",
