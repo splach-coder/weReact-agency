@@ -39,6 +39,71 @@ export type CaseStudy = {
 
 export const caseStudies: readonly CaseStudy[] = [
   {
+    id: 'the-roots-corner',
+    title: 'The Roots Corner',
+    year: '2026',
+    tags: ['Next.js', 'Shopify', 'E-commerce', 'FR / EN', 'Structured data'],
+    link: 'https://therootscorner.com/fr',
+    image: '/images/projects/live/the-roots-corner-hero.webp',
+    imageFull: '/images/projects/live/the-roots-corner-full.webp',
+    imageFullHeight: 5904,
+    gradient: 'from-[#3A5A40] to-[#2e4833]',
+    serviceSlug: 'creation-site-e-commerce-maroc',
+    serviceLabel: { en: 'E-commerce websites in Morocco', fr: 'Création de site e-commerce au Maroc' },
+    copy: {
+      en: {
+        category: 'E-commerce Website',
+        tagline: 'Antique objects and Berber rugs from Marrakech, sold online to Morocco and abroad',
+        description: 'The online store of The Roots Corner, a Marrakech shop that selects antique objects, craft pieces, furniture and Berber rugs from Morocco and beyond. Visitors browse in French or English, buy available pieces online, ask for made-to-measure rugs and follow their orders.',
+        challenge: 'One-of-a-kind pieces and handmade rugs are hard to sell online. Each object exists only once, many rugs are woven to order with a price on request, and buyers abroad need to trust a shop in Marrakech before they pay, delivery and customs included.',
+        solution: 'We built the catalogue around how people shop for these pieces: five numbered collections, a Berber rug section by type, product pages showing the price or "price on request", and a made-to-measure path for Mrirt rugs woven by a women’s cooperative in the Middle Atlas. Delivery, customs, the 14-day withdrawal right and care advice are answered before the purchase, on the product page, in the FAQ and in the legal pages, with WhatsApp for personal questions.',
+        results: [
+          'A bilingual catalogue: five collections, from seating to lighting, and nine rug types',
+          'Product pages with price, availability and add to cart, or price on request',
+          'Made-to-measure requests for Mrirt rugs in four collections: Plain, Lines, Diamonds and Graphic',
+          'Cart, checkout and a "My orders" page to follow deliveries',
+          'Delivery, customs, returns and a care guide written out before the purchase',
+          'Structured data for the store, breadcrumbs and FAQ',
+        ],
+        features: [
+          { title: 'Online store', description: 'Cart, checkout and order follow-up, with the catalogue managed in Shopify' },
+          { title: 'Bilingual', description: 'French and English for buyers in Morocco and abroad' },
+          { title: 'Personal help', description: 'WhatsApp for questions on size, colour and delivery' },
+        ],
+        metrics: [
+          { label: 'Store', value: 'Online', description: 'Cart, checkout and order follow-up' },
+          { label: 'Catalogue', value: '5 + 9', description: 'Collections and rug types' },
+          { label: 'Shipping', value: 'Worldwide', description: 'Shipped from Marrakech' },
+        ],
+      },
+      fr: {
+        category: 'Site e-commerce',
+        tagline: 'Objets anciens et tapis berbères de Marrakech, vendus en ligne au Maroc et à l’étranger',
+        description: 'La boutique en ligne de The Roots Corner, une maison marrakchie qui sélectionne des objets anciens, des pièces artisanales, du mobilier et des tapis berbères venus du Maroc et d’ailleurs. Le visiteur parcourt la collection en français ou en anglais, achète les pièces disponibles en ligne, demande un tapis sur mesure et suit ses commandes.',
+        challenge: 'Les pièces uniques et les tapis faits main se vendent mal en ligne. Chaque objet n’existe qu’une fois, beaucoup de tapis sont tissés sur commande avec un prix sur demande, et l’acheteur à l’étranger doit faire confiance à une boutique de Marrakech avant de payer, livraison et douane comprises.',
+        solution: 'Nous avons construit le catalogue autour de la façon dont on achète ces pièces : cinq collections numérotées, un espace tapis berbères classé par type, des fiches produit avec le prix ou « prix sur demande », et un parcours sur mesure pour les tapis Mrirt tissés par une coopérative de femmes du Moyen Atlas. Livraison, douane, droit de rétractation de 14 jours et conseils d’entretien trouvent leur réponse avant l’achat, sur la fiche produit, dans la FAQ et dans les pages légales, avec WhatsApp pour les questions personnelles.',
+        results: [
+          'Un catalogue bilingue : cinq collections, des sièges aux luminaires, et neuf types de tapis',
+          'Des fiches produit avec prix, disponibilité et ajout au panier, ou prix sur demande',
+          'Des demandes sur mesure pour les tapis Mrirt, en quatre collections : Uni, Lignes, Losanges et Graphique',
+          'Panier, paiement et une page « Mes commandes » pour suivre les livraisons',
+          'Livraison, douane, retours et guide d’entretien expliqués avant l’achat',
+          'Des données structurées pour la boutique, le fil d’Ariane et la FAQ',
+        ],
+        features: [
+          { title: 'Boutique en ligne', description: 'Panier, paiement et suivi des commandes, avec un catalogue géré dans Shopify' },
+          { title: 'Bilingue', description: 'Français et anglais pour les acheteurs au Maroc et à l’étranger' },
+          { title: 'Conseil personnel', description: 'WhatsApp pour les questions de taille, de couleur et de livraison' },
+        ],
+        metrics: [
+          { label: 'Boutique', value: 'En ligne', description: 'Panier, paiement et suivi des commandes' },
+          { label: 'Catalogue', value: '5 + 9', description: 'Collections et types de tapis' },
+          { label: 'Livraison', value: 'Monde', description: 'Expédié depuis Marrakech' },
+        ],
+      },
+    },
+  },
+  {
     id: 'flying-tandem',
     title: 'Flying Tandem',
     year: '2025',

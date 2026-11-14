@@ -455,6 +455,13 @@
       "title": "What each project was built to solve",
       "items": [
         {
+          "summary": "A bilingual online store selling antique objects, craft pieces and handmade Berber rugs from Marrakech to buyers in Morocco and abroad.",
+          "name": "The Roots Corner",
+          "category": "Antique objects and Berber rugs",
+          "focus": "E-commerce and bilingual catalogue",
+          "location": "Marrakech"
+        },
+        {
           "summary": "A focused booking experience for travelers comparing tandem flight options in Marrakech and the Atlas Mountains.",
           "name": "Flying Tandem",
           "category": "Adventure tourism brand",

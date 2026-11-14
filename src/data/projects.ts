@@ -30,6 +30,33 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    // Facts checked on the live site on 2026-11-14 (footer: "Built by WeReact").
+    id: 'the-roots-corner',
+    title: 'The Roots Corner',
+    domain: 'therootscorner.com',
+    externalUrl: 'https://therootscorner.com/fr',
+    relationship: 'client-work',
+    category: 'E-commerce Website',
+    categoryFr: 'Site e-commerce',
+    summary: 'An online store in French and English for a Marrakech shop selling antique objects, craft pieces and Berber rugs, shipped from Marrakech to Morocco and abroad.',
+    summaryFr: 'Une boutique en ligne en français et en anglais pour une maison marrakchie d\'objets anciens, de pièces artisanales et de tapis berbères, expédiés depuis Marrakech au Maroc et à l\'étranger.',
+    year: '2026',
+    modifiedAt: '2026-11-14',
+    status: 'featured',
+    image: '/images/projects/live/the-roots-corner-hero.webp',
+    imageFull: '/images/projects/live/the-roots-corner-full.webp',
+    services: ['E-commerce', 'Product catalogue', 'FR / EN'],
+    metrics: [
+      { label: 'Store', value: 'Online', detail: 'Cart, checkout and order follow-up.' },
+      { label: 'Catalogue', value: 'Rugs & objects', detail: 'Five collections and nine rug types.' },
+    ],
+    caseStudy: {
+      challenge: 'Sell one-of-a-kind pieces and made-to-order rugs online to buyers in Morocco and abroad.',
+      response: 'WeReact built a bilingual store with collections, rug types, product pages and a made-to-measure path, with delivery and returns answered before the purchase.',
+      outcome: ['Bilingual product catalogue', 'Online checkout and orders', 'Made-to-measure rug requests'],
+    },
+  },
+  {
     id: 'flying-tandem',
     title: 'Flying Tandem',
     domain: 'flyingtandem.com',

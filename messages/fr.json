@@ -455,6 +455,13 @@
       "title": "Le problème que chaque projet devait résoudre",
       "items": [
         {
+          "summary": "Une boutique en ligne bilingue pour vendre des objets anciens, des pièces artisanales et des tapis berbères faits main, de Marrakech au Maroc et à l’étranger.",
+          "name": "The Roots Corner",
+          "category": "Objets anciens et tapis berbères",
+          "focus": "E-commerce et catalogue bilingue",
+          "location": "Marrakech"
+        },
+        {
           "summary": "Une expérience de réservation plus claire pour les voyageurs qui comparent des vols tandem à Marrakech et dans l'Atlas.",
           "name": "Flying Tandem",
           "category": "Marque de tourisme aventure",
