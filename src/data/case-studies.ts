@@ -302,9 +302,9 @@ export const caseStudies: readonly CaseStudy[] = [
     serviceLabel: { en: 'Travel agency websites', fr: 'Site web pour agence de voyage' },
     copy: {
       en: {
-        category: 'Studio Project · Transport & Tours',
-        tagline: 'Private tours and multi-day circuits from Marrakech, built and run by our studio',
-        description: 'A tour and private driver website owned and run by WeReact. It sells private tours from Marrakech, including multi-day circuits to Merzouga, the south and the imperial cities, and we use it to test page structures and local search signals on real searches.',
+        category: 'Transport & Tours',
+        tagline: 'Private tours and multi-day circuits from Marrakech, each with its own page',
+        description: 'The website of Trust Drivers Tours, a private driver and tour company in Marrakech. It sells private tours from Marrakech, including multi-day circuits to Merzouga, the south and the imperial cities, with WhatsApp as the main way to book.',
         challenge: 'Travellers comparing private drivers need to understand the routes, the duration and who will drive them, then reach someone fast. The site had to earn that trust without reviews from a big platform.',
         solution: 'We structured the site around tour services and circuits, with a page for each circuit (3 days to Merzouga, 5 days in the south, 8 days through the imperial cities), clear service details and WhatsApp-style contact paths.',
         results: [
@@ -321,13 +321,13 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Search intent', value: 'Tours', description: 'Private driver and circuit searches' },
           { label: 'Circuits', value: '3 to 8 days', description: 'Merzouga, the south, imperial cities' },
-          { label: 'Owner', value: 'Studio', description: 'Built and run by WeReact' },
+          { label: 'Departures', value: 'Marrakech', description: 'Every circuit starts in Marrakech' },
         ],
       },
       fr: {
-        category: 'Projet du studio · Transport et circuits',
-        tagline: 'Circuits privés au départ de Marrakech, conçus et gérés par notre studio',
-        description: 'Un site de circuits et de chauffeurs privés qui appartient à WeReact et que nous gérons. Il propose des circuits privés au départ de Marrakech, dont des circuits de plusieurs jours vers Merzouga, le Sud et les villes impériales, et nous sert à tester des structures de pages et des signaux locaux sur de vraies recherches.',
+        category: 'Transport et circuits',
+        tagline: 'Des circuits privés au départ de Marrakech, chacun avec sa page',
+        description: 'Le site de Trust Drivers Tours, une société de chauffeurs et de circuits privés à Marrakech. Il propose des circuits privés au départ de Marrakech, dont des circuits de plusieurs jours vers Merzouga, le Sud et les villes impériales, avec WhatsApp comme principal moyen de réserver.',
         challenge: 'Le voyageur qui compare des chauffeurs privés veut comprendre l’itinéraire, la durée et qui le conduira, puis joindre quelqu’un vite. Le site devait gagner cette confiance sans les avis d’une grande plateforme.',
         solution: 'Nous avons structuré le site autour des services et des circuits, avec une page par circuit (3 jours vers Merzouga, 5 jours dans le Sud, 8 jours par les villes impériales), des détails de service clairs et un contact de type WhatsApp.',
         results: [
@@ -344,7 +344,7 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Intention', value: 'Circuits', description: 'Recherches de chauffeur et de circuit privé' },
           { label: 'Circuits', value: '3 à 8 jours', description: 'Merzouga, le Sud, les villes impériales' },
-          { label: 'Propriétaire', value: 'Studio', description: 'Conçu et géré par WeReact' },
+          { label: 'Départs', value: 'Marrakech', description: 'Tous les circuits partent de Marrakech' },
         ],
       },
     },
@@ -363,10 +363,10 @@ export const caseStudies: readonly CaseStudy[] = [
     serviceLabel: { en: 'Website design in Marrakech', fr: 'Création de site web à Marrakech' },
     copy: {
       en: {
-        category: 'Studio Project · Travel Brand',
+        category: 'Travel Brand',
         tagline: 'Tailor-made trips from Marrakech, to the Agafay Desert and the Atlas Mountains',
-        description: 'A Marrakech travel brand website owned and run by WeReact: tailor-made trips, tours and packages around Marrakech, the Agafay Desert and the Atlas Mountains, in English and French, with a date and traveller search on the home page.',
-        challenge: 'A new travel brand starts with no reviews and no rankings. The site had to show where it takes people and how to book in a few seconds, and give Google clear signals about the place and the offer.',
+        description: 'The website of Yoo Marrakech, a Marrakech travel brand: tailor-made trips, tours and packages around Marrakech, the Agafay Desert and the Atlas Mountains, in English and French, with a date and traveller search on the home page.',
+        challenge: 'Travellers compare many agencies before they book a trip. The site had to show where Yoo Marrakech takes people and how to book in a few seconds, and give Google clear signals about the place and the offer.',
         solution: 'We organised the site around destinations (Marrakech, the Agafay Desert, the Atlas Mountains), each leading to its tours or packages, put a date and traveller search at the top, and kept one clear next step on every page.',
         results: [
           'Destination blocks that lead straight to the matching tours and packages',
@@ -382,14 +382,14 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Target', value: 'Marrakech', description: 'Location-first content structure' },
           { label: 'Experience', value: 'Mobile', description: 'Designed for quick local browsing' },
-          { label: 'Owner', value: 'Studio', description: 'Built and run by WeReact' },
+          { label: 'Languages', value: 'EN / FR', description: 'English and French versions' },
         ],
       },
       fr: {
-        category: 'Projet du studio · Marque de voyage',
+        category: 'Marque de voyage',
         tagline: 'Des voyages sur mesure depuis Marrakech, vers le désert d’Agafay et l’Atlas',
-        description: 'Le site d’une marque de voyage marrakchie qui appartient à WeReact et que nous gérons : voyages sur mesure, circuits et forfaits autour de Marrakech, du désert d’Agafay et de l’Atlas, en anglais et en français, avec une recherche par date et nombre de voyageurs dès la page d’accueil.',
-        challenge: 'Une nouvelle marque de voyage démarre sans avis ni positions. Le site devait montrer en quelques secondes où elle emmène les voyageurs et comment réserver, et donner à Google des signaux clairs sur le lieu et l’offre.',
+        description: 'Le site de Yoo Marrakech, une marque de voyage marrakchie : voyages sur mesure, circuits et forfaits autour de Marrakech, du désert d’Agafay et de l’Atlas, en anglais et en français, avec une recherche par date et nombre de voyageurs dès la page d’accueil.',
+        challenge: 'Le voyageur compare plusieurs agences avant de réserver. Le site devait montrer en quelques secondes où Yoo Marrakech emmène ses clients et comment réserver, et donner à Google des signaux clairs sur le lieu et l’offre.',
         solution: 'Nous avons organisé le site par destination (Marrakech, le désert d’Agafay, l’Atlas), chacune menant à ses circuits ou forfaits, placé une recherche par date et voyageurs en haut de page, et gardé une seule prochaine étape claire sur chaque page.',
         results: [
           'Des blocs de destination qui mènent directement aux circuits et forfaits',
@@ -405,7 +405,7 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Cible', value: 'Marrakech', description: 'Contenu organisé autour du lieu' },
           { label: 'Expérience', value: 'Mobile', description: 'Pensé pour une navigation locale rapide' },
-          { label: 'Propriétaire', value: 'Studio', description: 'Conçu et géré par WeReact' },
+          { label: 'Langues', value: 'FR / EN', description: 'Versions française et anglaise' },
         ],
       },
     },
@@ -424,9 +424,9 @@ export const caseStudies: readonly CaseStudy[] = [
     serviceLabel: { en: 'Tourism websites in Morocco', fr: 'Sites web pour le tourisme au Maroc' },
     copy: {
       en: {
-        category: 'Studio Project · Trekking & Tours',
+        category: 'Trekking & Tours',
         tagline: 'Toubkal treks and Sahara tours with mountain guides from Imlil',
-        description: 'A trekking and tour website owned and run by WeReact for a team of High Atlas mountain guides from Imlil: Toubkal treks, desert tours, imperial cities and day excursions, in English, Spanish and French, with booking on WhatsApp.',
+        description: 'The website of Morocco Atlas Guide, a team of High Atlas mountain guides based in Imlil: Toubkal treks, desert tours, imperial cities and day excursions, in English, Spanish and French, with booking on WhatsApp.',
         challenge: 'Trekkers choose a guide on trust: certifications, local roots and a clear programme. The site had to show the guides’ credentials and the tours in a way travellers can check before they write.',
         solution: 'We organised the tours into four categories (Toubkal treks, desert tours, imperial cities, excursions), gave each tour its own page, and put the guides, their certifications and their team (drivers, muleteers, cooks) next to a WhatsApp booking button.',
         results: [
@@ -443,13 +443,13 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Destination', value: 'Atlas', description: 'Built around itinerary searches' },
           { label: 'Market', value: 'Travel', description: 'International trip planning' },
-          { label: 'Owner', value: 'Studio', description: 'Built and run by WeReact' },
+          { label: 'Languages', value: '3', description: 'English, Spanish and French' },
         ],
       },
       fr: {
-        category: 'Projet du studio · Trekking et circuits',
+        category: 'Trekking et circuits',
         tagline: 'Treks au Toubkal et circuits dans le Sahara avec des guides de montagne d’Imlil',
-        description: 'Un site de trekking et de circuits qui appartient à WeReact et que nous gérons pour une équipe de guides de montagne du Haut Atlas, basée à Imlil : treks au Toubkal, circuits dans le désert, villes impériales et excursions, en anglais, espagnol et français, avec la réservation sur WhatsApp.',
+        description: 'Le site de Morocco Atlas Guide, une équipe de guides de montagne du Haut Atlas basée à Imlil : treks au Toubkal, circuits dans le désert, villes impériales et excursions, en anglais, espagnol et français, avec la réservation sur WhatsApp.',
         challenge: 'Le randonneur choisit son guide sur la confiance : diplômes, ancrage local et programme clair. Le site devait montrer les qualifications des guides et les circuits de façon vérifiable avant le premier message.',
         solution: 'Nous avons classé les circuits en quatre catégories (treks au Toubkal, désert, villes impériales, excursions), donné à chacun sa page, et placé les guides, leurs certifications et leur équipe (chauffeurs, muletiers, cuisiniers) à côté d’un bouton de réservation WhatsApp.',
         results: [
@@ -466,7 +466,7 @@ export const caseStudies: readonly CaseStudy[] = [
         metrics: [
           { label: 'Destination', value: 'Atlas', description: 'Construit autour des recherches d’itinéraires' },
           { label: 'Marché', value: 'Voyage', description: 'Préparation de voyages internationaux' },
-          { label: 'Propriétaire', value: 'Studio', description: 'Conçu et géré par WeReact' },
+          { label: 'Langues', value: '3', description: 'Anglais, espagnol et français' },
         ],
       },
     },

@@ -61,7 +61,7 @@ test('grounds the agent in approved prices, contact routes, and project relation
   assert.match(instruction, /\+212 602-258009/);
   assert.match(instruction, /https:\/\/www\.wereact\.agency\/en\/contact/);
   assert.match(instruction, /Flying Tandem[\s\S]*client-work/);
-  assert.match(instruction, /Trust Drivers Tours[\s\S]*studio-owned/);
+  assert.match(instruction, /Trust Drivers Tours \| relationship: client-work/);
   assert.match(instruction, /never describe studio-owned work as client work/i);
   assert.match(instruction, /do not use Markdown syntax/i);
   assert.doesNotMatch(instruction, /AQ\./);

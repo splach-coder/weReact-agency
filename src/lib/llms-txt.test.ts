@@ -40,10 +40,10 @@ test('states prices and contact details from the site data', () => {
   assert.ok(text.includes('https://maps.google.com/?cid=906947470338054436'));
 });
 
-test('labels studio-owned work honestly', () => {
+test('labels the portfolio as client work (owner confirmed every site is a client site)', () => {
   const trustDrivers = lines.find((line) => line.includes('/en/work/trust-drivers'));
-  assert.ok(trustDrivers?.includes('WeReact studio project'));
-  assert.ok(trustDrivers?.includes('Not client work'));
+  assert.ok(trustDrivers?.includes('Client work'));
+  assert.ok(!text.includes('WeReact studio project'));
 });
 
 test('never leaks inline link markup', () => {

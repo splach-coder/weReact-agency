@@ -86,8 +86,8 @@ export const blogPosts: BlogPost[] = [
         date: "July 14, 2026",
         publishedAt: "2026-07-14",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "web-design-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Pricing",
@@ -159,7 +159,7 @@ export const blogPosts: BlogPost[] = [
             date: "14 juillet 2026",
             readTime: "9 min de lecture",
             category: "Tarifs",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Le prix est presque toujours la première question qu'un chef d'entreprise pose au sujet d'un nouveau site web, et celle à laquelle la plupart des agences au Maroc répondent en dernier. Pour un projet qui semble identique, les devis peuvent aller de quelques milliers de dirhams à plusieurs mois de salaire, et sans contexte, ces chiffres sont impossibles à comparer. Dans ce guide, nous partageons les prix de départ que nous pratiquons réellement chez WeReact, nous expliquons ce qui fait monter un devis à partir de là, et nous listons les questions à poser avant d'accepter une offre, y compris la nôtre. Dans notre <a href="/fr/blog/etude-sites-agences-web-marrakech">étude de 66 sites d’agences classés à Marrakech</a>, seuls 21 affichaient un prix pour leurs propres services.</p>
 
@@ -225,8 +225,8 @@ export const blogPosts: BlogPost[] = [
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "web-design-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Local SEO",
@@ -270,7 +270,7 @@ export const blogPosts: BlogPost[] = [
             date: "16 juin 2026",
             readTime: "9 min de lecture",
             category: "SEO local",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Pour une entreprise locale à Marrakech, un site web doit faire plus que paraître professionnel. Il doit aider les visiteurs à comprendre ce que vous proposez, où vous intervenez, pourquoi ils peuvent vous faire confiance et comment vous contacter sans friction. Un bon site relie l'intention de recherche, la preuve locale, la rapidité et la conversion en un seul système clair.</p>
 
@@ -311,8 +311,8 @@ export const blogPosts: BlogPost[] = [
         date: "June 16, 2026",
         publishedAt: "2026-06-16",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "tourism-websites-morocco",
         relatedAudienceSlug: "tourism-websites-morocco",
         category: "Tourism SEO",
@@ -361,8 +361,8 @@ export const blogPosts: BlogPost[] = [
             <p>For <a href="/en/work/flying-tandem">Flying Tandem</a>, a paragliding operator near Marrakech, the hard part was not describing the flight. It was answering "is this safe?" before the visitor left. The site puts safety content and the flight details ahead of the booking enquiry, and keeps the path from experience page to enquiry short on mobile, because many visitors are already in Morocco when they search.</p>
             <h3>Kasbah Angour: letting people inspect the place</h3>
             <p>For <a href="/en/work/kasbah-angour">Kasbah Angour</a>, a hotel in the Atlas foothills, travelers want to inspect rooms, location, and surroundings before they write. The site is organized around that inspection: room discovery, the place itself, and contact routes that stay close to the content, so a direct enquiry is easier than returning to a booking platform.</p>
-            <h3>Trust Drivers Tours and Morocco Atlas Guide: our own test sites</h3>
-            <p><a href="/en/work/trust-drivers">Trust Drivers Tours</a> and <a href="/en/work/morocco-atlas-guide">Morocco Atlas Guide</a> are studio-owned projects. We use them to test structure on real search results: service panels per route, guide-style destination pages, and WhatsApp as the main conversion path. What works there goes into client sites.</p>
+            <h3>Trust Drivers Tours and Morocco Atlas Guide: route pages and guide pages</h3>
+            <p><a href="/en/work/trust-drivers">Trust Drivers Tours</a> and <a href="/en/work/morocco-atlas-guide">Morocco Atlas Guide</a> are two sites we built for a private tour company and a team of High Atlas mountain guides. Both follow the same structure: a page per route or circuit, guide-style destination pages, and WhatsApp as the main way to book.</p>
 
             <blockquote>Tourism SEO works best when destination knowledge, trust, speed, and conversion design all point in the same direction.</blockquote>
 
@@ -383,7 +383,7 @@ export const blogPosts: BlogPost[] = [
             date: "16 juin 2026",
             readTime: "10 min de lecture",
             category: "SEO tourisme",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Au Maroc, les sites de tourisme et d'hôtellerie évoluent dans un paysage de recherche très concurrentiel. Les voyageurs comparent destinations, itinéraires, hôtels, excursions, chauffeurs, avis, photos et prix dans de nombreux onglets. Votre site doit être rapide, clair, digne de confiance et organisé selon la façon dont les gens préparent leur voyage.</p>
                 <p>Ce guide s'appuie sur les sites de voyage que nous avons créés et que nous gérons nous-mêmes au Maroc. Pour voir directement la structure sur laquelle nous construisons, consultez notre page <a href="/fr/tourism-websites-morocco">sites web tourisme et hôtellerie au Maroc</a>.</p>
@@ -425,8 +425,8 @@ export const blogPosts: BlogPost[] = [
                 <p>Pour <a href="/fr/work/flying-tandem">Flying Tandem</a>, un opérateur de parapente près de Marrakech, la difficulté n'était pas de décrire le vol. Il fallait répondre à la question « est-ce sûr ? » avant que le visiteur ne parte. Le site place le contenu sécurité et les détails du vol avant la demande de réservation, et garde un chemin court entre la page de l'expérience et la demande sur mobile, car beaucoup de visiteurs sont déjà au Maroc quand ils cherchent.</p>
                 <h3>Kasbah Angour : laisser le voyageur inspecter le lieu</h3>
                 <p>Pour <a href="/fr/work/kasbah-angour">Kasbah Angour</a>, un hôtel au pied de l'Atlas, les voyageurs veulent examiner les chambres, l'emplacement et les environs avant d'écrire. Le site est organisé autour de cette inspection : découverte des chambres, présentation du lieu, et moyens de contact proches du contenu, pour qu'une demande directe soit plus simple qu'un retour vers une plateforme de réservation.</p>
-                <h3>Trust Drivers Tours et Morocco Atlas Guide : nos propres sites d'essai</h3>
-                <p><a href="/fr/work/trust-drivers">Trust Drivers Tours</a> et <a href="/fr/work/morocco-atlas-guide">Morocco Atlas Guide</a> sont des projets du studio. Nous y testons nos structures sur de vrais résultats de recherche : panneaux de services par trajet, pages destinations au format guide, et WhatsApp comme principal chemin de conversion. Ce qui fonctionne là est repris sur les sites de nos clients.</p>
+                <h3>Trust Drivers Tours et Morocco Atlas Guide : pages trajets et pages guides</h3>
+                <p><a href="/fr/work/trust-drivers">Trust Drivers Tours</a> et <a href="/fr/work/morocco-atlas-guide">Morocco Atlas Guide</a> sont deux sites que nous avons créés pour une société de circuits privés et une équipe de guides de montagne du Haut Atlas. Les deux suivent la même structure : une page par trajet ou par circuit, des pages destinations au format guide, et WhatsApp comme principal moyen de réserver.</p>
 
                 <blockquote>Le SEO touristique fonctionne le mieux lorsque la connaissance de la destination, la confiance, la vitesse et le design de conversion vont dans la même direction.</blockquote>
 
@@ -451,8 +451,8 @@ export const blogPosts: BlogPost[] = [
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "agence-seo-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Local SEO",
@@ -531,7 +531,7 @@ export const blogPosts: BlogPost[] = [
             date: "10 novembre 2026",
             readTime: "8 min de lecture",
             category: "SEO local",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Quand quelqu'un cherche une entreprise avec le nom d'une ville ou « près de moi », Google affiche souvent une carte avec trois établissements avant les résultats classiques. Le 10 novembre 2026, nous avons vérifié trois recherches sur notre propre métier à Marrakech (« agence web marrakech », « création site web marrakech » et « agence seo marrakech ») : les trois affichaient ce bloc de carte en haut de page. Les entreprises qui y figurent y sont grâce à leur fiche Google Business, pas seulement grâce à leur site.</p>
                 <p>Ce guide reprend ce que Google dit lui-même de ces résultats, puis les étapes qui comptent pour une entreprise au Maroc. Si vous préférez qu'on s'en occupe, notre <a href="/fr/agence-seo-marrakech">agence SEO à Marrakech</a> crée et optimise la fiche en parallèle du site.</p>
@@ -606,8 +606,8 @@ export const blogPosts: BlogPost[] = [
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "site-web-agence-de-voyage",
         relatedAudienceSlug: "tourism-websites-morocco",
         category: "Tourism",
@@ -681,7 +681,7 @@ export const blogPosts: BlogPost[] = [
             date: "10 novembre 2026",
             readTime: "9 min de lecture",
             category: "Tourisme",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>La plupart des prestataires d'excursions et d'activités et des riads au Maroc vendent une partie de leurs places via des plateformes. La première question qu'on nous pose est simple : combien prennent-elles ? Le 10 novembre 2026, nous avons lu les pages fournisseurs et hôtes de chaque plateforme. Réponse courte : <strong>seul Airbnb publie ses taux sur une page en ligne.</strong> GetYourGuide affichait une fourchette jusqu'en 2025 et l'a retirée. Viator, Booking.com et Expedia ne publient aucun pourcentage : vous le découvrez dans votre contrat ou à l'inscription.</p>
                 <p>Voici ce que dit chaque plateforme, avec le lien, puis ce que cela représente pour vos marges et à partir de quand un <a href="/fr/site-web-agence-de-voyage">site de réservation directe pour vos activités</a> ou <a href="/fr/hotel-website-design">pour votre riad</a> se rembourse.</p>
@@ -750,8 +750,8 @@ export const blogPosts: BlogPost[] = [
         date: "November 10, 2026",
         publishedAt: "2026-11-10",
         modifiedAt: "2026-11-10",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "web-design-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Research",
@@ -831,7 +831,7 @@ export const blogPosts: BlogPost[] = [
             date: "10 novembre 2026",
             readTime: "7 min de lecture",
             category: "Étude",
-            authorRole: "Studio de création web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Choisir une agence web à Marrakech commence en général sur Google, avec une dizaine d'onglets ouverts et les mêmes questions à chaque fois : combien, en combien de temps, et peut-on leur faire confiance ? Nous voulions savoir combien d'agences répondent vraiment à ces questions sur leur propre site.</p>
                 <p>Le 10 novembre 2026, nous avons pris tous les sites d'agences et de freelances présents dans les 20 premiers résultats de Google au Maroc, en français, pour trois recherches : « agence web marrakech », « création site web marrakech » et « agence seo marrakech ». Cela donne 67 sites, dont 66 analysables. Nous sommes nous-mêmes une agence à Marrakech : nous avons donc exclu notre propre site et nous ne citons personne. Ce qui compte ici, c'est ce que voit un client, pas qui.</p>
@@ -910,8 +910,8 @@ export const blogPosts: BlogPost[] = [
         date: "November 12, 2026",
         publishedAt: "2026-11-12",
         modifiedAt: "2026-11-12",
-        author: "WeReact agency",
-        authorRole: "Web design and SEO studio",
+        author: "Anas Benabbou",
+        authorRole: "WeReact agency, Marrakech",
         relatedServiceSlug: "web-design-marrakech",
         relatedAudienceSlug: "website-design-moroccan-businesses",
         category: "Starting a business",
@@ -1042,7 +1042,7 @@ export const blogPosts: BlogPost[] = [
             date: "12 novembre 2026",
             readTime: "11 min de lecture",
             category: "Créer son activité",
-            authorRole: "Studio web et SEO",
+            authorRole: "WeReact agency, Marrakech",
             content: `
                 <p>Le Maroc comptait 463 383 auto-entrepreneurs inscrits fin 2025, selon le rapport d’activité 2025 de la DGI <a href="https://telquel.ma/instant-t/2026/06/29/le-nombre-dauto-entrepreneurs-au-maroc-depasse-les-460-000_1996444/" rel="noopener" target="_blank">cité par TelQuel</a>. Beaucoup sont les personnes pour qui nous créons des sites : guides, chauffeurs, artisans, graphistes, formateurs, petits commerces. Ce guide rassemble ce que le statut impose en 2026, d’après les textes officiels : le <a href="https://tax.gov.ma/wps/wcm/connect/631b0232-3f9d-4d12-a8c9-053ccc921bce/Guide__AE+_FR+_2026.pdf?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE-631b0232-3f9d-4d12-a8c9-053ccc921bce-q0pxu4M" rel="noopener" target="_blank">guide 2026 de la DGI sur le régime fiscal de l’auto-entrepreneur</a>, la <a href="https://adala.justice.gov.ma/api/uploads/2024/05/07/Loi%20Relative%20au%20statut%20de%20l%E2%80%99auto-entrepreneur-1715071318209.pdf" rel="noopener" target="_blank">loi 114-13</a> et le Code général des impôts (CGI) 2026.</p>
                 <p>Nous sommes une agence web, pas un cabinet comptable. Pour un cas particulier, vérifiez auprès de la DGI, de Barid Al-Maghrib ou d’un comptable.</p>

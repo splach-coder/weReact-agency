@@ -38,7 +38,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
           'Support French and English customers from one structured site.',
         ],
         proofTitle: 'Local context with modern execution',
-        proof: 'Our Marrakech-based studio combines local market understanding with fast, measurable web delivery for businesses across Morocco, from [local brand concepts](/en/work/yoo-marrakech) to [an Atlas hotel](/en/work/kasbah-angour).',
+        proof: 'Our Marrakech-based studio combines local market understanding with fast, measurable web delivery for businesses across Morocco, from [a Marrakech travel brand](/en/work/yoo-marrakech) to [an Atlas hotel](/en/work/kasbah-angour).',
         cta: 'Plan my business website',
         ctaNote: 'Share your business and goal. We reply within one business day.',
         sections: [
@@ -87,7 +87,7 @@ export const audienceLandingPages: readonly AudienceLandingPage[] = [
           'Servir les clients francophones et anglophones sur un site structuré.',
         ],
         proofTitle: 'Contexte local, exécution moderne',
-        proof: 'Notre studio basé à Marrakech associe connaissance du marché marocain et réalisation web rapide et mesurable, des [concepts de marques locales](/fr/work/yoo-marrakech) à [un hôtel de l’Atlas](/fr/work/kasbah-angour).',
+        proof: 'Notre studio basé à Marrakech associe connaissance du marché marocain et réalisation web rapide et mesurable, d’[une marque de voyage marrakchie](/fr/work/yoo-marrakech) à [un hôtel de l’Atlas](/fr/work/kasbah-angour).',
         cta: 'Préparer mon site professionnel',
         ctaNote: 'Présentez votre entreprise et votre objectif. Nous répondons sous un jour ouvré.',
         sections: [

@@ -5,7 +5,8 @@ import { getProjectCopy, projects } from '@/data/projects';
 import { siteConfig } from '@/config/site';
 import { getAboutCopy } from '@/data/about';
 import { serviceLandingPages } from '@/data/services';
-import { createAboutPageJsonLd, createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
+import { blogPosts, getLocalizedPost } from '@/data/blog';
+import { createAboutPageJsonLd, createAuthorJsonLd, createBreadcrumbJsonLd, createPageMetadata } from '@/lib/seo';
 
 type AboutPageProps = {
   params: Promise<{ locale: string }>;
@@ -42,11 +43,17 @@ export default async function AboutPage({ params }: AboutPageProps) {
   ]);
   const recentProjects = projects.slice(0, 3);
   const servicePages = serviceLandingPages.filter((page) => page.showPricing).slice(0, 3);
+  const author = siteConfig.business.author;
+  const authorJsonLd = { '@context': 'https://schema.org', ...createAuthorJsonLd(isFr ? 'fr' : 'en') };
+  const authorPosts = blogPosts
+    .filter((post) => post.author === author.name)
+    .map((post) => getLocalizedPost(post, locale));
 
   return (
     <div className="min-h-screen bg-[var(--color-background-main)] pt-28 text-[var(--color-text-main)] md:pt-36">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(authorJsonLd) }} />
 
       <section className="px-6 pb-20 pt-12 md:px-16 md:pb-28">
         <div className="mx-auto max-w-7xl">
@@ -105,6 +112,34 @@ export default async function AboutPage({ params }: AboutPageProps) {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section id="author" className="scroll-mt-28 px-6 py-20 md:px-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-16">
+          <p className="text-mono text-[var(--color-primary)]">{isFr ? 'Qui écrit nos guides' : 'Who writes our guides'}</p>
+          <div>
+            <h2 className="font-display text-3xl leading-tight md:text-4xl">{author.name}</h2>
+            <p className="mt-5 max-w-2xl leading-relaxed text-[var(--color-text-secondary)]">
+              {isFr
+                ? `${author.name} dirige WeReact agency à Marrakech et signe les guides de notre blog. Il crée des sites web et des automatisations pour des entreprises au Maroc ; les chiffres cités dans les articles viennent de sources nommées ou de relevés datés.`
+                : `${author.name} runs WeReact agency in Marrakech and signs the guides on our blog. He builds websites and automations for businesses in Morocco; the figures quoted in the articles come from named sources or dated checks.`}
+            </p>
+            <p className="mt-5">
+              <a href={author.linkedin} rel="me noopener" target="_blank" className="font-bold text-[var(--color-primary)] underline underline-offset-4 hover:no-underline">
+                {isFr ? `${author.name} sur LinkedIn` : `${author.name} on LinkedIn`}
+              </a>
+            </p>
+            <ul className="mt-8 grid gap-3">
+              {authorPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/${locale}/blog/${post.slug}`} className="underline decoration-[rgba(58,90,64,0.3)] underline-offset-4 hover:text-[var(--color-primary)]">
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

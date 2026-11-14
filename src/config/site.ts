@@ -62,6 +62,11 @@ export const siteConfig = {
         latitude: 31.6336545,
         longitude: -8.008899,
         hoursDisplay: 'Mon-Fri 9:00-18:00',
+        /** Author of the articles (owner's consent, 2026-11-14). Google asks for real, linked bylines. */
+        author: {
+          name: 'Anas Benabbou',
+          linkedin: 'https://www.linkedin.com/in/anas-benabbou-659a15270/',
+        },
         openingHours: 'Mo-Fr 09:00-18:00',
         /** Same hours as the Google Business Profile, in the structured form Google's LocalBusiness docs recommend. */
         openingHoursSpecification: [

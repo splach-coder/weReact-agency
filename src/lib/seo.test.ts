@@ -172,20 +172,23 @@ test('links a priced service page to its pricing catalog', () => {
   assert.ok(!('hasOfferCatalog' in createServicePageJsonLd(unpriced, 'en')));
 });
 
-test('states studio ownership honestly on project schema', () => {
-  const studio = createProjectJsonLd(getProjectById('trust-drivers')!, 'en');
-  const client = createProjectJsonLd(getProjectById('flying-tandem')!, 'en');
-  assert.equal(studio.copyrightHolder?.['@id'], BUSINESS_ID);
-  assert.ok(!('copyrightHolder' in client));
+test('never claims WeReact owns a client site in project schema', () => {
+  for (const id of ['trust-drivers', 'flying-tandem', 'yoo-marrakech', 'morocco-atlas-guide']) {
+    const schema = createProjectJsonLd(getProjectById(id)!, 'en');
+    assert.ok(!('copyrightHolder' in schema), id);
+  }
 });
 
-test('creates a BlogPosting with the business as author and publisher', () => {
+test('creates a BlogPosting by a named person, published by the business', () => {
   const post = getLocalizedPost(blogPosts[0], 'fr');
   const schema = createBlogPostingJsonLd(post, 'fr');
   assert.equal(schema['@type'], 'BlogPosting');
   assert.equal(schema.url, `https://www.wereact.agency/fr/blog/${post.slug}`);
   assert.equal(schema.headline, blogPosts[0].fr?.title ?? blogPosts[0].title);
-  assert.equal(schema.author['@id'], BUSINESS_ID);
+  // Google: author.name holds only the name, and it must match the visible byline.
+  assert.equal(schema.author['@type'], 'Person');
+  assert.equal(schema.author.name, post.author);
+  assert.equal(schema.author.url, 'https://www.wereact.agency/fr/about#author');
   assert.equal(schema.publisher['@id'], BUSINESS_ID);
   assert.equal(schema.isPartOf['@id'], 'https://www.wereact.agency/#website');
 });

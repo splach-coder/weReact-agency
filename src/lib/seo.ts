@@ -433,6 +433,19 @@ export function createProjectJsonLd(project: Project, locale: string) {
  * BlogPosting for a (localized) post, with the business as author and
  * publisher by `@id`. Pass the result of getLocalizedPost().
  */
+/** The person who writes the articles, with the page that describes him (Google: bylines lead to the author's background). */
+export function createAuthorJsonLd(language: 'en' | 'fr') {
+  const { author } = siteConfig.business;
+  return {
+    '@type': 'Person',
+    '@id': `${siteConfig.url}/#author`,
+    name: author.name,
+    url: `${siteConfig.url}/${language}/about#author`,
+    sameAs: [author.linkedin],
+    worksFor: businessRef,
+  };
+}
+
 export function createBlogPostingJsonLd(post: BlogPost, locale: string) {
   const language = toLanguage(locale);
   const url = `${siteConfig.url}/${language}/blog/${post.slug}`;
@@ -447,7 +460,7 @@ export function createBlogPostingJsonLd(post: BlogPost, locale: string) {
     url,
     datePublished: post.publishedAt,
     dateModified: post.modifiedAt,
-    author: businessRef,
+    author: createAuthorJsonLd(language),
     publisher: businessRef,
     isPartOf: websiteRef,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },

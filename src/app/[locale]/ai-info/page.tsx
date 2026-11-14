@@ -90,7 +90,7 @@ function getCopy(locale: string) {
           gbp: 'Fiche Google Business Profile (vérifiée)',
         },
         caseStudyCount: (total: number, client: number, studio: number, independent: number) =>
-          `${total} (${plural(client, 'projet client', 'projets clients')}, ${plural(studio, 'projet du studio', 'projets du studio')}, ${plural(independent, 'projet indépendant', 'projets indépendants')})`,
+          `${total} (${[plural(client, 'projet client', 'projets clients'), studio ? plural(studio, 'projet du studio', 'projets du studio') : '', independent ? plural(independent, 'projet indépendant', 'projets indépendants') : ''].filter(Boolean).join(', ')})`,
         hours: (display: string) => display.replace('Mon-Fri', 'Du lundi au vendredi,'),
         machine: {
           llms: 'Résumé texte pour les modèles de langage',
@@ -140,7 +140,7 @@ function getCopy(locale: string) {
           gbp: 'Google Business Profile (verified)',
         },
         caseStudyCount: (total: number, client: number, studio: number, independent: number) =>
-          `${total} (${plural(client, 'client project', 'client projects')}, ${studio} studio-owned, ${independent} independent)`,
+          `${total} (${[plural(client, 'client project', 'client projects'), studio ? `${studio} studio-owned` : '', independent ? `${independent} independent` : ''].filter(Boolean).join(', ')})`,
         hours: (display: string) => display,
         machine: {
           llms: 'Plain-text summary for language models',

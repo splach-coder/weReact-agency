@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
                         </div>
                         <div className="text-left">
                             <p className="text-xs font-black uppercase tracking-widest text-[var(--color-text-main)]">
-                                <Link href={`/${locale}/about`} title={ui.aboutAuthor} className="underline decoration-[rgba(58,90,64,0.3)] underline-offset-4 hover:text-[var(--color-primary)]">
+                                <Link href={`/${locale}/about#author`} title={ui.aboutAuthor} className="underline decoration-[rgba(58,90,64,0.3)] underline-offset-4 hover:text-[var(--color-primary)]">
                                     {post.author}
                                 </Link>
                             </p>

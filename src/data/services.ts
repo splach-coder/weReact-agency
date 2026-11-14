@@ -125,7 +125,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'What your website needs to do',
         outcomes: ['Explain your offer in seconds on mobile, even on an average connection.', 'Show local credibility before asking for a call.', 'Make WhatsApp, quote requests, and contact routes easy to find.', 'Serve French and English visitors from versions planned at the start, not translated afterwards.', 'Give Google a clear structure to crawl and understand.'],
         proofTitle: 'Built from real Marrakech context',
-        proof: 'Our work includes [a paragliding operator near Marrakech](/en/work/flying-tandem), [a city guide](/en/work/by-marrakech), and [a local brand concept](/en/work/yoo-marrakech) built by the studio. On each one, mobile discovery, trust, and direct enquiries decide whether the website pays for itself.',
+        proof: 'Our work includes [a paragliding operator near Marrakech](/en/work/flying-tandem), [a private transfer and tour company](/en/work/by-marrakech) and [a Marrakech travel brand](/en/work/yoo-marrakech). On each one, mobile discovery, trust, and direct enquiries decide whether the website pays for itself.',
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         insights: {
@@ -156,7 +156,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'Ce que votre site doit accomplir',
         outcomes: ['Présenter votre offre clairement sur mobile, même avec une connexion moyenne.', 'Montrer votre crédibilité locale avant de demander un contact.', 'Rendre WhatsApp, les demandes de devis et les contacts faciles à trouver.', 'Servir vos visiteurs en français et en anglais, avec des versions pensées dès le départ et non traduites après coup.', 'Donner à Google une structure claire à explorer et comprendre.'],
         proofTitle: 'Conçu avec une vraie connaissance de Marrakech',
-        proof: 'Notre portfolio comprend [un opérateur de parapente près de Marrakech](/fr/work/flying-tandem), [un guide de la ville](/fr/work/by-marrakech) et [un concept de marque locale](/fr/work/yoo-marrakech) créé par le studio. Sur chacun, la découverte sur mobile, la confiance et les demandes directes décident si le site est rentable.',
+        proof: 'Notre portfolio comprend [un opérateur de parapente près de Marrakech](/fr/work/flying-tandem), [une société de transferts et de circuits](/fr/work/by-marrakech) et [une marque de voyage marrakchie](/fr/work/yoo-marrakech). Sur chacun, la découverte sur mobile, la confiance et les demandes directes décident si le site est rentable.',
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         insights: {
@@ -253,7 +253,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Load fast on a phone, where most comparisons start.',
         ],
         proofTitle: 'Our work',
-        proof: 'Our published sites are mostly in tourism and local brands in Morocco, such as [Kasbah Angour](/en/work/kasbah-angour) and the [Yoo Marrakech](/en/work/yoo-marrakech) studio concept. The method is the same for a Casablanca business: a clear offer, proof that can be checked, and a direct route to contact.',
+        proof: 'Our published sites are mostly in tourism and local brands in Morocco, such as [Kasbah Angour](/en/work/kasbah-angour) and [Yoo Marrakech](/en/work/yoo-marrakech). The method is the same for a Casablanca business: a clear offer, proof that can be checked, and a direct route to contact.',
         cta: 'Request a free quote',
         ctaNote: 'Describe your business and what the site should bring in. We reply within one business day.',
         sections: [
@@ -302,7 +302,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Se charger vite sur un téléphone, là où commencent la plupart des comparaisons.',
         ],
         proofTitle: 'Nos réalisations',
-        proof: 'Nos sites publiés sont surtout dans le tourisme et les marques locales au Maroc, comme [Kasbah Angour](/fr/work/kasbah-angour) ou le concept studio [Yoo Marrakech](/fr/work/yoo-marrakech). La méthode est la même pour une entreprise de Casablanca : une offre claire, des preuves vérifiables et un contact sans détour.',
+        proof: 'Nos sites publiés sont surtout dans le tourisme et les marques locales au Maroc, comme [Kasbah Angour](/fr/work/kasbah-angour) ou [Yoo Marrakech](/fr/work/yoo-marrakech). La méthode est la même pour une entreprise de Casablanca : une offre claire, des preuves vérifiables et un contact sans détour.',
         cta: 'Demander un devis gratuit',
         ctaNote: 'Présentez votre activité et ce que le site doit vous apporter. Nous répondons sous un jour ouvré.',
         sections: [
@@ -356,7 +356,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'What our SEO work covers',
         outcomes: ['A technical audit: crawlability, speed, structure, and indexation issues fixed first.', 'Local SEO for Marrakech and Morocco: Google Business Profile, local pages, and geo signals.', 'Content mapped to real search demand in French and English, not guessed topics.', 'Monthly, measurable reporting: rankings, organic traffic, and enquiries — not vanity metrics.'],
         proofTitle: 'SEO built into everything we ship',
-        proof: 'Our studio projects, such as [Trust Drivers Tours](/en/work/trust-drivers) and [Morocco Atlas Guide](/en/work/morocco-atlas-guide), are where we test structure on real Morocco travel and local searches. What works there — structure, speed, local signals, useful content — is what we apply to client sites.',
+        proof: 'We built the sites of [Trust Drivers Tours](/en/work/trust-drivers), a private tour company, and [Morocco Atlas Guide](/en/work/morocco-atlas-guide), mountain guides in the High Atlas: one page per circuit, local signals, fast pages and WhatsApp contact. The same structure, speed and useful content go into every site we build.',
         cta: 'Request an SEO review',
         ctaNote: 'Share your website and goals. We reply within one business day.',
         faqs: [
@@ -374,7 +374,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'Ce que couvre notre travail SEO',
         outcomes: ['Un audit technique : crawl, vitesse, structure et problèmes d’indexation corrigés en premier.', 'Le SEO local pour Marrakech et le Maroc : fiche Google Business, pages locales et signaux géographiques.', 'Un contenu aligné sur la vraie demande de recherche en français et en anglais, pas des sujets devinés.', 'Un reporting mensuel mesurable : positions, trafic organique et demandes — pas des chiffres de vanité.'],
         proofTitle: 'Le SEO est intégré à tout ce que nous livrons',
-        proof: 'Nos projets studio, comme [Trust Drivers Tours](/fr/work/trust-drivers) et [Morocco Atlas Guide](/fr/work/morocco-atlas-guide), nous servent de terrain d’essai sur de vraies recherches du voyage et du local au Maroc. Ce qui y fonctionne — structure, vitesse, signaux locaux, contenu utile — est ce que nous appliquons aux sites clients.',
+        proof: 'Nous avons créé les sites de [Trust Drivers Tours](/fr/work/trust-drivers), une société de circuits privés, et de [Morocco Atlas Guide](/fr/work/morocco-atlas-guide), des guides de montagne du Haut Atlas : une page par circuit, des signaux locaux, des pages rapides et un contact WhatsApp. La même structure, la même vitesse et le même contenu utile vont dans chaque site que nous créons.',
         cta: 'Demander un audit SEO',
         ctaNote: 'Partagez votre site et vos objectifs. Nous répondons sous un jour ouvré.',
         faqs: [
@@ -409,7 +409,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Fast, accessible pages, with phone, WhatsApp and a short form on every page.',
         ],
         proofTitle: 'Built remotely, managed closely',
-        proof: 'We are based in Marrakech and work with clients across Morocco. Projects run on calls, WhatsApp and shared previews: you see the site take shape before it goes live. The page structure we use is tested on our own sites, such as [Trust Drivers Tours](/en/work/trust-drivers), before we use it for clients.',
+        proof: 'We are based in Marrakech and work with clients across Morocco. Projects run on calls, WhatsApp and shared previews: you see the site take shape before it goes live. You can see the page structure we use on sites we built, such as [Trust Drivers Tours](/en/work/trust-drivers).',
         cta: 'Request a free quote',
         ctaNote: 'Describe your practice or business in a few lines. We reply within one business day.',
         insights: {
@@ -463,7 +463,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Des pages rapides et accessibles, avec téléphone, WhatsApp et un formulaire court sur chaque page.',
         ],
         proofTitle: 'À distance, mais suivi de près',
-        proof: 'Nous sommes basés à Marrakech et travaillons avec des clients dans tout le Maroc. Les projets se pilotent par appels, WhatsApp et aperçus partagés : vous voyez le site avancer avant sa mise en ligne. La structure de pages que nous utilisons est testée sur nos propres sites, comme [Trust Drivers Tours](/fr/work/trust-drivers), avant de servir à nos clients.',
+        proof: 'Nous sommes basés à Marrakech et travaillons avec des clients dans tout le Maroc. Les projets se pilotent par appels, WhatsApp et aperçus partagés : vous voyez le site avancer avant sa mise en ligne. La structure de pages que nous utilisons se voit sur les sites que nous avons créés, comme [Trust Drivers Tours](/fr/work/trust-drivers).',
         cta: 'Demander un devis gratuit',
         ctaNote: 'Présentez votre cabinet ou votre activité en quelques lignes. Nous répondons sous un jour ouvré.',
         insights: {
@@ -644,7 +644,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'French and English versions, each with pages Google can index.',
         ],
         proofTitle: 'Built on real travel websites',
-        proof: 'We built the website for [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and for [Your Morocco](/en/work/your-morocco), a tour platform. We also run our own test sites such as [Trust Drivers Tours](/en/work/trust-drivers), where we try page structures on real searches before we offer them to clients.',
+        proof: 'We built the website for [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and for [Your Morocco](/en/work/your-morocco), a tour platform. We also built [Trust Drivers Tours](/en/work/trust-drivers), a private tour company with a page for each circuit.',
         cta: 'Plan my agency website',
         ctaNote: 'Tell us your activities and how you take bookings today. We reply within one business day.',
         insights: {
@@ -703,7 +703,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Des versions française et anglaise, chacune avec des pages que Google peut indexer.',
         ],
         proofTitle: 'Construit sur de vrais sites de voyage',
-        proof: 'Nous avons créé le site de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et celui de [Your Morocco](/fr/work/your-morocco), une plateforme de circuits. Nous gérons aussi nos propres sites d’essai comme [Trust Drivers Tours](/fr/work/trust-drivers), où nous testons les structures de pages sur de vraies recherches avant de les proposer à nos clients.',
+        proof: 'Nous avons créé le site de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et celui de [Your Morocco](/fr/work/your-morocco), une plateforme de circuits. Nous avons aussi créé le site de [Trust Drivers Tours](/fr/work/trust-drivers), une société de circuits privés avec une page par circuit.',
         cta: 'Préparer le site de mon agence',
         ctaNote: 'Présentez vos activités et la façon dont vous prenez les réservations aujourd’hui. Nous répondons sous un jour ouvré.',
         insights: {
@@ -773,7 +773,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Category pages structured for Google, in French and English when you need both.',
         ],
         proofTitle: 'The same foundations as our fast websites',
-        proof: 'Our published work is mostly tourism and local brands, such as the [Yoo Marrakech](/en/work/yoo-marrakech) studio concept. Online stores sit on the same foundations: pages that load fast on mobile, a structure Google can read, and as few steps as possible between interest and order.',
+        proof: 'Our published work is mostly tourism and local brands, such as [Yoo Marrakech](/en/work/yoo-marrakech). Online stores sit on the same foundations: pages that load fast on mobile, a structure Google can read, and as few steps as possible between interest and order.',
         cta: 'Plan my online store',
         ctaNote: 'Tell us what you sell and roughly how many products. We reply within one business day.',
         sections: [
@@ -813,7 +813,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Des pages catégories structurées pour Google, en français et en anglais si vous avez besoin des deux.',
         ],
         proofTitle: 'La même base que nos sites rapides',
-        proof: 'Nos réalisations publiées sont surtout dans le tourisme et les marques locales, comme le concept studio [Yoo Marrakech](/fr/work/yoo-marrakech). Une boutique en ligne repose sur la même base : des pages rapides sur mobile, une structure que Google comprend, et le moins d’étapes possible entre l’intérêt et la commande.',
+        proof: 'Nos réalisations publiées sont surtout dans le tourisme et les marques locales, comme [Yoo Marrakech](/fr/work/yoo-marrakech). Une boutique en ligne repose sur la même base : des pages rapides sur mobile, une structure que Google comprend, et le moins d’étapes possible entre l’intérêt et la commande.',
         cta: 'Préparer ma boutique en ligne',
         ctaNote: 'Dites-nous ce que vous vendez et à peu près combien de produits. Nous répondons sous un jour ouvré.',
         sections: [
@@ -967,8 +967,8 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Links between them: your social profiles, WhatsApp and listings all point to the same website and the same number.',
           'A plain-language monthly report: enquiries received, rankings, calls and direction requests from the listing. No impressions or likes.',
         ],
-        proofTitle: 'Tested on our own sites first',
-        proof: 'We built the websites of [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and [Kasbah Angour](/en/work/kasbah-angour), a hotel in the Atlas. We also run test sites such as [Trust Drivers Tours](/en/work/trust-drivers), where we try page structures, local signals and tracking on real searches before we use them for clients.',
+        proofTitle: 'Recent work',
+        proof: 'We built the websites of [Flying Tandem](/en/work/flying-tandem), a paragliding operator near Marrakech, and [Kasbah Angour](/en/work/kasbah-angour), a hotel in the Atlas. We also built [Trust Drivers Tours](/en/work/trust-drivers), a private tour company where each circuit has its own page and WhatsApp contact.',
         cta: 'Ask for a free review',
         ctaNote: 'Share your website or your Google listing. We reply within one business day.',
         insights: {
@@ -1029,8 +1029,8 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
           'Le lien entre les trois : vos réseaux sociaux, WhatsApp et vos annuaires renvoient vers le même site et le même numéro.',
           'Un rapport mensuel en langage clair : demandes reçues, positions, appels et itinéraires depuis la fiche. Pas d’impressions ni de likes.',
         ],
-        proofTitle: 'Testé d’abord sur nos propres sites',
-        proof: 'Nous avons créé les sites de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et de [Kasbah Angour](/fr/work/kasbah-angour), un hôtel dans l’Atlas. Nous gérons aussi des sites d’essai comme [Trust Drivers Tours](/fr/work/trust-drivers), où nous testons structures de pages, signaux locaux et suivi des conversions sur de vraies recherches avant de les utiliser pour nos clients.',
+        proofTitle: 'Nos réalisations récentes',
+        proof: 'Nous avons créé les sites de [Flying Tandem](/fr/work/flying-tandem), un opérateur de parapente près de Marrakech, et de [Kasbah Angour](/fr/work/kasbah-angour), un hôtel dans l’Atlas. Nous avons aussi créé le site de [Trust Drivers Tours](/fr/work/trust-drivers), une société de circuits privés où chaque circuit a sa page et son contact WhatsApp.',
         cta: 'Demander une revue gratuite',
         ctaNote: 'Partagez votre site ou votre fiche Google. Nous répondons sous un jour ouvré.',
         insights: {
