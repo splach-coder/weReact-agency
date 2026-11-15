@@ -96,6 +96,7 @@ export default function CaseStudyPage() {
     const project = {
         ...study,
         ...copy,
+        tags: locale === 'fr' ? study.tagsFr : study.tags,
         features: copy.features.map((feature, idx) => ({ ...feature, icon: FEATURE_ICONS[idx] ?? Monitor })),
     };
 

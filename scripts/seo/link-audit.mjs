@@ -76,7 +76,12 @@ function toLocal(url) {
 
 async function fetchWithStatus(url) {
   try {
-    const response = await fetch(url, { redirect: 'manual', headers: { 'User-Agent': 'wereact-link-audit/1.0' } });
+    // The middleware redirects plain HTTP to HTTPS; a local `wrangler dev` preview only
+    // serves pages when the request says it came over HTTPS, as it does behind Cloudflare.
+    const response = await fetch(url, {
+      redirect: 'manual',
+      headers: { 'User-Agent': 'wereact-link-audit/1.0', 'X-Forwarded-Proto': 'https' },
+    });
     const location = response.headers.get('location');
     const body = response.status === 200 ? await response.text() : (await response.arrayBuffer(), '');
     return { status: response.status, location, body };

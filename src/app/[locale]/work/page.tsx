@@ -201,7 +201,7 @@ export default function WorkPage() {
                           <span className="text-[var(--color-text-main)]">{category}</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          {project.services.map((service) => (
+                          {(isFr ? project.servicesFr : project.services).map((service) => (
                             <span
                               key={service}
                               className="border border-[rgba(58,90,64,0.22)] bg-[var(--color-background-main)] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--color-primary)] transition-colors duration-300 group-hover:border-[var(--color-primary)] group-hover:bg-[rgba(58,90,64,0.08)]"

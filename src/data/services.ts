@@ -110,11 +110,11 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     slug: 'web-design-marrakech',
     primaryKeyword: 'agence web marrakech',
     keywords: ['agence web marrakech', 'création site web marrakech', 'création site internet marrakech', 'website design Marrakech', 'web agency Marrakech', 'agence création site web', 'refonte site web marrakech', 'site web professionnel Maroc'],
-    relatedProjectIds: ['yoo-marrakech', 'by-marrakech', 'flying-tandem'],
+    relatedProjectIds: ['one-off-solutions', 'one-off-events', 'flying-tandem'],
     relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'agence-seo-marrakech', 'agence-marketing-digital-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['etude-sites-agences-web-marrakech', 'combien-coute-site-web-maroc', 'website-design-marrakech-business-guide'],
     showPricing: true,
-    modifiedAt: '2026-11-14',
+    modifiedAt: '2026-11-15',
     copy: {
       en: {
         title: 'Web Agency in Marrakech: Website Design',
@@ -125,7 +125,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'What your website needs to do',
         outcomes: ['Explain your offer in seconds on mobile, even on an average connection.', 'Show local credibility before asking for a call.', 'Make WhatsApp, quote requests, and contact routes easy to find.', 'Serve French and English visitors from versions planned at the start, not translated afterwards.', 'Give Google a clear structure to crawl and understand.'],
         proofTitle: 'Built from real Marrakech context',
-        proof: 'Our work includes [a paragliding operator near Marrakech](/en/work/flying-tandem), [a private transfer and tour company](/en/work/by-marrakech) and [a Marrakech travel brand](/en/work/yoo-marrakech). On each one, mobile discovery, trust, and direct enquiries decide whether the website pays for itself.',
+        proof: 'Our work in Marrakech includes [a hotel and restaurant recruitment firm](/en/work/one-off-solutions), [a private event house](/en/work/one-off-events) and [a paragliding operator](/en/work/flying-tandem). On each one, mobile discovery, trust, and direct enquiries decide whether the website pays for itself.',
         cta: 'Request a free quote',
         ctaNote: 'Describe your project in a few lines. We reply within one business day.',
         insights: {
@@ -156,7 +156,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'Ce que votre site doit accomplir',
         outcomes: ['Présenter votre offre clairement sur mobile, même avec une connexion moyenne.', 'Montrer votre crédibilité locale avant de demander un contact.', 'Rendre WhatsApp, les demandes de devis et les contacts faciles à trouver.', 'Servir vos visiteurs en français et en anglais, avec des versions pensées dès le départ et non traduites après coup.', 'Donner à Google une structure claire à explorer et comprendre.'],
         proofTitle: 'Conçu avec une vraie connaissance de Marrakech',
-        proof: 'Notre portfolio comprend [un opérateur de parapente près de Marrakech](/fr/work/flying-tandem), [une société de transferts et de circuits](/fr/work/by-marrakech) et [une marque de voyage marrakchie](/fr/work/yoo-marrakech). Sur chacun, la découverte sur mobile, la confiance et les demandes directes décident si le site est rentable.',
+        proof: 'Nos réalisations à Marrakech comprennent [un cabinet de recrutement pour l’hôtellerie et la restauration](/fr/work/one-off-solutions), [une maison d’événements privés](/fr/work/one-off-events) et [un opérateur de parapente](/fr/work/flying-tandem). Sur chacun, la découverte sur mobile, la confiance et les demandes directes décident si le site est rentable.',
         cta: 'Demander un devis gratuit',
         ctaNote: 'Décrivez votre projet en quelques lignes. Nous répondons sous un jour ouvré.',
         insights: {
@@ -342,10 +342,10 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     slug: 'agence-seo-marrakech',
     primaryKeyword: 'agence seo marrakech',
     keywords: ['agence seo marrakech', 'agence seo maroc', 'référencement naturel maroc', 'consultant seo maroc', 'seo prix maroc', 'référencement naturel marrakech'],
-    relatedProjectIds: ['trust-drivers', 'morocco-atlas-guide', 'kasbah-angour'],
+    relatedProjectIds: ['one-off-solutions', 'trust-drivers', 'morocco-atlas-guide'],
     relatedPageSlugs: ['web-design-marrakech', 'agence-marketing-digital-marrakech', 'creation-site-e-commerce-maroc', 'website-design-moroccan-businesses'],
     relatedPostSlugs: ['fiche-google-business-maroc', 'tourism-hospitality-seo-morocco', 'etude-sites-agences-web-marrakech'],
-    modifiedAt: '2026-11-14',
+    modifiedAt: '2026-11-15',
     copy: {
       en: {
         title: 'SEO Agency in Marrakech, Morocco',
@@ -356,7 +356,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'What our SEO work covers',
         outcomes: ['A technical audit: crawlability, speed, structure, and indexation issues fixed first.', 'Local SEO for Marrakech and Morocco: Google Business Profile, local pages, and geo signals.', 'Content mapped to real search demand in French and English, not guessed topics.', 'Monthly, measurable reporting: rankings, organic traffic, and enquiries — not vanity metrics.'],
         proofTitle: 'SEO built into everything we ship',
-        proof: 'We built the sites of [Trust Drivers Tours](/en/work/trust-drivers), a private tour company, and [Morocco Atlas Guide](/en/work/morocco-atlas-guide), mountain guides in the High Atlas: one page per circuit, local signals, fast pages and WhatsApp contact. The same structure, speed and useful content go into every site we build.',
+        proof: 'We built the site of [One Off Solutions](/en/work/one-off-solutions), a hospitality recruitment firm in Marrakech, with a page for each of its 23 roles, for employers and for candidates, in two languages. We also built [Trust Drivers Tours](/en/work/trust-drivers), a private tour company, and [Morocco Atlas Guide](/en/work/morocco-atlas-guide), mountain guides in the High Atlas, with one page per circuit. The same structure, speed and useful content go into every site we build.',
         cta: 'Request an SEO review',
         ctaNote: 'Share your website and goals. We reply within one business day.',
         faqs: [
@@ -374,7 +374,7 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
         outcomesTitle: 'Ce que couvre notre travail SEO',
         outcomes: ['Un audit technique : crawl, vitesse, structure et problèmes d’indexation corrigés en premier.', 'Le SEO local pour Marrakech et le Maroc : fiche Google Business, pages locales et signaux géographiques.', 'Un contenu aligné sur la vraie demande de recherche en français et en anglais, pas des sujets devinés.', 'Un reporting mensuel mesurable : positions, trafic organique et demandes — pas des chiffres de vanité.'],
         proofTitle: 'Le SEO est intégré à tout ce que nous livrons',
-        proof: 'Nous avons créé les sites de [Trust Drivers Tours](/fr/work/trust-drivers), une société de circuits privés, et de [Morocco Atlas Guide](/fr/work/morocco-atlas-guide), des guides de montagne du Haut Atlas : une page par circuit, des signaux locaux, des pages rapides et un contact WhatsApp. La même structure, la même vitesse et le même contenu utile vont dans chaque site que nous créons.',
+        proof: 'Nous avons créé le site de [One Off Solutions](/fr/work/one-off-solutions), un cabinet de recrutement hôtelier à Marrakech, avec une page pour chacun de ses 23 métiers, côté recruteurs et côté candidats, en deux langues. Nous avons aussi créé [Trust Drivers Tours](/fr/work/trust-drivers), une société de circuits privés, et [Morocco Atlas Guide](/fr/work/morocco-atlas-guide), des guides de montagne du Haut Atlas, avec une page par circuit. La même structure, la même vitesse et le même contenu utile vont dans chaque site que nous créons.',
         cta: 'Demander un audit SEO',
         ctaNote: 'Partagez votre site et vos objectifs. Nous répondons sous un jour ouvré.',
         faqs: [

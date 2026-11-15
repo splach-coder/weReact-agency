@@ -28,8 +28,8 @@ const INDEX_ROUTE_PRIORITY: Record<string, number> = {
  * so bump these by hand when the page copy changes, never on every build.
  */
 const STATIC_PAGE_MODIFIED: Record<string, string> = {
-  // Home: new main heading and the manifesto text fixed.
-  '': '2026-11-14',
+  // Home: One Off Solutions added to the project cards.
+  '': '2026-11-15',
   '/contact': '2026-11-10',
   '/book': '2026-11-10',
 };

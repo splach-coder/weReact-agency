@@ -20,6 +20,8 @@ export type Project = {
   image: string;
   imageFull?: string;
   services: string[];
+  /** The same tags in French, shown on the French pages. */
+  servicesFr: string[];
   metrics: ProjectMetric[];
   caseStudy: {
     challenge: string;
@@ -46,6 +48,8 @@ export const projects: Project[] = [
     image: '/images/projects/live/the-roots-corner-hero.webp',
     imageFull: '/images/projects/live/the-roots-corner-full.webp',
     services: ['E-commerce', 'Product catalogue', 'FR / EN'],
+
+    servicesFr: ['E-commerce', 'Catalogue produits', 'FR / EN'],
     metrics: [
       { label: 'Store', value: 'Online', detail: 'Cart, checkout and order follow-up.' },
       { label: 'Catalogue', value: 'Rugs & objects', detail: 'Five collections and nine rug types.' },
@@ -54,6 +58,64 @@ export const projects: Project[] = [
       challenge: 'Sell one-of-a-kind pieces and made-to-order rugs online to buyers in Morocco and abroad.',
       response: 'WeReact built a bilingual store with collections, rug types, product pages and a made-to-measure path, with delivery and returns answered before the purchase.',
       outcome: ['Bilingual product catalogue', 'Online checkout and orders', 'Made-to-measure rug requests'],
+    },
+  },
+  {
+    // Facts checked on the live site and its sitemap on 2026-11-15 (126 URLs, launched 2026-11-01).
+    id: 'one-off-solutions',
+    title: 'One Off Solutions',
+    domain: 'oneoff.ma',
+    externalUrl: 'https://oneoff.ma/',
+    relationship: 'client-work',
+    category: 'Recruitment Website',
+    categoryFr: 'Site de recrutement',
+    summary: 'The website of a Marrakech recruitment firm for hotels, riads, restaurants and spas: a page for every role, for employers and for candidates, in French and English, with each request sent to the team\'s private dashboard.',
+    summaryFr: 'Le site d\'un cabinet de recrutement marrakchi pour les hôtels, riads, restaurants et spas : une page par métier, pour les recruteurs et pour les candidats, en français et en anglais, avec chaque demande envoyée dans l\'espace privé de l\'équipe.',
+    year: '2026',
+    modifiedAt: '2026-11-15',
+    status: 'featured',
+    image: '/images/projects/live/one-off-solutions-hero.webp',
+    imageFull: '/images/projects/live/one-off-solutions-full.webp',
+    services: ['Recruitment website', 'Private CRM', 'FR / EN'],
+
+    servicesFr: ['Site de recrutement', 'CRM privé', 'FR / EN'],
+    metrics: [
+      { label: 'Pages', value: '126', detail: 'A page per role for employers and candidates, in two languages.' },
+      { label: 'Roles', value: '23', detail: 'From receptionist to event coordinator.' },
+    ],
+    caseStudy: {
+      challenge: 'Replace an old WordPress site with one that brings staff requests from hotels and restaurants and sign-ups from job seekers.',
+      response: 'WeReact built a bilingual site with a page per role for each audience, two short forms and a private dashboard where the team follows every request.',
+      outcome: ['126 pages in French and English', 'Staff request and candidate forms', 'Private dashboard with email alerts'],
+    },
+  },
+  {
+    // Facts checked on the live site on 2026-11-15 (one page, English).
+    id: 'one-off-events',
+    title: 'One-Off Events',
+    domain: 'one-off-events.com',
+    externalUrl: 'https://one-off-events.com/',
+    relationship: 'client-work',
+    category: 'Event House Website',
+    categoryFr: 'Site de maison d\'événements',
+    summary: 'A one-page website for a private event house in Marrakech that stays off social media: the brand\'s monogram drawn in code, a few short lines and a single email contact.',
+    summaryFr: 'Un site d\'une page pour une maison d\'événements privés à Marrakech qui reste hors des réseaux sociaux : le monogramme de la marque dessiné en code, quelques phrases courtes et un seul contact par e-mail.',
+    year: '2026',
+    modifiedAt: '2026-11-15',
+    status: 'featured',
+    image: '/images/projects/live/one-off-events-hero.webp',
+    imageFull: '/images/projects/live/one-off-events-full.webp',
+    services: ['Brand website', 'Logo animation', 'One page'],
+
+    servicesFr: ['Site de marque', 'Logo animé', 'Une page'],
+    metrics: [
+      { label: 'Format', value: 'One page', detail: 'Four short chapters and one contact.' },
+      { label: 'Code', value: '< 30 KB', detail: 'Static HTML, CSS and JavaScript.' },
+    ],
+    caseStudy: {
+      challenge: 'Give a private event house with no Instagram and no public portfolio a web presence as discreet as its service.',
+      response: 'WeReact redrew the OOE monogram in SVG and built one page where the logo draws itself and four short chapters lead to a single email address.',
+      outcome: ['Monogram drawn in code', 'Text revealed as you scroll', 'One email contact'],
     },
   },
   {
@@ -72,6 +134,8 @@ export const projects: Project[] = [
     image: '/images/projects/flying-tandem.webp',
     imageFull: '/images/projects/flying-tandem-full.webp',
     services: ['Booking flow', 'Performance', 'Mobile UX'],
+
+    servicesFr: ['Parcours de réservation', 'Performance', 'UX mobile'],
     metrics: [
       { label: 'Experience', value: 'Mobile-first', detail: 'Built for visitors booking while traveling.' },
       { label: 'Sector', value: 'Tourism', detail: 'Adventure experience positioning.' },
@@ -98,6 +162,8 @@ export const projects: Project[] = [
     image: '/images/projects/kasbah-angour.webp',
     imageFull: '/images/projects/kasbah-angour-full.webp',
     services: ['Hospitality UX', 'SEO structure', 'Direct inquiries'],
+
+    servicesFr: ['UX hôtellerie', 'Structure SEO', 'Demandes directes'],
     metrics: [
       { label: 'Intent', value: 'Stay', detail: 'Rooms, location, and booking content aligned.' },
       { label: 'Market', value: 'Travel', detail: 'Built for international hospitality search.' },
@@ -124,6 +190,8 @@ export const projects: Project[] = [
     image: '/images/projects/your-morocco.webp',
     imageFull: '/images/projects/your-morocco-full.webp',
     services: ['Travel UX', 'Multilingual structure', 'Tour discovery'],
+
+    servicesFr: ['UX voyage', 'Structure multilingue', 'Découverte des circuits'],
     metrics: [
       { label: 'Content depth', value: 'Tour-led', detail: 'Experience pages designed for comparison.' },
       { label: 'Reach', value: 'Global', detail: 'Built for Morocco travel audiences.' },
@@ -150,6 +218,8 @@ export const projects: Project[] = [
     image: '/images/projects/by-marrakech.webp',
     imageFull: '/images/projects/by-marrakech-full.webp',
     services: ['City guide UX', 'i18n', 'Content systems'],
+
+    servicesFr: ['UX de guide', 'Multilingue', 'Système de contenu'],
     metrics: [
       { label: 'Location', value: 'Marrakech', detail: 'Built around city discovery.' },
       { label: 'Format', value: 'Guide', detail: 'Designed for browsing and exploration.' },
@@ -176,6 +246,8 @@ export const projects: Project[] = [
     image: '/images/projects/live/trust-drivers-hero-settled.webp',
     imageFull: '/images/projects/live/trust-drivers-full-settled.webp',
     services: ['Tour SEO', 'Conversion flow', 'Trust signals'],
+
+    servicesFr: ['SEO des circuits', 'Parcours de conversion', 'Signaux de confiance'],
     metrics: [
       { label: 'Search intent', value: 'Tours', detail: 'Built for private driver and tour discovery.' },
       { label: 'Priority', value: 'Trust', detail: 'Contact, credibility, and service clarity first.' },
@@ -202,6 +274,8 @@ export const projects: Project[] = [
     image: '/images/projects/live/yoo-marrakech-hero-settled.webp',
     imageFull: '/images/projects/live/yoo-marrakech-full-settled.webp',
     services: ['Local SEO', 'Brand website', 'Mobile UX'],
+
+    servicesFr: ['SEO local', 'Site de marque', 'UX mobile'],
     metrics: [
       { label: 'Geo target', value: 'Marrakech', detail: 'Location-first content structure.' },
       { label: 'Experience', value: 'Mobile', detail: 'Designed for quick local discovery.' },
@@ -228,6 +302,8 @@ export const projects: Project[] = [
     image: '/images/projects/live/morocco-atlas-guide-hero-settled.webp',
     imageFull: '/images/projects/live/morocco-atlas-guide-full-settled.webp',
     services: ['Destination SEO', 'Guide content', 'Travel UX'],
+
+    servicesFr: ['SEO de destination', 'Contenu de guide', 'UX voyage'],
     metrics: [
       { label: 'Destination', value: 'Atlas', detail: 'Built around itinerary and guide intent.' },
       { label: 'Market', value: 'Travel', detail: 'Supports international trip planning.' },

@@ -18,6 +18,7 @@ test('French case studies carry their own French text, not the English copy', ()
       assert.notEqual(fr[field], en[field], `${study.id}: ${field} is the same in both languages`);
     }
     assert.equal(fr.results.length, en.results.length, `${study.id}: results differ in length`);
+    assert.equal(study.tagsFr.length, study.tags.length, `${study.id}: French tags differ in number`);
     assert.equal(fr.features.length, 3, `${study.id}: the page shows three feature icons`);
     assert.equal(en.features.length, 3, `${study.id}: the page shows three feature icons`);
     assert.ok(fr.metrics.length >= 2 && en.metrics.length >= 2, `${study.id}: the hero needs two metrics`);
