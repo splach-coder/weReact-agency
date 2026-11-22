@@ -184,11 +184,11 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     slug: 'tourism-websites-morocco',
     primaryKeyword: 'tourism website design Morocco',
     keywords: ['tourism website design Morocco', 'hotel website Marrakech', 'travel website Morocco', 'site web tourisme Maroc'],
-    relatedProjectIds: ['flying-tandem', 'kasbah-angour', 'morocco-atlas-guide', 'trust-drivers'],
+    relatedProjectIds: ['signature-tours-morocco', 'flying-tandem', 'kasbah-angour', 'morocco-atlas-guide'],
     relatedPageSlugs: ['site-web-agence-de-voyage', 'hotel-website-design', 'web-design-marrakech', 'agence-seo-marrakech'],
     relatedPostSlugs: ['tourism-hospitality-seo-morocco', 'commission-getyourguide-viator-booking-maroc', 'combien-coute-site-web-maroc'],
     showPricing: true,
-    modifiedAt: '2026-11-10',
+    modifiedAt: '2026-11-22',
     copy: {
       en: {
         title: 'Tourism and Hospitality Websites in Morocco',
@@ -623,11 +623,11 @@ export const serviceLandingPages: readonly ServiceLandingPage[] = [
     slug: 'site-web-agence-de-voyage',
     primaryKeyword: 'site web agence de voyage',
     keywords: ['site web agence de voyage', 'création site web agence de voyage', 'site web pour agence de voyage', 'site agence de voyage maroc', 'site de réservation excursion', 'tour operator website design', 'tour booking website Morocco'],
-    relatedProjectIds: ['flying-tandem', 'your-morocco', 'trust-drivers'],
+    relatedProjectIds: ['signature-tours-morocco', 'flying-tandem', 'your-morocco'],
     relatedPageSlugs: ['tourism-websites-morocco', 'hotel-website-design', 'agence-seo-marrakech', 'web-design-marrakech'],
     relatedPostSlugs: ['commission-getyourguide-viator-booking-maroc', 'tourism-hospitality-seo-morocco', 'combien-coute-site-web-maroc'],
     showPricing: true,
-    modifiedAt: '2026-11-14',
+    modifiedAt: '2026-11-22',
     copy: {
       en: {
         title: 'Websites for Tour Operators in Morocco',

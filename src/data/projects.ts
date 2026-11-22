@@ -32,6 +32,36 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    // Facts checked on the live site and its sitemap on 2026-11-22 (live since 2026-11-21,
+    // footer: "Website by WeReact"). No traffic, ranking or speed numbers measured yet.
+    id: 'signature-tours-morocco',
+    title: 'Signature Tours Morocco',
+    domain: 'signaturetoursmorocco.com',
+    externalUrl: 'https://signaturetoursmorocco.com/',
+    relationship: 'client-work',
+    category: 'Tour Operator Website',
+    categoryFr: 'Site de circuits touristiques',
+    summary: 'Private tours of Morocco run from Marrakech: an old WordPress site rebuilt as a fast hand-coded site with every tour, day trip and experience, and requests sent on WhatsApp.',
+    summaryFr: 'Des circuits privés au Maroc organisés depuis Marrakech : un ancien site WordPress refait en site codé à la main, rapide, avec chaque circuit, excursion et activité, et les demandes envoyées sur WhatsApp.',
+    year: '2026',
+    modifiedAt: '2026-11-22',
+    status: 'featured',
+    image: '/images/projects/live/signature-tours-morocco-hero.webp',
+    imageFull: '/images/projects/live/signature-tours-morocco-full.webp',
+    services: ['Redesign', 'Tour pages', 'WhatsApp requests'],
+
+    servicesFr: ['Refonte', 'Pages circuits', 'Demandes WhatsApp'],
+    metrics: [
+      { label: 'Tours', value: '9', detail: 'Multi-day tours, plus 6 day trips and 6 experiences.' },
+      { label: 'Old URLs', value: 'Redirected', detail: 'Each old WordPress address points to its new page.' },
+    ],
+    caseStudy: {
+      challenge: 'Replace an old WordPress site for a private tour company without losing the search rankings it already had.',
+      response: 'WeReact rebuilt it as a hand-coded, mobile-first site with a page per tour, day trip and experience, a trip planner and booking on WhatsApp, and redirected every old URL.',
+      outcome: ['9 tours, 6 day trips, 6 experiences', 'Every old URL redirected', 'Requests on WhatsApp or a short form'],
+    },
+  },
+  {
     // Facts checked on the live site on 2026-11-14 (footer: "Built by WeReact").
     id: 'the-roots-corner',
     title: 'The Roots Corner',

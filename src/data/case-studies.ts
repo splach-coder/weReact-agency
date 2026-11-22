@@ -41,6 +41,74 @@ export type CaseStudy = {
 
 export const caseStudies: readonly CaseStudy[] = [
   {
+    // Checked on signaturetoursmorocco.com and its sitemap on 2026-11-22 (live since 2026-11-21).
+    // Client work: the business belongs to Aziz. No traffic, ranking or speed figures until measured.
+    id: 'signature-tours-morocco',
+    title: 'Signature Tours Morocco',
+    year: '2026',
+    tags: ['HTML / CSS / JS', 'Redesign', 'WhatsApp booking', 'Structured data', 'Redirects'],
+    tagsFr: ['HTML / CSS / JS', 'Refonte', 'Réservation WhatsApp', 'Données structurées', 'Redirections'],
+    link: 'https://signaturetoursmorocco.com/',
+    image: '/images/projects/live/signature-tours-morocco-hero.webp',
+    imageFull: '/images/projects/live/signature-tours-morocco-full.webp',
+    imageFullHeight: 5670,
+    gradient: 'from-[#3A5A40] to-[#2e4833]',
+    serviceSlug: 'tourism-websites-morocco',
+    serviceLabel: { en: 'Tourism websites in Morocco', fr: 'Sites web pour le tourisme au Maroc' },
+    copy: {
+      en: {
+        category: 'Tour Operator Website',
+        tagline: 'Private tours of Morocco, planned in Marrakech and requested from a phone',
+        description: 'The website of Signature Tours Morocco, a small team in Marrakech led by Aziz that runs private tours with a driver across Morocco. Travellers find the multi-day tours, the day trips from Marrakech and the experiences, read the route day by day, and send a request on WhatsApp or through a short form.',
+        challenge: 'The company already had a WordPress site with pages that Google knew. It needed a faster, clearer site that works on a phone, without losing the search rankings attached to the old addresses.',
+        solution: 'We redesigned and rebuilt the site by hand, with no CMS: 9 multi-day tours, 6 day trips, 6 experiences, a blog, Our story, Contact and a tailor-made trip planner. It is built for phones first, and every page leads to WhatsApp or a short request form. Every old URL redirects to its new page, so the rankings carry over. Each tour carries structured data, and the site has a sitemap, Google Search Console and IndexNow. We also moved the hosting and the domain email and set up SSL. The photos are the client’s own.',
+        results: [
+          '9 multi-day tours, 6 day trips and 6 experiences, each on its own page',
+          'A tailor-made trip planner that sends the request on WhatsApp',
+          'Every old WordPress URL redirected to its new page',
+          'Structured data on every tour, a sitemap, Search Console and IndexNow',
+          'Hosting, domain email and SSL moved and set up',
+          'The client’s own photos throughout',
+        ],
+        features: [
+          { title: 'Hand-coded rebuild', description: 'No CMS: a fast site that replaces the old WordPress' },
+          { title: 'Rankings kept', description: 'Old URLs redirected, structured data, sitemap and IndexNow' },
+          { title: 'Built for phones', description: 'Requests on WhatsApp or a short form from any screen' },
+        ],
+        metrics: [
+          { label: 'Tours', value: '9', description: 'Plus 6 day trips and 6 experiences' },
+          { label: 'Old URLs', value: 'Redirected', description: 'Each one to its new page' },
+          { label: 'Booking', value: 'WhatsApp', description: 'Or a short request form' },
+        ],
+      },
+      fr: {
+        category: 'Site de circuits touristiques',
+        tagline: 'Des circuits privés au Maroc, préparés à Marrakech et demandés depuis un téléphone',
+        description: 'Le site de Signature Tours Morocco, une petite équipe de Marrakech menée par Aziz qui organise des circuits privés avec chauffeur dans tout le Maroc. Le voyageur trouve les circuits de plusieurs jours, les excursions d’une journée au départ de Marrakech et les activités, lit l’itinéraire jour par jour et envoie sa demande sur WhatsApp ou par un court formulaire.',
+        challenge: 'L’entreprise avait déjà un site WordPress dont les pages étaient connues de Google. Il lui fallait un site plus rapide et plus clair sur mobile, sans perdre le référencement lié aux anciennes adresses.',
+        solution: 'Nous avons refait le site entièrement, codé à la main, sans CMS : 9 circuits de plusieurs jours, 6 excursions, 6 activités, un blog, Notre histoire, Contact et un planificateur de voyage sur mesure. Il est pensé d’abord pour le mobile, et chaque page mène à WhatsApp ou à un court formulaire. Chaque ancienne URL redirige vers sa nouvelle page, pour garder le référencement acquis. Chaque circuit porte des données structurées, et le site a un sitemap, Google Search Console et IndexNow. Nous avons aussi migré l’hébergement et la messagerie du domaine et installé le SSL. Les photos sont celles du client.',
+        results: [
+          '9 circuits de plusieurs jours, 6 excursions et 6 activités, chacun sur sa page',
+          'Un planificateur de voyage sur mesure qui envoie la demande sur WhatsApp',
+          'Chaque ancienne URL WordPress redirigée vers sa nouvelle page',
+          'Données structurées sur chaque circuit, sitemap, Search Console et IndexNow',
+          'Hébergement, messagerie du domaine et SSL migrés et installés',
+          'Les photos du client sur tout le site',
+        ],
+        features: [
+          { title: 'Refonte codée à la main', description: 'Sans CMS : un site rapide qui remplace l’ancien WordPress' },
+          { title: 'Référencement conservé', description: 'Anciennes URL redirigées, données structurées, sitemap et IndexNow' },
+          { title: 'Pensé pour le mobile', description: 'Demandes sur WhatsApp ou par un court formulaire, sur tout écran' },
+        ],
+        metrics: [
+          { label: 'Circuits', value: '9', description: 'Plus 6 excursions et 6 activités' },
+          { label: 'Anciennes URL', value: 'Redirigées', description: 'Chacune vers sa nouvelle page' },
+          { label: 'Réservation', value: 'WhatsApp', description: 'Ou un court formulaire' },
+        ],
+      },
+    },
+  },
+  {
     id: 'the-roots-corner',
     title: 'The Roots Corner',
     year: '2026',
