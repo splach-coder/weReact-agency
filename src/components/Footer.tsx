@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Linkedin, Star } from 'lucide-react';
 import { InstagramIcon, FacebookIcon, WhatsAppIcon, EmailIcon } from '@/components/icons/SocialIcons';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/transition/TransitionLink';
@@ -102,6 +103,9 @@ export default function Footer() {
   const socials = [
     { label: 'Instagram', href: siteConfig.business.sameAs[0], icon: InstagramIcon },
     { label: 'Facebook', href: siteConfig.business.facebook, icon: FacebookIcon },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wereact-agency', icon: Linkedin },
+    // The verified Google Business Profile, where the reviews are.
+    { label: locale === 'fr' ? 'Avis Google' : 'Google reviews', href: 'https://maps.google.com/?cid=906947470338054436', icon: Star },
     { label: 'WhatsApp', href: buildWhatsAppLink(locale), icon: WhatsAppIcon },
     { label: 'Email', href: `mailto:${siteConfig.business.email}`, icon: EmailIcon },
   ];
