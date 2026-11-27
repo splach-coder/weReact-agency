@@ -1,17 +1,15 @@
 # Internal link audit
 
-Generated 2026-11-22T13:40:45Z by `scripts/seo/link-audit.mjs` against `http://127.0.0.1:8873` (canonical host `https://www.wereact.agency`), from the 80 URLs in `/sitemap.xml`.
+Generated 2026-11-27T11:57:07Z by `scripts/seo/link-audit.mjs` against `http://127.0.0.1:8873` (canonical host `https://www.wereact.agency`), from the 80 URLs in `/sitemap.xml`.
 
 A contextual link is an `<a href>` inside `<main>`. Header, footer and navigation links are on every page and are ignored. Links from the HTML sitemap (`/[locale]/sitemap`) and AI info page (`/[locale]/ai-info`) list every page by design, so they are shown as "index in-links" and do not count. Query strings and `#fragments` are ignored when matching a link to a page, and a page linking to itself is ignored. In-links count linking pages, not repeated links from the same page.
 
 ## Summary
 
 - Pages audited: **80**
-- Contextual page-to-page links: **622**
-- Orphans (0 contextual in-links): **8**
-  - `/en/ai-info` (only linked from `/en/sitemap`)
+- Contextual page-to-page links: **634**
+- Orphans (0 contextual in-links): **6**
   - `/en/sitemap` (only linked from `/en/ai-info`)
-  - `/fr/ai-info` (only linked from `/fr/sitemap`)
   - `/fr/sitemap` (only linked from `/fr/ai-info`)
   - `/en` (only linked from `/en/ai-info`, `/en/sitemap`)
   - `/en/book` (only linked from `/en/ai-info`, `/en/sitemap`)
@@ -20,52 +18,50 @@ A contextual link is an `<a href>` inside `<main>`. Header, footer and navigatio
 - Links pointing at a redirect: **0** — none
 - Broken internal links: **0** — none
 - Internal targets that work but are not in the sitemap: **2**
-  - `/llms.txt` (from `/en/ai-info`, `/fr/ai-info`)
-  - `/sitemap.xml` (from `/en/ai-info`, `/fr/ai-info`, `/en/sitemap`, `/fr/sitemap`)
+  - `/llms.txt` (from `/fr/ai-info`, `/en/ai-info`)
+  - `/sitemap.xml` (from `/fr/ai-info`, `/en/ai-info`, `/en/sitemap`, `/fr/sitemap`)
 
 ## Pages by contextual in-links (fewest first)
 
 | Page | In-links | Index in-links | Out-links | Redirect / broken links | Linked from |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `/en/ai-info` | 0 | 1 | 28 | 0 | — |
 | `/en/sitemap` | 0 | 1 | 39 | 0 | — |
-| `/fr/ai-info` | 0 | 1 | 28 | 0 | — |
 | `/fr/sitemap` | 0 | 1 | 39 | 0 | — |
 | `/en` | 0 | 2 | 8 | 0 | — |
 | `/en/book` | 0 | 2 | 0 | 0 | — |
 | `/fr` | 0 | 2 | 8 | 0 | — |
 | `/fr/book` | 0 | 2 | 0 | 0 | — |
+| `/en/ai-info` | 1 | 1 | 28 | 0 | `/en/agence-seo-marrakech` |
+| `/fr/ai-info` | 1 | 1 | 28 | 0 | `/fr/agence-seo-marrakech` |
 | `/en/international-web-design-agency` | 2 | 2 | 9 | 0 | `/en`, `/en/web-design-marrakech` |
-| `/en/web-design-agadir` | 2 | 2 | 11 | 0 | `/en/web-design-marrakech`, `/en/website-design-moroccan-businesses` |
 | `/en/work/one-off-events` | 2 | 2 | 3 | 0 | `/en/web-design-marrakech`, `/en/work` |
 | `/fr/international-web-design-agency` | 2 | 2 | 9 | 0 | `/fr`, `/fr/web-design-marrakech` |
-| `/fr/web-design-agadir` | 2 | 2 | 11 | 0 | `/fr/web-design-marrakech`, `/fr/website-design-moroccan-businesses` |
 | `/fr/work/one-off-events` | 2 | 2 | 3 | 0 | `/fr/web-design-marrakech`, `/fr/work` |
 | `/en/outils/generateur-lien-whatsapp` | 3 | 1 | 3 | 0 | `/en/blog/auto-entrepreneur-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/site-web-agence-de-voyage` |
 | `/fr/outils/generateur-lien-whatsapp` | 3 | 1 | 3 | 0 | `/fr/blog/auto-entrepreneur-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/site-web-agence-de-voyage` |
+| `/en/web-design-agadir` | 3 | 2 | 11 | 0 | `/en/agence-seo-marrakech`, `/en/web-design-marrakech`, `/en/website-design-moroccan-businesses` |
 | `/en/work/by-marrakech` | 3 | 2 | 3 | 0 | `/en/creation-site-e-commerce-maroc`, `/en/website-design-moroccan-businesses`, `/en/work` |
 | `/en/work/the-roots-corner` | 3 | 2 | 3 | 0 | `/en/about`, `/en/creation-site-e-commerce-maroc`, `/en/work` |
+| `/fr/web-design-agadir` | 3 | 2 | 11 | 0 | `/fr/agence-seo-marrakech`, `/fr/web-design-marrakech`, `/fr/website-design-moroccan-businesses` |
 | `/fr/work/by-marrakech` | 3 | 2 | 3 | 0 | `/fr/creation-site-e-commerce-maroc`, `/fr/website-design-moroccan-businesses`, `/fr/work` |
 | `/fr/work/the-roots-corner` | 3 | 2 | 3 | 0 | `/fr/about`, `/fr/creation-site-e-commerce-maroc`, `/fr/work` |
 | `/en/agence-marketing-digital-marrakech` | 4 | 2 | 14 | 0 | `/en/agence-seo-marrakech`, `/en/creation-site-e-commerce-maroc`, `/en/web-design-marrakech`, `/en/web-design-rabat` |
-| `/en/web-design-tanger` | 4 | 2 | 13 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/website-design-moroccan-businesses` |
+| `/en/work/morocco-atlas-guide` | 4 | 2 | 3 | 0 | `/en/blog/tourism-hospitality-seo-morocco`, `/en/hotel-website-design`, `/en/tourism-websites-morocco`, `/en/work` |
 | `/en/work/one-off-solutions` | 4 | 2 | 3 | 0 | `/en/about`, `/en/agence-seo-marrakech`, `/en/web-design-marrakech`, `/en/work` |
-| `/en/work/signature-tours-morocco` | 4 | 2 | 3 | 0 | `/en/about`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/work` |
 | `/fr/agence-marketing-digital-marrakech` | 4 | 2 | 14 | 0 | `/fr/agence-seo-marrakech`, `/fr/creation-site-e-commerce-maroc`, `/fr/web-design-marrakech`, `/fr/web-design-rabat` |
-| `/fr/web-design-tanger` | 4 | 2 | 13 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/website-design-moroccan-businesses` |
+| `/fr/work/morocco-atlas-guide` | 4 | 2 | 3 | 0 | `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/tourism-websites-morocco`, `/fr/work` |
 | `/fr/work/one-off-solutions` | 4 | 2 | 3 | 0 | `/fr/about`, `/fr/agence-seo-marrakech`, `/fr/web-design-marrakech`, `/fr/work` |
-| `/fr/work/signature-tours-morocco` | 4 | 2 | 3 | 0 | `/fr/about`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/work` |
 | `/en/blog/auto-entrepreneur-maroc` | 5 | 1 | 10 | 0 | `/en/about`, `/en/blog`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/fiche-google-business-maroc`, `/en/website-design-moroccan-businesses` |
 | `/fr/blog/auto-entrepreneur-maroc` | 5 | 1 | 10 | 0 | `/fr/about`, `/fr/blog`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/fiche-google-business-maroc`, `/fr/website-design-moroccan-businesses` |
-| `/en/web-design-rabat` | 5 | 2 | 13 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses` |
-| `/en/work/morocco-atlas-guide` | 5 | 2 | 3 | 0 | `/en/agence-seo-marrakech`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/hotel-website-design`, `/en/tourism-websites-morocco`, `/en/work` |
+| `/en/web-design-tanger` | 5 | 2 | 13 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/website-design-moroccan-businesses` |
+| `/en/work/signature-tours-morocco` | 5 | 2 | 3 | 0 | `/en/about`, `/en/agence-seo-marrakech`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/work` |
 | `/en/work/yoo-marrakech` | 5 | 2 | 3 | 0 | `/en/creation-site-e-commerce-maroc`, `/en/web-design-casablanca`, `/en/web-design-rabat`, `/en/website-design-moroccan-businesses`, `/en/work` |
-| `/fr/web-design-rabat` | 5 | 2 | 13 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses` |
-| `/fr/work/morocco-atlas-guide` | 5 | 2 | 3 | 0 | `/fr/agence-seo-marrakech`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/tourism-websites-morocco`, `/fr/work` |
+| `/fr/web-design-tanger` | 5 | 2 | 13 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/website-design-moroccan-businesses` |
+| `/fr/work/signature-tours-morocco` | 5 | 2 | 3 | 0 | `/fr/about`, `/fr/agence-seo-marrakech`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/work` |
 | `/fr/work/yoo-marrakech` | 5 | 2 | 3 | 0 | `/fr/creation-site-e-commerce-maroc`, `/fr/web-design-casablanca`, `/fr/web-design-rabat`, `/fr/website-design-moroccan-businesses`, `/fr/work` |
-| `/en/web-design-casablanca` | 6 | 2 | 11 | 0 | `/en/about`, `/en/agence-marketing-digital-marrakech`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses` |
+| `/en/web-design-rabat` | 6 | 2 | 13 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses` |
 | `/en/work/your-morocco` | 6 | 2 | 3 | 0 | `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/web-design-agadir`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/work` |
-| `/fr/web-design-casablanca` | 6 | 2 | 11 | 0 | `/fr/about`, `/fr/agence-marketing-digital-marrakech`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses` |
+| `/fr/web-design-rabat` | 6 | 2 | 13 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses` |
 | `/fr/work/your-morocco` | 6 | 2 | 3 | 0 | `/fr/international-web-design-agency`, `/fr/site-web-agence-de-voyage`, `/fr/web-design-agadir`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/work` |
 | `/en/about` | 7 | 1 | 14 | 0 | `/en/blog/auto-entrepreneur-maroc`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/etude-sites-agences-web-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/blog/website-design-marrakech-business-guide` |
 | `/en/blog` | 7 | 1 | 8 | 0 | `/en/blog/auto-entrepreneur-maroc`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/etude-sites-agences-web-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/blog/website-design-marrakech-business-guide` |
@@ -73,29 +69,31 @@ A contextual link is an `<a href>` inside `<main>`. Header, footer and navigatio
 | `/fr/about` | 7 | 1 | 14 | 0 | `/fr/blog/auto-entrepreneur-maroc`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/etude-sites-agences-web-marrakech`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/blog/website-design-marrakech-business-guide` |
 | `/fr/blog` | 7 | 1 | 8 | 0 | `/fr/blog/auto-entrepreneur-maroc`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/etude-sites-agences-web-marrakech`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/blog/website-design-marrakech-business-guide` |
 | `/fr/blog/commission-getyourguide-viator-booking-maroc` | 7 | 1 | 10 | 0 | `/fr/about`, `/fr/blog`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir` |
+| `/en/web-design-casablanca` | 7 | 2 | 11 | 0 | `/en/about`, `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses` |
+| `/fr/web-design-casablanca` | 7 | 2 | 11 | 0 | `/fr/about`, `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses` |
 | `/en/blog/etude-sites-agences-web-marrakech` | 8 | 1 | 8 | 0 | `/en/about`, `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/blog`, `/en/blog/combien-coute-site-web-maroc`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/website-design-moroccan-businesses` |
 | `/fr/blog/etude-sites-agences-web-marrakech` | 8 | 1 | 8 | 0 | `/fr/about`, `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/blog`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/website-design-moroccan-businesses` |
 | `/en/work/trust-drivers` | 8 | 2 | 3 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-casablanca`, `/en/web-design-rabat`, `/en/work` |
 | `/fr/work/trust-drivers` | 8 | 2 | 3 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-casablanca`, `/fr/web-design-rabat`, `/fr/work` |
 | `/en/creation-site-e-commerce-maroc` | 10 | 2 | 10 | 0 | `/en`, `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/blog/combien-coute-site-web-maroc`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses`, `/en/work/the-roots-corner` |
-| `/en/hotel-website-design` | 10 | 2 | 11 | 0 | `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-agadir`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/work/kasbah-angour` |
 | `/en/website-design-moroccan-businesses` | 10 | 2 | 15 | 0 | `/en`, `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/blog/auto-entrepreneur-maroc`, `/en/creation-site-e-commerce-maroc`, `/en/outils/generateur-lien-whatsapp`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger` |
 | `/en/work/flying-tandem` | 10 | 2 | 3 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-agadir`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/work` |
 | `/en/work/kasbah-angour` | 10 | 2 | 3 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/tourism-websites-morocco`, `/en/web-design-agadir`, `/en/web-design-casablanca`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses`, `/en/work` |
 | `/fr/creation-site-e-commerce-maroc` | 10 | 2 | 10 | 0 | `/fr`, `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses`, `/fr/work/the-roots-corner` |
-| `/fr/hotel-website-design` | 10 | 2 | 11 | 0 | `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/work/kasbah-angour` |
 | `/fr/website-design-moroccan-businesses` | 10 | 2 | 15 | 0 | `/fr`, `/fr/agence-marketing-digital-marrakech`, `/fr/agence-seo-marrakech`, `/fr/blog/auto-entrepreneur-maroc`, `/fr/creation-site-e-commerce-maroc`, `/fr/outils/generateur-lien-whatsapp`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger` |
 | `/fr/work/flying-tandem` | 10 | 2 | 3 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/international-web-design-agency`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/work` |
 | `/fr/work/kasbah-angour` | 10 | 2 | 3 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/international-web-design-agency`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir`, `/fr/web-design-casablanca`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses`, `/fr/work` |
+| `/en/hotel-website-design` | 11 | 2 | 11 | 0 | `/en/agence-seo-marrakech`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-agadir`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/work/kasbah-angour` |
 | `/en/tourism-websites-morocco` | 11 | 2 | 13 | 0 | `/en`, `/en/about`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/blog/website-design-marrakech-business-guide`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/web-design-agadir`, `/en/work/flying-tandem`, `/en/work/morocco-atlas-guide`, `/en/work/signature-tours-morocco` |
+| `/fr/hotel-website-design` | 11 | 2 | 11 | 0 | `/fr/agence-seo-marrakech`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/work/kasbah-angour` |
 | `/fr/tourism-websites-morocco` | 11 | 2 | 13 | 0 | `/fr`, `/fr/about`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/blog/website-design-marrakech-business-guide`, `/fr/hotel-website-design`, `/fr/international-web-design-agency`, `/fr/site-web-agence-de-voyage`, `/fr/web-design-agadir`, `/fr/work/flying-tandem`, `/fr/work/morocco-atlas-guide`, `/fr/work/signature-tours-morocco` |
 | `/en/blog/website-design-marrakech-business-guide` | 12 | 1 | 8 | 0 | `/en/about`, `/en/blog`, `/en/blog/auto-entrepreneur-maroc`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/etude-sites-agences-web-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/creation-site-e-commerce-maroc`, `/en/international-web-design-agency`, `/en/web-design-marrakech`, `/en/web-design-rabat` |
 | `/en/work` | 12 | 1 | 11 | 0 | `/en`, `/en/work/by-marrakech`, `/en/work/flying-tandem`, `/en/work/kasbah-angour`, `/en/work/morocco-atlas-guide`, `/en/work/one-off-events`, `/en/work/one-off-solutions`, `/en/work/signature-tours-morocco`, `/en/work/the-roots-corner`, `/en/work/trust-drivers`, `/en/work/yoo-marrakech`, `/en/work/your-morocco` |
 | `/fr/blog/website-design-marrakech-business-guide` | 12 | 1 | 8 | 0 | `/fr/about`, `/fr/blog`, `/fr/blog/auto-entrepreneur-maroc`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/etude-sites-agences-web-marrakech`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/creation-site-e-commerce-maroc`, `/fr/international-web-design-agency`, `/fr/web-design-marrakech`, `/fr/web-design-rabat` |
 | `/fr/work` | 12 | 1 | 11 | 0 | `/fr`, `/fr/work/by-marrakech`, `/fr/work/flying-tandem`, `/fr/work/kasbah-angour`, `/fr/work/morocco-atlas-guide`, `/fr/work/one-off-events`, `/fr/work/one-off-solutions`, `/fr/work/signature-tours-morocco`, `/fr/work/the-roots-corner`, `/fr/work/trust-drivers`, `/fr/work/yoo-marrakech`, `/fr/work/your-morocco` |
-| `/en/agence-seo-marrakech` | 13 | 2 | 11 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/creation-site-e-commerce-maroc`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses`, `/en/work/one-off-solutions` |
+| `/en/agence-seo-marrakech` | 13 | 2 | 17 | 0 | `/en/agence-marketing-digital-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/creation-site-e-commerce-maroc`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-casablanca`, `/en/web-design-marrakech`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses`, `/en/work/one-off-solutions` |
 | `/en/site-web-agence-de-voyage` | 13 | 2 | 13 | 0 | `/en`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/fiche-google-business-maroc`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/hotel-website-design`, `/en/outils/generateur-lien-whatsapp`, `/en/tourism-websites-morocco`, `/en/web-design-agadir`, `/en/web-design-marrakech`, `/en/web-design-tanger`, `/en/work/trust-drivers`, `/en/work/your-morocco` |
-| `/fr/agence-seo-marrakech` | 13 | 2 | 11 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/blog/fiche-google-business-maroc`, `/fr/creation-site-e-commerce-maroc`, `/fr/hotel-website-design`, `/fr/international-web-design-agency`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses`, `/fr/work/one-off-solutions` |
+| `/fr/agence-seo-marrakech` | 13 | 2 | 17 | 0 | `/fr/agence-marketing-digital-marrakech`, `/fr/blog/fiche-google-business-maroc`, `/fr/creation-site-e-commerce-maroc`, `/fr/hotel-website-design`, `/fr/international-web-design-agency`, `/fr/site-web-agence-de-voyage`, `/fr/tourism-websites-morocco`, `/fr/web-design-casablanca`, `/fr/web-design-marrakech`, `/fr/web-design-rabat`, `/fr/web-design-tanger`, `/fr/website-design-moroccan-businesses`, `/fr/work/one-off-solutions` |
 | `/fr/site-web-agence-de-voyage` | 13 | 2 | 13 | 0 | `/fr`, `/fr/blog/combien-coute-site-web-maroc`, `/fr/blog/commission-getyourguide-viator-booking-maroc`, `/fr/blog/fiche-google-business-maroc`, `/fr/blog/tourism-hospitality-seo-morocco`, `/fr/hotel-website-design`, `/fr/outils/generateur-lien-whatsapp`, `/fr/tourism-websites-morocco`, `/fr/web-design-agadir`, `/fr/web-design-marrakech`, `/fr/web-design-tanger`, `/fr/work/trust-drivers`, `/fr/work/your-morocco` |
 | `/en/blog/fiche-google-business-maroc` | 14 | 1 | 10 | 0 | `/en/about`, `/en/agence-marketing-digital-marrakech`, `/en/agence-seo-marrakech`, `/en/blog`, `/en/blog/auto-entrepreneur-maroc`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/etude-sites-agences-web-marrakech`, `/en/blog/tourism-hospitality-seo-morocco`, `/en/blog/website-design-marrakech-business-guide`, `/en/web-design-casablanca`, `/en/web-design-rabat`, `/en/web-design-tanger`, `/en/website-design-moroccan-businesses` |
 | `/en/blog/tourism-hospitality-seo-morocco` | 14 | 1 | 14 | 0 | `/en/about`, `/en/agence-seo-marrakech`, `/en/blog`, `/en/blog/auto-entrepreneur-maroc`, `/en/blog/combien-coute-site-web-maroc`, `/en/blog/commission-getyourguide-viator-booking-maroc`, `/en/blog/etude-sites-agences-web-marrakech`, `/en/blog/fiche-google-business-maroc`, `/en/blog/website-design-marrakech-business-guide`, `/en/hotel-website-design`, `/en/international-web-design-agency`, `/en/site-web-agence-de-voyage`, `/en/tourism-websites-morocco`, `/en/web-design-agadir` |
